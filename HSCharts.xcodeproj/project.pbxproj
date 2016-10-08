@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
+		2B4D8A111D1BF2EB002CED37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A101D1BF2EB002CED37 /* main.m */; };
+		2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */; };
+		2B4D8A161D1BF2EB002CED37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4D8A151D1BF2EB002CED37 /* Assets.xcassets */; };
+		2B4D8A191D1BF2EB002CED37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4D8A171D1BF2EB002CED37 /* LaunchScreen.storyboard */; };
+		2B4D8A321D1BF35F002CED37 /* BarShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A221D1BF35F002CED37 /* BarShape.m */; };
+		2B4D8A331D1BF35F002CED37 /* BoardLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A241D1BF35F002CED37 /* BoardLayer.m */; };
+		2B4D8A341D1BF35F002CED37 /* CALayer+GraDispose.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A261D1BF35F002CED37 /* CALayer+GraDispose.m */; };
+		2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A281D1BF35F002CED37 /* CALayer+SawFrame.m */; };
+		2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A2A1D1BF35F002CED37 /* DrawMath.m */; };
+		2B4D8A371D1BF35F002CED37 /* GraphSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A2C1D1BF35F002CED37 /* GraphSpider.m */; };
+		2B4D8A381D1BF35F002CED37 /* LineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A2E1D1BF35F002CED37 /* LineShape.m */; };
+		2B4D8A391D1BF35F002CED37 /* PaintBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A301D1BF35F002CED37 /* PaintBrush.m */; };
+		2B4D8A3E1D1BF93E002CED37 /* RankBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */; };
+		2B61B0671D210018009D634D /* CrossLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B61B0661D210018009D634D /* CrossLineView.m */; };
+		2B61B06A1D210B81009D634D /* CrossLineBottomData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2B61B0681D210B81009D634D /* CrossLineBottomData.txt */; };
+		2B61B06B1D210B81009D634D /* CrossLineTopData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2B61B0691D210B81009D634D /* CrossLineTopData.txt */; };
+		2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76BCB61D1D269A00639205 /* CumSumBarView.m */; };
+		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
+		2BFAC86A1D46019C001B6DB0 /* ChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFAC8691D46019C001B6DB0 /* ChartVC.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B0C0ADE1D220BEE004ABEC0 /* CumSumLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumLineView.h; path = HSChart/CumSumLineView.h; sourceTree = "<group>"; };
+		2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumLineView.m; path = HSChart/CumSumLineView.m; sourceTree = "<group>"; };
+		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B4D8A101D1BF2EB002CED37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B4D8A121D1BF2EB002CED37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B4D8A151D1BF2EB002CED37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B4D8A181D1BF2EB002CED37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B4D8A1A1D1BF2EB002CED37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B4D8A211D1BF35F002CED37 /* BarShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarShape.h; path = HSGraph/BarShape.h; sourceTree = "<group>"; };
+		2B4D8A221D1BF35F002CED37 /* BarShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarShape.m; path = HSGraph/BarShape.m; sourceTree = "<group>"; };
+		2B4D8A231D1BF35F002CED37 /* BoardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardLayer.h; path = HSGraph/BoardLayer.h; sourceTree = "<group>"; };
+		2B4D8A241D1BF35F002CED37 /* BoardLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardLayer.m; path = HSGraph/BoardLayer.m; sourceTree = "<group>"; };
+		2B4D8A251D1BF35F002CED37 /* CALayer+GraDispose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+GraDispose.h"; path = "HSGraph/CALayer+GraDispose.h"; sourceTree = "<group>"; };
+		2B4D8A261D1BF35F002CED37 /* CALayer+GraDispose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+GraDispose.m"; path = "HSGraph/CALayer+GraDispose.m"; sourceTree = "<group>"; };
+		2B4D8A271D1BF35F002CED37 /* CALayer+SawFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CALayer+SawFrame.h"; path = "HSGraph/CALayer+SawFrame.h"; sourceTree = "<group>"; };
+		2B4D8A281D1BF35F002CED37 /* CALayer+SawFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CALayer+SawFrame.m"; path = "HSGraph/CALayer+SawFrame.m"; sourceTree = "<group>"; };
+		2B4D8A291D1BF35F002CED37 /* DrawMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawMath.h; path = HSGraph/DrawMath.h; sourceTree = "<group>"; };
+		2B4D8A2A1D1BF35F002CED37 /* DrawMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawMath.m; path = HSGraph/DrawMath.m; sourceTree = "<group>"; };
+		2B4D8A2B1D1BF35F002CED37 /* GraphSpider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphSpider.h; path = HSGraph/GraphSpider.h; sourceTree = "<group>"; };
+		2B4D8A2C1D1BF35F002CED37 /* GraphSpider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphSpider.m; path = HSGraph/GraphSpider.m; sourceTree = "<group>"; };
+		2B4D8A2D1D1BF35F002CED37 /* LineShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineShape.h; path = HSGraph/LineShape.h; sourceTree = "<group>"; };
+		2B4D8A2E1D1BF35F002CED37 /* LineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineShape.m; path = HSGraph/LineShape.m; sourceTree = "<group>"; };
+		2B4D8A2F1D1BF35F002CED37 /* PaintBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintBrush.h; path = HSGraph/PaintBrush.h; sourceTree = "<group>"; };
+		2B4D8A301D1BF35F002CED37 /* PaintBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintBrush.m; path = HSGraph/PaintBrush.m; sourceTree = "<group>"; };
+		2B4D8A311D1BF35F002CED37 /* SawGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SawGraph.h; path = HSGraph/SawGraph.h; sourceTree = "<group>"; };
+		2B4D8A3B1D1BF66B002CED37 /* Colors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
+		2B4D8A3C1D1BF93E002CED37 /* RankBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankBarView.h; path = HSChart/RankBarView.h; sourceTree = "<group>"; };
+		2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankBarView.m; path = HSChart/RankBarView.m; sourceTree = "<group>"; };
+		2B61B0651D210018009D634D /* CrossLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrossLineView.h; path = HSChart/CrossLineView.h; sourceTree = "<group>"; };
+		2B61B0661D210018009D634D /* CrossLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CrossLineView.m; path = HSChart/CrossLineView.m; sourceTree = "<group>"; };
+		2B61B0681D210B81009D634D /* CrossLineBottomData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CrossLineBottomData.txt; sourceTree = "<group>"; };
+		2B61B0691D210B81009D634D /* CrossLineTopData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CrossLineTopData.txt; sourceTree = "<group>"; };
+		2B76BCB51D1D269A00639205 /* CumSumBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumBarView.h; path = HSChart/CumSumBarView.h; sourceTree = "<group>"; };
+		2B76BCB61D1D269A00639205 /* CumSumBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumBarView.m; path = HSChart/CumSumBarView.m; sourceTree = "<group>"; };
+		2B78D3A61D3F1B220079C6D2 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
+		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		2BFAC8681D46019C001B6DB0 /* ChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartVC.h; sourceTree = "<group>"; };
+		2BFAC8691D46019C001B6DB0 /* ChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartVC.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B4D8A091D1BF2EB002CED37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B4D8A031D1BF2EB002CED37 = {
+			isa = PBXGroup;
+			children = (
+				2B4D8A3A1D1BF57F002CED37 /* HSChart */,
+				2B4D8A201D1BF33E002CED37 /* HSGraph */,
+				2B4D8A0E1D1BF2EB002CED37 /* HSCharts */,
+				2B4D8A0D1D1BF2EB002CED37 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B4D8A0D1D1BF2EB002CED37 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B4D8A0E1D1BF2EB002CED37 /* HSCharts */ = {
+			isa = PBXGroup;
+			children = (
+				2B4D8A121D1BF2EB002CED37 /* AppDelegate.h */,
+				2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */,
+				2B78D3A61D3F1B220079C6D2 /* ListVC.h */,
+				2B78D3A71D3F1B220079C6D2 /* ListVC.m */,
+				2BFAC8681D46019C001B6DB0 /* ChartVC.h */,
+				2BFAC8691D46019C001B6DB0 /* ChartVC.m */,
+				2B4D8A151D1BF2EB002CED37 /* Assets.xcassets */,
+				2B4D8A171D1BF2EB002CED37 /* LaunchScreen.storyboard */,
+				2B4D8A1A1D1BF2EB002CED37 /* Info.plist */,
+				2B4D8A0F1D1BF2EB002CED37 /* Supporting Files */,
+			);
+			path = HSCharts;
+			sourceTree = "<group>";
+		};
+		2B4D8A0F1D1BF2EB002CED37 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B61B0691D210B81009D634D /* CrossLineTopData.txt */,
+				2B61B0681D210B81009D634D /* CrossLineBottomData.txt */,
+				2B4D8A101D1BF2EB002CED37 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B4D8A201D1BF33E002CED37 /* HSGraph */ = {
+			isa = PBXGroup;
+			children = (
+				2B4D8A311D1BF35F002CED37 /* SawGraph.h */,
+				2B4D8A211D1BF35F002CED37 /* BarShape.h */,
+				2B4D8A221D1BF35F002CED37 /* BarShape.m */,
+				2B4D8A2D1D1BF35F002CED37 /* LineShape.h */,
+				2B4D8A2E1D1BF35F002CED37 /* LineShape.m */,
+				2B4D8A2B1D1BF35F002CED37 /* GraphSpider.h */,
+				2B4D8A2C1D1BF35F002CED37 /* GraphSpider.m */,
+				2B4D8A251D1BF35F002CED37 /* CALayer+GraDispose.h */,
+				2B4D8A261D1BF35F002CED37 /* CALayer+GraDispose.m */,
+				2B4D8A271D1BF35F002CED37 /* CALayer+SawFrame.h */,
+				2B4D8A281D1BF35F002CED37 /* CALayer+SawFrame.m */,
+				2B4D8A291D1BF35F002CED37 /* DrawMath.h */,
+				2B4D8A2A1D1BF35F002CED37 /* DrawMath.m */,
+				2B4D8A231D1BF35F002CED37 /* BoardLayer.h */,
+				2B4D8A241D1BF35F002CED37 /* BoardLayer.m */,
+				2B4D8A2F1D1BF35F002CED37 /* PaintBrush.h */,
+				2B4D8A301D1BF35F002CED37 /* PaintBrush.m */,
+			);
+			name = HSGraph;
+			sourceTree = "<group>";
+		};
+		2B4D8A3A1D1BF57F002CED37 /* HSChart */ = {
+			isa = PBXGroup;
+			children = (
+				2B4D8A3B1D1BF66B002CED37 /* Colors.h */,
+				2B4D8A3C1D1BF93E002CED37 /* RankBarView.h */,
+				2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */,
+				2B76BCB51D1D269A00639205 /* CumSumBarView.h */,
+				2B76BCB61D1D269A00639205 /* CumSumBarView.m */,
+				2B61B0651D210018009D634D /* CrossLineView.h */,
+				2B61B0661D210018009D634D /* CrossLineView.m */,
+				2B0C0ADE1D220BEE004ABEC0 /* CumSumLineView.h */,
+				2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */,
+			);
+			name = HSChart;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B4D8A0B1D1BF2EB002CED37 /* HSCharts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "HSCharts" */;
+			buildPhases = (
+				2B4D8A081D1BF2EB002CED37 /* Sources */,
+				2B4D8A091D1BF2EB002CED37 /* Frameworks */,
+				2B4D8A0A1D1BF2EB002CED37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HSCharts;
+			productName = HSCharts;
+			productReference = 2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B4D8A041D1BF2EB002CED37 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "I really is a farmer";
+				TargetAttributes = {
+					2B4D8A0B1D1BF2EB002CED37 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "HSCharts" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B4D8A031D1BF2EB002CED37;
+			productRefGroup = 2B4D8A0D1D1BF2EB002CED37 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B4D8A0B1D1BF2EB002CED37 /* HSCharts */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B4D8A0A1D1BF2EB002CED37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B61B06A1D210B81009D634D /* CrossLineBottomData.txt in Resources */,
+				2B61B06B1D210B81009D634D /* CrossLineTopData.txt in Resources */,
+				2B4D8A161D1BF2EB002CED37 /* Assets.xcassets in Resources */,
+				2B4D8A191D1BF2EB002CED37 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B4D8A081D1BF2EB002CED37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
+				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
+				2B4D8A371D1BF35F002CED37 /* GraphSpider.m in Sources */,
+				2B4D8A331D1BF35F002CED37 /* BoardLayer.m in Sources */,
+				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,
+				2BFAC86A1D46019C001B6DB0 /* ChartVC.m in Sources */,
+				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
+				2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */,
+				2B4D8A341D1BF35F002CED37 /* CALayer+GraDispose.m in Sources */,
+				2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */,
+				2B4D8A321D1BF35F002CED37 /* BarShape.m in Sources */,
+				2B4D8A381D1BF35F002CED37 /* LineShape.m in Sources */,
+				2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */,
+				2B4D8A111D1BF2EB002CED37 /* main.m in Sources */,
+				2B4D8A391D1BF35F002CED37 /* PaintBrush.m in Sources */,
+				2B4D8A3E1D1BF93E002CED37 /* RankBarView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B4D8A171D1BF2EB002CED37 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B4D8A181D1BF2EB002CED37 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B4D8A1B1D1BF2EB002CED37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B4D8A1C1D1BF2EB002CED37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B4D8A1E1D1BF2EB002CED37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HSCharts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Durex.HSCharts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B4D8A1F1D1BF2EB002CED37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HSCharts/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Durex.HSCharts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "HSCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B4D8A1B1D1BF2EB002CED37 /* Debug */,
+				2B4D8A1C1D1BF2EB002CED37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "HSCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B4D8A1E1D1BF2EB002CED37 /* Debug */,
+				2B4D8A1F1D1BF2EB002CED37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B4D8A041D1BF2EB002CED37 /* Project object */;
+}

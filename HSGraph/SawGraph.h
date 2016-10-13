@@ -11,6 +11,7 @@
 
 #import "BarShape.h"
 #import "LineShape.h"
+#import "RoundShape.h"
 #import "GraphSpider.h"
 #import "CALayer+SawFrame.h"
 #import "CALayer+GraDispose.h"

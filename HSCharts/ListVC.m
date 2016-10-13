@@ -13,6 +13,7 @@
 #import "RankBarView.h"
 #import "Colors.h"
 #import "CrossLineView.h"
+#import "HollowFanView.h"
 
 #define LIST_TO(A) ChartVC *vc = [[ChartVC alloc] initWithChartView:A]; vc.title = string; [self.navigationController pushViewController:vc animated:NO];
 
@@ -96,6 +97,21 @@
     return viewLine;
 }
 
+- (UIView *)hollowFanView
+{
+    HollowFanView *fanView = [[HollowFanView alloc] initWithFrame:CGRectZero];
+    fanView.frame = CGRectMake(0, 0, 300, 300);
+    fanView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    fanView.dataAry = @[@335, @310, @234, @135, @1548];
+    fanView.titleAry = @[@"直接访问", @"邮件营销", @"联盟广告", @"视频广告", @"搜索引擎"];
+    fanView.colorAry = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
+    
+    [fanView stockChart];
+    [fanView addAnimation];
+    
+    return fanView;
+}
+
 #pragma mark - 数据路径
 
 - (NSString *)LineDataTopPath
@@ -129,7 +145,7 @@
 
 - (NSArray *)rowAry
 {
-    return @[@[@"空心饼图", @"阴影饼图"],  @[@"多数据叠加柱状图", @"多数据排列柱状图"], @[@"大数据折线图", @"数据叠加折线图"]];
+    return @[@[@"空心饼图", @"阴影饼图"],  @[@"多数据叠加柱状图", @"多数据排列柱状图"], @[@"大数据折线图", @"堆叠区域图"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -174,7 +190,7 @@
     
     if ([string isEqualToString:@"空心饼图"]) {
         
-        //LIST_TO([self pieHollowView]);
+        LIST_TO([self hollowFanView]);
     }
     else if ([string isEqualToString:@"阴影饼图"]) {
     
@@ -192,7 +208,7 @@
         
         LIST_TO([self crossLineView]);
     }
-    else if ([string isEqualToString:@"数据叠加折线图"]) {
+    else if ([string isEqualToString:@"堆叠区域图"]) {
         
         LIST_TO([self cumSumLineView]);
     }

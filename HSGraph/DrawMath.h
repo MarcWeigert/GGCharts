@@ -134,3 +134,6 @@ CGPoint offSetx(CGPoint point, float offSet);
 
 /** 偏移y */
 CGPoint offSety(CGPoint point, float offSet);
+
+/** 数组求和 */
+CGFloat addToIndex(NSArray *array, NSInteger index);

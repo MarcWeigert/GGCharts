@@ -405,3 +405,18 @@ CGPoint offSety(CGPoint point, float offSet)
 {
     return CGPointMake(point.x, point.y + offSet);
 }
+
+/** 数组求和 */
+CGFloat addToIndex(NSArray<NSNumber *> *array, NSInteger index)
+{
+    if (index < 0 || array.count <= index) return 0;
+    
+    CGFloat sum = 0;
+    
+    for (int i = 0; i <= index; i++) {
+        
+        sum += [array[i] floatValue];
+    }
+    
+    return sum;
+}

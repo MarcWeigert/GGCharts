@@ -9,6 +9,7 @@
 #import "GraphSpider.h"
 #import "LineShape.h"
 #import "BarShape.h"
+#import "RoundShape.h"
 
 @interface GraphSpider ()
 
@@ -113,6 +114,22 @@
 - (BarShape *)drawBar
 {
     return [self addBarShape];
+}
+
+#pragma mark - Round
+
+- (RoundShape *)addRoundShape
+{
+    RoundShape *barShape = [[RoundShape alloc] initWithLayer:_layer];
+    
+    self.drawAry = [self.drawAry arrayByAddingObject:barShape];
+    
+    return barShape;
+}
+
+- (RoundShape *)drawRound
+{
+    return [self addRoundShape];
 }
 
 @end

@@ -11,12 +11,15 @@
 
 @class LineShape;
 @class BarShape;
+@class RoundShape;
 
 @interface GraphSpider : NSObject
 
 @property (nonatomic, readonly) LineShape *drawLine;
 
 @property (nonatomic, readonly) BarShape *drawBar;
+
+@property (nonatomic, readonly) RoundShape *drawRound;
 
 @property (nonatomic) BOOL updateLayers;
 

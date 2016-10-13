@@ -12,13 +12,17 @@
 
 @interface CumSumLineView ()
 
-@property (nonatomic) CALayer *lineLayer;
+@property (nonatomic) CALayer *lineLayer;       ///< 折线层
 
-@property (nonatomic) BoardLayer *backgroundLayer;
+@property (nonatomic) CALayer *fillLayer;       ///< 折线填充层
 
-@property (nonatomic) BoardLayer *roundLayer;
+@property (nonatomic) CALayer *roundLayer;
 
-@property (nonatomic) NSArray <NSString *> *baseAry;
+@property (nonatomic) BoardLayer *backgroundLayer;      ///< 网格背景层
+
+@property (nonatomic) NSArray <NSString *> *baseAry;    ///< y轴价格分割
+
+@property (nonatomic) NSArray <NSArray<NSValue *> *> *pointArys;
 
 @end
 
@@ -31,10 +35,12 @@
     if (self) {
         
         _lineLayer = [[CALayer alloc] init];
+        _fillLayer = [[CALayer alloc] init];
         _backgroundLayer = [[BoardLayer alloc] init];
         _roundLayer = [[BoardLayer alloc] init];
         
         [self setFrame:frame];
+        [_backgroundLayer addSublayer:_fillLayer];
         [_backgroundLayer addSublayer:_lineLayer];
         [_backgroundLayer addSublayer:_roundLayer];
         [self.layer addSublayer:_backgroundLayer];
@@ -50,6 +56,7 @@
     _backgroundLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     _lineLayer.frame = CGRectMake(30, 20, _backgroundLayer.width - 40, _backgroundLayer.height - 40);
     _roundLayer.frame = _lineLayer.frame;
+    _fillLayer.frame = _lineLayer.frame;
 }
 
 - (void)loadViewData
@@ -64,6 +71,8 @@
     
     _lineLayer.max = [[baseAry lastObject] floatValue];
     _lineLayer.min = [[baseAry firstObject] floatValue];
+    _fillLayer.max = [[baseAry lastObject] floatValue];
+    _fillLayer.min = [[baseAry firstObject] floatValue];
     
     for (NSNumber *number in baseAry) {
         
@@ -78,29 +87,54 @@
     NSArray *sumAry = [[aryAddup(_dataArys) reverseObjectEnumerator] allObjects];
     NSArray *colors = [[_colorAry reverseObjectEnumerator] allObjects];
     
-    NSArray *pointArys = [_lineLayer draw_updateSpiders:^(GraphSpider *make) {
+    // 循环遍历
+    void (^repeat)(void (^)(NSArray *data, UIColor *color)) = ^(void (^loop)(NSArray *data, UIColor *color)) {
         
         for (NSInteger i = 0; i < sumAry.count; i++) {
             
             NSArray *dataAry = sumAry[i];
             UIColor *color = colors[i];
-            UIColor *fillColor = [color colorWithAlphaComponent:0.5];
             
-            make.drawLine.drawAry(dataAry).color(color).witdth(1);
-            make.drawLine.drawAry(dataAry).rounder(0).fillColor(fillColor);
+            loop(dataAry, color);
         }
+    };
+    
+    _pointArys = [_lineLayer draw_updateSpiders:^(GraphSpider *make) {
+    
+        repeat(^(NSArray *data, UIColor *color){
+        
+            make.drawLine.drawAry(data).color(color).witdth(1);
+        });
     }];
     
-    PaintBrush *drawer = [[PaintBrush alloc] init];
-    drawer.width = 1;
-    drawer.fillClr = [UIColor whiteColor];
+    [_fillLayer draw_updateSpiders:^(GraphSpider *make) {
+        
+        repeat(^(NSArray *data, UIColor *color){
+            
+            UIColor *fillColor = [color colorWithAlphaComponent:0.5];
+            
+            make.drawLine.drawAry(data).rounder(0).fillColor(fillColor);
+        });
+    }];
     
-    //NSLog(@"%@", pointArys);
+    [_roundLayer draw_updateSpiders:^(GraphSpider *make) {
+        
+        for (NSInteger i = 0; i < _pointArys.count ; i++) {
+            
+            UIColor *color = colors[i];
+            UIColor *filColor = [UIColor whiteColor];
+            
+            for (NSValue *center in (NSArray *)_pointArys[i]) {
+                
+                make.drawRound.centerPoint(center.CGPointValue).fillColor(filColor).edgeColor(color).radius(2).edgeWidth(1);
+            }
+        }
+    }];
 }
 
 - (void)stockBackGroundLayer
 {
-    CGFloat interval_x = _lineLayer.width / _titleAry.count;
+    CGFloat interval_x = _lineLayer.width / (_titleAry.count - 1);
     CGFloat interval_y = _lineLayer.height / (_baseAry.count - 1);
     
     PaintBrush *drawer = [[PaintBrush alloc] init];
@@ -114,7 +148,7 @@
         CGPoint lineStart = OFFSET_X(_lineLayer.topLeft, offset);
         CGPoint lineEnd = OFFSET_X(_lineLayer.lowerLeft, offset);
         CGPoint diverEnd = OFFSET_Y(lineEnd, 3);
-        CGPoint textPt = CGPointMake(_lineLayer.left + interval_x * i + interval_x / 2, diverEnd.y + 1);
+        CGPoint textPt = CGPointMake(_lineLayer.left + interval_x * i, diverEnd.y + 1);
         
         [drawer setStockClr:__RGB_GRAY];
         [drawer drawStart:lineStart end:lineEnd];

@@ -18,5 +18,9 @@
 #import "PaintBrush.h"
 #import "BoardLayer.h"
 #import "DrawMath.h"
+#import "LineBrush.h"
+#import "TextBrush.h"
+#import "GraphLizard.h"
+#import "VirginLayer.h"
 
 #endif /* SawGraph_h */

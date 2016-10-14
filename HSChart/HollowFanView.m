@@ -49,12 +49,10 @@
     
     [_contentLayer draw_updateSpiders:^(GraphSpider *make) {
         
-        for (int i = 0; i < _colorAry.count; i++) {
-            
-            UIColor *color = _colorAry[i];
+        [_colorAry enumerateObjectsUsingBlock:^(UIColor *color, NSUInteger i, BOOL * stop) {
             
             make.drawRound.drawAry(_dataAry, i).edgeWidth(width).radius(radius).edgeColor(color);
-        }
+        }];
     }];
 }
 

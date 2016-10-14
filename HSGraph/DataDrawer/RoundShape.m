@@ -138,7 +138,7 @@
     shapeLayer.path = path;
     CFRelease(path);
     
-    return @[];
+    return @[@(start), @(end)];     // 起始角度
 }
 
 @end

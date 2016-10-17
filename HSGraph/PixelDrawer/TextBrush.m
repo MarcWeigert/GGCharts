@@ -31,6 +31,9 @@
     if (self) {
         
         _drawType = T_CENTER;
+        _tFont = [UIFont systemFontOfSize:10];
+        _tColor = [UIColor blackColor];
+        _str = @"";
     }
     
     return self;

@@ -31,6 +31,7 @@
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
 		2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76BCB61D1D269A00639205 /* CumSumBarView.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
+		2BA447701DB4C55F005719E3 /* QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4476F1DB4C55F005719E3 /* QueryView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,8 @@
 		2B76BCB61D1D269A00639205 /* CumSumBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumBarView.m; path = HSChart/CumSumBarView.m; sourceTree = "<group>"; };
 		2B78D3A61D3F1B220079C6D2 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
 		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		2BA4476E1DB4C55F005719E3 /* QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryView.h; path = HSChart/QueryView.h; sourceTree = "<group>"; };
+		2BA4476F1DB4C55F005719E3 /* QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryView.m; path = HSChart/QueryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				2B4D8A3B1D1BF66B002CED37 /* Colors.h */,
+				2BA4476E1DB4C55F005719E3 /* QueryView.h */,
+				2BA4476F1DB4C55F005719E3 /* QueryView.m */,
 				2B4D8A3C1D1BF93E002CED37 /* RankBarView.h */,
 				2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */,
 				2B76BCB51D1D269A00639205 /* CumSumBarView.h */,
@@ -285,6 +290,7 @@
 				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,
 				2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */,
 				2B6CCF0C1DB0AD0E00BFBF95 /* TextBrush.m in Sources */,
+				2BA447701DB4C55F005719E3 /* QueryView.m in Sources */,
 				2B6CCF091DB0ACE200BFBF95 /* LineBrush.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,

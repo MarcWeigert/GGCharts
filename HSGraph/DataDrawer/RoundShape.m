@@ -130,7 +130,7 @@
     }
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddArc(path, NULL, center.x, center.y, _rad.floatValue, degreesToRadians(start), degreesToRadians(end), NO);
+    CGPathAddArc(path, NULL, center.x, center.y, _rad.floatValue + _edgeW.floatValue / 2, degreesToRadians(start), degreesToRadians(end), NO);
     
     shapeLayer.fillColor = _fillClr == nil ? nil : _fillClr.CGColor;
     shapeLayer.strokeColor = _edgeClr.CGColor;

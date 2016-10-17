@@ -59,7 +59,7 @@
     
     if (_removeLayers) {
 
-        [self removeLayers];
+        [self removeSubLayers];
     }
     
     for (NSInteger i = 0; i < _drawAry.count; i++) {

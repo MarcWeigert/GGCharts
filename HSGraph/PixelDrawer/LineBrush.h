@@ -10,17 +10,17 @@
 
 @interface LineBrush : BaseBrush
 
-- (LineBrush *(^)(FRAME_VERTICES))from;
+- (LineBrush *(^)(CGPoint from))from;
 
-- (LineBrush *(^)(FRAME_VERTICES))to;
+- (LineBrush *(^)(CGPoint to))to;
 
-- (LineBrush *(^)(CGFloat))leftset;
+- (LineBrush *(^)(CGPoint from, CGPoint to))line;
 
-- (LineBrush *(^)(CGFloat))rightset;
+- (LineBrush *(^)(CGPoint offset))offset;
 
-- (LineBrush *(^)(CGFloat))upset;
+- (LineBrush *(^)(CGFloat x))x;
 
-- (LineBrush *(^)(CGFloat))downset;
+- (LineBrush *(^)(CGFloat y))y;
 
 - (LineBrush *(^)(CGFloat))width;
 

@@ -16,13 +16,13 @@
 
 @property (nonatomic) CALayer *fillLayer;       ///< 折线填充层
 
-@property (nonatomic) CALayer *roundLayer;
+@property (nonatomic) CALayer *roundLayer;      ///< 加个点层
 
-@property (nonatomic) BoardLayer *backgroundLayer;      ///< 网格背景层
+@property (nonatomic) VirginLayer *backLayer;   ///< 网格背景层
 
-@property (nonatomic) NSArray <NSString *> *baseAry;    ///< y轴价格分割
+@property (nonatomic) NSArray <NSNumber *> *baseAry;    ///< y轴价格分割
 
-@property (nonatomic) NSArray <NSArray<NSValue *> *> *pointArys;
+@property (nonatomic) NSArray <NSArray<NSValue *> *> *pointArys;    ///< 二维数组, 存放折线点坐标
 
 @end
 
@@ -36,14 +36,14 @@
         
         _lineLayer = [[CALayer alloc] init];
         _fillLayer = [[CALayer alloc] init];
-        _backgroundLayer = [[BoardLayer alloc] init];
-        _roundLayer = [[BoardLayer alloc] init];
+        _roundLayer = [[CALayer alloc] init];
+        _backLayer = [[VirginLayer alloc] init];
         
         [self setFrame:frame];
-        [_backgroundLayer addSublayer:_fillLayer];
-        [_backgroundLayer addSublayer:_lineLayer];
-        [_backgroundLayer addSublayer:_roundLayer];
-        [self.layer addSublayer:_backgroundLayer];
+        [_backLayer addSublayer:_fillLayer];
+        [_backLayer addSublayer:_lineLayer];
+        [_backLayer addSublayer:_roundLayer];
+        [self.layer addSublayer:_backLayer];
     }
     
     return self;
@@ -53,8 +53,8 @@
 {
     [super setFrame:frame];
     
-    _backgroundLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _lineLayer.frame = CGRectMake(30, 20, _backgroundLayer.width - 40, _backgroundLayer.height - 40);
+    _backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _lineLayer.frame = CGRectMake(30, 20, _backLayer.width - 40, _backLayer.height - 40);
     _roundLayer.frame = _lineLayer.frame;
     _fillLayer.frame = _lineLayer.frame;
 }
@@ -66,30 +66,17 @@
     float max = getAryMax(sumAry);
     float min = getAryMin(sumAry);
     
-    NSArray *baseAry = makeBaseAry(max, min);
-    NSMutableArray *aryStr = [NSMutableArray array];
-    
-    _lineLayer.max = [[baseAry lastObject] floatValue];
-    _lineLayer.min = [[baseAry firstObject] floatValue];
-    _fillLayer.max = [[baseAry lastObject] floatValue];
-    _fillLayer.min = [[baseAry firstObject] floatValue];
-    
-    for (NSNumber *number in baseAry) {
-        
-        [aryStr addObject:number.stringValue];
-    }
-    
-    _baseAry = [NSArray arrayWithArray:aryStr];
+    _baseAry = makeBaseAry(max, min);
 }
 
-- (void)loadBarLayer
+/** 循环遍历数据、颜色数组 */
+- (void(^)(void (^loop) (NSArray *data, UIColor *color)))repeat
 {
     NSArray *sumAry = [[aryAddup(_dataArys) reverseObjectEnumerator] allObjects];
     NSArray *colors = [[_colorAry reverseObjectEnumerator] allObjects];
     
-    // 循环遍历
-    void (^repeat)(void (^)(NSArray *data, UIColor *color)) = ^(void (^loop)(NSArray *data, UIColor *color)) {
-        
+    return ^(void (^loop) (NSArray *data, UIColor *color)) {
+    
         for (NSInteger i = 0; i < sumAry.count; i++) {
             
             NSArray *dataAry = sumAry[i];
@@ -98,86 +85,101 @@
             loop(dataAry, color);
         }
     };
+}
+
+- (void)drawLineLayer
+{
+    _lineLayer.max = [[_baseAry lastObject] floatValue];
+    _lineLayer.min = [[_baseAry firstObject] floatValue];
     
     _pointArys = [_lineLayer draw_updateSpiders:^(GraphSpider *make) {
-    
-        repeat(^(NSArray *data, UIColor *color){
         
+        self.repeat(^(NSArray *data, UIColor *color){
+            
             make.drawLine.drawAry(data).color(color).witdth(1);
         });
     }];
+}
+
+- (void)drawFillLayer
+{
+    _fillLayer.max = [[_baseAry lastObject] floatValue];
+    _fillLayer.min = [[_baseAry firstObject] floatValue];
     
     [_fillLayer draw_updateSpiders:^(GraphSpider *make) {
         
-        repeat(^(NSArray *data, UIColor *color){
+        self.repeat(^(NSArray *data, UIColor *color){
             
             UIColor *fillColor = [color colorWithAlphaComponent:0.5];
             
             make.drawLine.drawAry(data).rounder(0).fillColor(fillColor);
         });
     }];
+}
+
+- (void)drawRoundLayer
+{
+    NSArray *colors = [[_colorAry reverseObjectEnumerator] allObjects];
     
     [_roundLayer draw_updateSpiders:^(GraphSpider *make) {
         
-        for (NSInteger i = 0; i < _pointArys.count ; i++) {
+        [_pointArys enumerateObjectsUsingBlock:^(NSArray<NSValue *> * obj, NSUInteger idx, BOOL * stop) {
             
-            UIColor *color = colors[i];
+            UIColor *color = colors[idx];
             UIColor *filColor = [UIColor whiteColor];
             
-            for (NSValue *center in (NSArray *)_pointArys[i]) {
+            [obj enumerateObjectsUsingBlock:^(NSValue * pt, NSUInteger i, BOOL * stop) {
                 
-                make.drawRound.centerPoint(center.CGPointValue).fillColor(filColor).edgeColor(color).radius(2).edgeWidth(1);
-            }
-        }
+                make.drawRound.centerPoint(pt.CGPointValue).fillColor(filColor).edgeColor(color).radius(2).edgeWidth(1);
+            }];
+        }];
     }];
 }
 
+/** 绘制背景 */
 - (void)stockBackGroundLayer
 {
-    CGFloat interval_x = _lineLayer.width / (_titleAry.count - 1);
-    CGFloat interval_y = _lineLayer.height / (_baseAry.count - 1);
+    // 横纵线偏移量
+    CGFloat x = _lineLayer.width / (_titleAry.count - 1);
+    CGFloat y = _lineLayer.height / (_baseAry.count - 1);
     
-    PaintBrush *drawer = [[PaintBrush alloc] init];
-    drawer.stockClr = __RGB_GRAY;
-    drawer.width = 0.6;
-    drawer.font = [UIFont systemFontOfSize:8];
-    
-    for (NSInteger i = 0; i < _titleAry.count; i++) {
-        
-        CGFloat offset = (i + 1) * interval_x;
-        CGPoint lineStart = OFFSET_X(_lineLayer.topLeft, offset);
-        CGPoint lineEnd = OFFSET_X(_lineLayer.lowerLeft, offset);
-        CGPoint diverEnd = OFFSET_Y(lineEnd, 3);
-        CGPoint textPt = CGPointMake(_lineLayer.left + interval_x * i, diverEnd.y + 1);
-        
-        [drawer setStockClr:__RGB_GRAY];
-        [drawer drawStart:lineStart end:lineEnd];
-        [drawer setStockClr:[UIColor blackColor]];
-        [drawer drawStart:lineEnd end:diverEnd];
-        [drawer drawTxt:_titleAry[i] atBottom:textPt];
-    }
-    
+    UIFont *font = [UIFont systemFontOfSize:8];
+    UIColor *txtColor = [UIColor blackColor];
     NSArray *base = [[_baseAry reverseObjectEnumerator] allObjects];
     
-    for (NSInteger i = 0; i < _baseAry.count; i++) {
+    [_backLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
         
-        CGFloat offset = i * interval_y;
-        CGPoint lineStart = OFFSET_Y(_lineLayer.topLeft, offset);
-        CGPoint lineEnd = OFFSET_Y(_lineLayer.topRight, offset);
-        CGPoint diverEnd = OFFSET_X(lineStart, -3);
-        CGPoint textPt = CGPointMake(_lineLayer.left - 4, diverEnd.y);
+        CGPoint startx = OFFSET_X(_backLayer.gul, -3);
+        CGPoint endy = OFFSET_Y(_backLayer.gbl, 3);
         
-        [drawer setStockClr:__RGB_GRAY];
-        [drawer drawStart:lineStart end:lineEnd];
-        [drawer setStockClr:[UIColor blackColor]];
-        [drawer drawStart:lineStart end:diverEnd];
-        [drawer drawTxt:base[i] atLeft:textPt];
-    }
-    
-    [drawer drawStart:_lineLayer.lowerLeft end:_lineLayer.lowerRight];
-    [drawer drawStart:_lineLayer.topLeft end:_lineLayer.lowerLeft];
-    [drawer drawStart:_lineLayer.lowerLeft end:OFFSET_Y(_lineLayer.lowerLeft, 3)];
-    [_backgroundLayer drawWithBrush:drawer];
+        // 网格纵线以及标志文字
+        [_titleAry enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * stop) {
+           
+            CGPoint offset = CGPointMake(idx * x, 4);
+            
+            make.makeLine.line(_backLayer.gul, endy).x(idx * x);
+            make.makeLine.color(__RGB_GRAY).width(0.6);
+            make.makeLine.draw();
+            
+            make.makeText.text(_titleAry[idx]).font(font).color(txtColor);
+            make.makeText.point(_backLayer.gbl).offset(offset).type(T_BOTTOM);
+            make.makeText.draw();
+        }];
+        
+        // 网格横线以及标志文字
+        [base enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * stop) {
+        
+            CGPoint offset = CGPointMake(-4, idx * y);
+            
+            make.makeLine.line(startx, _backLayer.gur).y(idx * y);
+            make.makeLine.color(__RGB_GRAY).width(0.6);
+            make.makeLine.draw();
+            
+            make.makeText.text([base[idx] stringValue]).font(font).color(txtColor);
+            make.makeText.point(_backLayer.gul).offset(offset).type(T_LEFT);
+            make.makeText.draw();
+        }];
+    }];
 }
 
 - (void)addAnimation
@@ -195,7 +197,10 @@
 {
     [self loadViewData];
     
-    [self loadBarLayer];
+    [self drawLineLayer];
+    [self drawFillLayer];
+    [self drawRoundLayer];
+    
     [self stockBackGroundLayer];
 }
 

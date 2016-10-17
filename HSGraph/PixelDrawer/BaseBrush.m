@@ -11,13 +11,12 @@
 @implementation BaseBrush
 
 /** 初始化绘制区域 */
-- (id)initWithFrame:(CGRect)frame array:(NSMutableArray *)muAry
+- (id)initWithArray:(NSMutableArray *)muAry
 {
     self = [super init];
     
     if (self) {
         
-        _frame = frame;
         _array = muAry;
     }
     

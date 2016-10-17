@@ -15,11 +15,11 @@
 
 @property (nonatomic) CALayer *bottomLayer;
 
-@property (nonatomic) BoardLayer *backgroundLayer;
+@property (nonatomic) VirginLayer *backLayer;
 
-@property (nonatomic) NSArray <NSString *> *topBaseAry;
+@property (nonatomic) NSArray <NSNumber *> *topBaseAry;
 
-@property (nonatomic) NSArray <NSString *> *bottomBaseAry;
+@property (nonatomic) NSArray <NSNumber *> *bottomBaseAry;
 
 @end
 
@@ -33,12 +33,12 @@
         
         _topLayer = [[CALayer alloc] init];
         _bottomLayer = [[CALayer alloc] init];
-        _backgroundLayer = [[BoardLayer alloc] init];
+        _backLayer = [[VirginLayer alloc] init];
         
         [self setFrame:frame];
-        [_backgroundLayer addSublayer:_bottomLayer];
-        [_backgroundLayer addSublayer:_topLayer];
-        [self.layer addSublayer:_backgroundLayer];
+        [_backLayer addSublayer:_bottomLayer];
+        [_backLayer addSublayer:_topLayer];
+        [self.layer addSublayer:_backLayer];
     }
     
     return self;
@@ -48,9 +48,9 @@
 {
     [super setFrame:frame];
     
-    _backgroundLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _topLayer.frame = CGRectMake(30, 20, _backgroundLayer.width - 60, _backgroundLayer.height - 40);
-    _bottomLayer.frame = CGRectMake(30, 20, _backgroundLayer.width - 60, _backgroundLayer.height - 40);
+    _backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _topLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height - 40);
+    _bottomLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height - 40);
 }
 
 - (void)loadViewData
@@ -63,85 +63,71 @@
     top_min = top_min > 0 ? 0 : top_min;
     bottom_min = bottom_min > 0 ? 0 : bottom_min;
     
-    NSArray *aryTop = makeBaseAry(top_max, top_min);
-    NSArray *aryBottom = makeBaseAry(bottom_max, bottom_min);
-    NSMutableArray *aryTxtTop = [NSMutableArray array];
-    NSMutableArray *aryTxtBottom = [NSMutableArray array];
-    
-    _topLayer.max = [aryTop.lastObject floatValue];
-    _topLayer.min = [aryTop.firstObject floatValue];
-    _bottomLayer.max = [aryBottom.lastObject floatValue];
-    _bottomLayer.min = [aryBottom.firstObject floatValue];
-    
-    for (NSNumber *number in aryTop) {
-        
-        [aryTxtTop addObject:number.stringValue];
-    }
-    
-    for (NSNumber *number in aryBottom) {
-        
-        [aryTxtBottom addObject:number.stringValue];
-    }
-    
-    _topBaseAry = [NSArray arrayWithArray:aryTxtTop];
-    _bottomBaseAry = [NSArray arrayWithArray:aryTxtBottom];
+    _topBaseAry = makeBaseAry(top_max, top_min);
+    _bottomBaseAry = makeBaseAry(bottom_max, bottom_min);
 }
 
 - (void)loadBackGroundLayer
 {
-    PaintBrush *drawer = [[PaintBrush alloc] init];
-    drawer.stockClr = [UIColor blackColor];
-    drawer.width = 0.8;
-    drawer.font = [UIFont systemFontOfSize:_topLayer.frame.size.width / self.bounds.size.width * 9];
-    
-    [drawer drawStart:_topLayer.topLeft end:_topLayer.lowerLeft];
-    [drawer drawStart:_topLayer.lowerRight end:_topLayer.topRight];
-    [drawer drawStart:_topLayer.lowerRight end:_topLayer.lowerLeft];
-    
-    CGFloat interval_x = _bottomLayer.width / _titleAry.count;
-    CGFloat interval_ly = _bottomLayer.height / (_bottomBaseAry.count - 1);
-    CGFloat interval_ry = _bottomLayer.height / (_topBaseAry.count - 1);
+    UIColor *color = [UIColor blackColor];
+    UIFont *font = [UIFont systemFontOfSize:_topLayer.frame.size.width / self.bounds.size.width * 9];
     NSArray *bottomAry = [[_bottomBaseAry reverseObjectEnumerator] allObjects];
+    CGFloat ly = _bottomLayer.height / (_bottomBaseAry.count - 1);
+    CGFloat ry = _bottomLayer.height / (_topBaseAry.count - 1);
+    CGFloat x = _bottomLayer.width / _titleAry.count;
     
-    for (NSInteger i = 0; i < _titleAry.count; i++) {
+    [_backLayer draw_updateFrame:_topLayer.frame lizard:^(GraphLizard *make) {
         
-        NSString *txt = _titleAry[i];
-        CGFloat offset = (i + 1) * interval_x;
-        CGPoint start = OFFSET_X(_bottomLayer.lowerLeft, offset);
-        CGPoint end = OFFSET_Y(start, 3);
-        CGPoint textPt = CGPointMake(_bottomLayer.left + interval_x * i + interval_x / 2, end.y + 1);
+        make.makeLine.width(0.6).color(color);
+        make.makeLine.line(_backLayer.gul, _backLayer.gbl).draw();
+        make.makeLine.line(_backLayer.gur, _backLayer.gbr).draw();
+        make.makeLine.line(_backLayer.gbl, _backLayer.gbr).draw();
         
-        [drawer drawStart:start end:end];
-        [drawer drawTxt:txt atBottom:textPt];
-    }
-    
-    for (NSInteger i = 0; i < _bottomBaseAry.count; i++) {
+        [bottomAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+            
+            make.makeLine.line(_backLayer.gul, OFFSET_X(_backLayer.gul, -3)).y(ly * idx);
+            make.makeLine.draw();
+            
+            make.makeText.text([obj stringValue]).font(font).color(color);
+            make.makeText.point(OFFSET_X(_backLayer.gul, -4)).y(ly * idx).type(T_LEFT);
+            make.makeText.draw();
+        }];
         
-        CGFloat offset = interval_ly * i;
-        CGPoint start = OFFSET_Y(_bottomLayer.topLeft, offset);
-        CGPoint end = OFFSET_X(start, -3);
-        CGPoint textPt = OFFSET_X(end, -1);
+        [_topBaseAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+            
+            make.makeLine.line(_backLayer.gur, OFFSET_X(_backLayer.gur, 3)).y(ry * idx);
+            make.makeLine.draw();
+            
+            make.makeText.text([obj stringValue]).font(font).color(color);
+            make.makeText.point(OFFSET_X(_backLayer.gur, 4)).y(ry * idx).type(T_RIGHT);
+            make.makeText.draw();
+        }];
         
-        [drawer drawStart:start end:end];
-        [drawer drawTxt:bottomAry[i] atLeft:textPt];
-    }
-    
-    for (NSInteger i = 0; i < _topBaseAry.count; i++) {
-        
-        CGFloat offset = interval_ry * i;
-        CGPoint start = OFFSET_Y(_bottomLayer.topRight, offset);
-        CGPoint end = OFFSET_X(start, 3);
-        CGPoint textPt = OFFSET_X(end, 1);
-        
-        [drawer drawStart:start end:end];
-        [drawer drawTxt:_topBaseAry[i] atRight:textPt];
-    }
-    
-    [_backgroundLayer drawWithBrush:drawer];
+        [_titleAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
+            
+            make.makeLine.line(_backLayer.gbl, OFFSET_Y(_backLayer.gbl, 3)).x(x * idx);
+            make.makeLine.draw();
+            
+            make.makeText.text(obj).font(font).color(color);
+            make.makeText.point(OFFSET_Y(_backLayer.gbl, 4)).x(x * idx + x / 2).type(T_BOTTOM);
+            make.makeText.draw();
+            
+            if (idx == _titleAry.count - 1) {
+                idx += 1;
+                make.makeLine.line(_backLayer.gbl, OFFSET_Y(_backLayer.gbl, 3)).x(x * idx);
+                make.makeLine.draw();
+            }
+        }];
+    }];
 }
 
 - (void)loadLineLayer
 {
+    _topLayer.max = [_topBaseAry.lastObject floatValue];
+    _topLayer.min = [_topBaseAry.firstObject floatValue];
+    _bottomLayer.max = [_bottomBaseAry.lastObject floatValue];
+    _bottomLayer.min = [_bottomBaseAry.firstObject floatValue];
+    
     [_topLayer draw_updateSpiders:^(GraphSpider *make) {
         
         make.drawLine.fillColor(_topFillColor).drawAry([_topAry reverseObjectEnumerator].allObjects).rounder(0);

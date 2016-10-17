@@ -8,18 +8,11 @@
 
 #import "LineBrush.h"
 
-typedef NS_ENUM(NSUInteger, BEFORE_SET_TYPE) {
-    before_from,
-    before_to,
-};
-
 @interface LineBrush ()
 
 @property (nonatomic) CGPoint fromPt;
 
 @property (nonatomic) CGPoint toPt;
-
-@property (nonatomic) BEFORE_SET_TYPE beforSet;
 
 @property (nonatomic) CGFloat w;
 
@@ -29,119 +22,67 @@ typedef NS_ENUM(NSUInteger, BEFORE_SET_TYPE) {
 
 @implementation LineBrush
 
-/**
- * 通过枚举获得frame中的点
- */
-- (CGPoint)pointType:(FRAME_VERTICES)type
-{
-    CGFloat min_x = self.frame.origin.x;
-    CGFloat min_y = self.frame.origin.y;
-    CGFloat max_x = self.frame.origin.x + self.frame.size.width;
-    CGFloat max_y = self.frame.origin.y + self.frame.size.height;
-    
-    switch (type) {
-        case up_left:
-            return CGPointMake(min_x, min_y);
-        case up_right:
-            return CGPointMake(max_x, min_y);
-        case low_left:
-            return CGPointMake(min_x, max_y);
-        case low_right:
-            return CGPointMake(max_x, max_y);
-        case center:
-            return CGPointMake(min_x + self.frame.size.width / 2, min_y + self.frame.size.height / 2);
-        default:
-            return CGPointZero;
-    }
-}
-
-- (void)setFromPt:(CGPoint)fromPt
-{
-    _beforSet = before_from;
-    _fromPt = fromPt;
-}
-
-- (void)setToPt:(CGPoint)toPt
-{
-    _beforSet = before_to;
-    _toPt = toPt;
-}
-
-- (void)setDrawPoint:(CGPoint(^)(CGPoint point))drawPt
-{
-    if (_beforSet == before_from) {
-        _fromPt = drawPt(_fromPt);
-    }
-    else {
-        _toPt = drawPt(_toPt);
-    }
-}
-
 #pragma mark - 属性
 
-- (LineBrush *(^)(FRAME_VERTICES))from
+- (LineBrush *(^)(CGPoint offset))offset
 {
-    return ^(FRAME_VERTICES type){
-        self.fromPt = [self pointType:type];
-        return self;
-    };
-}
-
-- (LineBrush *(^)(FRAME_VERTICES))to
-{
-    return ^(FRAME_VERTICES type){
-        self.toPt = [self pointType:type];
-        return self;
-    };
-}
-
-- (LineBrush *(^)(CGFloat))leftset
-{
-    return ^(CGFloat offset){
-        
-        [self setDrawPoint:^CGPoint(CGPoint point) {
-            
-            return CGPointMake(point.x - offset, point.y);
-        }];
+    return ^(CGPoint offset) {
+    
+        _fromPt = CGPointMake(_fromPt.x + offset.x, _fromPt.y + offset.y);
+        _toPt = CGPointMake(_toPt.x + offset.x, _toPt.y + offset.y);
         
         return self;
     };
 }
 
-- (LineBrush *(^)(CGFloat))rightset
+- (LineBrush *(^)(CGFloat x))x
 {
-    return ^(CGFloat offset){
-        
-        [self setDrawPoint:^CGPoint(CGPoint point) {
-            
-            return CGPointMake(point.x + offset, point.y);
-        }];
+    return ^(CGFloat x) {
+    
+        _fromPt = CGPointMake(_fromPt.x + x, _fromPt.y);
+        _toPt = CGPointMake(_toPt.x + x, _toPt.y);
         
         return self;
     };
 }
 
-- (LineBrush *(^)(CGFloat))upset
+- (LineBrush *(^)(CGFloat y))y
 {
-    return ^(CGFloat offset){
-        
-        [self setDrawPoint:^CGPoint(CGPoint point) {
-            
-            return CGPointMake(point.x, point.y - offset);
-        }];
+    return ^(CGFloat y) {
+    
+        _fromPt = CGPointMake(_fromPt.x, _fromPt.y + y);
+        _toPt = CGPointMake(_toPt.x, _toPt.y + y);
         
         return self;
     };
 }
 
-- (LineBrush *(^)(CGFloat))downset
+- (LineBrush *(^)(CGPoint from))from
 {
-    return ^(CGFloat offset){
+    return ^(CGPoint from){
         
-        [self setDrawPoint:^CGPoint(CGPoint point) {
-            
-            return CGPointMake(point.x, point.y + offset);
-        }];
+        _fromPt = from;
+        
+        return self;
+    };
+}
+
+- (LineBrush *(^)(CGPoint to))to
+{
+    return ^(CGPoint to){
+        
+        _toPt = to;
+        
+        return self;
+    };
+}
+
+- (LineBrush *(^)(CGPoint from, CGPoint to))line
+{
+    return ^(CGPoint f, CGPoint t){
+    
+        _fromPt = f;
+        _toPt = t;
         
         return self;
     };

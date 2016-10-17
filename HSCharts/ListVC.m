@@ -7,7 +7,6 @@
 //
 
 #import "ListVC.h"
-#import "ChartVC.h"
 #import "CumSumBarView.h"
 #import "CumSumLineView.h"
 #import "RankBarView.h"
@@ -15,11 +14,27 @@
 #import "CrossLineView.h"
 #import "HollowFanView.h"
 
-#define LIST_TO(A) ChartVC *vc = [[ChartVC alloc] initWithChartView:A]; vc.title = string; [self.navigationController pushViewController:vc animated:NO];
+#define SuppressPerformSelectorLeakWarning(Stuff) \
+do { \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
+Stuff; \
+_Pragma("clang diagnostic pop") \
+} while (0)
 
 @implementation ListVC
 
 #pragma mark - 各个视图
+
+- (NSDictionary *)pushDictionary
+{
+    return @{@"空心饼图" : @"hollowFanView",
+             @"阴影饼图" : @"hollowFanView",
+             @"多数据叠加柱状图" : @"cumSumBarView",
+             @"多数据排列柱状图" : @"rankBarView",
+             @"大数据折线图" : @"crossLineView",
+             @"堆叠区域图" : @"cumSumLineView",};
+}
 
 - (UIView *)cumSumLineView
 {
@@ -186,32 +201,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *string = [self.rowAry[indexPath.section] objectAtIndex:indexPath.row];
+    NSString *selectStr = [self.rowAry[indexPath.section] objectAtIndex:indexPath.row];
+    NSString *selectorStr = [[self pushDictionary] objectForKey:selectStr];
+    SEL selector = NSSelectorFromString(selectorStr);
     
-    if ([string isEqualToString:@"空心饼图"]) {
-        
-        LIST_TO([self hollowFanView]);
-    }
-    else if ([string isEqualToString:@"阴影饼图"]) {
+    UIView *chartView;
     
-        //LIST_TO([self pieCubeView]);
-    }
-    else if ([string isEqualToString:@"多数据叠加柱状图"]) {
-        
-        LIST_TO([self cumSumBarView]);
-    }
-    else if ([string isEqualToString:@"多数据排列柱状图"]) {
-        
-        LIST_TO([self rankBarView]);
-    }
-    else if ([string isEqualToString:@"大数据折线图"]) {
-        
-        LIST_TO([self crossLineView]);
-    }
-    else if ([string isEqualToString:@"堆叠区域图"]) {
-        
-        LIST_TO([self cumSumLineView]);
-    }
+    SuppressPerformSelectorLeakWarning (
+    
+        chartView = [self performSelector:selector];
+    );
+    
+    UIViewController *vc = [[UIViewController alloc] init];
+    [vc.view addSubview:chartView];
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 @end

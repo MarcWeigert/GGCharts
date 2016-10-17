@@ -15,8 +15,6 @@
 #import "GraphSpider.h"
 #import "CALayer+SawFrame.h"
 #import "CALayer+GraDispose.h"
-#import "PaintBrush.h"
-#import "BoardLayer.h"
 #import "DrawMath.h"
 #import "LineBrush.h"
 #import "TextBrush.h"

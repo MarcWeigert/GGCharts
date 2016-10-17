@@ -14,9 +14,9 @@
 
 @property (nonatomic) CALayer *barLayer;
 
-@property (nonatomic) BoardLayer *backgroundLayer;
+@property (nonatomic) VirginLayer *backLayer;
 
-@property (nonatomic) NSArray <NSString *> *baseAry;
+@property (nonatomic) NSArray <NSNumber *> *baseAry;
 
 @end
 
@@ -29,11 +29,11 @@
     if (self) {
         
         _barLayer = [[CALayer alloc] init];
-        _backgroundLayer = [[BoardLayer alloc] init];
+        _backLayer = [[VirginLayer alloc] init];
         
         [self setFrame:frame];
-        [_backgroundLayer addSublayer:_barLayer];
-        [self.layer addSublayer:_backgroundLayer];
+        [_backLayer addSublayer:_barLayer];
+        [self.layer addSublayer:_backLayer];
     }
     
     return self;
@@ -43,8 +43,8 @@
 {
     [super setFrame:frame];
     
-    _backgroundLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _barLayer.frame = CGRectMake(30, 20, _backgroundLayer.width - 40, _backgroundLayer.height - 40);
+    _backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _barLayer.frame = CGRectMake(30, 20, _backLayer.width - 40, _backLayer.height - 40);
 }
 
 - (void)loadViewData
@@ -52,79 +52,73 @@
     float max = getAryMax(_dataArys);
     float min = getAryMin(_dataArys);
     
-    NSArray *baseAry = makeBaseAry(max, min);
-    NSMutableArray *aryStr = [NSMutableArray array];
-    
-    _barLayer.max = [[baseAry lastObject] floatValue];
-    _barLayer.min = [[baseAry firstObject] floatValue];
-    
-    for (NSNumber *number in baseAry) {
-        
-        [aryStr addObject:number.stringValue];
-    }
-    
-    _baseAry = [NSArray arrayWithArray:aryStr];
+    _baseAry = makeBaseAry(max, min);
 }
 
 - (void)stockBackGroundLayer
 {
-    CGFloat interval_x = _barLayer.width / _titleAry.count;
-    CGFloat interval_y = _barLayer.height / (_baseAry.count - 1);
+    // 横纵线偏移量
+    CGFloat x = _barLayer.width / _titleAry.count;
+    CGFloat y = _barLayer.height / (_baseAry.count - 1);
     
-    PaintBrush *drawer = [[PaintBrush alloc] init];
-    drawer.stockClr = __RGB_GRAY;
-    drawer.width = 0.6;
-    drawer.font = [UIFont systemFontOfSize:8];
-    
-    for (NSInteger i = 0; i < _titleAry.count; i++) {
-        
-        CGFloat offset = (i + 1) * interval_x;
-        CGPoint lineStart = OFFSET_X(_barLayer.topLeft, offset);
-        CGPoint lineEnd = OFFSET_X(_barLayer.lowerLeft, offset);
-        CGPoint diverEnd = OFFSET_Y(lineEnd, 3);
-        CGPoint textPt = CGPointMake(_barLayer.left + interval_x * i + interval_x / 2, diverEnd.y + 1);
-        
-        [drawer setStockClr:__RGB_GRAY];
-        [drawer drawStart:lineStart end:lineEnd];
-        [drawer setStockClr:[UIColor blackColor]];
-        [drawer drawStart:lineEnd end:diverEnd];
-        [drawer drawTxt:_titleAry[i] atBottom:textPt];
-    }
-    
+    UIFont *font = [UIFont systemFontOfSize:8];
+    UIColor *txtColor = [UIColor blackColor];
     NSArray *base = [[_baseAry reverseObjectEnumerator] allObjects];
     
-    for (NSInteger i = 0; i < _baseAry.count; i++) {
+    [_backLayer draw_updateFrame:_barLayer.frame lizard:^(GraphLizard *make) {
         
-        CGFloat offset = i * interval_y;
-        CGPoint lineStart = OFFSET_Y(_barLayer.topLeft, offset);
-        CGPoint lineEnd = OFFSET_Y(_barLayer.topRight, offset);
-        CGPoint diverEnd = OFFSET_X(lineStart, -3);
-        CGPoint textPt = CGPointMake(_barLayer.left - 4, diverEnd.y);
+        CGPoint startx = OFFSET_X(_backLayer.gul, -3);
+        CGPoint endy = OFFSET_Y(_backLayer.gbl, 3);
         
-        [drawer setStockClr:__RGB_GRAY];
-        [drawer drawStart:lineStart end:lineEnd];
-        [drawer setStockClr:[UIColor blackColor]];
-        [drawer drawStart:lineStart end:diverEnd];
-        [drawer drawTxt:base[i] atLeft:textPt];
-    }
-    
-    [drawer drawStart:_barLayer.lowerLeft end:_barLayer.lowerRight];
-    [drawer drawStart:_barLayer.topLeft end:_barLayer.lowerLeft];
-    [drawer drawStart:_barLayer.lowerLeft end:OFFSET_Y(_barLayer.lowerLeft, 3)];
-    [_backgroundLayer drawWithBrush:drawer];
+        // 网格纵线以及标志文字
+        [_titleAry enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * stop) {
+            
+            CGPoint offset = CGPointMake(idx * x + x / 2, 4);
+            
+            make.makeLine.line(_backLayer.gul, endy).x(idx * x);
+            make.makeLine.color(__RGB_GRAY).width(0.6);
+            make.makeLine.draw();
+            
+            make.makeText.text(_titleAry[idx]).font(font).color(txtColor);
+            make.makeText.point(_backLayer.gbl).offset(offset).type(T_BOTTOM);
+            make.makeText.draw();
+            
+            if (idx == _titleAry.count - 1) {
+                idx += 1;
+                make.makeLine.line(_backLayer.gul, endy).x(idx * x);
+                make.makeLine.color(__RGB_GRAY).width(0.6);
+                make.makeLine.draw();
+            }
+        }];
+        
+        // 网格横线以及标志文字
+        [base enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * stop) {
+            
+            CGPoint offset = CGPointMake(-4, idx * y);
+            
+            make.makeLine.line(startx, _backLayer.gur).y(idx * y);
+            make.makeLine.color(__RGB_GRAY).width(0.6);
+            make.makeLine.draw();
+            
+            make.makeText.text([base[idx] stringValue]).font(font).color(txtColor);
+            make.makeText.point(_backLayer.gul).offset(offset).type(T_LEFT);
+            make.makeText.draw();
+        }];
+    }];
 }
 
 - (void)stockBarLayer
 {
+    _barLayer.min = [[_baseAry firstObject] floatValue];
+    _barLayer.max = [[_baseAry lastObject] floatValue];
+    
     [_barLayer draw_updateSpiders:^(GraphSpider *make) {
         
-        for (NSInteger i = 0; i < _dataArys.count; i++) {
+        [_dataArys enumerateObjectsUsingBlock:^(NSArray *dataAry, NSUInteger idx, BOOL * stop) {
             
-            NSArray *dataAry = _dataArys[i];
-            UIColor *color = _colorAry[i];
-            
-            make.drawBar.drawAry(dataAry).color(color).row(_dataArys.count).index(i).witdth(8);
-        }
+            UIColor *color = _colorAry[idx];
+            make.drawBar.drawAry(dataAry).color(color).row(_dataArys.count).index(idx).witdth(8);
+        }];
     }];
 }
 

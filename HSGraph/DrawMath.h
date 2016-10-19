@@ -137,3 +137,6 @@ CGPoint offSety(CGPoint point, float offSet);
 
 /** 数组求和 */
 CGFloat addToIndex(NSArray *array, NSInteger index);
+
+//
+CGPoint cop_w_x(NSArray<NSValue *> *points, CGPoint point);

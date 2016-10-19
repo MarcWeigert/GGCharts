@@ -420,3 +420,22 @@ CGFloat addToIndex(NSArray<NSNumber *> *array, NSInteger index)
     
     return sum;
 }
+
+CGPoint cop_w_x(NSArray<NSValue *> *points, CGPoint point)
+{
+    CGPoint p = CGPointZero;
+    CGFloat sum = FLT_MAX;
+    
+    for (NSValue *pt in points) {
+        
+        CGFloat abs = ABS(pt.CGPointValue.x - point.x);
+        
+        if (sum > abs) {
+            
+            sum = abs;
+            p = [pt CGPointValue];
+        }
+    }
+    
+    return p;
+}

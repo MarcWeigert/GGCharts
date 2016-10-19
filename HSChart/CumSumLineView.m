@@ -20,6 +20,10 @@
 
 @property (nonatomic) VirginLayer *backLayer;   ///< 网格背景层
 
+@property (nonatomic) VirginLayer *textLayer;   ///< 价格数据
+
+@property (nonatomic) VirginLayer *queryLayer;  ///< 查询价格十字线
+
 @property (nonatomic) NSArray <NSNumber *> *baseAry;    ///< y轴价格分割
 
 @property (nonatomic) NSArray <NSArray<NSValue *> *> *pointArys;    ///< 二维数组, 存放折线点坐标
@@ -38,12 +42,16 @@
         _fillLayer = [[CALayer alloc] init];
         _roundLayer = [[CALayer alloc] init];
         _backLayer = [[VirginLayer alloc] init];
+        _textLayer = [[VirginLayer alloc] init];
+        _queryLayer = [[VirginLayer alloc] init];
         
         [self setFrame:frame];
         [_backLayer addSublayer:_fillLayer];
         [_backLayer addSublayer:_lineLayer];
         [_backLayer addSublayer:_roundLayer];
         [self.layer addSublayer:_backLayer];
+        [self.layer addSublayer:_textLayer];
+        [self.layer addSublayer:_queryLayer];
     }
     
     return self;
@@ -57,6 +65,44 @@
     _lineLayer.frame = CGRectMake(30, 20, _backLayer.width - 40, _backLayer.height - 40);
     _roundLayer.frame = _lineLayer.frame;
     _fillLayer.frame = _lineLayer.frame;
+    _textLayer.frame = _backLayer.frame;
+    _queryLayer.frame = _backLayer.frame;
+}
+
+/** 手势交互 */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
+        
+        CGPoint start = CGPointMake(point.x, _queryLayer.gul.y);
+        CGPoint end = CGPointMake(point.x, _queryLayer.gbl.y);
+        
+        make.makeLine.color(__RGB_GRAY).line(start, end);
+        make.makeLine.width(0.6).draw();
+    }];
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    NSArray *aryPoints = _pointArys.firstObject;
+    CGPoint pt = cop_w_x(aryPoints, point);
+    
+    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
+        
+        CGPoint start_x = CGPointMake(pt.x, _queryLayer.gul.y);
+        CGPoint end_x = CGPointMake(pt.x, _queryLayer.gbl.y);
+        
+        make.makeLine.color(__RGB_BLACK).line(start_x, end_x).offset(CGPointMake(30, 0));
+        make.makeLine.width(1).draw();
+    }];
 }
 
 - (void)loadViewData
@@ -182,6 +228,25 @@
     }];
 }
 
+- (void)drawTextLayer
+{
+    NSArray *pointAry = _pointArys.firstObject;
+    NSArray *dataAry = _dataArys.lastObject;
+    UIColor *color = _colorAry.lastObject;
+    
+    [_textLayer draw_updateFrame:_textLayer.frame lizard:^(GraphLizard *make) {
+        
+        [pointAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
+            
+            NSString *str = [dataAry[idx] stringValue];
+            
+            make.makeText.text(str).color(color).type(T_UPPER);
+            make.makeText.point([obj CGPointValue]).offset(CGPointMake(30, 18));
+            make.makeText.draw();
+        }];
+    }];
+}
+
 - (void)addAnimation
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
@@ -200,6 +265,7 @@
     [self drawLineLayer];
     [self drawFillLayer];
     [self drawRoundLayer];
+    [self drawTextLayer];
     
     [self stockBackGroundLayer];
 }

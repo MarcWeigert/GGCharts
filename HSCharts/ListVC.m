@@ -213,6 +213,7 @@ _Pragma("clang diagnostic pop") \
     );
     
     UIViewController *vc = [[UIViewController alloc] init];
+    vc.title = selectStr;
     [vc.view addSubview:chartView];
     [self.navigationController pushViewController:vc animated:NO];
 }

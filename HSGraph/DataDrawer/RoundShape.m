@@ -129,9 +129,11 @@
         end = 360 * endVl / sumOfData;
     }
     
+    // 关闭隐士动画
+    //[CATransaction setDisableActions:YES];
+    
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddArc(path, NULL, center.x, center.y, _rad.floatValue + _edgeW.floatValue / 2, degreesToRadians(start), degreesToRadians(end), NO);
-    
     shapeLayer.fillColor = _fillClr == nil ? nil : _fillClr.CGColor;
     shapeLayer.strokeColor = _edgeClr.CGColor;
     shapeLayer.lineWidth = _edgeW.floatValue;

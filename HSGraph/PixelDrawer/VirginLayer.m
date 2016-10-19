@@ -61,6 +61,9 @@ typedef void(^draw)(CGContextRef ctx);
 
 - (void)drawInContext:(CGContextRef)ctx
 {
+    // 关闭隐士动画
+    //[CATransaction setDisableActions:YES];
+    
     for (draw block in _drawBlockAry) {
         
         block(ctx);

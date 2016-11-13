@@ -18,18 +18,21 @@
 
 @property (nonatomic) TextBrush *text;
 
+@property (nonatomic) CGRect frame;
+
 @end
 
 @implementation GraphLizard
 
 /** 初始化 */
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
     self = [super init];
     
     if (self) {
         
         _blockAry = [NSMutableArray array];
+        _frame = frame;
     }
     
     return self;
@@ -39,7 +42,7 @@
 {
     if (_line == nil) {
         
-        _line = [[LineBrush alloc] initWithArray:_blockAry];
+        _line = [[LineBrush alloc] initWithArray:_blockAry drawFrame:_frame];
     }
     
     return _line;
@@ -49,7 +52,7 @@
 {
     if (_text == nil) {
     
-        _text = [[TextBrush alloc] initWithArray:_blockAry];
+        _text = [[TextBrush alloc] initWithArray:_blockAry drawFrame:_frame];
     }
     
     return _text;

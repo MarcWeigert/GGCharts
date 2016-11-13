@@ -73,7 +73,6 @@ _Pragma("clang diagnostic pop") \
 - (UIView *)rankBarView
 {
     RankBarView *rankBar = [[RankBarView alloc] initWithFrame:CGRectZero];
-    
     rankBar.frame =  CGRectMake(0, 100, self.view.frame.size.width, 400);
     rankBar.colorAry = @[__RGB_RED, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
     rankBar.titleAry = @[@"1月", @"2月", @"3月", @"4月", @"5月", @"6月", @"7月", @"8月", @"9月", @"10月", @"11月", @"12月"];
@@ -81,7 +80,7 @@ _Pragma("clang diagnostic pop") \
                          @[@2.6, @5.9, @9.0, @26.4, @28.7, @70.7, @175.6, @182.2, @48.7, @18.8, @6.0, @2.3]];
     
     [rankBar stockChart];
-    [rankBar addAnimation];
+    [rankBar addAnimation:3];
     
     return rankBar;
 }

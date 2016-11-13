@@ -21,6 +21,6 @@
 @property (nonatomic, readonly) NSArray *blockAry;
 
 /** 初始化 */
-- (id)init;
+- (id)initWithFrame:(CGRect)frame;
 
 @end

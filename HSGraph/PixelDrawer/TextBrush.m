@@ -24,9 +24,9 @@
 
 @implementation TextBrush
 
-- (id)initWithArray:(NSMutableArray *)muAry
+- (id)initWithArray:(NSMutableArray *)muAry drawFrame:(CGRect)frame
 {
-    self = [super initWithArray:muAry];
+    self = [super initWithArray:muAry drawFrame:frame];
     
     if (self) {
         
@@ -128,19 +128,22 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_tFont, NSFontAttributeName, _tColor, NSForegroundColorAttributeName, nil];
     CGSize textSize = [_str sizeWithAttributes:dic];
     
+    CGFloat x = _tCenter.x + self.drawFrame.origin.x;
+    CGFloat y = _tCenter.y + self.drawFrame.origin.y;
+    
     switch (_drawType) {
         case T_CENTER:
-            return CGRectMake(_tCenter.x - textSize.width / 2, _tCenter.y - textSize.height / 2, textSize.width, textSize.height);
+            return CGRectMake(x - textSize.width / 2, y - textSize.height / 2, textSize.width, textSize.height);
         case T_LEFT:
-            return CGRectMake(_tCenter.x - textSize.width, _tCenter.y - textSize.height / 2, textSize.width, textSize.height);
+            return CGRectMake(x - textSize.width, y - textSize.height / 2, textSize.width, textSize.height);
         case T_RIGHT:
-            return CGRectMake(_tCenter.x, _tCenter.y - textSize.height / 2, textSize.width, textSize.height);
+            return CGRectMake(x, y - textSize.height / 2, textSize.width, textSize.height);
         case T_UPPER:
-            return CGRectMake(_tCenter.x - textSize.width / 2, _tCenter.y - textSize.height, textSize.width, textSize.height);
+            return CGRectMake(x - textSize.width / 2, y - textSize.height, textSize.width, textSize.height);
         case T_BOTTOM:
-            return CGRectMake(_tCenter.x - textSize.width / 2, _tCenter.y, textSize.width, textSize.height);
+            return CGRectMake(x - textSize.width / 2, y, textSize.width, textSize.height);
         default:
-            return CGRectMake(_tCenter.x - textSize.width / 2, _tCenter.y - textSize.height / 2, textSize.width, textSize.height);
+            return CGRectMake(x - textSize.width / 2, y - textSize.height / 2, textSize.width, textSize.height);
     }
 }
 

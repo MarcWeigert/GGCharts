@@ -114,8 +114,8 @@
 - (void (^)())draw
 {
     __weak UIColor *color = _stockColor;
-    CGPoint from = _fromPt;
-    CGPoint to = _toPt;
+    CGPoint from = CGPointMake(_fromPt.x + self.drawFrame.origin.x, _fromPt.y + self.drawFrame.origin.y);
+    CGPoint to = CGPointMake(_toPt.x + self.drawFrame.origin.x, _toPt.y + self.drawFrame.origin.y);
     CGFloat width = _w;
     
     void (^drawBlock)(CGContextRef) = ^(CGContextRef context){

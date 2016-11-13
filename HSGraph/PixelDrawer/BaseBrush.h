@@ -13,8 +13,10 @@
 
 @property (nonatomic, readonly, weak) NSMutableArray *array;    ///< 存放block
 
+@property (nonatomic, readonly) CGRect drawFrame;
+
 /** 初始化绘制区域 */
-- (id)initWithArray:(NSMutableArray *)muAry;
+- (id)initWithArray:(NSMutableArray *)muAry drawFrame:(CGRect)frame;
 
 /** 构造绘制函数 */
 - (void (^)())draw;

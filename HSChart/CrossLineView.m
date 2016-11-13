@@ -76,45 +76,45 @@
     CGFloat ry = _bottomLayer.height / (_topBaseAry.count - 1);
     CGFloat x = _bottomLayer.width / _titleAry.count;
     
-    [_backLayer draw_updateFrame:_topLayer.frame lizard:^(GraphLizard *make) {
+    [_backLayer draw_updateFrame:CGRectMake(0, 0, _topLayer.width, _topLayer.height) lizard:^(GraphLizard *make) {
         
         make.makeLine.width(0.6).color(color);
-        make.makeLine.line(_backLayer.gul, _backLayer.gbl).draw();
-        make.makeLine.line(_backLayer.gur, _backLayer.gbr).draw();
-        make.makeLine.line(_backLayer.gbl, _backLayer.gbr).draw();
+        make.makeLine.line(_topLayer.topLeft, _topLayer.lowerLeft).draw();
+        make.makeLine.line(_topLayer.topRight, _topLayer.lowerRight).draw();
+        make.makeLine.line(_topLayer.lowerLeft, _topLayer.lowerRight).draw();
         
         [bottomAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
             
-            make.makeLine.line(_backLayer.gul, OFFSET_X(_backLayer.gul, -3)).y(ly * idx);
+            make.makeLine.line(_topLayer.topLeft, OFFSET_X(_topLayer.topLeft, -3)).y(ly * idx);
             make.makeLine.draw();
             
             make.makeText.text([obj stringValue]).font(font).color(color);
-            make.makeText.point(OFFSET_X(_backLayer.gul, -4)).y(ly * idx).type(T_LEFT);
+            make.makeText.point(OFFSET_X(_topLayer.topLeft, -4)).y(ly * idx).type(T_LEFT);
             make.makeText.draw();
         }];
         
         [_topBaseAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
             
-            make.makeLine.line(_backLayer.gur, OFFSET_X(_backLayer.gur, 3)).y(ry * idx);
+            make.makeLine.line(_topLayer.topRight, OFFSET_X(_topLayer.topRight, 3)).y(ry * idx);
             make.makeLine.draw();
             
             make.makeText.text([obj stringValue]).font(font).color(color);
-            make.makeText.point(OFFSET_X(_backLayer.gur, 4)).y(ry * idx).type(T_RIGHT);
+            make.makeText.point(OFFSET_X(_topLayer.topRight, 4)).y(ry * idx).type(T_RIGHT);
             make.makeText.draw();
         }];
         
         [_titleAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
             
-            make.makeLine.line(_backLayer.gbl, OFFSET_Y(_backLayer.gbl, 3)).x(x * idx);
+            make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
             make.makeLine.draw();
             
             make.makeText.text(obj).font(font).color(color);
-            make.makeText.point(OFFSET_Y(_backLayer.gbl, 4)).x(x * idx + x / 2).type(T_BOTTOM);
+            make.makeText.point(OFFSET_Y(_topLayer.lowerLeft, 4)).x(x * idx + x / 2).type(T_BOTTOM);
             make.makeText.draw();
             
             if (idx == _titleAry.count - 1) {
                 idx += 1;
-                make.makeLine.line(_backLayer.gbl, OFFSET_Y(_backLayer.gbl, 3)).x(x * idx);
+                make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
                 make.makeLine.draw();
             }
         }];

@@ -51,7 +51,7 @@ typedef void(^draw)(CGContextRef ctx);
 {
     [self setGraphRc:frame];
     
-    GraphLizard *lizard = [[GraphLizard alloc] init];
+    GraphLizard *lizard = [[GraphLizard alloc] initWithFrame:frame];
     block(lizard);
     
     _drawBlockAry = lizard.blockAry;
@@ -62,7 +62,7 @@ typedef void(^draw)(CGContextRef ctx);
 - (void)drawInContext:(CGContextRef)ctx
 {
     // 关闭隐士动画
-    //[CATransaction setDisableActions:YES];
+    [CATransaction setDisableActions:YES];
     
     for (draw block in _drawBlockAry) {
         

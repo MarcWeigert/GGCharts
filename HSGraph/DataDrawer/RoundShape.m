@@ -130,7 +130,7 @@
     }
     
     // 关闭隐士动画
-    //[CATransaction setDisableActions:YES];
+    [CATransaction setDisableActions:YES];
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddArc(path, NULL, center.x, center.y, _rad.floatValue + _edgeW.floatValue / 2, degreesToRadians(start), degreesToRadians(end), NO);

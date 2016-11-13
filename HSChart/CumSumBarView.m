@@ -87,25 +87,25 @@
     
     [_backLayer draw_updateFrame:_barLayer.frame lizard:^(GraphLizard *make) {
         
-        CGPoint startx = OFFSET_X(_backLayer.gul, -3);
-        CGPoint endy = OFFSET_Y(_backLayer.gbl, 3);
+        CGPoint startx = CGPointMake(-3, 0);
+        CGPoint endy = CGPointMake(0, _barLayer.height + 3);
         
         // 网格纵线以及标志文字
         [_titleAry enumerateObjectsUsingBlock:^(NSString *text, NSUInteger idx, BOOL * stop) {
             
             CGPoint offset = CGPointMake(idx * x + x / 2, 4);
             
-            make.makeLine.line(_backLayer.gul, endy).x(idx * x);
+            make.makeLine.line(CGPointZero, endy).x(idx * x);
             make.makeLine.color(__RGB_GRAY).width(0.6);
             make.makeLine.draw();
             
             make.makeText.text(_titleAry[idx]).font(font).color(txtColor);
-            make.makeText.point(_backLayer.gbl).offset(offset).type(T_BOTTOM);
+            make.makeText.point(CGPointMake(0, _barLayer.height)).offset(offset).type(T_BOTTOM);
             make.makeText.draw();
             
             if (idx == _titleAry.count - 1) {
                 idx += 1;
-                make.makeLine.line(_backLayer.gul, endy).x(idx * x);
+                make.makeLine.line(CGPointZero, endy).x(idx * x);
                 make.makeLine.color(__RGB_GRAY).width(0.6);
                 make.makeLine.draw();
             }
@@ -116,12 +116,12 @@
             
             CGPoint offset = CGPointMake(-4, idx * y);
             
-            make.makeLine.line(startx, _backLayer.gur).y(idx * y);
+            make.makeLine.line(startx, CGPointMake(_barLayer.width, 0)).y(idx * y);
             make.makeLine.color(__RGB_GRAY).width(0.6);
             make.makeLine.draw();
             
             make.makeText.text([base[idx] stringValue]).font(font).color(txtColor);
-            make.makeText.point(_backLayer.gul).offset(offset).type(T_LEFT);
+            make.makeText.point(CGPointZero).offset(offset).type(T_LEFT);
             make.makeText.draw();
         }];
     }];

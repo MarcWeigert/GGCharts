@@ -118,6 +118,7 @@
     
     CGFloat start = 0;
     CGFloat end = 360;
+    BOOL isData = false;
     
     if (_dataAry != nil && _dataAry.count > 1) {
         
@@ -127,13 +128,26 @@
         
         start = 360 * startVl / sumOfData;
         end = 360 * endVl / sumOfData;
+        isData = true;
     }
     
     // 关闭隐士动画
     [CATransaction setDisableActions:YES];
     
     CGMutablePathRef path = CGPathCreateMutable();
+    
+    if (isData && _edgeW == nil) {
+        
+        CGPathMoveToPoint(path, NULL, center.x, center.y);
+    }
+    
     CGPathAddArc(path, NULL, center.x, center.y, _rad.floatValue + _edgeW.floatValue / 2, degreesToRadians(start), degreesToRadians(end), NO);
+    
+    if (isData && _edgeW == nil) {
+        
+        CGPathAddLineToPoint(path, NULL, center.x, center.y);
+    }
+    
     shapeLayer.fillColor = _fillClr == nil ? nil : _fillClr.CGColor;
     shapeLayer.strokeColor = _edgeClr.CGColor;
     shapeLayer.lineWidth = _edgeW.floatValue;

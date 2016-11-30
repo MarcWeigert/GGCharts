@@ -31,6 +31,7 @@
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
 		2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76BCB61D1D269A00639205 /* CumSumBarView.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
+		2B7A467B1DED66B00057CFDA /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A467A1DED66B00057CFDA /* PieView.m */; };
 		2BA447701DB4C55F005719E3 /* QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4476F1DB4C55F005719E3 /* QueryView.m */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,8 @@
 		2B76BCB61D1D269A00639205 /* CumSumBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumBarView.m; path = HSChart/CumSumBarView.m; sourceTree = "<group>"; };
 		2B78D3A61D3F1B220079C6D2 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
 		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		2B7A46791DED66B00057CFDA /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieView.h; path = HSChart/PieView.h; sourceTree = "<group>"; };
+		2B7A467A1DED66B00057CFDA /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieView.m; path = HSChart/PieView.m; sourceTree = "<group>"; };
 		2BA4476E1DB4C55F005719E3 /* QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryView.h; path = HSChart/QueryView.h; sourceTree = "<group>"; };
 		2BA4476F1DB4C55F005719E3 /* QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryView.m; path = HSChart/QueryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +173,8 @@
 				2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */,
 				2B6077831DAF798A00945760 /* HollowFanView.h */,
 				2B6077841DAF798A00945760 /* HollowFanView.m */,
+				2B7A46791DED66B00057CFDA /* PieView.h */,
+				2B7A467A1DED66B00057CFDA /* PieView.m */,
 			);
 			name = HSChart;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				2B6CCF0F1DB0AD9F00BFBF95 /* BaseBrush.m in Sources */,
 				2B6CCF151DB0CEB400BFBF95 /* VirginLayer.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
+				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,
 				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,

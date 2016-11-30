@@ -13,6 +13,7 @@
 #import "Colors.h"
 #import "CrossLineView.h"
 #import "HollowFanView.h"
+#import "PieView.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -29,11 +30,26 @@ _Pragma("clang diagnostic pop") \
 - (NSDictionary *)pushDictionary
 {
     return @{@"空心饼图" : @"hollowFanView",
-             @"阴影饼图" : @"hollowFanView",
+             @"阴影饼图" : @"pieView",
              @"多数据叠加柱状图" : @"cumSumBarView",
              @"多数据排列柱状图" : @"rankBarView",
              @"大数据折线图" : @"crossLineView",
              @"堆叠区域图" : @"cumSumLineView",};
+}
+
+- (UIView *)pieView
+{
+    PieView *pieView = [[PieView alloc] initWithFrame:CGRectZero];
+    pieView.frame = CGRectMake(0, 0, 370, 370);
+    pieView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    pieView.dataAry = @[@335, @310, @234, @135, @1548];
+    pieView.titleAry = @[@"直接访问", @"邮件营销", @"联盟广告", @"视频广告", @"搜索引擎"];
+    pieView.colorAry = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
+    
+    [pieView stockChart];
+    //[pieView addAnimation];
+    
+    return pieView;
 }
 
 - (UIView *)cumSumLineView

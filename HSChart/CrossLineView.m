@@ -39,6 +39,8 @@
         [_backLayer addSublayer:_bottomLayer];
         [_backLayer addSublayer:_topLayer];
         [self.layer addSublayer:_backLayer];
+        
+        //_backLayer.backgroundColor = [UIColor blackColor].CGColor;
     }
     
     return self;
@@ -48,9 +50,11 @@
 {
     [super setFrame:frame];
     
+    CGFloat height = frame.size.height / 2;
+    
     _backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _topLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height - 40);
-    _bottomLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height - 40);
+    _bottomLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height / 2 - 20);
+    _topLayer.frame = CGRectMake(30, 20 + height, _backLayer.width - 60, _backLayer.height / 2 - 20);
 }
 
 - (void)loadViewData

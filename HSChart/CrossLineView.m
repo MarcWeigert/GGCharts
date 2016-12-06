@@ -8,6 +8,7 @@
 
 #import "CrossLineView.h"
 #import "SawGraph.h"
+#import "Colors.h"
 
 @interface CrossLineView ()
 
@@ -50,11 +51,12 @@
 {
     [super setFrame:frame];
     
-    CGFloat height = frame.size.height / 2;
+    CGFloat interval = frame.size.height / 10;
+    CGFloat height = frame.size.height * 9 / 10 / 2;
     
     _backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    _bottomLayer.frame = CGRectMake(30, 20, _backLayer.width - 60, _backLayer.height / 2 - 20);
-    _topLayer.frame = CGRectMake(30, 20 + height, _backLayer.width - 60, _backLayer.height / 2 - 20);
+    _bottomLayer.frame = CGRectMake(30, 10, _backLayer.width - 60, height - 10);
+    _topLayer.frame = CGRectMake(30, interval + height - 10, _backLayer.width - 60, height - 10);
 }
 
 - (void)loadViewData
@@ -84,44 +86,53 @@
         
         make.makeLine.width(0.6).color(color);
         make.makeLine.line(_topLayer.topLeft, _topLayer.lowerLeft).draw();
-        make.makeLine.line(_topLayer.topRight, _topLayer.lowerRight).draw();
-        make.makeLine.line(_topLayer.lowerLeft, _topLayer.lowerRight).draw();
+        make.makeLine.line(_bottomLayer.topLeft, _bottomLayer.lowerLeft).draw();
+        make.makeLine.line(_topLayer.topLeft, _topLayer.topRight).draw();
+        make.makeLine.line(_bottomLayer.lowerLeft, _bottomLayer.lowerRight).draw();
         
         [bottomAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
             
-            make.makeLine.line(_topLayer.topLeft, OFFSET_X(_topLayer.topLeft, -3)).y(ly * idx);
+            make.makeLine.color(color);
+            make.makeLine.line(_bottomLayer.topLeft, OFFSET_X(_bottomLayer.topLeft, -3)).y(ly * idx);
             make.makeLine.draw();
             
             make.makeText.text([obj stringValue]).font(font).color(color);
-            make.makeText.point(OFFSET_X(_topLayer.topLeft, -4)).y(ly * idx).type(T_LEFT);
+            make.makeText.point(OFFSET_X(_bottomLayer.topLeft, -4)).y(ly * idx).type(T_LEFT);
             make.makeText.draw();
+            
+            make.makeLine.color(__RGB_GRAY);
+            make.makeLine.line(_bottomLayer.topLeft, _bottomLayer.topRight).y(ly * idx);
+            make.makeLine.draw();
         }];
         
         [_topBaseAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
             
-            make.makeLine.line(_topLayer.topRight, OFFSET_X(_topLayer.topRight, 3)).y(ry * idx);
+            make.makeLine.line(_topLayer.topLeft, OFFSET_X(_topLayer.topLeft, -3)).y(ry * idx);
             make.makeLine.draw();
             
             make.makeText.text([obj stringValue]).font(font).color(color);
-            make.makeText.point(OFFSET_X(_topLayer.topRight, 4)).y(ry * idx).type(T_RIGHT);
+            make.makeText.point(OFFSET_X(_topLayer.topLeft, -4)).y(ry * idx).type(T_LEFT);
             make.makeText.draw();
+            
+            make.makeLine.line(_topLayer.topLeft, _topLayer.topRight).y(ry * idx);
+            make.makeLine.draw();
         }];
         
-        [_titleAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
-            
-            make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
-            make.makeLine.draw();
-            
-            make.makeText.text(obj).font(font).color(color);
-            make.makeText.point(OFFSET_Y(_topLayer.lowerLeft, 4)).x(x * idx + x / 2).type(T_BOTTOM);
-            make.makeText.draw();
-            
-            if (idx == _titleAry.count - 1) {
-                idx += 1;
-                make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
-                make.makeLine.draw();
-            }
-        }];
+//        [_titleAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
+//            
+//            make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
+//            make.makeLine.draw();
+//            
+//            make.makeText.text(obj).font(font).color(color);
+//            make.makeText.point(OFFSET_Y(_topLayer.lowerLeft, 4)).x(x * idx + x / 2).type(T_BOTTOM);
+//            make.makeText.draw();
+//            
+//            if (idx == _titleAry.count - 1) {
+//                idx += 1;
+//                make.makeLine.line(_topLayer.lowerLeft, OFFSET_Y(_topLayer.lowerLeft, 3)).x(x * idx);
+//                make.makeLine.draw();
+//            }
+//        }];
     }];
 }
 

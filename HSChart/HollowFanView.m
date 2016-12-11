@@ -65,7 +65,12 @@
     
     [_backLayer draw_updateFrame:_contentLayer.frame lizard:^(GraphLizard *make) {
         
-        make.makeText.font(font).text(text).color(color).point(_backLayer.gct);
+        make.makeText
+            .font(font)
+            .text(text)
+            .color(color)
+            .point(CGPointMake(_contentLayer.width / 2, _contentLayer.height / 2));
+        
         make.makeText.draw();
     }];
 }

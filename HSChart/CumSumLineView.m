@@ -79,8 +79,8 @@
     
     [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
         
-        CGPoint start = CGPointMake(point.x, _queryLayer.gul.y);
-        CGPoint end = CGPointMake(point.x, _queryLayer.gbl.y);
+        CGPoint start = CGPointMake(point.x, 0);
+        CGPoint end = CGPointMake(point.x, _lineLayer.height);
         
         make.makeLine.color(__RGB_GRAY).line(start, end);
         make.makeLine.width(0.6).draw();
@@ -97,8 +97,8 @@
     
     [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
         
-        CGPoint start_x = CGPointMake(pt.x, _queryLayer.gul.y);
-        CGPoint end_x = CGPointMake(pt.x, _queryLayer.gbl.y);
+        CGPoint start_x = CGPointMake(pt.x, 0);
+        CGPoint end_x = CGPointMake(pt.x, _lineLayer.height);
         
         make.makeLine.color(__RGB_BLACK).line(start_x, end_x).offset(CGPointMake(30, 0));
         make.makeLine.width(1).draw();

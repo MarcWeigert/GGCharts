@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
+		2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4971DFD2D40008C6BF0 /* LineBarView.m */; };
 		2B4D8A111D1BF2EB002CED37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A101D1BF2EB002CED37 /* main.m */; };
 		2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */; };
 		2B4D8A161D1BF2EB002CED37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4D8A151D1BF2EB002CED37 /* Assets.xcassets */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		2B0C0ADE1D220BEE004ABEC0 /* CumSumLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumLineView.h; path = HSChart/CumSumLineView.h; sourceTree = "<group>"; };
 		2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumLineView.m; path = HSChart/CumSumLineView.m; sourceTree = "<group>"; };
+		2B38F4961DFD2D40008C6BF0 /* LineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineBarView.h; path = HSChart/LineBarView.h; sourceTree = "<group>"; };
+		2B38F4971DFD2D40008C6BF0 /* LineBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineBarView.m; path = HSChart/LineBarView.m; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4D8A101D1BF2EB002CED37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B4D8A121D1BF2EB002CED37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -171,6 +174,8 @@
 				2B61B0661D210018009D634D /* CrossLineView.m */,
 				2B0C0ADE1D220BEE004ABEC0 /* CumSumLineView.h */,
 				2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */,
+				2B38F4961DFD2D40008C6BF0 /* LineBarView.h */,
+				2B38F4971DFD2D40008C6BF0 /* LineBarView.m */,
 				2B6077831DAF798A00945760 /* HollowFanView.h */,
 				2B6077841DAF798A00945760 /* HollowFanView.m */,
 				2B7A46791DED66B00057CFDA /* PieView.h */,
@@ -292,6 +297,7 @@
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,
 				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
+				2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,
 				2B6CCF211DB0D8E300BFBF95 /* BarShape.m in Sources */,
 				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,

@@ -33,24 +33,8 @@ typedef void(^draw)(CGContextRef ctx);
     return self;
 }
 
-- (void)setGraphRc:(CGRect)graphRc
-{
-    CGFloat min_x = graphRc.origin.x;
-    CGFloat min_y = graphRc.origin.y;
-    CGFloat max_x = graphRc.origin.x + graphRc.size.width;
-    CGFloat max_y = graphRc.origin.y + graphRc.size.height;
-    
-    _gul = CGPointMake(min_x, min_y);
-    _gur = CGPointMake(max_x, min_y);
-    _gbl = CGPointMake(min_x, max_y);
-    _gbr = CGPointMake(max_x, max_y);
-    _gct = CGPointMake(min_x + graphRc.size.width / 2, min_y + graphRc.size.height / 2);
-}
-
 - (void)draw_updateFrame:(CGRect)frame lizard:(void (^) (GraphLizard *make))block;
-{
-    [self setGraphRc:frame];
-    
+{    
     GraphLizard *lizard = [[GraphLizard alloc] initWithFrame:frame];
     block(lizard);
     

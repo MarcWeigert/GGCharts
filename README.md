@@ -23,6 +23,9 @@
 使用
 ==============
 ### 空心饼图
+
+<img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgHollowFanView.png" width = "375">
+
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];

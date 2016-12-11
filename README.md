@@ -23,9 +23,7 @@
 使用
 ==============
 ### 空心饼图
-
 <img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgHollowFanView.png" width = "375">
-
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +40,7 @@
 ```
 
 ### 普通饼图
+<img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgPieView.png" width = "375">
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,6 +57,7 @@
 ```
 
 ### 数据堆叠柱状图
+<img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgCumSumBarView.png" width = "375">
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,6 +78,7 @@
 ```
 
 ### 数据排列柱状图
+<img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgRankBarView.png" width = "375">
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -96,6 +97,7 @@
 ```
 
 ### 堆叠区域折线图
+<img src = "https://github.com/huangshun11/Charts/blob/master/Image/imgCumSumLineView.png" width = "375">
 ```objective-c
 - (void)viewDidLoad {
     [super viewDidLoad];

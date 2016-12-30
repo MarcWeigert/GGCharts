@@ -22,8 +22,6 @@
 
 @property (nonatomic) VirginLayer *textLayer;   ///< 价格数据
 
-@property (nonatomic) VirginLayer *queryLayer;  ///< 查询价格十字线
-
 @property (nonatomic) NSArray <NSNumber *> *baseAry;    ///< y轴价格分割
 
 @property (nonatomic) NSArray <NSArray<NSValue *> *> *pointArys;    ///< 二维数组, 存放折线点坐标
@@ -43,7 +41,6 @@
         _roundLayer = [[CALayer alloc] init];
         _backLayer = [[VirginLayer alloc] init];
         _textLayer = [[VirginLayer alloc] init];
-        _queryLayer = [[VirginLayer alloc] init];
         
         [self setFrame:frame];
         [_backLayer addSublayer:_fillLayer];
@@ -51,7 +48,6 @@
         [_backLayer addSublayer:_roundLayer];
         [self.layer addSublayer:_backLayer];
         [self.layer addSublayer:_textLayer];
-        [self.layer addSublayer:_queryLayer];
     }
     
     return self;
@@ -66,44 +62,43 @@
     _roundLayer.frame = _lineLayer.frame;
     _fillLayer.frame = _lineLayer.frame;
     _textLayer.frame = _backLayer.frame;
-    _queryLayer.frame = _backLayer.frame;
 }
 
-/** 手势交互 */
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-    
-    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
-        
-        CGPoint start = CGPointMake(point.x, 0);
-        CGPoint end = CGPointMake(point.x, _lineLayer.height);
-        
-        make.makeLine.color(__RGB_GRAY).line(start, end);
-        make.makeLine.width(0.6).draw();
-    }];
-}
-
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-    
-    NSArray *aryPoints = _pointArys.firstObject;
-    CGPoint pt = cop_w_x(aryPoints, point);
-    
-    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
-        
-        CGPoint start_x = CGPointMake(pt.x, 0);
-        CGPoint end_x = CGPointMake(pt.x, _lineLayer.height);
-        
-        make.makeLine.color(__RGB_BLACK).line(start_x, end_x).offset(CGPointMake(30, 0));
-        make.makeLine.width(1).draw();
-    }];
-}
+///** 手势交互 */
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesBegan:touches withEvent:event];
+//    
+//    UITouch *touch = [touches anyObject];
+//    CGPoint point = [touch locationInView:self];
+//    
+//    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
+//        
+//        CGPoint start = CGPointMake(point.x, 0);
+//        CGPoint end = CGPointMake(point.x, _lineLayer.height);
+//        
+//        make.makeLine.color(__RGB_GRAY).line(start, end);
+//        make.makeLine.width(0.6).draw();
+//    }];
+//}
+//
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+//{
+//    UITouch *touch = [touches anyObject];
+//    CGPoint point = [touch locationInView:self];
+//    
+//    NSArray *aryPoints = _pointArys.firstObject;
+//    CGPoint pt = cop_w_x(aryPoints, point);
+//    
+//    [_queryLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
+//        
+//        CGPoint start_x = CGPointMake(pt.x, 0);
+//        CGPoint end_x = CGPointMake(pt.x, _lineLayer.height);
+//        
+//        make.makeLine.color(__RGB_BLACK).line(start_x, end_x).offset(CGPointMake(30, 0));
+//        make.makeLine.width(1).draw();
+//    }];
+//}
 
 - (void)loadViewData
 {
@@ -158,10 +153,7 @@
             
             UIColor *fillColor = [color colorWithAlphaComponent:0.5];
             
-            make.drawLine
-                .drawAry(data)
-                .rounder(0)
-                .fillColor(fillColor);
+            make.drawLine.drawAry(data).rounder(0).fillColor(fillColor);
         });
     }];
 }
@@ -202,6 +194,14 @@
     NSArray *base = [[_baseAry reverseObjectEnumerator] allObjects];
     
     [_backLayer draw_updateFrame:_lineLayer.frame lizard:^(GraphLizard *make) {
+        
+        // make.drawGrid.drawLeft(arys).offset(3);
+        // make.drawGrid.draw
+        //
+        //
+        //
+        //
+        
         
         CGPoint startx = CGPointMake(-3, 0);
         CGPoint endy = CGPointMake(0, _lineLayer.height + 3);

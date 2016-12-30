@@ -48,9 +48,7 @@
 - (LineShape * (^)(NSArray <NSNumber *> *drawAry))drawAry
 {
     return ^ id (NSArray *drawAry) {
-    
         _dataAry = drawAry;
-        
         return self;
     };
 }

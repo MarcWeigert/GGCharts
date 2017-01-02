@@ -75,11 +75,11 @@
 /** 接口 */
 - (void (^)(CGContextRef))drawForContextRef
 {
-    __weak UIColor *color = _color;
-    __weak UIFont *font = _font;
-    __weak NSArray *pointAry = _pointAry;
-    __weak NSArray *strAry = _texts;
-    __weak typeof(self) weakSelf = self;
+    __block UIColor *color = _color;
+    __block UIFont *font = _font;
+    __block NSArray *pointAry = _pointAry;
+    __block NSArray *strAry = _texts;
+    __block typeof(self) weakSelf = self;
     
     return ^(CGContextRef context) {
     

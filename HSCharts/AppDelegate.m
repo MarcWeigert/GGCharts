@@ -19,6 +19,7 @@
 #import "GGLineBrush.h"
 
 #import "GGText.h"
+#import "GGGrid.h"
 
 @interface AppDelegate ()
 
@@ -34,29 +35,7 @@
     
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
-    
-    GGLine *line = [GGLine lineWithFrom:CGPointMake(25, 50) to:CGPointMake(75, 50)];
-    
-    
-    
-    GGText *text = [GGText textWithArray:@[@"123", @"456"] point:line];
-    text.font = [UIFont systemFontOfSize:12];
-    text.color = [UIColor redColor];
-    
-    
-    
-    GGLineBrush *brush = [GGLineBrush lineBrushWithFrom:CGPointMake(0, 0) to:CGPointMake(100, 100)];
-    brush.width = 1;
-    brush.color = [UIColor blackColor];
-    
-    GGLayer *layer = [[GGLayer alloc] init];
-    layer.frame = CGRectMake(10, 10, 100, 100);
-    [layer addBrush:brush];
-    [layer addBrush:text];
-    [layer setNeedsDisplay];
-    
-    [self.window.layer addSublayer:layer];
-    
+        
     return YES;
 }
 

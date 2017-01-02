@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
+		2B0C13341E1A891500F4DA3F /* GGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132B1E1A891500F4DA3F /* GGGrid.m */; };
+		2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132D1E1A891500F4DA3F /* GGLayer.m */; };
+		2B0C13361E1A891500F4DA3F /* GGLineBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132F1E1A891500F4DA3F /* GGLineBrush.m */; };
+		2B0C13371E1A891500F4DA3F /* GGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C13311E1A891500F4DA3F /* GGPoint.m */; };
+		2B0C13381E1A891500F4DA3F /* GGText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C13331E1A891500F4DA3F /* GGText.m */; };
 		2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4971DFD2D40008C6BF0 /* LineBarView.m */; };
 		2B4D8A111D1BF2EB002CED37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A101D1BF2EB002CED37 /* main.m */; };
 		2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */; };
@@ -30,13 +35,8 @@
 		2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1C1DB0D8E300BFBF95 /* GraphSpider.m */; };
 		2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */; };
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
-		2B7268151E1509A100580747 /* GGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7268141E1509A100580747 /* GGPoint.m */; };
-		2B7268181E15284400580747 /* GGLineBrush.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7268171E15284400580747 /* GGLineBrush.m */; };
-		2B72681B1E1529BB00580747 /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B72681A1E1529BB00580747 /* GGLayer.m */; };
 		2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76BCB61D1D269A00639205 /* CumSumBarView.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
-		2B7927611E15F42C00D966D5 /* GGText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7927601E15F42C00D966D5 /* GGText.m */; };
-		2B7927651E164BB900D966D5 /* GGGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7927641E164BB900D966D5 /* GGGrid.m */; };
 		2B7A467B1DED66B00057CFDA /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A467A1DED66B00057CFDA /* PieView.m */; };
 		2BA447701DB4C55F005719E3 /* QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4476F1DB4C55F005719E3 /* QueryView.m */; };
 /* End PBXBuildFile section */
@@ -44,6 +44,17 @@
 /* Begin PBXFileReference section */
 		2B0C0ADE1D220BEE004ABEC0 /* CumSumLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumLineView.h; path = HSChart/CumSumLineView.h; sourceTree = "<group>"; };
 		2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumLineView.m; path = HSChart/CumSumLineView.m; sourceTree = "<group>"; };
+		2B0C13291E1A891500F4DA3F /* GGDrawerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDrawerProtocol.h; sourceTree = "<group>"; };
+		2B0C132A1E1A891500F4DA3F /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGrid.h; sourceTree = "<group>"; };
+		2B0C132B1E1A891500F4DA3F /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGrid.m; sourceTree = "<group>"; };
+		2B0C132C1E1A891500F4DA3F /* GGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayer.h; sourceTree = "<group>"; };
+		2B0C132D1E1A891500F4DA3F /* GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayer.m; sourceTree = "<group>"; };
+		2B0C132E1E1A891500F4DA3F /* GGLineBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineBrush.h; sourceTree = "<group>"; };
+		2B0C132F1E1A891500F4DA3F /* GGLineBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineBrush.m; sourceTree = "<group>"; };
+		2B0C13301E1A891500F4DA3F /* GGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPoint.h; sourceTree = "<group>"; };
+		2B0C13311E1A891500F4DA3F /* GGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPoint.m; sourceTree = "<group>"; };
+		2B0C13321E1A891500F4DA3F /* GGText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGText.h; sourceTree = "<group>"; };
+		2B0C13331E1A891500F4DA3F /* GGText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGText.m; sourceTree = "<group>"; };
 		2B38F4961DFD2D40008C6BF0 /* LineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineBarView.h; path = HSChart/LineBarView.h; sourceTree = "<group>"; };
 		2B38F4971DFD2D40008C6BF0 /* LineBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineBarView.m; path = HSChart/LineBarView.m; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,21 +98,10 @@
 		2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineShape.m; sourceTree = "<group>"; };
 		2B6CCF1F1DB0D8E300BFBF95 /* RoundShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundShape.h; sourceTree = "<group>"; };
 		2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundShape.m; sourceTree = "<group>"; };
-		2B7268131E1509A100580747 /* GGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GGPoint.h; path = HSGraph/GGPoint.h; sourceTree = "<group>"; };
-		2B7268141E1509A100580747 /* GGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GGPoint.m; path = HSGraph/GGPoint.m; sourceTree = "<group>"; };
-		2B7268161E15284400580747 /* GGLineBrush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineBrush.h; sourceTree = "<group>"; };
-		2B7268171E15284400580747 /* GGLineBrush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineBrush.m; sourceTree = "<group>"; };
-		2B7268191E1529BB00580747 /* GGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayer.h; sourceTree = "<group>"; };
-		2B72681A1E1529BB00580747 /* GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayer.m; sourceTree = "<group>"; };
 		2B76BCB51D1D269A00639205 /* CumSumBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumBarView.h; path = HSChart/CumSumBarView.h; sourceTree = "<group>"; };
 		2B76BCB61D1D269A00639205 /* CumSumBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumBarView.m; path = HSChart/CumSumBarView.m; sourceTree = "<group>"; };
 		2B78D3A61D3F1B220079C6D2 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
 		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
-		2B79275F1E15F42C00D966D5 /* GGText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGText.h; sourceTree = "<group>"; };
-		2B7927601E15F42C00D966D5 /* GGText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGText.m; sourceTree = "<group>"; };
-		2B7927621E15F98C00D966D5 /* GGDrawerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDrawerProtocol.h; sourceTree = "<group>"; };
-		2B7927631E164BB900D966D5 /* GGGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGrid.h; sourceTree = "<group>"; };
-		2B7927641E164BB900D966D5 /* GGGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGrid.m; sourceTree = "<group>"; };
 		2B7A46791DED66B00057CFDA /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieView.h; path = HSChart/PieView.h; sourceTree = "<group>"; };
 		2B7A467A1DED66B00057CFDA /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieView.m; path = HSChart/PieView.m; sourceTree = "<group>"; };
 		2BA4476E1DB4C55F005719E3 /* QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryView.h; path = HSChart/QueryView.h; sourceTree = "<group>"; };
@@ -119,6 +119,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0C13281E1A891500F4DA3F /* GGChart */ = {
+			isa = PBXGroup;
+			children = (
+				2B0C13291E1A891500F4DA3F /* GGDrawerProtocol.h */,
+				2B0C132A1E1A891500F4DA3F /* GGGrid.h */,
+				2B0C132B1E1A891500F4DA3F /* GGGrid.m */,
+				2B0C132C1E1A891500F4DA3F /* GGLayer.h */,
+				2B0C132D1E1A891500F4DA3F /* GGLayer.m */,
+				2B0C132E1E1A891500F4DA3F /* GGLineBrush.h */,
+				2B0C132F1E1A891500F4DA3F /* GGLineBrush.m */,
+				2B0C13301E1A891500F4DA3F /* GGPoint.h */,
+				2B0C13311E1A891500F4DA3F /* GGPoint.m */,
+				2B0C13321E1A891500F4DA3F /* GGText.h */,
+				2B0C13331E1A891500F4DA3F /* GGText.m */,
+			);
+			path = GGChart;
+			sourceTree = "<group>";
+		};
 		2B4D8A031D1BF2EB002CED37 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +183,7 @@
 		2B4D8A201D1BF33E002CED37 /* HSGraph */ = {
 			isa = PBXGroup;
 			children = (
+				2B0C13281E1A891500F4DA3F /* GGChart */,
 				2B6CCF161DB0D8E300BFBF95 /* DataDrawer */,
 				2B6CCF061DB0AC4E00BFBF95 /* PixelDrawer */,
 				2B4D8A311D1BF35F002CED37 /* SawGraph.h */,
@@ -203,7 +222,6 @@
 		2B6CCF061DB0AC4E00BFBF95 /* PixelDrawer */ = {
 			isa = PBXGroup;
 			children = (
-				2B7927621E15F98C00D966D5 /* GGDrawerProtocol.h */,
 				2B6CCF071DB0ACE200BFBF95 /* LineBrush.h */,
 				2B6CCF081DB0ACE200BFBF95 /* LineBrush.m */,
 				2B6CCF0A1DB0AD0E00BFBF95 /* TextBrush.h */,
@@ -214,16 +232,6 @@
 				2B6CCF111DB0C23E00BFBF95 /* GraphLizard.m */,
 				2B6CCF131DB0CEB400BFBF95 /* VirginLayer.h */,
 				2B6CCF141DB0CEB400BFBF95 /* VirginLayer.m */,
-				2B7268131E1509A100580747 /* GGPoint.h */,
-				2B7268141E1509A100580747 /* GGPoint.m */,
-				2B7268191E1529BB00580747 /* GGLayer.h */,
-				2B72681A1E1529BB00580747 /* GGLayer.m */,
-				2B7927631E164BB900D966D5 /* GGGrid.h */,
-				2B7927641E164BB900D966D5 /* GGGrid.m */,
-				2B79275F1E15F42C00D966D5 /* GGText.h */,
-				2B7927601E15F42C00D966D5 /* GGText.m */,
-				2B7268161E15284400580747 /* GGLineBrush.h */,
-				2B7268171E15284400580747 /* GGLineBrush.m */,
 			);
 			name = PixelDrawer;
 			sourceTree = "<group>";
@@ -318,32 +326,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0C13361E1A891500F4DA3F /* GGLineBrush.m in Sources */,
 				2B6CCF0F1DB0AD9F00BFBF95 /* BaseBrush.m in Sources */,
 				2B6CCF151DB0CEB400BFBF95 /* VirginLayer.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,
-				2B7268181E15284400580747 /* GGLineBrush.m in Sources */,
-				2B7927611E15F42C00D966D5 /* GGText.m in Sources */,
+				2B0C13381E1A891500F4DA3F /* GGText.m in Sources */,
 				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
 				2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */,
+				2B0C13341E1A891500F4DA3F /* GGGrid.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,
 				2B6CCF211DB0D8E300BFBF95 /* BarShape.m in Sources */,
 				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,
 				2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */,
 				2B6CCF0C1DB0AD0E00BFBF95 /* TextBrush.m in Sources */,
 				2BA447701DB4C55F005719E3 /* QueryView.m in Sources */,
-				2B7927651E164BB900D966D5 /* GGGrid.m in Sources */,
 				2B6CCF091DB0ACE200BFBF95 /* LineBrush.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,
+				2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */,
 				2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */,
-				2B7268151E1509A100580747 /* GGPoint.m in Sources */,
 				2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */,
 				2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */,
 				2B6CCF221DB0D8E300BFBF95 /* CALayer+GraDispose.m in Sources */,
 				2B4D8A111D1BF2EB002CED37 /* main.m in Sources */,
-				2B72681B1E1529BB00580747 /* GGLayer.m in Sources */,
+				2B0C13371E1A891500F4DA3F /* GGPoint.m in Sources */,
 				2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */,
 				2B4D8A3E1D1BF93E002CED37 /* RankBarView.m in Sources */,
 			);

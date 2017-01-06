@@ -6,20 +6,20 @@
 //  Copyright © 2016年 I really is a farmer. All rights reserved.
 //
 
-#import "GGText.h"
+#import "GGTextPaint.h"
 
-@interface GGText ()
+@interface GGTextPaint ()
 
 @property (nonatomic, strong) NSArray <NSValue *>* pointAry;
 
 @end
 
-@implementation GGText
+@implementation GGTextPaint
 
 /** 初始化 */
 + (instancetype)textWithString:(NSString *)string point:(CGPoint)point
 {
-    GGText *text = [GGText new];
+    GGTextPaint *text = [GGTextPaint new];
     text.texts = @[string];
     text.pointAry = @[[NSValue valueWithCGPoint:point]];
     return text;
@@ -27,7 +27,7 @@
 
 + (instancetype)textWithArray:(NSArray <NSString *>*) ary point:(id <GGPointProtocol>)point
 {
-    GGText *text = [GGText new];
+    GGTextPaint *text = [GGTextPaint new];
     text.texts = ary;
     text.pointAry = [point linePoints];
     return text;
@@ -35,7 +35,7 @@
 
 + (instancetype)textWtihArray:(NSArray <NSString *>*)ary points:(NSArray <NSValue *>*)points
 {
-    GGText *text = [GGText new];
+    GGTextPaint *text = [GGTextPaint new];
     text.texts = ary;
     text.pointAry = points;
     return text;

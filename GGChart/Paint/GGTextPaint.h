@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
     DRAW_BOTTOM,
 }DRAW_DIR;
 
-@interface GGText : NSObject<GGLayerProtocal>
+@interface GGTextPaint : NSObject<GGLayerProtocal>
 
 @property (nonatomic, assign) DRAW_DIR direction;
 @property (nonatomic, strong) UIFont *font;

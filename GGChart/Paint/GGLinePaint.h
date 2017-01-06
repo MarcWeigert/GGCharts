@@ -11,7 +11,7 @@
 #import "GGDrawerProtocol.h"
 #import "GGLayer.h"
 
-@interface GGLineBrush : NSObject <GGLayerProtocal>
+@interface GGLinePaint : NSObject <GGLayerProtocal>
 
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, strong) UIColor *color;

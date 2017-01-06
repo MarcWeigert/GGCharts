@@ -26,7 +26,7 @@ CG_INLINE CGGrid CGGridMake(NSUInteger x, NSUInteger y) {
     return grid;
 }
 
-@interface GGGrid : NSObject <GGLayerProtocal>
+@interface GGGridPaint : NSObject <GGLayerProtocal>
 
 @property (nonatomic, assign) CGRect rect;  ///< 网格区域
 @property (nonatomic, assign) CGGrid grid;

@@ -16,10 +16,10 @@
 
 #import "GGPoint.h"
 #import "GGLayer.h"
-#import "GGLineBrush.h"
 
-#import "GGText.h"
-#import "GGGrid.h"
+#import "GGLinePaint.h"
+#import "GGTextPaint.h"
+#import "GGGridPaint.h"
 
 @interface AppDelegate ()
 

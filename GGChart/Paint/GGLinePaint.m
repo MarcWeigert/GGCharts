@@ -6,15 +6,15 @@
 //  Copyright © 2016年 I really is a farmer. All rights reserved.
 //
 
-#import "GGLineBrush.h"
+#import "GGLinePaint.h"
 
-@interface GGLineBrush ()
+@interface GGLinePaint ()
 
 @property (nonatomic, strong) NSArray <NSValue *>* points;
 
 @end
 
-@implementation GGLineBrush
+@implementation GGLinePaint
 
 - (instancetype)init
 {
@@ -30,14 +30,14 @@
 
 + (instancetype)lineBrushWithLine:(id <GGPointProtocol>)line
 {
-    GGLineBrush *brush = [[GGLineBrush alloc] init];
+    GGLinePaint *brush = [[GGLinePaint alloc] init];
     brush.points = line.linePoints;
     return brush;
 }
 
 + (instancetype)lineBrushWithFrom:(CGPoint)from to:(CGPoint)to
 {
-    GGLineBrush *brush = [[GGLineBrush alloc] init];
+    GGLinePaint *brush = [[GGLinePaint alloc] init];
     brush.points = @[[NSValue valueWithCGPoint:from], [NSValue valueWithCGPoint:to]];
     return brush;
 }

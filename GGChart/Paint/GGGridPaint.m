@@ -6,7 +6,7 @@
 //  Copyright © 2016年 I really is a farmer. All rights reserved.
 //
 
-#import "GGGrid.h"
+#import "GGGridPaint.h"
 
 @implementation GGAxis
 
@@ -29,14 +29,14 @@
 
 @end
 
-@interface GGGrid ()
+@interface GGGridPaint ()
 
 @property (nonatomic, strong) NSMutableArray <GGAxis *>*aryX;
 @property (nonatomic, strong) NSMutableArray <GGAxis *>*aryY;
 
 @end
 
-@implementation GGGrid
+@implementation GGGridPaint
 
 /** 初始化 */
 - (instancetype)initWithRect:(CGRect)rect grid:(CGGrid)grid
@@ -55,7 +55,7 @@
 
 + (instancetype)gridWithRect:(CGRect)rect grid:(CGGrid)grid
 {
-    GGGrid *ggrid = [[GGGrid alloc] initWithRect:rect grid:grid];
+    GGGridPaint *ggrid = [[GGGridPaint alloc] initWithRect:rect grid:grid];
     return ggrid;
 }
 

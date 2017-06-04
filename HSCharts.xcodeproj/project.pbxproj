@@ -10,6 +10,16 @@
 		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
 		2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132D1E1A891500F4DA3F /* GGLayer.m */; };
 		2B0C13371E1A891500F4DA3F /* GGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C13311E1A891500F4DA3F /* GGPoint.m */; };
+		2B330A5E1EE44F19003D17C4 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A471EE44F19003D17C4 /* CGPathCategory.m */; };
+		2B330A5F1EE44F19003D17C4 /* GGDataScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A4A1EE44F19003D17C4 /* GGDataScaler.m */; };
+		2B330A601EE44F19003D17C4 /* NSArray+GGArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A4C1EE44F19003D17C4 /* NSArray+GGArray.m */; };
+		2B330A611EE44F19003D17C4 /* NSValue+GGValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A4E1EE44F19003D17C4 /* NSValue+GGValue.m */; };
+		2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */; };
+		2B330A631EE44F19003D17C4 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A531EE44F19003D17C4 /* GGCanvas.m */; };
+		2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */; };
+		2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A581EE44F19003D17C4 /* GGGridRenderer.m */; };
+		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
+		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4971DFD2D40008C6BF0 /* LineBarView.m */; };
 		2B4D8A111D1BF2EB002CED37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A101D1BF2EB002CED37 /* main.m */; };
 		2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */; };
@@ -49,6 +59,31 @@
 		2B0C132D1E1A891500F4DA3F /* GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayer.m; sourceTree = "<group>"; };
 		2B0C13301E1A891500F4DA3F /* GGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPoint.h; sourceTree = "<group>"; };
 		2B0C13311E1A891500F4DA3F /* GGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPoint.m; sourceTree = "<group>"; };
+		2B330A461EE44F19003D17C4 /* CGPathCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathCategory.h; sourceTree = "<group>"; };
+		2B330A471EE44F19003D17C4 /* CGPathCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPathCategory.m; sourceTree = "<group>"; };
+		2B330A481EE44F19003D17C4 /* GGChartGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartGeometry.h; sourceTree = "<group>"; };
+		2B330A491EE44F19003D17C4 /* GGDataScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataScaler.h; sourceTree = "<group>"; };
+		2B330A4A1EE44F19003D17C4 /* GGDataScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataScaler.m; sourceTree = "<group>"; };
+		2B330A4B1EE44F19003D17C4 /* NSArray+GGArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+GGArray.h"; sourceTree = "<group>"; };
+		2B330A4C1EE44F19003D17C4 /* NSArray+GGArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+GGArray.m"; sourceTree = "<group>"; };
+		2B330A4D1EE44F19003D17C4 /* NSValue+GGValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+GGValue.h"; sourceTree = "<group>"; };
+		2B330A4E1EE44F19003D17C4 /* NSValue+GGValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+GGValue.m"; sourceTree = "<group>"; };
+		2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAxisRenderer.h; sourceTree = "<group>"; };
+		2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAxisRenderer.m; sourceTree = "<group>"; };
+		2B330A521EE44F19003D17C4 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
+		2B330A531EE44F19003D17C4 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
+		2B330A541EE44F19003D17C4 /* GGChartDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartDefine.h; sourceTree = "<group>"; };
+		2B330A551EE44F19003D17C4 /* GGCircleRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCircleRenderer.h; sourceTree = "<group>"; };
+		2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCircleRenderer.m; sourceTree = "<group>"; };
+		2B330A571EE44F19003D17C4 /* GGGridRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridRenderer.h; sourceTree = "<group>"; };
+		2B330A581EE44F19003D17C4 /* GGGridRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridRenderer.m; sourceTree = "<group>"; };
+		2B330A591EE44F19003D17C4 /* GGLineRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineRenderer.h; sourceTree = "<group>"; };
+		2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineRenderer.m; sourceTree = "<group>"; };
+		2B330A5B1EE44F19003D17C4 /* GGRenderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRenderProtocol.h; sourceTree = "<group>"; };
+		2B330A5C1EE44F19003D17C4 /* GGStringRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGStringRenderer.h; sourceTree = "<group>"; };
+		2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGStringRenderer.m; sourceTree = "<group>"; };
+		2B330A681EE44F8E003D17C4 /* GGChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChart.h; sourceTree = "<group>"; };
+		2B330A691EE44F8E003D17C4 /* ToolDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolDefine.h; sourceTree = "<group>"; };
 		2B38F4961DFD2D40008C6BF0 /* LineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineBarView.h; path = HSChart/LineBarView.h; sourceTree = "<group>"; };
 		2B38F4971DFD2D40008C6BF0 /* LineBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineBarView.m; path = HSChart/LineBarView.m; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,9 +167,50 @@
 			path = GGChart;
 			sourceTree = "<group>";
 		};
+		2B330A451EE44F19003D17C4 /* GGGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				2B330A681EE44F8E003D17C4 /* GGChart.h */,
+				2B330A691EE44F8E003D17C4 /* ToolDefine.h */,
+				2B330A461EE44F19003D17C4 /* CGPathCategory.h */,
+				2B330A471EE44F19003D17C4 /* CGPathCategory.m */,
+				2B330A481EE44F19003D17C4 /* GGChartGeometry.h */,
+				2B330A491EE44F19003D17C4 /* GGDataScaler.h */,
+				2B330A4A1EE44F19003D17C4 /* GGDataScaler.m */,
+				2B330A4B1EE44F19003D17C4 /* NSArray+GGArray.h */,
+				2B330A4C1EE44F19003D17C4 /* NSArray+GGArray.m */,
+				2B330A4D1EE44F19003D17C4 /* NSValue+GGValue.h */,
+				2B330A4E1EE44F19003D17C4 /* NSValue+GGValue.m */,
+				2B330A4F1EE44F19003D17C4 /* Renderer */,
+			);
+			path = GGGraphics;
+			sourceTree = "<group>";
+		};
+		2B330A4F1EE44F19003D17C4 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */,
+				2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */,
+				2B330A521EE44F19003D17C4 /* GGCanvas.h */,
+				2B330A531EE44F19003D17C4 /* GGCanvas.m */,
+				2B330A541EE44F19003D17C4 /* GGChartDefine.h */,
+				2B330A551EE44F19003D17C4 /* GGCircleRenderer.h */,
+				2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */,
+				2B330A571EE44F19003D17C4 /* GGGridRenderer.h */,
+				2B330A581EE44F19003D17C4 /* GGGridRenderer.m */,
+				2B330A591EE44F19003D17C4 /* GGLineRenderer.h */,
+				2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */,
+				2B330A5B1EE44F19003D17C4 /* GGRenderProtocol.h */,
+				2B330A5C1EE44F19003D17C4 /* GGStringRenderer.h */,
+				2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		2B4D8A031D1BF2EB002CED37 = {
 			isa = PBXGroup;
 			children = (
+				2B330A451EE44F19003D17C4 /* GGGraphics */,
 				2B4D8A3A1D1BF57F002CED37 /* HSChart */,
 				2B4D8A201D1BF33E002CED37 /* HSGraph */,
 				2B4D8A0E1D1BF2EB002CED37 /* HSCharts */,
@@ -334,26 +410,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B330A611EE44F19003D17C4 /* NSValue+GGValue.m in Sources */,
 				2B6CCF0F1DB0AD9F00BFBF95 /* BaseBrush.m in Sources */,
 				2B6CCF151DB0CEB400BFBF95 /* VirginLayer.m in Sources */,
+				2B330A631EE44F19003D17C4 /* GGCanvas.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,
 				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
 				2B5E562A1E1C756D00B484E0 /* GGTextPaint.m in Sources */,
+				2B330A5E1EE44F19003D17C4 /* CGPathCategory.m in Sources */,
 				2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,
 				2B6CCF211DB0D8E300BFBF95 /* BarShape.m in Sources */,
 				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,
+				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */,
 				2B6CCF0C1DB0AD0E00BFBF95 /* TextBrush.m in Sources */,
 				2BA447701DB4C55F005719E3 /* QueryView.m in Sources */,
 				2B6CCF091DB0ACE200BFBF95 /* LineBrush.m in Sources */,
+				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
+				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
+				2B330A5F1EE44F19003D17C4 /* GGDataScaler.m in Sources */,
 				2B5E56291E1C756D00B484E0 /* GGLinePaint.m in Sources */,
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,
 				2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */,
+				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
+				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
 				2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */,
+				2B330A601EE44F19003D17C4 /* NSArray+GGArray.m in Sources */,
 				2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */,
 				2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */,
 				2B6CCF221DB0D8E300BFBF95 /* CALayer+GraDispose.m in Sources */,

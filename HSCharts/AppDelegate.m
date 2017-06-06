@@ -14,12 +14,27 @@
 #import "CumSumLineView.h"
 #import "ListVC.h"
 
-#import "GGPoint.h"
 #import "GGLayer.h"
 
 #import "GGLinePaint.h"
 #import "GGTextPaint.h"
-#import "GGGridPaint.h"
+
+#import "GGStringRenderer.h"
+
+#import "GGCanvas.h"
+
+#import "GGChart.h"
+
+#import "GGChartDefine.h"
+
+#import "GGAxisRenderer.h"
+#import "GGStringRenderer.h"
+#import "GGGridRenderer.h"
+
+#import "LineBarView.h"
+
+#import "IOBarChart.h"
+#import "BarChartData.h"
 
 @interface AppDelegate ()
 
@@ -33,9 +48,37 @@
     self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
-    [self.window setRootViewController:navi];
-        
+    UINavigationController *navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
+    //[self.window setRootViewController:navi];
+    
+    LineBarView * linebar = [[LineBarView alloc] initWithFrame:CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 200)];
+    linebar.lineAry = @[@41.03, @34.58, @42.51, @36.77, @37.38, @38.99, @38.03, @41.80];
+    linebar.barAry = @[@41.83, @35.80, @33.29, @34.15, @34.05, @34.03, @35.01, @37.12];
+    linebar.barColor = __RGB_CYAN;
+    linebar.lineColor = __RGB_BLUE;
+    linebar.titleAry = @[@"2015", @"2016", @"2017", @"2018", @"2019", @"2020", @"2021", @"2022"];
+    [linebar stockChart];
+    
+    BarChartData * data = [[BarChartData alloc] init];
+    data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4];
+    
+    IOBarChart * barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+    barChart.topTitle = @"最近五日主力增减仓";
+    barChart.bottomTitle = @"单位 (万元) ";
+    barChart.positiveTitle = @"资金流入";
+    barChart.negativeTitle = @"资金流出";
+    barChart.axisTitles = @[@"05-31", @"06-01", @"06-02", @"06-05", @"06-06"];
+    barChart.barData = data;
+    barChart.barWidth = 35;
+    
+    //barChart.backgroundColor = __RGB_GRAY;
+    
+    [barChart strockChart];
+    [barChart addAnimation:1];
+    
+    [self.window addSubview:barChart];
+  
+    
     return YES;
 }
 
@@ -70,5 +113,75 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+//NSArray * xAxisStr = @[@"2015", @"2016", @"2017", @"2018", @"2019"];
+//NSArray * yrAxisStr = @[@"4", @"3", @"2", @"1"];
+//NSArray * lAxisStr = @[@"40", @"30", @"20", @"10"];
+//
+//GGCanvas * canvas = [[GGCanvas alloc] init];
+//canvas.frame = self.window.frame;
+////[self.window.layer addSublayer:canvas];
+//
+//CGFloat width = [UIScreen mainScreen].bounds.size.width;
+//CGRect rect = CGRectMake(40, 200, width - 80, 200);
+//
+//// x轴
+//GGLine line = GGBottomLineRect(rect);
+//GGAxis axis = GGAxisLineMake(line, 5, rect.size.width / xAxisStr.count);
+//GGAxisRenderer * x_axis_r = [GGAxisRenderer new];
+//x_axis_r.axis = axis;
+//x_axis_r.width = 0.7;
+//x_axis_r.color = [UIColor blackColor];
+//[canvas addRenderer:x_axis_r];
+//
+//GGStringRenderer *string_r = [GGStringRenderer stringForAxis:axis aryStr:xAxisStr];
+//string_r.font = [UIFont systemFontOfSize:10];
+//string_r.offset = CGSizeMake(rect.size.width / xAxisStr.count / 2, 0);
+//string_r.color = [UIColor grayColor];
+//[canvas addRenderer:string_r];
+//
+//// y轴
+//GGLine line_r = GGLeftLineRect(rect);
+//GGAxis axis_r = GGAxisLineMake(line_r, 5, rect.size.height / (yrAxisStr.count - 1));
+//GGAxisRenderer * y_axis = [GGAxisRenderer new];
+//y_axis.color = [UIColor blackColor];
+//y_axis.width = 0.7;
+//y_axis.axis = axis_r;
+//[canvas addRenderer:y_axis];
+//
+//GGStringRenderer * string_l_y = [GGStringRenderer stringForAxis:axis_r aryStr:yrAxisStr];
+//string_l_y.font = [UIFont systemFontOfSize:10];
+//string_l_y.color = [UIColor grayColor];
+//string_l_y.offset = CGSizeMake(-5, -9);
+//[canvas addRenderer:string_l_y];
+//
+//// 左轴
+//GGLine line_l = GGRightLineRect(rect);
+//GGAxis axis_l = GGAxisLineMake(line_l, -5, rect.size.height / (lAxisStr.count - 1));
+//GGAxisRenderer * l_render = [GGAxisRenderer new];
+//l_render.axis = axis_l;
+//l_render.width = 0.7;
+//l_render.color = [UIColor blackColor];
+//[canvas addRenderer:l_render];
+//
+//GGStringRenderer * l_s_r = [GGStringRenderer stringForAxis:axis_l aryStr:lAxisStr];
+//l_s_r.font = [UIFont systemFontOfSize:10];
+//l_s_r.offset = CGSizeMake(rect.size.width / xAxisStr.count / 2, 0);
+//l_s_r.offset = CGSizeMake(10, -9);
+//l_s_r.color = [UIColor grayColor];
+//[canvas addRenderer:l_s_r];
+//
+//// 网格
+//GGGrid grid = GGGridRectMake(rect, (int)xAxisStr.count + 1, (int)yrAxisStr.count);
+//GGGridRenderer * grid_r = [GGGridRenderer new];
+//grid_r.width = 0.2;
+//grid_r.x_count = @0;
+//grid_r.color = [UIColor blackColor];
+//grid_r.grid = grid;
+//grid_r.dash = CGSizeMake(4, 2);
+//[canvas addRenderer:grid_r];
+//
+//[canvas setNeedsDisplay];
 
 @end

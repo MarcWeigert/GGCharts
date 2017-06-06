@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
 		2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132D1E1A891500F4DA3F /* GGLayer.m */; };
-		2B0C13371E1A891500F4DA3F /* GGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C13311E1A891500F4DA3F /* GGPoint.m */; };
 		2B330A5E1EE44F19003D17C4 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A471EE44F19003D17C4 /* CGPathCategory.m */; };
 		2B330A5F1EE44F19003D17C4 /* GGDataScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A4A1EE44F19003D17C4 /* GGDataScaler.m */; };
 		2B330A601EE44F19003D17C4 /* NSArray+GGArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A4C1EE44F19003D17C4 /* NSArray+GGArray.m */; };
@@ -28,7 +27,6 @@
 		2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A281D1BF35F002CED37 /* CALayer+SawFrame.m */; };
 		2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A2A1D1BF35F002CED37 /* DrawMath.m */; };
 		2B4D8A3E1D1BF93E002CED37 /* RankBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */; };
-		2B5E56281E1C756D00B484E0 /* GGGridPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E56231E1C756D00B484E0 /* GGGridPaint.m */; };
 		2B5E56291E1C756D00B484E0 /* GGLinePaint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E56251E1C756D00B484E0 /* GGLinePaint.m */; };
 		2B5E562A1E1C756D00B484E0 /* GGTextPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E56271E1C756D00B484E0 /* GGTextPaint.m */; };
 		2B6077851DAF798A00945760 /* HollowFanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6077841DAF798A00945760 /* HollowFanView.m */; };
@@ -45,6 +43,8 @@
 		2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1C1DB0D8E300BFBF95 /* GraphSpider.m */; };
 		2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */; };
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
+		2B6F1A5C1EE6432C0075EB59 /* IOBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */; };
+		2B6F1A5F1EE6435E0075EB59 /* BarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */; };
 		2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B76BCB61D1D269A00639205 /* CumSumBarView.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
 		2B7A467B1DED66B00057CFDA /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A467A1DED66B00057CFDA /* PieView.m */; };
@@ -57,8 +57,6 @@
 		2B0C13291E1A891500F4DA3F /* GGDrawerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDrawerProtocol.h; sourceTree = "<group>"; };
 		2B0C132C1E1A891500F4DA3F /* GGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayer.h; sourceTree = "<group>"; };
 		2B0C132D1E1A891500F4DA3F /* GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayer.m; sourceTree = "<group>"; };
-		2B0C13301E1A891500F4DA3F /* GGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPoint.h; sourceTree = "<group>"; };
-		2B0C13311E1A891500F4DA3F /* GGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPoint.m; sourceTree = "<group>"; };
 		2B330A461EE44F19003D17C4 /* CGPathCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathCategory.h; sourceTree = "<group>"; };
 		2B330A471EE44F19003D17C4 /* CGPathCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPathCategory.m; sourceTree = "<group>"; };
 		2B330A481EE44F19003D17C4 /* GGChartGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartGeometry.h; sourceTree = "<group>"; };
@@ -101,8 +99,6 @@
 		2B4D8A3B1D1BF66B002CED37 /* Colors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
 		2B4D8A3C1D1BF93E002CED37 /* RankBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RankBarView.h; path = HSChart/RankBarView.h; sourceTree = "<group>"; };
 		2B4D8A3D1D1BF93E002CED37 /* RankBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RankBarView.m; path = HSChart/RankBarView.m; sourceTree = "<group>"; };
-		2B5E56221E1C756D00B484E0 /* GGGridPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridPaint.h; sourceTree = "<group>"; };
-		2B5E56231E1C756D00B484E0 /* GGGridPaint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridPaint.m; sourceTree = "<group>"; };
 		2B5E56241E1C756D00B484E0 /* GGLinePaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLinePaint.h; sourceTree = "<group>"; };
 		2B5E56251E1C756D00B484E0 /* GGLinePaint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLinePaint.m; sourceTree = "<group>"; };
 		2B5E56261E1C756D00B484E0 /* GGTextPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGTextPaint.h; sourceTree = "<group>"; };
@@ -133,6 +129,10 @@
 		2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineShape.m; sourceTree = "<group>"; };
 		2B6CCF1F1DB0D8E300BFBF95 /* RoundShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundShape.h; sourceTree = "<group>"; };
 		2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundShape.m; sourceTree = "<group>"; };
+		2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChart.h; sourceTree = "<group>"; };
+		2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChart.m; sourceTree = "<group>"; };
+		2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartData.h; sourceTree = "<group>"; };
+		2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartData.m; sourceTree = "<group>"; };
 		2B76BCB51D1D269A00639205 /* CumSumBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CumSumBarView.h; path = HSChart/CumSumBarView.h; sourceTree = "<group>"; };
 		2B76BCB61D1D269A00639205 /* CumSumBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CumSumBarView.m; path = HSChart/CumSumBarView.m; sourceTree = "<group>"; };
 		2B78D3A61D3F1B220079C6D2 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
@@ -161,8 +161,6 @@
 				2B5E56211E1C756D00B484E0 /* Paint */,
 				2B0C132C1E1A891500F4DA3F /* GGLayer.h */,
 				2B0C132D1E1A891500F4DA3F /* GGLayer.m */,
-				2B0C13301E1A891500F4DA3F /* GGPoint.h */,
-				2B0C13311E1A891500F4DA3F /* GGPoint.m */,
 			);
 			path = GGChart;
 			sourceTree = "<group>";
@@ -189,6 +187,7 @@
 		2B330A4F1EE44F19003D17C4 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				2B330A5B1EE44F19003D17C4 /* GGRenderProtocol.h */,
 				2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */,
 				2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */,
 				2B330A521EE44F19003D17C4 /* GGCanvas.h */,
@@ -200,7 +199,6 @@
 				2B330A581EE44F19003D17C4 /* GGGridRenderer.m */,
 				2B330A591EE44F19003D17C4 /* GGLineRenderer.h */,
 				2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */,
-				2B330A5B1EE44F19003D17C4 /* GGRenderProtocol.h */,
 				2B330A5C1EE44F19003D17C4 /* GGStringRenderer.h */,
 				2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */,
 			);
@@ -210,6 +208,7 @@
 		2B4D8A031D1BF2EB002CED37 = {
 			isa = PBXGroup;
 			children = (
+				2B6F1A591EE641D40075EB59 /* GGChartKit */,
 				2B330A451EE44F19003D17C4 /* GGGraphics */,
 				2B4D8A3A1D1BF57F002CED37 /* HSChart */,
 				2B4D8A201D1BF33E002CED37 /* HSGraph */,
@@ -293,8 +292,6 @@
 		2B5E56211E1C756D00B484E0 /* Paint */ = {
 			isa = PBXGroup;
 			children = (
-				2B5E56221E1C756D00B484E0 /* GGGridPaint.h */,
-				2B5E56231E1C756D00B484E0 /* GGGridPaint.m */,
 				2B5E56241E1C756D00B484E0 /* GGLinePaint.h */,
 				2B5E56251E1C756D00B484E0 /* GGLinePaint.m */,
 				2B5E56261E1C756D00B484E0 /* GGTextPaint.h */,
@@ -336,6 +333,17 @@
 			);
 			name = DataDrawer;
 			path = HSGraph/DataDrawer;
+			sourceTree = "<group>";
+		};
+		2B6F1A591EE641D40075EB59 /* GGChartKit */ = {
+			isa = PBXGroup;
+			children = (
+				2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */,
+				2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */,
+				2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */,
+				2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */,
+			);
+			path = GGChartKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +422,7 @@
 				2B6CCF0F1DB0AD9F00BFBF95 /* BaseBrush.m in Sources */,
 				2B6CCF151DB0CEB400BFBF95 /* VirginLayer.m in Sources */,
 				2B330A631EE44F19003D17C4 /* GGCanvas.m in Sources */,
+				2B6F1A5F1EE6435E0075EB59 /* BarChartData.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,
@@ -427,6 +436,7 @@
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */,
 				2B6CCF0C1DB0AD0E00BFBF95 /* TextBrush.m in Sources */,
+				2B6F1A5C1EE6432C0075EB59 /* IOBarChart.m in Sources */,
 				2BA447701DB4C55F005719E3 /* QueryView.m in Sources */,
 				2B6CCF091DB0ACE200BFBF95 /* LineBrush.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
@@ -444,10 +454,8 @@
 				2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */,
 				2B6CCF221DB0D8E300BFBF95 /* CALayer+GraDispose.m in Sources */,
 				2B4D8A111D1BF2EB002CED37 /* main.m in Sources */,
-				2B0C13371E1A891500F4DA3F /* GGPoint.m in Sources */,
 				2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */,
 				2B4D8A3E1D1BF93E002CED37 /* RankBarView.m in Sources */,
-				2B5E56281E1C756D00B484E0 /* GGGridPaint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

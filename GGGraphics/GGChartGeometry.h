@@ -102,6 +102,30 @@ GGLengthLine(GGLine line)
     return sqrtf(h * h + w * w);
 }
 
+CG_INLINE GGLine
+GGTopLineRect(CGRect rect)
+{
+    return GGLineMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetMaxX(rect), CGRectGetMinY(rect));
+}
+
+CG_INLINE GGLine
+GGLeftLineRect(CGRect rect)
+{
+    return GGLineMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetMinX(rect), CGRectGetMaxY(rect));
+}
+
+CG_INLINE GGLine
+GGBottomLineRect(CGRect rect)
+{
+    return GGLineMake(CGRectGetMinX(rect), CGRectGetMaxY(rect), CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+}
+
+CG_INLINE GGLine
+GGRightLineRect(CGRect rect)
+{
+    return GGLineMake(CGRectGetMaxX(rect), CGRectGetMinY(rect), CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+}
+
 #pragma mark - 轴
 
 struct GGAxis {
@@ -317,3 +341,14 @@ struct GGKShape {
     CGRect rect;
 };
 typedef struct GGKShape GGKShape;
+
+#pragma mark - 区域
+CG_INLINE CGRect
+GGLineRectMake(CGPoint start, CGPoint end, CGFloat width)
+{
+    CGPoint ben = start.y > end.y ? end : start;
+    CGRect rect;
+    rect.origin = CGPointMake(ben.x - width / 2, ben.y);
+    rect.size = CGSizeMake(width, fabs(start.y - end.y));
+    return rect;
+}

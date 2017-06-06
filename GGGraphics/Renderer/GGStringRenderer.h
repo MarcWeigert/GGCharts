@@ -11,16 +11,18 @@
 #import "GGChartGeometry.h"
 #import "GGRenderProtocol.h"
 
-@interface GGStringRenderer : NSObject
-
-@property (nonatomic) NSArray * aryStr;
+@interface GGStringRenderer : NSObject <GGRenderProtocol>
 
 @property (nonatomic) UIFont * font;
 
 @property (nonatomic) UIColor * color;
 
-+ (instancetype)stringForAxis:(GGAxis)axis;
+@property (nonatomic) CGSize offset;
 
-+ (instancetype)stringForCGPath:(CGPathRef)ref;
++ (instancetype)stringForAxis:(GGAxis)axis aryStr:(NSArray *)aryStr;
+
++ (instancetype)stringForCGPath:(CGPathRef)ref aryStr:(NSArray *)aryStr;
+
++ (instancetype)stringForPoint:(CGPoint)point string:(NSString *)string;
 
 @end

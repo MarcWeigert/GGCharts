@@ -11,6 +11,6 @@
 
 typedef CGFloat(^GGLineChatScaler)(CGFloat record);
 
-GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGFloat dis, CGFloat base);
+GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGRect rect);
 
-GGLineChatScaler axiScaler(NSInteger sep, CGFloat dis, CGFloat base);
+GGLineChatScaler axiScaler(NSInteger sep, CGRect rect, CGFloat base);

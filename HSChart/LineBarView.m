@@ -57,28 +57,41 @@
     float max = getAryMax(@[_lineAry, _barAry]);
     float min = getAryMin(@[_lineAry, _barAry]);
     
+    int range = abs(max - min);
+    
+    if (range == 0.0) {
+        
+        max = max + 1.0;
+        min = min - 1.0;
+    }
+    
+    float bottomSpace = range * 0.1;
+    
+    min = min - bottomSpace;
+    max = max + bottomSpace;
+    
     // 通过数组中最大值, 最小值生成价格分割数组
-    _baseAry = makeBaseAry(max, min);
+    _baseAry = @[@30, @35, @40, @45]; makeBaseAry(max, min);
 }
 
 /** 设置柱状图层 */
 - (void)stockBarLayer
 {
     // 设置层内最高最低价
-    _dataLayer.min = [[_baseAry firstObject] floatValue];
+    _dataLayer.min = 30.0;
     _dataLayer.max = [[_baseAry lastObject] floatValue];
     
     [_dataLayer draw_updateSpiders:^(GraphSpider *make) {
         
-        [_barAry enumerateObjectsUsingBlock:^(NSNumber *data, NSUInteger idx, BOOL * stop) {
+        //[_barAry enumerateObjectsUsingBlock:^(NSNumber *data, NSUInteger idx, BOOL * stop) {
             
-            make.drawBar.drawAry(_barAry).color(_barColor).witdth(10);
-        }];
+            make.drawBar.drawAry(_barAry).color(_barColor).witdth(30);
+        //}];
         
-        [_lineAry enumerateObjectsUsingBlock:^(NSNumber *data, NSUInteger idx, BOOL * stop) {
+        //[_lineAry enumerateObjectsUsingBlock:^(NSNumber *data, NSUInteger idx, BOOL * stop) {
             
             make.drawLine.drawAry(_lineAry).row(1).color(_lineColor).witdth(1);
-        }];
+        //}];
     }];
 }
 

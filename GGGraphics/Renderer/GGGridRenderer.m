@@ -10,21 +10,24 @@
 
 @implementation GGGridRenderer
 
-AAPropSetFuncImplementation(GGGridRenderer, CGFloat, width);
-
-AAPropSetFuncImplementation(GGGridRenderer, UIColor *, color);
-
-AAPropSetFuncImplementation(GGGridRenderer, GGGrid, grid);
-
 - (void)drawInContext:(CGContextRef)ctx
-{    
-    CGPoint ** result = GGGridPointAryMake(_grid);
+{
+    CGFloat x = _grid.rect.origin.x;
+    CGFloat y = _grid.rect.origin.y;
+    CGFloat h = _grid.rect.size.width / (_grid.horizontal - 1);
+    CGFloat v = _grid.rect.size.height / (_grid.vertical - 1);
+    
+    NSInteger xcount = _grid.horizontal;
+    NSInteger ycount = _grid.vertical;
     
     CGContextSetLineWidth(ctx, _width);
     CGContextSetStrokeColorWithColor(ctx, _color.CGColor);
     
-    NSInteger xcount = _grid.horizontal;
-    NSInteger ycount = _grid.vertical;
+    if (!CGSizeEqualToSize(_dash, CGSizeZero)) {
+        
+        CGFloat dashPattern[2] = {_dash.width, _dash.height};
+        CGContextSetLineDash(ctx, 0, dashPattern, 2);
+    }
     
     if (_x_count) {
         
@@ -38,8 +41,8 @@ AAPropSetFuncImplementation(GGGridRenderer, GGGrid, grid);
     
     for (int i = 0; i < ycount; i++) {
     
-        CGPoint start = result[i][0];
-        CGPoint end = result[i][_grid.vertical - 1];
+        CGPoint start = CGPointMake(x, y + h * i);
+        CGPoint end = CGPointMake(CGRectGetMaxX(_grid.rect), y + h * i);
         
         CGContextMoveToPoint(ctx, start.x, start.y);
         CGContextAddLineToPoint(ctx, end.x, end.y);
@@ -47,21 +50,16 @@ AAPropSetFuncImplementation(GGGridRenderer, GGGrid, grid);
     
     for (int i = 0; i < xcount; i++) {
         
-        CGPoint start = result[0][i];
-        CGPoint end = result[_grid.vertical - 1][i];
+        CGPoint start = CGPointMake(x + v * i, y);
+        CGPoint end = CGPointMake(x + v * i, CGRectGetMaxY(_grid.rect));
         
         CGContextMoveToPoint(ctx, start.x, start.y);
         CGContextAddLineToPoint(ctx, end.x, end.y);
     }
     
+    
+    
     CGContextStrokePath(ctx);
-    
-    for (int i = 0; i < _grid.horizontal; i++) {
-        
-        free(result[i]);
-    }
-    
-    free(result);
 }
 
 @end

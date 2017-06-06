@@ -8,36 +8,37 @@
 
 #import "GGDataScaler.h"
 
-GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGFloat dis, CGFloat base)
+GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGRect rect)
 {
+    CGFloat dis = CGRectGetHeight(rect);
     CGFloat pix = dis / (max - min);
     
-    CGFloat zero = min > 0 ? dis : dis - pix * fabs(min);
+    CGFloat zero = min > 0 ? dis + rect.origin.y : dis - pix * fabs(min) + rect.origin.y;
     
     return ^(CGFloat val) {
         
         if (val < 0) {
 
-            return base + zero + fabs(val) * pix;
+            return zero + fabs(val) * pix;
         }
         else {
             
             if (min < 0) {
                 
-                return base + zero - fabs(val) * pix;
+                return zero - fabs(val) * pix;
             }
             
-            return base + zero - fabs(val - min) * pix;
+            return zero - fabs(val - min) * pix;
         }
     };
 }
 
-GGLineChatScaler axiScaler(NSInteger sep, CGFloat dis, CGFloat base)
+GGLineChatScaler axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
-    CGFloat interval = dis / sep;
+    CGFloat interval = CGRectGetWidth(rect) / sep;
     
     return ^(CGFloat index) {
         
-        return base + index * interval;
+        return base * interval + index * interval + rect.origin.x;
     };
 }

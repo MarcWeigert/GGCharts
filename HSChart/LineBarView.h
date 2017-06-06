@@ -20,6 +20,8 @@
 
 @property (nonatomic) UIColor *lineColor;
 
+@property (nonatomic) NSInteger yCount;
+
 /** 绘制视图 */
 - (void)stockChart;
 

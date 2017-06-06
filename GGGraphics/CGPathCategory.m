@@ -7,6 +7,7 @@
 //
 
 #import "CGPathCategory.h"
+#import "GGChartGeometry.h"
 
 void CGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
 {
@@ -54,4 +55,26 @@ void CGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid)
     }
     
     free(result);
+}
+
+void GGPathAddLine(CGMutablePathRef ref, GGLine line)
+{
+    CGPathMoveToPoint(ref, NULL, line.start.x, line.start.y);
+    CGPathAddLineToPoint(ref, NULL, line.end.x, line.end.y);
+}
+
+void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect)
+{
+    GGLine top = GGTopLineRect(rect);
+    GGLine bottom = GGBottomLineRect(rect);
+    GGLine left = GGLeftLineRect(rect);
+    GGLine right = GGRightLineRect(rect);
+    
+    GGPathAddLine(ref, GGTopLineRect(rect));
+    CGPathAddLineToPoint(ref, NULL, right.end.x, right.end.y);
+    CGPathAddLineToPoint(ref, NULL, top.end.x, top.end.y);
+    CGPathAddLineToPoint(ref, NULL, top.start.x, top.start.y);
+    CGPathAddLineToPoint(ref, NULL, left.end.x, left.end.y);
+    CGPathAddLineToPoint(ref, NULL, bottom.end.x, bottom.end.y);
+    CGPathAddLineToPoint(ref, NULL, top.end.x, top.end.y);
 }

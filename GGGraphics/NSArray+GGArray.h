@@ -15,4 +15,9 @@
                 yScaler:(CGFloat (^)(CGFloat index))yScaler
         convertComplete:(void (^)(CGPoint *point, NSUInteger size))convert;
 
+- (void)barChartScaler:(CGFloat (^)(CGFloat index))topScaler
+          bottomScaler:(CGFloat (^)(CGFloat index))bottomScaler
+               yScaler:(CGFloat (^)(CGFloat index))yScaler
+       convertComplete:(void (^)(CGRect point, NSUInteger size))convert;
+
 @end

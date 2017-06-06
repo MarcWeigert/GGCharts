@@ -10,14 +10,16 @@
 
 @interface GGGridRenderer : NSObject <GGRenderProtocol>
 
-AAPropStatementAndFuncStatement(assign, GGGridRenderer, CGFloat, width);
-
-AAPropStatementAndFuncStatement(assign, GGGridRenderer, UIColor *, color);
-
-AAPropStatementAndFuncStatement(assign, GGGridRenderer, GGGrid, grid);
-
 @property (nonatomic, strong) NSNumber * x_count;
 
 @property (nonatomic, strong) NSNumber * y_count;
+
+@property (nonatomic, assign) CGFloat width;
+
+@property (nonatomic, strong) UIColor *color;
+
+@property (nonatomic, assign) CGSize dash;
+
+@property (nonatomic, assign) GGGrid grid;
 
 @end

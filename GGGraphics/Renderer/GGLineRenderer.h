@@ -10,13 +10,12 @@
 #import <UIKit/UIKit.h>
 #import "GGRenderProtocol.h"
 #import "ToolDefine.h"
+#import "GGChartGeometry.h"
 
 @interface GGLineRenderer : NSObject <GGRenderProtocol>
 
-AAPropStatementAndFuncStatement(assign, GGLineRenderer, CGFloat, width);
-
-AAPropStatementAndFuncStatement(assign, GGLineRenderer, UIColor *, color);
-
-AAPropStatementAndFuncStatement(strong, GGLineRenderer, NSArray <NSValue *>*, pointAry);
+@property (nonatomic, assign) GGLine line;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, strong) UIColor *color;
 
 @end

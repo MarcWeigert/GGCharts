@@ -10,10 +10,16 @@
 
 @interface GGAxisRenderer : NSObject <GGRenderProtocol>
 
-AAPropStatementAndFuncStatement(assign, GGAxisRenderer, GGAxis, axis);
+@property (nonatomic, assign) GGAxis axis;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, assign) BOOL showLine;
+@property (nonatomic, assign) BOOL showSep;
+@property (nonatomic, assign) CGSize lineOffSet;
 
-AAPropStatementAndFuncStatement(assign, GGAxisRenderer, CGFloat, width);
-
-AAPropStatementAndFuncStatement(strong, GGAxisRenderer, UIColor *, color);
+@property (nonatomic, copy) NSArray <NSString *>* aryString;
+@property (nonatomic, strong) UIColor *strColor;
+@property (nonatomic, strong) UIFont *strFont;
+@property (nonatomic, assign) BOOL showText;
 
 @end

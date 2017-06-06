@@ -10,31 +10,15 @@
 
 @implementation GGLineRenderer
 
-AAPropSetFuncImplementation(GGLineRenderer, CGFloat, width);
-
-AAPropSetFuncImplementation(GGLineRenderer, UIColor *, color);
-
-AAPropSetFuncImplementation(GGLineRenderer, NSArray <NSValue *>*, pointAry);
 
 - (void)drawInContext:(CGContextRef)ctx
 {
     CGContextSetLineWidth(ctx, _width);
     CGContextSetStrokeColorWithColor(ctx, _color.CGColor);
     
-    for (int i = 0; i < _pointAry.count; i++) {
-        
-        CGPoint point = [_pointAry[i] CGPointValue];
-        
-        if (i == 0) {
-            
-            CGContextMoveToPoint(ctx, point.x, point.y);
-        }
-        else {
-        
-            CGContextAddLineToPoint(ctx, point.x, point.y);
-        }
-    }
-    
+    CGContextMoveToPoint(ctx, _line.start.x, _line.start.y);
+    CGContextAddLineToPoint(ctx, _line.end.x,_line.end.y);
+
     CGContextStrokePath(ctx);
 }
 

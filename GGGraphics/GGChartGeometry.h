@@ -102,6 +102,12 @@ GGLengthLine(GGLine line)
     return sqrtf(h * h + w * w);
 }
 
+CG_INLINE CGFloat
+GGLineGetWidth(GGLine line)
+{
+    return fabs(line.end.x - line.start.x);
+}
+
 CG_INLINE GGLine
 GGTopLineRect(CGRect rect)
 {

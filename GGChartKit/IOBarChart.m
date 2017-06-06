@@ -16,6 +16,7 @@
 #import "GGLineRenderer.h"
 #import "Colors.h"
 #import "CGPathCategory.h"
+#import "UICountingLabel.h"
 
 #define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))
 
@@ -31,16 +32,20 @@
 
 @property (nonatomic, strong) CAShapeLayer * pLayer;
 @property (nonatomic, strong) CAShapeLayer * nLayer;
+@property (nonatomic, strong) CAShapeLayer * lLayer;
 @property (nonatomic, strong) GGCanvas * backLayer;
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;
-@property (nonatomic, strong) GGLineRenderer * lineRenderer;
 
 @property (nonatomic, strong) UILabel *lbTop;
 @property (nonatomic, strong) UILabel *lbBottom;
 
 @property (nonatomic) CGPathRef nAniRef;
 @property (nonatomic) CGPathRef pAniRef;
+
+@property (nonatomic) GGLine zeroLine;
+
+@property (nonatomic) UICountingLabel * lb;
 
 @end
 
@@ -55,6 +60,10 @@
         _backLayer = [[GGCanvas alloc] init];
         SET_FRAME(_backLayer, frame);
         [self.layer addSublayer:_backLayer];
+        
+        _lLayer = [[CAShapeLayer alloc] init];
+        SET_FRAME(_lLayer, frame);
+        [self.layer addSublayer:_lLayer];
         
         _nLayer = [[CAShapeLayer alloc] init];
         SET_FRAME(_nLayer, frame);
@@ -80,11 +89,6 @@
         _axisRenderer.showLine = NO;
         [_backLayer addRenderer:_axisRenderer];
         
-        _lineRenderer = [[GGLineRenderer alloc] init];
-        _lineRenderer.width = 0.7;
-        _lineRenderer.color = _axisColor;
-        [_backLayer addRenderer:_lineRenderer];
-        
         self.barWidth = 20;
         self.contentFrame = CGRectMake(20, 40, frame.size.width - 40, frame.size.height - 90);
         
@@ -96,6 +100,9 @@
         _nLayer.fillColor = NEG_C.CGColor;
         _nLayer.lineWidth = 0;
         
+        _lLayer.lineWidth = 0.5;
+        _lLayer.strokeColor = AXIS_C.CGColor;
+        
         _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
         _lbTop.font = _topFont;
         _lbTop.textColor = _topColor;
@@ -105,6 +112,12 @@
         _lbBottom.font = _bottomFont;
         _lbBottom.textColor = _bottomColor;
         [self addSubview:_lbBottom];
+        
+        _lb = [[UICountingLabel alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
+        _lb.format = @"%.2f";
+        _lb.method = UILabelCountingMethodLinear;
+        _lb.font = _axisFont;
+        [self addSubview:_lb];
     }
     
     return self;
@@ -116,6 +129,7 @@
     
     SET_FRAME(_nLayer, frame);
     SET_FRAME(_pLayer, frame);
+    SET_FRAME(_lLayer, frame);
     SET_FRAME(_backLayer, frame);
 }
 
@@ -144,7 +158,7 @@
 {
     _axisColor = axisColor;
     _axisRenderer.color = axisColor;
-    _lineRenderer.color = axisColor;
+    _lLayer.strokeColor = axisColor.CGColor;
 }
 
 - (void)setPositiveColor:(UIColor *)positiveColor
@@ -283,14 +297,13 @@
     CGPathRelease(ref_n_a);
     CGPathRelease(ref_p_a);
     
-    _lineRenderer.line = GGLineMake(x, fig(.0), x + w, fig(.0));
+    CGMutablePathRef l_ref = CGPathCreateMutable();
+    _zeroLine = GGLineMake(x, fig(.0), x + w, fig(.0));
+    GGPathAddLine(l_ref, _zeroLine);
+    _lLayer.path = l_ref;
+    CGPathRelease(l_ref);
     
     [_backLayer setNeedsDisplay];
-}
-
-- (void)animationSelector:(CADisplayLink *)link
-{
-    
 }
 
 - (void)addAnimation:(NSTimeInterval)duration
@@ -304,6 +317,27 @@
     nKeyAnimation.duration = duration;
     nKeyAnimation.values = @[(__bridge id)self.nAniRef, (__bridge id)_nLayer.path];
     [_nLayer addAnimation:nKeyAnimation forKey:@"n"];
+    
+    CGMutablePathRef l_f_ref = CGPathCreateMutable();
+    GGPathAddLine(l_f_ref, _zeroLine);
+    CGMutablePathRef l_t_ref = CGPathCreateMutable();
+    CGPoint mid_p = CGPointMake(_zeroLine.start.x + GGLineGetWidth(_zeroLine) / 2, _zeroLine.start.y);
+    GGPathAddLine(l_t_ref, GGPointLineMake(mid_p, mid_p));
+    
+    CAKeyframeAnimation * lKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+    lKeyAnimation.duration = duration;
+    lKeyAnimation.values = @[(__bridge id)l_t_ref, (__bridge id)l_f_ref];
+    [_lLayer addAnimation:lKeyAnimation forKey:@"l"];
+    CGPathRelease(l_t_ref);
+    CGPathRelease(l_f_ref);
+    
+    CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    base.fromValue = @0;
+    base.toValue = @1;
+    base.duration = duration;
+    [_backLayer addAnimation:base forKey:@"o"];
+    
+    [_lb countFrom:0 to:[_barData.dataSet.firstObject floatValue] withDuration:duration];
 }
 
 @end

@@ -20,6 +20,7 @@
 		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
 		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4971DFD2D40008C6BF0 /* LineBarView.m */; };
+		2B3CB0C71EE6EAF700472774 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CB0C61EE6EAF700472774 /* UICountingLabel.m */; };
 		2B4D8A111D1BF2EB002CED37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A101D1BF2EB002CED37 /* main.m */; };
 		2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4D8A131D1BF2EB002CED37 /* AppDelegate.m */; };
 		2B4D8A161D1BF2EB002CED37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B4D8A151D1BF2EB002CED37 /* Assets.xcassets */; };
@@ -84,6 +85,8 @@
 		2B330A691EE44F8E003D17C4 /* ToolDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolDefine.h; sourceTree = "<group>"; };
 		2B38F4961DFD2D40008C6BF0 /* LineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineBarView.h; path = HSChart/LineBarView.h; sourceTree = "<group>"; };
 		2B38F4971DFD2D40008C6BF0 /* LineBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineBarView.m; path = HSChart/LineBarView.m; sourceTree = "<group>"; };
+		2B3CB0C51EE6EAF700472774 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		2B3CB0C61EE6EAF700472774 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4D8A101D1BF2EB002CED37 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B4D8A121D1BF2EB002CED37 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -338,6 +341,8 @@
 		2B6F1A591EE641D40075EB59 /* GGChartKit */ = {
 			isa = PBXGroup;
 			children = (
+				2B3CB0C51EE6EAF700472774 /* UICountingLabel.h */,
+				2B3CB0C61EE6EAF700472774 /* UICountingLabel.m */,
 				2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */,
 				2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */,
 				2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */,
@@ -423,6 +428,7 @@
 				2B6CCF151DB0CEB400BFBF95 /* VirginLayer.m in Sources */,
 				2B330A631EE44F19003D17C4 /* GGCanvas.m in Sources */,
 				2B6F1A5F1EE6435E0075EB59 /* BarChartData.m in Sources */,
+				2B3CB0C71EE6EAF700472774 /* UICountingLabel.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */,

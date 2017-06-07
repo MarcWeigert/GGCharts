@@ -47,6 +47,7 @@
 @property (nonatomic) CGPathRef startPAniRef;
 
 @property (nonatomic) GGLine zeroLine;
+@property (nonatomic) GGLine oldZeroLine;
 
 @property (nonatomic) NSMutableArray * aryCountLabels;
 
@@ -269,7 +270,7 @@
     _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
 }
 
-- (void)strockChart
+- (void)drawChartWithLableAnimation:(BOOL)isAnimation
 {
     CGFloat max = getMax(_barData.dataSet);
     CGFloat min = getMin(_barData.dataSet);
@@ -285,7 +286,7 @@
     
     GGLineChatScaler fig = figScaler(max, min, barFrame);
     GGLineChatScaler axis = axiScaler(_barData.dataSet.count, barFrame, 0.5);
-
+    
     CGMutablePathRef ref_p = CGPathCreateMutable();
     CGMutablePathRef ref_n = CGPathCreateMutable();
     CGMutablePathRef ref_p_a = CGPathCreateMutable();
@@ -309,7 +310,7 @@
         if (data > 0) {
             GGPathAddCGRect(ref_p, rect);
             GGPathAddCGRect(ref_n, rect_a);
-
+            
         }
         else {
             GGPathAddCGRect(ref_n, rect);
@@ -319,32 +320,46 @@
     }
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
-    
+        
         CGFloat data = [_barData.dataSet[i] floatValue];
         CGFloat y2 = fig(.0f);
         CGFloat y1 = fig(data);
-
+        
         UILabel * lb = [self getLable:i];
         lb.font = _axisFont;
         
+        CGRect frame;
+        
         if (isAllPositive) {
             
-            lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y1 - lb_h, lb_w, lb_h);
+            frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y1 - lb_h, lb_w, lb_h);
             lb.textColor = _positiveColor;
         }
         else {
-        
+            
             if (data > 0) {
                 
-                lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2, lb_w, lb_h);
+                frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2, lb_w, lb_h);
                 lb.textColor = _positiveColor;
                 
             }
             else {
                 
-                lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2 - lb_h, lb_w, lb_h);
+                frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2 - lb_h, lb_w, lb_h);
                 lb.textColor = _negativeColor;
             }
+        }
+        
+        if (isAnimation) {
+            
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                lb.frame = frame;
+            }];
+        }
+        else {
+        
+            lb.frame = frame;
         }
     }
     
@@ -365,12 +380,18 @@
     [_backLayer setNeedsDisplay];
 }
 
+- (void)strockChart
+{
+    [self drawChartWithLableAnimation:NO];
+}
+
 - (void)updateChart
 {
     self.pAniRef = _pLayer.path;
     self.nAniRef = _nLayer.path;
+    self.oldZeroLine = self.zeroLine;
     
-    [self strockChart];
+    [self drawChartWithLableAnimation:YES];
     
     CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     pKeyAnimation.duration = 0.5;
@@ -385,7 +406,7 @@
     CGMutablePathRef l_f_ref = CGPathCreateMutable();
     GGPathAddLine(l_f_ref, _zeroLine);
     CGMutablePathRef l_t_ref = CGPathCreateMutable();
-    CGPoint mid_p = CGPointMake(_zeroLine.start.x + GGLineGetWidth(_zeroLine) / 2, _zeroLine.start.y);
+    CGPoint mid_p = CGPointMake(_oldZeroLine.start.x + GGLineGetWidth(_oldZeroLine) / 2, _oldZeroLine.start.y);
     GGPathAddLine(l_t_ref, GGPointLineMake(mid_p, mid_p));
     
     CAKeyframeAnimation * lKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];

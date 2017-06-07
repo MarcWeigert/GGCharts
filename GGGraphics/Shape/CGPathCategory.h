@@ -20,3 +20,5 @@ CG_EXTERN void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect);
 CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle);
 
 CG_EXTERN void CGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count);
+
+CG_EXTERN void CGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, int from, int to);

@@ -93,6 +93,14 @@ CG_EXTERN void CGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat r
 }
 
 
+CG_EXTERN void CGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, int from, int to)
+{
+    for (int i = from; i < to; i++) {
+        GGCircle circle = GGCirclePointMake(center[i], radius);
+        GGPathAddCircle(ref, circle);
+    }
+}
+
 
 
 

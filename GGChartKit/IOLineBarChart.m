@@ -326,22 +326,28 @@
         CGPathAddLines(lineRef, NULL, base_ref_p, _lineData.dataSet.count);
         [_startLineRefs addObject:(__bridge id)lineRef];
         CGPathRelease(lineRef);
-        
+    
         CGMutablePathRef pointRef = CGPathCreateMutable();
-        CGPathAddCircles(pointRef, base_ref_p, 3, _lineData.dataSet.count);
+        CGPathAddRangeCircles(pointRef, base_ref_p, 3, 0, (int)i);
+        CGPathAddRangeCircles(pointRef, base_ref_p, 0, (int)i, (int)_barData.dataSet.count);
         [_startPointRefs addObject:(__bridge id)pointRef];
         CGPathRelease(pointRef);
     }
+    
+    [_startLineRefs addObject:(__bridge id)ref_line];
+    [_startPointRefs addObject:(__bridge id)ref_point];
     
     _lineLayer.path = ref_line;
     _lineLayer.fillColor = [UIColor clearColor].CGColor;
     _lineLayer.lineWidth = _lineWidth;
     _lineLayer.strokeColor = _lineData.lineColor.CGColor;
+    CGPathRelease(ref_line);
     
     _pointLayer.path = ref_point;
     _pointLayer.fillColor = [UIColor whiteColor].CGColor;
     _pointLayer.lineWidth = _lineWidth;
     _pointLayer.strokeColor = _lineData.lineColor.CGColor;
+    CGPathRelease(ref_point);
     
     [_backLayer setNeedsDisplay];
 }

@@ -33,8 +33,10 @@
 
 #import "LineBarView.h"
 
+#import "IOLineBarChart.h"
 #import "IOBarChart.h"
 #import "BarChartData.h"
+#import "LineChartData.h"
 
 @interface AppDelegate ()
 
@@ -79,7 +81,7 @@
     //barChart.backgroundColor = __RGB_GRAY;
     
     [barChart strockChart];
-    [barChart addAnimation:3];
+    [barChart addAnimation:1];
     
     [self.window addSubview:barChart];
   
@@ -98,6 +100,29 @@
     
     return YES;
 }
+
+//BarChartData * barData = [[BarChartData alloc] init];
+//barData.barColor = RGB(241, 213, 136);
+//barData.dataSet = @[@1.29, @1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+//
+//LineChartData * lineData = [[LineChartData alloc] init];
+//lineData.lineColor = RGB(113, 177, 237);
+//lineData.dataSet = @[@25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
+//
+//IOLineBarChart * lineBarChart = [[IOLineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+//lineBarChart.topTitle = @"最近五日主力增减仓";
+//lineBarChart.bottomTitle = @"净利润 (万元) ";
+//lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
+//lineBarChart.barData = barData;
+//lineBarChart.lineData = lineData;
+//lineBarChart.barWidth = 25;
+//lineBarChart.lineWidth = 1;
+//lineBarChart.axisFont = [UIFont systemFontOfSize:9];
+//
+//[lineBarChart strockChart];
+//[lineBarChart addAnimation:1.5];
+//
+//[self.window addSubview:lineBarChart];
 
 - (void)first
 {

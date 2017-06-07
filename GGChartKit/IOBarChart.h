@@ -35,6 +35,7 @@
 
 @property (nonatomic, assign) CGRect contentFrame;
 
+- (void)updateChart;
 - (void)strockChart;
 - (void)addAnimation:(NSTimeInterval)duration;
 

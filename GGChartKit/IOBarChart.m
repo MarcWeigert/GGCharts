@@ -21,6 +21,7 @@
 #define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))
 
 #define BAR_SYSTEM_FONT     [UIFont systemFontOfSize:14]
+#define BAR_AXIS_FONT       [UIFont systemFontOfSize:12]
 #define BAR_SYSTEM_COLOR    [UIColor blackColor]
 
 #define AXIS_C              RGB(140, 154, 163)
@@ -42,10 +43,12 @@
 
 @property (nonatomic) CGPathRef nAniRef;
 @property (nonatomic) CGPathRef pAniRef;
+@property (nonatomic) CGPathRef startNAniRef;
+@property (nonatomic) CGPathRef startPAniRef;
 
 @property (nonatomic) GGLine zeroLine;
 
-@property (nonatomic) UICountingLabel * lb;
+@property (nonatomic) NSMutableArray * aryCountLabels;
 
 @end
 
@@ -75,11 +78,13 @@
         
         _topFont = BAR_SYSTEM_FONT;
         _bottomFont = BAR_SYSTEM_FONT;
-        _axisFont = BAR_SYSTEM_FONT;
+        _axisFont = BAR_AXIS_FONT;
         
         _axisColor = AXIS_C;
         _topColor = BAR_SYSTEM_COLOR;
         _bottomColor = BAR_SYSTEM_COLOR;
+        _negativeColor = NEG_C;
+        _positiveColor = POS_C;
         
         _axisRenderer = [[GGAxisRenderer alloc] init];
         _axisRenderer.color = _axisColor;
@@ -87,6 +92,7 @@
         _axisRenderer.width = 0.7;
         _axisRenderer.showSep = NO;
         _axisRenderer.showLine = NO;
+        _axisRenderer.strFont = _axisFont;
         [_backLayer addRenderer:_axisRenderer];
         
         self.barWidth = 20;
@@ -113,11 +119,7 @@
         _lbBottom.textColor = _bottomColor;
         [self addSubview:_lbBottom];
         
-        _lb = [[UICountingLabel alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-        _lb.format = @"%.2f";
-        _lb.method = UILabelCountingMethodLinear;
-        _lb.font = _axisFont;
-        [self addSubview:_lb];
+        _aryCountLabels = [NSMutableArray array];
     }
     
     return self;
@@ -204,6 +206,7 @@
 {
     _bottomFont = bottomFont;
     _lbBottom.font = bottomFont;
+    [self setCountLableFont:bottomFont];
 }
 
 - (void)setBottomTitle:(NSString *)bottomTitle
@@ -217,7 +220,7 @@
 {
     if (_nAniRef) {
         
-        CGPathRelease(nAniRef);
+        CGPathRelease(_nAniRef);
     }
     
     _nAniRef = nAniRef;
@@ -228,11 +231,33 @@
 {
     if (_pAniRef) {
         
-        CGPathRelease(pAniRef);
+        CGPathRelease(_pAniRef);
     }
     
     _pAniRef = pAniRef;
     CGPathRetain(_pAniRef);
+}
+
+- (void)setStartNAniRef:(CGPathRef)startNAniRef
+{
+    if (_startNAniRef) {
+        
+        CGPathRelease(_startNAniRef);
+    }
+    
+    _startNAniRef = startNAniRef;
+    CGPathRetain(_startNAniRef);
+}
+
+- (void)setStartPAniRef:(CGPathRef)startPAniRef
+{
+    if (_startPAniRef) {
+        
+        CGPathRelease(_startPAniRef);
+    }
+    
+    _startPAniRef = startPAniRef;
+    CGPathRetain(_startPAniRef);
 }
 
 - (void)layoutSubviews
@@ -254,6 +279,8 @@
     CGFloat y = CGRectGetMinY(_contentFrame) + 10;
     CGFloat w = CGRectGetWidth(_contentFrame);
     CGFloat h = CGRectGetHeight(_contentFrame) - 20;
+    CGFloat lb_w = w / _barData.dataSet.count;
+    CGFloat lb_h = [@"1" sizeWithAttributes:@{NSFontAttributeName : _axisFont}].height;
     CGRect barFrame = CGRectMake(x, y, w, h);
     
     GGLineChatScaler fig = figScaler(max, min, barFrame);
@@ -263,6 +290,9 @@
     CGMutablePathRef ref_n = CGPathCreateMutable();
     CGMutablePathRef ref_p_a = CGPathCreateMutable();
     CGMutablePathRef ref_n_a = CGPathCreateMutable();
+    CGMutablePathRef l_ref = CGPathCreateMutable();
+    
+    BOOL isAllPositive = YES;
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
         
@@ -277,45 +307,135 @@
         GGPathAddCGRect(ref_n_a, rect_a);
         
         if (data > 0) {
-            
             GGPathAddCGRect(ref_p, rect);
             GGPathAddCGRect(ref_n, rect_a);
+
         }
         else {
-        
             GGPathAddCGRect(ref_n, rect);
             GGPathAddCGRect(ref_p, rect_a);
+            isAllPositive = NO;
         }
     }
     
+    for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
+    
+        CGFloat data = [_barData.dataSet[i] floatValue];
+        CGFloat y2 = fig(.0f);
+        CGFloat y1 = fig(data);
+
+        UILabel * lb = [self getLable:i];
+        lb.font = _axisFont;
+        
+        if (isAllPositive) {
+            
+            lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y1 - lb_h, lb_w, lb_h);
+            lb.textColor = _positiveColor;
+        }
+        else {
+        
+            if (data > 0) {
+                
+                lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2, lb_w, lb_h);
+                lb.textColor = _positiveColor;
+                
+            }
+            else {
+                
+                lb.frame = CGRectMake(lb_w * i + CGRectGetMinX(_contentFrame), y2 - lb_h, lb_w, lb_h);
+                lb.textColor = _negativeColor;
+            }
+        }
+    }
+    
+    _zeroLine = GGLineMake(x, fig(.0), x + w, fig(.0));
+    GGPathAddLine(l_ref, _zeroLine);
+    
     _pLayer.path = ref_p;
     _nLayer.path = ref_n;
-    self.pAniRef = ref_p_a;
-    self.nAniRef = ref_n_a;
+    _lLayer.path = l_ref;
+    self.startPAniRef = ref_p_a;
+    self.startNAniRef = ref_n_a;
     CGPathRelease(ref_p);
     CGPathRelease(ref_n);
     CGPathRelease(ref_n_a);
     CGPathRelease(ref_p_a);
-    
-    CGMutablePathRef l_ref = CGPathCreateMutable();
-    _zeroLine = GGLineMake(x, fig(.0), x + w, fig(.0));
-    GGPathAddLine(l_ref, _zeroLine);
-    _lLayer.path = l_ref;
     CGPathRelease(l_ref);
     
     [_backLayer setNeedsDisplay];
+}
+
+- (void)updateChart
+{
+    self.pAniRef = _pLayer.path;
+    self.nAniRef = _nLayer.path;
+    
+    [self strockChart];
+    
+    CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+    pKeyAnimation.duration = 0.5;
+    pKeyAnimation.values = @[(__bridge id)self.pAniRef, (__bridge id)_pLayer.path];
+    [_pLayer addAnimation:pKeyAnimation forKey:@"p"];
+    
+    CAKeyframeAnimation * nKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+    nKeyAnimation.duration = 0.5;
+    nKeyAnimation.values = @[(__bridge id)self.nAniRef, (__bridge id)_nLayer.path];
+    [_nLayer addAnimation:nKeyAnimation forKey:@"n"];
+    
+    CGMutablePathRef l_f_ref = CGPathCreateMutable();
+    GGPathAddLine(l_f_ref, _zeroLine);
+    CGMutablePathRef l_t_ref = CGPathCreateMutable();
+    CGPoint mid_p = CGPointMake(_zeroLine.start.x + GGLineGetWidth(_zeroLine) / 2, _zeroLine.start.y);
+    GGPathAddLine(l_t_ref, GGPointLineMake(mid_p, mid_p));
+    
+    CAKeyframeAnimation * lKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+    lKeyAnimation.duration = 0.5;
+    lKeyAnimation.values = @[(__bridge id)l_t_ref, (__bridge id)l_f_ref];
+    [_lLayer addAnimation:lKeyAnimation forKey:@"l"];
+    CGPathRelease(l_t_ref);
+    CGPathRelease(l_f_ref);
+    
+    for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
+        
+        UICountingLabel * countLb = [self getLable:i];
+        [countLb countFromCurrentValueTo:_barData.dataSet[i].floatValue withDuration:0.5];
+    }
+}
+
+- (UICountingLabel *)getLable:(NSInteger)index
+{
+    if (_aryCountLabels.count <= index) {
+        
+        UICountingLabel * countLable = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+        countLable.font = _bottomFont;
+        countLable.method = UILabelCountingMethodLinear;
+        countLable.format = @"%.1f";
+        countLable.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:countLable];
+        [_aryCountLabels addObject:countLable];
+    }
+    
+    return _aryCountLabels[index];
+}
+
+- (void)setCountLableFont:(UIFont *)font
+{
+    for (UICountingLabel * countLable in _aryCountLabels) {
+        
+        countLable.font = font;
+    }
 }
 
 - (void)addAnimation:(NSTimeInterval)duration
 {
     CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     pKeyAnimation.duration = duration;
-    pKeyAnimation.values = @[(__bridge id)self.pAniRef, (__bridge id)_pLayer.path];
+    pKeyAnimation.values = @[(__bridge id)self.startPAniRef, (__bridge id)_pLayer.path];
     [_pLayer addAnimation:pKeyAnimation forKey:@"p"];
     
     CAKeyframeAnimation * nKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     nKeyAnimation.duration = duration;
-    nKeyAnimation.values = @[(__bridge id)self.nAniRef, (__bridge id)_nLayer.path];
+    nKeyAnimation.values = @[(__bridge id)self.startNAniRef, (__bridge id)_nLayer.path];
     [_nLayer addAnimation:nKeyAnimation forKey:@"n"];
     
     CGMutablePathRef l_f_ref = CGPathCreateMutable();
@@ -337,7 +457,11 @@
     base.duration = duration;
     [_backLayer addAnimation:base forKey:@"o"];
     
-    [_lb countFrom:0 to:[_barData.dataSet.firstObject floatValue] withDuration:duration];
+    for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
+        
+        UICountingLabel * countLb = [self getLable:i];
+        [countLb countFrom:0 to:_barData.dataSet[i].floatValue withDuration:duration];
+    }
 }
 
 @end

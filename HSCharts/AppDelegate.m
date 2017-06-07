@@ -38,6 +38,8 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic) IOBarChart * barChart;
+
 @end
 
 @implementation AppDelegate
@@ -60,26 +62,57 @@
     [linebar stockChart];
     
     BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4];
+    data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
     
     IOBarChart * barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
     barChart.topTitle = @"最近五日主力增减仓";
-    barChart.bottomTitle = @"单位 (万元) ";
+    barChart.bottomTitle = @"净利润 (万元) ";
     barChart.positiveTitle = @"资金流入";
     barChart.negativeTitle = @"资金流出";
-    barChart.axisTitles = @[@"05-31", @"06-01", @"06-02", @"06-05", @"06-06"];
+    barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
     barChart.barData = data;
-    barChart.barWidth = 35;
+    barChart.barWidth = 25;
+    barChart.axisFont = [UIFont systemFontOfSize:9];
+    
+    _barChart = barChart;
     
     //barChart.backgroundColor = __RGB_GRAY;
     
     [barChart strockChart];
-    [barChart addAnimation:1];
+    [barChart addAnimation:3];
     
     [self.window addSubview:barChart];
   
     
+    UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(10, 400, 100, 100);
+    btn1.backgroundColor = [UIColor redColor];
+    [btn1 addTarget:self action:@selector(first) forControlEvents:UIControlEventTouchUpInside];
+    [self.window addSubview:btn1];
+    
+    UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn2.frame = CGRectMake(200, 400, 100, 100);
+    btn2.backgroundColor = [UIColor redColor];
+    [btn2 addTarget:self action:@selector(second) forControlEvents:UIControlEventTouchUpInside];
+    [self.window addSubview:btn2];
+    
     return YES;
+}
+
+- (void)first
+{
+    BarChartData * data = [[BarChartData alloc] init];
+    data.dataSet = @[@2225.6, @-2563.1, @531.4, @-839.4, @-7.4, @-1000, @897.0, @-1500];
+    _barChart.barData = data;
+    [_barChart updateChart];
+}
+
+- (void)second
+{
+    BarChartData * data = [[BarChartData alloc] init];
+    data.dataSet = @[@-2225.6, @2563.1, @531.4, @-839.4, @7.4, @-1000, @-897.0, @-1500];
+    _barChart.barData = data;
+    [_barChart updateChart];
 }
 
 - (NSString *)LineDataTopPath

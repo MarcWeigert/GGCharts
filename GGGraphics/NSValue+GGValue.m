@@ -28,7 +28,7 @@
 - (CGMutablePathRef)GGValueFor##type##Ref                           \
 {                                                                   \
     CGMutablePathRef ref = CGPathCreateMutable();                   \
-    CGPathAdd##type(ref, [self type##Value]);                       \
+    GGPathAdd##type(ref, [self type##Value]);                       \
     return ref;                                                     \
 }
 

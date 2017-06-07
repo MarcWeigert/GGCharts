@@ -9,10 +9,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "GGChartGeometry.h"
 
-CG_EXTERN void CGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis);
+CG_EXTERN void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis);
 
-CG_EXTERN void CGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid);
+CG_EXTERN void GGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid);
 
 CG_EXTERN void GGPathAddLine(CGMutablePathRef ref, GGLine line);
 
 CG_EXTERN void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect);
+
+CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle);
+
+CG_EXTERN void CGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count);

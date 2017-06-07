@@ -327,7 +327,6 @@ CG_INLINE GGAnnular
 GGAnnularMake(CGFloat x, CGFloat y, CGFloat start, CGFloat end, CGFloat radius, CGFloat spa)
 {
     CGPoint center = CGPointMake(x, y);
-    
     return GGAnnularCenterMake(center, start, end, radius, spa);
 }
 
@@ -349,6 +348,7 @@ struct GGKShape {
 typedef struct GGKShape GGKShape;
 
 #pragma mark - 区域
+
 CG_INLINE CGRect
 GGLineRectMake(CGPoint start, CGPoint end, CGFloat width)
 {
@@ -358,3 +358,22 @@ GGLineRectMake(CGPoint start, CGPoint end, CGFloat width)
     rect.size = CGSizeMake(width, fabs(start.y - end.y));
     return rect;
 }
+
+#pragma mark - 圆
+
+struct GGCircle {
+    CGPoint center;
+    CGFloat radius;
+};
+typedef struct GGCircle GGCircle;
+
+CG_INLINE GGCircle
+GGCirclePointMake(CGPoint center, CGFloat radius)
+{
+    GGCircle circle;
+    circle.center = center;
+    circle.radius = radius;
+    return circle;
+}
+
+

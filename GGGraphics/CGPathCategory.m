@@ -9,7 +9,7 @@
 #import "CGPathCategory.h"
 #import "GGChartGeometry.h"
 
-void CGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
+void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
 {
     CGPathMoveToPoint(ref, NULL, axis.line.start.x, axis.line.start.y);
     CGPathAddLineToPoint(ref, NULL, axis.line.end.x, axis.line.end.y);
@@ -27,7 +27,7 @@ void CGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
     }
 }
 
-void CGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid)
+void GGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid)
 {
     CGPoint ** result = GGGridPointAryMake(grid);
     
@@ -78,3 +78,30 @@ void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect)
     CGPathAddLineToPoint(ref, NULL, bottom.end.x, bottom.end.y);
     CGPathAddLineToPoint(ref, NULL, top.end.x, top.end.y);
 }
+
+CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle)
+{
+    CGPathAddEllipseInRect(ref, NULL, CGRectMake(circle.center.x - circle.radius, circle.center.y - circle.radius, circle.radius * 2, circle.radius * 2));
+}
+
+CG_EXTERN void CGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count)
+{
+    for (int i = 0; i < count; i++) {
+        GGCircle circle = GGCirclePointMake(center[i], radius);
+        GGPathAddCircle(ref, circle);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

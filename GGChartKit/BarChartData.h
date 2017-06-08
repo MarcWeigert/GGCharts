@@ -6,13 +6,11 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "BaseChartData.h"
 
-@interface BarChartData : NSObject
+@interface BarChartData : BaseChartData
 
 @property (nonatomic, strong) NSString * barName;
 @property (nonatomic, strong) UIColor * barColor;
-@property (nonatomic, strong) NSArray <NSNumber *>* dataSet;
 
 @end

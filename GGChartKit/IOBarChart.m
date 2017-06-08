@@ -17,37 +17,27 @@
 #import "Colors.h"
 #import "CGPathCategory.h"
 #import "UICountingLabel.h"
-
-#define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))
+#import "GGShapeCanvas.h"
 
 #define BAR_SYSTEM_FONT     [UIFont systemFontOfSize:14]
 #define BAR_AXIS_FONT       [UIFont systemFontOfSize:12]
+
 #define BAR_SYSTEM_COLOR    [UIColor blackColor]
-
 #define AXIS_C              RGB(140, 154, 163)
-
 #define POS_C               RGB(241, 73, 81)
 #define NEG_C               RGB(30, 191, 97)
 
-@interface IOBarChart ()
+#define PosLayer            1000
+#define NegLayer            2000
+#define LineLayer           3000
+#define BackLayer           4000
 
-@property (nonatomic, strong) CAShapeLayer * pLayer;
-@property (nonatomic, strong) CAShapeLayer * nLayer;
-@property (nonatomic, strong) CAShapeLayer * lLayer;
-@property (nonatomic, strong) GGCanvas * backLayer;
+@interface IOBarChart ()
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;
 
 @property (nonatomic, strong) UILabel *lbTop;
 @property (nonatomic, strong) UILabel *lbBottom;
-
-@property (nonatomic) CGPathRef nAniRef;
-@property (nonatomic) CGPathRef pAniRef;
-@property (nonatomic) CGPathRef startNAniRef;
-@property (nonatomic) CGPathRef startPAniRef;
-
-@property (nonatomic) GGLine zeroLine;
-@property (nonatomic) GGLine oldZeroLine;
 
 @property (nonatomic) NSMutableArray * aryCountLabels;
 
@@ -61,79 +51,52 @@
     
     if (self) {
         
-        _backLayer = [[GGCanvas alloc] init];
-        SET_FRAME(_backLayer, frame);
-        [self.layer addSublayer:_backLayer];
+        [self defaultChartConfig];
+        [self makeTitleViews];
         
-        _lLayer = [[CAShapeLayer alloc] init];
-        SET_FRAME(_lLayer, frame);
-        [self.layer addSublayer:_lLayer];
-        
-        _nLayer = [[CAShapeLayer alloc] init];
-        SET_FRAME(_nLayer, frame);
-        [self.layer addSublayer:_nLayer];
-        
-        _pLayer = [[CAShapeLayer alloc] init];
-        SET_FRAME(_pLayer, frame);
-        [self.layer addSublayer:_pLayer];
-        
-        _topFont = BAR_SYSTEM_FONT;
-        _bottomFont = BAR_SYSTEM_FONT;
-        _axisFont = BAR_AXIS_FONT;
-        
-        _axisColor = AXIS_C;
-        _topColor = BAR_SYSTEM_COLOR;
-        _bottomColor = BAR_SYSTEM_COLOR;
-        _negativeColor = NEG_C;
-        _positiveColor = POS_C;
-        
-        _axisRenderer = [[GGAxisRenderer alloc] init];
-        _axisRenderer.color = _axisColor;
-        _axisRenderer.strColor = _axisColor;
-        _axisRenderer.width = 0.7;
-        _axisRenderer.showSep = NO;
-        _axisRenderer.showLine = NO;
-        _axisRenderer.strFont = _axisFont;
-        [_backLayer addRenderer:_axisRenderer];
-        
-        self.barWidth = 20;
         self.contentFrame = CGRectMake(20, 40, frame.size.width - 40, frame.size.height - 90);
-        
-        _pLayer.strokeColor = POS_C.CGColor;
-        _pLayer.fillColor = POS_C.CGColor;
-        _pLayer.lineWidth = 0;
-        
-        _nLayer.strokeColor = NEG_C.CGColor;
-        _nLayer.fillColor = NEG_C.CGColor;
-        _nLayer.lineWidth = 0;
-        
-        _lLayer.lineWidth = 0.5;
-        _lLayer.strokeColor = AXIS_C.CGColor;
-        
-        _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
-        _lbTop.font = _topFont;
-        _lbTop.textColor = _topColor;
-        [self addSubview:_lbTop];
-        
-        _lbBottom = [[UILabel alloc] initWithFrame:CGRectZero];
-        _lbBottom.font = _bottomFont;
-        _lbBottom.textColor = _bottomColor;
-        [self addSubview:_lbBottom];
-        
-        _aryCountLabels = [NSMutableArray array];
     }
     
     return self;
 }
 
-- (void)setFrame:(CGRect)frame
+- (void)defaultChartConfig
 {
-    [super setFrame:frame];
+    _barWidth = 20;
     
-    SET_FRAME(_nLayer, frame);
-    SET_FRAME(_pLayer, frame);
-    SET_FRAME(_lLayer, frame);
-    SET_FRAME(_backLayer, frame);
+    _topFont = BAR_SYSTEM_FONT;
+    _bottomFont = BAR_SYSTEM_FONT;
+    _axisFont = BAR_AXIS_FONT;
+    
+    _axisColor = AXIS_C;
+    _topColor = BAR_SYSTEM_COLOR;
+    _bottomColor = BAR_SYSTEM_COLOR;
+    _negativeColor = NEG_C;
+    _positiveColor = POS_C;
+    
+    _axisRenderer = [[GGAxisRenderer alloc] init];
+    _axisRenderer.color = _axisColor;
+    _axisRenderer.strColor = _axisColor;
+    _axisRenderer.width = 0.7;
+    _axisRenderer.showSep = NO;
+    _axisRenderer.showLine = NO;
+    _axisRenderer.strFont = _axisFont;
+    [ChartBack(BackLayer) addRenderer:_axisRenderer];
+}
+
+- (void)makeTitleViews
+{
+    _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
+    _lbTop.font = _topFont;
+    _lbTop.textColor = _topColor;
+    [self addSubview:_lbTop];
+    
+    _lbBottom = [[UILabel alloc] initWithFrame:CGRectZero];
+    _lbBottom.font = _bottomFont;
+    _lbBottom.textColor = _bottomColor;
+    [self addSubview:_lbBottom];
+    
+    _aryCountLabels = [NSMutableArray array];
 }
 
 - (void)setContentFrame:(CGRect)contentFrame
@@ -161,21 +124,6 @@
 {
     _axisColor = axisColor;
     _axisRenderer.color = axisColor;
-    _lLayer.strokeColor = axisColor.CGColor;
-}
-
-- (void)setPositiveColor:(UIColor *)positiveColor
-{
-    _positiveColor = positiveColor;
-    _pLayer.strokeColor = _positiveColor.CGColor;
-    _pLayer.fillColor = _positiveColor.CGColor;
-}
-
-- (void)setNegativeColor:(UIColor *)negativeColor
-{
-    _negativeColor = negativeColor;
-    _nLayer.strokeColor = _negativeColor.CGColor;
-    _nLayer.fillColor = _negativeColor.CGColor;
 }
 
 - (void)setTopColor:(UIColor *)topColor
@@ -217,61 +165,32 @@
     [_lbBottom sizeToFit];
 }
 
-- (void)setNAniRef:(CGPathRef)nAniRef
-{
-    if (_nAniRef) {
-        
-        CGPathRelease(_nAniRef);
-    }
-    
-    _nAniRef = nAniRef;
-    CGPathRetain(_nAniRef);
-}
-
-- (void)setPAniRef:(CGPathRef)pAniRef
-{
-    if (_pAniRef) {
-        
-        CGPathRelease(_pAniRef);
-    }
-    
-    _pAniRef = pAniRef;
-    CGPathRetain(_pAniRef);
-}
-
-- (void)setStartNAniRef:(CGPathRef)startNAniRef
-{
-    if (_startNAniRef) {
-        
-        CGPathRelease(_startNAniRef);
-    }
-    
-    _startNAniRef = startNAniRef;
-    CGPathRetain(_startNAniRef);
-}
-
-- (void)setStartPAniRef:(CGPathRef)startPAniRef
-{
-    if (_startPAniRef) {
-        
-        CGPathRelease(_startPAniRef);
-    }
-    
-    _startPAniRef = startPAniRef;
-    CGPathRetain(_startPAniRef);
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    [_backLayer setNeedsDisplay];
+    [ChartBack(BackLayer) setNeedsDisplay];
     
     _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
 }
 
 - (void)drawChartWithLableAnimation:(BOOL)isAnimation
 {
+    GGShapeCanvas * pos_shape = ChartShape(PosLayer);
+    pos_shape.strokeColor = _positiveColor.CGColor;
+    pos_shape.fillColor = _positiveColor.CGColor;
+    pos_shape.lineWidth = 0;
+    
+    GGShapeCanvas * neg_shape = ChartShape(NegLayer);
+    neg_shape.strokeColor = _negativeColor.CGColor;
+    neg_shape.fillColor = _negativeColor.CGColor;
+    neg_shape.lineWidth = 0;
+    
+    GGShapeCanvas * line_shape = ChartShape(LineLayer);
+    line_shape.strokeColor = _axisColor.CGColor;
+    line_shape.lineWidth = 0.5;
+    line_shape.fillColor = [UIColor clearColor].CGColor;
+    
     CGFloat max = getMax(_barData.dataSet);
     CGFloat min = getMin(_barData.dataSet);
     min = min < 0 ? min : 0;
@@ -292,6 +211,7 @@
     CGMutablePathRef ref_p_a = CGPathCreateMutable();
     CGMutablePathRef ref_n_a = CGPathCreateMutable();
     CGMutablePathRef l_ref = CGPathCreateMutable();
+    CGMutablePathRef l_c_ref = CGPathCreateMutable();
     
     BOOL isAllPositive = YES;
     
@@ -363,21 +283,37 @@
         }
     }
     
-    _zeroLine = GGLineMake(x, fig(.0), x + w, fig(.0));
-    GGPathAddLine(l_ref, _zeroLine);
+    GGLine zeroLine = GGLineMake(x, fig(.0), x + w, fig(.0));
+    CGPoint center = GGCenterPoint(zeroLine);
     
-    _pLayer.path = ref_p;
-    _nLayer.path = ref_n;
-    _lLayer.path = l_ref;
-    self.startPAniRef = ref_p_a;
-    self.startNAniRef = ref_n_a;
+    GGPathAddLine(l_ref, zeroLine);
+    GGPathAddLine(l_c_ref, GGPointLineMake(center, center));
+    
+    // 无数据到有数据动画
+    [neg_shape registerKeyAnimation:@"path"
+                               name:@"start"
+                             values:@[(__bridge id)ref_n_a, (__bridge id)ref_n]];
+    
+    [pos_shape registerKeyAnimation:@"path"
+                             name:@"start"
+                           values:@[(__bridge id)ref_p_a, (__bridge id)ref_p]];
+    
+    [line_shape registerKeyAnimation:@"path"
+                             name:@"start"
+                           values:@[(__bridge id)l_c_ref, (__bridge id)l_ref]];
+    
+    pos_shape.path = ref_p;
+    neg_shape.path = ref_n;
+    line_shape.path = l_ref;
+    
     CGPathRelease(ref_p);
     CGPathRelease(ref_n);
     CGPathRelease(ref_n_a);
     CGPathRelease(ref_p_a);
     CGPathRelease(l_ref);
+    CGPathRelease(l_c_ref);
     
-    [_backLayer setNeedsDisplay];
+    [ChartBack(BackLayer) setNeedsDisplay];
 }
 
 - (void)strockChart
@@ -387,34 +323,11 @@
 
 - (void)updateChart
 {
-    self.pAniRef = _pLayer.path;
-    self.nAniRef = _nLayer.path;
-    self.oldZeroLine = self.zeroLine;
-    
     [self drawChartWithLableAnimation:YES];
     
-    CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    pKeyAnimation.duration = 0.5;
-    pKeyAnimation.values = @[(__bridge id)self.pAniRef, (__bridge id)_pLayer.path];
-    [_pLayer addAnimation:pKeyAnimation forKey:@"p"];
-    
-    CAKeyframeAnimation * nKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    nKeyAnimation.duration = 0.5;
-    nKeyAnimation.values = @[(__bridge id)self.nAniRef, (__bridge id)_nLayer.path];
-    [_nLayer addAnimation:nKeyAnimation forKey:@"n"];
-    
-    CGMutablePathRef l_f_ref = CGPathCreateMutable();
-    GGPathAddLine(l_f_ref, _zeroLine);
-    CGMutablePathRef l_t_ref = CGPathCreateMutable();
-    CGPoint mid_p = CGPointMake(_oldZeroLine.start.x + GGLineGetWidth(_oldZeroLine) / 2, _oldZeroLine.start.y);
-    GGPathAddLine(l_t_ref, GGPointLineMake(mid_p, mid_p));
-    
-    CAKeyframeAnimation * lKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    lKeyAnimation.duration = 0.5;
-    lKeyAnimation.values = @[(__bridge id)l_t_ref, (__bridge id)l_f_ref];
-    [_lLayer addAnimation:lKeyAnimation forKey:@"l"];
-    CGPathRelease(l_t_ref);
-    CGPathRelease(l_f_ref);
+    [ChartShape(PosLayer) startAnimation:@"oldPush" duration:0.5];
+    [ChartShape(NegLayer) startAnimation:@"oldPush" duration:0.5];
+    [ChartShape(LineLayer) startAnimation:@"oldPush" duration:0.5];
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
         
@@ -449,34 +362,15 @@
 
 - (void)addAnimation:(NSTimeInterval)duration
 {
-    CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    pKeyAnimation.duration = duration;
-    pKeyAnimation.values = @[(__bridge id)self.startPAniRef, (__bridge id)_pLayer.path];
-    [_pLayer addAnimation:pKeyAnimation forKey:@"p"];
-    
-    CAKeyframeAnimation * nKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    nKeyAnimation.duration = duration;
-    nKeyAnimation.values = @[(__bridge id)self.startNAniRef, (__bridge id)_nLayer.path];
-    [_nLayer addAnimation:nKeyAnimation forKey:@"n"];
-    
-    CGMutablePathRef l_f_ref = CGPathCreateMutable();
-    GGPathAddLine(l_f_ref, _zeroLine);
-    CGMutablePathRef l_t_ref = CGPathCreateMutable();
-    CGPoint mid_p = CGPointMake(_zeroLine.start.x + GGLineGetWidth(_zeroLine) / 2, _zeroLine.start.y);
-    GGPathAddLine(l_t_ref, GGPointLineMake(mid_p, mid_p));
-    
-    CAKeyframeAnimation * lKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    lKeyAnimation.duration = duration;
-    lKeyAnimation.values = @[(__bridge id)l_t_ref, (__bridge id)l_f_ref];
-    [_lLayer addAnimation:lKeyAnimation forKey:@"l"];
-    CGPathRelease(l_t_ref);
-    CGPathRelease(l_f_ref);
+    [ChartShape(PosLayer) startAnimation:@"start" duration:duration];
+    [ChartShape(NegLayer) startAnimation:@"start" duration:duration];
+    [ChartShape(LineLayer) startAnimation:@"start" duration:duration];
     
     CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"opacity"];
     base.fromValue = @0;
     base.toValue = @1;
     base.duration = duration;
-    [_backLayer addAnimation:base forKey:@"o"];
+    [ChartBack(BackLayer) addAnimation:base forKey:@"o"];
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
         

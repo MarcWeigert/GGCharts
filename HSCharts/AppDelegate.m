@@ -81,21 +81,21 @@
     //barChart.backgroundColor = __RGB_GRAY;
     
     [barChart strockChart];
-    [barChart addAnimation:1];
+    [barChart addAnimation:3];
     
-    // [self.window addSubview:barChart];
+    [self.window addSubview:barChart];
     
     UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(10, 400, 100, 100);
     btn1.backgroundColor = [UIColor redColor];
     [btn1 addTarget:self action:@selector(first) forControlEvents:UIControlEventTouchUpInside];
-    // [self.window addSubview:btn1];
+    [self.window addSubview:btn1];
     
     UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn2.frame = CGRectMake(200, 400, 100, 100);
     btn2.backgroundColor = [UIColor redColor];
     [btn2 addTarget:self action:@selector(second) forControlEvents:UIControlEventTouchUpInside];
-    // [self.window addSubview:btn2];
+    [self.window addSubview:btn2];
     
     BarChartData * barData = [[BarChartData alloc] init];
     barData.barColor = RGB(241, 213, 136);
@@ -116,9 +116,9 @@
     lineBarChart.axisFont = [UIFont systemFontOfSize:9];
     
     [lineBarChart strockChart];
-    [lineBarChart addAnimation:3];
+    [lineBarChart addAnimation:30];
     
-    [self.window addSubview:lineBarChart];
+    // [self.window addSubview:lineBarChart];
     
     return YES;
 }

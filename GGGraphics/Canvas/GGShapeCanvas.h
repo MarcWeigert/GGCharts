@@ -10,6 +10,12 @@
 
 @interface GGShapeCanvas : CAShapeLayer
 
-- (void)startShapeAnimation:(NSTimeInterval)duration;
+//- (void)startShapeAnimation:(NSTimeInterval)duration;
+
+- (CAAnimation *)animationForName:(NSString *)name;
+
+- (void)startAnimation:(NSString *)name duration:(NSTimeInterval)duration;
+
+- (CAKeyframeAnimation *)registerKeyAnimation:(NSString *)key name:(NSString *)name values:(NSArray *)values;
 
 @end

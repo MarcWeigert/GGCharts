@@ -12,4 +12,6 @@
 
 - (void)drawInContext:(CGContextRef)ctx;
 
+- (BOOL)hidden;
+
 @end

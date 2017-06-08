@@ -108,6 +108,12 @@ GGLineGetWidth(GGLine line)
     return fabs(line.end.x - line.start.x);
 }
 
+CG_INLINE CGPoint
+GGCenterPoint(GGLine line)
+{
+    return CGPointMake(line.start.x + GGLineGetWidth(line) / 2, line.start.y);
+}
+
 CG_INLINE GGLine
 GGTopLineRect(CGRect rect)
 {

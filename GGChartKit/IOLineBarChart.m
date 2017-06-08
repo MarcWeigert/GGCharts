@@ -26,7 +26,6 @@
 #define BAR_SYSTEM_COLOR    [UIColor blackColor]
 
 #define AXIS_C              RGB(140, 154, 163)
-
 #define POS_C               RGB(241, 73, 81)
 #define NEG_C               RGB(30, 191, 97)
 
@@ -81,47 +80,8 @@
         SET_FRAME(_pointLayer, frame);
         [self.layer addSublayer:_pointLayer];
         
-        _yAxisSplit = 2;
-        _yAxisformat = @"%.2f";
+        [self defaultChartConfig];
         
-        _topFont = BAR_SYSTEM_FONT;
-        _bottomFont = BAR_SYSTEM_FONT;
-        _axisFont = BAR_AXIS_FONT;
-        
-        _axisColor = AXIS_C;
-        _topColor = BAR_SYSTEM_COLOR;
-        _bottomColor = BAR_SYSTEM_COLOR;
-        
-        _axisRenderer = [[GGAxisRenderer alloc] init];
-        _axisRenderer.color = _axisColor;
-        _axisRenderer.strColor = _axisColor;
-        _axisRenderer.width = 0.7;
-        _axisRenderer.strFont = _axisFont;
-        [_backLayer addRenderer:_axisRenderer];
-        
-        _leftAxisRenderer = [[GGAxisRenderer alloc] init];
-        _leftAxisRenderer.color = _axisColor;
-        _leftAxisRenderer.strColor = _axisColor;
-        _leftAxisRenderer.width = 0.7;
-        _leftAxisRenderer.textOffSet = CGSizeMake(-1, 0);
-        _leftAxisRenderer.strFont = _axisFont;
-        [_backLayer addRenderer:_leftAxisRenderer];
-        
-        _rightAxisRenderer = [[GGAxisRenderer alloc] init];
-        _rightAxisRenderer.color = _axisColor;
-        _rightAxisRenderer.strColor = _axisColor;
-        _rightAxisRenderer.width = 0.7;
-        _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
-        _rightAxisRenderer.strFont = _axisFont;
-        [_backLayer addRenderer:_rightAxisRenderer];
-        
-        _gridRenderer = [[GGGridRenderer alloc] init];
-        _gridRenderer.color = _axisColor;
-        _gridRenderer.width = 0.7;
-        _gridRenderer.dash = CGSizeMake(2, 2);
-        [_backLayer addRenderer:_gridRenderer];
-        
-        self.barWidth = 20;
         self.contentFrame = CGRectMake(30, 40, frame.size.width - 60, frame.size.height - 90);
         
         _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -136,6 +96,50 @@
     }
     
     return self;
+}
+
+- (void)defaultChartConfig
+{
+    _yAxisSplit = 2;
+    _yAxisformat = @"%.2f";
+    _barWidth = 20;
+    
+    _topFont = BAR_SYSTEM_FONT;
+    _bottomFont = BAR_SYSTEM_FONT;
+    _axisFont = BAR_AXIS_FONT;
+    
+    _axisColor = AXIS_C;
+    _topColor = BAR_SYSTEM_COLOR;
+    _bottomColor = BAR_SYSTEM_COLOR;
+    
+    _axisRenderer = [[GGAxisRenderer alloc] init];
+    _axisRenderer.color = _axisColor;
+    _axisRenderer.strColor = _axisColor;
+    _axisRenderer.width = 0.7;
+    _axisRenderer.strFont = _axisFont;
+    [_backLayer addRenderer:_axisRenderer];
+    
+    _leftAxisRenderer = [[GGAxisRenderer alloc] init];
+    _leftAxisRenderer.color = _axisColor;
+    _leftAxisRenderer.strColor = _axisColor;
+    _leftAxisRenderer.width = 0.7;
+    _leftAxisRenderer.textOffSet = CGSizeMake(-1, 0);
+    _leftAxisRenderer.strFont = _axisFont;
+    [_backLayer addRenderer:_leftAxisRenderer];
+    
+    _rightAxisRenderer = [[GGAxisRenderer alloc] init];
+    _rightAxisRenderer.color = _axisColor;
+    _rightAxisRenderer.strColor = _axisColor;
+    _rightAxisRenderer.width = 0.7;
+    _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
+    _rightAxisRenderer.strFont = _axisFont;
+    [_backLayer addRenderer:_rightAxisRenderer];
+    
+    _gridRenderer = [[GGGridRenderer alloc] init];
+    _gridRenderer.color = _axisColor;
+    _gridRenderer.width = 0.7;
+    _gridRenderer.dash = CGSizeMake(2, 2);
+    [_backLayer addRenderer:_gridRenderer];
 }
 
 - (CGFloat)getBase:(CGFloat)max min:(CGFloat)min
@@ -182,6 +186,8 @@
     GGAxis axis = GGAxisLineMake(GGBottomLineRect(_contentFrame), 3, CGRectGetWidth(_contentFrame) / _axisTitles.count);
     _axisRenderer.axis = axis;
 }
+
+#define Bind
 
 - (void)setAxisFont:(UIFont *)axisFont
 {
@@ -399,9 +405,9 @@
 {
     [self drawChartWithLableAnimation:YES];
     
-    [_barLayer startShapeAnimation:0.5];
-    [_lineLayer startShapeAnimation:0.5];
-    [_pointLayer startShapeAnimation:0.5];
+    [_barLayer startAnimation:@"oldPush" duration:0.5];
+    [_lineLayer startAnimation:@"oldPush" duration:0.5];
+    [_pointLayer startAnimation:@"oldPush" duration:0.5];
 }
 
 - (void)addAnimation:(NSTimeInterval)duration

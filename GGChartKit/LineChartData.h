@@ -6,13 +6,11 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "BaseChartData.h"
 
-@interface LineChartData : NSObject
+@interface LineChartData : BaseChartData
 
 @property (nonatomic, strong) NSString * lineName;
 @property (nonatomic, strong) UIColor * lineColor;
-@property (nonatomic, strong) NSArray <NSNumber *>* dataSet;
 
 @end

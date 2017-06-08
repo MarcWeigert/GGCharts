@@ -6,11 +6,11 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseChart.h"
 
 @class BarChartData;
 
-@interface IOBarChart : UIView
+@interface IOBarChart : BaseChart
 
 @property (nonatomic, copy) NSString * topTitle;
 @property (nonatomic, strong) UIFont * topFont;

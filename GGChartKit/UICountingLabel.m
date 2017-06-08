@@ -201,7 +201,7 @@
         }
         else
         {
-            self.text = [NSString stringWithFormat:self.format,value];
+            self.text = [NSString stringWithFormat:self.format, value];
         }
     }
 }

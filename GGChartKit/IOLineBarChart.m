@@ -16,7 +16,8 @@
 #import "GGLineRenderer.h"
 #import "Colors.h"
 #import "CGPathCategory.h"
-#import "UICountingLabel.h"
+#import "GGShapeCanvas.h"
+#import "GGGridRenderer.h"
 
 #define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))
 
@@ -31,25 +32,25 @@
 
 @interface IOLineBarChart ()
 
-@property (nonatomic, strong) CAShapeLayer * barLayer;
-@property (nonatomic, strong) CAShapeLayer * lineLayer;
-@property (nonatomic, strong) CAShapeLayer * pointLayer;
+@property (nonatomic, strong) GGShapeCanvas * barLayer;
+@property (nonatomic, strong) GGShapeCanvas * lineLayer;
+@property (nonatomic, strong) GGShapeCanvas * pointLayer;
 @property (nonatomic, strong) GGCanvas * backLayer;
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;
 @property (nonatomic, strong) GGAxisRenderer * leftAxisRenderer;
 @property (nonatomic, strong) GGAxisRenderer * rightAxisRenderer;
+@property (nonatomic, strong) GGGridRenderer * gridRenderer;
 
 @property (nonatomic, strong) UILabel * lbTop;
 @property (nonatomic, strong) UILabel * lbBottom;
 
-@property (nonatomic) CGPathRef pAniRef;
-
-@property (nonatomic) CGPathRef startNAniRef;
-@property (nonatomic) CGPathRef startPAniRef;
+@property (nonatomic) CGPathRef startBarAniRef;
 
 @property (nonatomic) NSMutableArray * startLineRefs;
 @property (nonatomic) NSMutableArray * startPointRefs;
+
+@property (nonatomic, assign) CGRect contentFrame;
 
 @end
 
@@ -68,17 +69,20 @@
         SET_FRAME(_backLayer, frame);
         [self.layer addSublayer:_backLayer];
         
-        _barLayer = [[CAShapeLayer alloc] init];
+        _barLayer = [[GGShapeCanvas alloc] init];
         SET_FRAME(_barLayer, frame);
         [self.layer addSublayer:_barLayer];
         
-        _lineLayer = [[CAShapeLayer alloc] init];
+        _lineLayer = [[GGShapeCanvas alloc] init];
         SET_FRAME(_lineLayer, frame);
         [self.layer addSublayer:_lineLayer];
         
-        _pointLayer = [[CAShapeLayer alloc] init];
+        _pointLayer = [[GGShapeCanvas alloc] init];
         SET_FRAME(_pointLayer, frame);
         [self.layer addSublayer:_pointLayer];
+        
+        _yAxisSplit = 2;
+        _yAxisformat = @"%.2f";
         
         _topFont = BAR_SYSTEM_FONT;
         _bottomFont = BAR_SYSTEM_FONT;
@@ -95,8 +99,30 @@
         _axisRenderer.strFont = _axisFont;
         [_backLayer addRenderer:_axisRenderer];
         
+        _leftAxisRenderer = [[GGAxisRenderer alloc] init];
+        _leftAxisRenderer.color = _axisColor;
+        _leftAxisRenderer.strColor = _axisColor;
+        _leftAxisRenderer.width = 0.7;
+        _leftAxisRenderer.textOffSet = CGSizeMake(-1, 0);
+        _leftAxisRenderer.strFont = _axisFont;
+        [_backLayer addRenderer:_leftAxisRenderer];
+        
+        _rightAxisRenderer = [[GGAxisRenderer alloc] init];
+        _rightAxisRenderer.color = _axisColor;
+        _rightAxisRenderer.strColor = _axisColor;
+        _rightAxisRenderer.width = 0.7;
+        _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
+        _rightAxisRenderer.strFont = _axisFont;
+        [_backLayer addRenderer:_rightAxisRenderer];
+        
+        _gridRenderer = [[GGGridRenderer alloc] init];
+        _gridRenderer.color = _axisColor;
+        _gridRenderer.width = 0.7;
+        _gridRenderer.dash = CGSizeMake(2, 2);
+        [_backLayer addRenderer:_gridRenderer];
+        
         self.barWidth = 20;
-        self.contentFrame = CGRectMake(20, 40, frame.size.width - 40, frame.size.height - 90);
+        self.contentFrame = CGRectMake(30, 40, frame.size.width - 60, frame.size.height - 90);
         
         _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
         _lbTop.font = _topFont;
@@ -115,6 +141,21 @@
 - (CGFloat)getBase:(CGFloat)max min:(CGFloat)min
 {
     return fabs(max - min) * 0.1;
+}
+
+- (NSArray <NSString *> *)splitWithMax:(CGFloat)max min:(CGFloat)min
+{
+    NSMutableArray * array = [NSMutableArray array];
+    CGFloat split = fabs(max - min) / _yAxisSplit;
+    
+    for (int i = 0; i < _yAxisSplit; i++) {
+        
+        [array addObject:[NSString stringWithFormat:self.yAxisformat, max - split * i]];
+    }
+    
+    [array addObject:[NSString stringWithFormat:self.yAxisformat, min]];
+    
+    return array;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -146,6 +187,14 @@
 {
     _axisFont = axisFont;
     _axisRenderer.strFont = axisFont;
+    _leftAxisRenderer.strFont = axisFont;
+    _rightAxisRenderer.strFont = axisFont;
+}
+
+- (void)setContentInset:(UIEdgeInsets)contentInset
+{
+    _contentInset = contentInset;
+    self.contentFrame = UIEdgeInsetsInsetRect(self.frame, contentInset);
 }
 
 - (void)setAxisColor:(UIColor *)axisColor
@@ -192,37 +241,15 @@
     [_lbBottom sizeToFit];
 }
 
-- (void)setPAniRef:(CGPathRef)pAniRef
+- (void)setStartBarAniRef:(CGPathRef)startBarAniRef
 {
-    if (_pAniRef) {
+    if (_startBarAniRef) {
         
-        CGPathRelease(_pAniRef);
+        CGPathRelease(_startBarAniRef);
     }
     
-    _pAniRef = pAniRef;
-    CGPathRetain(_pAniRef);
-}
-
-- (void)setStartNAniRef:(CGPathRef)startNAniRef
-{
-    if (_startNAniRef) {
-        
-        CGPathRelease(_startNAniRef);
-    }
-    
-    _startNAniRef = startNAniRef;
-    CGPathRetain(_startNAniRef);
-}
-
-- (void)setStartPAniRef:(CGPathRef)startPAniRef
-{
-    if (_startPAniRef) {
-        
-        CGPathRelease(_startPAniRef);
-    }
-    
-    _startPAniRef = startPAniRef;
-    CGPathRetain(_startPAniRef);
+    _startBarAniRef = startBarAniRef;
+    CGPathRetain(_startBarAniRef);
 }
 
 - (void)layoutSubviews
@@ -240,6 +267,9 @@
     [_startPointRefs removeAllObjects];
     [_startLineRefs removeAllObjects];
     
+    GGGrid grid = GGGridRectMake(_contentFrame, 2, 0);
+    _gridRenderer.grid = grid;
+    
     /** 柱 */
     CGFloat x = CGRectGetMinX(_contentFrame);
     CGFloat y = CGRectGetMinY(_contentFrame);
@@ -254,6 +284,10 @@
     barMax += barBase;
     GGLineChatScaler bar_fig = figScaler(barMax, barMin, chartFrame);
     GGLineChatScaler bar_axis = axiScaler(_barData.dataSet.count, chartFrame, 0.5);
+    
+    GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
+    _leftAxisRenderer.axis = leftAxis;
+    _leftAxisRenderer.aryString = [self splitWithMax:barMax min:barMin];
     
     CGMutablePathRef ref_p = CGPathCreateMutable();
     CGMutablePathRef ref_p_a = CGPathCreateMutable();
@@ -276,7 +310,7 @@
     _barLayer.lineWidth = 0;
     _barLayer.strokeColor = _barData.barColor.CGColor;
     
-    self.startPAniRef = ref_p_a;
+    self.startBarAniRef = ref_p_a;
     CGPathRelease(ref_p);
     CGPathRelease(ref_p_a);
     
@@ -288,6 +322,10 @@
     lineMin -= lineBase;
     GGLineChatScaler line_fig = figScaler(lineMax, lineMin, chartFrame);
     GGLineChatScaler line_axis = axiScaler(_lineData.dataSet.count, chartFrame, 0.5);
+    
+    GGAxis rightAxis = GGAxisLineMake(GGRightLineRect(_contentFrame), -2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
+    _rightAxisRenderer.axis = rightAxis;
+    _rightAxisRenderer.aryString = [self splitWithMax:lineMax min:lineMin];
     
     CGFloat baseY = bar_fig(barMin < 0 ? 0 : barMin);
     
@@ -359,24 +397,18 @@
 
 - (void)updateChart
 {
-    self.pAniRef = _barLayer.path;
-    
     [self drawChartWithLableAnimation:YES];
     
-    CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    pKeyAnimation.duration = 0.5;
-    pKeyAnimation.values = @[(__bridge id)self.pAniRef, (__bridge id)_barLayer.path];
-    [_barLayer addAnimation:pKeyAnimation forKey:@"p"];
-    
-    CAKeyframeAnimation * nKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-    nKeyAnimation.duration = 0.5;
+    [_barLayer startShapeAnimation:0.5];
+    [_lineLayer startShapeAnimation:0.5];
+    [_pointLayer startShapeAnimation:0.5];
 }
 
 - (void)addAnimation:(NSTimeInterval)duration
 {
     CAKeyframeAnimation * pKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
     pKeyAnimation.duration = duration;
-    pKeyAnimation.values = @[(__bridge id)self.startPAniRef, (__bridge id)_barLayer.path];
+    pKeyAnimation.values = @[(__bridge id)self.startBarAniRef, (__bridge id)_barLayer.path];
     [_barLayer addAnimation:pKeyAnimation forKey:@"p"];
     
     CAKeyframeAnimation * pointKeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];

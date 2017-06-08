@@ -14,8 +14,8 @@
 {
     CGFloat x = _grid.rect.origin.x;
     CGFloat y = _grid.rect.origin.y;
-    CGFloat h = _grid.rect.size.width / (_grid.horizontal - 1);
-    CGFloat v = _grid.rect.size.height / (_grid.vertical - 1);
+    CGFloat h = _grid.rect.size.height / (_grid.horizontal);
+    CGFloat v = _grid.rect.size.width / (_grid.vertical);
     
     NSInteger xcount = _grid.horizontal;
     NSInteger ycount = _grid.vertical;
@@ -29,17 +29,7 @@
         CGContextSetLineDash(ctx, 0, dashPattern, 2);
     }
     
-    if (_x_count) {
-        
-        xcount = _x_count.integerValue > _grid.horizontal ? xcount : _x_count.integerValue;
-    }
-    
-    if (_y_count ) {
-        
-        ycount = _y_count.integerValue > _grid.vertical ? ycount : _y_count.integerValue;
-    }
-    
-    for (int i = 0; i < ycount; i++) {
+    for (int i = 0; i < xcount; i++) {
     
         CGPoint start = CGPointMake(x, y + h * i);
         CGPoint end = CGPointMake(CGRectGetMaxX(_grid.rect), y + h * i);
@@ -48,7 +38,7 @@
         CGContextAddLineToPoint(ctx, end.x, end.y);
     }
     
-    for (int i = 0; i < xcount; i++) {
+    for (int i = 0; i < ycount; i++) {
         
         CGPoint start = CGPointMake(x + v * i, y);
         CGPoint end = CGPointMake(x + v * i, CGRectGetMaxY(_grid.rect));
@@ -56,8 +46,6 @@
         CGContextMoveToPoint(ctx, start.x, start.y);
         CGContextAddLineToPoint(ctx, end.x, end.y);
     }
-    
-    
     
     CGContextStrokePath(ctx);
 }

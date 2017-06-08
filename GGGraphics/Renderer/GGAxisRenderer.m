@@ -59,8 +59,8 @@
     
     if (_showLine) {
         
-        CGContextMoveToPoint(ctx, _axis.line.start.x + _lineOffSet.width, _axis.line.start.y + _lineOffSet.height);
-        CGContextAddLineToPoint(ctx, _axis.line.end.x + _lineOffSet.width, _axis.line.end.y + _lineOffSet.height);
+        CGContextMoveToPoint(ctx, _axis.line.start.x, _axis.line.start.y);
+        CGContextAddLineToPoint(ctx, _axis.line.end.x, _axis.line.end.y);
     }
     
     CGFloat len = GGLengthLine(_axis.line);
@@ -103,7 +103,21 @@
             NSString * string = _aryString[i];
             CGPoint point = to[i];
             CGSize size = [string sizeWithAttributes:_paramStr];
-            point = CGPointMake(point.x - size.width / 2 + _axis.sep / 2, point.y);
+            
+            CGFloat l_cir = GGXCircular(_axis.line);
+            CGFloat cir = l_cir > M_PI_2 ? l_cir - M_PI_2 : l_cir;
+            
+            point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
+
+            if (cir > M_PI_4 / 2) {
+                
+                point = _axis.over > 0 ? CGPointMake(point.x - size.width, point.y - size.height / 2) : CGPointMake(point.x, point.y - size.height / 2);
+            }
+            else {
+            
+                point = CGPointMake(point.x - size.width / 2 + _axis.sep / 2, point.y);
+            }
+            
             [string drawAtPoint:point withAttributes:_paramStr];
         }
         

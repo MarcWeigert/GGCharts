@@ -10,4 +10,6 @@
 
 @interface GGShapeCanvas : CAShapeLayer
 
+- (void)startShapeAnimation:(NSTimeInterval)duration;
+
 @end

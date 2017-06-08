@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) BOOL showLine;
 @property (nonatomic, assign) BOOL showSep;
-@property (nonatomic, assign) CGSize lineOffSet;
+@property (nonatomic, assign) CGSize textOffSet;
 
 @property (nonatomic, copy) NSArray <NSString *>* aryString;
 @property (nonatomic, strong) UIColor *strColor;

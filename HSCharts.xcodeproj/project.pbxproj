@@ -369,9 +369,9 @@
 		2B7777AE1EE828EF00C99F55 /* Shape */ = {
 			isa = PBXGroup;
 			children = (
+				2B7777B11EE828EF00C99F55 /* GGChartGeometry.h */,
 				2B7777AF1EE828EF00C99F55 /* CGPathCategory.h */,
 				2B7777B01EE828EF00C99F55 /* CGPathCategory.m */,
-				2B7777B11EE828EF00C99F55 /* GGChartGeometry.h */,
 			);
 			path = Shape;
 			sourceTree = "<group>";
@@ -379,13 +379,13 @@
 		2B7777B31EE829A500C99F55 /* GUtils */ = {
 			isa = PBXGroup;
 			children = (
+				2B7777BA1EE829A500C99F55 /* ToolDefine.h */,
 				2B7777B41EE829A500C99F55 /* GGDataScaler.h */,
 				2B7777B51EE829A500C99F55 /* GGDataScaler.m */,
 				2B7777B61EE829A500C99F55 /* NSArray+GGArray.h */,
 				2B7777B71EE829A500C99F55 /* NSArray+GGArray.m */,
 				2B7777B81EE829A500C99F55 /* NSValue+GGValue.h */,
 				2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */,
-				2B7777BA1EE829A500C99F55 /* ToolDefine.h */,
 			);
 			path = GUtils;
 			sourceTree = "<group>";

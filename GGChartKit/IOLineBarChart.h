@@ -30,7 +30,10 @@
 @property (nonatomic, strong) LineChartData * lineData;
 @property (nonatomic, assign) CGFloat lineWidth;
 
-@property (nonatomic, assign) CGRect contentFrame;
+@property (nonatomic, assign) NSInteger yAxisSplit;
+@property (nonatomic, copy) NSString * yAxisformat;
+
+@property (nonatomic, assign) UIEdgeInsets contentInset;
 
 - (void)updateChart;
 - (void)strockChart;

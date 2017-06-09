@@ -39,6 +39,8 @@
 		2B6CCF231DB0D8E300BFBF95 /* GraphSpider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1C1DB0D8E300BFBF95 /* GraphSpider.m */; };
 		2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */; };
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
+		2B6D8E881EEA3DC000DFFF1C /* PieChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D8E871EEA3DC000DFFF1C /* PieChartData.m */; };
+		2B6D8E8B1EEA42CF00DFFF1C /* AnnularChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */; };
 		2B6F1A5C1EE6432C0075EB59 /* IOBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */; };
 		2B6F1A5F1EE6435E0075EB59 /* BarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */; };
 		2B6FB64C1EE92D3000D95EA6 /* BaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FB64B1EE92D3000D95EA6 /* BaseChart.m */; };
@@ -124,6 +126,10 @@
 		2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineShape.m; sourceTree = "<group>"; };
 		2B6CCF1F1DB0D8E300BFBF95 /* RoundShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundShape.h; sourceTree = "<group>"; };
 		2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundShape.m; sourceTree = "<group>"; };
+		2B6D8E861EEA3DC000DFFF1C /* PieChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartData.h; sourceTree = "<group>"; };
+		2B6D8E871EEA3DC000DFFF1C /* PieChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartData.m; sourceTree = "<group>"; };
+		2B6D8E891EEA42CF00DFFF1C /* AnnularChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnularChart.h; sourceTree = "<group>"; };
+		2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnularChart.m; sourceTree = "<group>"; };
 		2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChart.h; sourceTree = "<group>"; };
 		2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChart.m; sourceTree = "<group>"; };
 		2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartData.h; sourceTree = "<group>"; };
@@ -351,12 +357,16 @@
 				2B6FB64B1EE92D3000D95EA6 /* BaseChart.m */,
 				2B6FB6501EE971A100D95EA6 /* BaseChartData.h */,
 				2B6FB6511EE971A100D95EA6 /* BaseChartData.m */,
+				2B6D8E861EEA3DC000DFFF1C /* PieChartData.h */,
+				2B6D8E871EEA3DC000DFFF1C /* PieChartData.m */,
 				2B3CB0C51EE6EAF700472774 /* UICountingLabel.h */,
 				2B3CB0C61EE6EAF700472774 /* UICountingLabel.m */,
 				2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */,
 				2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */,
 				2B7777A11EE7CA4800C99F55 /* LineChartData.h */,
 				2B7777A21EE7CA4800C99F55 /* LineChartData.m */,
+				2B6D8E891EEA42CF00DFFF1C /* AnnularChart.h */,
+				2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */,
 				2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */,
 				2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */,
 				2B77779E1EE7C86D00C99F55 /* IOLineBarChart.h */,
@@ -486,6 +496,7 @@
 				2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */,
 				2B7777A01EE7C86D00C99F55 /* IOLineBarChart.m in Sources */,
 				2B5E562A1E1C756D00B484E0 /* GGTextPaint.m in Sources */,
+				2B6D8E881EEA3DC000DFFF1C /* PieChartData.m in Sources */,
 				2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,
 				2B6CCF211DB0D8E300BFBF95 /* BarShape.m in Sources */,
@@ -501,6 +512,7 @@
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
+				2B6D8E8B1EEA42CF00DFFF1C /* AnnularChart.m in Sources */,
 				2B5E56291E1C756D00B484E0 /* GGLinePaint.m in Sources */,
 				2B7777BB1EE829A500C99F55 /* GGDataScaler.m in Sources */,
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,

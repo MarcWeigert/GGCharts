@@ -38,6 +38,12 @@
 #import "BarChartData.h"
 #import "LineChartData.h"
 
+#import "CGPathCategory.h"
+
+#import "DrawMath.h"
+
+#import "PieChartData.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic) IOBarChart * barChart;
@@ -57,83 +63,73 @@
     UINavigationController *navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     //[self.window setRootViewController:navi];
     
-    LineBarView * linebar = [[LineBarView alloc] initWithFrame:CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 200)];
-    linebar.lineAry = @[@41.03, @34.58, @42.51, @36.77, @37.38, @38.99, @38.03, @41.80];
-    linebar.barAry = @[@41.83, @35.80, @33.29, @34.15, @34.05, @34.03, @35.01, @37.12];
-    linebar.barColor = __RGB_CYAN;
-    linebar.lineColor = __RGB_BLUE;
-    linebar.titleAry = @[@"2015", @"2016", @"2017", @"2018", @"2019", @"2020", @"2021", @"2022"];
-    [linebar stockChart];
+    PieChartData * pie_d1 = [[PieChartData alloc] init];
+    pie_d1.pieName = @"直接访问";
+    pie_d1.pieData = @335;
+    pie_d1.color = __RGB_RED;
     
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
+    PieChartData * pie_d2 = [[PieChartData alloc] init];
+    pie_d2.pieName = @"直接访问";
+    pie_d2.pieData = @310;
+    pie_d2.color = __RGB_BLUE;
     
-    IOBarChart * barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
-    barChart.topTitle = @"最近五日主力增减仓";
-    barChart.bottomTitle = @"净利润 (万元) ";
-    barChart.positiveTitle = @"资金流入";
-    barChart.negativeTitle = @"资金流出";
-    barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
-    barChart.barData = data;
-    barChart.barWidth = 25;
-    barChart.axisFont = [UIFont systemFontOfSize:9];
+    PieChartData * pie_d3 = [[PieChartData alloc] init];
+    pie_d3.pieName = @"直接访问";
+    pie_d3.pieData = @234;
+    pie_d3.color = __RGB_GREEN;
     
-    _barChart = barChart;
+    PieChartData * pie_d4 = [[PieChartData alloc] init];
+    pie_d4.pieName = @"直接访问";
+    pie_d4.pieData = @135;
+    pie_d4.color = __RGB_ORIGE;
     
-    //barChart.backgroundColor = __RGB_GRAY;
+    PieChartData * pie_d5 = [[PieChartData alloc] init];
+    pie_d5.pieName = @"直接访问";
+    pie_d5.pieData = @1548;
+    pie_d5.color = __RGB_CYAN;
     
-    [barChart strockChart];
-    [barChart addAnimation:3];
+    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4, pie_d5];
     
-    // [self.window addSubview:barChart];
-    
-    UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = CGRectMake(10, 400, 100, 100);
-    btn1.backgroundColor = [UIColor redColor];
-    [btn1 addTarget:self action:@selector(first) forControlEvents:UIControlEventTouchUpInside];
-    [self.window addSubview:btn1];
-    
-    UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn2.frame = CGRectMake(200, 400, 100, 100);
-    btn2.backgroundColor = [UIColor redColor];
-    [btn2 addTarget:self action:@selector(second) forControlEvents:UIControlEventTouchUpInside];
-    [self.window addSubview:btn2];
-    
-    // 柱状数据
-    BarChartData * barData = [[BarChartData alloc] init];
-    barData.barColor = RGB(241, 213, 136);
-    barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
-    
-    BarChartData * lineData = [[BarChartData alloc] init];
-    lineData.barColor = RGB(113, 177, 237);
-    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
-    
-    // 线数据
-    LineChartData * lineData1 = [[LineChartData alloc] init];
-    lineData1.lineColor = __RGB_BLUE;
-    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    
-    LineChartData * lineData2 = [[LineChartData alloc] init];
-    lineData2.lineColor = __RGB_RED;
-    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
-    
-    // line // bar
-    IOLineBarChart * lineBarChart = [[IOLineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
-    lineBarChart.topTitle = @"最近五日主力增减仓";
-    lineBarChart.bottomTitle = @"净利润 (万元) ";
-    lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
-    lineBarChart.barDataAry = @[barData, lineData];
-    lineBarChart.lineDataAry = @[lineData1, lineData2];
-    lineBarChart.barWidth = 10;
-    lineBarChart.lineWidth = 1;
-    lineBarChart.axisFont = [UIFont systemFontOfSize:9];
-    
-    [lineBarChart strockChart];
-    [lineBarChart addAnimation:3];
-    
-    _lineBarChart = lineBarChart;
-    
-    [self.window addSubview:lineBarChart];
+    [PieChartData pieAry:pieData enumerateObjectsUsingBlock:^(CGFloat arc, CGFloat transArc, PieChartData *data) {
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        CGPoint center = CGPointMake(100, 100);
+//        GGSector sector = GGSectorCenterMake(center, 0, arc, 100);
+//        GGPathAddSector(ref, sector);
+        
+        GGAnnular annular = GGAnnularCenterMake(center, 0, arc, 70, 20);
+        GGPathAddAnnular(ref, annular);
+        
+        GGShapeCanvas * shape = [[GGShapeCanvas alloc] init];
+        shape.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, 100, 200, 200);
+        shape.fillColor = [UIColor clearColor].CGColor;
+        shape.strokeColor = data.color.CGColor;
+        shape.anchorPoint = CGPointMake(0.5, 0.5);
+        shape.path = ref;
+        CGPathRelease(ref);
+        
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        shape.affineTransform = CGAffineTransformRotate(transform, transArc);
+        
+        CAKeyframeAnimation * keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        keyAnimation.duration = 2;
+        // keyAnimation.values = GGPathAnimationArrayFor(sector, 3);
+        [shape addAnimation:keyAnimation forKey:@"1"];
+        
+        CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        base.duration = 2;
+        base.fromValue = @0;
+        base.toValue = @1;
+        [shape addAnimation:base forKey:@"2"];
+        
+        CABasicAnimation * rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        rotation.duration = 2;
+        rotation.fromValue = @0;
+        rotation.toValue = @(transArc);
+        [shape addAnimation:rotation forKey:@"3"];
+        
+        [self.window.layer addSublayer:shape];
+    }];
     
     return YES;
 }
@@ -199,6 +195,84 @@
     
     [_lineBarChart updateChart];
 }
+
+//LineBarView * linebar = [[LineBarView alloc] initWithFrame:CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 200)];
+//linebar.lineAry = @[@41.03, @34.58, @42.51, @36.77, @37.38, @38.99, @38.03, @41.80];
+//linebar.barAry = @[@41.83, @35.80, @33.29, @34.15, @34.05, @34.03, @35.01, @37.12];
+//linebar.barColor = __RGB_CYAN;
+//linebar.lineColor = __RGB_BLUE;
+//linebar.titleAry = @[@"2015", @"2016", @"2017", @"2018", @"2019", @"2020", @"2021", @"2022"];
+//[linebar stockChart];
+//
+//BarChartData * data = [[BarChartData alloc] init];
+//data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
+//
+//IOBarChart * barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+//barChart.topTitle = @"最近五日主力增减仓";
+//barChart.bottomTitle = @"净利润 (万元) ";
+//barChart.positiveTitle = @"资金流入";
+//barChart.negativeTitle = @"资金流出";
+//barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
+//barChart.barData = data;
+//barChart.barWidth = 25;
+//barChart.axisFont = [UIFont systemFontOfSize:9];
+//
+//_barChart = barChart;
+//
+////barChart.backgroundColor = __RGB_GRAY;
+//
+//[barChart strockChart];
+//[barChart addAnimation:3];
+//
+//// [self.window addSubview:barChart];
+//
+//UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//btn1.frame = CGRectMake(10, 400, 100, 100);
+//btn1.backgroundColor = [UIColor redColor];
+//[btn1 addTarget:self action:@selector(first) forControlEvents:UIControlEventTouchUpInside];
+//[self.window addSubview:btn1];
+//
+//UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//btn2.frame = CGRectMake(200, 400, 100, 100);
+//btn2.backgroundColor = [UIColor redColor];
+//[btn2 addTarget:self action:@selector(second) forControlEvents:UIControlEventTouchUpInside];
+//[self.window addSubview:btn2];
+//
+//// 柱状数据
+//BarChartData * barData = [[BarChartData alloc] init];
+//barData.barColor = RGB(241, 213, 136);
+//barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
+//
+//BarChartData * lineData = [[BarChartData alloc] init];
+//lineData.barColor = RGB(113, 177, 237);
+//lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
+//
+//// 线数据
+//LineChartData * lineData1 = [[LineChartData alloc] init];
+//lineData1.lineColor = __RGB_BLUE;
+//lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+//
+//LineChartData * lineData2 = [[LineChartData alloc] init];
+//lineData2.lineColor = __RGB_RED;
+//lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
+//
+//// line // bar
+//IOLineBarChart * lineBarChart = [[IOLineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+//lineBarChart.topTitle = @"最近五日主力增减仓";
+//lineBarChart.bottomTitle = @"净利润 (万元) ";
+//lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
+//lineBarChart.barDataAry = @[barData, lineData];
+//lineBarChart.lineDataAry = @[lineData1, lineData2];
+//lineBarChart.barWidth = 10;
+//lineBarChart.lineWidth = 1;
+//lineBarChart.axisFont = [UIFont systemFontOfSize:9];
+//
+//[lineBarChart strockChart];
+//[lineBarChart addAnimation:3];
+//
+//_lineBarChart = lineBarChart;
+//
+//[self.window addSubview:lineBarChart];
 
 - (NSString *)LineDataTopPath
 {

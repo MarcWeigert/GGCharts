@@ -31,9 +31,6 @@
 
 @interface IOLineBarChart ()
 
-@property (nonatomic, strong) GGShapeCanvas * barLayer;
-@property (nonatomic, strong) GGShapeCanvas * lineLayer;
-@property (nonatomic, strong) GGShapeCanvas * pointLayer;
 @property (nonatomic, strong) GGCanvas * backLayer;
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;
@@ -59,18 +56,6 @@
         _backLayer = [[GGCanvas alloc] init];
         SET_FRAME(_backLayer, frame);
         [self.layer addSublayer:_backLayer];
-        
-        _barLayer = [[GGShapeCanvas alloc] init];
-        SET_FRAME(_barLayer, frame);
-        [self.layer addSublayer:_barLayer];
-        
-        _lineLayer = [[GGShapeCanvas alloc] init];
-        SET_FRAME(_lineLayer, frame);
-        [self.layer addSublayer:_lineLayer];
-        
-        _pointLayer = [[GGShapeCanvas alloc] init];
-        SET_FRAME(_pointLayer, frame);
-        [self.layer addSublayer:_pointLayer];
         
         [self defaultChartConfig];
         
@@ -158,10 +143,7 @@
 {
     [super setFrame:frame];
     
-    SET_FRAME(_barLayer, frame);
-    SET_FRAME(_lineLayer, frame);
     SET_FRAME(_backLayer, frame);
-    SET_FRAME(_pointLayer, frame);
 }
 
 - (void)setContentFrame:(CGRect)contentFrame
@@ -242,21 +224,10 @@
     _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
 }
 
-- (void)drawChartWithLableAnimation:(BOOL)isAnimation
+#pragma mark - 绘制
+
+- (void)strockBarChartWithFrame:(CGRect)chartFrame
 {
-    // 网格
-    GGGrid grid = GGGridRectMake(_contentFrame, 2, 0);
-    _gridRenderer.grid = grid;
-    
-    if (_barDataAry.count == 0) return;
-    
-    /** 柱 */
-    CGFloat x = CGRectGetMinX(_contentFrame);
-    CGFloat y = CGRectGetMinY(_contentFrame);
-    CGFloat w = CGRectGetWidth(_contentFrame);
-    CGFloat h = CGRectGetHeight(_contentFrame);
-    CGRect chartFrame = CGRectMake(x, y, w, h);
-    
     CGFloat barMax = 0;
     CGFloat barMin = 0;
     [BaseChartData getChartDataAry:_barDataAry max:&barMax min:&barMin];
@@ -267,7 +238,7 @@
     NSInteger splitBase = _barDataAry.count + 1;
     GGLineChatScaler bar_fig = figScaler(barMax, barMin, chartFrame);
     
-     GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
+    GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     _leftAxisRenderer.axis = leftAxis;
     _leftAxisRenderer.aryString = [self splitWithMax:barMax min:barMin];
     
@@ -306,10 +277,10 @@
         CGPathRelease(ref_p);
         CGPathRelease(ref_p_a);
     }
-    
-    if (_lineDataAry.count == 0) return;
-    
-    /** 线 */
+}
+
+- (void)strockLineChartWithFrame:(CGRect)chartFrame
+{
     CGFloat lineMax = 0;
     CGFloat lineMin = 0;
     [BaseChartData getChartDataAry:_lineDataAry max:&lineMax min:&lineMin];
@@ -325,7 +296,7 @@
     _rightAxisRenderer.axis = rightAxis;
     _rightAxisRenderer.aryString = [self splitWithMax:lineMax min:lineMin];
     
-    CGFloat baseY = bar_fig(barMin < 0 ? 0 : barMin);
+    CGFloat baseY = line_fig(lineMin < 0 ? 0 : lineMin);
     
     for (NSInteger l = 0; l < _lineDataAry.count; l++) {
         
@@ -373,8 +344,8 @@
             CGPathRelease(lineRef);
             
             CGMutablePathRef pointRef = CGPathCreateMutable();
-            CGPathAddRangeCircles(pointRef, base_ref_p, 3, 0, (int)i);
-            CGPathAddRangeCircles(pointRef, base_ref_p, 0, (int)i, (int)lineData.dataSet.count);
+            GGPathAddRangeCircles(pointRef, base_ref_p, 3, 0, (int)i);
+            GGPathAddRangeCircles(pointRef, base_ref_p, 0, (int)i, (int)lineData.dataSet.count);
             [aryPointAnimationRefs addObject:(__bridge id)pointRef];
             CGPathRelease(pointRef);
         }
@@ -408,19 +379,33 @@
     }
 }
 
+- (void)drawChartWithLableAnimation:(BOOL)isAnimation
+{
+    GGGrid grid = GGGridRectMake(_contentFrame, 2, 0);
+    _gridRenderer.grid = grid;
+    
+    CGFloat x = CGRectGetMinX(_contentFrame);
+    CGFloat y = CGRectGetMinY(_contentFrame);
+    CGFloat w = CGRectGetWidth(_contentFrame);
+    CGFloat h = CGRectGetHeight(_contentFrame);
+    CGRect chartFrame = CGRectMake(x, y, w, h);
+    
+    if (_barDataAry.count != 0) [self strockBarChartWithFrame:chartFrame];
+    
+    if (_lineDataAry.count != 0) [self strockLineChartWithFrame:chartFrame];
+    
+    [_backLayer setNeedsDisplay];
+}
+
 - (void)strockChart
 {
     [self drawChartWithLableAnimation:NO];
-    
-    [_backLayer setNeedsDisplay];
 }
 
 - (void)updateChart
 {
     [self drawChartWithLableAnimation:YES];
-    
-    [_backLayer setNeedsDisplay];
-    
+
     for (NSInteger i = 0; i < _barDataAry.count; i++) {
         
         [ChartShape(i) startAnimation:@"oldPush" duration:0.5];

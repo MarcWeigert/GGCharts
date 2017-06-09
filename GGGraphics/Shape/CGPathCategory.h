@@ -1,7 +1,6 @@
 //
 //  CAAnimation+CGPathCategory.h
 //  111
-///Users/huangshun/HSCharts/GGGraphics
 //  Created by _ | Durex on 2017/6/3.
 //  Copyright © 2017年 wenhua. All rights reserved.
 //
@@ -19,6 +18,12 @@ CG_EXTERN void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect);
 
 CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle);
 
-CG_EXTERN void CGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count);
+CG_EXTERN void GGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count);
 
-CG_EXTERN void CGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, int from, int to);
+CG_EXTERN void GGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, int from, int to);
+
+CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular);
+
+CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
+
+CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, CGFloat duration);

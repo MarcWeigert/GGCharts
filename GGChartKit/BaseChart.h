@@ -19,4 +19,6 @@
 
 - (GGShapeCanvas *)getShapeWithTag:(NSInteger)tag;
 
+- (GGShapeCanvas *)getPieWithTag:(NSInteger)tag;
+
 @end

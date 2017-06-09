@@ -21,13 +21,9 @@
 
 @interface BaseChart ()
 
-@property (nonatomic) NSMutableSet * visibleCanvas;
-@property (nonatomic) NSMutableSet * availableCanvas;
+@property (nonatomic) NSMutableDictionary * lineLayerDictionary;
 
-@property (nonatomic) NSMutableSet * visibleShapeCanvas;
-@property (nonatomic) NSMutableSet * availableShapeCanvas;
-
-@property (nonatomic) NSMutableDictionary * layerDictionary;
+@property (nonatomic) NSMutableDictionary * pieLayerDictionary;
 
 @end
 
@@ -35,7 +31,7 @@
 
 - (GGCanvas *)getCanvasWithTag:(NSInteger)tag
 {
-    GGCanvas * layer = [self.layerDictionary objectForKey:Layer_Key];
+    GGCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
     
     if (!layer) {
         
@@ -49,14 +45,33 @@
 
 - (GGShapeCanvas *)getShapeWithTag:(NSInteger)tag
 {
-    GGShapeCanvas * layer = [self.layerDictionary objectForKey:Layer_Key];
+    GGShapeCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
     
     if (!layer) {
         
         layer = [[GGShapeCanvas alloc] init];
         layer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         [self.layer addSublayer:layer];
-        [self.layerDictionary setObject:layer forKey:Layer_Key];
+        [self.lineLayerDictionary setObject:layer forKey:Layer_Key];
+    }
+    
+    return layer;
+}
+
+- (GGShapeCanvas *)getPieWithTag:(NSInteger)tag
+{
+    GGShapeCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
+    
+    if (!layer) {
+        
+        CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+        CGFloat x = (self.frame.size.width - width) / 2;
+        CGFloat y = (self.frame.size.height - width) / 2;
+        
+        layer = [[GGShapeCanvas alloc] init];
+        layer.frame = CGRectMake(x, y, width, width);
+        [self.layer addSublayer:layer];
+        [self.pieLayerDictionary setObject:layer forKey:Layer_Key];
     }
     
     return layer;
@@ -66,15 +81,25 @@
 {
     [super setFrame:frame];
     
-    [self.layerDictionary enumerateKeysAndObjectsUsingBlock:^(id key, CALayer * obj, BOOL * stop) {
+    [self.lineLayerDictionary enumerateKeysAndObjectsUsingBlock:^(id key, CALayer * obj, BOOL * stop) {
         
-         obj.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        obj.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    }];
+    
+    [self.pieLayerDictionary enumerateKeysAndObjectsUsingBlock:^(id key, CALayer * obj, BOOL * stop) {
+        
+        CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+        CGFloat x = (self.frame.size.width - width) / 2;
+        CGFloat y = (self.frame.size.height - width) / 2;
+        
+        obj.frame = CGRectMake(x, y, width, width);
     }];
 }
 
-
 #pragma mark - Lazy
 
-GGLazyGetMethod(NSMutableDictionary, layerDictionary);
+GGLazyGetMethod(NSMutableDictionary, lineLayerDictionary);
+
+GGLazyGetMethod(NSMutableDictionary, pieLayerDictionary);
 
 @end

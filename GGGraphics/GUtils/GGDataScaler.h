@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef CGFloat(^GGLineChatScaler)(CGFloat record);
+typedef double(^GGLineChatScaler)(double record);
 
 GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGRect rect);
 

@@ -42,6 +42,8 @@
 
 @property (nonatomic) IOBarChart * barChart;
 
+@property (nonatomic) IOLineBarChart * lineBarChart;
+
 @end
 
 @implementation AppDelegate
@@ -83,7 +85,7 @@
     [barChart strockChart];
     [barChart addAnimation:3];
     
-    [self.window addSubview:barChart];
+    // [self.window addSubview:barChart];
     
     UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(10, 400, 100, 100);
@@ -97,28 +99,41 @@
     [btn2 addTarget:self action:@selector(second) forControlEvents:UIControlEventTouchUpInside];
     [self.window addSubview:btn2];
     
+    // 柱状数据
     BarChartData * barData = [[BarChartData alloc] init];
     barData.barColor = RGB(241, 213, 136);
     barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
     
-    LineChartData * lineData = [[LineChartData alloc] init];
-    lineData.lineColor = RGB(113, 177, 237);
-    lineData.dataSet = @[@25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
+    BarChartData * lineData = [[BarChartData alloc] init];
+    lineData.barColor = RGB(113, 177, 237);
+    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
     
+    // 线数据
+    LineChartData * lineData1 = [[LineChartData alloc] init];
+    lineData1.lineColor = __RGB_BLUE;
+    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+    
+    LineChartData * lineData2 = [[LineChartData alloc] init];
+    lineData2.lineColor = __RGB_RED;
+    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
+    
+    // line // bar
     IOLineBarChart * lineBarChart = [[IOLineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
     lineBarChart.topTitle = @"最近五日主力增减仓";
     lineBarChart.bottomTitle = @"净利润 (万元) ";
     lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
-    lineBarChart.barData = barData;
-    lineBarChart.lineData = lineData;
-    lineBarChart.barWidth = 25;
+    lineBarChart.barDataAry = @[barData, lineData];
+    lineBarChart.lineDataAry = @[lineData1, lineData2];
+    lineBarChart.barWidth = 10;
     lineBarChart.lineWidth = 1;
     lineBarChart.axisFont = [UIFont systemFontOfSize:9];
     
     [lineBarChart strockChart];
-    [lineBarChart addAnimation:30];
+    [lineBarChart addAnimation:3];
     
-    // [self.window addSubview:lineBarChart];
+    _lineBarChart = lineBarChart;
+    
+    [self.window addSubview:lineBarChart];
     
     return YES;
 }
@@ -129,6 +144,29 @@
     data.dataSet = @[@2225.6, @-2563.1, @531.4, @-839.4, @-7.4, @-1000, @897.0, @-1500];
     _barChart.barData = data;
     [_barChart updateChart];
+    
+    // 柱状数据
+    BarChartData * barData = [[BarChartData alloc] init];
+    barData.barColor = RGB(241, 213, 136);
+    barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
+    
+    BarChartData * lineData = [[BarChartData alloc] init];
+    lineData.barColor = RGB(113, 177, 237);
+    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
+    
+    // 线数据
+    LineChartData * lineData1 = [[LineChartData alloc] init];
+    lineData1.lineColor = __RGB_BLUE;
+    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+    
+    LineChartData * lineData2 = [[LineChartData alloc] init];
+    lineData2.lineColor = __RGB_RED;
+    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
+    
+    _lineBarChart.barDataAry = @[lineData, barData];
+    _lineBarChart.lineDataAry = @[lineData2, lineData1];
+    
+    [_lineBarChart updateChart];
 }
 
 - (void)second
@@ -137,6 +175,29 @@
     data.dataSet = @[@-2225.6, @2563.1, @531.4, @-839.4, @7.4, @-1000, @-897.0, @-1500];
     _barChart.barData = data;
     [_barChart updateChart];
+    
+    // 柱状数据
+    BarChartData * barData = [[BarChartData alloc] init];
+    barData.barColor = RGB(241, 213, 136);
+    barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
+    
+    BarChartData * lineData = [[BarChartData alloc] init];
+    lineData.barColor = RGB(113, 177, 237);
+    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
+    
+    // 线数据
+    LineChartData * lineData1 = [[LineChartData alloc] init];
+    lineData1.lineColor = __RGB_BLUE;
+    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+    
+    LineChartData * lineData2 = [[LineChartData alloc] init];
+    lineData2.lineColor = __RGB_RED;
+    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
+    
+    _lineBarChart.barDataAry = @[barData, lineData];
+    _lineBarChart.lineDataAry = @[lineData1, lineData2];
+    
+    [_lineBarChart updateChart];
 }
 
 - (NSString *)LineDataTopPath

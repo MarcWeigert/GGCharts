@@ -15,7 +15,7 @@ GGLineChatScaler figScaler(CGFloat max, CGFloat min, CGRect rect)
     
     CGFloat zero = min > 0 ? dis + rect.origin.y : dis - pix * fabs(min) + rect.origin.y;
     
-    return ^(CGFloat val) {
+    return ^(double val) {
         
         if (val < 0) {
 
@@ -37,7 +37,7 @@ GGLineChatScaler axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     CGFloat interval = CGRectGetWidth(rect) / sep;
     
-    return ^(CGFloat index) {
+    return ^(double index) {
         
         return base * interval + index * interval + rect.origin.x;
     };

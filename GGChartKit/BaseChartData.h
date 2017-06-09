@@ -13,4 +13,10 @@
 
 @property (nonatomic, strong) NSArray <NSNumber *>* dataSet;
 
+- (void)getMax:(CGFloat *)max min:(CGFloat *)min;
+
++ (void)getChartDataAry:(NSArray *)dataAry max:(CGFloat *)max min:(CGFloat *)min;
+
++ (NSInteger)getMaxColum:(NSArray <BaseChartData *> *)array;
+
 @end

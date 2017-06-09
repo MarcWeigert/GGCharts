@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BarChartData.h"
+#import "BaseChart.h"
 #import "LineChartData.h"
 
-@interface IOLineBarChart : UIView
+@interface IOLineBarChart : BaseChart
 
 @property (nonatomic, copy) NSString * topTitle;
 @property (nonatomic, strong) UIFont * topFont;
@@ -24,16 +25,14 @@
 @property (nonatomic, strong) UIFont * axisFont;
 @property (nonatomic, strong) UIColor * axisColor;
 
-@property (nonatomic, strong) BarChartData * barData;
-@property (nonatomic, assign) CGFloat barWidth;
-
-@property (nonatomic, strong) LineChartData * lineData;
-@property (nonatomic, assign) CGFloat lineWidth;
-
 @property (nonatomic, assign) NSInteger yAxisSplit;
 @property (nonatomic, copy) NSString * yAxisformat;
 
-@property (nonatomic, assign) UIEdgeInsets contentInset;
+@property (nonatomic, strong) NSArray <BarChartData *> * barDataAry;
+@property (nonatomic, assign) CGFloat barWidth;
+
+@property (nonatomic, strong) NSArray <LineChartData *> * lineDataAry;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 - (void)updateChart;
 - (void)strockChart;

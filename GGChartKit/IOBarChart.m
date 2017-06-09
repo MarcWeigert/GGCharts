@@ -245,7 +245,8 @@
         CGFloat y2 = fig(.0f);
         CGFloat y1 = fig(data);
         
-        UILabel * lb = [self getLable:i];
+        UICountingLabel * lb = [self getLable:i];
+        lb.text = [NSString stringWithFormat:lb.format, _barData.dataSet[i].floatValue];
         lb.font = _axisFont;
         
         CGRect frame;
@@ -273,6 +274,8 @@
         if (isAnimation) {
             
             [UIView animateWithDuration:0.5 animations:^{
+                
+                [UIView setAnimationCurve:UIViewAnimationCurveLinear];
                 
                 lb.frame = frame;
             }];

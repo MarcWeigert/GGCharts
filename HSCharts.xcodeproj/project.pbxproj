@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2B0C0AE01D220BEE004ABEC0 /* CumSumLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C0ADF1D220BEE004ABEC0 /* CumSumLineView.m */; };
 		2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132D1E1A891500F4DA3F /* GGLayer.m */; };
+		2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */; };
+		2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */; };
 		2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */; };
 		2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */; };
 		2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A581EE44F19003D17C4 /* GGGridRenderer.m */; };
@@ -65,6 +67,10 @@
 		2B0C13291E1A891500F4DA3F /* GGDrawerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDrawerProtocol.h; sourceTree = "<group>"; };
 		2B0C132C1E1A891500F4DA3F /* GGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLayer.h; sourceTree = "<group>"; };
 		2B0C132D1E1A891500F4DA3F /* GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLayer.m; sourceTree = "<group>"; };
+		2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChartViewController.h; sourceTree = "<group>"; };
+		2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChartViewController.m; sourceTree = "<group>"; };
+		2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChartViewController.h; sourceTree = "<group>"; };
+		2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChartViewController.m; sourceTree = "<group>"; };
 		2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAxisRenderer.h; sourceTree = "<group>"; };
 		2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAxisRenderer.m; sourceTree = "<group>"; };
 		2B330A541EE44F19003D17C4 /* GGChartDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartDefine.h; sourceTree = "<group>"; };
@@ -189,6 +195,17 @@
 			path = GGChart;
 			sourceTree = "<group>";
 		};
+		2B20CC011EEADC1400D4F7F2 /* GGChartDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
+				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
+				2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */,
+				2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */,
+			);
+			path = GGChartDemo;
+			sourceTree = "<group>";
+		};
 		2B330A451EE44F19003D17C4 /* GGGraphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +240,7 @@
 		2B4D8A031D1BF2EB002CED37 = {
 			isa = PBXGroup;
 			children = (
+				2B20CC011EEADC1400D4F7F2 /* GGChartDemo */,
 				2B6F1A591EE641D40075EB59 /* GGChartKit */,
 				2B330A451EE44F19003D17C4 /* GGGraphics */,
 				2B4D8A3A1D1BF57F002CED37 /* HSChart */,
@@ -511,6 +529,7 @@
 				2B6CCF091DB0ACE200BFBF95 /* LineBrush.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
+				2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
 				2B6D8E8B1EEA42CF00DFFF1C /* AnnularChart.m in Sources */,
 				2B5E56291E1C756D00B484E0 /* GGLinePaint.m in Sources */,
@@ -518,6 +537,7 @@
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,
 				2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */,
 				2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */,
+				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
 				2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */,

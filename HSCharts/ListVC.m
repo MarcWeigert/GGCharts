@@ -14,6 +14,9 @@
 #import "CrossLineView.h"
 #import "HollowFanView.h"
 #import "PieView.h"
+#import "IOBarChartViewController.h"
+#import "LineBarChartViewController.h"
+#import "NTPieViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -34,7 +37,10 @@ _Pragma("clang diagnostic pop") \
              @"多数据叠加柱状图" : @"cumSumBarView",
              @"多数据排列柱状图" : @"rankBarView",
              @"大数据折线图" : @"crossLineView",
-             @"堆叠区域图" : @"cumSumLineView",};
+             @"堆叠区域图" : @"cumSumLineView",
+             @"IOBarChartView" : @"",
+             @"LineBarChartView" : @"",
+             @"NTPieView" : @""};
 }
 
 - (UIView *)pieView
@@ -170,12 +176,15 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)sectionAry
 {
-    return @[@"饼图", @"柱状图", @"折线图"];
+    return @[@"New Chart", @"饼图", @"柱状图", @"折线图"];
 }
 
 - (NSArray *)rowAry
 {
-    return @[@[@"空心饼图", @"阴影饼图"],  @[@"多数据叠加柱状图", @"多数据排列柱状图"], @[@"大数据折线图", @"堆叠区域图"]];
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView"],
+             @[@"空心饼图", @"阴影饼图"],
+             @[@"多数据叠加柱状图", @"多数据排列柱状图"],
+             @[@"大数据折线图", @"堆叠区域图"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -220,17 +229,32 @@ _Pragma("clang diagnostic pop") \
     NSString *selectorStr = [[self pushDictionary] objectForKey:selectStr];
     SEL selector = NSSelectorFromString(selectorStr);
     
-    UIView *chartView;
+    if ([selectStr isEqualToString:@"IOBarChartView"]) {
+        
+        [self.navigationController pushViewController:[IOBarChartViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"LineBarChartView"]) {
     
-    SuppressPerformSelectorLeakWarning (
+        [self.navigationController pushViewController:[LineBarChartViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"NTPieView"]) {
     
-        chartView = [self performSelector:selector];
-    );
+        [self.navigationController pushViewController:[NTPieViewController new] animated:NO];
+    }
+    else {
     
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.title = selectStr;
-    [vc.view addSubview:chartView];
-    [self.navigationController pushViewController:vc animated:NO];
+        UIView *chartView;
+        
+        SuppressPerformSelectorLeakWarning (
+                                            
+                                            chartView = [self performSelector:selector];
+                                            );
+        
+        UIViewController *vc = [[UIViewController alloc] init];
+        vc.title = selectStr;
+        [vc.view addSubview:chartView];
+        [self.navigationController pushViewController:vc animated:NO];
+    }
 }
 
 @end

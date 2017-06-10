@@ -296,7 +296,7 @@
     _rightAxisRenderer.axis = rightAxis;
     _rightAxisRenderer.aryString = [self splitWithMax:lineMax min:lineMin];
     
-    CGFloat baseY = line_fig(lineMin < 0 ? 0 : lineMin);
+    CGFloat baseY = line_fig(lineMin);
     
     for (NSInteger l = 0; l < _lineDataAry.count; l++) {
         
@@ -381,7 +381,7 @@
 
 - (void)drawChartWithLableAnimation:(BOOL)isAnimation
 {
-    GGGrid grid = GGGridRectMake(_contentFrame, 2, 0);
+    GGGrid grid = GGGridRectMake(_contentFrame, (int)_yAxisSplit, 0);
     _gridRenderer.grid = grid;
     
     CGFloat x = CGRectGetMinX(_contentFrame);

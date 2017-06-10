@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GGCanvas.h"
 #import "GGShapeCanvas.h"
+#import "BaseChartData.h"
 
 #define ChartShape(A)         [self getShapeWithTag:A]
 #define ChartBack(A)          [self getCanvasWithTag:A]
@@ -21,5 +22,7 @@
 - (GGShapeCanvas *)getShapeWithTag:(NSInteger)tag;
 
 - (GGShapeCanvas *)getPieWithTag:(NSInteger)tag;
+
+- (GGShapeCanvas *(^)(BaseChartData *data))comLayer;
 
 @end

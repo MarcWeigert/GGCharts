@@ -42,7 +42,6 @@
 		2B6CCF241DB0D8E300BFBF95 /* LineShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF1E1DB0D8E300BFBF95 /* LineShape.m */; };
 		2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */; };
 		2B6D8E881EEA3DC000DFFF1C /* PieChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D8E871EEA3DC000DFFF1C /* PieChartData.m */; };
-		2B6D8E8B1EEA42CF00DFFF1C /* AnnularChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */; };
 		2B6F1A5C1EE6432C0075EB59 /* IOBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */; };
 		2B6F1A5F1EE6435E0075EB59 /* BarChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */; };
 		2B6FB64C1EE92D3000D95EA6 /* BaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FB64B1EE92D3000D95EA6 /* BaseChart.m */; };
@@ -58,6 +57,7 @@
 		2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
 		2B7A467B1DED66B00057CFDA /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A467A1DED66B00057CFDA /* PieView.m */; };
+		2BA1C7491EEB7B7D007733CC /* NTPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C7481EEB7B7D007733CC /* NTPieChart.m */; };
 		2BA447701DB4C55F005719E3 /* QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4476F1DB4C55F005719E3 /* QueryView.m */; };
 /* End PBXBuildFile section */
 
@@ -134,8 +134,6 @@
 		2B6CCF201DB0D8E300BFBF95 /* RoundShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundShape.m; sourceTree = "<group>"; };
 		2B6D8E861EEA3DC000DFFF1C /* PieChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartData.h; sourceTree = "<group>"; };
 		2B6D8E871EEA3DC000DFFF1C /* PieChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartData.m; sourceTree = "<group>"; };
-		2B6D8E891EEA42CF00DFFF1C /* AnnularChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnularChart.h; sourceTree = "<group>"; };
-		2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnularChart.m; sourceTree = "<group>"; };
 		2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChart.h; sourceTree = "<group>"; };
 		2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChart.m; sourceTree = "<group>"; };
 		2B6F1A5D1EE6435E0075EB59 /* BarChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartData.h; sourceTree = "<group>"; };
@@ -169,6 +167,8 @@
 		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
 		2B7A46791DED66B00057CFDA /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieView.h; path = HSChart/PieView.h; sourceTree = "<group>"; };
 		2B7A467A1DED66B00057CFDA /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieView.m; path = HSChart/PieView.m; sourceTree = "<group>"; };
+		2BA1C7471EEB7B7D007733CC /* NTPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieChart.h; sourceTree = "<group>"; };
+		2BA1C7481EEB7B7D007733CC /* NTPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieChart.m; sourceTree = "<group>"; };
 		2BA4476E1DB4C55F005719E3 /* QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryView.h; path = HSChart/QueryView.h; sourceTree = "<group>"; };
 		2BA4476F1DB4C55F005719E3 /* QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QueryView.m; path = HSChart/QueryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -383,8 +383,8 @@
 				2B6F1A5E1EE6435E0075EB59 /* BarChartData.m */,
 				2B7777A11EE7CA4800C99F55 /* LineChartData.h */,
 				2B7777A21EE7CA4800C99F55 /* LineChartData.m */,
-				2B6D8E891EEA42CF00DFFF1C /* AnnularChart.h */,
-				2B6D8E8A1EEA42CF00DFFF1C /* AnnularChart.m */,
+				2BA1C7471EEB7B7D007733CC /* NTPieChart.h */,
+				2BA1C7481EEB7B7D007733CC /* NTPieChart.m */,
 				2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */,
 				2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */,
 				2B77779E1EE7C86D00C99F55 /* IOLineBarChart.h */,
@@ -531,7 +531,6 @@
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */,
 				2B4D8A351D1BF35F002CED37 /* CALayer+SawFrame.m in Sources */,
-				2B6D8E8B1EEA42CF00DFFF1C /* AnnularChart.m in Sources */,
 				2B5E56291E1C756D00B484E0 /* GGLinePaint.m in Sources */,
 				2B7777BB1EE829A500C99F55 /* GGDataScaler.m in Sources */,
 				2B6CCF121DB0C23E00BFBF95 /* GraphLizard.m in Sources */,
@@ -542,6 +541,7 @@
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
 				2B76BCB71D1D269A00639205 /* CumSumBarView.m in Sources */,
 				2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */,
+				2BA1C7491EEB7B7D007733CC /* NTPieChart.m in Sources */,
 				2B4D8A141D1BF2EB002CED37 /* AppDelegate.m in Sources */,
 				2B6CCF221DB0D8E300BFBF95 /* CALayer+GraDispose.m in Sources */,
 				2B7777A31EE7CA4800C99F55 /* LineChartData.m in Sources */,

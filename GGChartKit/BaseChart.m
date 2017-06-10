@@ -60,7 +60,7 @@
 
 - (GGShapeCanvas *)getPieWithTag:(NSInteger)tag
 {
-    GGShapeCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
+    GGShapeCanvas * layer = [self.pieLayerDictionary objectForKey:Layer_Key];
     
     if (!layer) {
         
@@ -70,6 +70,7 @@
         
         layer = [[GGShapeCanvas alloc] init];
         layer.frame = CGRectMake(x, y, width, width);
+        layer.anchorPoint = CGPointMake(0.5, 0.5);
         [self.layer addSublayer:layer];
         [self.pieLayerDictionary setObject:layer forKey:Layer_Key];
     }

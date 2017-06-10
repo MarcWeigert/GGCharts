@@ -10,7 +10,7 @@
 
 @implementation PieChartData
 
-+ (void)pieAry:(NSArray <PieChartData *>*)ary enumerateObjectsUsingBlock:(void(^)(CGFloat arc, CGFloat transArc, PieChartData * data))usingBlock
++ (void)pieAry:(NSArray <PieChartData *>*)ary enumerateObjectsUsingBlock:(void(^)(CGFloat arc, CGFloat transArc, PieChartData * data, NSUInteger idx))usingBlock
 {
     __block CGFloat sum = 0;
     
@@ -26,7 +26,7 @@
         CGFloat arc = obj.pieData.floatValue / sum * M_PI * 2;
         layer_arc = layer_arc + arc;
         
-        if (usingBlock) { usingBlock(arc, M_PI * 2 - layer_arc, obj); }
+        if (usingBlock) { usingBlock(arc, M_PI * 2 - layer_arc, obj, idx); }
     }];
 }
 

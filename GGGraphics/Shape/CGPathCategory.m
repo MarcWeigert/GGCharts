@@ -108,14 +108,13 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector)
     CGPathAddArcToPoint(ref, NULL, sector.center.x, sector.center.y, sector.center.x, sector.center.y, 100);
 }
 
-CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, CGFloat duration)
+CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, long frame)
 {
-    int frame = duration * 60;
     CGFloat arc = sector.start - sector.end;
     CGFloat frame_arc = arc / frame;
     NSMutableArray * ary = [NSMutableArray array];
     
-    for (int i = 0; i < frame; i++) {
+    for (long i = 0; i < frame; i++) {
         
         CGMutablePathRef ref = CGPathCreateMutable();
         GGSector frame_sec = GGSectorCenterMake(sector.center, sector.start, sector.start - i * frame_arc, sector.radius);
@@ -141,95 +140,27 @@ CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular)
     CGFloat start_s_y = annular.center.y + annular.radius * start_sin_arc * base_y;
     CGFloat start_e_x = annular.center.x + (annular.radius + annular.spa) * start_cos_arc * base_x;
     CGFloat start_e_y = annular.center.y + (annular.radius + annular.spa) * start_sin_arc * base_y;
-    GGLine start_line = GGLineMake(start_s_x, start_s_y, start_e_x, start_e_y);
     
-    base_x = (annular.end > 0 && annular.end < M_PI) ? 1 : -1;
-    base_y = (annular.end > M_PI / 2 && annular.end < M_PI * 1.5) ? -1 : 1;
-    
-    CGFloat end_sin_arc = sinf(annular.end);
-    CGFloat end_cos_arc = cosf(annular.end);
-    CGFloat end_s_x = annular.center.x + annular.radius * end_cos_arc * base_x;
-    CGFloat end_s_y = annular.center.y + annular.radius * end_sin_arc * base_y;
-    CGFloat end_e_x = annular.center.x + (annular.radius + annular.spa) * end_cos_arc * base_x;
-    CGFloat end_e_y = annular.center.y + (annular.radius + annular.spa) * end_sin_arc * base_y;
-    
-    GGLine end_line = GGLineMake(end_s_x, end_s_y, end_e_x, end_e_y);
-    
-    GGPathAddLine(ref, start_line);
-    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius + annular.spa, annular.start, annular.end, false);
-    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius + annular.spa, annular.end, annular.start, true);
-    CGPathAddLineToPoint(ref, NULL, start_line.start.x, start_line.start.y);
     CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius, annular.start, annular.end, false);
-    CGPathAddLineToPoint(ref, NULL, end_line.end.x, end_line.end.y);
     CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius + annular.spa, annular.end, annular.start, true);
-    CGPathAddLineToPoint(ref, NULL, start_line.start.x, start_line.end.y);
-    
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius, annular.start, annular.end, false);
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius + annular.spa, annular.end, annular.start, true);
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius, annular.start, annular.end, false);
-//    
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius, annular.start, annular.end, true);
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius + annular.spa, annular.start, annular.end, false);
-//    CGPathAddArc(ref, NULL, annular.center.x, annular.center.y, annular.radius, annular.end, annular.start, true);
+    CGPathAddLineToPoint(ref, NULL, start_e_x, start_e_y);
+    CGPathAddLineToPoint(ref, NULL, start_s_x, start_s_y);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CG_EXTERN NSArray * GGPathAnnularAnimationArrayFor(GGAnnular annular, long frame)
+{
+    CGFloat arc = annular.start - annular.end;
+    CGFloat frame_arc = arc / frame;
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (long i = 0; i < frame; i++) {
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGAnnular frame_annular = GGAnnularCenterMake(annular.center, annular.start, annular.start - i * frame_arc, annular.radius, annular.spa);
+        GGPathAddAnnular(ref, frame_annular);
+        [ary addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    return [NSArray arrayWithArray:ary];
+}

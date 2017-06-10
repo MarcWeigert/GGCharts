@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) UIColor * color;
 
-+ (void)pieAry:(NSArray <PieChartData *>*)ary enumerateObjectsUsingBlock:(void(^)(CGFloat arc, CGFloat transArc, PieChartData * data))usingBlock;
++ (void)pieAry:(NSArray <PieChartData *>*)ary enumerateObjectsUsingBlock:(void(^)(CGFloat arc, CGFloat transArc, PieChartData * data, NSUInteger idx))usingBlock;
 
 @end

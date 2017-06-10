@@ -47,6 +47,8 @@
 #import "IOBarChartViewController.h"
 #import "LineBarChartViewController.h"
 
+#import "NTPieChart.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic) IOBarChart * barChart;
@@ -63,7 +65,7 @@
     self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *navi =  [[UINavigationController alloc] initWithRootViewController:[IOBarChartViewController new]];
+    UINavigationController *navi =  [[UINavigationController alloc] initWithRootViewController:[LineBarChartViewController new]];
     [self.window setRootViewController:navi];
     
     PieChartData * pie_d1 = [[PieChartData alloc] init];
@@ -88,51 +90,33 @@
     
     PieChartData * pie_d5 = [[PieChartData alloc] init];
     pie_d5.pieName = @"直接访问";
-    pie_d5.pieData = @1548;
-    pie_d5.color = __RGB_CYAN;
+    pie_d5.pieData = @548;
+    pie_d5.color = __RGB_RED;
     
-    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4, pie_d5];
+    PieChartData * pie_d6 = [[PieChartData alloc] init];
+    pie_d6.pieName = @"直接访问";
+    pie_d6.pieData = @748;
+    pie_d6.color = __RGB_CYAN;
     
-    [PieChartData pieAry:pieData enumerateObjectsUsingBlock:^(CGFloat arc, CGFloat transArc, PieChartData *data) {
-        
-        CGMutablePathRef ref = CGPathCreateMutable();
-        CGPoint center = CGPointMake(100, 100);
-        GGSector sector = GGSectorCenterMake(center, 0, arc, 100);
-        GGPathAddSector(ref, sector);
-        
-//        GGAnnular annular = GGAnnularCenterMake(center, 0, arc, 70, 20);
-//        GGPathAddAnnular(ref, annular);
-        
-        GGShapeCanvas * shape = [[GGShapeCanvas alloc] init];
-        shape.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 100, 100, 200, 200);
-        shape.fillColor = [UIColor clearColor].CGColor;
-        shape.strokeColor = data.color.CGColor;
-        shape.anchorPoint = CGPointMake(0.5, 0.5);
-        shape.path = ref;
-        CGPathRelease(ref);
-        
-        CGAffineTransform transform = CGAffineTransformIdentity;
-        shape.affineTransform = CGAffineTransformRotate(transform, transArc);
-        
-        CAKeyframeAnimation * keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        keyAnimation.duration = 2;
-        // keyAnimation.values = GGPathAnimationArrayFor(sector, 3);
-        [shape addAnimation:keyAnimation forKey:@"1"];
-        
-        CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-        base.duration = 2;
-        base.fromValue = @0;
-        base.toValue = @1;
-        [shape addAnimation:base forKey:@"2"];
-        
-        CABasicAnimation * rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        rotation.duration = 2;
-        rotation.fromValue = @0;
-        rotation.toValue = @(transArc);
-        [shape addAnimation:rotation forKey:@"3"];
-        
-        // [self.window.layer addSublayer:shape];
-    }];
+    PieChartData * pie_d7 = [[PieChartData alloc] init];
+    pie_d7.pieName = @"直接访问";
+    pie_d7.pieData = @148;
+    pie_d7.color = __RGB_BLACK;
+    
+    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4];
+    
+    NTPieChart * chart = [[NTPieChart alloc] initWithFrame:self.window.frame];
+    chart.sectorRadius = 60;
+    chart.sectorAry = pieData;
+    
+    chart.annularRadius = 80;
+    chart.annularWidth = 20;
+    chart.annularAry = @[pie_d2, pie_d3, pie_d5, pie_d7, pie_d6];
+    
+    [chart strockChart];
+    [chart addAnimationWithDuration:0.7];
+    
+    //[self.window addSubview:chart];
     
     return YES;
 }

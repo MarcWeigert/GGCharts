@@ -12,6 +12,7 @@
 
 #define ChartShape(A)         [self getShapeWithTag:A]
 #define ChartBack(A)          [self getCanvasWithTag:A]
+#define ChartPie(A)           [self getPieWithTag:A]
 
 @interface BaseChart : UIView
 

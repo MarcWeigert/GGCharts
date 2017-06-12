@@ -35,6 +35,8 @@
 
 @property (nonatomic, assign) CGRect contentFrame;
 
+@property (nonatomic, strong) NSString * format;
+
 - (void)updateChart;
 - (void)strockChart;
 - (void)addAnimation:(NSTimeInterval)duration;

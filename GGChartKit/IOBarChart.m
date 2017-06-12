@@ -82,6 +82,8 @@
     _axisRenderer.showLine = NO;
     _axisRenderer.strFont = _axisFont;
     [ChartBack(BackLayer) addRenderer:_axisRenderer];
+    
+    _format = @"%.2f";
 }
 
 - (void)makeTitleViews
@@ -246,6 +248,7 @@
         CGFloat y1 = fig(data);
         
         UICountingLabel * lb = [self getLable:i];
+        lb.format = _format;
         lb.text = [NSString stringWithFormat:lb.format, _barData.dataSet[i].floatValue];
         lb.font = _axisFont;
         
@@ -346,7 +349,7 @@
         UICountingLabel * countLable = [[UICountingLabel alloc] initWithFrame:CGRectZero];
         countLable.font = _bottomFont;
         countLable.method = UILabelCountingMethodLinear;
-        countLable.format = @"%.1f";
+        countLable.format = _format;
         countLable.textAlignment = NSTextAlignmentCenter;
         [self addSubview:countLable];
         [_aryCountLabels addObject:countLable];

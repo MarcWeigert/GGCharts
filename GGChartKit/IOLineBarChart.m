@@ -94,6 +94,8 @@
     _axisRenderer.strColor = _axisColor;
     _axisRenderer.width = 0.7;
     _axisRenderer.strFont = _axisFont;
+    _axisRenderer.drawAxisCenter = YES;
+    _axisRenderer.offSetRatio = CGPointMake(-.5f, 0);
     [_backLayer addRenderer:_axisRenderer];
     
     _leftAxisRenderer = [[GGAxisRenderer alloc] init];
@@ -102,6 +104,7 @@
     _leftAxisRenderer.width = 0.7;
     _leftAxisRenderer.textOffSet = CGSizeMake(-1, 0);
     _leftAxisRenderer.strFont = _axisFont;
+    _leftAxisRenderer.offSetRatio = CGPointMake(-1, -.5);
     [_backLayer addRenderer:_leftAxisRenderer];
     
     _rightAxisRenderer = [[GGAxisRenderer alloc] init];
@@ -110,6 +113,7 @@
     _rightAxisRenderer.width = 0.7;
     _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
     _rightAxisRenderer.strFont = _axisFont;
+    _rightAxisRenderer.offSetRatio = CGPointMake(0, -.5);
     [_backLayer addRenderer:_rightAxisRenderer];
     
     _gridRenderer = [[GGGridRenderer alloc] init];
@@ -381,7 +385,7 @@
 
 - (void)drawChartWithLableAnimation:(BOOL)isAnimation
 {
-    GGGrid grid = GGGridRectMake(_contentFrame, (int)_yAxisSplit, 0);
+    GGGrid grid = GGGridRectMake(_contentFrame, CGRectGetHeight(_contentFrame) / _yAxisSplit, CGRectGetWidth(_contentFrame));
     _gridRenderer.grid = grid;
     
     CGFloat x = CGRectGetMinX(_contentFrame);

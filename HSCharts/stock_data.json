@@ -1,0 +1,4110 @@
+{
+    "beforeData": [
+        {
+            "date": "2015-03-18 00:00:00",
+            "dividend": null,
+            "close_price": 10.52
+        },
+        {
+            "date": "2015-03-19 00:00:00",
+            "dividend": null,
+            "close_price": 10.3
+        },
+        {
+            "date": "2015-03-20 00:00:00",
+            "dividend": null,
+            "close_price": 10.39
+        },
+        {
+            "date": "2015-03-21 00:00:00",
+            "dividend": null,
+            "close_price": 10.47
+        },
+        {
+            "date": "2015-03-22 00:00:00",
+            "dividend": null,
+            "close_price": 10.47
+        },
+        {
+            "date": "2015-03-23 00:00:00",
+            "dividend": null,
+            "close_price": 10.47
+        },
+        {
+            "date": "2015-03-24 00:00:00",
+            "dividend": null,
+            "close_price": 10.41
+        },
+        {
+            "date": "2015-03-25 00:00:00",
+            "dividend": null,
+            "close_price": 10.11
+        },
+        {
+            "date": "2015-03-26 00:00:00",
+            "dividend": null,
+            "close_price": 10.25
+        },
+        {
+            "date": "2015-03-27 00:00:00",
+            "dividend": null,
+            "close_price": 10.23
+        },
+        {
+            "date": "2015-03-28 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-03-29 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-03-30 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-03-31 00:00:00",
+            "dividend": null,
+            "close_price": 10.68
+        },
+        {
+            "date": "2015-04-01 00:00:00",
+            "dividend": null,
+            "close_price": 10.83
+        },
+        {
+            "date": "2015-04-02 00:00:00",
+            "dividend": null,
+            "close_price": 10.72
+        },
+        {
+            "date": "2015-04-03 00:00:00",
+            "dividend": null,
+            "close_price": 10.75
+        },
+        {
+            "date": "2015-04-04 00:00:00",
+            "dividend": null,
+            "close_price": 11.4
+        },
+        {
+            "date": "2015-04-05 00:00:00",
+            "dividend": null,
+            "close_price": 11.4
+        },
+        {
+            "date": "2015-04-06 00:00:00",
+            "dividend": null,
+            "close_price": 11.4
+        },
+        {
+            "date": "2015-04-07 00:00:00",
+            "dividend": {
+                "ex-dividend_date": "2015-04-13 00:00:00",
+                "dividend_payout_ratio": 10.06,
+                "dividend_radio": 8.79,
+                "dividend_date": "2015-04-13 00:00:00",
+                "stock_record_date": "2015-04-10 00:00:00"
+            },
+            "close_price": 11.4
+        },
+        {
+            "date": "2015-04-08 00:00:00",
+            "dividend": null,
+            "close_price": 12.15
+        },
+        {
+            "date": "2015-04-09 00:00:00",
+            "dividend": null,
+            "close_price": 12.21
+        },
+        {
+            "date": "2015-04-10 00:00:00",
+            "dividend": null,
+            "close_price": 13.43
+        },
+        {
+            "date": "2015-04-11 00:00:00",
+            "dividend": null,
+            "close_price": 11.22
+        },
+        {
+            "date": "2015-04-12 00:00:00",
+            "dividend": null,
+            "close_price": 11.22
+        },
+        {
+            "date": "2015-04-13 00:00:00",
+            "dividend": null,
+            "close_price": 13.58
+        },
+        {
+            "date": "2015-04-14 00:00:00",
+            "dividend": null,
+            "close_price": 13.38
+        },
+        {
+            "date": "2015-04-15 00:00:00",
+            "dividend": null,
+            "close_price": 13.67
+        },
+        {
+            "date": "2015-04-16 00:00:00",
+            "dividend": null,
+            "close_price": 13.95
+        },
+        {
+            "date": "2015-04-17 00:00:00",
+            "dividend": null,
+            "close_price": 13.9
+        },
+        {
+            "date": "2015-04-18 00:00:00",
+            "dividend": null,
+            "close_price": 13.38
+        },
+        {
+            "date": "2015-04-19 00:00:00",
+            "dividend": null,
+            "close_price": 13.38
+        },
+        {
+            "date": "2015-04-20 00:00:00",
+            "dividend": null,
+            "close_price": 13.38
+        },
+        {
+            "date": "2015-04-21 00:00:00",
+            "dividend": null,
+            "close_price": 13.59
+        },
+        {
+            "date": "2015-04-22 00:00:00",
+            "dividend": null,
+            "close_price": 13.91
+        },
+        {
+            "date": "2015-04-23 00:00:00",
+            "dividend": null,
+            "close_price": 13.68
+        },
+        {
+            "date": "2015-04-24 00:00:00",
+            "dividend": null,
+            "close_price": 13.25
+        },
+        {
+            "date": "2015-04-25 00:00:00",
+            "dividend": null,
+            "close_price": 13.48
+        },
+        {
+            "date": "2015-04-26 00:00:00",
+            "dividend": null,
+            "close_price": 13.48
+        },
+        {
+            "date": "2015-04-27 00:00:00",
+            "dividend": null,
+            "close_price": 13.48
+        },
+        {
+            "date": "2015-04-28 00:00:00",
+            "dividend": null,
+            "close_price": 13.71
+        },
+        {
+            "date": "2015-04-29 00:00:00",
+            "dividend": null,
+            "close_price": 13.67
+        },
+        {
+            "date": "2015-04-30 00:00:00",
+            "dividend": null,
+            "close_price": 13.71
+        },
+        {
+            "date": "2015-05-01 00:00:00",
+            "dividend": null,
+            "close_price": 13.56
+        },
+        {
+            "date": "2015-05-02 00:00:00",
+            "dividend": null,
+            "close_price": 13.56
+        },
+        {
+            "date": "2015-05-03 00:00:00",
+            "dividend": null,
+            "close_price": 13.56
+        },
+        {
+            "date": "2015-05-04 00:00:00",
+            "dividend": null,
+            "close_price": 13.56
+        },
+        {
+            "date": "2015-05-05 00:00:00",
+            "dividend": null,
+            "close_price": 13.02
+        },
+        {
+            "date": "2015-05-06 00:00:00",
+            "dividend": null,
+            "close_price": 12.9
+        },
+        {
+            "date": "2015-05-07 00:00:00",
+            "dividend": null,
+            "close_price": 12.86
+        },
+        {
+            "date": "2015-05-08 00:00:00",
+            "dividend": null,
+            "close_price": 13.01
+        },
+        {
+            "date": "2015-05-09 00:00:00",
+            "dividend": null,
+            "close_price": 13.16
+        },
+        {
+            "date": "2015-05-10 00:00:00",
+            "dividend": null,
+            "close_price": 13.16
+        },
+        {
+            "date": "2015-05-11 00:00:00",
+            "dividend": null,
+            "close_price": 13.16
+        },
+        {
+            "date": "2015-05-12 00:00:00",
+            "dividend": null,
+            "close_price": 13.1
+        },
+        {
+            "date": "2015-05-13 00:00:00",
+            "dividend": null,
+            "close_price": 13.04
+        },
+        {
+            "date": "2015-05-14 00:00:00",
+            "dividend": null,
+            "close_price": 13.04
+        },
+        {
+            "date": "2015-05-15 00:00:00",
+            "dividend": null,
+            "close_price": 12.68
+        },
+        {
+            "date": "2015-05-16 00:00:00",
+            "dividend": null,
+            "close_price": 12.46
+        },
+        {
+            "date": "2015-05-17 00:00:00",
+            "dividend": null,
+            "close_price": 12.46
+        },
+        {
+            "date": "2015-05-18 00:00:00",
+            "dividend": null,
+            "close_price": 12.46
+        },
+        {
+            "date": "2015-05-19 00:00:00",
+            "dividend": null,
+            "close_price": 12.8
+        },
+        {
+            "date": "2015-05-20 00:00:00",
+            "dividend": null,
+            "close_price": 12.92
+        },
+        {
+            "date": "2015-05-21 00:00:00",
+            "dividend": null,
+            "close_price": 12.96
+        },
+        {
+            "date": "2015-05-22 00:00:00",
+            "dividend": null,
+            "close_price": 13.36
+        },
+        {
+            "date": "2015-05-23 00:00:00",
+            "dividend": null,
+            "close_price": 13.63
+        },
+        {
+            "date": "2015-05-24 00:00:00",
+            "dividend": null,
+            "close_price": 13.63
+        },
+        {
+            "date": "2015-05-25 00:00:00",
+            "dividend": null,
+            "close_price": 13.63
+        },
+        {
+            "date": "2015-05-26 00:00:00",
+            "dividend": null,
+            "close_price": 13.64
+        },
+        {
+            "date": "2015-05-27 00:00:00",
+            "dividend": null,
+            "close_price": 13.53
+        },
+        {
+            "date": "2015-05-28 00:00:00",
+            "dividend": null,
+            "close_price": 12.72
+        },
+        {
+            "date": "2015-05-29 00:00:00",
+            "dividend": null,
+            "close_price": 12.58
+        },
+        {
+            "date": "2015-05-30 00:00:00",
+            "dividend": null,
+            "close_price": 13.05
+        },
+        {
+            "date": "2015-05-31 00:00:00",
+            "dividend": null,
+            "close_price": 13.05
+        },
+        {
+            "date": "2015-06-01 00:00:00",
+            "dividend": null,
+            "close_price": 13.05
+        },
+        {
+            "date": "2015-06-02 00:00:00",
+            "dividend": null,
+            "close_price": 12.95
+        },
+        {
+            "date": "2015-06-03 00:00:00",
+            "dividend": null,
+            "close_price": 12.99
+        },
+        {
+            "date": "2015-06-04 00:00:00",
+            "dividend": null,
+            "close_price": 13.44
+        },
+        {
+            "date": "2015-06-05 00:00:00",
+            "dividend": null,
+            "close_price": 13.38
+        },
+        {
+            "date": "2015-06-06 00:00:00",
+            "dividend": null,
+            "close_price": 14.19
+        },
+        {
+            "date": "2015-06-07 00:00:00",
+            "dividend": null,
+            "close_price": 14.19
+        },
+        {
+            "date": "2015-06-08 00:00:00",
+            "dividend": null,
+            "close_price": 14.19
+        },
+        {
+            "date": "2015-06-09 00:00:00",
+            "dividend": null,
+            "close_price": 13.94
+        },
+        {
+            "date": "2015-06-10 00:00:00",
+            "dividend": null,
+            "close_price": 13.69
+        },
+        {
+            "date": "2015-06-11 00:00:00",
+            "dividend": null,
+            "close_price": 13.53
+        },
+        {
+            "date": "2015-06-12 00:00:00",
+            "dividend": null,
+            "close_price": 13.55
+        },
+        {
+            "date": "2015-06-13 00:00:00",
+            "dividend": null,
+            "close_price": 13.07
+        },
+        {
+            "date": "2015-06-14 00:00:00",
+            "dividend": null,
+            "close_price": 13.07
+        },
+        {
+            "date": "2015-06-15 00:00:00",
+            "dividend": null,
+            "close_price": 13.07
+        },
+        {
+            "date": "2015-06-16 00:00:00",
+            "dividend": null,
+            "close_price": 12.84
+        },
+        {
+            "date": "2015-06-17 00:00:00",
+            "dividend": null,
+            "close_price": 12.91
+        },
+        {
+            "date": "2015-06-18 00:00:00",
+            "dividend": null,
+            "close_price": 12.63
+        },
+        {
+            "date": "2015-06-19 00:00:00",
+            "dividend": null,
+            "close_price": 12.01
+        },
+        {
+            "date": "2015-06-20 00:00:00",
+            "dividend": null,
+            "close_price": 12.27
+        },
+        {
+            "date": "2015-06-21 00:00:00",
+            "dividend": null,
+            "close_price": 12.27
+        },
+        {
+            "date": "2015-06-22 00:00:00",
+            "dividend": null,
+            "close_price": 12.27
+        },
+        {
+            "date": "2015-06-23 00:00:00",
+            "dividend": null,
+            "close_price": 12.27
+        },
+        {
+            "date": "2015-06-24 00:00:00",
+            "dividend": null,
+            "close_price": 12.41
+        },
+        {
+            "date": "2015-06-25 00:00:00",
+            "dividend": null,
+            "close_price": 12.21
+        },
+        {
+            "date": "2015-06-26 00:00:00",
+            "dividend": null,
+            "close_price": 11.3
+        },
+        {
+            "date": "2015-06-27 00:00:00",
+            "dividend": null,
+            "close_price": 11.13
+        },
+        {
+            "date": "2015-06-28 00:00:00",
+            "dividend": null,
+            "close_price": 11.13
+        },
+        {
+            "date": "2015-06-29 00:00:00",
+            "dividend": null,
+            "close_price": 11.13
+        },
+        {
+            "date": "2015-06-30 00:00:00",
+            "dividend": null,
+            "close_price": 11.94
+        },
+        {
+            "date": "2015-07-01 00:00:00",
+            "dividend": null,
+            "close_price": 11.43
+        },
+        {
+            "date": "2015-07-02 00:00:00",
+            "dividend": null,
+            "close_price": 11.29
+        },
+        {
+            "date": "2015-07-03 00:00:00",
+            "dividend": null,
+            "close_price": 10.73
+        },
+        {
+            "date": "2015-07-04 00:00:00",
+            "dividend": null,
+            "close_price": 11.39
+        },
+        {
+            "date": "2015-07-05 00:00:00",
+            "dividend": null,
+            "close_price": 11.39
+        },
+        {
+            "date": "2015-07-06 00:00:00",
+            "dividend": null,
+            "close_price": 11.39
+        },
+        {
+            "date": "2015-07-07 00:00:00",
+            "dividend": null,
+            "close_price": 12.03
+        },
+        {
+            "date": "2015-07-08 00:00:00",
+            "dividend": null,
+            "close_price": 10.83
+        },
+        {
+            "date": "2015-07-09 00:00:00",
+            "dividend": null,
+            "close_price": 11.71
+        },
+        {
+            "date": "2015-07-10 00:00:00",
+            "dividend": null,
+            "close_price": 12.2
+        },
+        {
+            "date": "2015-07-11 00:00:00",
+            "dividend": null,
+            "close_price": 11.85
+        },
+        {
+            "date": "2015-07-12 00:00:00",
+            "dividend": null,
+            "close_price": 11.85
+        },
+        {
+            "date": "2015-07-13 00:00:00",
+            "dividend": null,
+            "close_price": 11.85
+        },
+        {
+            "date": "2015-07-14 00:00:00",
+            "dividend": null,
+            "close_price": 11.39
+        },
+        {
+            "date": "2015-07-15 00:00:00",
+            "dividend": null,
+            "close_price": 11.15
+        },
+        {
+            "date": "2015-07-16 00:00:00",
+            "dividend": null,
+            "close_price": 11.16
+        },
+        {
+            "date": "2015-07-17 00:00:00",
+            "dividend": null,
+            "close_price": 11.34
+        },
+        {
+            "date": "2015-07-18 00:00:00",
+            "dividend": null,
+            "close_price": 11.16
+        },
+        {
+            "date": "2015-07-19 00:00:00",
+            "dividend": null,
+            "close_price": 11.16
+        },
+        {
+            "date": "2015-07-20 00:00:00",
+            "dividend": null,
+            "close_price": 11.16
+        },
+        {
+            "date": "2015-07-21 00:00:00",
+            "dividend": null,
+            "close_price": 11.14
+        },
+        {
+            "date": "2015-07-22 00:00:00",
+            "dividend": null,
+            "close_price": 11.1
+        },
+        {
+            "date": "2015-07-23 00:00:00",
+            "dividend": null,
+            "close_price": 11.22
+        },
+        {
+            "date": "2015-07-24 00:00:00",
+            "dividend": null,
+            "close_price": 10.98
+        },
+        {
+            "date": "2015-07-25 00:00:00",
+            "dividend": null,
+            "close_price": 10.21
+        },
+        {
+            "date": "2015-07-26 00:00:00",
+            "dividend": null,
+            "close_price": 10.21
+        },
+        {
+            "date": "2015-07-27 00:00:00",
+            "dividend": null,
+            "close_price": 10.21
+        },
+        {
+            "date": "2015-07-28 00:00:00",
+            "dividend": null,
+            "close_price": 10.36
+        },
+        {
+            "date": "2015-07-29 00:00:00",
+            "dividend": null,
+            "close_price": 10.34
+        },
+        {
+            "date": "2015-07-30 00:00:00",
+            "dividend": null,
+            "close_price": 10.06
+        },
+        {
+            "date": "2015-07-31 00:00:00",
+            "dividend": null,
+            "close_price": 10.15
+        },
+        {
+            "date": "2015-08-01 00:00:00",
+            "dividend": null,
+            "close_price": 10.52
+        },
+        {
+            "date": "2015-08-02 00:00:00",
+            "dividend": null,
+            "close_price": 10.52
+        },
+        {
+            "date": "2015-08-03 00:00:00",
+            "dividend": null,
+            "close_price": 10.52
+        },
+        {
+            "date": "2015-08-04 00:00:00",
+            "dividend": null,
+            "close_price": 10.56
+        },
+        {
+            "date": "2015-08-05 00:00:00",
+            "dividend": null,
+            "close_price": 10.33
+        },
+        {
+            "date": "2015-08-06 00:00:00",
+            "dividend": null,
+            "close_price": 10.29
+        },
+        {
+            "date": "2015-08-07 00:00:00",
+            "dividend": null,
+            "close_price": 10.35
+        },
+        {
+            "date": "2015-08-08 00:00:00",
+            "dividend": null,
+            "close_price": 10.61
+        },
+        {
+            "date": "2015-08-09 00:00:00",
+            "dividend": null,
+            "close_price": 10.61
+        },
+        {
+            "date": "2015-08-10 00:00:00",
+            "dividend": null,
+            "close_price": 10.61
+        },
+        {
+            "date": "2015-08-11 00:00:00",
+            "dividend": null,
+            "close_price": 10.54
+        },
+        {
+            "date": "2015-08-12 00:00:00",
+            "dividend": null,
+            "close_price": 10.32
+        },
+        {
+            "date": "2015-08-13 00:00:00",
+            "dividend": null,
+            "close_price": 10.32
+        },
+        {
+            "date": "2015-08-14 00:00:00",
+            "dividend": {
+                "ex-dividend_date": null,
+                "dividend_payout_ratio": null,
+                "dividend_radio": null,
+                "dividend_date": null,
+                "stock_record_date": null
+            },
+            "close_price": 10.38
+        },
+        {
+            "date": "2015-08-15 00:00:00",
+            "dividend": null,
+            "close_price": 10.29
+        },
+        {
+            "date": "2015-08-16 00:00:00",
+            "dividend": null,
+            "close_price": 10.29
+        },
+        {
+            "date": "2015-08-17 00:00:00",
+            "dividend": null,
+            "close_price": 10.29
+        },
+        {
+            "date": "2015-08-18 00:00:00",
+            "dividend": null,
+            "close_price": 10.07
+        },
+        {
+            "date": "2015-08-19 00:00:00",
+            "dividend": null,
+            "close_price": 10.04
+        },
+        {
+            "date": "2015-08-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.89
+        },
+        {
+            "date": "2015-08-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2015-08-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2015-08-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2015-08-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2015-08-25 00:00:00",
+            "dividend": null,
+            "close_price": 7.77
+        },
+        {
+            "date": "2015-08-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.13
+        },
+        {
+            "date": "2015-08-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2015-08-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.89
+        },
+        {
+            "date": "2015-08-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.09
+        },
+        {
+            "date": "2015-08-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.09
+        },
+        {
+            "date": "2015-08-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.09
+        },
+        {
+            "date": "2015-09-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2015-09-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.72
+        },
+        {
+            "date": "2015-09-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2015-09-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2015-09-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2015-09-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2015-09-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2015-09-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.03
+        },
+        {
+            "date": "2015-09-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2015-09-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2015-09-11 00:00:00",
+            "dividend": null,
+            "close_price": 9
+        },
+        {
+            "date": "2015-09-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.92
+        },
+        {
+            "date": "2015-09-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.92
+        },
+        {
+            "date": "2015-09-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.92
+        },
+        {
+            "date": "2015-09-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2015-09-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.95
+        },
+        {
+            "date": "2015-09-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.84
+        },
+        {
+            "date": "2015-09-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2015-09-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.88
+        },
+        {
+            "date": "2015-09-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.88
+        },
+        {
+            "date": "2015-09-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.88
+        },
+        {
+            "date": "2015-09-22 00:00:00",
+            "dividend": null,
+            "close_price": 9
+        },
+        {
+            "date": "2015-09-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-09-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.79
+        },
+        {
+            "date": "2015-09-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.66
+        },
+        {
+            "date": "2015-09-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2015-09-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2015-09-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2015-09-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.52
+        },
+        {
+            "date": "2015-09-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.61
+        },
+        {
+            "date": "2015-10-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2015-10-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.95
+        },
+        {
+            "date": "2015-10-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2015-10-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2015-10-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2015-10-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2015-10-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.01
+        },
+        {
+            "date": "2015-10-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2015-10-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2015-10-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2015-10-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2015-10-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2015-10-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.29
+        },
+        {
+            "date": "2015-10-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2015-10-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2015-10-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2015-10-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2015-10-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2015-10-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2015-10-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2015-10-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2015-10-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2015-10-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.33
+        },
+        {
+            "date": "2015-10-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2015-11-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2015-11-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2015-11-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2015-11-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.6
+        },
+        {
+            "date": "2015-11-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.91
+        },
+        {
+            "date": "2015-11-06 00:00:00",
+            "dividend": null,
+            "close_price": 10.17
+        },
+        {
+            "date": "2015-11-07 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-11-08 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-11-09 00:00:00",
+            "dividend": null,
+            "close_price": 10.62
+        },
+        {
+            "date": "2015-11-10 00:00:00",
+            "dividend": null,
+            "close_price": 10.47
+        },
+        {
+            "date": "2015-11-11 00:00:00",
+            "dividend": null,
+            "close_price": 10.3
+        },
+        {
+            "date": "2015-11-12 00:00:00",
+            "dividend": null,
+            "close_price": 10.18
+        },
+        {
+            "date": "2015-11-13 00:00:00",
+            "dividend": null,
+            "close_price": 10.05
+        },
+        {
+            "date": "2015-11-14 00:00:00",
+            "dividend": null,
+            "close_price": 10.13
+        },
+        {
+            "date": "2015-11-15 00:00:00",
+            "dividend": null,
+            "close_price": 10.13
+        },
+        {
+            "date": "2015-11-16 00:00:00",
+            "dividend": null,
+            "close_price": 10.13
+        },
+        {
+            "date": "2015-11-17 00:00:00",
+            "dividend": null,
+            "close_price": 10.26
+        },
+        {
+            "date": "2015-11-18 00:00:00",
+            "dividend": null,
+            "close_price": 10.2
+        },
+        {
+            "date": "2015-11-19 00:00:00",
+            "dividend": null,
+            "close_price": 10.26
+        },
+        {
+            "date": "2015-11-20 00:00:00",
+            "dividend": null,
+            "close_price": 10.3
+        },
+        {
+            "date": "2015-11-21 00:00:00",
+            "dividend": null,
+            "close_price": 10.22
+        },
+        {
+            "date": "2015-11-22 00:00:00",
+            "dividend": null,
+            "close_price": 10.22
+        },
+        {
+            "date": "2015-11-23 00:00:00",
+            "dividend": null,
+            "close_price": 10.22
+        },
+        {
+            "date": "2015-11-24 00:00:00",
+            "dividend": null,
+            "close_price": 10.08
+        },
+        {
+            "date": "2015-11-25 00:00:00",
+            "dividend": null,
+            "close_price": 10.11
+        },
+        {
+            "date": "2015-11-26 00:00:00",
+            "dividend": null,
+            "close_price": 10.04
+        },
+        {
+            "date": "2015-11-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.63
+        },
+        {
+            "date": "2015-11-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.64
+        },
+        {
+            "date": "2015-11-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.64
+        },
+        {
+            "date": "2015-11-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.64
+        },
+        {
+            "date": "2015-12-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.65
+        },
+        {
+            "date": "2015-12-02 00:00:00",
+            "dividend": null,
+            "close_price": 10.27
+        },
+        {
+            "date": "2015-12-03 00:00:00",
+            "dividend": null,
+            "close_price": 10.22
+        },
+        {
+            "date": "2015-12-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.95
+        },
+        {
+            "date": "2015-12-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.97
+        },
+        {
+            "date": "2015-12-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.97
+        },
+        {
+            "date": "2015-12-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.97
+        },
+        {
+            "date": "2015-12-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.82
+        },
+        {
+            "date": "2015-12-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.84
+        },
+        {
+            "date": "2015-12-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.82
+        },
+        {
+            "date": "2015-12-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.71
+        },
+        {
+            "date": "2015-12-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.91
+        },
+        {
+            "date": "2015-12-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.91
+        },
+        {
+            "date": "2015-12-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.91
+        },
+        {
+            "date": "2015-12-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.78
+        },
+        {
+            "date": "2015-12-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.76
+        },
+        {
+            "date": "2015-12-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.91
+        },
+        {
+            "date": "2015-12-18 00:00:00",
+            "dividend": null,
+            "close_price": 10.04
+        },
+        {
+            "date": "2015-12-19 00:00:00",
+            "dividend": null,
+            "close_price": 10.27
+        },
+        {
+            "date": "2015-12-20 00:00:00",
+            "dividend": null,
+            "close_price": 10.27
+        },
+        {
+            "date": "2015-12-21 00:00:00",
+            "dividend": null,
+            "close_price": 10.27
+        },
+        {
+            "date": "2015-12-22 00:00:00",
+            "dividend": null,
+            "close_price": 10.2
+        },
+        {
+            "date": "2015-12-23 00:00:00",
+            "dividend": null,
+            "close_price": 10.24
+        },
+        {
+            "date": "2015-12-24 00:00:00",
+            "dividend": null,
+            "close_price": 10.13
+        },
+        {
+            "date": "2015-12-25 00:00:00",
+            "dividend": null,
+            "close_price": 10.19
+        },
+        {
+            "date": "2015-12-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.83
+        },
+        {
+            "date": "2015-12-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.83
+        },
+        {
+            "date": "2015-12-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.83
+        },
+        {
+            "date": "2015-12-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.92
+        },
+        {
+            "date": "2015-12-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.93
+        },
+        {
+            "date": "2015-12-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.84
+        },
+        {
+            "date": "2016-01-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2016-01-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2016-01-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2016-01-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2016-01-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.36
+        },
+        {
+            "date": "2016-01-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2016-01-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.98
+        },
+        {
+            "date": "2016-01-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2016-01-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.83
+        },
+        {
+            "date": "2016-01-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.83
+        },
+        {
+            "date": "2016-01-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.83
+        },
+        {
+            "date": "2016-01-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2016-01-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.79
+        },
+        {
+            "date": "2016-01-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.84
+        },
+        {
+            "date": "2016-01-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.59
+        },
+        {
+            "date": "2016-01-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.55
+        },
+        {
+            "date": "2016-01-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.55
+        },
+        {
+            "date": "2016-01-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.55
+        },
+        {
+            "date": "2016-01-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.79
+        },
+        {
+            "date": "2016-01-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.65
+        },
+        {
+            "date": "2016-01-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.47
+        },
+        {
+            "date": "2016-01-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.54
+        },
+        {
+            "date": "2016-01-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.51
+        },
+        {
+            "date": "2016-01-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.51
+        },
+        {
+            "date": "2016-01-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.51
+        },
+        {
+            "date": "2016-01-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.1
+        },
+        {
+            "date": "2016-01-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.11
+        },
+        {
+            "date": "2016-01-28 00:00:00",
+            "dividend": null,
+            "close_price": 7.95
+        },
+        {
+            "date": "2016-01-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.21
+        },
+        {
+            "date": "2016-01-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-01-31 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.17
+        },
+        {
+            "date": "2016-02-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.09
+        },
+        {
+            "date": "2016-02-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.17
+        },
+        {
+            "date": "2016-02-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.14
+        },
+        {
+            "date": "2016-02-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.22
+        },
+        {
+            "date": "2016-02-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.33
+        },
+        {
+            "date": "2016-02-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.28
+        },
+        {
+            "date": "2016-02-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.24
+        },
+        {
+            "date": "2016-02-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.45
+        },
+        {
+            "date": "2016-02-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.45
+        },
+        {
+            "date": "2016-02-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.45
+        },
+        {
+            "date": "2016-02-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.31
+        },
+        {
+            "date": "2016-02-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.33
+        },
+        {
+            "date": "2016-02-25 00:00:00",
+            "dividend": null,
+            "close_price": 7.94
+        },
+        {
+            "date": "2016-02-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.04
+        },
+        {
+            "date": "2016-02-27 00:00:00",
+            "dividend": null,
+            "close_price": 7.85
+        },
+        {
+            "date": "2016-02-28 00:00:00",
+            "dividend": null,
+            "close_price": 7.85
+        },
+        {
+            "date": "2016-02-29 00:00:00",
+            "dividend": null,
+            "close_price": 7.85
+        },
+        {
+            "date": "2016-03-01 00:00:00",
+            "dividend": null,
+            "close_price": 7.96
+        },
+        {
+            "date": "2016-03-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.29
+        },
+        {
+            "date": "2016-03-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.3
+        },
+        {
+            "date": "2016-03-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.54
+        },
+        {
+            "date": "2016-03-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.49
+        },
+        {
+            "date": "2016-03-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.49
+        },
+        {
+            "date": "2016-03-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.49
+        },
+        {
+            "date": "2016-03-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-03-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.35
+        },
+        {
+            "date": "2016-03-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.33
+        },
+        {
+            "date": "2016-03-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.34
+        },
+        {
+            "date": "2016-03-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.42
+        },
+        {
+            "date": "2016-03-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.42
+        },
+        {
+            "date": "2016-03-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.42
+        },
+        {
+            "date": "2016-03-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.47
+        },
+        {
+            "date": "2016-03-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-03-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.55
+        },
+        {
+            "date": "2016-03-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.65
+        },
+        {
+            "date": "2016-03-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2016-03-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2016-03-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2016-03-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-03-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-03-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2016-03-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.69
+        },
+        {
+            "date": "2016-03-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-03-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-03-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-03-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.56
+        },
+        {
+            "date": "2016-03-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-03-31 00:00:00",
+            "dividend": null,
+            "close_price": 8.73
+        },
+        {
+            "date": "2016-04-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.75
+        },
+        {
+            "date": "2016-04-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-04-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-04-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-04-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-04-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-04-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.69
+        },
+        {
+            "date": "2016-04-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2016-04-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-04-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-04-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-04-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.76
+        },
+        {
+            "date": "2016-04-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.87
+        },
+        {
+            "date": "2016-04-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.9
+        },
+        {
+            "date": "2016-04-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.93
+        },
+        {
+            "date": "2016-04-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-04-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-04-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-04-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.84
+        },
+        {
+            "date": "2016-04-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2016-04-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2016-04-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.66
+        },
+        {
+            "date": "2016-04-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.62
+        },
+        {
+            "date": "2016-04-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.62
+        },
+        {
+            "date": "2016-04-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.62
+        },
+        {
+            "date": "2016-04-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.69
+        },
+        {
+            "date": "2016-04-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2016-04-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.75
+        },
+        {
+            "date": "2016-04-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2016-04-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.77
+        },
+        {
+            "date": "2016-05-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.77
+        },
+        {
+            "date": "2016-05-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.77
+        },
+        {
+            "date": "2016-05-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.77
+        },
+        {
+            "date": "2016-05-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-05-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.8
+        },
+        {
+            "date": "2016-05-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2016-05-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.51
+        },
+        {
+            "date": "2016-05-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.52
+        },
+        {
+            "date": "2016-05-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.5
+        },
+        {
+            "date": "2016-05-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.46
+        },
+        {
+            "date": "2016-05-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.46
+        },
+        {
+            "date": "2016-05-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.41
+        },
+        {
+            "date": "2016-05-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.46
+        },
+        {
+            "date": "2016-05-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.38
+        },
+        {
+            "date": "2016-05-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.4
+        },
+        {
+            "date": "2016-05-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.39
+        },
+        {
+            "date": "2016-05-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.43
+        },
+        {
+            "date": "2016-05-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.44
+        },
+        {
+            "date": "2016-05-31 00:00:00",
+            "dividend": null,
+            "close_price": 8.66
+        },
+        {
+            "date": "2016-06-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-06-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.59
+        },
+        {
+            "date": "2016-06-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.62
+        },
+        {
+            "date": "2016-06-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2016-06-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2016-06-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2016-06-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2016-06-08 00:00:00",
+            "dividend": {
+                "ex-dividend_date": "2016-06-16 00:00:00",
+                "dividend_payout_ratio": 9.81,
+                "dividend_radio": 14.66,
+                "dividend_date": "2016-06-16 00:00:00",
+                "stock_record_date": "2016-06-15 00:00:00"
+            },
+            "close_price": 8.62
+        },
+        {
+            "date": "2016-06-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.48
+        },
+        {
+            "date": "2016-06-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.48
+        },
+        {
+            "date": "2016-06-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.48
+        },
+        {
+            "date": "2016-06-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.48
+        },
+        {
+            "date": "2016-06-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.48
+        },
+        {
+            "date": "2016-06-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.54
+        },
+        {
+            "date": "2016-06-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2016-06-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2016-06-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.58
+        },
+        {
+            "date": "2016-06-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-06-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-06-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.6
+        },
+        {
+            "date": "2016-06-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.61
+        },
+        {
+            "date": "2016-06-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.73
+        },
+        {
+            "date": "2016-06-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.66
+        },
+        {
+            "date": "2016-06-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2016-06-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.61
+        },
+        {
+            "date": "2016-06-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.61
+        },
+        {
+            "date": "2016-06-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.61
+        },
+        {
+            "date": "2016-06-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2016-06-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.69
+        },
+        {
+            "date": "2016-06-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.7
+        },
+        {
+            "date": "2016-07-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.71
+        },
+        {
+            "date": "2016-07-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-07-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-07-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-07-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2016-07-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.79
+        },
+        {
+            "date": "2016-07-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.78
+        },
+        {
+            "date": "2016-07-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.74
+        },
+        {
+            "date": "2016-07-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.75
+        },
+        {
+            "date": "2016-07-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.75
+        },
+        {
+            "date": "2016-07-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.75
+        },
+        {
+            "date": "2016-07-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.88
+        },
+        {
+            "date": "2016-07-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2016-07-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2016-07-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2016-07-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-07-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-07-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-07-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.97
+        },
+        {
+            "date": "2016-07-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.96
+        },
+        {
+            "date": "2016-07-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2016-07-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2016-07-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.98
+        },
+        {
+            "date": "2016-07-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.98
+        },
+        {
+            "date": "2016-07-25 00:00:00",
+            "dividend": null,
+            "close_price": 8.98
+        },
+        {
+            "date": "2016-07-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-07-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.01
+        },
+        {
+            "date": "2016-07-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-07-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2016-07-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.28
+        },
+        {
+            "date": "2016-07-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.28
+        },
+        {
+            "date": "2016-08-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.28
+        },
+        {
+            "date": "2016-08-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2016-08-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2016-08-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2016-08-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-08-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-08-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-08-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-08-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-08-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2016-08-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2016-08-12 00:00:00",
+            "dividend": {
+                "ex-dividend_date": null,
+                "dividend_payout_ratio": null,
+                "dividend_radio": null,
+                "dividend_date": null,
+                "stock_record_date": null
+            },
+            "close_price": 9.5
+        },
+        {
+            "date": "2016-08-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.68
+        },
+        {
+            "date": "2016-08-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.68
+        },
+        {
+            "date": "2016-08-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.68
+        },
+        {
+            "date": "2016-08-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.52
+        },
+        {
+            "date": "2016-08-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.55
+        },
+        {
+            "date": "2016-08-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2016-08-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.51
+        },
+        {
+            "date": "2016-08-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-08-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-08-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-08-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-08-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.43
+        },
+        {
+            "date": "2016-08-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2016-08-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2016-08-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-08-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-08-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-08-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.47
+        },
+        {
+            "date": "2016-08-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.49
+        },
+        {
+            "date": "2016-09-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2016-09-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2016-09-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-09-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-09-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-09-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.41
+        },
+        {
+            "date": "2016-09-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-09-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-09-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.38
+        },
+        {
+            "date": "2016-09-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-09-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-09-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-09-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.19
+        },
+        {
+            "date": "2016-09-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.06
+        },
+        {
+            "date": "2016-09-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-09-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-09-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-09-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-09-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-09-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-09-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-09-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-09-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-09-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-09-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-09-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2016-09-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.06
+        },
+        {
+            "date": "2016-09-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.05
+        },
+        {
+            "date": "2016-09-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.06
+        },
+        {
+            "date": "2016-09-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2016-10-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-10-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-10-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2016-10-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2016-10-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.09
+        },
+        {
+            "date": "2016-10-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.05
+        },
+        {
+            "date": "2016-10-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.05
+        },
+        {
+            "date": "2016-10-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.05
+        },
+        {
+            "date": "2016-10-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.09
+        },
+        {
+            "date": "2016-10-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-10-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2016-10-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2016-10-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-10-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-10-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-10-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2016-10-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-10-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-10-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2016-10-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-10-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-10-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-11-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2016-11-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2016-11-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2016-11-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-11-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-11-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-11-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-11-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2016-11-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.07
+        },
+        {
+            "date": "2016-11-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2016-11-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2016-11-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2016-11-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2016-11-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2016-11-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.23
+        },
+        {
+            "date": "2016-11-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.23
+        },
+        {
+            "date": "2016-11-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2016-11-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2016-11-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-11-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-11-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2016-11-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.36
+        },
+        {
+            "date": "2016-11-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2016-11-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.47
+        },
+        {
+            "date": "2016-11-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.62
+        },
+        {
+            "date": "2016-11-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.63
+        },
+        {
+            "date": "2016-11-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.63
+        },
+        {
+            "date": "2016-11-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.63
+        },
+        {
+            "date": "2016-11-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.62
+        },
+        {
+            "date": "2016-11-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.55
+        },
+        {
+            "date": "2016-12-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.6
+        },
+        {
+            "date": "2016-12-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.55
+        },
+        {
+            "date": "2016-12-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2016-12-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2016-12-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2016-12-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.49
+        },
+        {
+            "date": "2016-12-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.48
+        },
+        {
+            "date": "2016-12-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.52
+        },
+        {
+            "date": "2016-12-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.65
+        },
+        {
+            "date": "2016-12-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2016-12-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2016-12-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2016-12-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2016-12-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2016-12-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2016-12-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2016-12-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2016-12-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2016-12-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2016-12-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2016-12-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2016-12-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2016-12-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-12-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-12-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-12-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2016-12-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-12-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.06
+        },
+        {
+            "date": "2016-12-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2016-12-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2016-12-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2017-01-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2017-01-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-01-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-01-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-01-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-01-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-01-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-01-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2017-01-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2017-01-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2017-01-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2017-01-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2017-01-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.22
+        },
+        {
+            "date": "2017-01-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.27
+        },
+        {
+            "date": "2017-01-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-01-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.33
+        },
+        {
+            "date": "2017-01-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-01-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-01-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-01-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-01-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-02-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-02-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-02-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.26
+        },
+        {
+            "date": "2017-02-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.31
+        },
+        {
+            "date": "2017-02-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.31
+        },
+        {
+            "date": "2017-02-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.31
+        },
+        {
+            "date": "2017-02-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2017-02-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.3
+        },
+        {
+            "date": "2017-02-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.31
+        },
+        {
+            "date": "2017-02-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.33
+        },
+        {
+            "date": "2017-02-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.41
+        },
+        {
+            "date": "2017-02-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.41
+        },
+        {
+            "date": "2017-02-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.41
+        },
+        {
+            "date": "2017-02-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2017-02-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2017-02-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.46
+        },
+        {
+            "date": "2017-02-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.39
+        },
+        {
+            "date": "2017-02-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.56
+        },
+        {
+            "date": "2017-02-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.56
+        },
+        {
+            "date": "2017-02-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.56
+        },
+        {
+            "date": "2017-02-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.57
+        },
+        {
+            "date": "2017-02-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.57
+        },
+        {
+            "date": "2017-02-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.51
+        },
+        {
+            "date": "2017-02-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.5
+        },
+        {
+            "date": "2017-02-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.43
+        },
+        {
+            "date": "2017-02-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.43
+        },
+        {
+            "date": "2017-02-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.43
+        },
+        {
+            "date": "2017-02-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.48
+        },
+        {
+            "date": "2017-03-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.49
+        },
+        {
+            "date": "2017-03-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.43
+        },
+        {
+            "date": "2017-03-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2017-03-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2017-03-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2017-03-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2017-03-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.45
+        },
+        {
+            "date": "2017-03-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.42
+        },
+        {
+            "date": "2017-03-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.38
+        },
+        {
+            "date": "2017-03-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.4
+        },
+        {
+            "date": "2017-03-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2017-03-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2017-03-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2017-03-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.44
+        },
+        {
+            "date": "2017-03-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.48
+        },
+        {
+            "date": "2017-03-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.52
+        },
+        {
+            "date": "2017-03-17 00:00:00",
+            "dividend": {
+                "ex-dividend_date": null,
+                "dividend_payout_ratio": 12,
+                "dividend_radio": null,
+                "dividend_date": null,
+                "stock_record_date": null
+            },
+            "close_price": 9.31
+        },
+        {
+            "date": "2017-03-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2017-03-19 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2017-03-20 00:00:00",
+            "dividend": null,
+            "close_price": 9.25
+        },
+        {
+            "date": "2017-03-21 00:00:00",
+            "dividend": null,
+            "close_price": 9.24
+        },
+        {
+            "date": "2017-03-22 00:00:00",
+            "dividend": null,
+            "close_price": 9.16
+        },
+        {
+            "date": "2017-03-23 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-03-24 00:00:00",
+            "dividend": null,
+            "close_price": 9.19
+        },
+        {
+            "date": "2017-03-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-03-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-03-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.14
+        },
+        {
+            "date": "2017-03-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2017-03-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.11
+        },
+        {
+            "date": "2017-03-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2017-03-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2017-04-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2017-04-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2017-04-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2017-04-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2017-04-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.21
+        },
+        {
+            "date": "2017-04-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-04-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-04-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2017-04-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2017-04-10 00:00:00",
+            "dividend": null,
+            "close_price": 9.18
+        },
+        {
+            "date": "2017-04-11 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        },
+        {
+            "date": "2017-04-12 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2017-04-13 00:00:00",
+            "dividend": null,
+            "close_price": 9.12
+        },
+        {
+            "date": "2017-04-14 00:00:00",
+            "dividend": null,
+            "close_price": 9.08
+        },
+        {
+            "date": "2017-04-15 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2017-04-16 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2017-04-17 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2017-04-18 00:00:00",
+            "dividend": null,
+            "close_price": 9.05
+        },
+        {
+            "date": "2017-04-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.91
+        },
+        {
+            "date": "2017-04-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.92
+        },
+        {
+            "date": "2017-04-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.97
+        },
+        {
+            "date": "2017-04-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.93
+        },
+        {
+            "date": "2017-04-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.93
+        },
+        {
+            "date": "2017-04-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.93
+        },
+        {
+            "date": "2017-04-25 00:00:00",
+            "dividend": null,
+            "close_price": 9
+        },
+        {
+            "date": "2017-04-26 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2017-04-27 00:00:00",
+            "dividend": null,
+            "close_price": 8.97
+        },
+        {
+            "date": "2017-04-28 00:00:00",
+            "dividend": null,
+            "close_price": 8.99
+        },
+        {
+            "date": "2017-04-29 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2017-04-30 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2017-05-01 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2017-05-02 00:00:00",
+            "dividend": null,
+            "close_price": 8.94
+        },
+        {
+            "date": "2017-05-03 00:00:00",
+            "dividend": null,
+            "close_price": 8.91
+        },
+        {
+            "date": "2017-05-04 00:00:00",
+            "dividend": null,
+            "close_price": 8.74
+        },
+        {
+            "date": "2017-05-05 00:00:00",
+            "dividend": null,
+            "close_price": 8.63
+        },
+        {
+            "date": "2017-05-06 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2017-05-07 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2017-05-08 00:00:00",
+            "dividend": null,
+            "close_price": 8.57
+        },
+        {
+            "date": "2017-05-09 00:00:00",
+            "dividend": null,
+            "close_price": 8.64
+        },
+        {
+            "date": "2017-05-10 00:00:00",
+            "dividend": null,
+            "close_price": 8.67
+        },
+        {
+            "date": "2017-05-11 00:00:00",
+            "dividend": null,
+            "close_price": 8.7
+        },
+        {
+            "date": "2017-05-12 00:00:00",
+            "dividend": null,
+            "close_price": 8.9
+        },
+        {
+            "date": "2017-05-13 00:00:00",
+            "dividend": null,
+            "close_price": 8.86
+        },
+        {
+            "date": "2017-05-14 00:00:00",
+            "dividend": null,
+            "close_price": 8.86
+        },
+        {
+            "date": "2017-05-15 00:00:00",
+            "dividend": null,
+            "close_price": 8.86
+        },
+        {
+            "date": "2017-05-16 00:00:00",
+            "dividend": null,
+            "close_price": 8.84
+        },
+        {
+            "date": "2017-05-17 00:00:00",
+            "dividend": null,
+            "close_price": 8.77
+        },
+        {
+            "date": "2017-05-18 00:00:00",
+            "dividend": null,
+            "close_price": 8.73
+        },
+        {
+            "date": "2017-05-19 00:00:00",
+            "dividend": null,
+            "close_price": 8.69
+        },
+        {
+            "date": "2017-05-20 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2017-05-21 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2017-05-22 00:00:00",
+            "dividend": null,
+            "close_price": 8.68
+        },
+        {
+            "date": "2017-05-23 00:00:00",
+            "dividend": null,
+            "close_price": 8.79
+        },
+        {
+            "date": "2017-05-24 00:00:00",
+            "dividend": null,
+            "close_price": 8.81
+        },
+        {
+            "date": "2017-05-25 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2017-05-26 00:00:00",
+            "dividend": null,
+            "close_price": 9.1
+        },
+        {
+            "date": "2017-05-27 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-05-28 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-05-29 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-05-30 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-05-31 00:00:00",
+            "dividend": null,
+            "close_price": 9.2
+        },
+        {
+            "date": "2017-06-01 00:00:00",
+            "dividend": null,
+            "close_price": 9.19
+        },
+        {
+            "date": "2017-06-02 00:00:00",
+            "dividend": null,
+            "close_price": 9.17
+        },
+        {
+            "date": "2017-06-03 00:00:00",
+            "dividend": null,
+            "close_price": 9.03
+        },
+        {
+            "date": "2017-06-04 00:00:00",
+            "dividend": null,
+            "close_price": 9.03
+        },
+        {
+            "date": "2017-06-05 00:00:00",
+            "dividend": null,
+            "close_price": 9.03
+        },
+        {
+            "date": "2017-06-06 00:00:00",
+            "dividend": null,
+            "close_price": 9.04
+        },
+        {
+            "date": "2017-06-07 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2017-06-08 00:00:00",
+            "dividend": null,
+            "close_price": 9.13
+        },
+        {
+            "date": "2017-06-09 00:00:00",
+            "dividend": null,
+            "close_price": 9.15
+        }
+    ],
+    "bonus_date": "2017-03-17 00:00:00"
+}

@@ -13,16 +13,11 @@
 
 @interface GGStringRenderer : NSObject <GGRenderProtocol>
 
-@property (nonatomic) UIFont * font;
-
-@property (nonatomic) UIColor * color;
-
-@property (nonatomic) CGSize offset;
-
-+ (instancetype)stringForAxis:(GGAxis)axis aryStr:(NSArray *)aryStr;
-
-+ (instancetype)stringForCGPath:(CGPathRef)ref aryStr:(NSArray *)aryStr;
-
-+ (instancetype)stringForPoint:(CGPoint)point string:(NSString *)string;
+@property (nonatomic, strong) UIFont * font;
+@property (nonatomic, strong) UIColor * color;
+@property (nonatomic, assign) CGPoint point;
+@property (nonatomic, assign) CGSize offset;
+@property (nonatomic, assign) CGPoint offSetRatio;          // base text frame  -1 ~ 1
+@property (nonatomic, copy) NSString * string;
 
 @end

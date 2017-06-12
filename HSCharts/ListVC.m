@@ -17,6 +17,7 @@
 #import "IOBarChartViewController.h"
 #import "LineBarChartViewController.h"
 #import "NTPieViewController.h"
+#import "MDLineViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -40,7 +41,8 @@ _Pragma("clang diagnostic pop") \
              @"堆叠区域图" : @"cumSumLineView",
              @"IOBarChartView" : @"",
              @"LineBarChartView" : @"",
-             @"NTPieView" : @""};
+             @"NTPieView" : @"",
+             @"MDLineView" : @""};
 }
 
 - (UIView *)pieView
@@ -181,7 +183,7 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)rowAry
 {
-    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView"],
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"MDLineView"],
              @[@"空心饼图", @"阴影饼图"],
              @[@"多数据叠加柱状图", @"多数据排列柱状图"],
              @[@"大数据折线图", @"堆叠区域图"]];
@@ -240,6 +242,10 @@ _Pragma("clang diagnostic pop") \
     else if ([selectStr isEqualToString:@"NTPieView"]) {
     
         [self.navigationController pushViewController:[NTPieViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"MDLineView"]) {
+        
+        [self.navigationController pushViewController:[MDLineViewController new] animated:NO];
     }
     else {
     

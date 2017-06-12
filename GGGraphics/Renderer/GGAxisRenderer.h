@@ -21,5 +21,7 @@
 @property (nonatomic, strong) UIColor *strColor;
 @property (nonatomic, strong) UIFont *strFont;
 @property (nonatomic, assign) BOOL showText;
+@property (nonatomic, assign) BOOL drawAxisCenter;
+@property (nonatomic, assign) CGPoint offSetRatio;          // base text frame  -1 ~ 1
 
 @end

@@ -23,6 +23,4 @@
 
 - (GGShapeCanvas *)getPieWithTag:(NSInteger)tag;
 
-- (GGShapeCanvas *(^)(BaseChartData *data))comLayer;
-
 @end

@@ -25,6 +25,8 @@
         _showSep = YES;
         _showLine = YES;
         _showText = YES;
+        _drawAxisCenter = NO;
+        _offSetRatio = CGPointMake(0, 0);
     }
     
     return self;
@@ -109,14 +111,12 @@
             
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
 
-            if (cir > M_PI_4 / 2) {
+            if (_drawAxisCenter) {
                 
-                point = _axis.over > 0 ? CGPointMake(point.x - size.width, point.y - size.height / 2) : CGPointMake(point.x, point.y - size.height / 2);
+                point = cir > M_PI_4 / 2 ? CGPointMake(point.x, point.y + _axis.sep / 2) : CGPointMake(point.x + _axis.sep / 2, point.y);
             }
-            else {
             
-                point = CGPointMake(point.x - size.width / 2 + _axis.sep / 2, point.y);
-            }
+            point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
             
             [string drawAtPoint:point withAttributes:_paramStr];
         }

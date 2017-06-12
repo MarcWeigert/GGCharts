@@ -198,51 +198,51 @@ GGArrowCenterMake(CGPoint center, CGFloat edge, CGFloat m_pi) {
 struct GGGrid
 {
     CGRect rect;
-    int horizontal;
-    int vertical;
+    CGFloat y_dis;     ///< y 轴分割
+    CGFloat x_dis;     ///< x 轴分割
 };
 typedef struct GGGrid GGGrid;
 
 CG_INLINE GGGrid
-GGGridMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height, int h, int v) {
+GGGridMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height, CGFloat y_dis, CGFloat x_dis) {
     GGGrid grid;
     grid.rect = CGRectMake(x, y, width, height);
-    grid.horizontal = h;
-    grid.vertical = v;
+    grid.y_dis = y_dis;
+    grid.x_dis = x_dis;
     return grid;
 }
 
 CG_INLINE GGGrid
-GGGridRectMake(CGRect rect, int h, int v) {
+GGGridRectMake(CGRect rect, CGFloat y_dis, CGFloat x_dis) {
     GGGrid grid;
     grid.rect = rect;
-    grid.horizontal = h;
-    grid.vertical = v;
+    grid.y_dis = y_dis;
+    grid.x_dis = x_dis;
     return grid;
 }
 
 CG_INLINE CGPoint **
 GGGridPointAryMake(GGGrid grid)
 {
-    CGPoint ** point_array = (CGPoint **)malloc(sizeof(CGPoint *) * grid.horizontal);
+    CGPoint ** point_array = (CGPoint **)malloc(sizeof(CGPoint *) * 10);
     
-    for (int i = 0; i < grid.horizontal; i++) {
-        
-        point_array[i] = (CGPoint *)malloc(sizeof(CGPoint) * grid.vertical);
-    }
-    
-    CGFloat x = grid.rect.origin.x;
-    CGFloat y = grid.rect.origin.y;
-    CGFloat h = grid.rect.size.width / (grid.horizontal - 1);
-    CGFloat v = grid.rect.size.height / (grid.vertical - 1);
-    
-    for (int i = 0; i < grid.vertical; i++) {
-        
-        for (int j = 0; j < grid.horizontal; j++) {
-            
-            point_array[i][j] = CGPointMake(x + j * h, y + i * v);
-        }
-    }
+//    for (int i = 0; i < grid.horizontal; i++) {
+//        
+//        point_array[i] = (CGPoint *)malloc(sizeof(CGPoint) * grid.vertical);
+//    }
+//    
+//    CGFloat x = grid.rect.origin.x;
+//    CGFloat y = grid.rect.origin.y;
+//    CGFloat h = grid.rect.size.width / (grid.horizontal - 1);
+//    CGFloat v = grid.rect.size.height / (grid.vertical - 1);
+//    
+//    for (int i = 0; i < grid.vertical; i++) {
+//        
+//        for (int j = 0; j < grid.horizontal; j++) {
+//            
+//            point_array[i][j] = CGPointMake(x + j * h, y + i * v);
+//        }
+//    }
  
     return point_array;
 }

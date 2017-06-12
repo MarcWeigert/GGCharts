@@ -38,6 +38,7 @@
         layer = [[GGCanvas alloc] init];
         layer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         [self.layer addSublayer:layer];
+        [self.lineLayerDictionary setObject:layer forKey:Layer_Key];
     }
         
     return layer;

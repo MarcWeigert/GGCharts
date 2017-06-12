@@ -10,10 +10,6 @@
 
 @interface GGGridRenderer : NSObject <GGRenderProtocol>
 
-@property (nonatomic, strong) NSNumber * x_count;
-
-@property (nonatomic, strong) NSNumber * y_count;
-
 @property (nonatomic, assign) CGFloat width;
 
 @property (nonatomic, strong) UIColor *color;

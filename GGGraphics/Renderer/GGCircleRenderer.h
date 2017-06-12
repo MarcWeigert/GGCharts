@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "GGRenderProtocol.h"
+#import "GGChartGeometry.h"
 
-@interface GGCircle : NSObject<GGRenderProtocol>
+@interface GGCircleRenderer : NSObject<GGRenderProtocol>
 
-@property (nonatomic) CGPoint center;
-
-@property (nonatomic) CGFloat radius;
+@property (nonatomic) GGCircle circle;
 
 @property (nonatomic) CGFloat borderWidth;
 

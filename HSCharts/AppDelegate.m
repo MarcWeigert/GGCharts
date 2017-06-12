@@ -50,6 +50,10 @@
 #import "NTPieChart.h"
 #import "NTPieViewController.h"
 
+#import "MDLineChart.h"
+
+#import "MDLineViewController.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic) IOBarChart * barChart;
@@ -69,81 +73,7 @@
     UINavigationController *navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
     
-    //[self.window addSubview:chart];
-    
     return YES;
-}
-
-- (void)first
-{
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@2225.6, @-2563.1, @531.4, @-839.4, @-7.4, @-1000, @897.0, @-1500];
-    _barChart.barData = data;
-    [_barChart updateChart];
-    
-    // 柱状数据
-    BarChartData * barData = [[BarChartData alloc] init];
-    barData.barColor = RGB(241, 213, 136);
-    barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
-    
-    BarChartData * lineData = [[BarChartData alloc] init];
-    lineData.barColor = RGB(113, 177, 237);
-    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
-    
-    // 线数据
-    LineChartData * lineData1 = [[LineChartData alloc] init];
-    lineData1.lineColor = __RGB_BLUE;
-    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    
-    LineChartData * lineData2 = [[LineChartData alloc] init];
-    lineData2.lineColor = __RGB_RED;
-    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
-    
-    _lineBarChart.barDataAry = @[lineData, barData];
-    _lineBarChart.lineDataAry = @[lineData2, lineData1];
-    
-    [_lineBarChart updateChart];
-}
-
-- (void)second
-{
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @2563.1, @531.4, @-839.4, @7.4, @-1000, @-897.0, @-1500];
-    _barChart.barData = data;
-    [_barChart updateChart];
-    
-    // 柱状数据
-    BarChartData * barData = [[BarChartData alloc] init];
-    barData.barColor = RGB(241, 213, 136);
-    barData.dataSet = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
-    
-    BarChartData * lineData = [[BarChartData alloc] init];
-    lineData.barColor = RGB(113, 177, 237);
-    lineData.dataSet = @[@-25.44, @9.43, @31.20, @13.05, @10.57, @12.15, @10.64, @9.74];
-    
-    // 线数据
-    LineChartData * lineData1 = [[LineChartData alloc] init];
-    lineData1.lineColor = __RGB_BLUE;
-    lineData1.dataSet = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    
-    LineChartData * lineData2 = [[LineChartData alloc] init];
-    lineData2.lineColor = __RGB_RED;
-    lineData2.dataSet = @[@-25.44, @9.43, @-31.20, @13.05, @-10.57, @-12.15, @10.64, @-9.74];
-    
-    _lineBarChart.barDataAry = @[barData, lineData];
-    _lineBarChart.lineDataAry = @[lineData1, lineData2];
-    
-    [_lineBarChart updateChart];
-}
-
-- (NSString *)LineDataTopPath
-{
-    return [[NSBundle mainBundle] pathForResource:@"CrossLineTopData" ofType:@"txt"];
-}
-
-- (NSString *)LineDataBottomPath
-{
-    return [[NSBundle mainBundle] pathForResource:@"CrossLineBottomData" ofType:@"txt"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -17,12 +17,23 @@
 #import "GGCircleRenderer.h"
 #import "GGStringRenderer.h"
 #import "CALayer+GGLayer.h"
+#import "StockQueryView.h"
 
 #define LINE_LAYER_TAG          1000
 #define FILL_LAYER_TAG          2000
 #define POINT_LAYER_TAG         3000
 #define BACK_LAYER_TAG          4000
 #define QUERY_LAYER_TAG         5000
+
+#define GGLazyGetMethod(type, attribute)            \
+- (type *)attribute                                 \
+{                                                   \
+if (!_##attribute) {                            \
+_##attribute = [[type alloc] init];         \
+}                                               \
+return _##attribute;                            \
+}
+
 
 @interface MDLineChart ()
 
@@ -39,6 +50,8 @@
 @property (nonatomic, assign) CGRect contentFrame;
 
 @property (nonatomic, assign) CGFloat xSpilt;       ///< x 最小移动点
+
+@property (nonatomic, strong) StockQueryView * queryPriceView;
 
 @end
 
@@ -86,6 +99,12 @@
         [ChartBack(QUERY_LAYER_TAG) addRenderer:_c_query];
         [ChartBack(QUERY_LAYER_TAG) addRenderer:_x_str];
         [ChartBack(QUERY_LAYER_TAG) addRenderer:_y_str];
+        
+        [self addSubview:self.queryPriceView];
+        self.queryPriceView.hidden = NO;
+        self.queryPriceView.backgroundColor = [UIColor whiteColor];
+        self.queryPriceView.layer.borderWidth = 0.3;
+        self.queryPriceView.layer.borderColor = RGB(125, 125, 125).CGColor;
     }
     
     return self;
@@ -233,11 +252,16 @@
     CGPathRelease(fill_ref);
     
     [self.layer bringSublayerToFront:ChartBack(QUERY_LAYER_TAG)];
+    
+    [self bringSubviewToFront:self.queryPriceView];
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
+    
+    self.queryPriceView.hidden = NO;
+    [ChartBack(QUERY_LAYER_TAG) setHidden:NO];
     
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
@@ -264,6 +288,28 @@
     _y_str.string = data.title;
     
     [ChartBack(QUERY_LAYER_TAG) setNeedsDisplay];
+    
+    if ([_delegate respondsToSelector:@selector(moveToKeyNodeData:queryView:)]) {
+        
+        [_delegate moveToKeyNodeData:data queryView:self.queryPriceView];
+    }
+    
+    if (data.dataPoint.x < CGRectGetMinX(_contentFrame) + self.queryPriceView.width + 10) {
+        
+        self.queryPriceView.frame = CGRectMake(CGRectGetMaxX(_contentFrame) - self.queryPriceView.width, _contentFrame.origin.y, self.queryPriceView.size.width, self.queryPriceView.size.height);
+    }
+    else if (data.dataPoint.x > CGRectGetMaxX(_contentFrame) - self.queryPriceView.width - 10) {
+    
+        self.queryPriceView.frame = CGRectMake(_contentFrame.origin.x, _contentFrame.origin.y, self.queryPriceView.size.width, self.queryPriceView.size.height);
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
+{
+    [super touchesEnded:touches withEvent:event];
+    
+    self.queryPriceView.hidden = YES;
+    [ChartBack(QUERY_LAYER_TAG) setHidden:YES];
 }
 
 - (void)strockChart
@@ -271,22 +317,17 @@
     [self strockLineLayer];
 }
 
+- (void)addAnimation:(NSTimeInterval)duration
+{
+    CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    base.duration = duration;
+    base.fromValue = @0;
+    base.toValue = @1;
+    
+    [ChartShape(LINE_LAYER_TAG) addAnimation:base forKey:@"a"];
+}
+
+GGLazyGetMethod(StockQueryView, queryPriceView);
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

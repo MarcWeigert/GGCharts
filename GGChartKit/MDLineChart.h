@@ -8,6 +8,15 @@
 
 #import "BaseChart.h"
 #import "MassChartData.h"
+#import "StockQueryView.h"
+
+@protocol MDLineChartDelegate <NSObject>
+
+@optional
+
+- (void)moveToKeyNodeData:(MassChartData *)chartData queryView:(StockQueryView *)queryView;
+
+@end
 
 @interface MDLineChart : BaseChart
 
@@ -21,6 +30,10 @@
 @property (nonatomic, assign) NSUInteger xNdiv;
 @property (nonatomic, assign) NSUInteger yAxisSplit;
 
+@property (nonatomic, weak) id <MDLineChartDelegate> delegate;
+
 - (void)strockChart;
+
+- (void)addAnimation:(NSTimeInterval)duration;
 
 @end

@@ -100,11 +100,11 @@ return _##attribute;                            \
         [ChartBack(QUERY_LAYER_TAG) addRenderer:_x_str];
         [ChartBack(QUERY_LAYER_TAG) addRenderer:_y_str];
         
-        [self addSubview:self.queryPriceView];
         self.queryPriceView.hidden = NO;
         self.queryPriceView.backgroundColor = [UIColor whiteColor];
         self.queryPriceView.layer.borderWidth = 0.3;
         self.queryPriceView.layer.borderColor = RGB(125, 125, 125).CGColor;
+        [self addSubview:self.queryPriceView];
     }
     
     return self;
@@ -274,7 +274,7 @@ return _##attribute;                            \
     
     GGLine x_line = GGLineMake(CGRectGetMinX(_contentFrame), data.dataPoint.y, CGRectGetMaxX(_contentFrame), data.dataPoint.y);
     _x_query.line = x_line;
-    
+
     GGLine y_line = GGLineMake(data.dataPoint.x, CGRectGetMinY(_contentFrame), data.dataPoint.x, CGRectGetMaxY(_contentFrame));
     _y_query.line = y_line;
     

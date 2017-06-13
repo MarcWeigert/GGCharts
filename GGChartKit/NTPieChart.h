@@ -11,9 +11,6 @@
 
 @interface NTPieChart : BaseChart
 
-@property (nonatomic, assign) CGFloat sectorRadius;
-@property (nonatomic, strong) NSArray <PieChartData *> *sectorAry;
-
 @property (nonatomic, assign) CGFloat annularWidth;
 @property (nonatomic, assign) CGFloat annularRadius;
 @property (nonatomic, strong) NSArray <PieChartData *> *annularAry;

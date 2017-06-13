@@ -21,4 +21,6 @@
 
 @property (nonatomic) UIColor *borderColor;
 
+@property (nonatomic) NSString *title;
+
 @end

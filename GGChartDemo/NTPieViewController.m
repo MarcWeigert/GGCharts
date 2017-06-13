@@ -11,6 +11,7 @@
 #import "PieView.h"
 #import "Colors.h"
 #import "NTPieChart.h"
+#import "PieChart.h"
 
 @interface NTPieViewController ()
 
@@ -41,13 +42,13 @@
     
     PieChartData * pie_d4 = [[PieChartData alloc] init];
     pie_d4.pieName = @"直接访问";
-    pie_d4.pieData = @135;
+    pie_d4.pieData = @735;
     pie_d4.color = __RGB_ORIGE;
     
     PieChartData * pie_d5 = [[PieChartData alloc] init];
     pie_d5.pieName = @"直接访问";
-    pie_d5.pieData = @548;
-    pie_d5.color = __RGB_RED;
+    pie_d5.pieData = @1548;
+    pie_d5.color = __RGB_CYAN;
     
     PieChartData * pie_d6 = [[PieChartData alloc] init];
     pie_d6.pieName = @"直接访问";
@@ -59,18 +60,18 @@
     pie_d7.pieData = @148;
     pie_d7.color = __RGB_BLACK;
     
-    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4];
+    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4, pie_d5];
     
-    NTPieChart * chart = [[NTPieChart alloc] initWithFrame:self.view.frame];
-    chart.sectorRadius = 60;
+    PieChart * chart = [[PieChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 400)];
+    chart.radius = 80;
     chart.sectorAry = pieData;
     
-    chart.annularRadius = 80;
-    chart.annularWidth = 20;
-    chart.annularAry = @[pie_d2, pie_d3, pie_d5, pie_d7, pie_d6];
+//    chart.annularRadius = 80;
+//    chart.annularWidth = 15;
+//    chart.annularAry = @[pie_d2, pie_d3, pie_d5, pie_d7, pie_d6];
     
     [chart strockChart];
-    [chart addAnimationWithDuration:0.7];
+    [chart addAnimationWithDuration:.7];
     
     [self.view addSubview:chart];
 }

@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) UIColor * color;
 
+@property (nonatomic, assign) CGFloat ratio;
+
 + (void)pieAry:(NSArray <PieChartData *>*)ary enumerateObjectsUsingBlock:(void(^)(CGFloat arc, CGFloat transArc, PieChartData * data, NSUInteger idx))usingBlock;
 
 @end

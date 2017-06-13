@@ -26,7 +26,8 @@
         CGFloat arc = obj.pieData.floatValue / sum * M_PI * 2;
         layer_arc = layer_arc + arc;
         
-        if (usingBlock) { usingBlock(arc, M_PI * 2 - layer_arc, obj, idx); }
+        // 数据从12点方向出现
+        if (usingBlock) { usingBlock(arc, M_PI * 2 - layer_arc - M_PI_2, obj, idx); }
     }];
 }
 

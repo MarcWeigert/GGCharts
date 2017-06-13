@@ -53,7 +53,7 @@ GGXCircular(GGLine line)
     CGFloat x = line.end.x - line.start.x;
     CGFloat y = line.end.y - line.start.y;
     
-    return atan(y / x);
+    return atan2(y, x);
 }
 
 CG_INLINE double
@@ -62,7 +62,7 @@ GGYCircular(GGLine line)
     CGFloat x = line.end.x - line.start.x;
     CGFloat y = line.end.y - line.start.y;
     
-    return atan(x / y);
+    return atan2(x, y);
 }
 
 CG_INLINE CGPoint
@@ -92,6 +92,20 @@ GGMoveEnd(GGLine line, CGFloat move)
     CGFloat x = line.end.x + move * cosf(GGXCircular(line));
     CGFloat y = line.end.y + move * sinf(GGXCircular(line));
     return CGPointMake(x, y);
+}
+
+CG_INLINE GGLine
+GGLineMoveStart(GGLine line, CGFloat move)
+{
+    CGPoint start = GGMoveStart(line, move);
+    return GGPointLineMake(start, line.end);
+}
+
+CG_INLINE GGLine
+GGLineMoveEnd(GGLine line, CGFloat move)
+{
+    CGPoint end = GGMoveEnd(line, move);
+    return GGPointLineMake(line.start, end);
 }
 
 CG_INLINE CGFloat
@@ -382,4 +396,41 @@ GGCirclePointMake(CGPoint center, CGFloat radius)
     return circle;
 }
 
+#pragma mark - 弧度线
 
+struct GGArcLine
+{
+    CGPoint center;
+    CGFloat arc;
+    CGFloat leg;
+};
+typedef struct GGArcLine GGArcLine;
+
+CG_INLINE GGArcLine
+GGArcLineMake(CGPoint center, CGFloat arc, CGFloat leg)
+{
+    GGArcLine arc_line;
+    arc_line.center = center;
+    arc_line.arc = arc;
+    arc_line.leg = leg;
+    return arc_line;
+}
+
+CG_INLINE GGLine
+GGLineWithArcLine(GGArcLine arcLine, bool clockwise)
+{
+    int base = clockwise ? - 1 : 1;
+    
+    CGFloat end_x = arcLine.center.x + cosf(arcLine.arc) * arcLine.leg * base;
+    CGFloat end_y = arcLine.center.y + sinf(arcLine.arc) * arcLine.leg * base;
+    
+    return GGPointLineMake(arcLine.center, CGPointMake(end_x, end_y));
+}
+
+CG_INLINE CGPoint
+GGGetLineEndPointArcMoveX(GGLine line, CGFloat move)
+{
+    CGFloat arc = GGYCircular(line);
+    NSInteger base = arc > 0 ? 1 : -1;
+    return CGPointMake(move * base + line.end.x, line.end.y);
+}

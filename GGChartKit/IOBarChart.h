@@ -8,6 +8,7 @@
 
 #import "BaseChart.h"
 
+@class LineChartData;
 @class BarChartData;
 
 @interface IOBarChart : BaseChart
@@ -33,8 +34,10 @@
 @property (nonatomic, strong) BarChartData * barData;
 @property (nonatomic, assign) CGFloat barWidth;
 
-@property (nonatomic, assign) CGRect contentFrame;
+@property (nonatomic, strong) LineChartData * lineData;
+@property (nonatomic, assign) CGFloat lineWidth;
 
+@property (nonatomic, assign) CGRect contentFrame;
 @property (nonatomic, strong) NSString * format;
 
 - (void)updateChart;

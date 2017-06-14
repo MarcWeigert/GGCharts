@@ -18,6 +18,7 @@
 #import "CGPathCategory.h"
 #import "UICountingLabel.h"
 #import "GGShapeCanvas.h"
+#import "LineChartData.h"
 
 #define BAR_SYSTEM_FONT     [UIFont systemFontOfSize:14]
 #define BAR_AXIS_FONT       [UIFont systemFontOfSize:12]
@@ -31,6 +32,7 @@
 #define NegLayer            2000
 #define LineLayer           3000
 #define BackLayer           4000
+#define LineDataLayer       5000
 
 @interface IOBarChart ()
 
@@ -81,6 +83,7 @@
     _axisRenderer.showSep = NO;
     _axisRenderer.showLine = NO;
     _axisRenderer.strFont = _axisFont;
+    _axisRenderer.offSetRatio = CGPointMake(0.5, 0);
     [ChartBack(BackLayer) addRenderer:_axisRenderer];
     
     _format = @"%.2f";
@@ -322,9 +325,61 @@
     [ChartBack(BackLayer) setNeedsDisplay];
 }
 
+- (void)strockLineData
+{
+    CGMutablePathRef ref_line = CGPathCreateMutable();
+    
+    GGShapeCanvas * line_shape = ChartShape(LineDataLayer);
+    line_shape.lineWidth = _lineWidth;
+    line_shape.fillColor = _lineData.lineColor.CGColor;
+    line_shape.strokeColor = _lineData.lineColor.CGColor;
+    
+    CGFloat max = getMax(_barData.dataSet);
+    CGFloat min = getMin(_barData.dataSet);
+    min = min < 0 ? min : 0;
+    
+    CGFloat x = CGRectGetMinX(_contentFrame);
+    CGFloat y = CGRectGetMinY(_contentFrame) + 10;
+    CGFloat w = CGRectGetWidth(_contentFrame);
+    CGFloat h = CGRectGetHeight(_contentFrame) - 20;
+    CGRect barFrame = CGRectMake(x, y, w, h);
+    
+    GGLineChatScaler fig = figScaler(max, min, barFrame);
+    GGLineChatScaler axis = axiScaler(_barData.dataSet.count, barFrame, 0.5);
+    
+    for (NSInteger i = 0; i < _lineData.dataSet.count; i++) {
+        
+        CGFloat data = [_lineData.dataSet[i] floatValue];
+        CGFloat x = axis(i);
+        CGFloat y = fig(data);
+        
+        CGPoint point = CGPointMake(x, y);
+        GGCircle circle = GGCirclePointMake(point, 2);
+        
+        if (i == 0) {
+            
+            CGPathMoveToPoint(ref_line, NULL, x, y);
+        }
+        else {
+        
+            CGPathAddLineToPoint(ref_line, NULL, x, y);
+        }
+        
+        GGPathAddCircle(ref_line, circle);
+    }
+    
+    line_shape.path = ref_line;
+    CGPathRelease(ref_line);
+}
+
 - (void)strockChart
 {
     [self drawChartWithLableAnimation:NO];
+    
+    if (_lineData) {
+        
+        [self strockLineData];
+    }
 }
 
 - (void)updateChart
@@ -334,6 +389,7 @@
     [ChartShape(PosLayer) startAnimation:@"oldPush" duration:0.5];
     [ChartShape(NegLayer) startAnimation:@"oldPush" duration:0.5];
     [ChartShape(LineLayer) startAnimation:@"oldPush" duration:0.5];
+    [ChartShape(LineDataLayer) startAnimation:@"oldPush" duration:0.5];
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
         

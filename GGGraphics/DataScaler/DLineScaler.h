@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSArray <NSNumber *> *dataAry;    ///< 数据
 @property (nonatomic, readonly) CGPoint * linePoints;           ///< 数据点
 
-@property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0 - 1 默认 0.5
+@property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0-1 默认 0.5
 
 /** 更新计算点 */
 - (void)updateScaler;

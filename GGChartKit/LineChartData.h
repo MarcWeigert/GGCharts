@@ -7,10 +7,30 @@
 //
 
 #import "BaseChartData.h"
+#import "DLineScaler.h"
+#import "GGShapeCanvas.h"
 
 @interface LineChartData : BaseChartData
 
 @property (nonatomic, strong) NSString * lineName;
 @property (nonatomic, strong) UIColor * lineColor;
+
+@property (nonatomic, strong) NSArray <NSNumber *> *datas;  ///< 数据
+
+@property (nonatomic, readonly) CGFloat dataMax;      ///< 数组中最大值
+@property (nonatomic, readonly) CGFloat dataMin;      ///< 数组中最小值
+
+@property (nonatomic, assign) CGFloat width;    ///< 宽度
+@property (nonatomic, strong) UIColor * color;  ///< 颜色
+
+@property (nonatomic, readonly, weak) GGShapeCanvas * lineCanvas;   ///< 渲染层
+@property (nonatomic, strong) DLineScaler * lineScaler;     ///< 线数据定标器
+
+/** 
+ * 绘制线图层
+ *
+ * @param lineCanvas 图层
+ */
+- (void)drawLineWithCanvas:(GGShapeCanvas *)lineCanvas;
 
 @end

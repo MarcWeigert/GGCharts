@@ -199,7 +199,7 @@
     
     CGFloat max = getMax(_barData.dataSet);
     CGFloat min = getMin(_barData.dataSet);
-    min = min < 0 ? min : 0;
+    //min = min < 0 ? min : 0;
     
     CGFloat x = CGRectGetMinX(_contentFrame);
     CGFloat y = CGRectGetMinY(_contentFrame) + 10;

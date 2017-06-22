@@ -19,6 +19,7 @@
 #import "UICountingLabel.h"
 #import "GGShapeCanvas.h"
 #import "LineChartData.h"
+#import "DBarScaler.h"
 
 #define BAR_SYSTEM_FONT     [UIFont systemFontOfSize:14]
 #define BAR_AXIS_FONT       [UIFont systemFontOfSize:12]
@@ -218,6 +219,25 @@
     CGMutablePathRef l_ref = CGPathCreateMutable();
     CGMutablePathRef l_c_ref = CGPathCreateMutable();
     
+    DBarScaler * barScaler = [[DBarScaler alloc] init];
+    barScaler.max = max;
+    barScaler.min = min;
+    barScaler.barWidth = _barWidth;
+    barScaler.dataAry = _barData.dataSet;
+    barScaler.rect = barFrame;
+    barScaler.bottomPrice = 0;
+    [barScaler updateScaler];
+    
+    [barScaler getPositiveData:^(CGRect *rects, size_t size) {
+        
+        GGpathAddCGRects(ref_p, rects, size);
+    }];
+    
+    [barScaler getNegativeData:^(CGRect *rects, size_t size) {
+        
+        GGpathAddCGRects(ref_n, rects, size);
+    }];
+    
     BOOL isAllPositive = YES;
     
     for (NSInteger i = 0; i < _barData.dataSet.count; i++) {
@@ -233,13 +253,13 @@
         GGPathAddCGRect(ref_n_a, rect_a);
         
         if (data > 0) {
-            GGPathAddCGRect(ref_p, rect);
-            GGPathAddCGRect(ref_n, rect_a);
+            //GGPathAddCGRect(ref_p, rect);
+            //GGPathAddCGRect(ref_n, rect_a);
             
         }
         else {
-            GGPathAddCGRect(ref_n, rect);
-            GGPathAddCGRect(ref_p, rect_a);
+            //GGPathAddCGRect(ref_n, rect);
+            //GGPathAddCGRect(ref_p, rect_a);
             isAllPositive = NO;
         }
     }

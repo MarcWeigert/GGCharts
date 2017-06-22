@@ -25,9 +25,74 @@
 
 @property (nonatomic) NSMutableDictionary * pieLayerDictionary;
 
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;      ///< 显示的图层
+
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;         ///< 闲置的图层
+
 @end
 
 @implementation BaseChart
+
+/**
+ * 绘制图表(子类重写)
+ */
+- (void)drawChart
+{
+    [self.idleLayers addObjectsFromArray:self.visibleLayers];
+    
+    [self.visibleLayers enumerateObjectsUsingBlock:^(GGShapeCanvas * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj removeFromSuperlayer];
+    }];
+    
+    [self.visibleLayers removeAllObjects];
+}
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGShapeCanvas *)getGGCanvasEqualFrame
+{
+    GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
+    shape.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self.layer addSublayer:shape];
+    [self.visibleLayers insertObject:shape atIndex:0];
+    return shape;
+}
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGShapeCanvas *)getGGCanvasSquareFrame
+{
+    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+    GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
+    shape.frame = CGRectMake(0, 0, width, width);
+    [self.layer addSublayer:shape];
+    [self.visibleLayers insertObject:shape atIndex:0];
+    return shape;
+}
+
+/**
+ * 获取图层
+ */
+- (GGShapeCanvas *)makeOrGetShapeCanvas
+{
+    GGShapeCanvas * shape = [self.idleLayers lastObject];
+    
+    if (shape == nil) {
+        
+        shape = [[GGShapeCanvas alloc] init];
+    }
+    else {
+    
+        [self.idleLayers removeObject:shape];
+    }
+    
+    return shape;
+}
+
+#pragma mark - Old 
 
 - (GGCanvas *)getCanvasWithTag:(NSInteger)tag
 {
@@ -103,5 +168,9 @@
 GGLazyGetMethod(NSMutableDictionary, lineLayerDictionary);
 
 GGLazyGetMethod(NSMutableDictionary, pieLayerDictionary);
+
+GGLazyGetMethod(NSMutableArray, visibleLayers);
+
+GGLazyGetMethod(NSMutableArray, idleLayers);
 
 @end

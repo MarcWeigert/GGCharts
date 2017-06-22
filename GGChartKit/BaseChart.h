@@ -23,4 +23,19 @@
 
 - (GGShapeCanvas *)getPieWithTag:(NSInteger)tag;
 
+/**
+ * 绘制图表(子类重写)
+ */
+- (void)drawChart;
+
+/** 
+ * 取图层视图大小与Chart一致
+ */
+- (GGShapeCanvas *)getGGCanvasEqualFrame;
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGShapeCanvas *)getGGCanvasSquareFrame;
+
 @end

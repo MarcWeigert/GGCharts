@@ -27,36 +27,6 @@ void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
     }
 }
 
-void GGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid)
-{
-    CGPoint ** result = GGGridPointAryMake(grid);
-    
-//    for (int i = 0; i < grid.horizontal; i++) {
-//        
-//        CGPoint start = result[i][0];
-//        CGPoint end = result[i][grid.vertical - 1];
-//        
-//        CGPathMoveToPoint(ref, NULL, start.x, start.y);
-//        CGPathAddLineToPoint(ref, NULL, end.x, end.y);
-//    }
-//    
-//    for (int i = 0; i < grid.vertical; i++) {
-//        
-//        CGPoint start = result[0][i];
-//        CGPoint end = result[grid.vertical - 1][i];
-//        
-//        CGPathMoveToPoint(ref, NULL, start.x, start.y);
-//        CGPathAddLineToPoint(ref, NULL, end.x, end.y);
-//    }
-//    
-//    for (int i = 0; i < grid.horizontal; i++) {
-//        
-//        free(result[i]);
-//    }
-    
-    free(result);
-}
-
 void GGPathAddLine(CGMutablePathRef ref, GGLine line)
 {
     CGPathMoveToPoint(ref, NULL, line.start.x, line.start.y);
@@ -77,6 +47,14 @@ void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect)
     CGPathAddLineToPoint(ref, NULL, left.end.x, left.end.y);
     CGPathAddLineToPoint(ref, NULL, bottom.end.x, bottom.end.y);
     CGPathAddLineToPoint(ref, NULL, top.end.x, top.end.y);
+}
+
+CG_EXTERN void GGpathAddCGRects(CGMutablePathRef ref, CGRect * rects, size_t size)
+{
+    for (NSInteger i = 0; i < size; i++) {
+        
+        GGPathAddCGRect(ref, rects[i]);
+    }
 }
 
 CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle)

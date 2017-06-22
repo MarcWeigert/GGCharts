@@ -10,11 +10,11 @@
 
 CG_EXTERN void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis);
 
-CG_EXTERN void GGPathAddGGGrid(CGMutablePathRef ref, GGGrid grid);
-
 CG_EXTERN void GGPathAddLine(CGMutablePathRef ref, GGLine line);
 
 CG_EXTERN void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect);
+
+CG_EXTERN void GGpathAddCGRects(CGMutablePathRef ref, CGRect * rects, size_t size);
 
 CG_EXTERN void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle);
 

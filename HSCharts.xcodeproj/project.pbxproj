@@ -11,6 +11,9 @@
 		2B0C13351E1A891500F4DA3F /* GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0C132D1E1A891500F4DA3F /* GGLayer.m */; };
 		2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */; };
 		2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */; };
+		2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */; };
+		2B252B821EFBBD5D00AF541B /* DLineScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B811EFBBD5D00AF541B /* DLineScaler.m */; };
+		2B252B851EFBC19B00AF541B /* DBarScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B841EFBC19B00AF541B /* DBarScaler.m */; };
 		2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */; };
 		2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */; };
 		2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A581EE44F19003D17C4 /* GGGridRenderer.m */; };
@@ -56,6 +59,7 @@
 		2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */; };
 		2B78D3A81D3F1B220079C6D2 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B78D3A71D3F1B220079C6D2 /* ListVC.m */; };
 		2B7A467B1DED66B00057CFDA /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7A467A1DED66B00057CFDA /* PieView.m */; };
+		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
 		2B9E98CD1EEE212A00DF0889 /* MDLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98CC1EEE212A00DF0889 /* MDLineChart.m */; };
 		2B9E98D01EEE221100DF0889 /* MassChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98CF1EEE221100DF0889 /* MassChartData.m */; };
 		2B9E98D21EEE388000DF0889 /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9E98D11EEE388000DF0889 /* stock_data.json */; };
@@ -78,6 +82,12 @@
 		2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChartViewController.m; sourceTree = "<group>"; };
 		2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChartViewController.h; sourceTree = "<group>"; };
 		2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChartViewController.m; sourceTree = "<group>"; };
+		2B252B7D1EFBB52500AF541B /* CALayer+GGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+GGFrame.h"; sourceTree = "<group>"; };
+		2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+GGFrame.m"; sourceTree = "<group>"; };
+		2B252B801EFBBD5D00AF541B /* DLineScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLineScaler.h; sourceTree = "<group>"; };
+		2B252B811EFBBD5D00AF541B /* DLineScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLineScaler.m; sourceTree = "<group>"; };
+		2B252B831EFBC19B00AF541B /* DBarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBarScaler.h; sourceTree = "<group>"; };
+		2B252B841EFBC19B00AF541B /* DBarScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBarScaler.m; sourceTree = "<group>"; };
 		2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAxisRenderer.h; sourceTree = "<group>"; };
 		2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAxisRenderer.m; sourceTree = "<group>"; };
 		2B330A541EE44F19003D17C4 /* GGChartDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartDefine.h; sourceTree = "<group>"; };
@@ -172,6 +182,8 @@
 		2B78D3A71D3F1B220079C6D2 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
 		2B7A46791DED66B00057CFDA /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieView.h; path = HSChart/PieView.h; sourceTree = "<group>"; };
 		2B7A467A1DED66B00057CFDA /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieView.m; path = HSChart/PieView.m; sourceTree = "<group>"; };
+		2B8B70FD1EF76066002FDC09 /* BaseScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScaler.h; sourceTree = "<group>"; };
+		2B8B70FE1EF76066002FDC09 /* BaseScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScaler.m; sourceTree = "<group>"; };
 		2B9E98CB1EEE212A00DF0889 /* MDLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLineChart.h; sourceTree = "<group>"; };
 		2B9E98CC1EEE212A00DF0889 /* MDLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLineChart.m; sourceTree = "<group>"; };
 		2B9E98CE1EEE221100DF0889 /* MassChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MassChartData.h; sourceTree = "<group>"; };
@@ -234,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				2B330A681EE44F8E003D17C4 /* GGChart.h */,
+				2B8B70FC1EF75F0E002FDC09 /* DataScaler */,
 				2B7777B31EE829A500C99F55 /* GUtils */,
 				2B7777AE1EE828EF00C99F55 /* Shape */,
 				2B7777A71EE8272400C99F55 /* Canvas */,
@@ -457,8 +470,23 @@
 				2B7777B51EE829A500C99F55 /* GGDataScaler.m */,
 				2B7777B81EE829A500C99F55 /* NSValue+GGValue.h */,
 				2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */,
+				2B252B7D1EFBB52500AF541B /* CALayer+GGFrame.h */,
+				2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */,
 			);
 			path = GUtils;
+			sourceTree = "<group>";
+		};
+		2B8B70FC1EF75F0E002FDC09 /* DataScaler */ = {
+			isa = PBXGroup;
+			children = (
+				2B8B70FD1EF76066002FDC09 /* BaseScaler.h */,
+				2B8B70FE1EF76066002FDC09 /* BaseScaler.m */,
+				2B252B801EFBBD5D00AF541B /* DLineScaler.h */,
+				2B252B811EFBBD5D00AF541B /* DLineScaler.m */,
+				2B252B831EFBC19B00AF541B /* DBarScaler.h */,
+				2B252B841EFBC19B00AF541B /* DBarScaler.m */,
+			);
+			path = DataScaler;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,6 +571,7 @@
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B3CB0C71EE6EAF700472774 /* UICountingLabel.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
+				2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */,
 				2B4D8A361D1BF35F002CED37 /* DrawMath.m in Sources */,
 				2B7A467B1DED66B00057CFDA /* PieView.m in Sources */,
 				2B6FB64C1EE92D3000D95EA6 /* BaseChart.m in Sources */,
@@ -555,11 +584,14 @@
 				2B5E562A1E1C756D00B484E0 /* GGTextPaint.m in Sources */,
 				2B6D8E881EEA3DC000DFFF1C /* PieChartData.m in Sources */,
 				2B38F4981DFD2D40008C6BF0 /* LineBarView.m in Sources */,
+				2B252B851EFBC19B00AF541B /* DBarScaler.m in Sources */,
 				2B6077851DAF798A00945760 /* HollowFanView.m in Sources */,
+				2B252B821EFBBD5D00AF541B /* DLineScaler.m in Sources */,
 				2B6CCF211DB0D8E300BFBF95 /* BarShape.m in Sources */,
 				2B6FB6521EE971A100D95EA6 /* BaseChartData.m in Sources */,
 				2B61B0671D210018009D634D /* CrossLineView.m in Sources */,
 				2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */,
+				2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */,
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */,
 				2B6CCF251DB0D8E300BFBF95 /* RoundShape.m in Sources */,

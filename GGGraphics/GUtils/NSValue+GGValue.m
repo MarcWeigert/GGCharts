@@ -43,8 +43,6 @@ GGValueMethodImplementation(GGAxis)
 GGValueMethodImplementation(GGArrow)
 GGValueMethodImplementation(GGGrid)
 GGValueMethodImplementation(GGKShape)
-
-GGValueForGGPathRefImplementation(GGGrid)
 GGValueForGGPathRefImplementation(GGAxis)
 
 @end

@@ -119,16 +119,18 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     
     if (_lineObjAry.count) {
         
-        [self.lineObjAry enumerateObjectsUsingBlock:^(id<DLineScalerProtocol> obj, NSUInteger idx, BOOL * stop) {
+        [self.lineObjAry enumerateObjectsUsingBlock:^(id <DLineScalerProtocol> obj, NSUInteger idx, BOOL * stop) {
             
             _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.scalerNumber.floatValue));
         }];
     }
+    else {
     
-    [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
-        
-        _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.floatValue));
-    }];
+        [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+            
+            _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.floatValue));
+        }];
+    }
 }
 
 /** 靠近点的数据index */

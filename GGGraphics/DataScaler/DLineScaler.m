@@ -88,6 +88,19 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     [self updateLinePoints:point];
 }
 
+- (void)setLineObjAry:(NSArray<id<DLineScalerProtocol>> *)lineObjAry
+{
+    _lineObjAry = lineObjAry;
+    
+    if (_xMaxCount == 0) {
+        
+        _xMaxCount = lineObjAry.count;
+    }
+    
+    CGPoint * point = malloc(lineObjAry.count * sizeof(CGPoint));
+    [self updateLinePoints:point];
+}
+
 - (void)updateLinePoints:(CGPoint *)linePoints
 {
     if (_linePoints != nil) {
@@ -103,6 +116,14 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     _fig = y_axiScaler(_max, _min, self.rect);
     _axis = x_axiScaler(_xMaxCount, self.rect, _xRatio);
+    
+    if (_lineObjAry.count) {
+        
+        [self.lineObjAry enumerateObjectsUsingBlock:^(id<DLineScalerProtocol> obj, NSUInteger idx, BOOL * stop) {
+            
+            _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.scalerNumber.floatValue));
+        }];
+    }
     
     [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
         

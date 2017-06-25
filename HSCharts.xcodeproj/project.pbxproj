@@ -10,7 +10,6 @@
 		2B1157C21EFFEE3D0049FE79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157B71EFFEE3D0049FE79 /* AppDelegate.m */; };
 		2B1157C31EFFEE3D0049FE79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157B81EFFEE3D0049FE79 /* Assets.xcassets */; };
 		2B1157C41EFFEE3D0049FE79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157B91EFFEE3D0049FE79 /* LaunchScreen.storyboard */; };
-		2B1157C71EFFEE3D0049FE79 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157BD1EFFEE3D0049FE79 /* Info.plist */; };
 		2B1157C81EFFEE3D0049FE79 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157BF1EFFEE3D0049FE79 /* ListVC.m */; };
 		2B1157C91EFFEE3D0049FE79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157C01EFFEE3D0049FE79 /* main.m */; };
 		2B1157CA1EFFEE3D0049FE79 /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157C11EFFEE3D0049FE79 /* stock_data.json */; };
@@ -366,7 +365,7 @@
 		2B4D8A041D1BF2EB002CED37 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "I really is a farmer";
 				TargetAttributes = {
 					2B4D8A0B1D1BF2EB002CED37 = {
@@ -399,7 +398,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B1157C31EFFEE3D0049FE79 /* Assets.xcassets in Resources */,
-				2B1157C71EFFEE3D0049FE79 /* Info.plist in Resources */,
 				2B1157CA1EFFEE3D0049FE79 /* stock_data.json in Resources */,
 				2B1157C41EFFEE3D0049FE79 /* LaunchScreen.storyboard in Resources */,
 			);

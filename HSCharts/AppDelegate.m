@@ -7,58 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "RankBarView.h"
-#import "Colors.h"
-#import "CumSumBarView.h"
-#import "CrossLineView.h"
-#import "CumSumLineView.h"
 #import "ListVC.h"
 
-#import "GGLayer.h"
-
-#import "GGLinePaint.h"
-#import "GGTextPaint.h"
-
-#import "GGStringRenderer.h"
-
-#import "GGCanvas.h"
-
-#import "GGChart.h"
-
-#import "GGChartDefine.h"
-
-#import "GGAxisRenderer.h"
-#import "GGStringRenderer.h"
-#import "GGGridRenderer.h"
-
-#import "LineBarView.h"
-
-#import "IOLineBarChart.h"
-#import "IOBarChart.h"
-#import "BarChartData.h"
-#import "LineChartData.h"
-
-#import "CGPathCategory.h"
-
-#import "DrawMath.h"
-
-#import "PieChartData.h"
-
-#import "IOBarChartViewController.h"
-#import "LineBarChartViewController.h"
-
-#import "NTPieChart.h"
-#import "NTPieViewController.h"
-
-#import "MDLineChart.h"
-
-#import "MDLineViewController.h"
-
 @interface AppDelegate ()
-
-@property (nonatomic) IOBarChart * barChart;
-
-@property (nonatomic) IOLineBarChart * lineBarChart;
 
 @end
 

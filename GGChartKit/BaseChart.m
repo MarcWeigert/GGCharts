@@ -56,7 +56,7 @@
     GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
     shape.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self.layer addSublayer:shape];
-    [self.visibleLayers insertObject:shape atIndex:0];
+    [self.visibleLayers addObject:shape];
     return shape;
 }
 
@@ -69,7 +69,7 @@
     GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
     shape.frame = CGRectMake(0, 0, width, width);
     [self.layer addSublayer:shape];
-    [self.visibleLayers insertObject:shape atIndex:0];
+    [self.visibleLayers addObject:shape];
     return shape;
 }
 
@@ -78,7 +78,7 @@
  */
 - (GGShapeCanvas *)makeOrGetShapeCanvas
 {
-    GGShapeCanvas * shape = [self.idleLayers lastObject];
+    GGShapeCanvas * shape = [self.idleLayers firstObject];
     
     if (shape == nil) {
         

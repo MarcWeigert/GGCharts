@@ -25,12 +25,13 @@
     
     self.title = @"IOBarChart";
     
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
+    PNBarData * bar = [[PNBarData alloc] init];
+    bar.datas = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
+    bar.width = 25;
     
-    LineChartData * line_data = [[LineChartData alloc] init];
-    line_data.dataSet = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
-    line_data.lineColor = [UIColor redColor];
+    [bar addTarget:self
+            action:@selector(clickBar:index:)
+      forBarEvents:GGTouchMoveNearShape];
     
     _barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
     _barChart.topTitle = @"最近五日主力增减仓";
@@ -38,12 +39,9 @@
     _barChart.positiveTitle = @"资金流入";
     _barChart.negativeTitle = @"资金流出";
     _barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
-    _barChart.barData = data;
-    _barChart.barWidth = 25;
     _barChart.axisFont = [UIFont systemFontOfSize:9];
-    _barChart.lineWidth = 1;
-    //_barChart.lineData = line_data;
-    [_barChart strockChart];
+    _barChart.pnBarData = bar;
+    [_barChart drawChart];
     [_barChart addAnimation:1];
     [self.view addSubview:_barChart];
     
@@ -69,27 +67,28 @@
     [self.view addSubview:btn];
 }
 
+- (void)clickBar:(CGRect)rect index:(NSInteger)index
+{
+    NSLog(@"%.2f", rect.size.width);
+    
+    NSLog(@"%zd", index);
+}
+
 - (void)analogDataFirst
 {
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@2225.6, @2563.1, @531.4, @839.4, @7.4, @1000, @897.0, @1500];
-    _barChart.barData = data;
+    _barChart.pnBarData.datas = @[@2225.6, @2563.1, @531.4, @839.4, @107.4, @1000, @897.0, @1500];
     [_barChart updateChart];
 }
 
 - (void)analogDataSecond
 {
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @-2563.1, @-531.4, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
-    _barChart.barData = data;
+    _barChart.pnBarData.datas = @[@-2225.6, @-2563.1, @-531.4, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
     [_barChart updateChart];
 }
 
 - (void)analogDataThird
 {
-    BarChartData * data = [[BarChartData alloc] init];
-    data.dataSet = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000, @897.0, @-1500];
-    _barChart.barData = data;
+    _barChart.pnBarData.datas = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000, @897.0, @-1500];
     [_barChart updateChart];
 }
 

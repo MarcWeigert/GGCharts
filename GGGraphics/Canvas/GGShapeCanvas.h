@@ -12,6 +12,8 @@
 
 //- (void)startShapeAnimation:(NSTimeInterval)duration;
 
+- (void)pathChangeAnimation:(NSTimeInterval)duration;
+
 - (CAAnimation *)animationForName:(NSString *)name;
 
 - (void)startAnimation:(NSString *)name duration:(NSTimeInterval)duration;

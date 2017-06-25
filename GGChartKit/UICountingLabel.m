@@ -87,9 +87,32 @@
 @property (nonatomic, strong) CADisplayLink *timer;
 @property (nonatomic, strong) id<UILabelCounter> counter;
 
+@property (nonatomic, assign) CGRect oldRect;
+@property (nonatomic, assign) CGRect newRect;
+
 @end
 
 @implementation UICountingLabel
+
+- (void)setFrame:(CGRect)frame
+{
+    _oldRect = self.frame;
+    [super setFrame:frame];
+    _newRect = frame;
+}
+
+- (void)changeRectAnimation:(NSTimeInterval)duration
+{
+    CGRect old = _oldRect;
+    CGRect new = _newRect;
+    self.frame = old;
+    
+    [UIView animateWithDuration:duration animations:^{
+        
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        self.frame = new;
+    }];
+}
 
 -(void)countFrom:(CGFloat)value to:(CGFloat)endValue {
     

@@ -63,6 +63,18 @@
 //    }
 //}
 
+- (void)pathChangeAnimation:(NSTimeInterval)duration
+{
+    if (_oldRef) {
+        
+        CABasicAnimation * shapeAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+        shapeAnimation.fromValue = (__bridge id)_oldRef;
+        shapeAnimation.toValue = (__bridge id)self.path;
+        shapeAnimation.duration = duration;
+        [self addAnimation:shapeAnimation forKey:@"shapeAnimation"];
+    }
+}
+
 - (CAAnimation *)animationForName:(NSString *)name
 {
     return [self.animationDictonary valueForKey:name];

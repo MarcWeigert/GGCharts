@@ -142,3 +142,23 @@ CG_EXTERN NSArray * GGPathAnnularAnimationArrayFor(GGAnnular annular, long frame
     
     return [NSArray arrayWithArray:ary];
 }
+
+CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGFloat y)
+{
+    CGMutablePathRef start = CGPathCreateMutable();
+    CGMutablePathRef end = CGPathCreateMutable();
+    
+    for (int i = 0; i < size; i++) {
+        
+        CGRect end_rect = rects[i];
+        CGRect start_rect = CGRectMake(end_rect.origin.x, y, end_rect.size.width, 0);
+        GGPathAddCGRect(start, start_rect);
+        GGPathAddCGRect(end, end_rect);
+    }
+    
+    NSArray * ary = @[(__bridge id)start, (__bridge id)end];
+    CGPathRelease(start);
+    CGPathRelease(end);
+    
+    return ary;
+}

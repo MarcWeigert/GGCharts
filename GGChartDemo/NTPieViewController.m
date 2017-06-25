@@ -8,7 +8,6 @@
 
 #import "NTPieViewController.h"
 #import "PieChartData.h"
-#import "PieView.h"
 #import "Colors.h"
 #import "NTPieChart.h"
 #import "PieChart.h"

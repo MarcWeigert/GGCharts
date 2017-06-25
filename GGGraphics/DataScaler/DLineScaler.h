@@ -19,6 +19,9 @@
 
 @property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0-1 默认 0.5
 
+/** 靠近点的数据index */
+- (NSUInteger)indexOfPoint:(CGPoint)point;
+
 /** 更新计算点 */
 - (void)updateScaler;
 

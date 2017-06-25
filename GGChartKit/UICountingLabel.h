@@ -21,16 +21,18 @@ typedef NSAttributedString* (^UICountingLabelAttributedFormatBlock)(CGFloat valu
 @property (nonatomic, copy) UICountingLabelAttributedFormatBlock attributedFormatBlock;
 @property (nonatomic, copy) void (^completionBlock)();
 
--(void)countFrom:(CGFloat)startValue to:(CGFloat)endValue;
--(void)countFrom:(CGFloat)startValue to:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+- (void)countFrom:(CGFloat)startValue to:(CGFloat)endValue;
+- (void)countFrom:(CGFloat)startValue to:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
 
--(void)countFromCurrentValueTo:(CGFloat)endValue;
--(void)countFromCurrentValueTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+- (void)countFromCurrentValueTo:(CGFloat)endValue;
+- (void)countFromCurrentValueTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
 
--(void)countFromZeroTo:(CGFloat)endValue;
--(void)countFromZeroTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+- (void)countFromZeroTo:(CGFloat)endValue;
+- (void)countFromZeroTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
 
 - (CGFloat)currentValue;
+
+- (void)changeRectAnimation:(NSTimeInterval)duration;
 
 @end
 

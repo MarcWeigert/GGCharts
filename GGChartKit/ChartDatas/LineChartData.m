@@ -7,15 +7,7 @@
 //
 
 #import "LineChartData.h"
-
-#define GGLazyGetMethod(type, attribute)            \
-- (type *)attribute                                 \
-{                                                   \
-if (!_##attribute) {                            \
-_##attribute = [[type alloc] init];         \
-}                                               \
-return _##attribute;                            \
-}
+#import "GGChartDefine.h"
 
 @implementation LineChartData
 
@@ -26,7 +18,7 @@ return _##attribute;                            \
     __block CGFloat chartMax = FLT_MIN;
     __block CGFloat chartMin = FLT_MAX;
     
-    [self.dataSet enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+    [self.datas enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
         
         chartMax = obj.floatValue > chartMax ? obj.floatValue : chartMax;
         chartMin = obj.floatValue < chartMin ? obj.floatValue : chartMin;
@@ -50,6 +42,14 @@ return _##attribute;                            \
 - (void)drawLineWithCanvas:(GGShapeCanvas *)lineCanvas
 {
     _lineCanvas = lineCanvas;
+    
+    [self.lineScaler updateScaler];
+    CGMutablePathRef lineRef = CGPathCreateMutable();
+    CGPathAddLines(lineRef, NULL, self.lineScaler.linePoints, self.dataSet.count);
+    self.lineCanvas.path = lineRef;
+    self.lineCanvas.strokeColor = _color.CGColor;
+    self.lineCanvas.lineWidth = _width;
+    CGPathRelease(lineRef);
 }
 
 #pragma mark - Setter && Getter
@@ -77,6 +77,18 @@ return _##attribute;                            \
 - (CGFloat)getBase
 {
     return fabs(_dataMax - _dataMin) * 0.1;
+}
+
+- (BOOL)isAllPositive
+{
+    __block BOOL isAllPositive = YES;
+    
+    [self.datas enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+        
+        if (obj.floatValue < 0) isAllPositive = NO;
+    }];
+    
+    return isAllPositive;
 }
 
 #pragma mark - Lazy

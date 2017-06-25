@@ -19,6 +19,7 @@
 
 @property (nonatomic, readonly) CGFloat dataMax;      ///< 数组中最大值
 @property (nonatomic, readonly) CGFloat dataMin;      ///< 数组中最小值
+@property (nonatomic, readonly) BOOL isAllPositive;     ///< 是否全是正数
 
 @property (nonatomic, assign) CGFloat width;    ///< 宽度
 @property (nonatomic, strong) UIColor * color;  ///< 颜色

@@ -53,6 +53,17 @@
     }
 }
 
+/** 靠近点的数据index */
+- (NSUInteger)indexOfPoint:(CGPoint)point
+{
+    CGFloat xSpileWidth = CGRectGetWidth(self.rect) / self.xMaxCount;
+    CGFloat offSet = xSpileWidth * self.xRatio;
+    NSInteger index = (point.x - self.rect.origin.x - offSet + _barWidth / 2) / xSpileWidth;
+    if (index < 0) { index = 0; }
+    if (index >= self.dataAry.count) { index = self.dataAry.count - 1; }
+    return index;
+}
+
 /** 正数的rect */
 - (void)getPositiveData:(BarRects)block
 {
@@ -64,8 +75,9 @@
         CGFloat data = [self.dataAry[i] floatValue];
         CGPoint point = self.linePoints[i];
         CGPoint zero = CGPointMake(point.x, bottomY);
+        CGRect zeroRect = GGLineRectMake(zero, zero, _barWidth);
         
-        rects[i] = data > 0 ? _barRects[i] : GGLineRectMake(zero, zero, _barWidth);
+        rects[i] = data >= 0 ? _barRects[i] : zeroRect;
     }
     
     block(rects, self.dataAry.count);

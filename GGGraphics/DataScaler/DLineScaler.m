@@ -110,6 +110,17 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     }];
 }
 
+/** 靠近点的数据index */
+- (NSUInteger)indexOfPoint:(CGPoint)point
+{
+    CGFloat xSpileWidth = CGRectGetWidth(self.rect) / _xMaxCount;
+    CGFloat offSet = xSpileWidth * _xRatio;
+    NSInteger index = (point.x - self.rect.origin.x - offSet) / xSpileWidth;
+    if (index < 0) { index = 0; }
+    if (index >= self.dataAry.count) { index = self.dataAry.count - 1; }
+    return index;
+}
+
 - (void)dealloc
 {
     if (_linePoints != nil) {

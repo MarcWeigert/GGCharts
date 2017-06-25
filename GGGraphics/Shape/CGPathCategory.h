@@ -29,3 +29,5 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
 CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, long frame);
 
 CG_EXTERN NSArray * GGPathAnnularAnimationArrayFor(GGAnnular annular, long frame);
+
+CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGFloat y);

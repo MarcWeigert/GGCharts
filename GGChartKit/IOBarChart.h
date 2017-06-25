@@ -6,12 +6,10 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "BaseChart.h"
+#import "BaseCountChart.h"
+#import "PNBarData.h"
 
-@class LineChartData;
-@class BarChartData;
-
-@interface IOBarChart : BaseChart
+@interface IOBarChart : BaseCountChart
 
 @property (nonatomic, copy) NSString * topTitle;
 @property (nonatomic, strong) UIFont * topFont;
@@ -31,19 +29,14 @@
 @property (nonatomic, strong) UIFont * axisFont;
 @property (nonatomic, strong) UIColor * axisColor;
 
-@property (nonatomic, strong) BarChartData * barData;
-@property (nonatomic, assign) CGFloat barWidth;
-
-@property (nonatomic, strong) LineChartData * lineData;
-@property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, strong) PNBarData * pnBarData;
 
 @property (nonatomic, assign) CGRect contentFrame;
 @property (nonatomic, strong) NSString * format;
 
 - (void)updateChart;
 
-- (void)strockChart;
-
+/** 图表动画 */
 - (void)addAnimation:(NSTimeInterval)duration;
 
 @end

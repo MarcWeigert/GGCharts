@@ -19,6 +19,20 @@
     [self updateBarRects:rects];
 }
 
+/**
+ * 自定义对象转换转换
+ *
+ * @param objAry 模型类数组
+ * @param getter 模型类方法, 方法无参数, 返回值为float, 否则会崩溃。
+ */
+- (void)setObjAry:(NSArray <NSObject *> *)objAry getSelector:(SEL)getter
+{
+    [super setObjAry:objAry getSelector:getter];
+    
+    CGRect * rects = malloc(objAry.count * sizeof(CGRect));
+    [self updateBarRects:rects];
+}
+
 - (void)updateBarRects:(CGRect *)barRects
 {
     if (_barRects != nil) {
@@ -31,7 +45,11 @@
 
 - (void)dealloc
 {
-    free(_barRects);
+    if (_barRects != nil) {
+        
+        free(_barRects);
+        _barRects = nil;
+    }
 }
 
 - (void)updateScaler
@@ -39,14 +57,9 @@
     [super updateScaler];
     
     CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    NSInteger count = self.lineObjAry.count > 0 ? self.lineObjAry.count : self.dataAry.count;
     
-    [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
-        
-        CGPoint point = self.linePoints[idx];
-        _barRects[idx] = GGLineRectMake(point, CGPointMake(point.x, bottomY), _barWidth);
-    }];
-    
-    for (NSInteger i = 0; i < self.dataAry.count; i++) {
+    for (NSInteger i = 0; i < count; i++) {
         
         CGPoint point = self.linePoints[i];
         _barRects[i] = GGLineRectMake(point, CGPointMake(point.x, bottomY), _barWidth);

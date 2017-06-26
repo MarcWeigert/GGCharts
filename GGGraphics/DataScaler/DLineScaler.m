@@ -50,8 +50,10 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 @interface DLineScaler ()
 
 @property (nonatomic, copy) LineScaler fig;     ///< 纵轴换算
-
 @property (nonatomic, copy) LineScaler axis;    ///< 横轴换算
+
+@property (nonatomic) void * impGetter;     ///< 对象方法指针
+@property (nonatomic) SEL selGetter;        ///< 对象方法选择
 
 @end
 
@@ -67,6 +69,28 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     }
     
     return self;
+}
+
+/**
+ * 自定义对象转换转换
+ *
+ * @param objAry 模型类数组
+ * @param getter 模型类方法, 方法无参数, 返回值为float, 否则会崩溃。
+ */
+- (void)setObjAry:(NSArray <NSObject *> *)objAry getSelector:(SEL)getter
+{
+    if (!objAry.count) { NSLog(@"array is empty"); return; }
+    
+    if (_xMaxCount == 0) {
+        
+        _xMaxCount = _lineObjAry.count;
+    }
+    
+    _lineObjAry = objAry;
+    _selGetter = getter;
+    _impGetter = [objAry.firstObject methodForSelector:getter];
+    CGPoint * point = malloc(_lineObjAry.count * sizeof(CGPoint));
+    [self updateLinePoints:point];
 }
 
 /** 获取价格点 */
@@ -88,19 +112,6 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     [self updateLinePoints:point];
 }
 
-- (void)setLineObjAry:(NSArray<id<DLineScalerProtocol>> *)lineObjAry
-{
-    _lineObjAry = lineObjAry;
-    
-    if (_xMaxCount == 0) {
-        
-        _xMaxCount = lineObjAry.count;
-    }
-    
-    CGPoint * point = malloc(lineObjAry.count * sizeof(CGPoint));
-    [self updateLinePoints:point];
-}
-
 - (void)updateLinePoints:(CGPoint *)linePoints
 {
     if (_linePoints != nil) {
@@ -119,9 +130,11 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     
     if (_lineObjAry.count) {
         
-        [self.lineObjAry enumerateObjectsUsingBlock:^(id <DLineScalerProtocol> obj, NSUInteger idx, BOOL * stop) {
+        [self.lineObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
             
-            _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.scalerNumber.floatValue));
+            CGFloat (* lineGetter)(id obj, SEL getter) = self.impGetter;
+            
+            _linePoints[idx] = CGPointMake(_axis(idx), _fig(lineGetter(obj, _selGetter)));
         }];
     }
     else {

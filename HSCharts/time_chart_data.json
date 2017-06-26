@@ -1,0 +1,942 @@
+[
+    {
+        "volume": 25800,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 45.8922,
+        "date": "2017-06-26 09:30:00",
+        "total_volume": 25800,
+        "avg_price": 17.78767441860465
+    },
+    {
+        "volume": 40700,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 72.4987,
+        "date": "2017-06-26 09:31:00",
+        "total_volume": 66500,
+        "avg_price": 17.80314285714286
+    },
+    {
+        "volume": 64200,
+        "price_change": -0.1699999999999982,
+        "price": 17.57,
+        "price_change_rate": -0.9582863585118273,
+        "turnover": 113.7494,
+        "date": "2017-06-26 09:32:00",
+        "total_volume": 130700,
+        "avg_price": 17.76130833970926
+    },
+    {
+        "volume": 24700,
+        "price_change": 0.05000000000000071,
+        "price": 17.79,
+        "price_change_rate": 0.2818489289740739,
+        "turnover": 43.91,
+        "date": "2017-06-26 09:33:00",
+        "total_volume": 155400,
+        "avg_price": 17.76385456885457
+    },
+    {
+        "volume": 32622,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 58.06970000000001,
+        "date": "2017-06-26 09:34:00",
+        "total_volume": 188022,
+        "avg_price": 17.77026092691281
+    },
+    {
+        "volume": 4278,
+        "price_change": 0.01000000000000156,
+        "price": 17.75,
+        "price_change_rate": 0.0563697857948228,
+        "turnover": 7.600700000000018,
+        "date": "2017-06-26 09:35:00",
+        "total_volume": 192300,
+        "avg_price": 17.7701872074883
+    },
+    {
+        "volume": 25200,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 44.83599999999996,
+        "date": "2017-06-26 09:36:00",
+        "total_volume": 217500,
+        "avg_price": 17.77272183908046
+    },
+    {
+        "volume": 14100,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 25.10650000000004,
+        "date": "2017-06-26 09:37:00",
+        "total_volume": 231600,
+        "avg_price": 17.77474956822107
+    },
+    {
+        "volume": 26700,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 47.56369999999998,
+        "date": "2017-06-26 09:38:00",
+        "total_volume": 258300,
+        "avg_price": 17.77881920247774
+    },
+    {
+        "volume": 33422,
+        "price_change": 0.1600000000000001,
+        "price": 17.9,
+        "price_change_rate": 0.9019165727170245,
+        "turnover": 59.6902,
+        "date": "2017-06-26 09:39:00",
+        "total_volume": 291722,
+        "avg_price": 17.78806877780901
+    },
+    {
+        "volume": 22800,
+        "price_change": 0.1700000000000017,
+        "price": 17.91,
+        "price_change_rate": 0.9582863585118474,
+        "turnover": 40.84109999999998,
+        "date": "2017-06-26 09:40:00",
+        "total_volume": 314522,
+        "avg_price": 17.79710799244568
+    },
+    {
+        "volume": 136200,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 243.9869,
+        "date": "2017-06-26 09:41:00",
+        "total_volume": 450722,
+        "avg_price": 17.83239114132436
+    },
+    {
+        "volume": 20424,
+        "price_change": 0.1700000000000017,
+        "price": 17.91,
+        "price_change_rate": 0.9582863585118474,
+        "turnover": 36.61540000000002,
+        "date": "2017-06-26 09:42:00",
+        "total_volume": 471146,
+        "avg_price": 17.83651988980061
+    },
+    {
+        "volume": 34876,
+        "price_change": 0.1400000000000006,
+        "price": 17.88,
+        "price_change_rate": 0.789177001127399,
+        "turnover": 62.40039999999999,
+        "date": "2017-06-26 09:43:00",
+        "total_volume": 506022,
+        "avg_price": 17.84034883858805
+    },
+    {
+        "volume": 7000,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 12.51499999999999,
+        "date": "2017-06-26 09:44:00",
+        "total_volume": 513022,
+        "avg_price": 17.84087037203083
+    },
+    {
+        "volume": 45724,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 81.87130000000002,
+        "date": "2017-06-26 09:45:00",
+        "total_volume": 558746,
+        "avg_price": 17.84616265709285
+    },
+    {
+        "volume": 18400,
+        "price_change": 0.1600000000000001,
+        "price": 17.9,
+        "price_change_rate": 0.9019165727170245,
+        "turnover": 32.95999999999992,
+        "date": "2017-06-26 09:46:00",
+        "total_volume": 577146,
+        "avg_price": 17.8482948855229
+    },
+    {
+        "volume": 14800,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 26.52170000000001,
+        "date": "2017-06-26 09:47:00",
+        "total_volume": 591946,
+        "avg_price": 17.85008936625976
+    },
+    {
+        "volume": 7000,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 12.53760000000011,
+        "date": "2017-06-26 09:48:00",
+        "total_volume": 598946,
+        "avg_price": 17.85079957124682
+    },
+    {
+        "volume": 3300,
+        "price_change": 0.1800000000000033,
+        "price": 17.92,
+        "price_change_rate": 1.01465614430667,
+        "turnover": 5.912399999999934,
+        "date": "2017-06-26 09:49:00",
+        "total_volume": 602246,
+        "avg_price": 17.85115882878425
+    },
+    {
+        "volume": 9000,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 16.12490000000003,
+        "date": "2017-06-26 09:50:00",
+        "total_volume": 611246,
+        "avg_price": 17.85212173167595
+    },
+    {
+        "volume": 20400,
+        "price_change": 0.2000000000000028,
+        "price": 17.94,
+        "price_change_rate": 1.127395715896296,
+        "turnover": 36.57889999999998,
+        "date": "2017-06-26 09:51:00",
+        "total_volume": 631646,
+        "avg_price": 17.85466384652163
+    },
+    {
+        "volume": 19700,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 35.29770000000008,
+        "date": "2017-06-26 09:52:00",
+        "total_volume": 651346,
+        "avg_price": 17.85656778424985
+    },
+    {
+        "volume": 28400,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 50.89189999999985,
+        "date": "2017-06-26 09:53:00",
+        "total_volume": 679746,
+        "avg_price": 17.85920476177866
+    },
+    {
+        "volume": 21400,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 38.31990000000019,
+        "date": "2017-06-26 09:54:00",
+        "total_volume": 701146,
+        "avg_price": 17.86064813890403
+    },
+    {
+        "volume": 19100,
+        "price_change": 0.1900000000000013,
+        "price": 17.93,
+        "price_change_rate": 1.071025930101473,
+        "turnover": 34.22159999999985,
+        "date": "2017-06-26 09:55:00",
+        "total_volume": 720246,
+        "avg_price": 17.8621443229119
+    },
+    {
+        "volume": 21100,
+        "price_change": 0.1700000000000017,
+        "price": 17.91,
+        "price_change_rate": 0.9582863585118474,
+        "turnover": 37.82210000000009,
+        "date": "2017-06-26 09:56:00",
+        "total_volume": 741346,
+        "avg_price": 17.86393802623876
+    },
+    {
+        "volume": 2400,
+        "price_change": 0.1700000000000017,
+        "price": 17.91,
+        "price_change_rate": 0.9582863585118474,
+        "turnover": 4.296499999999924,
+        "date": "2017-06-26 09:57:00",
+        "total_volume": 743746,
+        "avg_price": 17.86406111763963
+    },
+    {
+        "volume": 13500,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 24.16409999999996,
+        "date": "2017-06-26 09:58:00",
+        "total_volume": 757246,
+        "avg_price": 17.86468994223806
+    },
+    {
+        "volume": 5700,
+        "price_change": 0.1600000000000001,
+        "price": 17.9,
+        "price_change_rate": 0.9019165727170245,
+        "turnover": 10.19929999999999,
+        "date": "2017-06-26 09:59:00",
+        "total_volume": 762946,
+        "avg_price": 17.86490524886427
+    },
+    {
+        "volume": 7900,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 14.13350000000014,
+        "date": "2017-06-26 10:00:00",
+        "total_volume": 770846,
+        "avg_price": 17.86516762102936
+    },
+    {
+        "volume": 15400,
+        "price_change": 0.1700000000000017,
+        "price": 17.91,
+        "price_change_rate": 0.9582863585118474,
+        "turnover": 27.55970000000002,
+        "date": "2017-06-26 10:01:00",
+        "total_volume": 786246,
+        "avg_price": 17.86576974636437
+    },
+    {
+        "volume": 17300,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 30.96379999999999,
+        "date": "2017-06-26 10:02:00",
+        "total_volume": 803546,
+        "avg_price": 17.86646688552989
+    },
+    {
+        "volume": 10700,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 19.13179999999988,
+        "date": "2017-06-26 10:03:00",
+        "total_volume": 814246,
+        "avg_price": 17.86664718033616
+    },
+    {
+        "volume": 10700,
+        "price_change": 0.110000000000003,
+        "price": 17.85,
+        "price_change_rate": 0.6200676437429706,
+        "turnover": 19.10810000000015,
+        "date": "2017-06-26 10:04:00",
+        "total_volume": 824946,
+        "avg_price": 17.86653550656649
+    },
+    {
+        "volume": 10700,
+        "price_change": 0.110000000000003,
+        "price": 17.85,
+        "price_change_rate": 0.6200676437429706,
+        "turnover": 19.10359999999991,
+        "date": "2017-06-26 10:05:00",
+        "total_volume": 835646,
+        "avg_price": 17.86637284208864
+    },
+    {
+        "volume": 7700,
+        "price_change": 0.110000000000003,
+        "price": 17.85,
+        "price_change_rate": 0.6200676437429706,
+        "turnover": 13.74409999999989,
+        "date": "2017-06-26 10:06:00",
+        "total_volume": 843346,
+        "avg_price": 17.86621861015526
+    },
+    {
+        "volume": 24078,
+        "price_change": 0.08000000000000185,
+        "price": 17.82,
+        "price_change_rate": 0.4509582863585223,
+        "turnover": 42.92960000000016,
+        "date": "2017-06-26 10:07:00",
+        "total_volume": 867424,
+        "avg_price": 17.86519625926882
+    },
+    {
+        "volume": 4400,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 7.832499999999982,
+        "date": "2017-06-26 10:08:00",
+        "total_volume": 871824,
+        "avg_price": 17.86487295600947
+    },
+    {
+        "volume": 7100,
+        "price_change": 0.110000000000003,
+        "price": 17.85,
+        "price_change_rate": 0.6200676437429706,
+        "turnover": 12.65099999999984,
+        "date": "2017-06-26 10:09:00",
+        "total_volume": 878924,
+        "avg_price": 17.86449681656207
+    },
+    {
+        "volume": 6700,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 11.92860000000019,
+        "date": "2017-06-26 10:10:00",
+        "total_volume": 885624,
+        "avg_price": 17.86403823744614
+    },
+    {
+        "volume": 4400,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 7.837099999999964,
+        "date": "2017-06-26 10:11:00",
+        "total_volume": 890024,
+        "avg_price": 17.86377895427539
+    },
+    {
+        "volume": 6200,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 11.04379999999992,
+        "date": "2017-06-26 10:12:00",
+        "total_volume": 896224,
+        "avg_price": 17.8634247688078
+    },
+    {
+        "volume": 1900,
+        "price_change": 0.1000000000000014,
+        "price": 17.84,
+        "price_change_rate": 0.5636978579481479,
+        "turnover": 3.389499999999998,
+        "date": "2017-06-26 10:13:00",
+        "total_volume": 898124,
+        "avg_price": 17.86337409979023
+    },
+    {
+        "volume": 37900,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 67.63100000000009,
+        "date": "2017-06-26 10:14:00",
+        "total_volume": 936024,
+        "avg_price": 17.86261356546413
+    },
+    {
+        "volume": 23800,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 42.36320000000001,
+        "date": "2017-06-26 10:15:00",
+        "total_volume": 959824,
+        "avg_price": 17.86105265131941
+    },
+    {
+        "volume": 10000,
+        "price_change": 0.01000000000000156,
+        "price": 17.75,
+        "price_change_rate": 0.0563697857948228,
+        "turnover": 17.76589999999987,
+        "date": "2017-06-26 10:16:00",
+        "total_volume": 969824,
+        "avg_price": 17.86007151813113
+    },
+    {
+        "volume": 26100,
+        "price_change": 0,
+        "price": 17.74,
+        "price_change_rate": 0,
+        "turnover": 46.33120000000008,
+        "date": "2017-06-26 10:17:00",
+        "total_volume": 995924,
+        "avg_price": 17.85722404520827
+    },
+    {
+        "volume": 22900,
+        "price_change": -0.02999999999999758,
+        "price": 17.71,
+        "price_change_rate": -0.1691093573844283,
+        "turnover": 40.5757000000001,
+        "date": "2017-06-26 10:18:00",
+        "total_volume": 1018824,
+        "avg_price": 17.8541092475246
+    },
+    {
+        "volume": 16138,
+        "price_change": -0.02999999999999758,
+        "price": 17.71,
+        "price_change_rate": -0.1691093573844283,
+        "turnover": 28.57799999999997,
+        "date": "2017-06-26 10:19:00",
+        "total_volume": 1034962,
+        "avg_price": 17.85183900471708
+    },
+    {
+        "volume": 9262,
+        "price_change": -0.00999999999999801,
+        "price": 17.73,
+        "price_change_rate": -0.05636978579480277,
+        "turnover": 16.42509999999993,
+        "date": "2017-06-26 10:20:00",
+        "total_volume": 1044224,
+        "avg_price": 17.85079255025742
+    },
+    {
+        "volume": 10400,
+        "price_change": 0.05000000000000071,
+        "price": 17.79,
+        "price_change_rate": 0.2818489289740739,
+        "turnover": 18.48900000000003,
+        "date": "2017-06-26 10:21:00",
+        "total_volume": 1054624,
+        "avg_price": 17.8500735807264
+    },
+    {
+        "volume": 4900,
+        "price_change": 0.01000000000000156,
+        "price": 17.75,
+        "price_change_rate": 0.0563697857948228,
+        "turnover": 8.699499999999944,
+        "date": "2017-06-26 10:22:00",
+        "total_volume": 1059524,
+        "avg_price": 17.8496296450104
+    },
+    {
+        "volume": 13500,
+        "price_change": 0.02000000000000313,
+        "price": 17.76,
+        "price_change_rate": 0.1127395715896456,
+        "turnover": 23.97350000000006,
+        "date": "2017-06-26 10:23:00",
+        "total_volume": 1073024,
+        "avg_price": 17.84847869199571
+    },
+    {
+        "volume": 7100,
+        "price_change": 0.02000000000000313,
+        "price": 17.76,
+        "price_change_rate": 0.1127395715896456,
+        "turnover": 12.60979999999995,
+        "date": "2017-06-26 10:24:00",
+        "total_volume": 1080124,
+        "avg_price": 17.84789894493595
+    },
+    {
+        "volume": 13000,
+        "price_change": 0.0400000000000027,
+        "price": 17.78,
+        "price_change_rate": 0.2254791431792711,
+        "turnover": 23.10110000000009,
+        "date": "2017-06-26 10:25:00",
+        "total_volume": 1093124,
+        "avg_price": 17.84697344491567
+    },
+    {
+        "volume": 10900,
+        "price_change": 0.05000000000000071,
+        "price": 17.79,
+        "price_change_rate": 0.2818489289740739,
+        "turnover": 19.39279999999985,
+        "date": "2017-06-26 10:26:00",
+        "total_volume": 1104024,
+        "avg_price": 17.84642634580408
+    },
+    {
+        "volume": 17122,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 30.47469999999998,
+        "date": "2017-06-26 10:27:00",
+        "total_volume": 1121146,
+        "avg_price": 17.8456953866847
+    },
+    {
+        "volume": 70400,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 125.6808000000001,
+        "date": "2017-06-26 10:28:00",
+        "total_volume": 1191546,
+        "avg_price": 17.84609070904522
+    },
+    {
+        "volume": 13800,
+        "price_change": 0.0400000000000027,
+        "price": 17.78,
+        "price_change_rate": 0.2254791431792711,
+        "turnover": 24.56950000000006,
+        "date": "2017-06-26 10:29:00",
+        "total_volume": 1205346,
+        "avg_price": 17.84560864681179
+    },
+    {
+        "volume": 18300,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 32.57049999999981,
+        "date": "2017-06-26 10:30:00",
+        "total_volume": 1223646,
+        "avg_price": 17.84489795251241
+    },
+    {
+        "volume": 3000,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 5.343800000000101,
+        "date": "2017-06-26 10:31:00",
+        "total_volume": 1226646,
+        "avg_price": 17.84481912467004
+    },
+    {
+        "volume": 4000,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 7.133899999999812,
+        "date": "2017-06-26 10:32:00",
+        "total_volume": 1230646,
+        "avg_price": 17.84478639673797
+    },
+    {
+        "volume": 3700,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 6.589699999999993,
+        "date": "2017-06-26 10:33:00",
+        "total_volume": 1234346,
+        "avg_price": 17.84468212316482
+    },
+    {
+        "volume": 700,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 1.24810000000025,
+        "date": "2017-06-26 10:34:00",
+        "total_volume": 1235046,
+        "avg_price": 17.84467380162358
+    },
+    {
+        "volume": 2400,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 4.274399999999787,
+        "date": "2017-06-26 10:35:00",
+        "total_volume": 1237446,
+        "avg_price": 17.84460655252835
+    },
+    {
+        "volume": 11400,
+        "price_change": 0.06000000000000227,
+        "price": 17.8,
+        "price_change_rate": 0.3382187147688967,
+        "turnover": 20.29220000000032,
+        "date": "2017-06-26 10:36:00",
+        "total_volume": 1248846,
+        "avg_price": 17.84420096633212
+    },
+    {
+        "volume": 20000,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 35.58489999999983,
+        "date": "2017-06-26 10:37:00",
+        "total_volume": 1268846,
+        "avg_price": 17.84338524927375
+    },
+    {
+        "volume": 8579,
+        "price_change": 0.02000000000000313,
+        "price": 17.76,
+        "price_change_rate": 0.1127395715896456,
+        "turnover": 15.24929999999995,
+        "date": "2017-06-26 10:38:00",
+        "total_volume": 1277425,
+        "avg_price": 17.8429269820146
+    },
+    {
+        "volume": 4500,
+        "price_change": 0.02000000000000313,
+        "price": 17.76,
+        "price_change_rate": 0.1127395715896456,
+        "turnover": 7.992999999999938,
+        "date": "2017-06-26 10:39:00",
+        "total_volume": 1281925,
+        "avg_price": 17.84264368040252
+    },
+    {
+        "volume": 1700,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 3.02370000000019,
+        "date": "2017-06-26 10:40:00",
+        "total_volume": 1283625,
+        "avg_price": 17.84256928620119
+    },
+    {
+        "volume": 4000,
+        "price_change": 0.03000000000000114,
+        "price": 17.77,
+        "price_change_rate": 0.1691093573844483,
+        "turnover": 7.110599999999977,
+        "date": "2017-06-26 10:41:00",
+        "total_volume": 1287625,
+        "avg_price": 17.84236404232599
+    },
+    {
+        "volume": 6500,
+        "price_change": 0.02000000000000313,
+        "price": 17.76,
+        "price_change_rate": 0.1127395715896456,
+        "turnover": 11.55589999999984,
+        "date": "2017-06-26 10:42:00",
+        "total_volume": 1294125,
+        "avg_price": 17.8420423065778
+    },
+    {
+        "volume": 3400,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 6.052200000000084,
+        "date": "2017-06-26 10:43:00",
+        "total_volume": 1297525,
+        "avg_price": 17.84193368143196
+    },
+    {
+        "volume": 1600,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 2.853000000000065,
+        "date": "2017-06-26 10:44:00",
+        "total_volume": 1299125,
+        "avg_price": 17.84192052342923
+    },
+    {
+        "volume": 7300,
+        "price_change": 0.0400000000000027,
+        "price": 17.78,
+        "price_change_rate": 0.2254791431792711,
+        "turnover": 12.98039999999992,
+        "date": "2017-06-26 10:45:00",
+        "total_volume": 1306425,
+        "avg_price": 17.84158218037775
+    },
+    {
+        "volume": 2500,
+        "price_change": 0.08000000000000185,
+        "price": 17.82,
+        "price_change_rate": 0.4509582863585223,
+        "turnover": 4.451800000000276,
+        "date": "2017-06-26 10:46:00",
+        "total_volume": 1308925,
+        "avg_price": 17.84151651164123
+    },
+    {
+        "volume": 1200,
+        "price_change": 0.07000000000000028,
+        "price": 17.81,
+        "price_change_rate": 0.3945885005636995,
+        "turnover": 2.137399999999616,
+        "date": "2017-06-26 10:47:00",
+        "total_volume": 1310125,
+        "avg_price": 17.84148917088064
+    },
+    {
+        "volume": 13700,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 24.41380000000026,
+        "date": "2017-06-26 10:48:00",
+        "total_volume": 1323825,
+        "avg_price": 17.84126980529904
+    },
+    {
+        "volume": 1000,
+        "price_change": 0.08999999999999986,
+        "price": 17.83,
+        "price_change_rate": 0.5073280721533251,
+        "turnover": 1.782999999999902,
+        "date": "2017-06-26 10:49:00",
+        "total_volume": 1324825,
+        "avg_price": 17.84126129866209
+    },
+    {
+        "volume": 5000,
+        "price_change": 0.1000000000000014,
+        "price": 17.84,
+        "price_change_rate": 0.5636978579481479,
+        "turnover": 8.920000000000073,
+        "date": "2017-06-26 10:50:00",
+        "total_volume": 1329825,
+        "avg_price": 17.8412565563138
+    },
+    {
+        "volume": 300,
+        "price_change": 0.1000000000000014,
+        "price": 17.84,
+        "price_change_rate": 0.5636978579481479,
+        "turnover": 0.5351999999998043,
+        "date": "2017-06-26 10:51:00",
+        "total_volume": 1330125,
+        "avg_price": 17.84125627290668
+    },
+    {
+        "volume": 4800,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 8.569899999999961,
+        "date": "2017-06-26 10:52:00",
+        "total_volume": 1334925,
+        "avg_price": 17.8413019458022
+    },
+    {
+        "volume": 1800,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 3.213600000000042,
+        "date": "2017-06-26 10:53:00",
+        "total_volume": 1336725,
+        "avg_price": 17.84131814696366
+    },
+    {
+        "volume": 6100,
+        "price_change": 0.110000000000003,
+        "price": 17.85,
+        "price_change_rate": 0.6200676437429706,
+        "turnover": 10.89229999999998,
+        "date": "2017-06-26 10:54:00",
+        "total_volume": 1342825,
+        "avg_price": 17.84138588423659
+    },
+    {
+        "volume": 6700,
+        "price_change": 0.1300000000000026,
+        "price": 17.87,
+        "price_change_rate": 0.7328072153325962,
+        "turnover": 11.97220000000016,
+        "date": "2017-06-26 10:55:00",
+        "total_volume": 1349525,
+        "avg_price": 17.84152275800745
+    },
+    {
+        "volume": 16900,
+        "price_change": 0.1000000000000014,
+        "price": 17.84,
+        "price_change_rate": 0.5636978579481479,
+        "turnover": 30.18299999999999,
+        "date": "2017-06-26 10:56:00",
+        "total_volume": 1366425,
+        "avg_price": 17.84174835794134
+    },
+    {
+        "volume": 1200,
+        "price_change": 0.1000000000000014,
+        "price": 17.84,
+        "price_change_rate": 0.5636978579481479,
+        "turnover": 2.141399999999976,
+        "date": "2017-06-26 10:57:00",
+        "total_volume": 1367625,
+        "avg_price": 17.84175121104104
+    },
+    {
+        "volume": 8900,
+        "price_change": 0.1300000000000026,
+        "price": 17.87,
+        "price_change_rate": 0.7328072153325962,
+        "turnover": 15.89919999999984,
+        "date": "2017-06-26 10:58:00",
+        "total_volume": 1376525,
+        "avg_price": 17.84189680536133
+    },
+    {
+        "volume": 16800,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 30.04100000000017,
+        "date": "2017-06-26 10:59:00",
+        "total_volume": 1393325,
+        "avg_price": 17.84237489458669
+    },
+    {
+        "volume": 3500,
+        "price_change": 0.1500000000000021,
+        "price": 17.89,
+        "price_change_rate": 0.8455467869222217,
+        "turnover": 6.261500000000069,
+        "date": "2017-06-26 11:00:00",
+        "total_volume": 1396825,
+        "avg_price": 17.84249422798132
+    },
+    {
+        "volume": 4900,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 8.753799999999956,
+        "date": "2017-06-26 11:01:00",
+        "total_volume": 1401725,
+        "avg_price": 17.84257254454333
+    },
+    {
+        "volume": 2700,
+        "price_change": 0.120000000000001,
+        "price": 17.86,
+        "price_change_rate": 0.6764374295377734,
+        "turnover": 4.822200000000066,
+        "date": "2017-06-26 11:02:00",
+        "total_volume": 1404425,
+        "avg_price": 17.84260604873881
+    },
+    {
+        "volume": 700,
+        "price_change": 0.1400000000000006,
+        "price": 17.88,
+        "price_change_rate": 0.789177001127399,
+        "turnover": 1.251600000000053,
+        "date": "2017-06-26 11:03:00",
+        "total_volume": 1405125,
+        "avg_price": 17.84262467751979
+    }
+]

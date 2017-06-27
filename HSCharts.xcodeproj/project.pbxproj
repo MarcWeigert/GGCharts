@@ -30,6 +30,7 @@
 		2B5DE62F1F00B77C00B40676 /* NSArray+Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE62E1F00B77C00B40676 /* NSArray+Stock.m */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
+		2B63AEDF1F01EB130043E7DA /* BaseLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63AEDE1F01EB130043E7DA /* BaseLineData.m */; };
 		2B6F1A5C1EE6432C0075EB59 /* IOBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */; };
 		2B6FB64C1EE92D3000D95EA6 /* BaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6FB64B1EE92D3000D95EA6 /* BaseChart.m */; };
 		2B77684D1EFD213900A31999 /* BaseCountChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B77684C1EFD213900A31999 /* BaseCountChart.m */; };
@@ -105,6 +106,8 @@
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
 		2B5DE6331F00BD0100B40676 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		2B5DE6341F00BD0100B40676 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		2B63AEDD1F01EB130043E7DA /* BaseLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineData.h; sourceTree = "<group>"; };
+		2B63AEDE1F01EB130043E7DA /* BaseLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLineData.m; sourceTree = "<group>"; };
 		2B6F1A5A1EE6432C0075EB59 /* IOBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChart.h; sourceTree = "<group>"; };
 		2B6F1A5B1EE6432C0075EB59 /* IOBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChart.m; sourceTree = "<group>"; };
 		2B6FB6361EE9208200D95EA6 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				2B7768611EFF46DC00A31999 /* GGChartTouchProtocol.h */,
 				2B77684F1EFF461D00A31999 /* BarChartData.h */,
 				2B7768501EFF461D00A31999 /* BarChartData.m */,
+				2B63AEDD1F01EB130043E7DA /* BaseLineData.h */,
+				2B63AEDE1F01EB130043E7DA /* BaseLineData.m */,
 				2B7768511EFF461D00A31999 /* BaseChartData.h */,
 				2B7768521EFF461D00A31999 /* BaseChartData.m */,
 				2B7768531EFF461D00A31999 /* LineChartData.h */,
@@ -505,6 +510,7 @@
 				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
 				2B5DE62F1F00B77C00B40676 /* NSArray+Stock.m in Sources */,
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
+				2B63AEDF1F01EB130043E7DA /* BaseLineData.m in Sources */,
 				2BA1C7491EEB7B7D007733CC /* NTPieChart.m in Sources */,
 				2B7768681EFF7EFE00A31999 /* ChartBaseEvent.m in Sources */,
 				2B77685E1EFF461D00A31999 /* MassChartData.m in Sources */,

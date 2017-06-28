@@ -16,7 +16,7 @@ typedef void(^BarRects)(CGRect *rects, size_t size);
 
 @property (nonatomic, assign) CGFloat barWidth;     ///< 柱宽
 
-@property (nonatomic, assign) CGRect * barRects;    ///< bar 绘制位置
+@property (nonatomic, readonly) CGRect * barRects;    ///< bar 绘制位置
 
 /** 正数的rect */
 - (void)getPositiveData:(BarRects)block;

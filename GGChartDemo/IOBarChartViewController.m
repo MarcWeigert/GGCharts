@@ -7,13 +7,13 @@
 //
 
 #import "IOBarChartViewController.h"
-#import "IOBarChart.h"
+#import "PNBarChart.h"
 #import "BarChartData.h"
 #import "LineChartData.h"
 
 @interface IOBarChartViewController ()
 
-@property (nonatomic, strong) IOBarChart * barChart;
+@property (nonatomic, strong) PNBarChart * barChart;
 
 @end
 
@@ -33,7 +33,7 @@
             action:@selector(clickBar:index:)
       forBarEvents:GGTouchMoveNearShape];
     
-    _barChart = [[IOBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+    _barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
     _barChart.topTitle = @"最近五日主力增减仓";
     _barChart.bottomTitle = @"净利润 (万元) ";
     _barChart.positiveTitle = @"资金流入";

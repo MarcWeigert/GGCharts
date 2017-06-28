@@ -162,3 +162,68 @@ CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGF
     
     return ary;
 }
+
+CG_EXTERN NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        CGPoint basePoints[size];
+        
+        for (NSInteger j = 0; j < size; j++) {
+            
+            basePoints[j] = CGPointMake(points[j].x, y);
+        }
+        
+        for (NSInteger z = 0; z < i; z++) {
+            
+            basePoints[z] = CGPointMake(points[z].x, points[z].y);
+        }
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        CGPathAddLines(ref, NULL, basePoints, size);
+        [ary addObject:(__bridge id)ref];
+        CGPathRelease(ref);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, points, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}
+
+CG_EXTERN NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        CGPoint basePoints[size];
+        
+        for (NSInteger j = 0; j < size; j++) {
+            
+            basePoints[j] = CGPointMake(points[j].x, y);
+        }
+        
+        for (NSInteger z = 0; z < i; z++) {
+            
+            basePoints[z] = CGPointMake(points[z].x, points[z].y);
+        }
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGPathAddRangeCircles(ref, basePoints, radius, 0, (int)i);
+        GGPathAddRangeCircles(ref, basePoints, 0, (int)i, (int)size);
+        [ary addObject:(__bridge id)ref];
+        CGPathRelease(ref);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    GGPathAddCircles(ref, points, radius, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}

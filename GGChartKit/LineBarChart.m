@@ -6,7 +6,7 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "IOLineBarChart.h"
+#import "LineBarChart.h"
 #import "GGCanvas.h"
 #import "GGAxisRenderer.h"
 #import "BarChartData.h"
@@ -28,7 +28,7 @@
 #define POS_C               RGB(241, 73, 81)
 #define NEG_C               RGB(30, 191, 97)
 
-@interface IOLineBarChart ()
+@interface LineBarChart ()
 
 @property (nonatomic, strong) GGCanvas * backLayer;
 
@@ -44,7 +44,7 @@
 
 @end
 
-@implementation IOLineBarChart
+@implementation LineBarChart
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -78,7 +78,6 @@
 {
     _yAxisSplit = 2;
     _yAxisformat = @"%.2f";
-    _barWidth = 20;
     
     _topFont = BAR_SYSTEM_FONT;
     _bottomFont = BAR_SYSTEM_FONT;
@@ -229,210 +228,111 @@
 
 #pragma mark - 绘制
 
-- (void)strockBarChartWithFrame:(CGRect)chartFrame
+- (void)strockBarChart
 {
     CGFloat barMax = 0;
     CGFloat barMin = 0;
-    [BaseChartData getChartDataAry:_barDataAry max:&barMax min:&barMin];
+    [BarData getChartDataAry:_barDataAry max:&barMax min:&barMin];
     CGFloat barBase = [self getBase:barMax min:barMin];
     barMin -= barBase;
     barMax += barBase;
-    
-    NSInteger splitBase = _barDataAry.count + 1;
-    GGLineChatScaler bar_fig = figScaler(barMax, barMin, chartFrame);
     
     GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     _leftAxisRenderer.axis = leftAxis;
     _leftAxisRenderer.aryString = [self splitWithMax:barMax min:barMin];
     
-    for (NSInteger i = 0; i < _barDataAry.count; i++) {
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
         
-        BarChartData * barData = _barDataAry[i];
-        
-        GGLineChatScaler bar_axis = axiScaler(barData.dataSet.count, chartFrame, 1.0f / splitBase * (i + 1));
-        
-        CGMutablePathRef ref_p = CGPathCreateMutable();
-        CGMutablePathRef ref_p_a = CGPathCreateMutable();
-        
-        for (NSInteger i = 0; i < barData.dataSet.count; i++) {
-            
-            CGFloat data = [barData.dataSet[i] floatValue];
-            CGFloat x = bar_axis(i);
-            CGFloat y1 = bar_fig(data);
-            CGFloat y2 = bar_fig(barMin);
-            CGRect rect = GGLineRectMake(CGPointMake(x, y1), CGPointMake(x, y2), _barWidth);
-            CGRect rect_a = GGLineRectMake(CGPointMake(x, y2), CGPointMake(x, y2), _barWidth);
-            
-            GGPathAddCGRect(ref_p_a, rect_a);
-            GGPathAddCGRect(ref_p, rect);
-        }
-        
-        GGShapeCanvas * barLayer = ChartShape(i);
-        barLayer.path = ref_p;
-        barLayer.fillColor = barData.barColor.CGColor;
-        barLayer.lineWidth = 0;
-        barLayer.strokeColor = barData.barColor.CGColor;
-        
-        [barLayer registerKeyAnimation:@"path"
-                                  name:@"barStart"
-                                values:@[(__bridge id)ref_p_a, (__bridge id)ref_p]];
-        
-        CGPathRelease(ref_p);
-        CGPathRelease(ref_p_a);
-    }
+        obj.barScaler.max = barMax;
+        obj.barScaler.min = barMin;
+        obj.barScaler.rect = _contentFrame;
+        obj.barScaler.xRatio = 1.0 / (_barDataAry.count + 1) * (idx + 1);
+        [obj drawBarWithCanvas:self.getGGCanvasEqualFrame];
+    }];
 }
 
-- (void)strockLineChartWithFrame:(CGRect)chartFrame
+- (void)strockLineChart
 {
     CGFloat lineMax = 0;
     CGFloat lineMin = 0;
-    [BaseChartData getChartDataAry:_lineDataAry max:&lineMax min:&lineMin];
+    [LineData getChartDataAry:_lineDataAry max:&lineMax min:&lineMin];
     
     CGFloat lineBase = [self getBase:lineMax min:lineMin];
     lineMax += lineBase;
     lineMin -= lineBase;
     
-    NSInteger splitLineBase = _lineDataAry.count + 1;
-    GGLineChatScaler line_fig = figScaler(lineMax, lineMin, chartFrame);
-    
     GGAxis rightAxis = GGAxisLineMake(GGRightLineRect(_contentFrame), -2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     _rightAxisRenderer.axis = rightAxis;
     _rightAxisRenderer.aryString = [self splitWithMax:lineMax min:lineMin];
     
-    CGFloat baseY = line_fig(lineMin);
-    
-    for (NSInteger l = 0; l < _lineDataAry.count; l++) {
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
         
-        NSMutableArray * aryLineAnimationRefs = [NSMutableArray array];
-        NSMutableArray * aryPointAnimationRefs = [NSMutableArray array];
-        
-        LineChartData * lineData = _lineDataAry[l];
-        GGLineChatScaler line_axis = axiScaler(lineData.dataSet.count, chartFrame, 1.0f / splitLineBase * (l + 1));
-        
-        CGMutablePathRef ref_line = CGPathCreateMutable();
-        CGMutablePathRef ref_point = CGPathCreateMutable();
-        
-        CGPoint points[lineData.dataSet.count];
-        CGPoint basePoints[lineData.dataSet.count];
-        
-        for (NSInteger i = 0; i < lineData.dataSet.count; i++) {
-            
-            CGFloat data = [lineData.dataSet[i] floatValue];
-            CGPoint line_point = CGPointMake(line_axis(i), line_fig(data));
-            points[i] = line_point;
-            basePoints[i] = CGPointMake(line_axis(i), baseY);
-            
-            i == 0 ? CGPathMoveToPoint(ref_line, NULL, line_point.x, line_point.y) : CGPathAddLineToPoint(ref_line, NULL, line_point.x, line_point.y);
-            GGPathAddCircle(ref_point, GGCirclePointMake(line_point, 3));
-        }
-        
-        // line 动画
-        for (NSInteger i = 0; i < lineData.dataSet.count; i++) {
-            
-            CGPoint base_ref_p[lineData.dataSet.count];
-            
-            for (NSInteger j = 0; j < lineData.dataSet.count; j++) {
-                
-                base_ref_p[j] = basePoints[j];
-            }
-            
-            for (NSInteger z = 0; z < i; z++) {
-                
-                base_ref_p[z] = points[z];
-            }
-            
-            CGMutablePathRef lineRef = CGPathCreateMutable();
-            CGPathAddLines(lineRef, NULL, base_ref_p, lineData.dataSet.count);
-            [aryLineAnimationRefs addObject:(__bridge id)lineRef];
-            CGPathRelease(lineRef);
-            
-            CGMutablePathRef pointRef = CGPathCreateMutable();
-            GGPathAddRangeCircles(pointRef, base_ref_p, 3, 0, (int)i);
-            GGPathAddRangeCircles(pointRef, base_ref_p, 0, (int)i, (int)lineData.dataSet.count);
-            [aryPointAnimationRefs addObject:(__bridge id)pointRef];
-            CGPathRelease(pointRef);
-        }
-        
-        [aryLineAnimationRefs addObject:(__bridge id)ref_line];
-        [aryPointAnimationRefs addObject:(__bridge id)ref_point];
-        
-        GGShapeCanvas * shapeLine = ChartShape(l + 10);
-        shapeLine.path = ref_line;
-        shapeLine.fillColor = [UIColor clearColor].CGColor;
-        shapeLine.lineWidth = _lineWidth;
-        shapeLine.strokeColor = lineData.lineColor.CGColor;
-        CGPathRelease(ref_line);
-        
-        // 注册动画
-        [shapeLine registerKeyAnimation:@"path"
-                                   name:@"lineStart"
-                                 values:aryLineAnimationRefs];
-        
-        GGShapeCanvas * pointShape = ChartShape(l + 100);
-        pointShape.path = ref_point;
-        pointShape.fillColor = [UIColor whiteColor].CGColor;
-        pointShape.lineWidth = _lineWidth;
-        pointShape.strokeColor = lineData.lineColor.CGColor;
-        CGPathRelease(ref_point);
-        
-        // 注册动画
-        [pointShape registerKeyAnimation:@"path"
-                                    name:@"lineStart"
-                                  values:aryPointAnimationRefs];
-    }
+        obj.lineScaler.max = lineMax;
+        obj.lineScaler.min = lineMin;
+        obj.lineScaler.rect = _contentFrame;
+        obj.lineScaler.xRatio = 1.0 / (_lineDataAry.count + 1) * (idx + 1);
+        [obj drawLineWithCanvas:self.getGGCanvasEqualFrame shapeCanvas:self.getGGCanvasEqualFrame];
+    }];
 }
 
-- (void)drawChartWithLableAnimation:(BOOL)isAnimation
+- (void)drawChart
 {
+    [super drawChart];
+    
     GGGrid grid = GGGridRectMake(_contentFrame, CGRectGetHeight(_contentFrame) / _yAxisSplit, CGRectGetWidth(_contentFrame));
     _gridRenderer.grid = grid;
     
-    CGFloat x = CGRectGetMinX(_contentFrame);
-    CGFloat y = CGRectGetMinY(_contentFrame);
-    CGFloat w = CGRectGetWidth(_contentFrame);
-    CGFloat h = CGRectGetHeight(_contentFrame);
-    CGRect chartFrame = CGRectMake(x, y, w, h);
+    if (_barDataAry.count != 0) [self strockBarChart];
     
-    if (_barDataAry.count != 0) [self strockBarChartWithFrame:chartFrame];
-    
-    if (_lineDataAry.count != 0) [self strockLineChartWithFrame:chartFrame];
+    if (_lineDataAry.count != 0) [self strockLineChart];
     
     [_backLayer setNeedsDisplay];
 }
 
-- (void)strockChart
-{
-    [self drawChartWithLableAnimation:NO];
-}
 
 - (void)updateChart
 {
-    [self drawChartWithLableAnimation:YES];
+    [self drawChart];
 
-    for (NSInteger i = 0; i < _barDataAry.count; i++) {
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
         
-        [ChartShape(i) startAnimation:@"oldPush" duration:0.5];
-    }
+        [obj.barCanvas pathChangeAnimation:.5f];
+    }];
     
-    for (NSInteger i = 0; i < _lineDataAry.count; i++) {
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [ChartShape(10 + i) startAnimation:@"oldPush" duration:0.5];
-        [ChartShape(100 + i) startAnimation:@"oldPush" duration:0.5];
-    }
+        [obj.lineCanvas pathChangeAnimation:.5f];
+        [obj.shapeCanvas pathChangeAnimation:.5f];
+    }];
 }
 
 - (void)addAnimation:(NSTimeInterval)duration
 {
-    for (NSInteger i = 0; i < _barDataAry.count; i++) {
-    
-        [ChartShape(i) startAnimation:@"barStart" duration:duration];
-    }
-    
-    for (NSInteger i = 0; i < _lineDataAry.count; i++) {
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
         
-        [ChartShape(10 + i) startAnimation:@"lineStart" duration:duration];
-        [ChartShape(100 + i) startAnimation:@"lineStart" duration:duration];
-    }
+        CGFloat y = [obj.barScaler getYPixelWithData:obj.barScaler.min];
+        
+        CAKeyframeAnimation * barAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        barAnimation.duration = duration;
+        barAnimation.values = GGPathRectsStretchAnimation(obj.barScaler.barRects, obj.datas.count, y);
+        [obj.barCanvas addAnimation:barAnimation forKey:@"barAnimation"];
+    }];
+    
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        CGFloat y = [obj.lineScaler getYPixelWithData:obj.lineScaler.min];
+        
+        CAKeyframeAnimation * lineAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        lineAnimation.duration = duration;
+        lineAnimation.values = GGPathLinesStretchAnimation(obj.lineScaler.linePoints, obj.datas.count, y);
+        [obj.lineCanvas addAnimation:lineAnimation forKey:@"lineAnimation"];
+        
+        CAKeyframeAnimation * pointAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        pointAnimation.duration = duration;
+        pointAnimation.values = GGPathCirclesStretchAnimation(obj.lineScaler.linePoints, 2, obj.datas.count, y);
+        [obj.shapeCanvas addAnimation:pointAnimation forKey:@"pointAnimation"];
+
+    }];
     
     CABasicAnimation * base = [CABasicAnimation animationWithKeyPath:@"opacity"];
     base.fromValue = @0;

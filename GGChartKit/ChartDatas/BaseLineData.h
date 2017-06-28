@@ -6,11 +6,11 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "BarChartData.h"
+#import "BaseChartData.h"
 #import "DLineScaler.h"
 #import "GGShapeCanvas.h"
 
-@interface BaseLineData : BarChartData
+@interface BaseLineData : BaseChartData
 
 @property (nonatomic, strong) NSString * lineName;
 @property (nonatomic, strong) UIColor * lineColor;
@@ -33,5 +33,14 @@
  * @param lineCanvas 图层
  */
 - (void)drawLineWithCanvas:(GGShapeCanvas *)lineCanvas;
+
+/**
+ * 获取数组中最大值最小值
+ *
+ * @param dataAry 数据组
+ * @param max 极大值指针
+ * @param min 最小值指针
+ */
++ (void)getChartDataAry:(NSArray <BaseLineData *> *)dataAry max:(CGFloat *)max min:(CGFloat *)min;
 
 @end

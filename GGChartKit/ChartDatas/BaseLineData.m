@@ -11,6 +11,19 @@
 
 @implementation BaseLineData
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.width = 1;
+        self.color = [UIColor blackColor];
+    }
+    
+    return self;
+}
+
 #pragma mark - Private
 
 - (void)setUpMaxAndMin
@@ -45,11 +58,37 @@
     
     [self.lineScaler updateScaler];
     CGMutablePathRef lineRef = CGPathCreateMutable();
-    CGPathAddLines(lineRef, NULL, self.lineScaler.linePoints, self.dataSet.count);
+    CGPathAddLines(lineRef, NULL, self.lineScaler.linePoints, self.datas.count);
     self.lineCanvas.path = lineRef;
     self.lineCanvas.strokeColor = _color.CGColor;
     self.lineCanvas.lineWidth = _width;
+    self.lineCanvas.fillColor = [UIColor clearColor].CGColor;
     CGPathRelease(lineRef);
+}
+
+/**
+ * 获取数组中最大值最小值
+ *
+ * @param dataAry 数据组
+ * @param max 极大值指针
+ * @param min 最小值指针
+ */
++ (void)getChartDataAry:(NSArray <BaseLineData *> *)dataAry max:(CGFloat *)max min:(CGFloat *)min
+{
+    __block CGFloat chartMax = FLT_MIN;
+    __block CGFloat chartMin = FLT_MAX;
+    
+    [dataAry enumerateObjectsUsingBlock:^(BaseLineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj.datas enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+            
+            chartMax = obj.floatValue > chartMax ? obj.floatValue : chartMax;
+            chartMin = obj.floatValue < chartMin ? obj.floatValue : chartMin;
+        }];
+    }];
+    
+    *max = chartMax;
+    *min = chartMin;
 }
 
 #pragma mark - Setter && Getter

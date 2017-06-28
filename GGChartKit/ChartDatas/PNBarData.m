@@ -23,7 +23,6 @@
         
         _positiveColor = POS_C;
         _negativeColor = NEG_C;
-        self.width = 25;
     }
     
     return self;
@@ -42,7 +41,6 @@
     _pBarCanvas = pBarCanvas;
     _nBarCanvas = nBarCanvas;
     
-    self.barScaler.barWidth = self.width;
     self.barScaler.bottomPrice = 0;
     [self.barScaler updateScaler];
     

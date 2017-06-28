@@ -31,3 +31,7 @@ CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, long frame);
 CG_EXTERN NSArray * GGPathAnnularAnimationArrayFor(GGAnnular annular, long frame);
 
 CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGFloat y);
+
+CG_EXTERN NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y);
+
+CG_EXTERN NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y);

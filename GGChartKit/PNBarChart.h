@@ -9,7 +9,7 @@
 #import "BaseCountChart.h"
 #import "PNBarData.h"
 
-@interface IOBarChart : BaseCountChart
+@interface PNBarChart : BaseCountChart
 
 @property (nonatomic, copy) NSString * topTitle;
 @property (nonatomic, strong) UIFont * topFont;

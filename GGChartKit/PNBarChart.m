@@ -6,7 +6,7 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "IOBarChart.h"
+#import "PNBarChart.h"
 #import "GGCanvas.h"
 #import "GGAxisRenderer.h"
 #import "BarChartData.h"
@@ -28,7 +28,7 @@
 #define POS_C               RGB(241, 73, 81)
 #define NEG_C               RGB(30, 191, 97)
 
-@interface IOBarChart ()
+@interface PNBarChart ()
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;    ///< x轴渲染器
 
@@ -40,7 +40,7 @@
 
 @end
 
-@implementation IOBarChart
+@implementation PNBarChart
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

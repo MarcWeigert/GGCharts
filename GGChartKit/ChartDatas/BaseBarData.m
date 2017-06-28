@@ -36,6 +36,25 @@
 
 @implementation BaseBarData
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.width = 25;
+    }
+    
+    return self;
+}
+
+- (void)setWidth:(CGFloat)width
+{
+    [super setWidth:width];
+    
+    self.barScaler.barWidth = width;
+}
+
 - (void)setDatas:(NSArray<NSNumber *> *)datas
 {
     [super setDatas:datas];

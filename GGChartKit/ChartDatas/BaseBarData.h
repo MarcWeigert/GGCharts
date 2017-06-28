@@ -6,11 +6,11 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "LineChartData.h"
+#import "BaseLineData.h"
 #import "DBarScaler.h"
 #import "GGChartTouchProtocol.h"
 
-@interface BaseBarData : LineChartData <GGChartTouchProtocol>
+@interface BaseBarData : BaseLineData <GGChartTouchProtocol>
 
 @property (nonatomic, strong) DBarScaler * barScaler;   ///< 柱状图定标器
 

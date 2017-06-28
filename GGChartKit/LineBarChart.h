@@ -11,7 +11,10 @@
 #import "BaseChart.h"
 #import "LineChartData.h"
 
-@interface IOLineBarChart : BaseChart
+#import "BarData.h"
+#import "LineData.h"
+
+@interface LineBarChart : BaseChart
 
 @property (nonatomic, copy) NSString * topTitle;
 @property (nonatomic, strong) UIFont * topFont;
@@ -28,14 +31,12 @@
 @property (nonatomic, assign) NSInteger yAxisSplit;
 @property (nonatomic, copy) NSString * yAxisformat;
 
-@property (nonatomic, strong) NSArray <BarChartData *> * barDataAry;
-@property (nonatomic, assign) CGFloat barWidth;
+@property (nonatomic, strong) NSArray <BarData *> * barDataAry;
 
-@property (nonatomic, strong) NSArray <LineChartData *> * lineDataAry;
-@property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, strong) NSArray <LineData *> * lineDataAry;
 
 - (void)updateChart;
-- (void)strockChart;
+
 - (void)addAnimation:(NSTimeInterval)duration;
 
 @end

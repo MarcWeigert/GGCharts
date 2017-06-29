@@ -69,6 +69,8 @@
         _lbBottom.font = _bottomFont;
         _lbBottom.textColor = _bottomColor;
         [self addSubview:_lbBottom];
+        
+        _isLineNeedShape = YES;
     }
     
     return self;
@@ -248,6 +250,11 @@
         obj.barScaler.rect = _contentFrame;
         obj.barScaler.xRatio = 1.0 / (_barDataAry.count + 1) * (idx + 1);
         [obj drawBarWithCanvas:self.getGGCanvasEqualFrame];
+        
+        if (_isBarNeedString) {
+            
+            [obj drawBarStringWithCanvas:self.getGGStaticCanvasEqualFrame type:BarRectCenter];
+        }
     }];
 }
 
@@ -271,7 +278,15 @@
         obj.lineScaler.min = lineMin;
         obj.lineScaler.rect = _contentFrame;
         obj.lineScaler.xRatio = 1.0 / (_lineDataAry.count + 1) * (idx + 1);
-        [obj drawLineWithCanvas:self.getGGCanvasEqualFrame shapeCanvas:self.getGGCanvasEqualFrame];
+        
+        GGShapeCanvas * line = self.getGGCanvasEqualFrame;
+        GGShapeCanvas * shape = _isLineNeedShape ? self.getGGCanvasEqualFrame : nil;
+        [obj drawLineWithCanvas:line shapeCanvas:shape];
+        
+        if (_isLineNeedString) {
+            
+            [obj drawStringWithCanvas:self.getGGStaticCanvasEqualFrame];
+        }
     }];
 }
 

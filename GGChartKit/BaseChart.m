@@ -22,12 +22,13 @@
 @interface BaseChart ()
 
 @property (nonatomic) NSMutableDictionary * lineLayerDictionary;
-
 @property (nonatomic) NSMutableDictionary * pieLayerDictionary;
 
 @property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;      ///< 显示的图层
-
 @property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;         ///< 闲置的图层
+
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * visibleStaticLayers;      ///< 显示的图层
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleStaticLayers;         ///< 闲置的图层
 
 @end
 
@@ -46,6 +47,15 @@
     }];
     
     [self.visibleLayers removeAllObjects];
+    
+    [self.idleStaticLayers addObjectsFromArray:self.visibleStaticLayers];
+    
+    [self.visibleStaticLayers enumerateObjectsUsingBlock:^(GGCanvas * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj removeFromSuperlayer];
+    }];
+    
+    [self.visibleStaticLayers removeAllObjects];
 }
 
 /**
@@ -90,6 +100,50 @@
     }
     
     return shape;
+}
+
+/**
+ * 获取图层
+ */
+- (GGCanvas *)makeOrGetStaticCanvas
+{
+    GGCanvas * canvas = [self.idleStaticLayers firstObject];
+    
+    if (canvas == nil) {
+        
+        canvas = [[GGCanvas alloc] init];
+    }
+    else {
+        
+        [self.idleStaticLayers removeObject:canvas];
+    }
+    
+    return canvas;
+}
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGCanvas *)getGGStaticCanvasEqualFrame
+{
+    GGCanvas * canvas = [self makeOrGetStaticCanvas];
+    canvas.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self.layer addSublayer:canvas];
+    [self.visibleStaticLayers addObject:canvas];
+    return canvas;
+}
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGCanvas *)getGGStaticCanvasSquareFrame
+{
+    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+    GGCanvas * canvas = [self makeOrGetStaticCanvas];
+    canvas.frame = CGRectMake(0, 0, width, width);
+    [self.layer addSublayer:canvas];
+    [self.visibleStaticLayers addObject:canvas];
+    return canvas;
 }
 
 #pragma mark - Old 
@@ -166,11 +220,12 @@
 #pragma mark - Lazy
 
 GGLazyGetMethod(NSMutableDictionary, lineLayerDictionary);
-
 GGLazyGetMethod(NSMutableDictionary, pieLayerDictionary);
 
 GGLazyGetMethod(NSMutableArray, visibleLayers);
-
 GGLazyGetMethod(NSMutableArray, idleLayers);
+
+GGLazyGetMethod(NSMutableArray, visibleStaticLayers);
+GGLazyGetMethod(NSMutableArray, idleStaticLayers);
 
 @end

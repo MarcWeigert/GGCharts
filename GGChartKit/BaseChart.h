@@ -38,4 +38,14 @@
  */
 - (GGShapeCanvas *)getGGCanvasSquareFrame;
 
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGCanvas *)getGGStaticCanvasEqualFrame;
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGCanvas *)getGGStaticCanvasSquareFrame;
+
 @end

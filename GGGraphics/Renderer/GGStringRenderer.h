@@ -17,7 +17,9 @@
 @property (nonatomic, strong) UIColor * color;
 @property (nonatomic, assign) CGPoint point;
 @property (nonatomic, assign) CGSize offset;
-@property (nonatomic, assign) CGPoint offSetRatio;          // base text frame  -1 ~ 1
+@property (nonatomic, assign) CGPoint offSetRatio;
 @property (nonatomic, copy) NSString * string;
+@property (nonatomic, assign) UIColor * fillColor;
+@property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
 @end

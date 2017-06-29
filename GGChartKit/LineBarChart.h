@@ -32,8 +32,11 @@
 @property (nonatomic, copy) NSString * yAxisformat;
 
 @property (nonatomic, strong) NSArray <BarData *> * barDataAry;
-
 @property (nonatomic, strong) NSArray <LineData *> * lineDataAry;
+
+@property (nonatomic, assign) BOOL isLineNeedShape;
+@property (nonatomic, assign) BOOL isLineNeedString;
+@property (nonatomic, assign) BOOL isBarNeedString;
 
 - (void)updateChart;
 

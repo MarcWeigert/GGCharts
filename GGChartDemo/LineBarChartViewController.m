@@ -57,8 +57,11 @@
     _lineBarChart.bottomTitle = @"净利润 (万元) ";
     _lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
     _lineBarChart.barDataAry = @[barData, barData1, barData2];
-    _lineBarChart.lineDataAry = @[lineData, lineData1];
+    //_lineBarChart.lineDataAry = @[lineData, lineData1];
     _lineBarChart.axisFont = [UIFont systemFontOfSize:9];
+//    _lineBarChart.isLineNeedString = YES;
+//    _lineBarChart.isBarNeedString = YES;
+    _lineBarChart.yAxisSplit = 3;
     [_lineBarChart drawChart];
     [_lineBarChart addAnimation:1];
     [self.view addSubview:_lineBarChart];
@@ -113,7 +116,7 @@
     lineData1.color = __RGB_ORIGE;
     lineData1.datas = @[@11.29, @-11.88, @11.46, @-13.30, @-13.66, @-3.23, @-3.48, @-3.51];
     
-    _lineBarChart.barDataAry = @[barData, barData1];
+    _lineBarChart.barDataAry = @[barData, barData1, barData2];
     _lineBarChart.lineDataAry = @[lineData, lineData1];
     [_lineBarChart updateChart];
 }

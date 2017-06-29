@@ -25,4 +25,9 @@
  */
 - (void)removeRenderer:(id <GGRenderProtocol>)renderer;
 
+/**
+ * 删除所有绘图工具
+ */
+- (void)removeAllRenderer;
+
 @end

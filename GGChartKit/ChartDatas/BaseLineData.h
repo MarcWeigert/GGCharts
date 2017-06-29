@@ -9,6 +9,7 @@
 #import "BaseChartData.h"
 #import "DLineScaler.h"
 #import "GGShapeCanvas.h"
+#import "GGCanvas.h"
 
 @interface BaseLineData : BaseChartData
 

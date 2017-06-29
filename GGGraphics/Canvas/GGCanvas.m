@@ -53,6 +53,14 @@
 }
 
 /**
+ * 删除所有绘图工具
+ */
+- (void)removeAllRenderer
+{
+    [self.aryRenderer removeAllObjects];
+}
+
+/**
  * 继承 CALayer 
  *
  * @param ctx 上下文

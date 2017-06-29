@@ -53,12 +53,16 @@ typedef enum : NSUInteger {
     CGSize size = [_string sizeWithAttributes:_param];
     drawPoint = CGPointMake(drawPoint.x + size.width * _offSetRatio.x, drawPoint.y + size.height * _offSetRatio.y);
     CGRect drawRect = CGRectMake(drawPoint.x, drawPoint.y, size.width, size.height);
+    drawRect = UIEdgeInsetsInsetRect(drawRect, _edgeInsets);
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:drawRect cornerRadius:1];
-    CGContextAddPath(ctx, path.CGPath);
-    CGContextSetFillColorWithColor(ctx, RGB(235, 235, 235).CGColor);
-    CGContextFillPath(ctx);
-    CGContextStrokePath(ctx);
+    if (_fillColor) {
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:drawRect cornerRadius:1];
+        CGContextAddPath(ctx, path.CGPath);
+        CGContextSetFillColorWithColor(ctx, RGB(235, 235, 235).CGColor);
+        CGContextFillPath(ctx);
+        CGContextStrokePath(ctx);
+    }
     
     UIGraphicsPushContext(ctx);
     [_string drawAtPoint:drawPoint withAttributes:_param];

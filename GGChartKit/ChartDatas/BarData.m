@@ -8,8 +8,24 @@
 
 #import "BarData.h"
 #import "CGPathCategory.h"
+#import "GGStringRenderer.h"
+
+static NSDictionary * s_baseDictionary;
 
 @implementation BarData
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _stringFont = [UIFont systemFontOfSize:10];
+        _stringColor = [UIColor blackColor];
+    }
+    
+    return self;
+}
 
 - (void)setDatas:(NSArray<NSNumber *> *)datas
 {
@@ -44,6 +60,46 @@
     _barCanvas.fillColor = self.color.CGColor;
     _barCanvas.lineWidth = 0;
     CGPathRelease(ref);
+}
+
+- (NSDictionary *)dicBase
+{
+    if (s_baseDictionary == nil) {
+        
+        s_baseDictionary = @{@(BarRectTop) : @0, @(BarRectCenter) : @.5, @(BarRectBottom) : @1};
+    }
+    
+    return s_baseDictionary;
+}
+
+/**
+ * 绘制文字
+ *
+ * @param stringCanvas 静态图层
+ * @param tye 绘制类型
+ */
+- (void)drawBarStringWithCanvas:(GGCanvas *)stringCanvas type:(BarDrawType)tye;
+{
+    [_stringCanvas removeAllRenderer];
+    _stringCanvas = stringCanvas;
+    [_stringCanvas removeAllRenderer];
+    
+    [self.datas enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+        
+        CGRect rect = self.barScaler.barRects[idx];
+        CGFloat y = rect.origin.y + [self.dicBase[@(tye)] floatValue] * rect.size.height;
+        CGPoint point = CGPointMake(CGRectGetMidX(rect), y);
+        
+        GGStringRenderer * render = [[GGStringRenderer alloc] init];
+        render.string = obj.stringValue;
+        render.color = self.stringColor;
+        render.font = self.stringFont;
+        render.offSetRatio = CGPointMake(-.5f, -.5f);
+        render.point = point;
+        [stringCanvas addRenderer:render];
+    }];
+    
+    [stringCanvas setNeedsDisplay];
 }
 
 @end

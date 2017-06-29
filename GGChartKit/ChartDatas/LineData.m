@@ -8,8 +8,22 @@
 
 #import "LineData.h"
 #import "CGPathCategory.h"
+#import "GGStringRenderer.h"
 
 @implementation LineData
+
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _stringFont = [UIFont systemFontOfSize:10];
+        _stringColor = [UIColor blackColor];
+    }
+    
+    return self;
+}
 
 /**
  * 绘制线图层
@@ -29,6 +43,31 @@
     _shapeCanvas.lineWidth = self.width;
     _shapeCanvas.fillColor = [UIColor whiteColor].CGColor;
     CGPathRelease(lineRef);
+}
+
+/**
+ * 绘制文字层
+ *
+ * @param stringCanvas 文字
+ */
+- (void)drawStringWithCanvas:(GGCanvas *)stringCanvas
+{
+    [_stringCanvas removeAllRenderer];
+    _stringCanvas = stringCanvas;
+    [_stringCanvas removeAllRenderer];
+    
+    [self.datas enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        GGStringRenderer * render = [[GGStringRenderer alloc] init];
+        render.string = obj.stringValue;
+        render.color = self.stringColor;
+        render.font = self.stringFont;
+        render.offSetRatio = CGPointMake(-.5f, -1.1);
+        render.point = self.lineScaler.linePoints[idx];
+        [stringCanvas addRenderer:render];
+    }];
+    
+    [stringCanvas setNeedsDisplay];
 }
 
 @end

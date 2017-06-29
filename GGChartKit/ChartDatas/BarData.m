@@ -22,6 +22,7 @@ static NSDictionary * s_baseDictionary;
         
         _stringFont = [UIFont systemFontOfSize:10];
         _stringColor = [UIColor blackColor];
+        _format = @"%.2f";
     }
     
     return self;
@@ -90,8 +91,11 @@ static NSDictionary * s_baseDictionary;
         CGFloat y = rect.origin.y + [self.dicBase[@(tye)] floatValue] * rect.size.height;
         CGPoint point = CGPointMake(CGRectGetMidX(rect), y);
         
+        NSString * drawStr = [NSString stringWithFormat:_format, obj.floatValue];
+        drawStr = _attachedString.length ? [NSString stringWithFormat:@"%@%@", drawStr, _attachedString] : drawStr;
+        
         GGStringRenderer * render = [[GGStringRenderer alloc] init];
-        render.string = obj.stringValue;
+        render.string = drawStr;
         render.color = self.stringColor;
         render.font = self.stringFont;
         render.offSetRatio = CGPointMake(-.5f, -.5f);

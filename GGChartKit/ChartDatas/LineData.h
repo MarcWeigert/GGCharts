@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString * attachedString;
 @property (nonatomic, strong) UIFont * stringFont;
 @property (nonatomic, strong) UIColor * stringColor;
+@property (nonatomic, copy) NSString * format;
 
 /**
  * 绘制线图层

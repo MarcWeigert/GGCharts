@@ -59,8 +59,9 @@
     _lineBarChart.barDataAry = @[barData, barData1, barData2];
     //_lineBarChart.lineDataAry = @[lineData, lineData1];
     _lineBarChart.axisFont = [UIFont systemFontOfSize:9];
-//    _lineBarChart.isLineNeedString = YES;
-//    _lineBarChart.isBarNeedString = YES;
+    _lineBarChart.isLineNeedString = YES;
+    _lineBarChart.isBarNeedString = YES;
+    _lineBarChart.attachedString = @"%";
     _lineBarChart.yAxisSplit = 3;
     [_lineBarChart drawChart];
     [_lineBarChart addAnimation:1];

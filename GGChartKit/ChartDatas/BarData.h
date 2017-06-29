@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString * attachedString;
 @property (nonatomic, strong) UIFont * stringFont;
 @property (nonatomic, strong) UIColor * stringColor;
+@property (nonatomic, copy) NSString * format;
 
 /**
  * 绘制柱状图层

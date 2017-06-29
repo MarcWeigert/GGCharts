@@ -135,10 +135,24 @@
     
     for (int i = 0; i < _yAxisSplit; i++) {
         
-        [array addObject:[NSString stringWithFormat:self.yAxisformat, max - split * i]];
+        NSString * str_t = [NSString stringWithFormat:self.yAxisformat, max - split * i];
+        
+        if (_attachedString.length) {
+            
+            str_t = [NSString stringWithFormat:@"%@%@", str_t, _attachedString];
+        }
+        
+        [array addObject:str_t];
     }
     
-    [array addObject:[NSString stringWithFormat:self.yAxisformat, min]];
+    NSString * str_t = [NSString stringWithFormat:self.yAxisformat, min];
+    
+    if (_attachedString.length) {
+        
+        str_t = [NSString stringWithFormat:@"%@%@", str_t, _attachedString];
+    }
+    
+    [array addObject:str_t];
     
     return array;
 }
@@ -249,6 +263,7 @@
         obj.barScaler.min = barMin;
         obj.barScaler.rect = _contentFrame;
         obj.barScaler.xRatio = 1.0 / (_barDataAry.count + 1) * (idx + 1);
+        obj.attachedString = _attachedString;
         [obj drawBarWithCanvas:self.getGGCanvasEqualFrame];
         
         if (_isBarNeedString) {
@@ -277,6 +292,7 @@
         obj.lineScaler.max = lineMax;
         obj.lineScaler.min = lineMin;
         obj.lineScaler.rect = _contentFrame;
+        obj.attachedString = _attachedString;
         obj.lineScaler.xRatio = 1.0 / (_lineDataAry.count + 1) * (idx + 1);
         
         GGShapeCanvas * line = self.getGGCanvasEqualFrame;

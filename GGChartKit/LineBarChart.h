@@ -31,6 +31,8 @@
 @property (nonatomic, assign) NSInteger yAxisSplit;
 @property (nonatomic, copy) NSString * yAxisformat;
 
+@property (nonatomic, copy) NSString * attachedString;
+
 @property (nonatomic, strong) NSArray <BarData *> * barDataAry;
 @property (nonatomic, strong) NSArray <LineData *> * lineDataAry;
 

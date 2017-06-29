@@ -283,9 +283,12 @@
     lineMax += lineBase;
     lineMin -= lineBase;
     
+    GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     GGAxis rightAxis = GGAxisLineMake(GGRightLineRect(_contentFrame), -2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
-    _rightAxisRenderer.axis = rightAxis;
-    _rightAxisRenderer.aryString = [self splitWithMax:lineMax min:lineMin];
+    
+    GGAxisRenderer * drawAxis = _barDataAry.count > 0 ? _rightAxisRenderer : _leftAxisRenderer;
+    drawAxis.axis = _barDataAry.count > 0 ? rightAxis : leftAxis;
+    drawAxis.aryString = [self splitWithMax:lineMax min:lineMin];
     
     [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
         

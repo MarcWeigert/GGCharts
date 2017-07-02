@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChartData.h"
 #import "BaseChart.h"
-#import "LineChartData.h"
 
 #import "BarData.h"
 #import "LineData.h"

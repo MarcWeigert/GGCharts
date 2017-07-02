@@ -7,6 +7,7 @@
 //
 
 #import "BaseChart.h"
+#import "CALayer+GGFrame.h"
 
 #define GGLazyGetMethod(type, attribute)            \
 - (type *)attribute                                 \
@@ -78,6 +79,7 @@
     CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
     GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
     shape.frame = CGRectMake(0, 0, width, width);
+    shape.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     [self.layer addSublayer:shape];
     [self.visibleLayers addObject:shape];
     return shape;

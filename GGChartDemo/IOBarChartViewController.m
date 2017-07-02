@@ -8,8 +8,6 @@
 
 #import "IOBarChartViewController.h"
 #import "PNBarChart.h"
-#import "BarChartData.h"
-#import "LineChartData.h"
 
 @interface IOBarChartViewController ()
 

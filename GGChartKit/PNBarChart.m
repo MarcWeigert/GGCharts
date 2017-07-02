@@ -9,7 +9,6 @@
 #import "PNBarChart.h"
 #import "GGCanvas.h"
 #import "GGAxisRenderer.h"
-#import "BarChartData.h"
 #import "GGDataScaler.h"
 #import "GGChartGeometry.h"
 #import "GGLineRenderer.h"
@@ -17,7 +16,6 @@
 #import "CGPathCategory.h"
 #import "UICountingLabel.h"
 #import "GGShapeCanvas.h"
-#import "LineChartData.h"
 #import "DBarScaler.h"
 
 #define BAR_SYSTEM_FONT     [UIFont systemFontOfSize:14]
@@ -56,15 +54,15 @@
     return self;
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [super touchesMoved:touches withEvent:event];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
-    
-    [_pnBarData chartTouchesMoved:point];
-}
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesMoved:touches withEvent:event];
+//    
+//    UITouch *touch = [touches anyObject];
+//    CGPoint point = [touch locationInView:self];
+//    
+//    [_pnBarData chartTouchesMoved:point];
+//}
 
 #pragma mark - 初始化设置
 

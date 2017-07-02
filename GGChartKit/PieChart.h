@@ -6,16 +6,20 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "BaseChart.h"
-#import "PieChartData.h"
+#import "BaseCountChart.h"
+#import "PieData.h"
 
-@interface PieChart : BaseChart
+@interface PieChart : BaseCountChart
 
 @property (nonatomic, assign) CGFloat radius;
 
-@property (nonatomic, strong) NSArray <PieChartData *> *sectorAry;
+@property (nonatomic, strong) NSArray <PieData *> *dataAry;
 
-- (void)strockChart;
+@property (nonatomic, copy) UIFont * titleFont;
+@property (nonatomic, copy) UIFont * perFont;
+@property (nonatomic, copy) NSString * attachedString;
+
+@property (nonatomic, copy) NSString * format;
 
 - (void)addAnimationWithDuration:(NSTimeInterval)duration;
 

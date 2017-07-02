@@ -9,7 +9,6 @@
 #import "LineBarChart.h"
 #import "GGCanvas.h"
 #import "GGAxisRenderer.h"
-#import "BarChartData.h"
 #import "GGDataScaler.h"
 #import "GGChartGeometry.h"
 #import "GGLineRenderer.h"
@@ -114,7 +113,7 @@
     _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
     _rightAxisRenderer.strFont = _axisFont;
     _rightAxisRenderer.offSetRatio = CGPointMake(0, -.5);
-    [_backLayer addRenderer:_rightAxisRenderer];
+    //[_backLayer addRenderer:_rightAxisRenderer];
     
     _gridRenderer = [[GGGridRenderer alloc] init];
     _gridRenderer.color = _axisColor;
@@ -237,7 +236,7 @@
 {
     [super layoutSubviews];
     
-    [_backLayer setNeedsDisplay];
+    //[_backLayer setNeedsDisplay];
     
     _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
 }
@@ -317,7 +316,6 @@
     _gridRenderer.grid = grid;
     
     if (_barDataAry.count != 0) [self strockBarChart];
-    
     if (_lineDataAry.count != 0) [self strockLineChart];
     
     [_backLayer setNeedsDisplay];

@@ -86,6 +86,36 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector)
     CGPathAddArcToPoint(ref, NULL, sector.center.x, sector.center.y, sector.center.x, sector.center.y, 100);
 }
 
+CG_EXTERN NSArray * GGPathAnimationSectorEject(GGSector sector, long frame, CGFloat outSide)
+{
+    long out_frame = frame * .8f;
+    long in_frame = frame *.2f;
+    CGFloat frame_radius = (sector.radius + outSide) / out_frame;
+    CGFloat in_frame_radius = outSide / in_frame;
+    
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (long i = 0; i < out_frame; i++) {
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGSector frame_sec = GGSectorCenterMake(sector.center, sector.start, sector.end, 0 + frame_radius * i);
+        GGPathAddSector(ref, frame_sec);
+        [ary addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    for (long i = 0; i < in_frame; i++) {
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGSector frame_sec = GGSectorCenterMake(sector.center, sector.start, sector.end, (sector.radius + 10) - in_frame_radius * i);
+        GGPathAddSector(ref, frame_sec);
+        [ary addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    return [NSArray arrayWithArray:ary];
+}
+
 CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, long frame)
 {
     CGFloat arc = sector.start - sector.end;

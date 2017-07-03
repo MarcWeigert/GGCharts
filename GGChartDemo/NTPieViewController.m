@@ -65,7 +65,7 @@
     chart.dataAry = pieData;
     
     [chart drawChart];
-    [chart addAnimationWithDuration:.7f];
+    [chart addAnimationWithDuration:3.f];
     
     [self.view addSubview:chart];
 }

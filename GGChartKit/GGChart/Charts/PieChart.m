@@ -15,6 +15,7 @@
 #import "DPieScaler.h"
 #import "CALayer+GGFrame.h"
 #import "GGStringRenderer.h"
+#import "NSObject+FireBlock.h"
 
 @interface PieChart ()
 
@@ -235,6 +236,11 @@
 
 - (void)addAnimationWithDuration:(NSTimeInterval)duration
 {
+    [self animationEjectForDuration:duration];
+}
+
+- (void)animationRotateForDuration:(NSTimeInterval)duration
+{
     [_dataAry enumerateObjectsUsingBlock:^(PieData * obj, NSUInteger idx, BOOL * stop) {
         
         CAKeyframeAnimation * transAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
@@ -266,6 +272,47 @@
     }];
 }
 
+- (void)animationEjectForDuration:(NSTimeInterval)duration
+{
+    duration = duration / _dataAry.count;
+    
+    [_dataAry enumerateObjectsUsingBlock:^(PieData * obj, NSUInteger idx, BOOL * stop) {
+        
+        obj.shapeCanvas.hidden = YES;
+        obj.spiderCanvas.hidden = YES;
+        CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+        CGPoint center = CGPointMake(width / 2, width / 2);
+        GGSector sector = GGSectorCenterMake(center, 0, self.pieScaler.arcs[idx], _radius);
+        CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        pathAnimation.duration = duration;
+        
+        pathAnimation.values = GGPathAnimationSectorEject(sector, duration * 60 * 10, 10);
+        
+        [self performAfterDelay:idx * duration / 2 block:^{
+            
+            obj.shapeCanvas.hidden = NO;
+            obj.spiderCanvas.hidden = NO;
+            [obj.shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
+            [obj.spiderCanvas startAnimation:@"spiderLineAnimation" duration:duration];
+        }];
+    }];
+    
+    [self.visibleLables enumerateObjectsUsingBlock:^(UICountingLabel * obj, NSUInteger idx, BOOL * stop) {
+        
+        obj.alpha = 0;
+        
+        [self performAfterDelay:idx * duration / 2 block:^{
+            
+            [UIView animateWithDuration:duration animations:^{
+                
+                obj.alpha = 1;
+            }];
+            
+            [obj countFrom:0 to:_pieScaler.ratios[idx] withDuration:duration];
+        }];
+    }];
+}
+
 - (NSArray *)spiderLineAnimation:(GGLine)line_m circle:(GGCircle)circle
 {
     CGMutablePathRef ref1 = CGPathCreateMutable();
@@ -276,6 +323,7 @@
     CGMutablePathRef ref6 = CGPathCreateMutable();
     
     CGPathMoveToPoint(ref1, NULL, line_m.start.x, line_m.start.y);
+    CGPathAddLineToPoint(ref1, NULL, line_m.start.x, line_m.start.y);
     
     CGPathMoveToPoint(ref2, NULL, line_m.start.x, line_m.start.y);
     CGPathAddLineToPoint(ref2, NULL, line_m.end.x, line_m.end.y);

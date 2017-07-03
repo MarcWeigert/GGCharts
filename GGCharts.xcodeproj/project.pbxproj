@@ -18,6 +18,7 @@
 		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
 		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35BDC01F073FC900420B30 /* DPieScaler.m */; };
+		2B5AE8F61F0A428200495B1E /* NSObject+FireBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5AE8F51F0A428200495B1E /* NSObject+FireBlock.m */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
@@ -86,6 +87,8 @@
 		2B35BDBF1F073FC900420B30 /* DPieScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPieScaler.h; sourceTree = "<group>"; };
 		2B35BDC01F073FC900420B30 /* DPieScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPieScaler.m; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B5AE8F41F0A428200495B1E /* NSObject+FireBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FireBlock.h"; sourceTree = "<group>"; };
+		2B5AE8F51F0A428200495B1E /* NSObject+FireBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FireBlock.m"; sourceTree = "<group>"; };
 		2B5DE6301F00BB9800B40676 /* KTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTimeViewController.h; sourceTree = "<group>"; };
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
 		2B5DE6331F00BD0100B40676 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
@@ -337,12 +340,12 @@
 				2B97884A1F09D4E2002A2A3C /* BaseChart.m */,
 				2B97884B1F09D4E2002A2A3C /* BaseCountChart.h */,
 				2B97884C1F09D4E2002A2A3C /* BaseCountChart.m */,
+				2B9788511F09D4E2002A2A3C /* PieChart.h */,
+				2B9788521F09D4E2002A2A3C /* PieChart.m */,
 				2B97884D1F09D4E2002A2A3C /* LineBarChart.h */,
 				2B97884E1F09D4E2002A2A3C /* LineBarChart.m */,
 				2B97884F1F09D4E2002A2A3C /* MDLineChart.h */,
 				2B9788501F09D4E2002A2A3C /* MDLineChart.m */,
-				2B9788511F09D4E2002A2A3C /* PieChart.h */,
-				2B9788521F09D4E2002A2A3C /* PieChart.m */,
 				2B9788531F09D4E2002A2A3C /* PNBarChart.h */,
 				2B9788541F09D4E2002A2A3C /* PNBarChart.m */,
 			);
@@ -384,6 +387,8 @@
 				2B97886C1F09D4E2002A2A3C /* BaseStockChart.m */,
 				2B97886D1F09D4E2002A2A3C /* NSArray+Stock.h */,
 				2B97886E1F09D4E2002A2A3C /* NSArray+Stock.m */,
+				2B5AE8F41F0A428200495B1E /* NSObject+FireBlock.h */,
+				2B5AE8F51F0A428200495B1E /* NSObject+FireBlock.m */,
 				2B9788701F09D4E2002A2A3C /* TimeChart.h */,
 				2B9788711F09D4E2002A2A3C /* TimeChart.m */,
 			);
@@ -481,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B97887B1F09D4E2002A2A3C /* BaseBarData.m in Sources */,
+				2B5AE8F61F0A428200495B1E /* NSObject+FireBlock.m in Sources */,
 				2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */,
 				2B97887F1F09D4E2002A2A3C /* LineData.m in Sources */,
 				2B97887E1F09D4E2002A2A3C /* ChartBaseEvent.m in Sources */,

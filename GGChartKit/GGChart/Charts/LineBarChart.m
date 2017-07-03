@@ -342,7 +342,6 @@
     [_backLayer setNeedsDisplay];
 }
 
-
 - (void)updateChart
 {
     [self drawChart];

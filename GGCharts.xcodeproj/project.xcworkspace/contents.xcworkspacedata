@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HSCharts.xcodeproj">
+      location = "self:/Users/huangshun/Desktop/GGCharts/GGCharts.xcodeproj">
    </FileRef>
 </Workspace>

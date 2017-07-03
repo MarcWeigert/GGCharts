@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B1157C21EFFEE3D0049FE79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157B71EFFEE3D0049FE79 /* AppDelegate.m */; };
-		2B1157C31EFFEE3D0049FE79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157B81EFFEE3D0049FE79 /* Assets.xcassets */; };
-		2B1157C41EFFEE3D0049FE79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157B91EFFEE3D0049FE79 /* LaunchScreen.storyboard */; };
-		2B1157C81EFFEE3D0049FE79 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157BF1EFFEE3D0049FE79 /* ListVC.m */; };
-		2B1157C91EFFEE3D0049FE79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1157C01EFFEE3D0049FE79 /* main.m */; };
-		2B1157CA1EFFEE3D0049FE79 /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B1157C11EFFEE3D0049FE79 /* stock_data.json */; };
 		2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */; };
 		2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */; };
 		2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */; };
@@ -24,7 +18,6 @@
 		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
 		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35BDC01F073FC900420B30 /* DPieScaler.m */; };
-		2B5DE62B1F00B44600B40676 /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B5DE62A1F00B44600B40676 /* time_chart_data.json */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
@@ -53,21 +46,20 @@
 		2B9788831F09D4E2002A2A3C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97886C1F09D4E2002A2A3C /* BaseStockChart.m */; };
 		2B9788841F09D4E2002A2A3C /* NSArray+Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97886E1F09D4E2002A2A3C /* NSArray+Stock.m */; };
 		2B9788851F09D4E2002A2A3C /* TimeChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788711F09D4E2002A2A3C /* TimeChart.m */; };
+		2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788881F0A39FE002A2A3C /* AppDelegate.m */; };
+		2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788891F0A39FE002A2A3C /* Assets.xcassets */; };
+		2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B97888A1F0A39FE002A2A3C /* LaunchScreen.storyboard */; };
+		2B9788951F0A39FE002A2A3C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B97888C1F0A39FE002A2A3C /* Info.plist */; };
+		2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97888E1F0A39FE002A2A3C /* ListVC.m */; };
+		2B9788971F0A39FE002A2A3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97888F1F0A39FE002A2A3C /* main.m */; };
+		2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788901F0A39FE002A2A3C /* stock_data.json */; };
+		2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788911F0A39FE002A2A3C /* time_chart_data.json */; };
 		2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */; };
 		2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */; };
 		2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B1157B61EFFEE3D0049FE79 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2B1157B71EFFEE3D0049FE79 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2B1157B81EFFEE3D0049FE79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2B1157BA1EFFEE3D0049FE79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2B1157BD1EFFEE3D0049FE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B1157BE1EFFEE3D0049FE79 /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
-		2B1157BF1EFFEE3D0049FE79 /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
-		2B1157C01EFFEE3D0049FE79 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2B1157C11EFFEE3D0049FE79 /* stock_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stock_data.json; sourceTree = "<group>"; };
 		2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOBarChartViewController.h; sourceTree = "<group>"; };
 		2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChartViewController.m; sourceTree = "<group>"; };
 		2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChartViewController.h; sourceTree = "<group>"; };
@@ -93,8 +85,7 @@
 		2B330A681EE44F8E003D17C4 /* GGChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChart.h; sourceTree = "<group>"; };
 		2B35BDBF1F073FC900420B30 /* DPieScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPieScaler.h; sourceTree = "<group>"; };
 		2B35BDC01F073FC900420B30 /* DPieScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPieScaler.m; sourceTree = "<group>"; };
-		2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B5DE62A1F00B44600B40676 /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
+		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5DE6301F00BB9800B40676 /* KTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTimeViewController.h; sourceTree = "<group>"; };
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
 		2B5DE6331F00BD0100B40676 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
@@ -157,6 +148,16 @@
 		2B97886F1F09D4E2002A2A3C /* StockModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockModelProtocol.h; sourceTree = "<group>"; };
 		2B9788701F09D4E2002A2A3C /* TimeChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeChart.h; sourceTree = "<group>"; };
 		2B9788711F09D4E2002A2A3C /* TimeChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeChart.m; sourceTree = "<group>"; };
+		2B9788871F0A39FE002A2A3C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B9788881F0A39FE002A2A3C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B9788891F0A39FE002A2A3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B97888B1F0A39FE002A2A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B97888C1F0A39FE002A2A3C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B97888D1F0A39FE002A2A3C /* ListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
+		2B97888E1F0A39FE002A2A3C /* ListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		2B97888F1F0A39FE002A2A3C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B9788901F0A39FE002A2A3C /* stock_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stock_data.json; sourceTree = "<group>"; };
+		2B9788911F0A39FE002A2A3C /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
 		2B9E98D31EEE870500DF0889 /* CALayer+GGLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+GGLayer.h"; sourceTree = "<group>"; };
 		2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+GGLayer.m"; sourceTree = "<group>"; };
 		2B9E98D61EEE8A0B00DF0889 /* MDLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLineViewController.h; sourceTree = "<group>"; };
@@ -176,23 +177,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B1157B51EFFEE3D0049FE79 /* HSCharts */ = {
-			isa = PBXGroup;
-			children = (
-				2B1157B61EFFEE3D0049FE79 /* AppDelegate.h */,
-				2B1157B71EFFEE3D0049FE79 /* AppDelegate.m */,
-				2B1157B81EFFEE3D0049FE79 /* Assets.xcassets */,
-				2B1157B91EFFEE3D0049FE79 /* LaunchScreen.storyboard */,
-				2B1157BD1EFFEE3D0049FE79 /* Info.plist */,
-				2B1157BE1EFFEE3D0049FE79 /* ListVC.h */,
-				2B1157BF1EFFEE3D0049FE79 /* ListVC.m */,
-				2B1157C01EFFEE3D0049FE79 /* main.m */,
-				2B1157C11EFFEE3D0049FE79 /* stock_data.json */,
-				2B5DE62A1F00B44600B40676 /* time_chart_data.json */,
-			);
-			path = HSCharts;
-			sourceTree = "<group>";
-		};
 		2B20CC011EEADC1400D4F7F2 /* GGChartDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +231,7 @@
 		2B4D8A031D1BF2EB002CED37 = {
 			isa = PBXGroup;
 			children = (
-				2B1157B51EFFEE3D0049FE79 /* HSCharts */,
+				2B9788861F0A39FE002A2A3C /* GGCharts */,
 				2B20CC011EEADC1400D4F7F2 /* GGChartDemo */,
 				2B9788401F09D4E2002A2A3C /* GGChartKit */,
 				2B330A451EE44F19003D17C4 /* GGGraphics */,
@@ -258,7 +242,7 @@
 		2B4D8A0D1D1BF2EB002CED37 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */,
+				2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,12 +390,29 @@
 			path = StockChart;
 			sourceTree = "<group>";
 		};
+		2B9788861F0A39FE002A2A3C /* GGCharts */ = {
+			isa = PBXGroup;
+			children = (
+				2B9788871F0A39FE002A2A3C /* AppDelegate.h */,
+				2B9788881F0A39FE002A2A3C /* AppDelegate.m */,
+				2B9788891F0A39FE002A2A3C /* Assets.xcassets */,
+				2B97888A1F0A39FE002A2A3C /* LaunchScreen.storyboard */,
+				2B97888C1F0A39FE002A2A3C /* Info.plist */,
+				2B97888D1F0A39FE002A2A3C /* ListVC.h */,
+				2B97888E1F0A39FE002A2A3C /* ListVC.m */,
+				2B97888F1F0A39FE002A2A3C /* main.m */,
+				2B9788901F0A39FE002A2A3C /* stock_data.json */,
+				2B9788911F0A39FE002A2A3C /* time_chart_data.json */,
+			);
+			path = GGCharts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B4D8A0B1D1BF2EB002CED37 /* HSCharts */ = {
+		2B4D8A0B1D1BF2EB002CED37 /* GGCharts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "HSCharts" */;
+			buildConfigurationList = 2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "GGCharts" */;
 			buildPhases = (
 				2B4D8A081D1BF2EB002CED37 /* Sources */,
 				2B4D8A091D1BF2EB002CED37 /* Frameworks */,
@@ -421,9 +422,9 @@
 			);
 			dependencies = (
 			);
-			name = HSCharts;
+			name = GGCharts;
 			productName = HSCharts;
-			productReference = 2B4D8A0C1D1BF2EB002CED37 /* HSCharts.app */;
+			productReference = 2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -441,7 +442,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "HSCharts" */;
+			buildConfigurationList = 2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "GGCharts" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -454,7 +455,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B4D8A0B1D1BF2EB002CED37 /* HSCharts */,
+				2B4D8A0B1D1BF2EB002CED37 /* GGCharts */,
 			);
 		};
 /* End PBXProject section */
@@ -464,10 +465,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B1157C31EFFEE3D0049FE79 /* Assets.xcassets in Resources */,
-				2B5DE62B1F00B44600B40676 /* time_chart_data.json in Resources */,
-				2B1157CA1EFFEE3D0049FE79 /* stock_data.json in Resources */,
-				2B1157C41EFFEE3D0049FE79 /* LaunchScreen.storyboard in Resources */,
+				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
+				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
+				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
+				2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */,
+				2B9788951F0A39FE002A2A3C /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +489,6 @@
 				2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */,
 				2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */,
 				2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */,
-				2B1157C91EFFEE3D0049FE79 /* main.m in Sources */,
 				2B9788791F09D4E2002A2A3C /* PNBarChart.m in Sources */,
 				2B97887C1F09D4E2002A2A3C /* BaseChartData.m in Sources */,
 				2B97887D1F09D4E2002A2A3C /* BaseLineData.m in Sources */,
@@ -498,12 +499,13 @@
 				2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */,
 				2B9788731F09D4E2002A2A3C /* UICountingLabel.m in Sources */,
 				2B9788761F09D4E2002A2A3C /* LineBarChart.m in Sources */,
-				2B1157C81EFFEE3D0049FE79 /* ListVC.m in Sources */,
 				2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */,
 				2B9788811F09D4E2002A2A3C /* PieData.m in Sources */,
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */,
-				2B1157C21EFFEE3D0049FE79 /* AppDelegate.m in Sources */,
+				2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */,
+				2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */,
+				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B9788801F09D4E2002A2A3C /* MassChartData.m in Sources */,
@@ -529,10 +531,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2B1157B91EFFEE3D0049FE79 /* LaunchScreen.storyboard */ = {
+		2B97888A1F0A39FE002A2A3C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2B1157BA1EFFEE3D0049FE79 /* Base */,
+				2B97888B1F0A39FE002A2A3C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -633,10 +635,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
-				INFOPLIST_FILE = HSCharts/Info.plist;
+				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Durex.HSCharts;
+				PRODUCT_BUNDLE_IDENTIFIER = Durex.GGCharts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -646,10 +648,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
-				INFOPLIST_FILE = HSCharts/Info.plist;
+				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Durex.HSCharts;
+				PRODUCT_BUNDLE_IDENTIFIER = Durex.GGCharts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -657,7 +659,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "HSCharts" */ = {
+		2B4D8A071D1BF2EB002CED37 /* Build configuration list for PBXProject "GGCharts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B4D8A1B1D1BF2EB002CED37 /* Debug */,
@@ -666,7 +668,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "HSCharts" */ = {
+		2B4D8A1D1D1BF2EB002CED37 /* Build configuration list for PBXNativeTarget "GGCharts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B4D8A1E1D1BF2EB002CED37 /* Debug */,

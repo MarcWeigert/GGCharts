@@ -33,8 +33,7 @@
 @property (nonatomic, strong) GGShapeCanvas * lineCanvas;   ///< 分割线层
 @property (nonatomic, strong) GGCanvas * backLayer;         ///< 背景层
 
-@property (nonatomic, strong) UILabel *lbTop;
-@property (nonatomic, strong) UILabel *lbBottom;
+@property (nonatomic, assign) CGRect contentFrame;
 
 @end
 
@@ -48,33 +47,39 @@
         
         [self defaultChartConfig];
         [self makeTitleViews];
-        self.contentFrame = CGRectMake(20, 40, frame.size.width - 40, frame.size.height - 90);
+        
+        self.insets = UIEdgeInsetsMake(30, 20, 30, 20);
     }
     
     return self;
 }
 
-//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesMoved:touches withEvent:event];
-//    
-//    UITouch *touch = [touches anyObject];
-//    CGPoint point = [touch locationInView:self];
-//    
-//    [_pnBarData chartTouchesMoved:point];
-//}
+/**
+ * 手指轻触视图
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onTapView:(CGPoint)point
+{
+    [_pnBarData chartTouchesBegan:point];
+}
+
+/**
+ * 手指移动
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onPanView:(CGPoint)point
+{
+    [_pnBarData chartTouchesMoved:point];
+}
 
 #pragma mark - 初始化设置
 
 - (void)defaultChartConfig
 {
-    _topFont = BAR_SYSTEM_FONT;
-    _bottomFont = BAR_SYSTEM_FONT;
     _axisFont = BAR_AXIS_FONT;
-    
     _axisColor = AXIS_C;
-    _topColor = BAR_SYSTEM_COLOR;
-    _bottomColor = BAR_SYSTEM_COLOR;
     _negativeColor = NEG_C;
     _positiveColor = POS_C;
     
@@ -99,22 +104,26 @@
 - (void)makeTitleViews
 {
     _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
-    _lbTop.font = _topFont;
-    _lbTop.textColor = _topColor;
+    _lbTop.font = BAR_SYSTEM_FONT;
+    _lbTop.textColor = BAR_SYSTEM_COLOR;
     [self addSubview:_lbTop];
     
     _lbBottom = [[UILabel alloc] initWithFrame:CGRectZero];
-    _lbBottom.font = _bottomFont;
-    _lbBottom.textColor = _bottomColor;
+    _lbBottom.font = BAR_SYSTEM_FONT;
+    _lbBottom.textColor = BAR_SYSTEM_COLOR;
+    _lbBottom.textAlignment = NSTextAlignmentRight;
     [self addSubview:_lbBottom];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [_backLayer setNeedsDisplay];
     
-    _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
+    [_lbTop sizeToFit];
+    [_lbBottom sizeToFit];
+    
+    _lbTop.frame = CGRectMake(0, 0, self.frame.size.width, _lbTop.frame.size.height);
+    _lbBottom.frame = CGRectMake(0, self.frame.size.height - _lbBottom.frame.size.height, self.frame.size.width, _lbBottom.frame.size.height);
 }
 
 #pragma mark - 绘制图表
@@ -132,6 +141,7 @@
     
     [self drawCountLable];
     [self drawLine];
+    [_backLayer setNeedsDisplay];
 }
 
 /** 绘制分割线 */
@@ -234,6 +244,13 @@
 
 #pragma mark - Setter && Getter
 
+- (void)setInsets:(UIEdgeInsets)insets
+{
+    _insets = insets;
+    CGRect sub_rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _contentFrame = UIEdgeInsetsInsetRect(sub_rect, insets);
+}
+
 - (void)setContentFrame:(CGRect)contentFrame
 {
     _contentFrame = contentFrame;
@@ -259,44 +276,6 @@
 {
     _axisColor = axisColor;
     _axisRenderer.color = axisColor;
-}
-
-- (void)setTopColor:(UIColor *)topColor
-{
-    _topColor = topColor;
-    _lbTop.textColor = topColor;
-}
-
-- (void)setTopFont:(UIFont *)topFont
-{
-    _topFont = topFont;
-    _lbTop.font = topFont;
-}
-
-- (void)setTopTitle:(NSString *)topTitle
-{
-    _topTitle = topTitle;
-    _lbTop.text = topTitle;
-    [_lbTop sizeToFit];
-}
-
-- (void)setBottomColor:(UIColor *)bottomColor
-{
-    _bottomColor = bottomColor;
-    _lbBottom.textColor = bottomColor;
-}
-
-- (void)setBottomFont:(UIFont *)bottomFont
-{
-    _bottomFont = bottomFont;
-    _lbBottom.font = bottomFont;
-}
-
-- (void)setBottomTitle:(NSString *)bottomTitle
-{
-    _bottomTitle = bottomTitle;
-    _lbBottom.text = bottomTitle;
-    [_lbBottom sizeToFit];
 }
 
 @end

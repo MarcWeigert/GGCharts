@@ -28,12 +28,26 @@
 @property (nonatomic, readonly, weak) GGShapeCanvas * lineCanvas;   ///< 渲染层
 @property (nonatomic, strong) DLineScaler * lineScaler;     ///< 线数据定标器
 
+@property (nonatomic, copy) NSString * attachedString;      ///< 关键点文字
+@property (nonatomic, strong) UIFont * stringFont;      ///< 关键点字体
+@property (nonatomic, strong) UIColor * stringColor;    ///< 文字颜色
+@property (nonatomic, copy) NSString * format;      ///< 数据格式化字符串
+@property (nonatomic, strong) GGCanvas * stringCanvas;    ///< 文字渲染层
+@property (nonatomic, assign) BOOL isShowString;        ///< 是否显示文字
+
 /**
  * 绘制线图层
  *
  * @param lineCanvas 图层
  */
 - (void)drawLineWithCanvas:(GGShapeCanvas *)lineCanvas;
+
+/**
+ * 绘制文字层
+ *
+ * @param stringCanvas 文字
+ */
+- (void)drawStringWithCanvas:(GGCanvas *)stringCanvas;
 
 /**
  * 获取数组中最大值最小值

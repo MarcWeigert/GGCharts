@@ -8,6 +8,7 @@
 
 #import "BaseLineData.h"
 #import "GGChartDefine.h"
+#import "GGStringRenderer.h"
 
 @implementation BaseLineData
 
@@ -19,6 +20,10 @@
         
         self.width = 1;
         self.color = [UIColor blackColor];
+        
+        self.stringFont = [UIFont systemFontOfSize:10];
+        self.stringColor = [UIColor blackColor];
+        self.format = @"%.2f";
     }
     
     return self;
@@ -64,6 +69,18 @@
     self.lineCanvas.lineWidth = _width;
     self.lineCanvas.fillColor = [UIColor clearColor].CGColor;
     CGPathRelease(lineRef);
+}
+
+/**
+ * 绘制文字层
+ *
+ * @param stringCanvas 文字
+ */
+- (void)drawStringWithCanvas:(GGCanvas *)stringCanvas
+{
+    [_stringCanvas removeAllRenderer];
+    _stringCanvas = stringCanvas;
+    [_stringCanvas removeAllRenderer];
 }
 
 /**

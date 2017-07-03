@@ -48,4 +48,18 @@
  */
 - (GGCanvas *)getGGStaticCanvasSquareFrame;
 
+/**
+ * 手指轻触视图
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onTapView:(CGPoint)point;
+
+/**
+ * 手指移动
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onPanView:(CGPoint)point;
+
 @end

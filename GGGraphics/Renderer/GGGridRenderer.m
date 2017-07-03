@@ -10,6 +10,19 @@
 
 @implementation GGGridRenderer
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _dash = CGSizeZero;
+        _isNeedRect = YES;
+    }
+    
+    return self;
+}
+
 - (void)drawInContext:(CGContextRef)ctx
 {
     CGFloat x = _grid.rect.origin.x;
@@ -27,7 +40,7 @@
         CGContextSetLineDash(ctx, 0, dashPattern, 2);
     }
     
-    for (int i = 1; i < h_count + 1; i++) {
+    for (int i = 1; i < h_count; i++) {
     
         CGPoint start = CGPointMake(x, y + _grid.y_dis * i);
         CGPoint end = CGPointMake(CGRectGetMaxX(_grid.rect), y + _grid.y_dis * i);
@@ -36,7 +49,7 @@
         CGContextAddLineToPoint(ctx, end.x, end.y);
     }
     
-    for (int i = 1; i < v_count + 1; i++) {
+    for (int i = 1; i < v_count; i++) {
         
         CGPoint start = CGPointMake(x + _grid.x_dis * i, y);
         CGPoint end = CGPointMake(x + _grid.x_dis * i, CGRectGetMaxY(_grid.rect));
@@ -45,7 +58,11 @@
         CGContextAddLineToPoint(ctx, end.x, end.y);
     }
     
-    CGContextAddRect(ctx, _grid.rect);
+    if (_isNeedRect) {
+        
+        CGContextAddRect(ctx, _grid.rect);
+    }
+    
     CGContextStrokePath(ctx);
 }
 

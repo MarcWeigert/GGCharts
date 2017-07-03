@@ -18,4 +18,6 @@
 
 @property (nonatomic, assign) GGGrid grid;
 
+@property (nonatomic, assign) BOOL isNeedRect;
+
 @end

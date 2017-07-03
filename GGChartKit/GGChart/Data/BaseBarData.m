@@ -89,8 +89,8 @@
     NSUInteger idx = [self.barScaler indexOfPoint:point];
     CGRect rect = self.barScaler.barRects[idx];
 
-    BarEvent * nearBar = [self.actionDictioary objectForKey:@(GGTouchClickNearShape)];
-    BarEvent * inBar = [self.actionDictioary objectForKey:@(GGTouchClickInShape)];
+    BarEvent * nearBar = [self.actionDictioary objectForKey:@(TouchEventTapNear)];
+    BarEvent * inBar = [self.actionDictioary objectForKey:@(TouchEventTapInside)];
     [nearBar performWith:rect index:idx];
     
     if (CGRectContainsPoint(rect, point)) {
@@ -109,8 +109,8 @@
     NSUInteger idx = [self.barScaler indexOfPoint:point];
     CGRect rect = self.barScaler.barRects[idx];
     
-    BarEvent * nearBar = [self.actionDictioary objectForKey:@(GGTouchMoveNearShape)];
-    BarEvent * inBar = [self.actionDictioary objectForKey:@(GGTouchMoveInShape)];
+    BarEvent * nearBar = [self.actionDictioary objectForKey:@(TouchEventMoveNear)];
+    BarEvent * inBar = [self.actionDictioary objectForKey:@(TouchEventMoveInside)];
     [nearBar performWith:rect index:idx];
     
     if (CGRectContainsPoint(rect, point)) {

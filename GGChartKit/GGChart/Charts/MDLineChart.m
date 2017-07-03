@@ -256,17 +256,18 @@ return _##attribute;                            \
     [self bringSubviewToFront:self.queryPriceView];
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+/**
+ * 手指移动
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onPanView:(CGPoint)point
 {
-    [super touchesMoved:touches withEvent:event];
-    
     self.queryPriceView.hidden = NO;
     [ChartBack(QUERY_LAYER_TAG) setHidden:NO];
     
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self];
     NSInteger index = (point.x - _contentFrame.origin.x) / _xSpilt;
-   
+    
     if (index < 0) index = 0;
     else if (index > _dataSet.count - 1) index = _dataSet.count - 1;
     
@@ -274,7 +275,7 @@ return _##attribute;                            \
     
     GGLine x_line = GGLineMake(CGRectGetMinX(_contentFrame), data.dataPoint.y, CGRectGetMaxX(_contentFrame), data.dataPoint.y);
     _x_query.line = x_line;
-
+    
     GGLine y_line = GGLineMake(data.dataPoint.x, CGRectGetMinY(_contentFrame), data.dataPoint.x, CGRectGetMaxY(_contentFrame));
     _y_query.line = y_line;
     
@@ -299,7 +300,7 @@ return _##attribute;                            \
         self.queryPriceView.frame = CGRectMake(CGRectGetMaxX(_contentFrame) - self.queryPriceView.width, _contentFrame.origin.y, self.queryPriceView.size.width, self.queryPriceView.size.height);
     }
     else if (data.dataPoint.x > CGRectGetMaxX(_contentFrame) - self.queryPriceView.width - 10) {
-    
+        
         self.queryPriceView.frame = CGRectMake(_contentFrame.origin.x, _contentFrame.origin.y, self.queryPriceView.size.width, self.queryPriceView.size.height);
     }
 }

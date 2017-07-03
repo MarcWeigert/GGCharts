@@ -17,7 +17,7 @@
 @property (nonatomic, assign) BOOL showSep;
 @property (nonatomic, assign) CGSize textOffSet;
 
-@property (nonatomic, copy) NSArray <NSString *>* aryString;
+@property (nonatomic, strong) NSArray <NSString *>* aryString;
 @property (nonatomic, strong) UIColor *strColor;
 @property (nonatomic, strong) UIFont *strFont;
 @property (nonatomic, assign) BOOL showText;

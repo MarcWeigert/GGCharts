@@ -16,6 +16,7 @@
 #import "CGPathCategory.h"
 #import "GGShapeCanvas.h"
 #import "GGGridRenderer.h"
+#import "NSArray+Stock.h"
 
 #define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))
 
@@ -24,8 +25,6 @@
 #define BAR_SYSTEM_COLOR    [UIColor blackColor]
 
 #define AXIS_C              RGB(140, 154, 163)
-#define POS_C               RGB(241, 73, 81)
-#define NEG_C               RGB(30, 191, 97)
 
 @interface LineBarChart ()
 
@@ -35,9 +34,6 @@
 @property (nonatomic, strong) GGAxisRenderer * leftAxisRenderer;
 @property (nonatomic, strong) GGAxisRenderer * rightAxisRenderer;
 @property (nonatomic, strong) GGGridRenderer * gridRenderer;
-
-@property (nonatomic, strong) UILabel * lbTop;
-@property (nonatomic, strong) UILabel * lbBottom;
 
 @property (nonatomic, assign) CGRect contentFrame;
 
@@ -57,22 +53,58 @@
         
         [self defaultChartConfig];
         
-        self.contentFrame = CGRectMake(30, 40, frame.size.width - 60, frame.size.height - 90);
-        
         _lbTop = [[UILabel alloc] initWithFrame:CGRectZero];
-        _lbTop.font = _topFont;
-        _lbTop.textColor = _topColor;
+        _lbTop.font = BAR_SYSTEM_FONT;
+        _lbTop.textColor = BAR_SYSTEM_COLOR;
+        _lbTop.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_lbTop];
         
         _lbBottom = [[UILabel alloc] initWithFrame:CGRectZero];
-        _lbBottom.font = _bottomFont;
-        _lbBottom.textColor = _bottomColor;
+        _lbBottom.font = BAR_SYSTEM_FONT;
+        _lbBottom.textColor = BAR_SYSTEM_COLOR;
+        _lbBottom.textAlignment = NSTextAlignmentRight;
         [self addSubview:_lbBottom];
         
-        _isLineNeedShape = YES;
+        self.insets = UIEdgeInsetsMake(30, 40, 35, 40);
     }
     
     return self;
+}
+
+/**
+ * 手指轻触视图
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onTapView:(CGPoint)point
+{
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj chartTouchesBegan:point];
+    }];
+    
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj chartTouchesBegan:point];
+    }];
+}
+
+/**
+ * 手指移动
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onPanView:(CGPoint)point
+{
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj chartTouchesMoved:point];
+    }];
+    
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj chartTouchesMoved:point];
+    }];
 }
 
 - (void)defaultChartConfig
@@ -80,13 +112,8 @@
     _yAxisSplit = 2;
     _yAxisformat = @"%.2f";
     
-    _topFont = BAR_SYSTEM_FONT;
-    _bottomFont = BAR_SYSTEM_FONT;
-    _axisFont = BAR_AXIS_FONT;
-    
     _axisColor = AXIS_C;
-    _topColor = BAR_SYSTEM_COLOR;
-    _bottomColor = BAR_SYSTEM_COLOR;
+    _axisFont = BAR_SYSTEM_FONT;
     
     _axisRenderer = [[GGAxisRenderer alloc] init];
     _axisRenderer.color = _axisColor;
@@ -113,7 +140,7 @@
     _rightAxisRenderer.textOffSet = CGSizeMake(1, 0);
     _rightAxisRenderer.strFont = _axisFont;
     _rightAxisRenderer.offSetRatio = CGPointMake(0, -.5);
-    //[_backLayer addRenderer:_rightAxisRenderer];
+    [_backLayer addRenderer:_rightAxisRenderer];
     
     _gridRenderer = [[GGGridRenderer alloc] init];
     _gridRenderer.color = _axisColor;
@@ -163,22 +190,36 @@
     SET_FRAME(_backLayer, frame);
 }
 
-- (void)setContentFrame:(CGRect)contentFrame
+- (void)setXAxisTitles:(NSArray *)xAxisTitles
 {
-    _contentFrame = contentFrame;
-    GGAxis axis = GGAxisLineMake(GGBottomLineRect(_contentFrame), 3, CGRectGetWidth(_contentFrame) / _axisTitles.count);
-    _axisRenderer.axis = axis;
-}
-
-- (void)setAxisTitles:(NSArray *)axisTitles
-{
-    _axisTitles = axisTitles;
-    _axisRenderer.aryString = axisTitles;
-    GGAxis axis = GGAxisLineMake(GGBottomLineRect(_contentFrame), 3, CGRectGetWidth(_contentFrame) / _axisTitles.count);
+    _xAxisTitles = xAxisTitles;
+    _axisRenderer.aryString = xAxisTitles;
+    GGAxis axis = GGAxisLineMake(GGBottomLineRect(_contentFrame), 3, CGRectGetWidth(_contentFrame) / _xAxisTitles.count);
     _axisRenderer.axis = axis;
 }
 
 #define Bind
+
+- (void)setInsets:(UIEdgeInsets)insets
+{
+    _insets = insets;
+    CGRect sub_rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    _contentFrame = UIEdgeInsetsInsetRect(sub_rect, insets);
+    GGAxis axis = GGAxisLineMake(GGBottomLineRect(_contentFrame), 3, CGRectGetWidth(_contentFrame) / _xAxisTitles.count);
+    _axisRenderer.axis = axis;
+}
+
+- (void)setGridLineWidth:(CGFloat)gridLineWidth
+{
+    _gridLineWidth = gridLineWidth;
+    _gridRenderer.width = gridLineWidth;
+}
+
+- (void)setIsNeedDash:(BOOL)isNeedDash
+{
+    _isNeedDash = isNeedDash;
+    _gridRenderer.dash = isNeedDash ? CGSizeMake(2, 2) : CGSizeZero;
+}
 
 - (void)setAxisFont:(UIFont *)axisFont
 {
@@ -194,93 +235,71 @@
     _axisRenderer.color = axisColor;
 }
 
-- (void)setTopColor:(UIColor *)topColor
-{
-    _topColor = topColor;
-    _lbTop.textColor = topColor;
-}
-
-- (void)setTopFont:(UIFont *)topFont
-{
-    _topFont = topFont;
-    _lbTop.font = topFont;
-}
-
-- (void)setTopTitle:(NSString *)topTitle
-{
-    _topTitle = topTitle;
-    _lbTop.text = topTitle;
-    [_lbTop sizeToFit];
-}
-
-- (void)setBottomColor:(UIColor *)bottomColor
-{
-    _bottomColor = bottomColor;
-    _lbBottom.textColor = bottomColor;
-}
-
-- (void)setBottomFont:(UIFont *)bottomFont
-{
-    _bottomFont = bottomFont;
-    _lbBottom.font = bottomFont;
-}
-
-- (void)setBottomTitle:(NSString *)bottomTitle
-{
-    _bottomTitle = bottomTitle;
-    _lbBottom.text = bottomTitle;
-    [_lbBottom sizeToFit];
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    //[_backLayer setNeedsDisplay];
+    [_lbTop sizeToFit];
+    [_lbBottom sizeToFit];
     
-    _lbBottom.frame = CGRectMake(self.frame.size.width - _lbBottom.frame.size.width, self.frame.size.height - _lbBottom.frame.size.height, _lbBottom.frame.size.width, _lbBottom.frame.size.height);
+    _lbTop.frame = CGRectMake(0, 0, self.frame.size.width, _lbTop.frame.size.height);
+    _lbBottom.frame = CGRectMake(0, self.frame.size.height - _lbBottom.frame.size.height, self.frame.size.width, _lbBottom.frame.size.height);
 }
 
 #pragma mark - 绘制
 
 - (void)strockBarChart
 {
+    NSMutableArray * datasArray = [NSMutableArray array];
+    
+    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [datasArray addObject:obj.datas];
+    }];
+    
+    // 堆叠
+    if (_barPile) { datasArray = [datasArray aryAddUp]; }
+    
     CGFloat barMax = 0;
     CGFloat barMin = 0;
-    [BarData getChartDataAry:_barDataAry max:&barMax min:&barMin];
-    CGFloat barBase = [self getBase:barMax min:barMin];
-    barMin -= barBase;
-    barMax += barBase;
+    [datasArray getTwoDimensionaMax:&barMax min:&barMin selGetter:@selector(doubleValue) base:.2f];
     
     GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     _leftAxisRenderer.axis = leftAxis;
     _leftAxisRenderer.aryString = [self splitWithMax:barMax min:barMin];
     
-    [_barDataAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
+    [_barDataAry enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
         
+        obj.barScaler.dataAry = datasArray[idx];
         obj.barScaler.max = barMax;
         obj.barScaler.min = barMin;
         obj.barScaler.rect = _contentFrame;
-        obj.barScaler.xRatio = 1.0 / (_barDataAry.count + 1) * (idx + 1);
+        obj.barScaler.xRatio = _barPile ? .5f : 1.0 / (_barDataAry.count + 1) * (idx + 1);
         obj.attachedString = _attachedString;
         [obj drawBarWithCanvas:self.getGGCanvasEqualFrame];
         
-        if (_isBarNeedString) {
+        if (obj.isShowString) {
             
-            [obj drawBarStringWithCanvas:self.getGGStaticCanvasEqualFrame type:BarRectCenter];
+            [obj drawStringWithCanvas:self.getGGStaticCanvasEqualFrame];
         }
     }];
 }
 
 - (void)strockLineChart
 {
+    NSMutableArray * datasArray = [NSMutableArray array];
+    
+    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        [datasArray addObject:obj.datas];
+    }];
+    
+    // 堆叠
+    if (_linePile) { datasArray = [datasArray aryAddUp]; }
+    
     CGFloat lineMax = 0;
     CGFloat lineMin = 0;
-    [LineData getChartDataAry:_lineDataAry max:&lineMax min:&lineMin];
-    
-    CGFloat lineBase = [self getBase:lineMax min:lineMin];
-    lineMax += lineBase;
-    lineMin -= lineBase;
+    [datasArray getTwoDimensionaMax:&lineMax min:&lineMin selGetter:@selector(doubleValue) base:.2f];
     
     GGAxis leftAxis = GGAxisLineMake(GGLeftLineRect(_contentFrame), 2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
     GGAxis rightAxis = GGAxisLineMake(GGRightLineRect(_contentFrame), -2.5, CGRectGetHeight(_contentFrame) / _yAxisSplit);
@@ -289,19 +308,20 @@
     drawAxis.axis = _barDataAry.count > 0 ? rightAxis : leftAxis;
     drawAxis.aryString = [self splitWithMax:lineMax min:lineMin];
     
-    [_lineDataAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
+    [_lineDataAry enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
         
+        obj.lineScaler.dataAry = datasArray[idx];
         obj.lineScaler.max = lineMax;
         obj.lineScaler.min = lineMin;
         obj.lineScaler.rect = _contentFrame;
         obj.attachedString = _attachedString;
-        obj.lineScaler.xRatio = 1.0 / (_lineDataAry.count + 1) * (idx + 1);
+        obj.lineScaler.xRatio = _linePile ? .5f : 1.0 / (_lineDataAry.count + 1) * (idx + 1);
         
         GGShapeCanvas * line = self.getGGCanvasEqualFrame;
-        GGShapeCanvas * shape = _isLineNeedShape ? self.getGGCanvasEqualFrame : nil;
+        GGShapeCanvas * shape = obj.isShowShape ? self.getGGCanvasEqualFrame : nil;
         [obj drawLineWithCanvas:line shapeCanvas:shape];
         
-        if (_isLineNeedString) {
+        if (obj.isShowString) {
             
             [obj drawStringWithCanvas:self.getGGStaticCanvasEqualFrame];
         }
@@ -312,7 +332,8 @@
 {
     [super drawChart];
     
-    GGGrid grid = GGGridRectMake(_contentFrame, CGRectGetHeight(_contentFrame) / _yAxisSplit, CGRectGetWidth(_contentFrame));
+    CGFloat xAxisSplit = _isNeedSplitX ? CGRectGetWidth(_contentFrame) / _xAxisTitles.count : CGRectGetWidth(_contentFrame);
+    GGGrid grid = GGGridRectMake(_contentFrame, CGRectGetHeight(_contentFrame) / _yAxisSplit, xAxisSplit);
     _gridRenderer.grid = grid;
     
     if (_barDataAry.count != 0) [self strockBarChart];

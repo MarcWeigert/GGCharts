@@ -10,10 +10,10 @@
 #import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
-    GGTouchMoveNearShape,
-    GGTouchMoveInShape,
-    GGTouchClickNearShape,
-    GGTouchClickInShape
+    TouchEventMoveNear,
+    TouchEventMoveInside,
+    TouchEventTapNear,
+    TouchEventTapInside
 } GGChartEvents;
 
 @protocol GGChartTouchProtocol <NSObject>

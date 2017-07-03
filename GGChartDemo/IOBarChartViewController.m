@@ -29,13 +29,11 @@
     
     [bar addTarget:self
             action:@selector(clickBar:index:)
-      forBarEvents:GGTouchMoveNearShape];
+      forBarEvents:TouchEventMoveNear];
     
     _barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
-    _barChart.topTitle = @"最近五日主力增减仓";
-    _barChart.bottomTitle = @"净利润 (万元) ";
-    _barChart.positiveTitle = @"资金流入";
-    _barChart.negativeTitle = @"资金流出";
+    _barChart.lbTop.text = @"最近五日主力增减仓";
+    _barChart.lbBottom.text = @"净利润 (万元) ";
     _barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
     _barChart.axisFont = [UIFont systemFontOfSize:9];
     _barChart.pnBarData = bar;

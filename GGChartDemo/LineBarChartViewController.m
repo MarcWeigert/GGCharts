@@ -30,6 +30,8 @@
     barData.width = 8;
     barData.datas = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
     
+    //[barData addTarget:self action:@selector(onTouchBar:index:) forBarEvents:TouchEventMoveNear];
+    
     BarData * barData1 = [[BarData alloc] init];
     barData1.color = __RGB_RED;
     barData1.width = 8;
@@ -39,6 +41,7 @@
     barData2.color = __RGB_CYAN;
     barData2.width = 8;
     barData2.datas = @[@11.29, @11.88, @11.46, @13.30, @13.66, @13.23, @13.48, @13.51];
+    //barData2.isShowString = YES;
     
     // 线数据
     LineData * lineData = [[LineData alloc] init];
@@ -49,16 +52,20 @@
     LineData * lineData1 = [[LineData alloc] init];
     lineData1.color = __RGB_ORIGE;
     lineData1.datas = @[@11.29, @-11.88, @11.46, @-13.30, @13.66, @3.23, @-3.48, @-3.51];
+    lineData1.stringColor = __RGB_ORIGE;
+    //[lineData1 addTarget:self action:@selector(onTouchLine:index:) forBarEvents:TouchEventMoveNear];
     
     _lineBarChart = [[LineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
-    _lineBarChart.topTitle = @"最近五日主力增减仓";
-    _lineBarChart.bottomTitle = @"净利润 (万元) ";
-    _lineBarChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
+    _lineBarChart.lbTop.text = @"最近五日主力增减仓";
+    _lineBarChart.lbBottom.text = @"净利润 (万元) ";
+    _lineBarChart.xAxisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
     _lineBarChart.barDataAry = @[barData, barData1, barData2];
-    //_lineBarChart.lineDataAry = @[lineData, lineData1];
+    _lineBarChart.lineDataAry = @[lineData, lineData1];
+    _lineBarChart.isNeedSplitX = YES;
+    //_lineBarChart.barPile = YES;
+    //_lineBarChart.linePile = YES;
     _lineBarChart.axisFont = [UIFont systemFontOfSize:9];
-    _lineBarChart.isLineNeedString =NO;
-    _lineBarChart.isBarNeedString = NO;
+    
     //_lineBarChart.attachedString = @"%";
     _lineBarChart.yAxisSplit = 3;
     [_lineBarChart drawChart];
@@ -85,6 +92,24 @@
     [btn setTitle:@"模拟数据三" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(analogDataThird) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+}
+
+- (void)onTouchBar:(CGRect)rect index:(NSInteger)index
+{
+    NSLog(@"barMove");
+    
+    NSLog(@"x : %.2f, y : %.2f, w : %.2f, h : %.2f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
+    NSLog(@"%zd", index);
+}
+
+- (void)onTouchLine:(CGPoint)point index:(NSInteger)index
+{
+    NSLog(@"lineMove");
+    
+    NSLog(@"x : %.2f, y : %.2f", point.x, point.y);
+    
+    NSLog(@"%zd", index);
 }
 
 - (void)analogDataFirst
@@ -126,7 +151,7 @@
     BarData * barData = [[BarData alloc] init];
     barData.color = __RGB_BLUE;
     barData.width = 8;
-    barData.datas = @[@1.29, @1.88, @1.46, @3.30, @3.66, @3.23, @3.48, @3.51];
+    barData.datas = @[@1.29, @-1.88, @1.46, @3.30, @3.66, @-3.23, @-3.48, @3.51];
     
     BarData * barData1 = [[BarData alloc] init];
     barData1.color = __RGB_RED;

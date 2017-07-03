@@ -277,7 +277,8 @@
     
     CGPathMoveToPoint(ref1, NULL, line_m.start.x, line_m.start.y);
     
-    GGPathAddLine(ref2, line_m);
+    CGPathMoveToPoint(ref2, NULL, line_m.start.x, line_m.start.y);
+    CGPathAddLineToPoint(ref2, NULL, line_m.end.x, line_m.end.y);
     
     GGPathAddLine(ref3, line_m);
     CGPathMoveToPoint(ref3, NULL, line_m.end.x, line_m.end.y);

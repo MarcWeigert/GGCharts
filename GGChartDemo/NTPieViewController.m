@@ -64,12 +64,8 @@
     chart.radius = 80;
     chart.dataAry = pieData;
     
-//    chart.annularRadius = 80;
-//    chart.annularWidth = 15;
-//    chart.annularAry = @[pie_d2, pie_d3, pie_d5, pie_d7, pie_d6];
-    
     [chart drawChart];
-    [chart addAnimationWithDuration:7];
+    [chart addAnimationWithDuration:.7f];
     
     [self.view addSubview:chart];
 }

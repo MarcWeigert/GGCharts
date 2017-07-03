@@ -35,6 +35,52 @@
 
 @implementation BaseChart
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        
+        UITapGestureRecognizer * recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapViewOnGesturer:)];
+        [self addGestureRecognizer:recognizer];
+        
+        UIPanGestureRecognizer * swip = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipViewOnGesturer:)];
+        [self addGestureRecognizer:swip];
+    }
+    
+    return self;
+}
+
+- (void)tapViewOnGesturer:(UIGestureRecognizer *)recognizer
+{
+    [self onTapView:[recognizer locationInView:self]];
+}
+
+- (void)swipViewOnGesturer:(UIGestureRecognizer *)recognizer
+{
+    [self onPanView:[recognizer locationInView:self]];
+}
+
+/**
+ * 手指轻触视图
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onTapView:(CGPoint)point
+{
+
+}
+
+/**
+ * 手指移动
+ *
+ * @param point 点击屏幕的点
+ */
+- (void)onPanView:(CGPoint)point
+{
+
+}
+
 /**
  * 绘制图表(子类重写)
  */

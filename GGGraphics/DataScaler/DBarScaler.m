@@ -66,6 +66,12 @@
     }
 }
 
+- (void)setMin:(CGFloat)min
+{
+    [super setMin:min];
+    _bottomPrice = min;
+}
+
 /** 靠近点的数据index */
 - (NSUInteger)indexOfPoint:(CGPoint)point
 {

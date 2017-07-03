@@ -9,7 +9,6 @@
 #import "LineBarChart.h"
 #import "GGCanvas.h"
 #import "GGAxisRenderer.h"
-#import "GGDataScaler.h"
 #import "GGChartGeometry.h"
 #import "GGLineRenderer.h"
 #import "Colors.h"

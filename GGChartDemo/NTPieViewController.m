@@ -63,9 +63,10 @@
     PieChart * chart = [[PieChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 400)];
     chart.radius = 80;
     chart.dataAry = pieData;
+    //chart.isInside = YES;
     
     [chart drawChart];
-    [chart addAnimationWithDuration:3.f];
+    [chart animationEjectForDuration:2.0f];
     
     [self.view addSubview:chart];
 }

@@ -88,8 +88,7 @@
     
     [self.pieScaler updateScaler];
     [self drawPieChart];
-    [self drawSpiderLine];
-    
+    _isInside ? [self drawLableInside] : [self drawSpiderLine];
     [self drawBackCanvas];
 }
 
@@ -134,10 +133,18 @@
 /** 设置文字 */
 - (NSAttributedString *)attrStringForIndex:(NSInteger)index value:(CGFloat)value
 {
+    NSString * valueString = [NSString stringWithFormat:@"%d%%", (int)(value * 100)];
+    
+    if (_isInside) {
+        
+        return [[NSAttributedString alloc] initWithString:valueString
+                                               attributes:@{NSFontAttributeName : _titleFont,
+                                                            NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }
+    
     NSString * formatString = [NSString stringWithFormat:@"%@%@", _format, _attachedString];
     NSString * dataString = [NSString stringWithFormat:formatString, [_dataAry[index] data]];
     NSString * nameString = [_dataAry[index] pieName];
-    NSString * valueString = [NSString stringWithFormat:@"%d%%", (int)(value * 100)];
     NSString * string = [NSString stringWithFormat:@"%@\n%@\n%@", nameString, valueString, dataString];
     
     NSRange rgData = [string rangeOfString:dataString];
@@ -179,6 +186,20 @@
     
     return attrString;
     
+}
+
+- (void)drawLableInside
+{
+    [_dataAry enumerateObjectsUsingBlock:^(PieData * obj, NSUInteger idx, BOOL * stop) {
+        
+        CGPoint draw_center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+        GGArcLine arcLine = GGArcLineMake(draw_center, self.pieScaler.transArcs[idx] + self.pieScaler.arcs[idx] / 2, _radius + 30);
+        GGLine line = GGLineWithArcLine(arcLine, false);
+        line = GGLineMoveStart(line, _radius / 3 * 2);
+        NSAttributedString * attrString = [self attrStringForIndex:idx value:self.pieScaler.ratios[idx]];
+        
+        [self drawCountLableWithCenter:line.start index:idx attrString:attrString];
+    }];
 }
 
 - (void)drawSpiderLine

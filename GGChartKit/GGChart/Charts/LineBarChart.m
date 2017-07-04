@@ -7,14 +7,8 @@
 //
 
 #import "LineBarChart.h"
-#import "GGCanvas.h"
-#import "GGAxisRenderer.h"
-#import "GGChartGeometry.h"
-#import "GGLineRenderer.h"
 #import "Colors.h"
-#import "CGPathCategory.h"
-#import "GGShapeCanvas.h"
-#import "GGGridRenderer.h"
+#import "GGGraphics.h"
 #import "NSArray+Stock.h"
 
 #define SET_FRAME(A, B)     A.frame = CGRectMake(0, 0, CGRectGetWidth(B), CGRectGetHeight(B))

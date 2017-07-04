@@ -1,0 +1,17 @@
+//
+//  GGChartsPrefix.pch
+//  GGCharts
+//
+//  Created by 黄舜 on 17/7/4.
+//  Copyright © 2017年 I really is a farmer. All rights reserved.
+//
+
+#ifndef GGChartsPrefix_pch
+#define GGChartsPrefix_pch
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#endif /* GGChartsPrefix_pch */

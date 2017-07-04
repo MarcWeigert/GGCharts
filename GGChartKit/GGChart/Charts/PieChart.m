@@ -7,14 +7,8 @@
 //
 
 #import "PieChart.h"
-#import "GGChartGeometry.h"
-#import "CGPathCategory.h"
-#import "GGCircleRenderer.h"
-#import "UICountingLabel.h"
-#include "GGChartDefine.h"
-#import "DPieScaler.h"
-#import "CALayer+GGFrame.h"
-#import "GGStringRenderer.h"
+#import "GGGraphics.h"
+#import "GGChartDefine.h"
 #import "NSObject+FireBlock.h"
 
 @interface PieChart ()

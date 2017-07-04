@@ -13,14 +13,6 @@
 #include <CoreGraphics/CGGeometry.h>
 #include <stdint.h>
 
-enum GGDir {
-    C = 0,
-    N = 1,
-    E = 2,
-    W = 3,
-    S = 4,
-};
-
 #pragma mark - 线
 
 struct GGLine {
@@ -235,32 +227,6 @@ GGGridRectMake(CGRect rect, CGFloat y_dis, CGFloat x_dis) {
     return grid;
 }
 
-CG_INLINE CGPoint **
-GGGridPointAryMake(GGGrid grid)
-{
-    CGPoint ** point_array = (CGPoint **)malloc(sizeof(CGPoint *) * 10);
-    
-//    for (int i = 0; i < grid.horizontal; i++) {
-//        
-//        point_array[i] = (CGPoint *)malloc(sizeof(CGPoint) * grid.vertical);
-//    }
-//    
-//    CGFloat x = grid.rect.origin.x;
-//    CGFloat y = grid.rect.origin.y;
-//    CGFloat h = grid.rect.size.width / (grid.horizontal - 1);
-//    CGFloat v = grid.rect.size.height / (grid.vertical - 1);
-//    
-//    for (int i = 0; i < grid.vertical; i++) {
-//        
-//        for (int j = 0; j < grid.horizontal; j++) {
-//            
-//            point_array[i][j] = CGPointMake(x + j * h, y + i * v);
-//        }
-//    }
- 
-    return point_array;
-}
-
 #pragma mark - 弧线
 
 struct GGArc {
@@ -362,20 +328,40 @@ typedef struct GGSide GGSide;
 #pragma mark - K线形态
 
 struct GGKShape {
-    GGLine line;
+    CGPoint top;
     CGRect rect;
+    CGPoint end;
 };
 typedef struct GGKShape GGKShape;
+
+CG_INLINE GGKShape
+GGKShapeRectMake(CGPoint top, CGRect rect, CGPoint end)
+{
+    GGKShape kShape;
+    kShape.top = top;
+    kShape.rect = rect;
+    kShape.end = end;
+    return kShape;
+}
 
 #pragma mark - 区域
 
 CG_INLINE CGRect
-GGLineRectMake(CGPoint start, CGPoint end, CGFloat width)
+GGLineDownRectMake(CGPoint start, CGPoint end, CGFloat width)
 {
     CGPoint ben = start.y > end.y ? end : start;
     CGRect rect;
     rect.origin = CGPointMake(ben.x - width / 2, ben.y);
     rect.size = CGSizeMake(width, fabs(start.y - end.y));
+    return rect;
+}
+
+CG_INLINE CGRect
+GGLineSideRect(CGPoint start, CGPoint end, CGFloat width)
+{
+    CGRect rect;
+    rect.origin = CGPointMake(start.x - width / 2, start.y);
+    rect.size = CGSizeMake(width, start.y - end.y);
     return rect;
 }
 

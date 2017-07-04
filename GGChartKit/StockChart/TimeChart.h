@@ -6,10 +6,10 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "BaseStockChart.h"
+#import "BaseChart.h"
 #import "StockModelProtocol.h"
 
-@interface TimeChart : BaseStockChart
+@interface TimeChart : BaseChart
 
 @property (nonatomic, strong) UIColor * lineColor;      ///< 分时线颜色
 @property (nonatomic, strong) UIColor * redColor;       ///< 环比上次涨颜色

@@ -26,6 +26,20 @@ CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular);
 
 CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
 
+/**
+ * 绘制k线形
+ * @param ref 路径元素
+ * @param kShape k线形态
+ */
+CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape);
+
+/**
+ * 绘制k线形
+ * @param ref 路径元素
+ * @param kShape k线形态
+ */
+CG_EXTERN void GGPathAddKShapes(CGMutablePathRef ref, GGKShape * kShapes, size_t size);
+
 CG_EXTERN NSArray * GGPathAnimationSectorEject(GGSector sector, long frame, CGFloat outSide);
 
 CG_EXTERN NSArray * GGPathAnimationArrayFor(GGSector sector, long frame);

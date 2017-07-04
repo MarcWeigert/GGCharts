@@ -6,7 +6,10 @@
 //  Copyright © 2017年 wenhua. All rights reserved.
 //
 
-#import "GGChart.h"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "GGChartGeometry.h"
+#import "GGRenderProtocol.h"
 
 @interface GGGridRenderer : NSObject <GGRenderProtocol>
 

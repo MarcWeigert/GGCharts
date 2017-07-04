@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+Stock.h"
+#import "KLineAbstract.h"
 
 @implementation NSArray (Stock)
 
@@ -63,6 +64,33 @@
         
         chartMax = subMax > chartMax ? subMax : chartMax;
         chartMin = subMin < chartMin ? subMin : chartMin;
+    }];
+    
+    *max = chartMax;
+    *min = chartMin;
+}
+
+#pragma mark - KLineAbstract
+
+/**
+ * NSArray <id <KLineAbstract>>
+ * 或区域k线中的最大值最小值
+ *
+ * @param max 最大值地址
+ * @param min 最小值地址
+ * @param range 区间
+ */
+- (void)getKLineMax:(CGFloat *)max min:(CGFloat *)min range:(NSRange)range
+{
+    __block CGFloat chartMax = FLT_MIN;
+    __block CGFloat chartMin = FLT_MAX;
+    
+    [self enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]
+                            options:NSEnumerationConcurrent
+                         usingBlock:^(id <KLineAbstract> obj, NSUInteger idx, BOOL * stop) {
+        
+                             chartMax = obj.ggHigh > chartMax ? obj.ggHigh : chartMax;
+                             chartMin = obj.ggLow < chartMin ? obj.ggLow : chartMin;
     }];
     
     *max = chartMax;

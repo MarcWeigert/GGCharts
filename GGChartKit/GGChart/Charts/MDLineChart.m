@@ -8,15 +8,8 @@
 
 #import "MDLineChart.h"
 #import "Colors.h"
+#import "GGGraphics.h"
 #import "GGDataScaler.h"
-#import "GGChartGeometry.h"
-#import "CGPathCategory.h"
-#import "GGGridRenderer.h"
-#import "GGAxisRenderer.h"
-#import "GGLineRenderer.h"
-#import "GGCircleRenderer.h"
-#import "GGStringRenderer.h"
-#import "CALayer+GGLayer.h"
 #import "StockQueryView.h"
 
 #define LINE_LAYER_TAG          1000

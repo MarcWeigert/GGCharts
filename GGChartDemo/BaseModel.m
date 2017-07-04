@@ -13,7 +13,7 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    NSLog(@"发现不匹配json: %@ -> %@", key, value);
+    // NSLog(@"发现不匹配json: %@ -> %@", key, value);
 }
 
 /** 通过字典初始化数据 */

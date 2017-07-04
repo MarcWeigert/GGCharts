@@ -86,6 +86,35 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector)
     CGPathAddArcToPoint(ref, NULL, sector.center.x, sector.center.y, sector.center.x, sector.center.y, 100);
 }
 
+/**
+ * 绘制k线形
+ * @param ref 路径元素
+ * @param kShape k线形态
+ */
+CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape)
+{
+    //CGFloat rect_top = CGRectGetMinY(kShape.rect);
+    CGFloat rect_bottom = CGRectGetMaxY(kShape.rect);
+    CGPathMoveToPoint(ref, NULL, kShape.top.x, kShape.top.y);
+    CGPathAddLineToPoint(ref, NULL, kShape.top.x, kShape.rect.origin.y);
+    CGPathAddRect(ref, NULL, kShape.rect);
+    CGPathMoveToPoint(ref, NULL, kShape.end.x, CGRectGetMaxY(kShape.rect));
+    CGPathAddLineToPoint(ref, NULL, kShape.end.x, kShape.end.y);
+}
+
+/**
+ * 绘制k线形
+ * @param ref 路径元素
+ * @param kShape k线形态
+ */
+CG_EXTERN void GGPathAddKShapes(CGMutablePathRef ref, GGKShape * kShapes, size_t size)
+{
+    for (int i = 0; i < size; i++) {
+        
+        GGPathAddKShape(ref, kShapes[i]);
+    }
+}
+
 CG_EXTERN NSArray * GGPathAnimationSectorEject(GGSector sector, long frame, CGFloat outSide)
 {
     long out_frame = frame * .8f;

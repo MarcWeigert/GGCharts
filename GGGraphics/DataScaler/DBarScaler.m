@@ -62,7 +62,7 @@
     for (NSInteger i = 0; i < count; i++) {
         
         CGPoint point = self.linePoints[i];
-        _barRects[i] = GGLineRectMake(point, CGPointMake(point.x, bottomY), _barWidth);
+        _barRects[i] = GGLineDownRectMake(point, CGPointMake(point.x, bottomY), _barWidth);
     }
 }
 
@@ -94,7 +94,7 @@
         CGFloat data = [self.dataAry[i] floatValue];
         CGPoint point = self.linePoints[i];
         CGPoint zero = CGPointMake(point.x, bottomY);
-        CGRect zeroRect = GGLineRectMake(zero, zero, _barWidth);
+        CGRect zeroRect = GGLineDownRectMake(zero, zero, _barWidth);
         
         rects[i] = data >= 0 ? _barRects[i] : zeroRect;
     }
@@ -114,7 +114,7 @@
         CGPoint point = self.linePoints[i];
         CGPoint zero = CGPointMake(point.x, bottomY);
         
-        rects[i] = data < 0 ? _barRects[i] : GGLineRectMake(zero, zero, _barWidth);
+        rects[i] = data < 0 ? _barRects[i] : GGLineDownRectMake(zero, zero, _barWidth);
     }
     
     block(rects, self.dataAry.count);

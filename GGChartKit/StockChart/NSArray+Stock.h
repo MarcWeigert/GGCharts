@@ -19,7 +19,10 @@
  * @param getter 对象对比方法
  * @param base 环比最大最小增减比率
  */
-- (void)getMax:(CGFloat *)max min:(CGFloat *)min selGetter:(SEL)getter base:(CGFloat)base;
+- (void)getMax:(CGFloat *)max
+           min:(CGFloat *)min
+     selGetter:(SEL)getter
+          base:(CGFloat)base;
 
 /**
  * 获取二维数组对象的最大值最小值
@@ -29,7 +32,24 @@
  * @param getter 对象对比方法
  * @param base 环比最大最小增减比率
  */
-- (void)getTwoDimensionaMax:(CGFloat *)max min:(CGFloat *)min selGetter:(SEL)getter base:(CGFloat)base;
+- (void)getTwoDimensionaMax:(CGFloat *)max
+                        min:(CGFloat *)min
+                  selGetter:(SEL)getter
+                       base:(CGFloat)base;
+
+#pragma mark - KLineAbstract
+
+/**
+ * NSArray <id <KLineAbstract>>
+ * 或区域k线中的最大值最小值
+ *
+ * @param max 最大值地址
+ * @param min 最小值地址
+ * @param range 区间
+ */
+- (void)getKLineMax:(CGFloat *)max
+                min:(CGFloat *)min
+              range:(NSRange)range;
 
 /**
  * 获取数组对象的最大值最小值

@@ -80,7 +80,7 @@
     
     NSArray <KLineData *> *datas = [KLineData arrayForArray:stockJson class:[KLineData class]];
     
-    KLineChart * kChart = [[KLineChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 450)];
+    KLineChart * kChart = [[KLineChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 350)];
     kChart.kLineArray = [[datas reverseObjectEnumerator] allObjects];
     [kChart updateChart];
     

@@ -100,7 +100,7 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 
 - (CGSize)contentSize
 {
-    return CGSizeMake((self.shapeInterval + self.shapeWidth) * (_xMaxCount + 1), self.rect.size.height);
+    return CGSizeMake((self.shapeInterval + self.shapeWidth) * (_xMaxCount) + self.shapeInterval, self.rect.size.height);
 }
 
 - (void)dealloc

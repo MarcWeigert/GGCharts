@@ -32,11 +32,14 @@
         
         _kInterval = 3;
         _kLineCountVisibale = 60;
-        
-        self.redLineLayer.backgroundColor = [UIColor blueColor].CGColor;
     }
     
     return self;
+}
+
+- (BOOL)volumIsRed:(id)obj
+{
+    return [self isRed:obj];
 }
 
 - (BOOL)isRed:(id <KLineAbstract>)kLineObj
@@ -59,7 +62,7 @@
 {
     [self baseConfigKLineLayer];
     
-    [self updateKLineLayer];
+    [self updateSubLayer];
 }
 
 - (void)baseConfigKLineLayer
@@ -70,16 +73,30 @@
     self.kLineScaler.shapeInterval = _kInterval;
     self.scrollView.contentSize = self.kLineScaler.contentSize;
     
-    self.redLineLayer.strokeColor = [UIColor redColor].CGColor;
-    self.redLineLayer.fillColor = [UIColor redColor].CGColor;
+    self.redLineLayer.strokeColor = RGB(216, 94, 101).CGColor;
+    self.redLineLayer.fillColor = RGB(216, 94, 101).CGColor;
     self.redLineLayer.gg_width = self.kLineScaler.contentSize.width;
     
-    self.greenLineLayer.strokeColor = [UIColor greenColor].CGColor;
-    self.greenLineLayer.fillColor = [UIColor greenColor].CGColor;
+    self.greenLineLayer.strokeColor = RGB(150, 234, 166).CGColor;
+    self.greenLineLayer.fillColor = RGB(150, 234, 166).CGColor;
     self.greenLineLayer.frame = CGRectMake(0, 0, self.kLineScaler.contentSize.width, self.kLineScaler.contentSize.height);
+    
+    // 成交量
+    self.redVolumLayer.strokeColor = RGB(216, 94, 101).CGColor;
+    self.redVolumLayer.fillColor = RGB(216, 94, 101).CGColor;
+    
+    self.greenVolumLayer.strokeColor = RGB(150, 234, 166).CGColor;
+    self.greenVolumLayer.fillColor = RGB(150, 234, 166).CGColor;
+    
+    CGRect volumRect = CGRectMake(0, self.redLineLayer.gg_bottom + 10, self.kLineScaler.contentSize.width, self.frame.size.height - self.redLineLayer.gg_bottom - 10);
+    
+    [self setVolumRect:volumRect];
+    self.volumScaler.rect = CGRectMake(_kInterval / 2, 0, self.redVolumLayer.gg_width - _kInterval, self.redVolumLayer.gg_height);
+    self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
+    [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
 }
 
-- (void)updateKLineLayer
+- (void)updateSubLayer
 {
     NSInteger index = (self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth);
     NSInteger len = _kLineCountVisibale;
@@ -88,9 +105,17 @@
     if (index > _kLineArray.count) index = _kLineArray.count;
     if (index + _kLineCountVisibale > _kLineArray.count) { len = _kLineArray.count - index; }
     
+    NSRange range = NSMakeRange(index, len);
+    
+    [self updateKLineLayerWithRange:range];
+    [self updateVolumLayerWithRange:range];
+}
+
+- (void)updateKLineLayerWithRange:(NSRange)range
+{
     CGFloat max = 0;
     CGFloat min = 0;
-    [_kLineArray getKLineMax:&max min:&min range:NSMakeRange(index, len)];
+    [_kLineArray getKLineMax:&max min:&min range:range];
     
     self.kLineScaler.max = max;
     self.kLineScaler.min = min;
@@ -113,13 +138,26 @@
     CGPathRelease(refGreen);
 }
 
+- (void)updateVolumLayerWithRange:(NSRange)range
+{
+    // 柱状图
+    CGFloat barMax = 0;
+    CGFloat barMin = 0;
+    [_kLineArray getMax:&barMax min:&barMin selGetter:@selector(ggVolume) range:range];
+    
+    self.volumScaler.min = 0;
+    self.volumScaler.max = barMax;
+    [self.volumScaler updateScaler];
+    [self updateVolumLayer];
+}
+
 #pragma mark - Surper
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
     [super scrollViewContentSizeDidChange:change];
     
-    [self updateKLineLayer];
+    [self updateSubLayer];
 }
 
 #pragma mark - Lazy

@@ -83,7 +83,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     
     if (_xMaxCount == 0) {
         
-        _xMaxCount = _lineObjAry.count;
+        _xMaxCount = objAry.count;
     }
     
     _lineObjAry = objAry;

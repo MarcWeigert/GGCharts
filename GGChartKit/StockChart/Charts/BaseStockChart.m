@@ -20,9 +20,13 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     if (self) {
         
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        _scrollView.backgroundColor = [UIColor grayColor];
+        _scrollView.backgroundColor = [UIColor lightGrayColor];
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.showsVerticalScrollIndicator = NO;
+        [_scrollView.layer addSublayer:self.redVolumLayer];
+        [_scrollView.layer addSublayer:self.greenVolumLayer];
         [self addSubview:_scrollView];
-        
+
         [self addObservers];
     }
     
@@ -33,7 +37,6 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
 {
     self.redVolumLayer.frame = rect;
     self.greenVolumLayer.frame = rect;
-    self.volumScaler.rect = rect;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -56,6 +59,25 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
 - (BOOL)volumIsRed:(id)obj
 {
     return NO;
+}
+
+- (void)updateVolumLayer
+{
+    CGMutablePathRef refRed = CGPathCreateMutable();
+    CGMutablePathRef refGreen = CGPathCreateMutable();
+    
+    [self.volumScaler.lineObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
+        
+        CGRect shape = self.volumScaler.barRects[idx];
+        
+        [self volumIsRed:obj] ? GGPathAddCGRect(refRed, shape) : GGPathAddCGRect(refGreen, shape);
+    }];
+    
+    self.redVolumLayer.path = refRed;
+    CGPathRelease(refRed);
+    
+    self.greenVolumLayer.path = refGreen;
+    CGPathRelease(refGreen);
 }
 
 #pragma mark - KVO监听

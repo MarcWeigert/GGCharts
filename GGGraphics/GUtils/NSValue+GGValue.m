@@ -8,6 +8,7 @@
 
 #import "NSValue+GGValue.h"
 #import "CGPathCategory.h"
+#include <objc/runtime.h>
 
 #define GGValueMethodImplementation(type)                           \
                                                                     \
@@ -43,6 +44,5 @@ GGValueMethodImplementation(GGAxis)
 GGValueMethodImplementation(GGArrow)
 GGValueMethodImplementation(GGGrid)
 GGValueMethodImplementation(GGKShape)
-GGValueForGGPathRefImplementation(GGAxis)
 
 @end

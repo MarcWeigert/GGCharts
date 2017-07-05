@@ -11,6 +11,10 @@
 
 NSString * const GGKeyPathContentOffset = @"contentOffset";
 
+@interface BaseStockChart ()
+
+@end
+
 @implementation BaseStockChart
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -19,15 +23,30 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     
     if (self) {
         
+        _stringLayer = [[GGCanvas alloc] init];
+        _stringLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        
+        _kLineBackLayer = [[GGCanvas alloc] init];
+        
+        _backScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _backScrollView.showsHorizontalScrollIndicator = NO;
+        _backScrollView.showsVerticalScrollIndicator = NO;
+        _backScrollView.userInteractionEnabled = NO;
+        [_backScrollView.layer addSublayer:_kLineBackLayer];
+        [self addSubview:_backScrollView];
+        
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        _scrollView.backgroundColor = [UIColor lightGrayColor];
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        self.scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
         [_scrollView.layer addSublayer:self.redVolumLayer];
         [_scrollView.layer addSublayer:self.greenVolumLayer];
         [self addSubview:_scrollView];
 
+        [self.layer addSublayer:_stringLayer];
+        
         [self addObservers];
+        
+        //_backScrollView.backgroundColor = [UIColor redColor];
     }
     
     return self;
@@ -44,6 +63,8 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     [super setFrame:frame];
     
     _scrollView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _backScrollView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _stringLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
 - (void)dealloc
@@ -53,7 +74,19 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
+    CGPoint contentSize = self.scrollView.contentOffset;
     
+    if (_scrollView.contentOffset.x < 0) {
+        
+        contentSize = CGPointMake(0, 0);
+    }
+    
+    if (_scrollView.contentOffset.x + _scrollView.frame.size.width > _scrollView.contentSize.width) {
+        
+        contentSize = CGPointMake(_scrollView.contentSize.width - _scrollView.frame.size.width, 0);
+    }
+    
+     [self.backScrollView setContentOffset:contentSize];
 }
 
 - (BOOL)volumIsRed:(id)obj
@@ -90,7 +123,7 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
 
 - (void)removeObservers
 {
-    [self removeObserver:self forKeyPath:GGKeyPathContentOffset];
+    [self.scrollView removeObserver:self forKeyPath:GGKeyPathContentOffset];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

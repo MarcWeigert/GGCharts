@@ -35,7 +35,8 @@
 - (void)getMax:(CGFloat *)max
            min:(CGFloat *)min
      selGetter:(SEL)getter
-         range:(NSRange)range;
+         range:(NSRange)range
+          base:(CGFloat)base;
 
 /**
  * 获取二维数组对象的最大值最小值

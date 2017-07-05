@@ -7,11 +7,10 @@
 //
 
 #import "KTimeViewController.h"
-#import "StockModelProtocol.h"
 #import "BaseModel.h"
-#import "TimeChart.h"
+#import "MinuteChart.h"
 
-@interface TimeModel : BaseModel <TimeDataProtocol, VolumeDataProtocol>
+@interface TimeModel : BaseModel <MinuteAbstract, VolumeAbstract>
 
 @property (nonatomic , assign) NSInteger volume;
 @property (nonatomic , assign) CGFloat price_change;
@@ -45,7 +44,7 @@
 
 @interface KTimeViewController ()
 
-@property (nonatomic, strong) TimeChart * timeChart;
+@property (nonatomic, strong) MinuteChart * timeChart;
 
 @end
 
@@ -58,8 +57,8 @@
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSArray * stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     
-    _timeChart = [[TimeChart alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 200)];
-    _timeChart.objTimeAry = (NSArray <TimeDataProtocol,VolumeDataProtocol> *)[BaseModel arrayForArray:stockJson class:[TimeModel class]];
+    _timeChart = [[MinuteChart alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 200)];
+    _timeChart.objTimeAry = (NSArray <MinuteAbstract, VolumeAbstract> *)[BaseModel arrayForArray:stockJson class:[TimeModel class]];
     
     [self.view addSubview:_timeChart];
     [_timeChart drawChart];

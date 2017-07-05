@@ -6,14 +6,14 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "TimeChart.h"
+#import "MinuteChart.h"
 #import "GGChartDefine.h"
 #import "DLineScaler.h"
 #import "DBarScaler.h"
 #import "NSArray+Stock.h"
 #import "CGPathCategory.h"
 
-@interface TimeChart ()
+@interface MinuteChart ()
 
 @property (nonatomic, strong) DBarScaler * barScaler;       ///< 成交量定标器
 @property (nonatomic, strong) DLineScaler * lineScaler;     ///< 分时线定标器
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation TimeChart
+@implementation MinuteChart
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -39,7 +39,7 @@
     return self;
 }
 
-- (void)setObjTimeAry:(NSArray<TimeDataProtocol,VolumeDataProtocol> *)objTimeAry
+- (void)setObjTimeAry:(NSArray<VolumeAbstract, MinuteAbstract> *)objTimeAry
 {
     _objTimeAry = objTimeAry;
     
@@ -123,7 +123,7 @@
     CGMutablePathRef redBar = CGPathCreateMutable();
     CGMutablePathRef greenBar = CGPathCreateMutable();
     
-    [self.objTimeAry enumerateObjectsUsingBlock:^(id <TimeDataProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.objTimeAry enumerateObjectsUsingBlock:^(id <MinuteAbstract> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSUInteger before = idx == 0 ? 0 : idx - 1;
         CGFloat cur_price = [obj ggTimePrice];

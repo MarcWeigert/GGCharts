@@ -7,10 +7,13 @@
 //
 
 #import "GGAxisRenderer.h"
+#import "GGChartDefine.h"
 
 @interface GGAxisRenderer ()
 
 @property (nonatomic, strong) NSMutableDictionary * paramStr;
+
+@property (nonatomic, strong) NSMutableDictionary * dictionaryString;
 
 @end
 
@@ -27,9 +30,15 @@
         _showText = YES;
         _drawAxisCenter = NO;
         _offSetRatio = CGPointMake(0, 0);
+        _range = NSMakeRange(0, 0);
     }
     
     return self;
+}
+
+- (void)addString:(NSString *)string point:(CGPoint)point
+{
+    [self.dictionaryString setValue:[NSValue valueWithCGPoint:point] forKey:string];
 }
 
 - (void)setStrColor:(UIColor *)strColor
@@ -66,7 +75,7 @@
     }
     
     CGFloat len = GGLengthLine(_axis.line);
-    NSInteger count = abs((int)(len / _axis.sep)) + 1;
+    NSInteger count = _axis.sep == 0 ? 0 : abs((int)(len / _axis.sep)) + 1;
     
     CGPoint from[count];
     CGPoint to[count];
@@ -100,14 +109,19 @@
         
         NSInteger drawCount = _aryString.count > count ? count : _aryString.count;
         
-        for (NSInteger i = 0; i < drawCount; i++) {
+        if (NSMaxRange(_range) != 0) {
+            
+            drawCount = NSMaxRange(_range) > drawCount ? drawCount : NSMaxRange(_range);
+        }
+        
+        CGFloat l_cir = GGXCircular(_axis.line);
+        CGFloat cir = l_cir > M_PI_2 ? l_cir - M_PI_2 : l_cir;
+        
+        for (NSInteger i = _range.location; i < drawCount; i++) {
             
             NSString * string = _aryString[i];
             CGPoint point = to[i];
             CGSize size = [string sizeWithAttributes:_paramStr];
-            
-            CGFloat l_cir = GGXCircular(_axis.line);
-            CGFloat cir = l_cir > M_PI_2 ? l_cir - M_PI_2 : l_cir;
             
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
 
@@ -121,8 +135,18 @@
             [string drawAtPoint:point withAttributes:_paramStr];
         }
         
+        [self.dictionaryString enumerateKeysAndObjectsUsingBlock:^(NSString * key, NSValue * obj, BOOL * stop) {
+            
+            CGSize size = [key sizeWithAttributes:_paramStr];
+            CGPoint over_pt = GGPerpendicularMake(_axis.line, obj.CGPointValue, _axis.over);
+            CGPoint point = CGPointMake(over_pt.x + size.width * _offSetRatio.x, over_pt.y + size.height * _offSetRatio.y);
+            [key drawAtPoint:point withAttributes:_paramStr];
+        }];
+        
         UIGraphicsPopContext();
     }
 }
+
+GGLazyGetMethod(NSMutableDictionary, dictionaryString);
 
 @end

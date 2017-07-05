@@ -31,6 +31,5 @@ GGValueMethod(GGAxis)
 GGValueMethod(GGArrow)
 GGValueMethod(GGGrid)
 GGValueMethod(GGKShape)
-GGValueForCGPathRef(GGAxis)
 
 @end

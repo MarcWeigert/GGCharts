@@ -7,9 +7,10 @@
 //
 
 #import "BaseChart.h"
-#import "StockModelProtocol.h"
+#import "MinuteAbstract.h"
+#import "VolumeAbstract.h"
 
-@interface TimeChart : BaseChart
+@interface MinuteChart : BaseChart
 
 @property (nonatomic, strong) UIColor * lineColor;      ///< 分时线颜色
 @property (nonatomic, strong) UIColor * redColor;       ///< 环比上次涨颜色
@@ -18,6 +19,6 @@
 
 @property (nonatomic, assign) CGFloat lineRatio;    ///< 分时线所占比率
 
-@property (nonatomic, strong) NSArray <TimeDataProtocol, VolumeDataProtocol> * objTimeAry;  ///< 分时数组
+@property (nonatomic, strong) NSArray <MinuteAbstract, VolumeAbstract> * objTimeAry;  ///< 分时数组
 
 @end

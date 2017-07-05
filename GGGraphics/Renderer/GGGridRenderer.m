@@ -7,6 +7,14 @@
 //
 
 #import "GGGridRenderer.h"
+#import "GGChartDefine.h"
+#import "NSValue+GGValue.h"
+
+@interface GGGridRenderer ()
+
+@property (nonatomic, strong) NSMutableArray * aryLines;
+
+@end
 
 @implementation GGGridRenderer
 
@@ -23,13 +31,19 @@
     return self;
 }
 
+/** 网格加线 */
+- (void)addLine:(GGLine)line
+{
+    [self.aryLines addObject:[NSValue valueWithGGLine:line]];
+}
+
 - (void)drawInContext:(CGContextRef)ctx
 {
     CGFloat x = _grid.rect.origin.x;
     CGFloat y = _grid.rect.origin.y;
     
-    NSInteger h_count = CGRectGetHeight(_grid.rect) / _grid.y_dis;    ///< 横线个数
-    NSInteger v_count = CGRectGetWidth(_grid.rect) / _grid.x_dis;     ///< 纵线个数
+    NSInteger h_count = _grid.y_dis == 0 ? 0 : CGRectGetHeight(_grid.rect) / _grid.y_dis;    ///< 横线个数
+    NSInteger v_count = _grid.x_dis == 0 ? 0 : CGRectGetWidth(_grid.rect) / _grid.x_dis;     ///< 纵线个数
     
     CGContextSetLineWidth(ctx, _width);
     CGContextSetStrokeColorWithColor(ctx, _color.CGColor);
@@ -60,10 +74,24 @@
     
     if (_isNeedRect) {
         
-        CGContextAddRect(ctx, _grid.rect);
+        CGFloat inner = _width / 2;
+        UIEdgeInsets rect_inner = UIEdgeInsetsMake(inner, inner, inner, inner);
+        CGContextAddRect(ctx, UIEdgeInsetsInsetRect(_grid.rect, rect_inner));
     }
+    
+    [_aryLines enumerateObjectsUsingBlock:^(NSValue * obj, NSUInteger idx, BOOL * stop) {
+        
+        GGLine line = [obj GGLineValue];
+        
+        CGContextMoveToPoint(ctx, line.start.x, line.start.y);
+        CGContextAddLineToPoint(ctx, line.end.x,line.end.y);
+    }];
     
     CGContextStrokePath(ctx);
 }
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(NSMutableArray, aryLines);
 
 @end

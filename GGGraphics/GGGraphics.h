@@ -20,14 +20,15 @@
 #import "DPieScaler.h"
 #import "DKLineScaler.h"
 
-#import "CALayer+GGFrame.h"
 #import "GGChartGeometry.h"
 #import "CGPathCategory.h"
 
 #import "GGCanvas.h"
 #import "GGShapeCanvas.h"
+
 #import "CALayer+GGFrame.h"
 #import "CALayer+GGLayer.h"
+#import "NSValue+GGValue.h"
 
 #import "GGRenderProtocol.h"
 #import "GGAxisRenderer.h"

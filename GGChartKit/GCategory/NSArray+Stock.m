@@ -50,7 +50,7 @@
  * @param getter 对象对比方法
  * @param base 环比最大最小增减比率
  */
-- (void)getMax:(CGFloat *)max min:(CGFloat *)min selGetter:(SEL)getter range:(NSRange)range
+- (void)getMax:(CGFloat *)max min:(CGFloat *)min selGetter:(SEL)getter range:(NSRange)range base:(CGFloat)base
 {
     __block CGFloat chartMax = FLT_MIN;
     __block CGFloat chartMin = FLT_MAX;
@@ -67,8 +67,10 @@
                              chartMin = objNumber < chartMin ? objNumber : chartMin;
                          }];
     
-    *max = chartMax;
-    *min = chartMin;
+    CGFloat baseScaler = fabs(chartMax - chartMin) * base;
+    
+    *max = chartMax += baseScaler;
+    *min = chartMin -= baseScaler;
 }
 
 /**

@@ -23,4 +23,7 @@
 
 @property (nonatomic, assign) BOOL isNeedRect;
 
+/** 网格加线 */
+- (void)addLine:(GGLine)line;
+
 @end

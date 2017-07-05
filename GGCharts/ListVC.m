@@ -12,6 +12,7 @@
 #import "NTPieViewController.h"
 #import "MDLineViewController.h"
 #import "KTimeViewController.h"
+#import "KLineViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -31,7 +32,8 @@ _Pragma("clang diagnostic pop") \
              @"LineBarChartView" : @"",
              @"NTPieView" : @"",
              @"MDLineView" : @"",
-             @"TimeChartView" : @""};
+             @"TimeChartView" : @""
+             @"KLineChartView"};
 }
 
 #pragma mark - 初始化
@@ -55,7 +57,7 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)rowAry
 {
-    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"MDLineView"], @[@"TimeChartView"]];
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"MDLineView"], @[@"TimeChartView", @"KLineChartView"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -119,6 +121,10 @@ _Pragma("clang diagnostic pop") \
     else if ([selectStr isEqualToString:@"TimeChartView"]) {
     
         [self.navigationController pushViewController:[KTimeViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"KLineChartView"]) {
+        
+        [self.navigationController pushViewController:[KLineViewController new] animated:NO];
     }
     else {
     

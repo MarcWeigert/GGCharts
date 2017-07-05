@@ -27,4 +27,8 @@
 @property (nonatomic, assign) BOOL drawAxisCenter;
 @property (nonatomic, assign) CGPoint offSetRatio;          // base text frame  -1 ~ 1
 
+@property (nonatomic, assign) NSRange range;
+
+- (void)addString:(NSString *)string point:(CGPoint)point;
+
 @end

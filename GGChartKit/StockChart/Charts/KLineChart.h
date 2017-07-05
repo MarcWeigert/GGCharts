@@ -17,6 +17,16 @@
 @property (nonatomic, assign) NSInteger kLineCountVisibale;     ///< 一屏幕显示多少根k线
 @property (nonatomic, assign) CGFloat kInterval;    ///< k线之间的间隔
 
+@property (nonatomic, assign) NSUInteger kAxisSplit;        ///< k线纵轴 默认7
+
+@property (nonatomic, strong) UIColor * riseColor;      ///< 涨颜色  默认 RGB(216, 94, 101)
+@property (nonatomic, strong) UIColor * fallColor;      ///< 跌颜色  默认 RGB(150, 234, 166)
+@property (nonatomic, strong) UIColor * gridColor;      ///< 网格颜色  默认 RGB(154, 160, 180)
+@property (nonatomic, strong) UIColor * axisStringColor;      ///< 文字颜色
+
+@property (nonatomic, strong) UIFont * axisFont;        ///< 轴字体
+
+/** 更新K线图 */
 - (void)updateChart;
 
 @end

@@ -26,4 +26,7 @@
 /** 网格加线 */
 - (void)addLine:(GGLine)line;
 
+/** 删除Line */
+- (void)removeAllLine;
+
 @end

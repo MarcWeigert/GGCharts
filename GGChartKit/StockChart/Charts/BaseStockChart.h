@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GGGraphics.h"
 
-@interface BaseStockChart : UIView
+@interface BaseStockChart : UIView <UIScrollViewDelegate>
 
 @property (nonatomic, readonly) UIScrollView * scrollView;  ///< 滚动视图
 

@@ -36,6 +36,11 @@
 {
     [self.aryLines addObject:[NSValue valueWithGGLine:line]];
 }
+/** 删除Line */
+- (void)removeAllLine
+{
+    [self.aryLines removeAllObjects];
+}
 
 - (void)drawInContext:(CGContextRef)ctx
 {

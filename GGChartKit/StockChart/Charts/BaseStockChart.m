@@ -38,15 +38,14 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.delegate = self;
         [_scrollView.layer addSublayer:self.redVolumLayer];
         [_scrollView.layer addSublayer:self.greenVolumLayer];
         [self addSubview:_scrollView];
 
         [self.layer addSublayer:_stringLayer];
         
-        [self addObservers];
-        
-        //_backScrollView.backgroundColor = [UIColor redColor];
+        // [self addObservers];
     }
     
     return self;
@@ -69,7 +68,7 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
 
 - (void)dealloc
 {
-    [self removeObservers];
+    // [self removeObservers];
 }
 
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change

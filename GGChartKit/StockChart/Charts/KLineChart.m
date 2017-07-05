@@ -26,11 +26,9 @@
 @property (nonatomic, strong) GGAxisRenderer * kAxisRenderer;       ///< K线轴
 @property (nonatomic, strong) GGAxisRenderer * vAxisRenderer;       ///< 成交量轴
 
-/** 避免更新 */
-@property (nonatomic, assign) CGFloat oldBarMax;
-@property (nonatomic, assign) CGFloat oldBarMin;
-@property (nonatomic, assign) CGFloat oldKLineMax;
-@property (nonatomic, assign) CGFloat oldKLineMin;
+@property (nonatomic, assign) CGFloat currentZoom;  ///< 当前缩放比例
+@property (nonatomic, assign) CGFloat zoomCenterSpacingLeft;    ///< 缩放中心K线位置距离左边的距离
+@property (nonatomic, assign) NSUInteger zoomCenterIndex;     ///< 中心点k线
 
 @end
 
@@ -63,16 +61,19 @@
         _kAxisSplit = 7;
         _kInterval = 3;
         _kLineCountVisibale = 60;
+        _kMaxCountVisibale = 120;
+        _kMinCountVisibale = 20;
         _axisFont = [UIFont fontWithName:FONT_ARIAL size:10];
         _riseColor = RGB(216, 94, 101);
         _fallColor = RGB(150, 234, 166);
         _gridColor = RGB(225, 225, 225);
         _axisStringColor = C_HEX(0xaeb1b6);
+        _currentZoom = -.001f;
         
-        _oldKLineMin = FLT_MAX;
-        _oldKLineMax = FLT_MIN;
-        _oldBarMin = FLT_MAX;
-        _oldBarMax = FLT_MIN;
+        /*create the pinch Gesture Recognizer*/
+        UIPinchGestureRecognizer * pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinches:)];
+        
+        [self addGestureRecognizer:pinchGestureRecognizer];
     }
     
     return self;
@@ -98,6 +99,77 @@
     [self updateSubLayer];
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self scrollViewContentSizeDidChange:nil];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat minMove = self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval;
+    self.scrollView.contentOffset = CGPointMake(round(self.scrollView.contentOffset.x / minMove) * minMove, 0);
+    
+    [self scrollViewContentSizeDidChange:nil];
+}
+
+#pragma mark - K线捏合
+
+-(void)handlePinches:(UIPinchGestureRecognizer *)paramSender
+{
+    self.scrollView.scrollEnabled = NO;     // 放大禁用滚动手势
+    
+    if (paramSender.state == UIGestureRecognizerStateEnded) {
+        
+        _currentZoom = paramSender.scale;
+        
+        self.scrollView.scrollEnabled = YES;
+    }
+    else if (paramSender.state == UIGestureRecognizerStateBegan && _currentZoom != 0.0f) {
+        
+        paramSender.scale = _currentZoom;
+        
+        CGPoint touch1 = [paramSender locationOfTouch:0 inView:self];
+        CGPoint touch2 = [paramSender locationOfTouch:1 inView:self];
+
+        // 放大开始记录位置等数据
+        CGFloat center_x = (touch1.x + touch2.x) / 2.0f;
+        _zoomCenterIndex = (self.scrollView.contentOffset.x + center_x) / (self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval);
+        GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
+        _zoomCenterSpacingLeft = shape.top.x - self.scrollView.contentOffset.x;
+    }
+    else if (paramSender.state == UIGestureRecognizerStateChanged) {
+    
+        CGFloat tmpZoom;
+        tmpZoom = paramSender.scale / _currentZoom;
+        _currentZoom = paramSender.scale;
+        NSInteger showNum = round(_kLineCountVisibale / tmpZoom);
+        
+        // 避免没必要计算
+        if (showNum == _kLineCountVisibale) { return; }
+        if (showNum >= _kLineCountVisibale  && _kLineCountVisibale == _kMaxCountVisibale) return;
+        if (showNum <= _kLineCountVisibale  && _kLineCountVisibale == _kMinCountVisibale) return;
+        
+        // 极大值极小值
+        _kLineCountVisibale = showNum;
+        _kLineCountVisibale = _kLineCountVisibale < 20 ? 20 : _kLineCountVisibale;
+        _kLineCountVisibale = _kLineCountVisibale > 120 ? 120 : _kLineCountVisibale;
+        
+        [self updateChart];
+        
+        GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
+        CGFloat offsetX = shape.top.x - _zoomCenterSpacingLeft;
+        
+        if (offsetX < 0) { offsetX = 0; }
+        if (offsetX > self.scrollView.contentSize.width - self.scrollView.frame.size.width) {
+            offsetX = self.scrollView.contentSize.width - self.scrollView.frame.size.width;
+        }
+        
+        self.scrollView.contentOffset = CGPointMake(offsetX, 0);
+    }
+}
+
 #pragma mark - Setter
 
 /** 设置k线方法 */
@@ -118,7 +190,7 @@
 {
     [self baseConfigKLineLayer];
     [self baseConfigVolumLayer];
-    [self updateKLineGridLayer];
+    //[self updateKLineGridLayer];
     
     [self updateSubLayer];
 }
@@ -199,6 +271,9 @@
     // K线网格设置
     self.kLineGrid.color = _gridColor;
     self.kLineGrid.grid = GGGridRectMake(self.greenLineLayer.frame, v_spe, 0);
+    
+    [self.kLineGrid removeAllLine];
+    
     [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract> obj, NSUInteger idx, BOOL * stop) {
         
         if ([obj isShowTitle]) {
@@ -251,12 +326,6 @@
     CGFloat min = 0;
     [_kLineArray getKLineMax:&max min:&min range:range];
     
-    // 避免没必要更新
-    //if (_oldKLineMax == max && _oldKLineMin == min) { return; }
-    
-    _oldKLineMax = max;
-    _oldKLineMin = min;
-    
     // 更新k线层
     self.kLineScaler.max = max;
     self.kLineScaler.min = min;
@@ -290,12 +359,6 @@
     CGFloat barMax = 0;
     CGFloat barMin = 0;
     [_kLineArray getMax:&barMax min:&barMin selGetter:@selector(ggVolume) range:range base:0.1];
-    
-    // 避免没必要更新
-    // if (_oldBarMax == barMax && _oldBarMin == barMin) { return; }
-    
-    _oldBarMax = barMax;
-    _oldBarMin = barMin;
     
     // 更新成交量
     self.volumScaler.min = 0;

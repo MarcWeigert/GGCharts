@@ -9,10 +9,11 @@
 #import "BaseStockChart.h"
 #import "KLineAbstract.h"
 #import "VolumeAbstract.h"
+#import "QueryViewAbstract.h"
 
 @interface KLineChart : BaseStockChart
 
-@property (nonatomic, strong) NSArray <id <KLineAbstract, VolumeAbstract> > * kLineArray;    ///< k线数组
+@property (nonatomic, strong) NSArray <id <KLineAbstract, VolumeAbstract, QueryViewAbstract> > * kLineArray;    ///< k线数组
 
 @property (nonatomic, assign) NSInteger kLineCountVisibale;     ///< 一屏幕显示多少根k线     默认60
 @property (nonatomic, assign) NSInteger kMaxCountVisibale;      ///< 屏幕最多显示多少k线     默认120

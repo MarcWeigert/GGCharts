@@ -106,7 +106,7 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 }
 
 /** 更新计算点 */
-- (void)updateScaler
+- (void)updateScalerWithRange:(NSRange)range
 {
     _kFig = kLineScaler(_max, _min, self.rect);
     
@@ -115,23 +115,30 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
     CGFloat (* highGetter)(id obj, SEL getter) = self.impHighGetter;
     CGFloat (* lowGetter)(id obj, SEL getter) = self.impLowGetter;
 
-    [_kLineObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
+    [_kLineObjAry enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]
+                                    options:NSEnumerationConcurrent
+                                 usingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        CGFloat x = (idx + 1) * self.shapeInterval + (idx + .5f) * self.shapeWidth;
-
-        CGFloat openPrice = openGetter(obj, self.selOpenGetter);
-        CGFloat closePrice = closeGetter(obj, self.selCloseGetter);
-        CGFloat lowPrice = lowGetter(obj, self.selLowGetter);
-        CGFloat highPrice = highGetter(obj, self.selHighGetter);
-
-        CGPoint openPoint = CGPointMake(x, _kFig(openPrice));
-        CGPoint closePoint = CGPointMake(x, _kFig(closePrice));
-        CGPoint lowPoint = CGPointMake(x, _kFig(lowPrice));
-        CGPoint highPoint = CGPointMake(x, _kFig(highPrice));
-        
-        CGRect kRect = GGLineDownRectMake(openPoint, closePoint, self.shapeWidth);
-        _kShapes[idx] = GGKShapeRectMake(highPoint, kRect, lowPoint);
+                                     CGFloat x = (idx + 1) * self.shapeInterval + (idx + .5f) * self.shapeWidth;
+                                     
+                                     CGFloat openPrice = openGetter(obj, self.selOpenGetter);
+                                     CGFloat closePrice = closeGetter(obj, self.selCloseGetter);
+                                     CGFloat lowPrice = lowGetter(obj, self.selLowGetter);
+                                     CGFloat highPrice = highGetter(obj, self.selHighGetter);
+                                     
+                                     CGPoint openPoint = CGPointMake(x, _kFig(openPrice));
+                                     CGPoint closePoint = CGPointMake(x, _kFig(closePrice));
+                                     CGPoint lowPoint = CGPointMake(x, _kFig(lowPrice));
+                                     CGPoint highPoint = CGPointMake(x, _kFig(highPrice));
+                                     
+                                     CGRect kRect = GGLineDownRectMake(openPoint, closePoint, self.shapeWidth);
+                                     _kShapes[idx] = GGKShapeRectMake(highPoint, kRect, lowPoint);
     }];
+}
+
+- (void)updateScaler
+{
+    [self updateScalerWithRange:NSMakeRange(0, _kLineObjAry.count)];
 }
 
 @end

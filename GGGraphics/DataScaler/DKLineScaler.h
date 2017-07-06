@@ -37,6 +37,9 @@
 /** 更新计算点 */
 - (void)updateScaler;
 
+/** 更新局部计算点 */
+- (void)updateScalerWithRange:(NSRange)range;
+
 /** 根据点获取价格 */
 - (CGFloat)getPriceWithPoint:(CGPoint)point;
 

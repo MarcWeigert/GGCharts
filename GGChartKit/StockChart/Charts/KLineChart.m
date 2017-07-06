@@ -40,6 +40,8 @@
 @property (nonatomic, assign) CGPoint lastPanPoint;     ///< 最后滑动的点
 @property (nonatomic, assign) BOOL respondPanRecognizer;       ///< 是否相应滑动手势
 
+@property (nonatomic, assign) BOOL disPlay;
+
 @end
 
 @implementation KLineChart
@@ -52,6 +54,8 @@
     
     if (self) {
 
+        _disPlay = YES;
+        
         [self.scrollView.layer addSublayer:self.redLineLayer];
         [self.scrollView.layer addSublayer:self.greenLineLayer];
         
@@ -163,7 +167,7 @@
 {
     CGPoint velocityInScroll = [self.scrollView convertPoint:velocity fromView:self.queryPriceView];
     NSInteger index = [self pointConvertIndex:velocityInScroll.x];
-    id <KLineAbstract> kData = self.kLineArray[index];
+    id <KLineAbstract, QueryViewAbstract> kData = self.kLineArray[index];
     
     NSString * yString = @"";
     
@@ -257,7 +261,7 @@
 #pragma mark - Setter
 
 /** 设置k线方法 */
-- (void)setKLineArray:(NSArray<id<KLineAbstract, VolumeAbstract>> *)kLineArray
+- (void)setKLineArray:(NSArray<id<KLineAbstract, VolumeAbstract, QueryViewAbstract>> *)kLineArray
 {
     _kLineArray = kLineArray;
     
@@ -379,7 +383,8 @@
     // K线网格设置
     [self.kLineGrid removeAllLine];
     self.kLineGrid.grid = GGGridRectMake(self.redLineLayer.frame, v_spe, 0);
-    [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract> obj, NSUInteger idx, BOOL * stop) {
+    
+    [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
         
         if ([obj isShowTitle]) {
             
@@ -438,12 +443,13 @@
     CGMutablePathRef refRed = CGPathCreateMutable();
     CGMutablePathRef refGreen = CGPathCreateMutable();
     
-    [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract, VolumeAbstract> obj, NSUInteger idx, BOOL * stop) {
+    for (NSUInteger i = range.location; i < range.location + range.length; i++) {
         
-        GGKShape shape = self.kLineScaler.kShapes[idx];
+        id obj = _kLineArray[i];
+        GGKShape shape = self.kLineScaler.kShapes[i];
         
         [self isRed:obj] ? GGPathAddKShape(refRed, shape) : GGPathAddKShape(refGreen, shape);
-    }];
+    }
     
     self.redLineLayer.path = refRed;
     CGPathRelease(refRed);

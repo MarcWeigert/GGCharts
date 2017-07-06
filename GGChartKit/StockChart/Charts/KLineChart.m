@@ -9,10 +9,11 @@
 #import "KLineChart.h"
 #import "GGChartDefine.h"
 #import "NSArray+Stock.h"
+#import "CrissCrossQueryView.h"
 
 #define FONT_ARIAL	@"ArialMT"
 
-@interface KLineChart ()
+@interface KLineChart () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) DKLineScaler * kLineScaler;   ///< 定标器
 
@@ -26,9 +27,18 @@
 @property (nonatomic, strong) GGAxisRenderer * kAxisRenderer;       ///< K线轴
 @property (nonatomic, strong) GGAxisRenderer * vAxisRenderer;       ///< 成交量轴
 
+@property (nonatomic, strong) CrissCrossQueryView * queryPriceView;     ///< 查价层
+
+#pragma mark - 缩放手势
+
 @property (nonatomic, assign) CGFloat currentZoom;  ///< 当前缩放比例
 @property (nonatomic, assign) CGFloat zoomCenterSpacingLeft;    ///< 缩放中心K线位置距离左边的距离
 @property (nonatomic, assign) NSUInteger zoomCenterIndex;     ///< 中心点k线
+
+#pragma mark - 滑动手势
+
+@property (nonatomic, assign) CGPoint lastPanPoint;     ///< 最后滑动的点
+@property (nonatomic, assign) BOOL respondPanRecognizer;       ///< 是否相应滑动手势
 
 @end
 
@@ -69,8 +79,14 @@
         _axisStringColor = C_HEX(0xaeb1b6);
         _currentZoom = -.001f;
         
-        UIPinchGestureRecognizer * pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinches:)];
+        self.queryPriceView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        [self addSubview:self.queryPriceView];
+        
+        UIPinchGestureRecognizer * pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchesViewOnGesturer:)];
         [self addGestureRecognizer:pinchGestureRecognizer];
+        
+        UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressViewOnGesturer:)];
+        [self addGestureRecognizer:longPress];
     }
     
     return self;
@@ -96,6 +112,13 @@
     [self updateSubLayer];
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    self.queryPriceView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -111,36 +134,100 @@
     [self scrollViewContentSizeDidChange:nil];
 }
 
-#pragma mark - K线捏合
+#pragma mark - K线手势
 
--(void)handlePinches:(UIPinchGestureRecognizer *)paramSender
+- (void)longPressViewOnGesturer:(UILongPressGestureRecognizer *)recognizer
+{
+    self.scrollView.scrollEnabled = NO;
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        
+        self.scrollView.scrollEnabled = YES;
+        self.queryPriceView.hidden = YES;
+        [self.queryPriceView clearLine];
+    }
+    else if (recognizer.state == UIGestureRecognizerStateBegan) {
+        
+        CGPoint velocity = [recognizer locationInView:self];
+        [self updateQueryLayerWithPoint:velocity];
+        self.queryPriceView.hidden = NO;
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
+    
+        CGPoint velocity = [recognizer locationInView:self];
+        [self updateQueryLayerWithPoint:velocity];
+    }
+}
+
+- (void)updateQueryLayerWithPoint:(CGPoint)velocity
+{
+    CGPoint velocityInScroll = [self.scrollView convertPoint:velocity fromView:self.queryPriceView];
+    NSInteger index = [self pointConvertIndex:velocityInScroll.x];
+    id <KLineAbstract> kData = self.kLineArray[index];
+    
+    NSString * yString = @"";
+    
+    self.queryPriceView.xAxisOffsetY = self.redLineLayer.gg_bottom;
+    
+    if (CGRectContainsPoint(self.redLineLayer.frame, velocity)) {
+        
+        yString = [NSString stringWithFormat:@"%.2f", [self.kLineScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth)]];
+    }
+    else if (CGRectContainsPoint(self.redVolumLayer.frame, velocity)) {
+    
+        yString = [NSString stringWithFormat:@"%.2f万手", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top)]];
+    }
+    
+    NSString * title = [self getDateString:kData.ggKLineDate];
+    [self.queryPriceView setYString:yString setXString:title];
+    [self.queryPriceView.queryView setQueryData:kData];
+    
+    GGKShape shape = self.kLineScaler.kShapes[index];
+    CGPoint queryVelocity = [self.scrollView convertPoint:shape.top toView:self.queryPriceView];
+    [self.queryPriceView setCenterPoint:CGPointMake(queryVelocity.x, velocity.y)];
+}
+
+- (NSString *)getDateString:(NSDate *)date
+{
+    NSDateFormatter * showFormatter = [[NSDateFormatter alloc] init];
+    showFormatter.dateFormat = @"yyyy-MM-dd";
+    return [showFormatter stringFromDate:date];
+}
+
+/** 获取点对应的数据 */
+- (NSInteger)pointConvertIndex:(CGFloat)x
+{
+    return x / (self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval);
+}
+
+-(void)pinchesViewOnGesturer:(UIPinchGestureRecognizer *)recognizer
 {
     self.scrollView.scrollEnabled = NO;     // 放大禁用滚动手势
     
-    if (paramSender.state == UIGestureRecognizerStateEnded) {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
         
-        _currentZoom = paramSender.scale;
+        _currentZoom = recognizer.scale;
         
         self.scrollView.scrollEnabled = YES;
     }
-    else if (paramSender.state == UIGestureRecognizerStateBegan && _currentZoom != 0.0f) {
+    else if (recognizer.state == UIGestureRecognizerStateBegan && _currentZoom != 0.0f) {
         
-        paramSender.scale = _currentZoom;
+        recognizer.scale = _currentZoom;
         
-        CGPoint touch1 = [paramSender locationOfTouch:0 inView:self];
-        CGPoint touch2 = [paramSender locationOfTouch:1 inView:self];
+        CGPoint touch1 = [recognizer locationOfTouch:0 inView:self];
+        CGPoint touch2 = [recognizer locationOfTouch:1 inView:self];
 
         // 放大开始记录位置等数据
         CGFloat center_x = (touch1.x + touch2.x) / 2.0f;
-        _zoomCenterIndex = (self.scrollView.contentOffset.x + center_x) / (self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval);
+        _zoomCenterIndex = [self pointConvertIndex:self.scrollView.contentOffset.x + center_x];
         GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
         _zoomCenterSpacingLeft = shape.top.x - self.scrollView.contentOffset.x;
     }
-    else if (paramSender.state == UIGestureRecognizerStateChanged) {
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
     
         CGFloat tmpZoom;
-        tmpZoom = paramSender.scale / _currentZoom;
-        _currentZoom = paramSender.scale;
+        tmpZoom = recognizer.scale / _currentZoom;
+        _currentZoom = recognizer.scale;
         NSInteger showNum = round(_kLineCountVisibale / tmpZoom);
         
         // 避免没必要计算
@@ -405,5 +492,7 @@ GGLazyGetMethod(GGAxisRenderer, kAxisRenderer);
 GGLazyGetMethod(GGAxisRenderer, vAxisRenderer);
 
 GGLazyGetMethod(DKLineScaler, kLineScaler);
+
+GGLazyGetMethod(CrissCrossQueryView, queryPriceView);
 
 @end

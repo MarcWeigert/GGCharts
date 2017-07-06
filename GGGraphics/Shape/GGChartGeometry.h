@@ -144,6 +144,18 @@ GGRightLineRect(CGRect rect)
     return GGLineMake(CGRectGetMaxX(rect), CGRectGetMinY(rect), CGRectGetMaxX(rect), CGRectGetMaxY(rect));
 }
 
+CG_INLINE GGLine
+GGLineRectForX(CGRect rect, CGFloat x)
+{
+   return GGLineMake(x, CGRectGetMinY(rect), x, CGRectGetMaxY(rect));
+}
+
+CG_INLINE GGLine
+GGLineRectForY(CGRect rect, CGFloat y)
+{
+    return GGLineMake(CGRectGetMinX(rect), y, CGRectGetMaxX(rect), y);
+}
+
 #pragma mark - 轴
 
 struct GGAxis {

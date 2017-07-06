@@ -11,7 +11,7 @@
 
 @interface GGCanvas ()
 
-@property (nonatomic) NSMutableArray <id <GGRenderProtocol>>*aryRenderer;
+@property (nonatomic) NSMutableSet <id <GGRenderProtocol>>*aryRenderer;
 
 @end
 
@@ -26,7 +26,7 @@
         
         self.contentsScale = [UIScreen mainScreen].scale;
         self.masksToBounds = YES;
-        _aryRenderer = [NSMutableArray array];
+        _aryRenderer = [NSMutableSet set];
     }
     
     return self;

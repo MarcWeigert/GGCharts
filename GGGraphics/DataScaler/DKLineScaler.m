@@ -95,6 +95,16 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
     }
 }
 
+/** 根据点获取价格 */
+- (CGFloat)getPriceWithPoint:(CGPoint)point
+{
+    CGFloat dis = CGRectGetHeight(self.rect);
+    CGFloat pix = (_max - _min) / dis;
+    CGFloat hight = CGRectGetMaxY(self.rect) - point.y;
+    
+    return _min + hight * pix;
+}
+
 /** 更新计算点 */
 - (void)updateScaler
 {

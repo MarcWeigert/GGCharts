@@ -29,6 +29,7 @@
 		2B73B0001F0B604E0085095C /* KLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFFF1F0B604E0085095C /* KLineChart.m */; };
 		2B73B0031F0B619E0085095C /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73B0021F0B619E0085095C /* KLineViewController.m */; };
 		2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B73B0041F0B61D20085095C /* 600887_kdata.json */; };
+		2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
@@ -116,6 +117,9 @@
 		2B73B0011F0B619E0085095C /* KLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineViewController.h; sourceTree = "<group>"; };
 		2B73B0021F0B619E0085095C /* KLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineViewController.m; sourceTree = "<group>"; };
 		2B73B0041F0B61D20085095C /* 600887_kdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_kdata.json; sourceTree = "<group>"; };
+		2B73D35B1F0E0688009F01CF /* CrissCrossQueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrissCrossQueryView.h; sourceTree = "<group>"; };
+		2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrissCrossQueryView.m; sourceTree = "<group>"; };
+		2B73D35E1F0E0DF0009F01CF /* QueryViewAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryViewAbstract.h; sourceTree = "<group>"; };
 		2B7777A81EE8272400C99F55 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
 		2B7777A91EE8272400C99F55 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
 		2B7777AA1EE8272400C99F55 /* GGShapeCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShapeCanvas.h; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				2B73AFF31F0B30CA0085095C /* KLineAbstract.h */,
 				2B6B238C1F0C7291001D2B04 /* MinuteAbstract.h */,
 				2B73AFF11F0B2DC70085095C /* VolumeAbstract.h */,
+				2B73D35E1F0E0DF0009F01CF /* QueryViewAbstract.h */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -376,6 +381,8 @@
 				2B9788441F09D4E2002A2A3C /* StockQueryView.m */,
 				2B9788451F09D4E2002A2A3C /* UICountingLabel.h */,
 				2B9788461F09D4E2002A2A3C /* UICountingLabel.m */,
+				2B73D35B1F0E0688009F01CF /* CrissCrossQueryView.h */,
+				2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */,
 			);
 			path = "Components ";
 			sourceTree = "<group>";
@@ -567,6 +574,7 @@
 				2B73AFFD1F0B451B0085095C /* DKLineScaler.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
 				2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */,
+				2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */,

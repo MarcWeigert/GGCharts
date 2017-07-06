@@ -37,4 +37,7 @@
 /** 更新计算点 */
 - (void)updateScaler;
 
+/** 根据点获取价格 */
+- (CGFloat)getPriceWithPoint:(CGPoint)point;
+
 @end

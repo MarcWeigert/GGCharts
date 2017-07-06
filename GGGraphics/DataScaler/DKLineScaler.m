@@ -39,25 +39,9 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 
 @property (nonatomic, copy) KLineScaler kFig;     ///< 纵轴换算
 
-@property (nonatomic, assign) CGFloat oldMax;              ///< 区域内最大值
-@property (nonatomic, assign) CGFloat oldMin;              ///< 区域内最小值
-
 @end
 
 @implementation DKLineScaler
-
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        
-        _oldMax = FLT_MIN;
-        _oldMin = FLT_MAX;
-    }
-    
-    return self;
-}
 
 /**
  * 自定义k线对象转换转换

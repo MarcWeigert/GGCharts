@@ -66,11 +66,6 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     _stringLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
-- (void)dealloc
-{
-    // [self removeObservers];
-}
-
 - (void)scrollViewContentSizeDidChange:(NSDictionary *)change
 {
     CGPoint contentSize = self.scrollView.contentOffset;
@@ -85,7 +80,7 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
         contentSize = CGPointMake(_scrollView.contentSize.width - _scrollView.frame.size.width, 0);
     }
     
-     [self.backScrollView setContentOffset:contentSize];
+    [self.backScrollView setContentOffset:contentSize];
 }
 
 - (BOOL)volumIsRed:(id)obj

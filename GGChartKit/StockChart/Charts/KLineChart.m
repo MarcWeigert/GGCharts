@@ -49,7 +49,6 @@
         [self.kLineBackLayer addRenderer:self.volumGrid];
         self.kLineGrid.width = 0.25;
         [self.kLineBackLayer addRenderer:self.kLineGrid];
-        
         self.axisRenderer.width = 0.25;
         [self.kLineBackLayer addRenderer:self.axisRenderer];
         
@@ -64,15 +63,13 @@
         _kMaxCountVisibale = 120;
         _kMinCountVisibale = 20;
         _axisFont = [UIFont fontWithName:FONT_ARIAL size:10];
-        _riseColor = RGB(216, 94, 101);
-        _fallColor = RGB(150, 234, 166);
+        _riseColor = RGB(234, 82, 83);
+        _fallColor = RGB(77, 166, 73);
         _gridColor = RGB(225, 225, 225);
         _axisStringColor = C_HEX(0xaeb1b6);
         _currentZoom = -.001f;
         
-        /*create the pinch Gesture Recognizer*/
         UIPinchGestureRecognizer * pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinches:)];
-        
         [self addGestureRecognizer:pinchGestureRecognizer];
     }
     
@@ -148,8 +145,8 @@
         
         // 避免没必要计算
         if (showNum == _kLineCountVisibale) { return; }
-        if (showNum >= _kLineCountVisibale  && _kLineCountVisibale == _kMaxCountVisibale) return;
-        if (showNum <= _kLineCountVisibale  && _kLineCountVisibale == _kMinCountVisibale) return;
+        if (showNum >= _kLineCountVisibale && _kLineCountVisibale == _kMaxCountVisibale) return;
+        if (showNum <= _kLineCountVisibale && _kLineCountVisibale == _kMinCountVisibale) return;
         
         // 极大值极小值
         _kLineCountVisibale = showNum;
@@ -188,11 +185,12 @@
 
 - (void)updateChart
 {
+    [self baseConfigRenderer];
     [self baseConfigKLineLayer];
     [self baseConfigVolumLayer];
-    //[self updateKLineGridLayer];
     
     [self updateSubLayer];
+    [self updateKLineGridLayer];
 }
 
 #pragma mark - 基础设置层
@@ -206,12 +204,20 @@
     self.kLineScaler.shapeInterval = _kInterval;
     
     CGSize contentSize = self.kLineScaler.contentSize;
+    
+    // 设置滚动位置关闭隐士动画
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
+    self.kLineBackLayer.frame = CGRectMake(0, 0, contentSize.width, self.frame.size.height);
     self.scrollView.contentSize = contentSize;
     self.backScrollView.contentSize = contentSize;
     
+    [CATransaction commit];
+    
     self.redLineLayer.strokeColor = _riseColor.CGColor;
     self.redLineLayer.fillColor = _riseColor.CGColor;
-    self.redLineLayer.gg_width = contentSize.width;
+    self.redLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
     
     self.greenLineLayer.strokeColor = _fallColor.CGColor;
     self.greenLineLayer.fillColor = _fallColor.CGColor;
@@ -236,6 +242,33 @@
     [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
 }
 
+/** 设置渲染器 */
+- (void)baseConfigRenderer
+{
+    // 成交量网格设置
+    self.volumGrid.color = _gridColor;
+    
+    // 成交量Y轴设置
+    self.vAxisRenderer.strColor = _axisStringColor;
+    self.vAxisRenderer.showLine = NO;
+    self.vAxisRenderer.strFont = _axisFont;
+    self.vAxisRenderer.offSetRatio = CGPointMake(0, -1);
+    
+    // K线Y轴设置
+    self.kAxisRenderer.strColor = _axisStringColor;
+    self.kAxisRenderer.showLine = NO;
+    self.kAxisRenderer.strFont = _axisFont;
+    self.kAxisRenderer.offSetRatio = CGPointMake(0, -1);
+    
+    // X横轴设置
+    self.axisRenderer.strColor = _axisStringColor;
+    self.axisRenderer.showLine = NO;
+    self.axisRenderer.strFont = _axisFont;
+    
+    // K线网格设置
+    self.kLineGrid.color = _gridColor;
+}
+
 /** 更新k线背景层 */
 - (void)updateKLineGridLayer
 {
@@ -243,37 +276,22 @@
     CGFloat v_spe = self.greenLineLayer.gg_height / _kAxisSplit;
     
     // 成交量网格设置
-    self.volumGrid.color = _gridColor;
     self.volumGrid.grid = GGGridRectMake(self.redVolumLayer.frame, v_spe, 0);
     
     // 成交量Y轴设置
     GGLine leftLine = GGLeftLineRect(self.redVolumLayer.frame);
-    self.vAxisRenderer.strColor = _axisStringColor;
-    self.vAxisRenderer.showLine = NO;
-    self.vAxisRenderer.strFont = _axisFont;
     self.vAxisRenderer.axis = GGAxisLineMake(leftLine, 0, v_spe);
-    self.vAxisRenderer.offSetRatio = CGPointMake(0, -1);
     
     // K线Y轴设置
     leftLine = GGLeftLineRect(self.greenLineLayer.frame);
-    self.kAxisRenderer.strColor = _axisStringColor;
-    self.kAxisRenderer.showLine = NO;
-    self.kAxisRenderer.strFont = _axisFont;
     self.kAxisRenderer.axis = GGAxisLineMake(leftLine, 0, GGLengthLine(leftLine) / _kAxisSplit);
-    self.kAxisRenderer.offSetRatio = CGPointMake(0, -1);
     
     // X横轴设置
-    self.axisRenderer.strColor = _axisStringColor;
-    self.axisRenderer.showLine = NO;
-    self.axisRenderer.strFont = _axisFont;
     self.axisRenderer.axis = GGAxisLineMake(GGBottomLineRect(self.greenLineLayer.frame), 1.5, 0);
     
     // K线网格设置
-    self.kLineGrid.color = _gridColor;
-    self.kLineGrid.grid = GGGridRectMake(self.greenLineLayer.frame, v_spe, 0);
-    
     [self.kLineGrid removeAllLine];
-    
+    self.kLineGrid.grid = GGGridRectMake(self.redLineLayer.frame, v_spe, 0);
     [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract> obj, NSUInteger idx, BOOL * stop) {
         
         if ([obj isShowTitle]) {
@@ -290,7 +308,6 @@
         }
     }];
     
-    self.kLineBackLayer.frame =CGRectMake(0, 0, self.greenLineLayer.gg_width, self.backScrollView.frame.size.height);
     [self.kLineBackLayer setNeedsDisplay];
 }
 

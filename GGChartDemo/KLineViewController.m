@@ -83,6 +83,8 @@
 {
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.title = @"伊利股份(600887)";
     
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];

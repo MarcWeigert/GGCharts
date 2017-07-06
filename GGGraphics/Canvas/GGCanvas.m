@@ -67,12 +67,17 @@
  */
 - (void)drawInContext:(CGContextRef)ctx
 {
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
     [super drawInContext:ctx];
     
     for (id <GGRenderProtocol> renderer in _aryRenderer) {
         
         [renderer drawInContext:ctx];
     }
+    
+    [CATransaction commit];
 }
 
 @end

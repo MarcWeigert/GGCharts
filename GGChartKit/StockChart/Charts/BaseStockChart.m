@@ -44,13 +44,16 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
         [self addSubview:_scrollView];
 
         [self.layer addSublayer:_stringLayer];
-        
-        // [self addObservers];
     }
     
     return self;
 }
 
+/**
+ * 设置成交量层
+ *
+ * @param rect redVolumLayer.frame = rect; greenVolumLayer.frame = rect
+ */
 - (void)setVolumRect:(CGRect)rect
 {
     self.redVolumLayer.frame = rect;
@@ -66,7 +69,10 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     _stringLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+/**
+ * 视图滚动
+ */
+- (void)scrollViewContentSizeDidChange
 {
     CGPoint contentSize = self.scrollView.contentOffset;
     
@@ -83,49 +89,39 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
     [self.backScrollView setContentOffset:contentSize];
 }
 
+/**
+ * 成交量视图是否为红色
+ *
+ * @parm obj volumScaler.lineObjAry[idx]
+ */
+
 - (BOOL)volumIsRed:(id)obj
 {
     return NO;
 }
 
-- (void)updateVolumLayer
+/**
+ * 局部更新成交量
+ *
+ * range 成交量更新k线的区域, CGRangeMAx(range) <= volumScaler.lineObjAry.count
+ */
+- (void)updateVolumLayer:(NSRange)range
 {
     CGMutablePathRef refRed = CGPathCreateMutable();
     CGMutablePathRef refGreen = CGPathCreateMutable();
     
-    [self.volumScaler.lineObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
+    for (NSInteger i = range.location; i < NSMaxRange(range); i++) {
         
-        CGRect shape = self.volumScaler.barRects[idx];
-        
+        CGRect shape = self.volumScaler.barRects[i];
+        NSObject * obj = self.volumScaler.lineObjAry[i];
         [self volumIsRed:obj] ? GGPathAddCGRect(refRed, shape) : GGPathAddCGRect(refGreen, shape);
-    }];
+    }
     
     self.redVolumLayer.path = refRed;
     CGPathRelease(refRed);
     
     self.greenVolumLayer.path = refGreen;
     CGPathRelease(refGreen);
-}
-
-#pragma mark - KVO监听
-
-- (void)addObservers
-{
-    NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;
-    [self.scrollView addObserver:self forKeyPath:GGKeyPathContentOffset options:options context:nil];
-}
-
-- (void)removeObservers
-{
-    [self.scrollView removeObserver:self forKeyPath:GGKeyPathContentOffset];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:GGKeyPathContentOffset]) {
-        
-        [self scrollViewContentSizeDidChange:change];
-    }
 }
 
 #pragma mark - Lazy

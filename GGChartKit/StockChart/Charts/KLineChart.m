@@ -108,10 +108,12 @@
     return kLineObj.ggOpen >= kLineObj.ggClose;
 }
 
-/** 滚动 */
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change
+/**
+ * 视图滚动
+ */
+- (void)scrollViewContentSizeDidChange
 {
-    [super scrollViewContentSizeDidChange:change];
+    [super scrollViewContentSizeDidChange];
     
     [self updateSubLayer];
 }
@@ -127,7 +129,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self scrollViewContentSizeDidChange:nil];
+    [self scrollViewContentSizeDidChange];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -135,7 +137,7 @@
     CGFloat minMove = self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval;
     self.scrollView.contentOffset = CGPointMake(round(self.scrollView.contentOffset.x / minMove) * minMove, 0);
     
-    [self scrollViewContentSizeDidChange:nil];
+    [self scrollViewContentSizeDidChange];
 }
 
 #pragma mark - K线手势
@@ -244,7 +246,7 @@
         _kLineCountVisibale = _kLineCountVisibale < 20 ? 20 : _kLineCountVisibale;
         _kLineCountVisibale = _kLineCountVisibale > 120 ? 120 : _kLineCountVisibale;
         
-        [self updateChart];
+        [self kLineSubLayerRespond];
         
         GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
         CGFloat offsetX = shape.top.x - _zoomCenterSpacingLeft;
@@ -276,7 +278,13 @@
 
 - (void)updateChart
 {
-    [self baseConfigRenderer];
+    [self baseConfigRendererAndLayer];
+    
+    [self kLineSubLayerRespond];
+}
+
+- (void)kLineSubLayerRespond
+{
     [self baseConfigKLineLayer];
     [self baseConfigVolumLayer];
     
@@ -306,24 +314,13 @@
     
     [CATransaction commit];
     
-    self.redLineLayer.strokeColor = _riseColor.CGColor;
-    self.redLineLayer.fillColor = _riseColor.CGColor;
     self.redLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
-    
-    self.greenLineLayer.strokeColor = _fallColor.CGColor;
-    self.greenLineLayer.fillColor = _fallColor.CGColor;
     self.greenLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
 }
 
 /** 成交量 */
 - (void)baseConfigVolumLayer
 {
-    self.redVolumLayer.strokeColor = _riseColor.CGColor;
-    self.redVolumLayer.fillColor = _riseColor.CGColor;
-    
-    self.greenVolumLayer.strokeColor = _fallColor.CGColor;
-    self.greenVolumLayer.fillColor = _fallColor.CGColor;
-    
     CGFloat volumKLineSep = 15;
     CGRect volumRect = CGRectMake(0, self.redLineLayer.gg_bottom + volumKLineSep, self.kLineScaler.contentSize.width, self.frame.size.height - self.redLineLayer.gg_bottom - volumKLineSep);
     
@@ -334,8 +331,22 @@
 }
 
 /** 设置渲染器 */
-- (void)baseConfigRenderer
+- (void)baseConfigRendererAndLayer
 {
+    // 成交量颜色设置
+    self.redVolumLayer.strokeColor = _riseColor.CGColor;
+    self.redVolumLayer.fillColor = _riseColor.CGColor;
+    
+    self.greenVolumLayer.strokeColor = _fallColor.CGColor;
+    self.greenVolumLayer.fillColor = _fallColor.CGColor;
+    
+    // k线图颜色设置
+    self.redLineLayer.strokeColor = _riseColor.CGColor;
+    self.redLineLayer.fillColor = _riseColor.CGColor;
+    
+    self.greenLineLayer.strokeColor = _fallColor.CGColor;
+    self.greenLineLayer.fillColor = _fallColor.CGColor;
+    
     // 成交量网格设置
     self.volumGrid.color = _gridColor;
     
@@ -474,7 +485,7 @@
     self.volumScaler.min = 0;
     self.volumScaler.max = barMax;
     [self.volumScaler updateScaler];
-    [self updateVolumLayer];
+    [self updateVolumLayer:range];
     
     // 更新成交量Y轴
     CGFloat v_spe = self.greenLineLayer.gg_height / _kAxisSplit;

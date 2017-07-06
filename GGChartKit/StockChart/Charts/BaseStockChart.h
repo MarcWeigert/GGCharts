@@ -22,12 +22,30 @@
 @property (nonatomic, strong, readonly) GGCanvas * stringLayer;      ///< k线back
 @property (nonatomic, strong, readonly) UIScrollView * backScrollView;  ///< 背景滚动
 
-- (void)scrollViewContentSizeDidChange:(NSDictionary *)change;
+/** 
+ * 视图滚动 
+ */
+- (void)scrollViewContentSizeDidChange;
 
+/** 
+ * 设置成交量层
+ *
+ * @param rect redVolumLayer.frame = rect; greenVolumLayer.frame = rect
+ */
 - (void)setVolumRect:(CGRect)rect;
 
+/** 
+ * 成交量视图是否为红色 
+ *
+ * @parm obj volumScaler.lineObjAry[idx]
+ */
 - (BOOL)volumIsRed:(id)obj;
 
-- (void)updateVolumLayer;
+/**
+ * 局部更新成交量
+ *
+ * range 成交量更新k线的区域, CGRangeMAx(range) <= volumScaler.lineObjAry.count
+ */
+- (void)updateVolumLayer:(NSRange)range;
 
 @end

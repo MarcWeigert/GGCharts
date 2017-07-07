@@ -227,4 +227,19 @@
     return aryAddData;
 }
 
++ (NSArray *)JsonFromObj:(NSArray <id <KLineAbstract> > *)aryKLine
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    [aryKLine enumerateObjectsUsingBlock:^(id<KLineAbstract> obj, NSUInteger idx, BOOL * stop) {
+        
+        [ary addObject:@{@"open" : @(obj.ggOpen),
+                         @"close" : @(obj.ggClose),
+                         @"high" : @(obj.ggHigh),
+                         @"low" : @(obj.ggLow)}];
+    }];
+    
+    return ary;
+}
+
 @end

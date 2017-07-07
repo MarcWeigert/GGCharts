@@ -27,6 +27,16 @@ CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular);
 CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
 
 /**
+ * 绘制折线
+ */
+CG_EXTERN void GGPathAddRangePoints(CGMutablePathRef ref, CGPoint * points, NSRange range);
+
+/**
+ * 绘制折线
+ */
+CG_EXTERN void GGPathAddPoints(CGMutablePathRef ref, CGPoint * points, size_t size);
+
+/**
  * 绘制k线形
  * @param ref 路径元素
  * @param kShape k线形态

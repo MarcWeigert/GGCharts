@@ -93,13 +93,52 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector)
  */
 CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape)
 {
-    //CGFloat rect_top = CGRectGetMinY(kShape.rect);
-    CGFloat rect_bottom = CGRectGetMaxY(kShape.rect);
     CGPathMoveToPoint(ref, NULL, kShape.top.x, kShape.top.y);
     CGPathAddLineToPoint(ref, NULL, kShape.top.x, kShape.rect.origin.y);
     CGPathAddRect(ref, NULL, kShape.rect);
     CGPathMoveToPoint(ref, NULL, kShape.end.x, CGRectGetMaxY(kShape.rect));
     CGPathAddLineToPoint(ref, NULL, kShape.end.x, kShape.end.y);
+}
+
+/**
+ * 绘制折线
+ */
+CG_EXTERN void GGPathAddRangePoints(CGMutablePathRef ref, CGPoint * points, NSRange range)
+{
+    BOOL isMovePoint = YES;
+    
+    NSUInteger size = NSMaxRange(range);
+    
+    for (NSInteger i = range.location; i < size; i++) {
+        
+        CGPoint point = points[i];
+        
+        if (CGPointEqualToPoint(point, CGPointMake(FLT_MIN, FLT_MIN))) {
+            
+            isMovePoint = YES;
+            
+            continue;
+        }
+        
+        if (isMovePoint) {
+            
+            isMovePoint = NO;
+            
+            CGPathMoveToPoint(ref, NULL, point.x, point.y);
+        }
+        else {
+            
+            CGPathAddLineToPoint(ref, NULL, point.x, point.y);
+        }
+    }
+}
+
+/**
+ * 绘制折线
+ */
+CG_EXTERN void GGPathAddPoints(CGMutablePathRef ref, CGPoint * points, size_t size)
+{
+    GGPathAddRangePoints(ref, points, NSMakeRange(0, size));
 }
 
 /**

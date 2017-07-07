@@ -11,6 +11,8 @@
 #import "KLineChart.h"
 #import "QueryViewAbstract.h"
 
+#import "KLineIndexManager.h"
+
 @interface KLineData : BaseModel <KLineAbstract, VolumeAbstract, QueryViewAbstract>
 
 @property (nonatomic , assign) CGFloat high_price;
@@ -136,12 +138,12 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.title = @"伊利股份(600887)";
-    
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSArray *stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     
     NSArray <KLineData *> *datas = [[[KLineData arrayForArray:stockJson class:[KLineData class]] reverseObjectEnumerator] allObjects];
+    
+    self.title = @"伊利股份(600887)";
     
     __block NSInteger month = 0;
     

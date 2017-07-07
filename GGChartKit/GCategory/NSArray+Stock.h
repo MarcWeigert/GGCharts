@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "KLineAbstract.h"
 
 @interface NSArray (Stock)
 
@@ -92,5 +93,14 @@
  * @[@1,  @1,  @1]       @[@2, @2, @2]
  */
 - (NSMutableArray <NSArray <NSNumber *> *> *)aryAddUp;
+
+/**
+ * K 线数组转译成Json
+ */
++ (NSArray *)JsonFromObj:(NSArray <id <KLineAbstract> > *)aryKLine;
+
+/**
+ * 
+ */
 
 @end

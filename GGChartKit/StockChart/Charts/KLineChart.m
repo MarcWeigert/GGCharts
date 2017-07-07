@@ -10,6 +10,7 @@
 #import "GGChartDefine.h"
 #import "NSArray+Stock.h"
 #import "CrissCrossQueryView.h"
+#import "MALayer.h"
 
 #define FONT_ARIAL	@"ArialMT"
 
@@ -42,6 +43,8 @@
 
 @property (nonatomic, assign) BOOL disPlay;
 
+@property (nonatomic, strong) MALayer * maLayer;
+
 @end
 
 @implementation KLineChart
@@ -58,6 +61,7 @@
         
         [self.scrollView.layer addSublayer:self.redLineLayer];
         [self.scrollView.layer addSublayer:self.greenLineLayer];
+        [self.scrollView.layer addSublayer:self.maLayer];
         
         self.volumGrid.width = 0.25;
         [self.kLineBackLayer addRenderer:self.volumGrid];
@@ -203,7 +207,8 @@
 /** 获取点对应的数据 */
 - (NSInteger)pointConvertIndex:(CGFloat)x
 {
-    return x / (self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval);
+    NSInteger idx = x / (self.kLineScaler.shapeWidth + self.kLineScaler.shapeInterval);
+    return idx >= self.kLineScaler.kLineObjAry.count ? self.kLineScaler.kLineObjAry.count - 1 : idx;
 }
 
 -(void)pinchesViewOnGesturer:(UIPinchGestureRecognizer *)recognizer
@@ -267,6 +272,11 @@
 {
     _kLineArray = kLineArray;
     
+    [self.maLayer updateIndexWithArray:kLineArray param:@{@5 : RGB(215, 161, 104),
+                                                          @10 : RGB(115, 190, 222),
+                                                          @20 : RGB(62, 121, 202),
+                                                          @40 : RGB(110, 226, 121)}];
+    
     [self.kLineScaler setObjArray:kLineArray
                           getOpen:@selector(ggOpen)
                          getClose:@selector(ggClose)
@@ -309,13 +319,19 @@
     [CATransaction setDisableActions:YES];
     
     self.kLineBackLayer.frame = CGRectMake(0, 0, contentSize.width, self.frame.size.height);
+    
+    // 滚动大小
     self.scrollView.contentSize = contentSize;
     self.backScrollView.contentSize = contentSize;
     
-    [CATransaction commit];
-    
+    // K线
     self.redLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
     self.greenLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
+
+    // K线上的指标线
+    self.maLayer.frame = CGRectMake(_kInterval / 2, 0, contentSize.width - _kInterval, contentSize.height);
+    
+    [CATransaction commit];
 }
 
 /** 成交量 */
@@ -446,6 +462,9 @@
     CGFloat min = 0;
     [_kLineArray getKLineMax:&max min:&min range:range];
     
+    // 更新K线指标线
+    [self.maLayer updateLayerWithRange:range max:max min:min];
+    
     // 更新k线层
     self.kLineScaler.max = max;
     self.kLineScaler.min = min;
@@ -497,6 +516,8 @@
 }
 
 #pragma mark - Lazy
+
+GGLazyGetMethod(MALayer, maLayer);
 
 GGLazyGetMethod(CAShapeLayer, redLineLayer);
 GGLazyGetMethod(CAShapeLayer, greenLineLayer);

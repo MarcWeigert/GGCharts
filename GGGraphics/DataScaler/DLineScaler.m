@@ -144,12 +144,16 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
             
             CGFloat (* lineGetter)(id obj, SEL getter) = self.impGetter;
             
+            if (lineGetter(obj, _selGetter) == FLT_MIN) { _linePoints[idx] = CGPointMake(FLT_MIN, FLT_MIN); return; }
+            
             _linePoints[idx] = CGPointMake(_axis(idx), _fig(lineGetter(obj, _selGetter)));
         }];
     }
     else {
     
         [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+            
+            if (obj.floatValue == FLT_MIN) { _linePoints[idx] = CGPointMake(FLT_MIN, FLT_MIN); return; }
             
             _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.floatValue));
         }];

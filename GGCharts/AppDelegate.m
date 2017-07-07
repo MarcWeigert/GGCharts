@@ -9,10 +9,6 @@
 #import "AppDelegate.h"
 #import "ListVC.h"
 
-#import "GGGraphics.h"
-
-#import "KLineViewController.h"
-
 @interface AppDelegate ()
 
 @end
@@ -29,6 +25,11 @@
     [self.window setRootViewController:navi];
     
     return YES;
+}
+
+- (NSString *)stockDataJsonPath
+{
+    return [[NSBundle mainBundle] pathForResource:@"MA" ofType:@"lua"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

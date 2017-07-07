@@ -53,6 +53,7 @@
 		2B2722B11F0F68FF00E4A295 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B2722B01F0F68FF00E4A295 /* MA.lua */; };
 		2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */; };
 		2B2722B71F0F694400E4A295 /* MALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B61F0F694400E4A295 /* MALayer.m */; };
+		2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */; };
 		2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */; };
 		2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */; };
 		2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A581EE44F19003D17C4 /* GGGridRenderer.m */; };
@@ -191,6 +192,8 @@
 		2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseIndexLayer.m; sourceTree = "<group>"; };
 		2B2722B51F0F694400E4A295 /* MALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALayer.h; sourceTree = "<group>"; };
 		2B2722B61F0F694400E4A295 /* MALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALayer.m; sourceTree = "<group>"; };
+		2B2722B81F0F8B7F00E4A295 /* MAVOLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVOLLayer.h; sourceTree = "<group>"; };
+		2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVOLLayer.m; sourceTree = "<group>"; };
 		2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAxisRenderer.h; sourceTree = "<group>"; };
 		2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAxisRenderer.m; sourceTree = "<group>"; };
 		2B330A551EE44F19003D17C4 /* GGCircleRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCircleRenderer.h; sourceTree = "<group>"; };
@@ -440,6 +443,8 @@
 			children = (
 				2B2722B51F0F694400E4A295 /* MALayer.h */,
 				2B2722B61F0F694400E4A295 /* MALayer.m */,
+				2B2722B81F0F8B7F00E4A295 /* MAVOLLayer.h */,
+				2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */,
 				2B2722B21F0F693100E4A295 /* BaseIndexLayer.h */,
 				2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */,
 			);
@@ -859,6 +864,7 @@
 				2B2722821F0F550D00E4A295 /* ldo.c in Sources */,
 				2B97887A1F09D4E2002A2A3C /* BarData.m in Sources */,
 				2B2722871F0F550D00E4A295 /* liolib.c in Sources */,
+				2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */,
 				2B27228F1F0F550D00E4A295 /* lparser.c in Sources */,
 				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */,

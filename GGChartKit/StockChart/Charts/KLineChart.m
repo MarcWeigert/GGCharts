@@ -11,6 +11,7 @@
 #import "NSArray+Stock.h"
 #import "CrissCrossQueryView.h"
 #import "MALayer.h"
+#import "MAVOLLayer.h"
 
 #define FONT_ARIAL	@"ArialMT"
 
@@ -44,6 +45,7 @@
 @property (nonatomic, assign) BOOL disPlay;
 
 @property (nonatomic, strong) MALayer * maLayer;
+@property (nonatomic, strong) MAVOLLayer * maVolLayer;
 
 @end
 
@@ -62,6 +64,7 @@
         [self.scrollView.layer addSublayer:self.redLineLayer];
         [self.scrollView.layer addSublayer:self.greenLineLayer];
         [self.scrollView.layer addSublayer:self.maLayer];
+        [self.scrollView.layer addSublayer:self.maVolLayer];
         
         self.volumGrid.width = 0.25;
         [self.kLineBackLayer addRenderer:self.volumGrid];
@@ -277,6 +280,10 @@
                                                           @20 : RGB(62, 121, 202),
                                                           @40 : RGB(110, 226, 121)}];
     
+    [self.maVolLayer updateIndexWithArray:kLineArray param:@{@5 : RGB(215, 161, 104),
+                                                             @10 : RGB(115, 190, 222),
+                                                             @20 : RGB(62, 121, 202)}];
+    
     [self.kLineScaler setObjArray:kLineArray
                           getOpen:@selector(ggOpen)
                          getClose:@selector(ggClose)
@@ -344,6 +351,9 @@
     self.volumScaler.rect = CGRectMake(_kInterval / 2, 0, self.redVolumLayer.gg_width - _kInterval, self.redVolumLayer.gg_height);
     self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
     [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
+    
+    // 量能区域的指标
+    self.maVolLayer.frame = volumRect;
 }
 
 /** 设置渲染器 */
@@ -498,7 +508,16 @@
     // 计算柱状图最大最小
     CGFloat barMax = 0;
     CGFloat barMin = 0;
+    CGFloat indexMax = 0;
+    CGFloat indexMin = 0;
     [_kLineArray getMax:&barMax min:&barMin selGetter:@selector(ggVolume) range:range base:0.1];
+    [self.maVolLayer getVolumIndexMax:&indexMax min:&indexMin range:range];
+    
+    barMax = indexMax > barMax ? indexMax : barMax;
+    barMin = indexMin < barMin ? indexMin : barMin;
+    
+    // 量能指标线
+    [self.maVolLayer updateLayerWithRange:range max:barMax min:barMin];
     
     // 更新成交量
     self.volumScaler.min = 0;
@@ -518,6 +537,7 @@
 #pragma mark - Lazy
 
 GGLazyGetMethod(MALayer, maLayer);
+GGLazyGetMethod(MAVOLLayer, maVolLayer);
 
 GGLazyGetMethod(CAShapeLayer, redLineLayer);
 GGLazyGetMethod(CAShapeLayer, greenLineLayer);

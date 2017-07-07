@@ -73,6 +73,36 @@
     return dictionaryMa;
 }
 
+/**
+ * 根据数组数据结构计算MA指标数据
+ *
+ * @param aryKLineData 成交量数据数组, 需要实现接口VolumeAbstract
+ * @param param MA 参数 @[@5, @10, @20, @40]
+ *
+ * @return 计算结果 @{@"MAVOL5" : @[...], @"MAVOL10" : @[...], @"MAVOL20" : @[...], @"MAVOL40" : @[...]};
+ */
+- (NSDictionary *)getVolumIndexWith:(NSArray <id <VolumeAbstract>> *)aryKLineData
+                              param:(NSArray <NSNumber *> *)param
+                        priceString:(NSString *)price
+{
+    NSArray * vDataJson = [NSArray JsonFrmVolums:aryKLineData];
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaMaCode error:&error]) { NSLog(@"%@", error); }
+    
+    NSMutableDictionary * dictionaryMa = [NSMutableDictionary dictionary];
+    
+    [param enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
+        
+        NSArray * aryIndex = [luaContext call:"MAIndex" with:@[vDataJson, @(vDataJson.count), price, obj] error:&error];
+        
+        [dictionaryMa setObject:aryIndex forKey:[NSString stringWithFormat:@"MAVOL%@", obj]];
+    }];
+    
+    return dictionaryMa;
+}
+
 #pragma mark - Lazy
 
 GGLazyCodeMethod(@"MA", luaMaCode);

@@ -242,4 +242,19 @@
     return ary;
 }
 
+/**
+ * 成交量数组转译成Json
+ */
++ (NSArray *)JsonFrmVolums:(NSArray <id <VolumeAbstract> > *)aryVolum
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    [aryVolum enumerateObjectsUsingBlock:^(id<VolumeAbstract> obj, NSUInteger idx, BOOL * stop) {
+        
+        [ary addObject:@{@"volum" : @(obj.ggVolume)}];
+    }];
+    
+    return ary;
+}
+
 @end

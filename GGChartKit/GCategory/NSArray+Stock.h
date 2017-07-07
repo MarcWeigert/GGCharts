@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "KLineAbstract.h"
+#import "VolumeAbstract.h"
 
 @interface NSArray (Stock)
 
@@ -100,7 +101,8 @@
 + (NSArray *)JsonFromObj:(NSArray <id <KLineAbstract> > *)aryKLine;
 
 /**
- * 
+ * 成交量数组转译成Json
  */
++ (NSArray *)JsonFrmVolums:(NSArray <id <VolumeAbstract> > *)aryVolum;
 
 @end

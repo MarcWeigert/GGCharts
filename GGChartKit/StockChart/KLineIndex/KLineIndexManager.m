@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) NSString * luaMaCode;     ///< MA
 
+@property (nonatomic, strong) NSString * luaMikeCode;   ///< MIKE
+
 @end
 
 @implementation KLineIndexManager
@@ -41,6 +43,21 @@
     });
     
     return indexManager;
+}
+
+- (NSArray *)getMikeIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                        param:(NSNumber *)param
+              highPriceString:(NSString *)high
+               lowPriceString:(NSString *)low
+             closePriceString:(NSString *)close
+{
+    NSArray * kDataJson = [NSArray JsonFromObj:aryKLineData];
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaMikeCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"MIKEIndex" with:@[kDataJson, high, low, close, param] error:&error];
 }
 
 /**
@@ -106,5 +123,7 @@
 #pragma mark - Lazy
 
 GGLazyCodeMethod(@"MA", luaMaCode);
+
+GGLazyCodeMethod(@"MIKE", luaMikeCode);
 
 @end

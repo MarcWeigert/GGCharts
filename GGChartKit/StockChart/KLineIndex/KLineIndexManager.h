@@ -22,6 +22,12 @@
 /** 单利指标类 */
 + (KLineIndexManager *)shareInstans;
 
+- (NSArray *)getMikeIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                        param:(NSNumber *)param
+              highPriceString:(NSString *)high
+               lowPriceString:(NSString *)low
+             closePriceString:(NSString *)close;
+
 /**
  * 根据数组数据结构计算MA指标数据
  *

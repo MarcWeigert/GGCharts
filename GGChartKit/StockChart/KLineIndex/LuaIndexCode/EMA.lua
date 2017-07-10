@@ -1,19 +1,18 @@
-
--- MA指标
+-- BOLL 指标
 -- @param list K线数组
 -- @param getMethod 计算字段
 -- @param param {5, 10, 20, 40}
 
-function MAIndex(aryList, getMethod, param)
+function EMAIndex(aryList, getMethod, param)
 	
 	local listMapIndex = {}	
 	local titles = {}
 	
 	for i = 1, #param, 1 do
 	
-		local title = "MA"..param[i]
+		local title = "EMA"..param[i]
 		local cycle = param[i]
-		local funcMA = MA(getMethod, cycle)
+		local funcMA = EMA(getMethod, cycle)
 		local aryMANIndex = {}
 		
 		titles[i] = title
@@ -25,7 +24,7 @@ function MAIndex(aryList, getMethod, param)
 		end
 	end	
 	
-	local aryMAIndex = {}
+	local aryEMAIndex = {}
 			
 	for j = 1, #aryList, 1 do
 		
@@ -39,8 +38,8 @@ function MAIndex(aryList, getMethod, param)
 			ma[title] = aryMaNIndex[j]
 		end	
 		
-		aryMAIndex[j] = ma
+		aryEMAIndex[j] = ma
 	end
 
-	return aryMAIndex
+	return aryEMAIndex
 end

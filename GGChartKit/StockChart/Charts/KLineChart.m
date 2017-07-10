@@ -13,6 +13,11 @@
 #import "MALayer.h"
 #import "MAVOLLayer.h"
 
+#import "EMALayer.h"
+#import "MACDLayer.h"
+
+#import "NSObject+FireBlock.h"
+
 #define FONT_ARIAL	@"ArialMT"
 
 @interface KLineChart () <UIGestureRecognizerDelegate>
@@ -44,12 +49,24 @@
 
 @property (nonatomic, assign) BOOL disPlay;
 
-@property (nonatomic, strong) MALayer * maLayer;
-@property (nonatomic, strong) MAVOLLayer * maVolLayer;
+@property (nonatomic, strong) BaseIndexLayer * kLineIndexLayer;
+@property (nonatomic, strong) BaseIndexLayer * volumIndexLayer;
 
 @end
 
 @implementation KLineChart
+
++ (NSArray *)kLineIndexLayerClazz
+{
+    return @[[MALayer class],
+             [EMALayer class]];
+}
+
++ (NSArray *)kVolumIndexLayerClazz
+{
+    return @[[MAVOLLayer class],
+             [MACDLayer class]];
+}
 
 #pragma mark - Surper
 
@@ -60,11 +77,11 @@
     if (self) {
 
         _disPlay = YES;
+        _kLineIndexIndex = 0;
+        _volumIndexIndex = 0;
         
         [self.scrollView.layer addSublayer:self.redLineLayer];
         [self.scrollView.layer addSublayer:self.greenLineLayer];
-        [self.scrollView.layer addSublayer:self.maLayer];
-        [self.scrollView.layer addSublayer:self.maVolLayer];
         
         self.volumGrid.width = 0.25;
         [self.kLineBackLayer addRenderer:self.volumGrid];
@@ -98,6 +115,9 @@
         
         UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressViewOnGesturer:)];
         [self addGestureRecognizer:longPress];
+        
+        UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchIndexLayer:)];
+        [self addGestureRecognizer:tapRecognizer];
     }
     
     return self;
@@ -188,7 +208,9 @@
     }
     else if (CGRectContainsPoint(self.redVolumLayer.frame, velocity)) {
     
-        yString = [NSString stringWithFormat:@"%.2f万手", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top)]];
+        NSString * string = self.redVolumLayer.hidden ? @"" : @"万手";
+        
+        yString = [NSString stringWithFormat:@"%.2f%@", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top)], string];
     }
     
     NSString * title = [self getDateString:kData.ggKLineDate];
@@ -268,6 +290,70 @@
     }
 }
 
+- (void)touchIndexLayer:(UILongPressGestureRecognizer *)recognizer
+{
+    CGPoint velocity = [recognizer locationInView:self];
+    CGPoint velocityInScroll = [self.scrollView convertPoint:velocity fromView:self.queryPriceView];
+    
+    if (CGRectContainsPoint(self.greenLineLayer.frame, velocityInScroll)) {
+        
+        _kLineIndexIndex++;
+        
+        if (_kLineIndexIndex > [[KLineChart kLineIndexLayerClazz] count] - 1) {
+            
+            _kLineIndexIndex = 0;
+        }
+        
+        [self updateKLineIndexLayer:_kLineIndexIndex];
+    }
+    
+    if (CGRectContainsPoint(self.volumIndexLayer.frame, velocityInScroll)) {
+        
+        _volumIndexIndex++;
+        
+        if (_volumIndexIndex > [[KLineChart kVolumIndexLayerClazz] count] - 1) {
+            
+            _volumIndexIndex = 0;
+        }
+        
+        [self updateVolumIndexLayer:_volumIndexIndex];
+    }
+}
+
+- (void)updateVolumIndexLayer:(NSInteger)index
+{
+    runMainThreadWithBlock(^{
+        
+        [_volumIndexLayer removeFromSuperlayer];
+        
+        Class clazz = [KLineChart kVolumIndexLayerClazz][index];
+        
+        _volumIndexLayer = [[clazz alloc] init];
+        _volumIndexLayer.frame = self.redVolumLayer.frame;
+        [_volumIndexLayer setKLineArray:_kLineArray];
+        [self.scrollView.layer addSublayer:_volumIndexLayer];
+        
+        [self updateSubLayer];
+    });
+}
+
+- (void)updateKLineIndexLayer:(NSInteger)index
+{
+    runMainThreadWithBlock(^{
+        
+        [_kLineIndexLayer removeFromSuperlayer];
+        
+        Class clazz = [KLineChart kLineIndexLayerClazz][index];
+        
+        _kLineIndexLayer = [[clazz alloc] init];
+        _kLineIndexLayer.frame = CGRectMake(0, 0, self.greenLineLayer.gg_width, self.greenLineLayer.gg_height);
+        [_kLineIndexLayer setKLineArray:_kLineArray];
+        [self.scrollView.layer addSublayer:_kLineIndexLayer];
+        
+        [self updateSubLayer];
+    });
+}
+
 #pragma mark - Setter
 
 /** 设置k线方法 */
@@ -275,14 +361,9 @@
 {
     _kLineArray = kLineArray;
     
-    [self.maLayer updateIndexWithArray:kLineArray param:@{@5 : RGB(215, 161, 104),
-                                                          @10 : RGB(115, 190, 222),
-                                                          @20 : RGB(62, 121, 202),
-                                                          @40 : RGB(110, 226, 121)}];
+    [_kLineIndexLayer setKLineArray:kLineArray];
     
-    [self.maVolLayer updateIndexWithArray:kLineArray param:@{@5 : RGB(215, 161, 104),
-                                                             @10 : RGB(115, 190, 222),
-                                                             @20 : RGB(62, 121, 202)}];
+    [_volumIndexLayer setKLineArray:kLineArray];
     
     [self.kLineScaler setObjArray:kLineArray
                           getOpen:@selector(ggOpen)
@@ -298,6 +379,8 @@
     [self baseConfigRendererAndLayer];
     
     [self kLineSubLayerRespond];
+    [self updateKLineIndexLayer:_kLineIndexIndex];
+    [self updateVolumIndexLayer:_volumIndexIndex];
 }
 
 - (void)kLineSubLayerRespond
@@ -334,9 +417,8 @@
     // K线
     self.redLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
     self.greenLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
-
-    // K线上的指标线
-    self.maLayer.frame = CGRectMake(_kInterval / 2, 0, contentSize.width - _kInterval, contentSize.height);
+    
+    self.kLineIndexLayer.frame = self.redLineLayer.frame;
     
     [CATransaction commit];
 }
@@ -345,15 +427,15 @@
 - (void)baseConfigVolumLayer
 {
     CGFloat volumKLineSep = 15;
-    CGRect volumRect = CGRectMake(0, self.redLineLayer.gg_bottom + volumKLineSep, self.kLineScaler.contentSize.width, self.frame.size.height - self.redLineLayer.gg_bottom - volumKLineSep);
+    CGRect volumRect = CGRectMake(0, self.redLineLayer.gg_bottom + volumKLineSep, self.kLineScaler.contentSize.width, self.frame.size.height - self.redLineLayer.gg_bottom - volumKLineSep);;
     
     [self setVolumRect:volumRect];
-    self.volumScaler.rect = CGRectMake(_kInterval / 2, 0, self.redVolumLayer.gg_width - _kInterval, self.redVolumLayer.gg_height);
+    self.volumScaler.rect = CGRectMake(0, 0, self.redVolumLayer.gg_width, self.redVolumLayer.gg_height);
     self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
     [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
     
     // 量能区域的指标
-    self.maVolLayer.frame = volumRect;
+    _volumIndexLayer.frame = volumRect;
 }
 
 /** 设置渲染器 */
@@ -468,12 +550,13 @@
 - (void)updateKLineLayerWithRange:(NSRange)range
 {
     // 计算k线最大最小
-    CGFloat max = 0;
-    CGFloat min = 0;
+    CGFloat max = FLT_MIN;
+    CGFloat min = FLT_MAX;
     [_kLineArray getKLineMax:&max min:&min range:range];
     
-    // 更新K线指标线
-    [self.maLayer updateLayerWithRange:range max:max min:min];
+    // k线指标
+    [_kLineIndexLayer getIndexWithRange:range max:&max min:&min];
+    [_kLineIndexLayer updateLayerWithRange:range max:max min:min];
     
     // 更新k线层
     self.kLineScaler.max = max;
@@ -505,23 +588,27 @@
 /** 柱状图实时更新 */
 - (void)updateVolumLayerWithRange:(NSRange)range
 {
+    self.redVolumLayer.hidden = ![self.volumIndexLayer isKindOfClass:[MAVOLLayer class]];
+    self.greenVolumLayer.hidden = ![self.volumIndexLayer isKindOfClass:[MAVOLLayer class]];
+    
     // 计算柱状图最大最小
-    CGFloat barMax = 0;
-    CGFloat barMin = 0;
-    CGFloat indexMax = 0;
-    CGFloat indexMin = 0;
-    [_kLineArray getMax:&barMax min:&barMin selGetter:@selector(ggVolume) range:range base:0.1];
-    [self.maVolLayer getVolumIndexMax:&indexMax min:&indexMin range:range];
+    CGFloat max = FLT_MIN;
+    CGFloat min = FLT_MAX;
+    NSString * attached = @"";
     
-    barMax = indexMax > barMax ? indexMax : barMax;
-    barMin = indexMin < barMin ? indexMin : barMin;
+    if ([self.volumIndexLayer isKindOfClass:[MAVOLLayer class]]) {
+        
+        [_kLineArray getMax:&max min:&min selGetter:@selector(ggVolume) range:range base:0.1];
+        min = 0;
+        attached = @"万手";
+    }
     
-    // 量能指标线
-    [self.maVolLayer updateLayerWithRange:range max:barMax min:barMin];
+    [self.volumIndexLayer getIndexWithRange:range max:&max min:&min];
+    [self.volumIndexLayer updateLayerWithRange:range max:max min:min];
     
     // 更新成交量
     self.volumScaler.min = 0;
-    self.volumScaler.max = barMax;
+    self.volumScaler.max = max;
     [self.volumScaler updateScaler];
     [self updateVolumLayer:range];
     
@@ -529,15 +616,12 @@
     CGFloat v_spe = self.greenLineLayer.gg_height / _kAxisSplit;
     CGFloat high = CGRectGetHeight(self.redVolumLayer.frame);
     NSUInteger volumCount = high / v_spe;
-    self.vAxisRenderer.aryString = [NSArray splitWithMax:barMax min:0 split:volumCount format:@"%.1f" attached:@"万手"];
+    self.vAxisRenderer.aryString = [NSArray splitWithMax:max min:min split:volumCount format:@"%.2f" attached:attached];
     self.vAxisRenderer.range = NSMakeRange(1, volumCount - 1);
     [self.stringLayer setNeedsDisplay];
 }
 
 #pragma mark - Lazy
-
-GGLazyGetMethod(MALayer, maLayer);
-GGLazyGetMethod(MAVOLLayer, maVolLayer);
 
 GGLazyGetMethod(CAShapeLayer, redLineLayer);
 GGLazyGetMethod(CAShapeLayer, greenLineLayer);

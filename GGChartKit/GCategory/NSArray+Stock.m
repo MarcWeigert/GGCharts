@@ -101,6 +101,36 @@
     *min = chartMin;
 }
 
+/**
+ * 获取字典数组对象的最大值最小值
+ *
+ * @param max 最大值地址
+ * @param min 最小值地址
+ */
++ (void)getDictionaryArray:(NSArray <NSDictionary <NSString *, NSNumber *> *> *)array
+                       max:(CGFloat *)max
+                       min:(CGFloat *)min
+{
+    __block CGFloat chartMax = FLT_MIN;
+    __block CGFloat chartMin = FLT_MAX;
+    
+    [array enumerateObjectsUsingBlock:^(NSDictionary<NSString *, NSNumber *> * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj.allValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if (obj.floatValue == FLT_MIN) { return; }
+            
+            double objNumber = obj.floatValue;
+            
+            chartMax = objNumber > chartMax ? objNumber : chartMax;
+            chartMin = objNumber < chartMin ? objNumber : chartMin;
+        }];
+    }];
+    
+    *max = chartMax;
+    *min = chartMin;
+}
+
 #pragma mark - KLineAbstract
 
 /**

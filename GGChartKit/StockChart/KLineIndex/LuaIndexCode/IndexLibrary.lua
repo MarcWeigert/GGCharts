@@ -141,3 +141,21 @@ function HHV(getMethod, sub)
 		return high
 	end
 end
+
+-- EMA(X, N): 求X在N日移动均匀值
+function EMA(getMethod, sub)
+	
+	return function (index, aryKLine)
+		
+		if (index <= 1) then 
+		
+			return aryKLine[1][getMethod]
+		end
+			
+		price = aryKLine[index][getMethod]
+		funcEMA = EMA(getMethod, sub)
+		count = sub + 1
+	
+		return (2 * price + (sub - 1) * funcEMA(index - 1, aryKLine)) / count
+	end
+end

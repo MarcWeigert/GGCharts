@@ -29,6 +29,9 @@
 
 @property (nonatomic, strong) UIFont * axisFont;        ///< 轴字体
 
+@property (nonatomic, assign) NSInteger kLineIndexIndex;
+@property (nonatomic, assign) NSInteger volumIndexIndex;
+
 /** 更新K线图 */
 - (void)updateChart;
 

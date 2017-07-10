@@ -8,6 +8,21 @@
 
 #import "NSObject+FireBlock.h"
 
+/**
+ * 在主线程中执行block
+ */
+void runMainThreadWithBlock(function block)
+{
+    if (![NSThread isMainThread]) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            block();
+        });
+    }
+    else {
+        block();
+    }
+}
+
 @implementation NSObject (FireBlock)
 
 - (void)fireBlockAfterDelay:(void (^)(void))block {

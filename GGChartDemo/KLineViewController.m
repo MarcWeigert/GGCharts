@@ -13,6 +13,8 @@
 
 #import "KLineIndexManager.h"
 
+#import "BaseIndexLayer.h"
+
 @interface KLineData : BaseModel <KLineAbstract, VolumeAbstract, QueryViewAbstract>
 
 @property (nonatomic , assign) CGFloat high_price;

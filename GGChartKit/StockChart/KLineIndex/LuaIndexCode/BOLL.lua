@@ -1,5 +1,3 @@
-require "IndexLibrary"
-
 -- BOLL 指标
 -- @param list K线数组
 -- @param getMethod 计算字段

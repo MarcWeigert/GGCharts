@@ -50,7 +50,6 @@
 		2B2722A21F0F55D500E4A295 /* LuaContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B27229E1F0F55D500E4A295 /* LuaContext.m */; };
 		2B2722A31F0F55D500E4A295 /* LuaExportMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722A11F0F55D500E4A295 /* LuaExportMetaData.m */; };
 		2B2722AD1F0F603600E4A295 /* KLineIndexManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722AC1F0F603600E4A295 /* KLineIndexManager.m */; };
-		2B2722B11F0F68FF00E4A295 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B2722B01F0F68FF00E4A295 /* MA.lua */; };
 		2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */; };
 		2B2722B71F0F694400E4A295 /* MALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B61F0F694400E4A295 /* MALayer.m */; };
 		2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */; };
@@ -76,6 +75,12 @@
 		2B73B0031F0B619E0085095C /* KLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73B0021F0B619E0085095C /* KLineViewController.m */; };
 		2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B73B0041F0B61D20085095C /* 600887_kdata.json */; };
 		2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */; };
+		2B773FB01F132BBC00B2BE59 /* EMA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FAE1F132BBC00B2BE59 /* EMA.lua */; };
+		2B773FB11F132BBC00B2BE59 /* MACD.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FAF1F132BBC00B2BE59 /* MACD.lua */; };
+		2B773FB41F13468D00B2BE59 /* EMALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB31F13468C00B2BE59 /* EMALayer.m */; };
+		2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FB51F1355FA00B2BE59 /* MA.lua */; };
+		2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB81F136BA400B2BE59 /* MACDLayer.m */; };
+		2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
@@ -190,7 +195,6 @@
 		2B2722A11F0F55D500E4A295 /* LuaExportMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaExportMetaData.m; sourceTree = "<group>"; };
 		2B2722AB1F0F603600E4A295 /* KLineIndexManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineIndexManager.h; sourceTree = "<group>"; };
 		2B2722AC1F0F603600E4A295 /* KLineIndexManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineIndexManager.m; sourceTree = "<group>"; };
-		2B2722B01F0F68FF00E4A295 /* MA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MA.lua; sourceTree = "<group>"; };
 		2B2722B21F0F693100E4A295 /* BaseIndexLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseIndexLayer.h; sourceTree = "<group>"; };
 		2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseIndexLayer.m; sourceTree = "<group>"; };
 		2B2722B51F0F694400E4A295 /* MALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MALayer.h; sourceTree = "<group>"; };
@@ -244,6 +248,14 @@
 		2B73D35B1F0E0688009F01CF /* CrissCrossQueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrissCrossQueryView.h; sourceTree = "<group>"; };
 		2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrissCrossQueryView.m; sourceTree = "<group>"; };
 		2B73D35E1F0E0DF0009F01CF /* QueryViewAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryViewAbstract.h; sourceTree = "<group>"; };
+		2B773FAE1F132BBC00B2BE59 /* EMA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EMA.lua; sourceTree = "<group>"; };
+		2B773FAF1F132BBC00B2BE59 /* MACD.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MACD.lua; sourceTree = "<group>"; };
+		2B773FB21F13468C00B2BE59 /* EMALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMALayer.h; sourceTree = "<group>"; };
+		2B773FB31F13468C00B2BE59 /* EMALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMALayer.m; sourceTree = "<group>"; };
+		2B773FB51F1355FA00B2BE59 /* MA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MA.lua; sourceTree = "<group>"; };
+		2B773FB71F136BA400B2BE59 /* MACDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACDLayer.h; sourceTree = "<group>"; };
+		2B773FB81F136BA400B2BE59 /* MACDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACDLayer.m; sourceTree = "<group>"; };
+		2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MAVOL.lua; sourceTree = "<group>"; };
 		2B7777A81EE8272400C99F55 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
 		2B7777A91EE8272400C99F55 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
 		2B7777AA1EE8272400C99F55 /* GGShapeCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShapeCanvas.h; sourceTree = "<group>"; };
@@ -448,12 +460,16 @@
 		2B2722AE1F0F68DE00E4A295 /* IndexLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2B2722B21F0F693100E4A295 /* BaseIndexLayer.h */,
+				2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */,
 				2B2722B51F0F694400E4A295 /* MALayer.h */,
 				2B2722B61F0F694400E4A295 /* MALayer.m */,
 				2B2722B81F0F8B7F00E4A295 /* MAVOLLayer.h */,
 				2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */,
-				2B2722B21F0F693100E4A295 /* BaseIndexLayer.h */,
-				2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */,
+				2B773FB21F13468C00B2BE59 /* EMALayer.h */,
+				2B773FB31F13468C00B2BE59 /* EMALayer.m */,
+				2B773FB71F136BA400B2BE59 /* MACDLayer.h */,
+				2B773FB81F136BA400B2BE59 /* MACDLayer.m */,
 			);
 			path = IndexLayer;
 			sourceTree = "<group>";
@@ -461,7 +477,10 @@
 		2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */ = {
 			isa = PBXGroup;
 			children = (
-				2B2722B01F0F68FF00E4A295 /* MA.lua */,
+				2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */,
+				2B773FB51F1355FA00B2BE59 /* MA.lua */,
+				2B773FAE1F132BBC00B2BE59 /* EMA.lua */,
+				2B773FAF1F132BBC00B2BE59 /* MACD.lua */,
 				2B3034201F111E1000706575 /* BBI.lua */,
 				2B3034211F111E1000706575 /* BOLL.lua */,
 				2B3034231F111E1000706575 /* MIKE.lua */,
@@ -779,15 +798,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */,
 				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
 				2B3034251F111E1000706575 /* BOLL.lua in Resources */,
 				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
+				2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */,
 				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
 				2B3034241F111E1000706575 /* BBI.lua in Resources */,
+				2B773FB11F132BBC00B2BE59 /* MACD.lua in Resources */,
+				2B773FB01F132BBC00B2BE59 /* EMA.lua in Resources */,
 				2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */,
 				2B3034271F111E1000706575 /* MIKE.lua in Resources */,
 				2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */,
-				2B2722B11F0F68FF00E4A295 /* MA.lua in Resources */,
 				2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,6 +856,7 @@
 				2B2722921F0F550D00E4A295 /* lstrlib.c in Sources */,
 				2B252B821EFBBD5D00AF541B /* DLineScaler.m in Sources */,
 				2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */,
+				2B773FB41F13468D00B2BE59 /* EMALayer.m in Sources */,
 				2B9788731F09D4E2002A2A3C /* UICountingLabel.m in Sources */,
 				2B9788761F09D4E2002A2A3C /* LineBarChart.m in Sources */,
 				2B2722891F0F550D00E4A295 /* lmathlib.c in Sources */,
@@ -848,6 +871,7 @@
 				2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */,
 				2B27227A1F0F550D00E4A295 /* lauxlib.c in Sources */,
 				2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */,
+				2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */,
 				2B6B23921F0C741B001D2B04 /* NSArray+Stock.m in Sources */,
 				2B73AFFD1F0B451B0085095C /* DKLineScaler.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,

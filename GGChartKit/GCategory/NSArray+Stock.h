@@ -53,6 +53,16 @@
                   selGetter:(SEL)getter
                        base:(CGFloat)base;
 
+/**
+ * 获取字典数组对象的最大值最小值
+ *
+ * @param max 最大值地址
+ * @param min 最小值地址
+ */
++ (void)getDictionaryArray:(NSArray <NSDictionary <NSString *, NSNumber *> *> *)array
+                       max:(CGFloat *)max
+                       min:(CGFloat *)min;
+
 #pragma mark - KLineAbstract
 
 /**

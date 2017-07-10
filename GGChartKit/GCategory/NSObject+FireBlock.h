@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^function)(void);   ///< 无参、无返回值block
+
+/**
+ * 在主线程中执行block
+ */
+void runMainThreadWithBlock(function block);
+
 @interface NSObject (FireBlock)
 
 /** 延时执行 */

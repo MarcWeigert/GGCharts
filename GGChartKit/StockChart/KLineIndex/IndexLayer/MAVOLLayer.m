@@ -14,77 +14,32 @@
 
 @interface MAVOLLayer ()
 
-@property (nonatomic, strong) NSArray <id<VolumeAbstract>> * kLineArray;
-@property (nonatomic, strong) NSArray <NSNumber *> * param;
-
-@property (nonatomic, strong) NSMutableArray <CAShapeLayer *> * aryLineLayer;
-@property (nonatomic, strong) NSMutableArray <DLineScaler *> * aryLineScalar;
-
-@property (nonatomic, strong) NSMutableArray <NSString *> * allKeys;
-@property (nonatomic, strong) NSDictionary * dictionaryMaIndexs;
+@property (nonatomic, strong) NSArray <NSNumber *> *param;
+@property (nonatomic, strong) NSArray <NSString *> *paramTitles;
+@property (nonatomic, strong) NSDictionary <NSString *, UIColor *> *colorKeys;
 
 @end
 
 @implementation MAVOLLayer
 
-/**
- * 根据数组数据结构计算MA指标数据
- *
- * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
- * @param param MA 参数 @[@5, @10, @20, @40]
- */
-- (void)updateIndexWithArray:(NSArray <id<VolumeAbstract>> *)kLineArray
-                       param:(NSDictionary <NSNumber *, UIColor *> *)param
+- (NSArray <NSString *> *)titles
 {
-    _kLineArray = kLineArray;
-    
-    _param = [param.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSNumber * obj1, NSNumber * obj2) {
-        
-        return [obj1 compare:obj2];
-    }];
-    
-    // 删除所有层
-    for (NSUInteger idx = 0; idx < self.aryLineLayer.count; idx++) {
-        CAShapeLayer * layer = self.aryLineLayer[idx];
-        [layer removeFromSuperlayer];
-    }
-    
-    // 重置所有数据
-    [self.aryLineLayer removeAllObjects];
-    [self.aryLineScalar removeAllObjects];
-    [self.allKeys removeAllObjects];
-    _dictionaryMaIndexs = nil;
-    
-    for (NSUInteger idx = 0; idx < _param.count; idx++) {
-        
-        NSNumber * obj = _param[idx];
-        
-        CAShapeLayer * layer = [CAShapeLayer layer];
-        layer.fillColor = [UIColor clearColor].CGColor;
-        layer.strokeColor = [param[_param[idx]] CGColor];
-        layer.lineWidth = 1;
-        [self addSublayer:layer];
-        [self.aryLineLayer addObject:layer];
-        [self.aryLineScalar addObject:[DLineScaler new]];
-        [self.allKeys addObject:[NSString stringWithFormat:@"MAVOL%@", obj]];
-    }
-    
-    // 计算指标
-    _dictionaryMaIndexs = [[KLineIndexManager shareInstans] getVolumIndexWith:kLineArray
-                                                                        param:_param
-                                                                  priceString:VOLUM];
+    return _paramTitles;
 }
 
-- (void)setFrame:(CGRect)frame
+- (void)setKLineArray:(NSArray <id<KLineAbstract, VolumeAbstract>> *)kLineArray
 {
-    [super setFrame:frame];
+    _param = @[@5, @10, @20, @40];
+    _paramTitles = @[@"MAVOL5", @"MAVOL10", @"MAVOL20", @"MAVOL40"];
+    _colorKeys = @{@"MAVOL5" : RGB(215, 161, 104), @"MAVOL10" : RGB(115, 190, 222), @"MAVOL20" : RGB(62, 121, 202), @"MAVOL40" : RGB(110, 226, 121)};
     
-    for (NSUInteger idx = 0; idx < self.aryLineLayer.count; idx++) {
-        
-        CAShapeLayer * obj = self.aryLineLayer[idx];
-        
-        obj.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    }
+    NSArray * kDataJson = [NSArray JsonFrmVolums:kLineArray];
+    
+    self.datas = [[KLineIndexManager shareInstans] getMAVOLIndexWith:kDataJson
+                                                               param:_param
+                                                         priceString:@"volum"];
+    
+    [self registerLinesForDictionary:self.datas keys:_paramTitles colorForKeys:_colorKeys];
 }
 
 /**
@@ -92,55 +47,7 @@
  */
 - (void)updateLayerWithRange:(NSRange)range max:(CGFloat)max min:(CGFloat)min
 {
-    for (NSUInteger idx = 0; idx < self.aryLineLayer.count; idx++) {
-        
-        CAShapeLayer * obj = self.aryLineLayer[idx];
-        
-        NSString * key = self.allKeys[idx];
-        NSArray <NSNumber *> * indexDatas = [self.dictionaryMaIndexs objectForKey:key];
-        
-        DLineScaler * lineScaler = self.aryLineScalar[idx];
-        lineScaler.max = max;
-        lineScaler.min = min;
-        lineScaler.rect = obj.frame;
-        lineScaler.dataAry = indexDatas;
-        lineScaler.xMaxCount = indexDatas.count;
-        [lineScaler updateScaler];
-        
-        CGMutablePathRef ref = CGPathCreateMutable();
-        GGPathAddRangePoints(ref, lineScaler.linePoints, range);
-        obj.path = ref;
-        CGPathRelease(ref);
-    }
+    [self updateLineLayerWithRange:range max:max min:min];
 }
-
-/**
- * 获取量能中最大最小值
- */
-- (void)getVolumIndexMax:(CGFloat *)max min:(CGFloat *)min range:(NSRange)range
-{
-    __block CGFloat volMax = FLT_MIN;
-    __block CGFloat volMin = FLT_MAX;
-    
-    [_dictionaryMaIndexs enumerateKeysAndObjectsUsingBlock:^(id key, NSArray <NSNumber *> * obj, BOOL * stop) {
-        
-        [obj enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]
-                               options:NSEnumerationConcurrent
-                            usingBlock:^(NSNumber * objNumber, NSUInteger idx, BOOL * stop) {
-            
-            volMax = objNumber.floatValue > volMax ? objNumber.floatValue : volMax;
-            volMin = objNumber.floatValue < volMin ? objNumber.floatValue : volMin;
-        }];
-    }];
-    
-    *max = volMax;
-    *min = volMin;
-}
-
-#pragma mark - Lazy
-
-GGLazyGetMethod(NSMutableArray, aryLineLayer);
-GGLazyGetMethod(NSMutableArray, aryLineScalar);
-GGLazyGetMethod(NSMutableArray, allKeys);
 
 @end

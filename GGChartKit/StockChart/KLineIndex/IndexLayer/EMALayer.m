@@ -1,18 +1,14 @@
 //
-//  MALayer.m
+//  EMALayer.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/7/7.
+//  Created by 黄舜 on 17/7/10.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "MALayer.h"
-#import "DLineScaler.h"
-#import "GGChartDefine.h"
-#import "KLineIndexManager.h"
-#import "GGGraphics.h"
+#import "EMALayer.h"
 
-@interface MALayer ()
+@interface EMALayer ()
 
 @property (nonatomic, strong) NSArray <NSNumber *> *param;
 @property (nonatomic, strong) NSArray <NSString *> *paramTitles;
@@ -20,7 +16,7 @@
 
 @end
 
-@implementation MALayer
+@implementation EMALayer
 
 - (NSArray <NSString *> *)titles
 {
@@ -30,14 +26,14 @@
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray
 {
     _param = @[@5, @10, @20, @40];
-    _paramTitles = @[@"MA5", @"MA10", @"MA20", @"MA40"];
-    _colorKeys = @{@"MA5" : RGB(215, 161, 104), @"MA10" : RGB(115, 190, 222), @"MA20" : RGB(62, 121, 202), @"MA40" : RGB(110, 226, 121)};
+    _paramTitles = @[@"EMA5", @"EMA10", @"EMA20", @"EMA40"];
+    _colorKeys = @{@"EMA5" : RGB(215, 161, 104), @"EMA10" : RGB(115, 190, 222), @"EMA20" : RGB(62, 121, 202), @"EMA40" : RGB(110, 226, 121)};
     
     NSArray * kDataJson = [NSArray JsonFromObj:kLineArray];
     
-    self.datas = [[KLineIndexManager shareInstans] getMAIndexWith:kDataJson
-                                                            param:_param
-                                                      priceString:@"close"];
+    self.datas = [[KLineIndexManager shareInstans] getEMAIndexWith:kDataJson
+                                                             param:_param
+                                                       priceString:@"close"];
     
     [self registerLinesForDictionary:self.datas keys:_paramTitles colorForKeys:_colorKeys];
 }

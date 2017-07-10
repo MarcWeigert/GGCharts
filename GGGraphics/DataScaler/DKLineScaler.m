@@ -84,7 +84,7 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 
 - (CGSize)contentSize
 {
-    return CGSizeMake((self.shapeInterval + self.shapeWidth) * (_xMaxCount) + self.shapeInterval, self.rect.size.height);
+    return CGSizeMake((self.shapeInterval + self.shapeWidth) * _xMaxCount, self.rect.size.height);
 }
 
 - (void)dealloc
@@ -119,7 +119,7 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
                                     options:NSEnumerationConcurrent
                                  usingBlock:^(NSObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-                                     CGFloat x = (idx + 1) * self.shapeInterval + (idx + .5f) * self.shapeWidth;
+                                     CGFloat x = (idx + .5) * self.shapeInterval + (idx + .5) * self.shapeWidth;
                                      
                                      CGFloat openPrice = openGetter(obj, self.selOpenGetter);
                                      CGFloat closePrice = closeGetter(obj, self.selCloseGetter);

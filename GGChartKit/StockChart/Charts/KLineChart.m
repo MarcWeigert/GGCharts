@@ -228,13 +228,13 @@
     
     if (CGRectContainsPoint(self.redLineLayer.frame, velocity)) {
         
-        yString = [NSString stringWithFormat:@"%.2f", [self.kLineScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.redLineLayer.gg_top - self.queryPriceView.lineWidth)]];
+        yString = [NSString stringWithFormat:@"%.2f", [self.kLineScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.redLineLayer.gg_top - self.queryPriceView.lineWidth + self.lableKLineIndex.gg_height)]];
     }
     else if (CGRectContainsPoint(self.redVolumLayer.frame, velocity)) {
         
         NSString * string = self.redVolumLayer.hidden ? @"" : @"万手";
         
-        yString = [NSString stringWithFormat:@"%.2f%@", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top)], string];
+        yString = [NSString stringWithFormat:@"%.2f%@", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top + self.lableVolumIndex.gg_height)], string];
     }
     
     [self updateIndexStringForIndex:index];

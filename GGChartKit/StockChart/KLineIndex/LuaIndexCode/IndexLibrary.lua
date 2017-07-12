@@ -38,7 +38,7 @@ function VD(getMethod, sub)
 		for i = 1, sub, 1 do
 		
 			xn = aryKLine[index][getMethod]
-			d = (xn - ma) * (xn - ma)
+			d = (ma - xn) * (ma - xn)
 			sum = sum + d
 			index = index - 1
 		end
@@ -60,7 +60,7 @@ function STD(getMethod, sub)
 			
 			return "1.175494351e-38F"
 		end
-						
+		
 		return math.sqrt(vd)
 	end
 end
@@ -74,7 +74,7 @@ function REF(getMethod, sub)
 		
 		if (index < 1) then
 			
-			index = 1
+			return aryKLine[1][getMethod]
 		end
 		
 		if (index > #aryKLine) then
@@ -144,7 +144,7 @@ end
 
 -- EMA(X, N): 求X在N日移动均匀值
 function EMA(getMethod, sub)
-	
+		
 	return function (index, aryKLine)
 		
 		if (index <= 1) then 
@@ -157,5 +157,22 @@ function EMA(getMethod, sub)
 		count = sub + 1
 	
 		return (2 * price + (sub - 1) * funcEMA(index - 1, aryKLine)) / count
+	end
+end
+
+--- SMA(X, N, M): 求X在N日M平滑系数移动平均, N必须大于M
+function SMA(getMethod, sub, coe)
+
+	return function (index, aryKLine)
+		
+		if (index <= 1) then
+		
+			return aryKLine[1][getMethod] 
+		end
+		
+		price = aryKLine[index][getMethod]
+		funcSMA = SMA(getMethod, sub, coe)
+		
+		return (coe * price + (sub - coe) * funcSMA(index - 1, aryKLine)) / sub
 	end
 end

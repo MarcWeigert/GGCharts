@@ -18,7 +18,9 @@
 #import "BOLLLayer.h"
 
 #import "MACDLayer.h"
+#import "KDJLayer.h"
 #import "MIKELayer.h"
+#import "RSILayer.h"
 
 #import "NSObject+FireBlock.h"
 
@@ -77,7 +79,9 @@
 + (NSArray *)kVolumIndexLayerClazz
 {
     return @[[MAVOLLayer class],
-             [MACDLayer class]];
+             [MACDLayer class],
+             [KDJLayer class],
+             [RSILayer class]];
 }
 
 #pragma mark - Surper

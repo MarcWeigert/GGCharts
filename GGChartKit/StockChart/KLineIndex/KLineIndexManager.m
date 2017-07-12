@@ -96,6 +96,8 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
 @property (nonatomic, strong) NSString * luaMavolCode;  ///< MAVOL
 @property (nonatomic, strong) NSString * luaBbiCode;    ///< BBI
 @property (nonatomic, strong) NSString * luaBollCode;    ///< BOLL
+@property (nonatomic, strong) NSString * luaKdjCode;     ///< KDJ
+@property (nonatomic, strong) NSString * luaRsiCode;     ///< RSI
 
 @end
 
@@ -257,6 +259,48 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
     return [luaContext call:"BOLLIndex" with:@[aryKLineData, price, param] error:&error];
 }
 
+/**
+ * 根据数组数据结构计算KDJ指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param BOLL 参数 12
+ *
+ * @return 计算结果 @[@{@"n" : xxx, @"m1" : xxx, @"m2" : xxx}...]
+ */
+- (NSArray *)getKDJIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                       param:(NSDictionary *)param
+             highPriceString:(NSString *)high
+              lowPriceString:(NSString *)low
+            closePriceString:(NSString *)close
+{
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaKdjCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"KDJIndex" with:@[aryKLineData, low, high, close, param] error:&error];
+}
+
+/**
+ * 根据数组数据结构计算MA指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param RSI 参数 @[@5, @10, @20, @40]
+ *
+ * @return 计算结果 @[@{@"RSI5" : , @"RSI10" :, @"RSI20" :, @"RSI40" :}...]
+ */
+- (NSArray *)getRSIIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                       param:(NSArray <NSNumber *> *)param
+                 priceString:(NSString *)price
+{
+    LuaContext * luaContext = [LuaContext new];
+    NSError * error = nil;
+    
+    if (![luaContext parse:self.luaRsiCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"RSIIndex" with:@[aryKLineData, price, param] error:&error];
+}
+
 #pragma mark - Lazy
 
 GGLazyLuaCodeMethod(@"MIKE", luaMikeCode);
@@ -266,5 +310,7 @@ GGLazyLuaCodeMethod(@"MACD", luaMacdCode);
 GGLazyLuaCodeMethod(@"MAVOL", luaMavolCode);
 GGLazyLuaCodeMethod(@"BBI", luaBbiCode);
 GGLazyLuaCodeMethod(@"BOLL", luaBollCode);
+GGLazyLuaCodeMethod(@"KDJ", luaKdjCode);
+GGLazyLuaCodeMethod(@"RSI", luaRsiCode);
 
 @end

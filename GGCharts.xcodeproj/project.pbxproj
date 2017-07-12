@@ -85,6 +85,10 @@
 		2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD81F15F43100B2BE59 /* BOLLLayer.m */; };
 		2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDA1F15F43100B2BE59 /* MIKELayer.m */; };
 		2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */; };
+		2B773FE31F16176600B2BE59 /* KDJ.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FE11F16176600B2BE59 /* KDJ.lua */; };
+		2B773FE41F16176600B2BE59 /* RSI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FE21F16176600B2BE59 /* RSI.lua */; };
+		2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE61F16188A00B2BE59 /* KDJLayer.m */; };
+		2B773FEA1F161C4500B2BE59 /* RSILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE91F161C4500B2BE59 /* RSILayer.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
@@ -268,6 +272,12 @@
 		2B773FDA1F15F43100B2BE59 /* MIKELayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIKELayer.m; sourceTree = "<group>"; };
 		2B773FDE1F15F44000B2BE59 /* UIView+GGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GGFrame.h"; sourceTree = "<group>"; };
 		2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GGFrame.m"; sourceTree = "<group>"; };
+		2B773FE11F16176600B2BE59 /* KDJ.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KDJ.lua; sourceTree = "<group>"; };
+		2B773FE21F16176600B2BE59 /* RSI.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSI.lua; sourceTree = "<group>"; };
+		2B773FE51F16188A00B2BE59 /* KDJLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDJLayer.h; sourceTree = "<group>"; };
+		2B773FE61F16188A00B2BE59 /* KDJLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDJLayer.m; sourceTree = "<group>"; };
+		2B773FE81F161C4500B2BE59 /* RSILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSILayer.h; sourceTree = "<group>"; };
+		2B773FE91F161C4500B2BE59 /* RSILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSILayer.m; sourceTree = "<group>"; };
 		2B7777A81EE8272400C99F55 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
 		2B7777A91EE8272400C99F55 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
 		2B7777AA1EE8272400C99F55 /* GGShapeCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShapeCanvas.h; sourceTree = "<group>"; };
@@ -488,6 +498,10 @@
 				2B773FB31F13468C00B2BE59 /* EMALayer.m */,
 				2B773FB71F136BA400B2BE59 /* MACDLayer.h */,
 				2B773FB81F136BA400B2BE59 /* MACDLayer.m */,
+				2B773FE51F16188A00B2BE59 /* KDJLayer.h */,
+				2B773FE61F16188A00B2BE59 /* KDJLayer.m */,
+				2B773FE81F161C4500B2BE59 /* RSILayer.h */,
+				2B773FE91F161C4500B2BE59 /* RSILayer.m */,
 			);
 			path = IndexLayer;
 			sourceTree = "<group>";
@@ -495,6 +509,8 @@
 		2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */ = {
 			isa = PBXGroup;
 			children = (
+				2B773FE11F16176600B2BE59 /* KDJ.lua */,
+				2B773FE21F16176600B2BE59 /* RSI.lua */,
 				2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */,
 				2B773FB51F1355FA00B2BE59 /* MA.lua */,
 				2B773FAE1F132BBC00B2BE59 /* EMA.lua */,
@@ -830,6 +846,8 @@
 				2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */,
 				2B3034271F111E1000706575 /* MIKE.lua in Resources */,
 				2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */,
+				2B773FE41F16176600B2BE59 /* RSI.lua in Resources */,
+				2B773FE31F16176600B2BE59 /* KDJ.lua in Resources */,
 				2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,6 +868,7 @@
 				2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */,
 				2B97887F1F09D4E2002A2A3C /* LineData.m in Sources */,
 				2B73B0031F0B619E0085095C /* KLineViewController.m in Sources */,
+				2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */,
 				2B2722971F0F550D00E4A295 /* luac.c in Sources */,
 				2B2722911F0F550D00E4A295 /* lstring.c in Sources */,
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
@@ -924,6 +943,7 @@
 				2B73B0001F0B604E0085095C /* KLineChart.m in Sources */,
 				2B2722821F0F550D00E4A295 /* ldo.c in Sources */,
 				2B97887A1F09D4E2002A2A3C /* BarData.m in Sources */,
+				2B773FEA1F161C4500B2BE59 /* RSILayer.m in Sources */,
 				2B2722871F0F550D00E4A295 /* liolib.c in Sources */,
 				2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */,
 				2B27228F1F0F550D00E4A295 /* lparser.c in Sources */,

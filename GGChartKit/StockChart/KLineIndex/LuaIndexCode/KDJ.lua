@@ -1,0 +1,35 @@
+-- KDJ 指标
+-- @param list K线数组
+-- @param getMethod 计算字段
+-- @param param {n = 9, m1 = 3, m2 = 3}
+
+function KDJIndex(aryList, getLowMethod, getHighMethod, getCloseMethod, param)
+	
+	kdjArray = {}
+	rsvArray = {}
+		
+	funcLLV = LLV(getLowMethod, param["n"])
+	funcHHV = HHV(getHighMethod, param["n"])
+	
+	for i = 1, #aryList, 1 do
+		
+		rsvArray[i] = {rsv = (aryList[i][getCloseMethod] - funcLLV(i, aryList)) / (funcHHV(i, aryList) - funcLLV(i, aryList)) * 100}
+	end
+	
+	funcSMA = SMA("rsv", param["m1"], 1)
+	
+	for i = 1, #rsvArray, 1 do
+		
+		kdjArray[i] = {k = funcSMA(i, rsvArray)}
+	end
+	
+	funcSMA2 = SMA("k", param["m2"], 1)
+	
+	for i = 1, #kdjArray, 1 do
+		
+		kdjArray[i]["d"] = funcSMA2(i, kdjArray)
+		kdjArray[i]["j"] = 3 * kdjArray[i]["k"] - 2 * kdjArray[i]["d"]
+	end
+	
+	return kdjArray
+end

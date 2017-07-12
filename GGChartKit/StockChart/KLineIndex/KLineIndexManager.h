@@ -95,6 +95,32 @@
                   priceString:(NSString *)price;
 
 /**
+ * 根据数组数据结构计算KDJ指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param @{@"n" : xxx, @"m1" : xxx, @"m2" : xxx}
+ *
+ * @return 计算结果 @[@{@"k" : xxx, @"d" : xxx, @"j" : xxx}...]
+ */
+- (NSArray *)getKDJIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                       param:(NSDictionary *)param
+             highPriceString:(NSString *)high
+              lowPriceString:(NSString *)low
+            closePriceString:(NSString *)close;
+
+/**
+ * 根据数组数据结构计算MA指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param RSI 参数 @[@5, @10, @20, @40]
+ *
+ * @return 计算结果 @[@{@"RSI5" : , @"RSI10" :, @"RSI20" :, @"RSI40" :}...]
+ */
+- (NSArray *)getRSIIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                       param:(NSArray <NSNumber *> *)param
+                 priceString:(NSString *)price;
+
+/**
  * 根据数组数据结构计算MIKE指标数据
  *
  * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract

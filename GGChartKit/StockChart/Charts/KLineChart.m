@@ -21,6 +21,7 @@
 #import "KDJLayer.h"
 #import "MIKELayer.h"
 #import "RSILayer.h"
+#import "ATRLayer.h"
 
 #import "NSObject+FireBlock.h"
 
@@ -81,7 +82,8 @@
     return @[[MAVOLLayer class],
              [MACDLayer class],
              [KDJLayer class],
-             [RSILayer class]];
+             [RSILayer class],
+             [ATRLayer class]];
 }
 
 #pragma mark - Surper

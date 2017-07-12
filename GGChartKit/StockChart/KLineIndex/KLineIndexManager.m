@@ -98,6 +98,7 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
 @property (nonatomic, strong) NSString * luaBollCode;    ///< BOLL
 @property (nonatomic, strong) NSString * luaKdjCode;     ///< KDJ
 @property (nonatomic, strong) NSString * luaRsiCode;     ///< RSI
+@property (nonatomic, strong) NSString * luaAtrCode;     ///< Atr
 
 @end
 
@@ -301,6 +302,28 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
     return [luaContext call:"RSIIndex" with:@[aryKLineData, price, param] error:&error];
 }
 
+/**
+ * 根据数组数据结构计算MIKE指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param 12
+ *
+ * @return 计算结果 @[@{@"ar" : , @"atr" :}...]
+ */
+- (NSArray *)getAtrIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                       param:(NSNumber *)param
+             highPriceString:(NSString *)high
+              lowPriceString:(NSString *)low
+            closePriceString:(NSString *)close
+{
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaAtrCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"ATRIndex" with:@[aryKLineData, low, high, close, param] error:&error];
+}
+
 #pragma mark - Lazy
 
 GGLazyLuaCodeMethod(@"MIKE", luaMikeCode);
@@ -312,5 +335,6 @@ GGLazyLuaCodeMethod(@"BBI", luaBbiCode);
 GGLazyLuaCodeMethod(@"BOLL", luaBollCode);
 GGLazyLuaCodeMethod(@"KDJ", luaKdjCode);
 GGLazyLuaCodeMethod(@"RSI", luaRsiCode);
+GGLazyLuaCodeMethod(@"ATR", luaAtrCode);
 
 @end

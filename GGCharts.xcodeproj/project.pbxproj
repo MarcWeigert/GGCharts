@@ -89,6 +89,8 @@
 		2B773FE41F16176600B2BE59 /* RSI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FE21F16176600B2BE59 /* RSI.lua */; };
 		2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE61F16188A00B2BE59 /* KDJLayer.m */; };
 		2B773FEA1F161C4500B2BE59 /* RSILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE91F161C4500B2BE59 /* RSILayer.m */; };
+		2B773FEC1F1622FA00B2BE59 /* ATR.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FEB1F1622FA00B2BE59 /* ATR.lua */; };
+		2B773FEF1F16237F00B2BE59 /* ATRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FEE1F16237F00B2BE59 /* ATRLayer.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
@@ -278,6 +280,9 @@
 		2B773FE61F16188A00B2BE59 /* KDJLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDJLayer.m; sourceTree = "<group>"; };
 		2B773FE81F161C4500B2BE59 /* RSILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSILayer.h; sourceTree = "<group>"; };
 		2B773FE91F161C4500B2BE59 /* RSILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSILayer.m; sourceTree = "<group>"; };
+		2B773FEB1F1622FA00B2BE59 /* ATR.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ATR.lua; sourceTree = "<group>"; };
+		2B773FED1F16237F00B2BE59 /* ATRLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRLayer.h; sourceTree = "<group>"; };
+		2B773FEE1F16237F00B2BE59 /* ATRLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRLayer.m; sourceTree = "<group>"; };
 		2B7777A81EE8272400C99F55 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
 		2B7777A91EE8272400C99F55 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
 		2B7777AA1EE8272400C99F55 /* GGShapeCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShapeCanvas.h; sourceTree = "<group>"; };
@@ -502,6 +507,8 @@
 				2B773FE61F16188A00B2BE59 /* KDJLayer.m */,
 				2B773FE81F161C4500B2BE59 /* RSILayer.h */,
 				2B773FE91F161C4500B2BE59 /* RSILayer.m */,
+				2B773FED1F16237F00B2BE59 /* ATRLayer.h */,
+				2B773FEE1F16237F00B2BE59 /* ATRLayer.m */,
 			);
 			path = IndexLayer;
 			sourceTree = "<group>";
@@ -509,6 +516,7 @@
 		2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */ = {
 			isa = PBXGroup;
 			children = (
+				2B773FEB1F1622FA00B2BE59 /* ATR.lua */,
 				2B773FE11F16176600B2BE59 /* KDJ.lua */,
 				2B773FE21F16176600B2BE59 /* RSI.lua */,
 				2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */,
@@ -848,6 +856,7 @@
 				2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */,
 				2B773FE41F16176600B2BE59 /* RSI.lua in Resources */,
 				2B773FE31F16176600B2BE59 /* KDJ.lua in Resources */,
+				2B773FEC1F1622FA00B2BE59 /* ATR.lua in Resources */,
 				2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,6 +931,7 @@
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
 				2B2722861F0F550D00E4A295 /* linit.c in Sources */,
+				2B773FEF1F16237F00B2BE59 /* ATRLayer.m in Sources */,
 				2B2722981F0F550D00E4A295 /* lundump.c in Sources */,
 				2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */,
 				2B2722991F0F550D00E4A295 /* lutf8lib.c in Sources */,

@@ -10,20 +10,82 @@
 #import "LuaContext.h"
 #import "NSArray+Stock.h"
 
+#include        <stdio.h>
+#include        "lua.h"
+#include        "lualib.h"
+#include        "lauxlib.h"
+
+lua_State * L;
+
+
 #define GGLazyLuaCodeMethod(fileName, attribute)               \
 - (NSString *)attribute                                     \
 {                                                           \
-    if (!_##attribute) {                                    \
-        _##attribute = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"lua"] \
-                                                 encoding:NSUTF8StringEncoding \
-                                                    error:nil]; \
-        NSString * indexLibrary = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"IndexLibrary" ofType:@"lua"] \
-                                                    encoding:NSUTF8StringEncoding \
-                                                       error:nil]; \
-        _##attribute = [NSString stringWithFormat:@"%@ %@", indexLibrary, _##attribute]; \
-    } \
-    return _##attribute; \
+if (!_##attribute) {                                    \
+_##attribute = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"lua"] \
+encoding:NSUTF8StringEncoding \
+error:nil]; \
+NSString * indexLibrary = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"IndexLibrary" ofType:@"lua"] \
+encoding:NSUTF8StringEncoding \
+error:nil]; \
+_##attribute = [NSString stringWithFormat:@"%@ %@", indexLibrary, _##attribute]; \
+} \
+return _##attribute; \
 }
+
+const char * convertToJSONData(id infoDict)
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:infoDict
+                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error:&error];
+    
+    NSString *jsonString = @"";
+    
+    if (! jsonData)
+    {
+        NSLog(@"Got an error: %@", error);
+    }else
+    {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
+    [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return [jsonString cStringUsingEncoding:NSUTF8StringEncoding];
+}
+
+NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id param, NSString * script)
+{
+    /*the function name*/
+    
+    L = luaL_newstate();
+    
+    luaL_dostring(L, [script UTF8String]);
+    
+    lua_getglobal(L, "BOLLIndex");
+    
+    /*the first argument*/
+    
+    lua_pushstring(L, convertToJSONData(arrayList));
+    lua_pushstring(L, [getMethod cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_pushstring(L, [[param stringValue] cStringUsingEncoding:NSUTF8StringEncoding]);
+    
+    /*call the function with 2 arguments,return 1 result.*/
+    
+    lua_pcall(L, 3, 1, 0);
+    
+    /*g et the result.*/
+    
+    const char * sum = lua_tolstring(L, -1, nil);
+    
+    /*cleanup the return*/
+    lua_pop(L, 1);
+    
+    return nil;
+}
+
+
 
 @interface KLineIndexManager ()
 
@@ -32,6 +94,8 @@
 @property (nonatomic, strong) NSString * luaMacdCode;   ///< MACD
 @property (nonatomic, strong) NSString * luaEmaCode;    ///< EMA
 @property (nonatomic, strong) NSString * luaMavolCode;  ///< MAVOL
+@property (nonatomic, strong) NSString * luaBbiCode;    ///< BBI
+@property (nonatomic, strong) NSString * luaBollCode;    ///< BOLL
 
 @end
 
@@ -112,6 +176,26 @@
 }
 
 /**
+ * 根据数组数据结构计算BBI指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param BBI 参数 @[@5, @10, @20, @40]
+ *
+ * @return 计算结果 计算结果 @[@{@"bbi" : xxx}...]
+ */
+- (NSArray *)getBBIIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                       param:(NSArray <NSNumber *> *)param
+                 priceString:(NSString *)price
+{
+    LuaContext * luaContext = [LuaContext new];
+    NSError * error = nil;
+    
+    if (![luaContext parse:self.luaBbiCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"BBIIndex" with:@[aryKLineData, price, param] error:&error];
+}
+
+/**
  * 根据数组数据结构计算MACD指标数据
  *
  * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
@@ -139,19 +223,38 @@
  *
  * @return 计算结果 @[@{@"wr" : , @"sr" :, @"ss" :, @"mr" :}...]
  */
-- (NSArray *)getMikeIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+- (NSArray *)getMikeIndexWith:(NSArray <NSDictionary *> *)aryKLineData
                         param:(NSNumber *)param
               highPriceString:(NSString *)high
                lowPriceString:(NSString *)low
              closePriceString:(NSString *)close
 {
-    NSArray * kDataJson = [NSArray JsonFromObj:aryKLineData];
     LuaContext * luaContext = [LuaContext new];
     __block NSError * error = nil;
     
     if (![luaContext parse:self.luaMikeCode error:&error]) { NSLog(@"%@", error); }
     
-    return [luaContext call:"MIKEIndex" with:@[kDataJson, high, low, close, param] error:&error];
+    return [luaContext call:"MIKEIndex" with:@[aryKLineData, high, low, close, param] error:&error];
+}
+
+/**
+ * 根据数组数据结构计算BBI指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param BOLL 参数 12
+ *
+ * @return 计算结果 @[@{@"m" : xxx, @"t" : xxx, @"b" : xxx}...]
+ */
+- (NSArray *)getBOLLIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                        param:(NSNumber *)param
+                  priceString:(NSString *)price
+{
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaBollCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"BOLLIndex" with:@[aryKLineData, price, param] error:&error];
 }
 
 #pragma mark - Lazy
@@ -161,5 +264,7 @@ GGLazyLuaCodeMethod(@"EMA", luaEmaCode);
 GGLazyLuaCodeMethod(@"MA", luaMaCode);
 GGLazyLuaCodeMethod(@"MACD", luaMacdCode);
 GGLazyLuaCodeMethod(@"MAVOL", luaMavolCode);
+GGLazyLuaCodeMethod(@"BBI", luaBbiCode);
+GGLazyLuaCodeMethod(@"BOLL", luaBollCode);
 
 @end

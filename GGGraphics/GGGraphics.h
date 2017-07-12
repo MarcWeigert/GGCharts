@@ -27,6 +27,7 @@
 #import "GGShapeCanvas.h"
 
 #import "CALayer+GGFrame.h"
+#import "UIView+GGFrame.h"
 #import "CALayer+GGLayer.h"
 #import "NSValue+GGValue.h"
 

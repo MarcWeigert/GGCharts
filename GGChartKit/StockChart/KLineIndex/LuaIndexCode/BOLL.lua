@@ -14,7 +14,7 @@ function BOLLIndex(aryList, getMethod, param)
 		mid = funcMa(i, aryList)
 		tmp2 = funcStd(i, aryList)
 		
-		if (mid == "1.175494351e-38F" or tmp2 == "1.175494351e-38F") then
+		if (mid == "1.175494351e-38F") then
 		
 			aryBOLL[i] = {m = "1.175494351e-38F", t = "1.175494351e-38F", b = "1.175494351e-38F"}
 		else

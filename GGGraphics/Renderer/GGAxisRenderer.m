@@ -15,9 +15,16 @@
 
 @property (nonatomic, strong) NSMutableDictionary * dictionaryString;
 
+@property (nonatomic, copy) NSString *(^stringBlock)(CGPoint point, NSInteger index, NSInteger max);
+
 @end
 
 @implementation GGAxisRenderer
+
+- (void)setStringBlock:(NSString *(^)(CGPoint point, NSInteger index, NSInteger max))stringBlock;
+{
+    _stringBlock = stringBlock;
+}
 
 - (instancetype)init
 {
@@ -124,7 +131,7 @@
             CGSize size = [string sizeWithAttributes:_paramStr];
             
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
-
+            
             if (_drawAxisCenter) {
                 
                 point = cir > M_PI_4 / 2 ? CGPointMake(point.x, point.y + _axis.sep / 2) : CGPointMake(point.x + _axis.sep / 2, point.y);
@@ -142,6 +149,24 @@
             CGPoint point = CGPointMake(over_pt.x + size.width * _offSetRatio.x, over_pt.y + size.height * _offSetRatio.y);
             [key drawAtPoint:point withAttributes:_paramStr];
         }];
+        
+        UIGraphicsPopContext();
+    }
+    
+    // block 计算轴
+    if (self.stringBlock) {
+        
+        UIGraphicsPushContext(ctx);
+        
+        for (int i = 0; i < count; i++) {
+            
+            CGPoint point = to[i];
+            NSString * string = self.stringBlock(point, i, count);
+            CGSize size = [string sizeWithAttributes:_paramStr];
+            point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
+            point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
+            [string drawAtPoint:point withAttributes:_paramStr];
+        }
         
         UIGraphicsPopContext();
     }

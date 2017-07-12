@@ -31,4 +31,6 @@
 
 - (void)addString:(NSString *)string point:(CGPoint)point;
 
+- (void)setStringBlock:(NSString *(^)(CGPoint point, NSInteger index, NSInteger max))stringBlock;
+
 @end

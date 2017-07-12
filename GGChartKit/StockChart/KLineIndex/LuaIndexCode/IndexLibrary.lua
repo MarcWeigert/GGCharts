@@ -27,9 +27,9 @@ function VD(getMethod, sub)
 
 	return function (index, aryKLine)
 		
-		if (sub > index) then
+		if ((index - sub) < 0) then
 		
-			return "1.175494351e-38F"
+			return 0.0
 		end
 		
 		local sum = 0
@@ -37,8 +37,8 @@ function VD(getMethod, sub)
 		
 		for i = 1, sub, 1 do
 		
-			xn = aryKLine[i][getMethod]
-			d = math.pow((xn - ma), 2)
+			xn = aryKLine[index][getMethod]
+			d = (xn - ma) * (xn - ma)
 			sum = sum + d
 			index = index - 1
 		end
@@ -60,8 +60,8 @@ function STD(getMethod, sub)
 			
 			return "1.175494351e-38F"
 		end
-		
-		return math.sqrt(funcVD(index, aryKLine))
+						
+		return math.sqrt(vd)
 	end
 end
 

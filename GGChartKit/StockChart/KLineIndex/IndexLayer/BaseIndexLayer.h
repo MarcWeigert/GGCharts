@@ -63,6 +63,11 @@
 - (NSArray <NSString *> *)titles;
 
 /**
+ * 
+ */
+- (NSAttributedString *)attrStringWithIndex:(NSInteger)index;
+
+/**
  * 更新指标图表
  */
 - (void)setKLineArray:(NSArray <id<KLineAbstract, VolumeAbstract>> *)kLineArray;

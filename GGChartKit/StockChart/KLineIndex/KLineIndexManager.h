@@ -62,7 +62,7 @@
  * 根据数组数据结构计算MAVOL指标数据
  *
  * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
- * @param param MAVOL 参数 @[@5, @10, @20, @40]
+ * @param param MAVOL 参数 @[@3, @6, @9]
  *
  * @return 计算结果 @[@{@"MAVOL5" : , @"MAVOL10" :, @"MAVOL20" :, @"MAVOL40" :}...]
  */
@@ -70,6 +70,29 @@
                          param:(NSArray <NSNumber *> *)param
                    priceString:(NSString *)price;
 
+/**
+ * 根据数组数据结构计算BBI指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param BBI 参数 @[@5, @10, @20, @40]
+ *
+ * @return 计算结果 @[@{@"bbi" : xxx}...]
+ */
+- (NSArray *)getBBIIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                       param:(NSArray <NSNumber *> *)param
+                 priceString:(NSString *)price;
+
+/**
+ * 根据数组数据结构计算BBI指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param BOLL 参数 12
+ *
+ * @return 计算结果 @[@{@"m" : xxx, @"t" : xxx, @"b" : xxx}...]
+ */
+- (NSArray *)getBOLLIndexWith:(NSArray <NSDictionary *> *)aryKLineData
+                        param:(NSNumber *)param
+                  priceString:(NSString *)price;
 
 /**
  * 根据数组数据结构计算MIKE指标数据

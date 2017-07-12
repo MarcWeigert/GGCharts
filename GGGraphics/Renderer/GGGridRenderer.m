@@ -47,8 +47,8 @@
     CGFloat x = _grid.rect.origin.x;
     CGFloat y = _grid.rect.origin.y;
     
-    NSInteger h_count = _grid.y_dis == 0 ? 0 : CGRectGetHeight(_grid.rect) / _grid.y_dis;    ///< 横线个数
-    NSInteger v_count = _grid.x_dis == 0 ? 0 : CGRectGetWidth(_grid.rect) / _grid.x_dis;     ///< 纵线个数
+    NSInteger h_count = _grid.y_dis == 0 ? 0 : CGRectGetHeight(_grid.rect) / _grid.y_dis + 1;    ///< 横线个数
+    NSInteger v_count = _grid.x_dis == 0 ? 0 : CGRectGetWidth(_grid.rect) / _grid.x_dis + 1;     ///< 纵线个数
     
     CGContextSetLineWidth(ctx, _width);
     CGContextSetStrokeColorWithColor(ctx, _color.CGColor);
@@ -60,7 +60,7 @@
     }
     
     for (int i = 1; i < h_count; i++) {
-    
+        
         CGPoint start = CGPointMake(x, y + _grid.y_dis * i);
         CGPoint end = CGPointMake(CGRectGetMaxX(_grid.rect), y + _grid.y_dis * i);
         

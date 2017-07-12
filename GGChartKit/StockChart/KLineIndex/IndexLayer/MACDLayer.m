@@ -23,9 +23,29 @@
     return _paramTitles;
 }
 
+- (NSAttributedString *)attrStringWithIndex:(NSInteger)index
+{
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:@"MACD(5, 10, 20, 40)"];
+    
+    NSDictionary * dictionary = self.datas[index];
+    
+    [_paramTitles enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * stop) {
+        
+        NSNumber * madata = dictionary[obj];
+        UIColor * color = _colorKeys[obj];
+        NSString * string = [NSString stringWithFormat:@"   %@:%.2f", obj, madata.floatValue];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : color}]];
+    }];
+    
+    return attrString;
+}
+
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray
 {
     _param = @{@"SHORT" : @12, @"LONG" : @26, @"M" : @9};
+    _paramTitles = @[@"DIFF", @"DEA", @"STICK"];
+    _colorKeys =  @{@"DIFF" : RGB(215, 161, 104), @"DEA" : RGB(115, 190, 222), @"STICK" : RGB(234, 82, 83)};
+    
     NSArray * lineTitles = @[@"DIFF", @"DEA"];
     NSDictionary * lineColorKeys = @{@"DIFF" : RGB(215, 161, 104), @"DEA" : RGB(115, 190, 222)};
     

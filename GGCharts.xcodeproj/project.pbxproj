@@ -81,6 +81,10 @@
 		2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FB51F1355FA00B2BE59 /* MA.lua */; };
 		2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB81F136BA400B2BE59 /* MACDLayer.m */; };
 		2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */; };
+		2B773FDB1F15F43100B2BE59 /* BBIIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */; };
+		2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD81F15F43100B2BE59 /* BOLLLayer.m */; };
+		2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDA1F15F43100B2BE59 /* MIKELayer.m */; };
+		2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */; };
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
@@ -256,6 +260,14 @@
 		2B773FB71F136BA400B2BE59 /* MACDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACDLayer.h; sourceTree = "<group>"; };
 		2B773FB81F136BA400B2BE59 /* MACDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACDLayer.m; sourceTree = "<group>"; };
 		2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MAVOL.lua; sourceTree = "<group>"; };
+		2B773FD51F15F43100B2BE59 /* BBIIndexLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBIIndexLayer.h; sourceTree = "<group>"; };
+		2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBIIndexLayer.m; sourceTree = "<group>"; };
+		2B773FD71F15F43100B2BE59 /* BOLLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOLLLayer.h; sourceTree = "<group>"; };
+		2B773FD81F15F43100B2BE59 /* BOLLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOLLLayer.m; sourceTree = "<group>"; };
+		2B773FD91F15F43100B2BE59 /* MIKELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIKELayer.h; sourceTree = "<group>"; };
+		2B773FDA1F15F43100B2BE59 /* MIKELayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIKELayer.m; sourceTree = "<group>"; };
+		2B773FDE1F15F44000B2BE59 /* UIView+GGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GGFrame.h"; sourceTree = "<group>"; };
+		2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GGFrame.m"; sourceTree = "<group>"; };
 		2B7777A81EE8272400C99F55 /* GGCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCanvas.h; sourceTree = "<group>"; };
 		2B7777A91EE8272400C99F55 /* GGCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGCanvas.m; sourceTree = "<group>"; };
 		2B7777AA1EE8272400C99F55 /* GGShapeCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGShapeCanvas.h; sourceTree = "<group>"; };
@@ -460,6 +472,12 @@
 		2B2722AE1F0F68DE00E4A295 /* IndexLayer */ = {
 			isa = PBXGroup;
 			children = (
+				2B773FD51F15F43100B2BE59 /* BBIIndexLayer.h */,
+				2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */,
+				2B773FD71F15F43100B2BE59 /* BOLLLayer.h */,
+				2B773FD81F15F43100B2BE59 /* BOLLLayer.m */,
+				2B773FD91F15F43100B2BE59 /* MIKELayer.h */,
+				2B773FDA1F15F43100B2BE59 /* MIKELayer.m */,
 				2B2722B21F0F693100E4A295 /* BaseIndexLayer.h */,
 				2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */,
 				2B2722B51F0F694400E4A295 /* MALayer.h */,
@@ -607,6 +625,8 @@
 				2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */,
 				2B252B7D1EFBB52500AF541B /* CALayer+GGFrame.h */,
 				2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */,
+				2B773FDE1F15F44000B2BE59 /* UIView+GGFrame.h */,
+				2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */,
 			);
 			path = GUtils;
 			sourceTree = "<group>";
@@ -833,12 +853,14 @@
 				2B2722971F0F550D00E4A295 /* luac.c in Sources */,
 				2B2722911F0F550D00E4A295 /* lstring.c in Sources */,
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
+				2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */,
 				2B2722AD1F0F603600E4A295 /* KLineIndexManager.m in Sources */,
 				2B2722B71F0F694400E4A295 /* MALayer.m in Sources */,
 				2B97887E1F09D4E2002A2A3C /* ChartBaseEvent.m in Sources */,
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
 				2B2722791F0F550D00E4A295 /* lapi.c in Sources */,
+				2B773FDB1F15F43100B2BE59 /* BBIIndexLayer.m in Sources */,
 				2B2722941F0F550D00E4A295 /* ltablib.c in Sources */,
 				2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */,
 				2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */,
@@ -863,6 +885,7 @@
 				2B27228C1F0F550D00E4A295 /* lobject.c in Sources */,
 				2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */,
 				2B27227C1F0F550D00E4A295 /* lbitlib.c in Sources */,
+				2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */,
 				2B9788811F09D4E2002A2A3C /* PieData.m in Sources */,
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B27227B1F0F550D00E4A295 /* lbaselib.c in Sources */,
@@ -910,6 +933,7 @@
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,
 				2B9788751F09D4E2002A2A3C /* BaseCountChart.m in Sources */,
 				2B2722831F0F550D00E4A295 /* ldump.c in Sources */,
+				2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */,
 				2B27228E1F0F550D00E4A295 /* loslib.c in Sources */,
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
 				2B9788821F09D4E2002A2A3C /* PNBarData.m in Sources */,

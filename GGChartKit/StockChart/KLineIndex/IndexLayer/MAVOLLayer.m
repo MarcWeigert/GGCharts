@@ -27,6 +27,23 @@
     return _paramTitles;
 }
 
+- (NSAttributedString *)attrStringWithIndex:(NSInteger)index
+{
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:@"MAVOL(5, 10, 20, 40)"];
+    
+    NSDictionary * dictionary = self.datas[index];
+    
+    [_paramTitles enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * stop) {
+        
+        NSNumber * madata = dictionary[obj];
+        UIColor * color = _colorKeys[obj];
+        NSString * string = [NSString stringWithFormat:@"   %@:%.2f", [obj stringByReplacingOccurrencesOfString:@"AVO" withString:@""], madata.floatValue];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : color}]];
+    }];
+    
+    return attrString;
+}
+
 - (void)setKLineArray:(NSArray <id<KLineAbstract, VolumeAbstract>> *)kLineArray
 {
     _param = @[@5, @10, @20, @40];

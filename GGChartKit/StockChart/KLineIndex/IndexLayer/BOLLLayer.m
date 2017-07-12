@@ -1,14 +1,14 @@
 //
-//  EMALayer.m
+//  BOLLLayer.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/7/10.
+//  Created by 黄舜 on 17/7/11.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "EMALayer.h"
+#import "BOLLLayer.h"
 
-@interface EMALayer ()
+@interface BOLLLayer ()
 
 @property (nonatomic, strong) NSArray <NSNumber *> *param;
 @property (nonatomic, strong) NSArray <NSString *> *paramTitles;
@@ -16,16 +16,11 @@
 
 @end
 
-@implementation EMALayer
-
-- (NSArray <NSString *> *)titles
-{
-    return _paramTitles;
-}
+@implementation BOLLLayer
 
 - (NSAttributedString *)attrStringWithIndex:(NSInteger)index
 {
-    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:@"EMA(5, 10, 20, 40)"];
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:@"BOLL(5)"];
     
     NSDictionary * dictionary = self.datas[index];
     
@@ -33,7 +28,7 @@
         
         NSNumber * madata = dictionary[obj];
         UIColor * color = _colorKeys[obj];
-        NSString * string = [NSString stringWithFormat:@"   %@:%.2f", obj, madata.floatValue];
+        NSString * string = [NSString stringWithFormat:@"   %@:%.2f", obj.uppercaseString, madata.floatValue];
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : color}]];
     }];
     
@@ -42,15 +37,14 @@
 
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray
 {
-    _param = @[@5, @10, @20, @40];
-    _paramTitles = @[@"EMA5", @"EMA10", @"EMA20", @"EMA40"];
-    _colorKeys = @{@"EMA5" : RGB(215, 161, 104), @"EMA10" : RGB(115, 190, 222), @"EMA20" : RGB(62, 121, 202), @"EMA40" : RGB(110, 226, 121)};
+    _paramTitles = @[@"m", @"t", @"b"];
+    _colorKeys = @{@"m" : RGB(215, 161, 104), @"t" : RGB(115, 190, 222), @"b" : RGB(62, 121, 202)};
     
     NSArray * kDataJson = [NSArray JsonFromObj:kLineArray];
     
-    self.datas = [[KLineIndexManager shareInstans] getEMAIndexWith:kDataJson
-                                                             param:_param
-                                                       priceString:@"close"];
+    self.datas = [[KLineIndexManager shareInstans] getBOLLIndexWith:kDataJson
+                                                              param:@5
+                                                        priceString:@"close"];
     
     [self registerLinesForDictionary:self.datas keys:_paramTitles colorForKeys:_colorKeys];
 }

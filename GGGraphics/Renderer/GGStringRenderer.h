@@ -22,4 +22,6 @@
 @property (nonatomic, assign) UIColor * fillColor;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
+@property (nonatomic, assign) NSAttributedString * attrString;  ///< 只在point的位置绘制了attrsting 不收其他属性
+
 @end

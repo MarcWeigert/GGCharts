@@ -10,11 +10,15 @@
 #import "GGChartDefine.h"
 #import "NSArray+Stock.h"
 #import "CrissCrossQueryView.h"
+
 #import "MALayer.h"
 #import "MAVOLLayer.h"
-
 #import "EMALayer.h"
+#import "BBIIndexLayer.h"
+#import "BOLLLayer.h"
+
 #import "MACDLayer.h"
+#import "MIKELayer.h"
 
 #import "NSObject+FireBlock.h"
 
@@ -49,8 +53,13 @@
 
 @property (nonatomic, assign) BOOL disPlay;
 
+#pragma mark - 指标
+
 @property (nonatomic, strong) BaseIndexLayer * kLineIndexLayer;
 @property (nonatomic, strong) BaseIndexLayer * volumIndexLayer;
+
+@property (nonatomic, strong) UILabel * lableKLineIndex;
+@property (nonatomic, strong) UILabel * lableVolumIndex;
 
 @end
 
@@ -59,7 +68,10 @@
 + (NSArray *)kLineIndexLayerClazz
 {
     return @[[MALayer class],
-             [EMALayer class]];
+             [EMALayer class],
+             [MIKELayer class],
+             [BOLLLayer class],
+             [BBIIndexLayer class]];
 }
 
 + (NSArray *)kVolumIndexLayerClazz
@@ -75,7 +87,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-
+        
         _disPlay = YES;
         _kLineIndexIndex = 0;
         _volumIndexIndex = 0;
@@ -95,6 +107,9 @@
         self.vAxisRenderer.width = 0.25;
         [self.stringLayer addRenderer:self.vAxisRenderer];
         
+        [self addSubview:self.lableVolumIndex];
+        [self addSubview:self.lableKLineIndex];
+        
         _kAxisSplit = 7;
         _kInterval = 3;
         _kLineCountVisibale = 60;
@@ -106,6 +121,9 @@
         _gridColor = RGB(225, 225, 225);
         _axisStringColor = C_HEX(0xaeb1b6);
         _currentZoom = -.001f;
+        
+        self.lableKLineIndex.font = [UIFont fontWithName:FONT_ARIAL size:8.5];
+        self.lableVolumIndex.font = [UIFont fontWithName:FONT_ARIAL size:8.5];
         
         self.queryPriceView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [self addSubview:self.queryPriceView];
@@ -148,8 +166,6 @@
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    
-    self.queryPriceView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -175,6 +191,8 @@
     
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         
+        [self updateSubLayer];
+        
         self.scrollView.scrollEnabled = YES;
         self.queryPriceView.hidden = YES;
         [self.queryPriceView clearLine];
@@ -186,7 +204,7 @@
         self.queryPriceView.hidden = NO;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
-    
+        
         CGPoint velocity = [recognizer locationInView:self];
         [self updateQueryLayerWithPoint:velocity];
     }
@@ -204,14 +222,16 @@
     
     if (CGRectContainsPoint(self.redLineLayer.frame, velocity)) {
         
-        yString = [NSString stringWithFormat:@"%.2f", [self.kLineScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth)]];
+        yString = [NSString stringWithFormat:@"%.2f", [self.kLineScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.redLineLayer.gg_top - self.queryPriceView.lineWidth)]];
     }
     else if (CGRectContainsPoint(self.redVolumLayer.frame, velocity)) {
-    
+        
         NSString * string = self.redVolumLayer.hidden ? @"" : @"万手";
         
         yString = [NSString stringWithFormat:@"%.2f%@", [self.volumScaler getPriceWithPoint:CGPointMake(0, velocity.y - self.queryPriceView.lineWidth - self.redVolumLayer.gg_top)], string];
     }
+    
+    [self updateIndexStringForIndex:index];
     
     NSString * title = [self getDateString:kData.ggKLineDate];
     [self.queryPriceView setYString:yString setXString:title];
@@ -252,7 +272,7 @@
         
         CGPoint touch1 = [recognizer locationOfTouch:0 inView:self];
         CGPoint touch2 = [recognizer locationOfTouch:1 inView:self];
-
+        
         // 放大开始记录位置等数据
         CGFloat center_x = (touch1.x + touch2.x) / 2.0f;
         _zoomCenterIndex = [self pointConvertIndex:self.scrollView.contentOffset.x + center_x];
@@ -260,7 +280,7 @@
         _zoomCenterSpacingLeft = shape.top.x - self.scrollView.contentOffset.x;
     }
     else if (recognizer.state == UIGestureRecognizerStateChanged) {
-    
+        
         CGFloat tmpZoom;
         tmpZoom = recognizer.scale / _currentZoom;
         _currentZoom = recognizer.scale;
@@ -346,7 +366,7 @@
         Class clazz = [KLineChart kLineIndexLayerClazz][index];
         
         _kLineIndexLayer = [[clazz alloc] init];
-        _kLineIndexLayer.frame = CGRectMake(0, 0, self.greenLineLayer.gg_width, self.greenLineLayer.gg_height);
+        _kLineIndexLayer.frame = self.redLineLayer.frame;
         [_kLineIndexLayer setKLineArray:_kLineArray];
         [self.scrollView.layer addSublayer:_kLineIndexLayer];
         
@@ -389,7 +409,31 @@
     [self baseConfigVolumLayer];
     
     [self updateSubLayer];
-    [self updateKLineGridLayer];
+    [self updateKLineGridLayerRenderders];
+}
+
+- (void)updateIndexStringForIndex:(NSInteger)index
+{
+    self.lableVolumIndex.attributedText = [self.volumIndexLayer attrStringWithIndex:index];
+    self.lableKLineIndex.attributedText = [self.kLineIndexLayer attrStringWithIndex:index];
+}
+
+#pragma mark - rect
+
+#define INDEX_STRING_INTERVAL   12
+#define KLINE_VOLUM_INTERVAL    15
+
+- (CGRect)kLineFrame
+{
+    return CGRectMake(0, INDEX_STRING_INTERVAL, self.frame.size.width, self.frame.size.height * .6f - INDEX_STRING_INTERVAL);
+}
+
+- (CGRect)volumFrame
+{
+    CGFloat highKLine = self.kLineFrame.size.height;
+    CGFloat volumTop = INDEX_STRING_INTERVAL * 2 + highKLine + KLINE_VOLUM_INTERVAL;
+    
+    return CGRectMake(0, volumTop, self.redLineLayer.gg_width, self.frame.size.height - volumTop);
 }
 
 #pragma mark - 基础设置层
@@ -397,8 +441,8 @@
 /** K线 */
 - (void)baseConfigKLineLayer
 {
-    self.redLineLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * .6f);
-    self.kLineScaler.rect = self.redLineLayer.frame;
+    self.redLineLayer.frame = self.kLineFrame;
+    self.kLineScaler.rect = CGRectMake(0, 0, self.redLineLayer.gg_width, self.redLineLayer.gg_height);
     self.kLineScaler.shapeWidth = self.kLineScaler.rect.size.width / _kLineCountVisibale - _kInterval;
     self.kLineScaler.shapeInterval = _kInterval;
     
@@ -414,25 +458,27 @@
     self.scrollView.contentSize = contentSize;
     self.backScrollView.contentSize = contentSize;
     
-    // K线
-    self.redLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
-    self.greenLineLayer.frame = CGRectMake(0, 0, contentSize.width, contentSize.height);
-    
+    // K线与K线指标大小
+    self.redLineLayer.gg_size = contentSize;
+    self.greenLineLayer.frame = self.redLineLayer.frame;
     self.kLineIndexLayer.frame = self.redLineLayer.frame;
     
+    self.lableKLineIndex.frame = CGRectMake(0, 0, self.gg_width, INDEX_STRING_INTERVAL);
+    self.queryPriceView.frame = CGRectMake(0, self.redLineLayer.gg_top, self.gg_width, self.gg_height - self.redLineLayer.gg_top);
     [CATransaction commit];
 }
 
 /** 成交量 */
 - (void)baseConfigVolumLayer
 {
-    CGFloat volumKLineSep = 15;
-    CGRect volumRect = CGRectMake(0, self.redLineLayer.gg_bottom + volumKLineSep, self.kLineScaler.contentSize.width, self.frame.size.height - self.redLineLayer.gg_bottom - volumKLineSep);;
+    CGRect volumRect = self.volumFrame;
     
     [self setVolumRect:volumRect];
     self.volumScaler.rect = CGRectMake(0, 0, self.redVolumLayer.gg_width, self.redVolumLayer.gg_height);
     self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
     [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
+    
+    self.lableVolumIndex.frame = CGRectMake(0, self.redLineLayer.gg_bottom + KLINE_VOLUM_INTERVAL, self.gg_width, INDEX_STRING_INTERVAL);
     
     // 量能区域的指标
     _volumIndexLayer.frame = volumRect;
@@ -480,10 +526,11 @@
 }
 
 /** 更新k线背景层 */
-- (void)updateKLineGridLayer
+- (void)updateKLineGridLayerRenderders
 {
     // 纵向分割高度
-    CGFloat v_spe = self.greenLineLayer.gg_height / _kAxisSplit;
+    CGFloat v_spe = self.redLineLayer.gg_height / _kAxisSplit;
+    __weak KLineChart * weakSelf = self;
     
     // 成交量网格设置
     self.volumGrid.grid = GGGridRectMake(self.redVolumLayer.frame, v_spe, 0);
@@ -491,10 +538,21 @@
     // 成交量Y轴设置
     GGLine leftLine = GGLeftLineRect(self.redVolumLayer.frame);
     self.vAxisRenderer.axis = GGAxisLineMake(leftLine, 0, v_spe);
+    [self.vAxisRenderer setStringBlock:^NSString *(CGPoint point, NSInteger index, NSInteger max) {
+        if (index == 0) { return @""; }
+        point.y = point.y - weakSelf.redVolumLayer.gg_top;
+        NSString * string = weakSelf.redVolumLayer.hidden ? @"" : @"万手";
+        return [NSString stringWithFormat:@"%.2f%@", [weakSelf.volumScaler getPriceWithPoint:point], string];
+    }];
     
     // K线Y轴设置
-    leftLine = GGLeftLineRect(self.greenLineLayer.frame);
+    leftLine = GGLeftLineRect(self.redLineLayer.frame);
     self.kAxisRenderer.axis = GGAxisLineMake(leftLine, 0, GGLengthLine(leftLine) / _kAxisSplit);
+    [self.kAxisRenderer setStringBlock:^NSString *(CGPoint point, NSInteger index, NSInteger max) {
+        if (index == 0) { return @""; }
+        point.y = point.y - weakSelf.redLineLayer.gg_top;
+        return [NSString stringWithFormat:@"%.2f", [weakSelf.kLineScaler getPriceWithPoint:point]];
+    }];
     
     // X横轴设置
     self.axisRenderer.axis = GGAxisLineMake(GGBottomLineRect(self.greenLineLayer.frame), 1.5, 0);
@@ -544,6 +602,8 @@
     // 更新视图
     [self updateKLineLayerWithRange:range];
     [self updateVolumLayerWithRange:range];
+    
+    [self updateIndexStringForIndex:NSMaxRange(range) - 1];
 }
 
 /** K线图实时更新 */
@@ -579,9 +639,6 @@
     self.greenLineLayer.path = refGreen;
     CGPathRelease(refGreen);
     
-    // 更新k线Y轴
-    self.kAxisRenderer.aryString = [NSArray splitWithMax:max min:min split:_kAxisSplit + 1 format:@"%.2f" attached:@""];
-    self.vAxisRenderer.range = NSMakeRange(1, _kAxisSplit);
     [self.stringLayer setNeedsDisplay];
 }
 
@@ -612,12 +669,6 @@
     [self.volumScaler updateScaler];
     [self updateVolumLayer:range];
     
-    // 更新成交量Y轴
-    CGFloat v_spe = self.greenLineLayer.gg_height / _kAxisSplit;
-    CGFloat high = CGRectGetHeight(self.redVolumLayer.frame);
-    NSUInteger volumCount = high / v_spe;
-    self.vAxisRenderer.aryString = [NSArray splitWithMax:max min:min split:volumCount format:@"%.2f" attached:attached];
-    self.vAxisRenderer.range = NSMakeRange(1, volumCount - 1);
     [self.stringLayer setNeedsDisplay];
 }
 
@@ -625,6 +676,9 @@
 
 GGLazyGetMethod(CAShapeLayer, redLineLayer);
 GGLazyGetMethod(CAShapeLayer, greenLineLayer);
+
+GGLazyGetMethod(UILabel, lableKLineIndex);
+GGLazyGetMethod(UILabel, lableVolumIndex);
 
 GGLazyGetMethod(GGGridRenderer, kLineGrid);
 GGLazyGetMethod(GGGridRenderer, volumGrid);

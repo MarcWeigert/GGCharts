@@ -135,6 +135,7 @@
         _gridColor = RGB(225, 225, 225);
         _axisStringColor = C_HEX(0xaeb1b6);
         _currentZoom = -.001f;
+        _kLineProportion = .6f;
         
         self.lableKLineIndex.font = [UIFont fontWithName:FONT_ARIAL size:8.5];
         self.lableVolumIndex.font = [UIFont fontWithName:FONT_ARIAL size:8.5];
@@ -523,7 +524,7 @@ static void * kLineTitle = "keyTitle";
 
 - (CGRect)kLineFrame
 {
-    return CGRectMake(0, INDEX_STRING_INTERVAL, self.frame.size.width, self.frame.size.height * .6f - INDEX_STRING_INTERVAL);
+    return CGRectMake(0, INDEX_STRING_INTERVAL, self.frame.size.width, self.frame.size.height * _kLineProportion - INDEX_STRING_INTERVAL);
 }
 
 - (CGRect)volumFrame

@@ -38,6 +38,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) NSInteger kLineIndexIndex;
 @property (nonatomic, assign) NSInteger volumIndexIndex;
 
+@property (nonatomic, assign) CGFloat kLineProportion;  ///< 主图占比 默认 .6f
 @property (nonatomic, assign, readonly) KLineStyle kStyle;        ///< k线日期
 
 /** 设置k线以及类型 */

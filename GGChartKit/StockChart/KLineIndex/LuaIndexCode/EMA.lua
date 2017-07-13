@@ -1,43 +1,43 @@
--- BOLL 指标
+-- EMA 指标
 -- @param list K线数组
 -- @param getMethod 计算字段
 -- @param param {5, 10, 20, 40}
 
 function EMAIndex(aryList, getMethod, param)
-	
-	local listMapIndex = {}	
+
+	local listMapIndex = {}
 	local titles = {}
-	
+
 	for i = 1, #param, 1 do
-	
+
 		local title = "EMA"..param[i]
 		local cycle = param[i]
-		local funcMA = EMA(getMethod, cycle)
+		local funcEMA = EMA(getMethod, cycle, aryList)
 		local aryMANIndex = {}
-		
+
 		titles[i] = title
 		listMapIndex[title] = aryMANIndex
-		
+
 		for j = 1, #aryList, 1 do
-		
-			aryMANIndex[j] = funcMA(j, aryList)
+
+			aryMANIndex[j] = funcEMA(j)
 		end
-	end	
-	
+	end
+
 	local aryEMAIndex = {}
-			
+
 	for j = 1, #aryList, 1 do
-		
+
 		local ma = {}
-				
+
 		for i = 1, #titles, 1 do
-		
+
 			local title = titles[i]
 			local aryMaNIndex = listMapIndex[title]
-				
+
 			ma[title] = aryMaNIndex[j]
-		end	
-		
+		end
+
 		aryEMAIndex[j] = ma
 	end
 

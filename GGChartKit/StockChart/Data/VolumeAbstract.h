@@ -13,7 +13,7 @@
 
 - (CGFloat)ggVolume;                    ///< 成交量
 
-- (NSString *)ggVolumeTitle;            ///< 成交量标题
+- (NSDate *)ggVolumeDate;            ///< 成交量标题
 
 @end
 

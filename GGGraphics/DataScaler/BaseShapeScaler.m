@@ -10,4 +10,9 @@
 
 @implementation BaseShapeScaler
 
+- (CGFloat)interval
+{
+    return _shapeInterval + _shapeWidth / 2;
+}
+
 @end

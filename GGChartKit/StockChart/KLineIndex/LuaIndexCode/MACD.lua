@@ -5,33 +5,34 @@
 function MACDIndex(aryList, getMethod, param)
 
 	aryMacdIndex = {}
-	
+
 	short = param["SHORT"]
 	long = param["LONG"]
-	m = param["M"]
-	
-	funcEMAShort = EMA(getMethod, short)
-	funcEMALong = EMA(getMethod, long)
-	funcEMAM = EMA("DIFF", m)
-	
+	m =param["M"]
+
+	local funcEMAShort = EMA(getMethod, short, aryList)
+	local funcEMALong = EMA(getMethod, long, aryList)
+
 	for i = 1, #aryList, 1 do
-	
+
 		macd = {}
-		macd["DIFF"] = funcEMAShort(i, aryList) - funcEMALong(i, aryList)
+		macd["DIFF"] = funcEMAShort(i) - funcEMALong(i)
 		aryMacdIndex[i] = macd
 	end
-	
+
+	funcEMAM = EMA("DIFF", m, aryMacdIndex)
+
 	for i = 1, #aryList, 1 do
-		
+
 		macd = aryMacdIndex[i]
-		macd["DEA"] = funcEMAM(i, aryMacdIndex)
+		macd["DEA"] = funcEMAM(i)
 	end
-	
+
 	for i = 1, #aryList, 1 do
-		
+
 		macd = aryMacdIndex[i]
 		macd["STICK"] = 2 * (macd["DIFF"] - macd["DEA"])
 	end
-	
+
 	return aryMacdIndex
 end

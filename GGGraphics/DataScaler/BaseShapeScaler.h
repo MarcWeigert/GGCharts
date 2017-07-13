@@ -15,4 +15,6 @@
 
 @property (nonatomic, assign, readonly) CGSize contentSize;    ///< 大小区域
 
+@property (nonatomic, assign, readonly) CGFloat interval;   ///< 两个形之间中心间距
+
 @end

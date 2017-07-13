@@ -11,9 +11,15 @@
 #import "VolumeAbstract.h"
 #import "QueryViewAbstract.h"
 
+typedef enum : NSUInteger {
+    KLineTypeDay,       ///< 日k 一个月显示一根柱线
+    KLineTypeWeek,      ///< 周k 三个月显示一根柱线
+    KLineTypeMonth,     ///< 年k 一年显示一根柱线
+} KLineStyle;
+
 @interface KLineChart : BaseStockChart
 
-@property (nonatomic, strong) NSArray <id <KLineAbstract, VolumeAbstract, QueryViewAbstract> > * kLineArray;    ///< k线数组
+@property (nonatomic, readonly) NSArray <id <KLineAbstract, VolumeAbstract, QueryViewAbstract> > * kLineArray;    ///< k线数组
 
 @property (nonatomic, assign) NSInteger kLineCountVisibale;     ///< 一屏幕显示多少根k线     默认60
 @property (nonatomic, assign) NSInteger kMaxCountVisibale;      ///< 屏幕最多显示多少k线     默认120
@@ -31,6 +37,11 @@
 
 @property (nonatomic, assign) NSInteger kLineIndexIndex;
 @property (nonatomic, assign) NSInteger volumIndexIndex;
+
+@property (nonatomic, assign, readonly) KLineStyle kStyle;        ///< k线日期
+
+/** 设置k线以及类型 */
+- (void)setKLineArray:(NSArray<id<KLineAbstract,VolumeAbstract,QueryViewAbstract>> *)kLineArray type:(KLineStyle)kType;
 
 /** 更新K线图 */
 - (void)updateChart;

@@ -96,6 +96,10 @@
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
 		2B7777BB1EE829A500C99F55 /* GGDataScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B51EE829A500C99F55 /* GGDataScaler.m */; };
 		2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */; };
+		2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */; };
+		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
+		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
+		2B79951F1F1772E200E73DFC /* HorizontalKLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */; };
 		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
 		2B9788721F09D4E2002A2A3C /* StockQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788441F09D4E2002A2A3C /* StockQueryView.m */; };
 		2B9788731F09D4E2002A2A3C /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788461F09D4E2002A2A3C /* UICountingLabel.m */; };
@@ -295,6 +299,12 @@
 		2B7777B81EE829A500C99F55 /* NSValue+GGValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+GGValue.h"; sourceTree = "<group>"; };
 		2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+GGValue.m"; sourceTree = "<group>"; };
 		2B7777BA1EE829A500C99F55 /* ToolDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolDefine.h; sourceTree = "<group>"; };
+		2B7995161F1746EE00E73DFC /* NSDate+GGDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GGDate.h"; sourceTree = "<group>"; };
+		2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GGDate.m"; sourceTree = "<group>"; };
+		2B7995191F175D6A00E73DFC /* month_k_data_600887.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = month_k_data_600887.json; sourceTree = "<group>"; };
+		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
+		2B79951D1F1772E200E73DFC /* HorizontalKLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalKLineViewController.h; sourceTree = "<group>"; };
+		2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalKLineViewController.m; sourceTree = "<group>"; };
 		2B8B70FD1EF76066002FDC09 /* BaseScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScaler.h; sourceTree = "<group>"; };
 		2B8B70FE1EF76066002FDC09 /* BaseScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScaler.m; sourceTree = "<group>"; };
 		2B9788411F09D4E2002A2A3C /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
@@ -368,6 +378,8 @@
 			children = (
 				2B73B0011F0B619E0085095C /* KLineViewController.h */,
 				2B73B0021F0B619E0085095C /* KLineViewController.m */,
+				2B79951D1F1772E200E73DFC /* HorizontalKLineViewController.h */,
+				2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */,
 				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
 				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
 				2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */,
@@ -586,6 +598,8 @@
 			children = (
 				2B6B238E1F0C741B001D2B04 /* NSArray+Stock.h */,
 				2B6B238F1F0C741B001D2B04 /* NSArray+Stock.m */,
+				2B7995161F1746EE00E73DFC /* NSDate+GGDate.h */,
+				2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */,
 				2B6B23901F0C741B001D2B04 /* NSObject+FireBlock.h */,
 				2B6B23911F0C741B001D2B04 /* NSObject+FireBlock.m */,
 			);
@@ -777,6 +791,8 @@
 				2B97888E1F0A39FE002A2A3C /* ListVC.m */,
 				2B97888F1F0A39FE002A2A3C /* main.m */,
 				2B73B0041F0B61D20085095C /* 600887_kdata.json */,
+				2B7995191F175D6A00E73DFC /* month_k_data_600887.json */,
+				2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */,
 				2B9788901F0A39FE002A2A3C /* stock_data.json */,
 				2B9788911F0A39FE002A2A3C /* time_chart_data.json */,
 				2B73AFF21F0B2F8E0085095C /* GGChartsPrefix.pch */,
@@ -845,7 +861,9 @@
 				2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */,
 				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
 				2B3034251F111E1000706575 /* BOLL.lua in Resources */,
+				2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */,
 				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
+				2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */,
 				2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */,
 				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
 				2B3034241F111E1000706575 /* BBI.lua in Resources */,
@@ -927,6 +945,7 @@
 				2B73AFFD1F0B451B0085095C /* DKLineScaler.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
 				2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */,
+				2B79951F1F1772E200E73DFC /* HorizontalKLineViewController.m in Sources */,
 				2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
@@ -960,6 +979,7 @@
 				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */,
 				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
+				2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */,
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,
 				2B9788751F09D4E2002A2A3C /* BaseCountChart.m in Sources */,
 				2B2722831F0F550D00E4A295 /* ldump.c in Sources */,

@@ -19,11 +19,7 @@
 
 - (CGFloat)ggLow;                       ///< 最低价
 
-- (BOOL)isShowTitle;                    ///< 是否显示标题
-
 - (NSDate *)ggKLineDate;                ///< k线时间
-
-- (NSString *)ggKLineTitle;             ///< 标题
 
 @end
 

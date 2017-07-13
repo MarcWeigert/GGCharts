@@ -23,9 +23,17 @@
 #import "RSILayer.h"
 #import "ATRLayer.h"
 
+#import "NSDate+GGDate.h"
 #import "NSObject+FireBlock.h"
 
+#include <objc/runtime.h>
+
 #define FONT_ARIAL	@"ArialMT"
+#define SECOND                                  (1)
+#define MINUTE                                  (60)
+#define HOUR                                    (60 * 60)
+#define DAY                                     (24 * 60 * 60)
+#define WEEK                                    (7 * 24 * 60 * 60)
 
 @interface KLineChart () <UIGestureRecognizerDelegate>
 
@@ -191,6 +199,7 @@
 
 #pragma mark - K线手势
 
+/** 长按十字星 */
 - (void)longPressViewOnGesturer:(UILongPressGestureRecognizer *)recognizer
 {
     self.scrollView.scrollEnabled = NO;
@@ -216,6 +225,7 @@
     }
 }
 
+/** 更新十字星查价框 */
 - (void)updateQueryLayerWithPoint:(CGPoint)velocity
 {
     CGPoint velocityInScroll = [self.scrollView convertPoint:velocity fromView:self.queryPriceView];
@@ -248,6 +258,7 @@
     [self.queryPriceView setCenterPoint:CGPointMake(queryVelocity.x, velocity.y)];
 }
 
+/** 日期转字符串 */
 - (NSString *)getDateString:(NSDate *)date
 {
     NSDateFormatter * showFormatter = [[NSDateFormatter alloc] init];
@@ -262,6 +273,7 @@
     return idx >= self.kLineScaler.kLineObjAry.count ? self.kLineScaler.kLineObjAry.count - 1 : idx;
 }
 
+/** 放大手势 */
 -(void)pinchesViewOnGesturer:(UIPinchGestureRecognizer *)recognizer
 {
     self.scrollView.scrollEnabled = NO;     // 放大禁用滚动手势
@@ -299,11 +311,12 @@
         
         // 极大值极小值
         _kLineCountVisibale = showNum;
-        _kLineCountVisibale = _kLineCountVisibale < 20 ? 20 : _kLineCountVisibale;
-        _kLineCountVisibale = _kLineCountVisibale > 120 ? 120 : _kLineCountVisibale;
+        _kLineCountVisibale = _kLineCountVisibale < _kMinCountVisibale ? _kMinCountVisibale : _kLineCountVisibale;
+        _kLineCountVisibale = _kLineCountVisibale > _kMaxCountVisibale ? _kMaxCountVisibale : _kLineCountVisibale;
         
         [self kLineSubLayerRespond];
         
+        // 定位中间的k线
         GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
         CGFloat offsetX = shape.top.x - _zoomCenterSpacingLeft;
         
@@ -373,6 +386,7 @@
         
         _kLineIndexLayer = [[clazz alloc] init];
         _kLineIndexLayer.frame = self.redLineLayer.frame;
+        _kLineIndexLayer.gg_width = self.kLineScaler.contentSize.width;
         [_kLineIndexLayer setKLineArray:_kLineArray];
         [self.scrollView.layer addSublayer:_kLineIndexLayer];
         
@@ -385,10 +399,9 @@
 /** 设置k线方法 */
 - (void)setKLineArray:(NSArray<id<KLineAbstract, VolumeAbstract, QueryViewAbstract>> *)kLineArray
 {
-    _kLineArray = kLineArray;
+    _kLineArray = [kLineArray copy];
     
     [_kLineIndexLayer setKLineArray:kLineArray];
-    
     [_volumIndexLayer setKLineArray:kLineArray];
     
     [self.kLineScaler setObjArray:kLineArray
@@ -396,6 +409,85 @@
                          getClose:@selector(ggClose)
                           getHigh:@selector(ggHigh)
                            getLow:@selector(ggLow)];
+
+    [self updateKLineTitles:_kLineArray];
+}
+
+/** 设置k线以及类型 */
+- (void)setKLineArray:(NSArray<id<KLineAbstract,VolumeAbstract,QueryViewAbstract>> *)kLineArray type:(KLineStyle)kType
+{
+    _kStyle = kType;
+    
+    [self setKLineArray:kLineArray];
+}
+
+#pragma mark - 背景网格层文字与轴线设置
+
+static void * kLineTitle = "keyTitle";
+
+- (void)updateKLineTitles:(NSArray<id<KLineAbstract, VolumeAbstract, QueryViewAbstract>> *)kLineArray
+{
+    if (_kStyle == KLineTypeDay) {
+ 
+        __block NSInteger flag = 0;
+        
+        [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
+            
+            NSString * title = nil;
+            
+            if (flag != obj.ggKLineDate.month) {
+                
+                title = [obj.ggKLineDate stringWithFormat:@"MM"];
+                flag = obj.ggKLineDate.month;
+            }
+            
+            if (title.integerValue == 1) {
+                
+                title = [obj.ggKLineDate stringWithFormat:@"yyyy/MM"];
+            }
+            
+            objc_setAssociatedObject(obj, kLineTitle, title, OBJC_ASSOCIATION_COPY);
+        }];
+    }
+    else if (_kStyle == KLineTypeWeek) {
+    
+        __block NSInteger flag = -2;
+        
+        [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
+            
+            NSString * title = nil;
+            
+            if (2 < labs(flag - obj.ggKLineDate.month)) {
+                
+                title = [obj.ggKLineDate stringWithFormat:@"MM"];
+                flag = obj.ggKLineDate.month;
+            }
+            
+            if (title.integerValue == 1) {
+                
+                title = [obj.ggKLineDate stringWithFormat:@"yyyy/MM"];
+            }
+            
+            objc_setAssociatedObject(obj, kLineTitle, title, OBJC_ASSOCIATION_COPY);
+        }];
+    }
+    else if (_kStyle == KLineTypeMonth) {
+    
+        __block NSInteger flag = 0;
+        
+        [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
+            
+            NSString * title = nil;
+            
+            if (flag != obj.ggKLineDate.year) {
+                
+                title = [obj.ggKLineDate stringWithFormat:@"yyyy/MM"];
+                flag = obj.ggKLineDate.year;
+            }
+
+            objc_setAssociatedObject(obj, kLineTitle, title, OBJC_ASSOCIATION_COPY);
+        }];
+    }
 }
 
 #pragma mark - 更新视图
@@ -439,12 +531,12 @@
     CGFloat highKLine = self.kLineFrame.size.height;
     CGFloat volumTop = INDEX_STRING_INTERVAL * 2 + highKLine + KLINE_VOLUM_INTERVAL;
     
-    return CGRectMake(0, volumTop, self.redLineLayer.gg_width, self.frame.size.height - volumTop);
+    return CGRectMake(0, volumTop, self.kLineScaler.contentSize.width, self.frame.size.height - volumTop);
 }
 
 #pragma mark - 基础设置层
 
-/** K线 */
+/** K线(主图)frame */
 - (void)baseConfigKLineLayer
 {
     self.redLineLayer.frame = self.kLineFrame;
@@ -453,6 +545,7 @@
     self.kLineScaler.shapeInterval = _kInterval;
     
     CGSize contentSize = self.kLineScaler.contentSize;
+    contentSize.width = contentSize.width < self.gg_width ? self.gg_width : contentSize.width;
     
     // 设置滚动位置关闭隐士动画
     [CATransaction begin];
@@ -468,13 +561,14 @@
     self.redLineLayer.gg_size = contentSize;
     self.greenLineLayer.frame = self.redLineLayer.frame;
     self.kLineIndexLayer.frame = self.redLineLayer.frame;
+    self.kLineIndexLayer.gg_width = self.kLineScaler.contentSize.width;
     
     self.lableKLineIndex.frame = CGRectMake(0, 0, self.gg_width, INDEX_STRING_INTERVAL);
     self.queryPriceView.frame = CGRectMake(0, self.redLineLayer.gg_top, self.gg_width, self.gg_height - self.redLineLayer.gg_top);
     [CATransaction commit];
 }
 
-/** 成交量 */
+/** 成交量(复图)frame */
 - (void)baseConfigVolumLayer
 {
     CGRect volumRect = self.volumFrame;
@@ -490,7 +584,7 @@
     _volumIndexLayer.frame = volumRect;
 }
 
-/** 设置渲染器 */
+/** 基础配置渲染器 */
 - (void)baseConfigRendererAndLayer
 {
     // 成交量颜色设置
@@ -531,7 +625,7 @@
     self.kLineGrid.color = _gridColor;
 }
 
-/** 更新k线背景层 */
+/** 更新k线背景层绘制内容 */
 - (void)updateKLineGridLayerRenderders
 {
     // 纵向分割高度
@@ -539,7 +633,9 @@
     __weak KLineChart * weakSelf = self;
     
     // 成交量网格设置
-    self.volumGrid.grid = GGGridRectMake(self.redVolumLayer.frame, v_spe, 0);
+    CGRect volumFrame = self.redVolumLayer.frame;
+    volumFrame.size.width = self.redVolumLayer.gg_width < self.gg_width ? self.gg_width : self.redVolumLayer.gg_width;
+    self.volumGrid.grid = GGGridRectMake(volumFrame, v_spe, 0);
     
     // 成交量Y轴设置
     GGLine leftLine = GGLeftLineRect(self.redVolumLayer.frame);
@@ -569,10 +665,12 @@
     
     [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
         
-        if ([obj isShowTitle]) {
+        NSString * title = objc_getAssociatedObject(obj, kLineTitle);
+        
+        if (title.length) {
             
             CGFloat x = self.kLineScaler.kShapes[idx].top.x;
-            [self.axisRenderer addString:obj.ggKLineTitle point:CGPointMake(x, CGRectGetMaxY(self.greenLineLayer.frame))];
+            [self.axisRenderer addString:title point:CGPointMake(x, CGRectGetMaxY(self.greenLineLayer.frame))];
             
             if (idx == 0) { return; }
             
@@ -582,6 +680,46 @@
             [self.kLineGrid addLine:vline];
         }
     }];
+    
+    // 如果k线不足则手动绘制网格置末尾
+    CGSize size = self.kLineScaler.contentSize;
+    
+    if (size.width + self.greenLineLayer.gg_left < self.gg_width) {
+        
+        CGFloat drawX = size.width + self.greenLineLayer.gg_left;
+        NSDate * before = [self.kLineArray.lastObject ggKLineDate];
+        
+        while (drawX < self.gg_width) {
+            
+            NSDate * date;
+            NSInteger count;
+            
+            if (_kStyle == KLineTypeDay) {
+                date = [before dateAddMonthScalerFirstDay:1];
+                count = [before interValDayWithoutWeekEndDay:date];
+            }else if (_kStyle == KLineTypeWeek) {
+                date = [before dateAddMonthScalerFirstDay:3];
+                count = [before interValWeek:date];
+            }else if (_kStyle == KLineTypeMonth) {
+                date = [before dateAddYearScalerFistMonthDay:1];
+                count = [before interValMonth:date];
+            }
+            
+            drawX += count * self.kLineScaler.interval;
+            
+            NSString * title = [date stringWithFormat:@"MM"];
+            title = date.month == 1 || _kStyle == KLineTypeMonth ? [date stringWithFormat:@"yyyy/MM"] : title;
+            
+            [self.axisRenderer addString:title point:CGPointMake(drawX, CGRectGetMaxY(self.greenLineLayer.frame))];
+            
+            GGLine kline = [self lineWithX:drawX rect:self.greenLineLayer.frame];
+            GGLine vline = [self lineWithX:drawX rect:self.redVolumLayer.frame];
+            [self.kLineGrid addLine:kline];
+            [self.kLineGrid addLine:vline];
+            
+            before = date;
+        }
+    }
     
     [self.kLineBackLayer setNeedsDisplay];
 }

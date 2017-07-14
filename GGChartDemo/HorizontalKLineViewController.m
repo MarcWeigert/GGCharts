@@ -22,7 +22,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.view.backgroundColor = RGB(31, 33, 45);
+    self.view.backgroundColor = RGB(255, 255, 255);
     
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSArray *stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
@@ -37,6 +37,9 @@
     
     KLineChart * kChart = [[KLineChart alloc] initWithFrame:CGRectMake(20, 20, self.view.frame.size.height - 40, self.view.frame.size.width - 40)];
     [kChart setKLineArray:datas type:KLineTypeDay];
+    kChart.kLineCountVisibale = 90;
+    kChart.kMinCountVisibale = 40;
+    kChart.kMaxCountVisibale = 190;
     kChart.kLineProportion = .7f;
     [kChart updateChart];
     

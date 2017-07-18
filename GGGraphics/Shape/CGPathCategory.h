@@ -27,6 +27,16 @@ CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular);
 CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
 
 /**
+ * 绘制网格
+ */
+CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid);
+
+/**
+ * 绘制多边形
+ */
+CG_EXTERN void GGPathAddGGSide(CGMutablePathRef ref, GGSide side, CGFloat radian);
+
+/**
  * 绘制折线
  */
 CG_EXTERN void GGPathAddRangePoints(CGMutablePathRef ref, CGPoint * points, NSRange range);

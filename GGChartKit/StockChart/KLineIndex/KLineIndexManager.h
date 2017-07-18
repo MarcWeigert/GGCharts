@@ -149,4 +149,18 @@
                lowPriceString:(NSString *)low
              closePriceString:(NSString *)close;
 
+/**
+ * 根据数组数据结构计算TD指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param 12
+ *
+ * @return 计算结果 @[@{@"ar" : , @"atr" :}...]
+ */
+- (NSArray *)getTDIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                      param:(NSNumber *)param
+            highPriceString:(NSString *)high
+             lowPriceString:(NSString *)low
+           closePriceString:(NSString *)close;
+
 @end

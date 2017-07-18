@@ -87,6 +87,38 @@ CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector)
 }
 
 /**
+ * 绘制网格
+ */
+CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid)
+{
+    CGFloat x = grid.rect.origin.x;
+    CGFloat y = grid.rect.origin.y;
+    
+    NSInteger h_count = grid.y_dis == 0 ? 0 : CGRectGetHeight(grid.rect) / grid.y_dis + 1;    ///< 横线个数
+    NSInteger v_count = grid.x_dis == 0 ? 0 : CGRectGetWidth(grid.rect) / grid.x_dis + 1;     ///< 纵线个数
+    
+    for (int i = 1; i < h_count; i++) {
+        
+        CGPoint start = CGPointMake(x, y + grid.y_dis * i);
+        CGPoint end = CGPointMake(CGRectGetMaxX(grid.rect), y + grid.y_dis * i);
+        
+        CGPathMoveToPoint(ref, NULL, start.x, start.y);
+        CGPathAddLineToPoint(ref, NULL, end.x, end.y);
+    }
+    
+    for (int i = 1; i < v_count; i++) {
+        
+        CGPoint start = CGPointMake(x + grid.x_dis * i, y);
+        CGPoint end = CGPointMake(x + grid.x_dis * i, CGRectGetMaxY(grid.rect));
+        
+        CGPathMoveToPoint(ref, NULL, start.x, start.y);
+        CGPathAddLineToPoint(ref, NULL, end.x, end.y);
+    }
+    
+    CGPathAddRect(ref, NULL, grid.rect);
+}
+
+/**
  * 绘制k线形
  * @param ref 路径元素
  * @param kShape k线形态
@@ -98,6 +130,24 @@ CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape)
     CGPathAddRect(ref, NULL, kShape.rect);
     CGPathMoveToPoint(ref, NULL, kShape.end.x, CGRectGetMaxY(kShape.rect));
     CGPathAddLineToPoint(ref, NULL, kShape.end.x, kShape.end.y);
+}
+
+/**
+ * 绘制多边形
+ */
+CG_EXTERN void GGPathAddGGSide(CGMutablePathRef ref, GGSide side, CGFloat radian)
+{
+    CGPathMoveToPoint(ref, NULL, side.center.x, side.center.y - side.radius);
+    
+    for (NSInteger i = 1; i <= side.side; i++) {
+        
+        NSInteger x = side.center.x - side.radius * sin(2 * M_PI * i / side.side + radian);
+        NSInteger y = side.center.y - side.radius * cos(2 * M_PI * i / side.side + radian);
+        
+        CGPathAddLineToPoint(ref, NULL, x, y);
+    }
+    
+    CGPathAddLineToPoint(ref, NULL, side.center.x, side.center.y - side.radius);
 }
 
 /**

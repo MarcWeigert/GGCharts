@@ -26,13 +26,10 @@ NSString * const GGKeyPathContentOffset = @"contentOffset";
         _stringLayer = [[GGCanvas alloc] init];
         _stringLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         
-        _kLineBackLayer = [[GGCanvas alloc] init];
-        
         _backScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _backScrollView.showsHorizontalScrollIndicator = NO;
         _backScrollView.showsVerticalScrollIndicator = NO;
         _backScrollView.userInteractionEnabled = NO;
-        [_backScrollView.layer addSublayer:_kLineBackLayer];
         [self addSubview:_backScrollView];
         
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];

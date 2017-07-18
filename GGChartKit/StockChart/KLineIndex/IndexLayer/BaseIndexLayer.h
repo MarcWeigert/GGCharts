@@ -10,10 +10,14 @@
 #import "KLineIndexManager.h"
 #import "NSArray+Stock.h"
 #import "GGChartDefine.h"
+#import "DKLineScaler.h"
+#import "GGGraphics.h"
 
-@interface BaseIndexLayer : CALayer
+@interface BaseIndexLayer : GGCanvas
 
 @property (nonatomic, strong) NSArray <NSDictionary *> *datas;
+
+@property (nonatomic, weak) DKLineScaler * kScaler;
 
 /**
  * 绘制折线

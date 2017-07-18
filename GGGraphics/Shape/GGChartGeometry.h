@@ -187,7 +187,7 @@ GGAxisLineMake(GGLine line, CGFloat over, CGFloat sep) {
 
 struct GGArrow
 {
-    CGPoint center;
+    CGPoint vertex;
     CGFloat edge;
     CGFloat m_pi;
 };
@@ -196,7 +196,7 @@ typedef struct GGArrow GGArrow;
 CG_INLINE GGArrow
 GGArrowMake(CGFloat x, CGFloat y, CGFloat edge, CGFloat m_pi) {
     GGArrow arrow;
-    arrow.center = CGPointMake(x, y);
+    arrow.vertex = CGPointMake(x, y);
     arrow.edge = edge;
     arrow.m_pi = m_pi;
     return arrow;
@@ -205,7 +205,7 @@ GGArrowMake(CGFloat x, CGFloat y, CGFloat edge, CGFloat m_pi) {
 CG_INLINE GGArrow
 GGArrowCenterMake(CGPoint center, CGFloat edge, CGFloat m_pi) {
     GGArrow arrow;
-    arrow.center = center;
+    arrow.vertex = center;
     arrow.edge = edge;
     arrow.m_pi = m_pi;
     return arrow;
@@ -333,9 +333,19 @@ GGAnnularMake(CGFloat x, CGFloat y, CGFloat start, CGFloat end, CGFloat radius, 
 struct GGSide {
     CGFloat radius;
     CGPoint center;
-    int side;
+    NSInteger side;
 };
 typedef struct GGSide GGSide;
+
+CG_INLINE GGSide
+GGSideMake(CGPoint center, CGFloat radius, NSInteger side)
+{
+    GGSide ggside;
+    ggside.center = center;
+    ggside.radius = radius;
+    ggside.side = side;
+    return ggside;
+}
 
 #pragma mark - K线形态
 

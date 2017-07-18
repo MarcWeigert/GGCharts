@@ -33,60 +33,6 @@ _##attribute = [NSString stringWithFormat:@"%@ %@", indexLibrary, _##attribute];
 return _##attribute; \
 }
 
-const char * convertToJSONData(id infoDict)
-{
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:infoDict
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-                                                         error:&error];
-    
-    NSString *jsonString = @"";
-    
-    if (! jsonData)
-    {
-        NSLog(@"Got an error: %@", error);
-    }else
-    {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    
-    jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];  //去除掉首尾的空白字符和换行字符
-    [jsonString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return [jsonString cStringUsingEncoding:NSUTF8StringEncoding];
-}
-
-NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id param, NSString * script)
-{
-    /*the function name*/
-    
-    L = luaL_newstate();
-    
-    luaL_dostring(L, [script UTF8String]);
-    
-    lua_getglobal(L, "BOLLIndex");
-    
-    /*the first argument*/
-    
-    lua_pushstring(L, convertToJSONData(arrayList));
-    lua_pushstring(L, [getMethod cStringUsingEncoding:NSUTF8StringEncoding]);
-    lua_pushstring(L, [[param stringValue] cStringUsingEncoding:NSUTF8StringEncoding]);
-    
-    /*call the function with 2 arguments,return 1 result.*/
-    
-    lua_pcall(L, 3, 1, 0);
-    
-    /*g et the result.*/
-    
-    const char * sum = lua_tolstring(L, -1, nil);
-    
-    /*cleanup the return*/
-    lua_pop(L, 1);
-    
-    return nil;
-}
-
-
-
 @interface KLineIndexManager ()
 
 @property (nonatomic, strong) NSString * luaMikeCode;   ///< MIKE
@@ -99,6 +45,7 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
 @property (nonatomic, strong) NSString * luaKdjCode;     ///< KDJ
 @property (nonatomic, strong) NSString * luaRsiCode;     ///< RSI
 @property (nonatomic, strong) NSString * luaAtrCode;     ///< Atr
+@property (nonatomic, strong) NSString * luaTdCode;     ///< TD
 
 @end
 
@@ -324,6 +271,28 @@ NSString * luaadd(NSArray <NSDictionary *> * arrayList, NSString * getMethod, id
     return [luaContext call:"ATRIndex" with:@[aryKLineData, low, high, close, param] error:&error];
 }
 
+/**
+ * 根据数组数据结构计算TD指标数据
+ *
+ * @param aryKLineData K线数据数组, 需要实现接口KLineAbstract
+ * @param param 12
+ *
+ * @return 计算结果 @[@{@"ar" : , @"atr" :}...]
+ */
+- (NSArray *)getTDIndexWith:(NSArray <id <KLineAbstract>> *)aryKLineData
+                      param:(NSNumber *)param
+            highPriceString:(NSString *)high
+             lowPriceString:(NSString *)low
+           closePriceString:(NSString *)close
+{
+    LuaContext * luaContext = [LuaContext new];
+    __block NSError * error = nil;
+    
+    if (![luaContext parse:self.luaTdCode error:&error]) { NSLog(@"%@", error); }
+    
+    return [luaContext call:"TDIndex" with:@[aryKLineData, low, close, high, param] error:&error];
+}
+
 #pragma mark - Lazy
 
 GGLazyLuaCodeMethod(@"MIKE", luaMikeCode);
@@ -336,5 +305,6 @@ GGLazyLuaCodeMethod(@"BOLL", luaBollCode);
 GGLazyLuaCodeMethod(@"KDJ", luaKdjCode);
 GGLazyLuaCodeMethod(@"RSI", luaRsiCode);
 GGLazyLuaCodeMethod(@"ATR", luaAtrCode);
+GGLazyLuaCodeMethod(@"TD", luaTdCode);
 
 @end

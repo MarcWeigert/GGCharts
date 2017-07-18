@@ -43,6 +43,11 @@
     return self;
 }
 
+- (void)removeAllPointString
+{
+    [self.dictionaryString removeAllObjects];
+}
+
 - (void)addString:(NSString *)string point:(CGPoint)point
 {
     [self.dictionaryString setValue:[NSValue valueWithCGPoint:point] forKey:string];

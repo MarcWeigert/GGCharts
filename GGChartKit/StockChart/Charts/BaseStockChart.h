@@ -18,7 +18,6 @@
 @property (nonatomic, strong) CAShapeLayer * redVolumLayer;   ///< 红色成交量
 @property (nonatomic, strong) CAShapeLayer * greenVolumLayer;     ///< 绿色成交量
 
-@property (nonatomic, strong, readonly) GGCanvas * kLineBackLayer;      ///< k线back
 @property (nonatomic, strong, readonly) GGCanvas * stringLayer;      ///< k线back
 @property (nonatomic, strong, readonly) UIScrollView * backScrollView;  ///< 背景滚动
 

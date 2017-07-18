@@ -53,6 +53,8 @@
 		2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */; };
 		2B2722B71F0F694400E4A295 /* MALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B61F0F694400E4A295 /* MALayer.m */; };
 		2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */; };
+		2B2D02BF1F1C923E0052F4D5 /* TD.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D02BE1F1C923E0052F4D5 /* TD.lua */; };
+		2B2D02C21F1C93C10052F4D5 /* TDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D02C11F1C93C10052F4D5 /* TDLayer.m */; };
 		2B3034241F111E1000706575 /* BBI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034201F111E1000706575 /* BBI.lua */; };
 		2B3034251F111E1000706575 /* BOLL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034211F111E1000706575 /* BOLL.lua */; };
 		2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034221F111E1000706575 /* IndexLibrary.lua */; };
@@ -216,6 +218,9 @@
 		2B2722B61F0F694400E4A295 /* MALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALayer.m; sourceTree = "<group>"; };
 		2B2722B81F0F8B7F00E4A295 /* MAVOLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVOLLayer.h; sourceTree = "<group>"; };
 		2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVOLLayer.m; sourceTree = "<group>"; };
+		2B2D02BE1F1C923E0052F4D5 /* TD.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TD.lua; sourceTree = "<group>"; };
+		2B2D02C01F1C93C10052F4D5 /* TDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLayer.h; sourceTree = "<group>"; };
+		2B2D02C11F1C93C10052F4D5 /* TDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLayer.m; sourceTree = "<group>"; };
 		2B3034201F111E1000706575 /* BBI.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BBI.lua; sourceTree = "<group>"; };
 		2B3034211F111E1000706575 /* BOLL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BOLL.lua; sourceTree = "<group>"; };
 		2B3034221F111E1000706575 /* IndexLibrary.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IndexLibrary.lua; sourceTree = "<group>"; };
@@ -504,6 +509,8 @@
 			children = (
 				2B773FD51F15F43100B2BE59 /* BBIIndexLayer.h */,
 				2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */,
+				2B2D02C01F1C93C10052F4D5 /* TDLayer.h */,
+				2B2D02C11F1C93C10052F4D5 /* TDLayer.m */,
 				2B773FD71F15F43100B2BE59 /* BOLLLayer.h */,
 				2B773FD81F15F43100B2BE59 /* BOLLLayer.m */,
 				2B773FD91F15F43100B2BE59 /* MIKELayer.h */,
@@ -531,6 +538,7 @@
 		2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */ = {
 			isa = PBXGroup;
 			children = (
+				2B2D02BE1F1C923E0052F4D5 /* TD.lua */,
 				2B773FEB1F1622FA00B2BE59 /* ATR.lua */,
 				2B773FE11F16176600B2BE59 /* KDJ.lua */,
 				2B773FE21F16176600B2BE59 /* RSI.lua */,
@@ -866,6 +874,7 @@
 				2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */,
 				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
 				2B3034251F111E1000706575 /* BOLL.lua in Resources */,
+				2B2D02BF1F1C923E0052F4D5 /* TD.lua in Resources */,
 				2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */,
 				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
 				2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */,
@@ -961,6 +970,7 @@
 				2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */,
 				2B2722991F0F550D00E4A295 /* lutf8lib.c in Sources */,
 				2B9788801F09D4E2002A2A3C /* MassChartData.m in Sources */,
+				2B2D02C21F1C93C10052F4D5 /* TDLayer.m in Sources */,
 				2B2722951F0F550D00E4A295 /* ltm.c in Sources */,
 				2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */,
 				2B27227D1F0F550D00E4A295 /* lcode.c in Sources */,

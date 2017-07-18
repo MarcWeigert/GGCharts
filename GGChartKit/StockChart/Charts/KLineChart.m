@@ -16,6 +16,7 @@
 #import "EMALayer.h"
 #import "BBIIndexLayer.h"
 #import "BOLLLayer.h"
+#import "TDLayer.h"
 
 #import "MACDLayer.h"
 #import "KDJLayer.h"
@@ -41,9 +42,7 @@
 
 @property (nonatomic, strong) CAShapeLayer * greenLineLayer;    ///< 绿色k线
 @property (nonatomic, strong) CAShapeLayer * redLineLayer;      ///< 红色K线
-
-@property (nonatomic, strong) GGGridRenderer * kLineGrid;       ///< k线网格渲染器
-@property (nonatomic, strong) GGGridRenderer * volumGrid;       ///< k线网格渲染器
+@property (nonatomic, strong) CAShapeLayer * gridLayer;         ///< 网格层
 
 @property (nonatomic, strong) GGAxisRenderer * axisRenderer;        ///< 轴渲染
 @property (nonatomic, strong) GGAxisRenderer * kAxisRenderer;       ///< K线轴
@@ -82,7 +81,8 @@
              [EMALayer class],
              [MIKELayer class],
              [BOLLLayer class],
-             [BBIIndexLayer class]];
+             [BBIIndexLayer class],
+             [TDLayer class]];
 }
 
 + (NSArray *)kVolumIndexLayerClazz
@@ -106,16 +106,12 @@
         _kLineIndexIndex = 0;
         _volumIndexIndex = 0;
         
+        [self.backScrollView.layer addSublayer:self.gridLayer];
         [self.scrollView.layer addSublayer:self.redLineLayer];
         [self.scrollView.layer addSublayer:self.greenLineLayer];
         
-        self.volumGrid.width = 0.25;
-        [self.kLineBackLayer addRenderer:self.volumGrid];
-        self.kLineGrid.width = 0.25;
-        [self.kLineBackLayer addRenderer:self.kLineGrid];
         self.axisRenderer.width = 0.25;
-        [self.kLineBackLayer addRenderer:self.axisRenderer];
-        
+        [self.stringLayer addRenderer:self.axisRenderer];
         self.kAxisRenderer.width = 0.25;
         [self.stringLayer addRenderer:self.kAxisRenderer];
         self.vAxisRenderer.width = 0.25;
@@ -371,6 +367,7 @@
         _volumIndexLayer = [[clazz alloc] init];
         _volumIndexLayer.frame = self.redVolumLayer.frame;
         [_volumIndexLayer setKLineArray:_kLineArray];
+        _volumIndexLayer.kScaler = self.kLineScaler;
         [self.scrollView.layer addSublayer:_volumIndexLayer];
         
         [self updateSubLayer];
@@ -389,6 +386,7 @@
         _kLineIndexLayer.frame = self.redLineLayer.frame;
         _kLineIndexLayer.gg_width = self.kLineScaler.contentSize.width;
         [_kLineIndexLayer setKLineArray:_kLineArray];
+        _kLineIndexLayer.kScaler = self.kLineScaler;
         [self.scrollView.layer addSublayer:_kLineIndexLayer];
         
         [self updateSubLayer];
@@ -402,14 +400,17 @@
 {
     _kLineArray = [kLineArray copy];
     
-    [_kLineIndexLayer setKLineArray:kLineArray];
-    [_volumIndexLayer setKLineArray:kLineArray];
-    
     [self.kLineScaler setObjArray:kLineArray
                           getOpen:@selector(ggOpen)
                          getClose:@selector(ggClose)
                           getHigh:@selector(ggHigh)
                            getLow:@selector(ggLow)];
+    
+    [_kLineIndexLayer setKLineArray:kLineArray];
+    [_volumIndexLayer setKLineArray:kLineArray];
+    
+    _kLineIndexLayer.kScaler = self.kLineScaler;
+    _volumIndexLayer.kScaler = self.kLineScaler;
 
     [self updateKLineTitles:_kLineArray];
 }
@@ -498,6 +499,8 @@ static void * kLineTitle = "keyTitle";
     [self baseConfigRendererAndLayer];
     
     [self kLineSubLayerRespond];
+    
+    // 指标层
     [self updateKLineIndexLayer:_kLineIndexIndex];
     [self updateVolumIndexLayer:_volumIndexIndex];
 }
@@ -505,10 +508,8 @@ static void * kLineTitle = "keyTitle";
 - (void)kLineSubLayerRespond
 {
     [self baseConfigKLineLayer];
-    [self baseConfigVolumLayer];
     
     [self updateSubLayer];
-    [self updateKLineGridLayerRenderders];
 }
 
 - (void)updateIndexStringForIndex:(NSInteger)index
@@ -540,6 +541,7 @@ static void * kLineTitle = "keyTitle";
 /** K线(主图)frame */
 - (void)baseConfigKLineLayer
 {
+    // 设置K线
     self.redLineLayer.frame = self.kLineFrame;
     self.kLineScaler.rect = CGRectMake(0, 0, self.redLineLayer.gg_width, self.redLineLayer.gg_height);
     self.kLineScaler.shapeWidth = self.kLineScaler.rect.size.width / _kLineCountVisibale - _kInterval;
@@ -552,7 +554,7 @@ static void * kLineTitle = "keyTitle";
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     
-    self.kLineBackLayer.frame = CGRectMake(0, 0, contentSize.width, self.frame.size.height);
+    self.gridLayer.frame = CGRectMake(0, 0, contentSize.width, self.frame.size.height);
     
     // 滚动大小
     self.scrollView.contentSize = contentSize;
@@ -566,23 +568,19 @@ static void * kLineTitle = "keyTitle";
     
     self.lableKLineIndex.frame = CGRectMake(0, 0, self.gg_width, INDEX_STRING_INTERVAL);
     self.queryPriceView.frame = CGRectMake(0, self.redLineLayer.gg_top, self.gg_width, self.gg_height - self.redLineLayer.gg_top);
-    [CATransaction commit];
-}
-
-/** 成交量(复图)frame */
-- (void)baseConfigVolumLayer
-{
-    CGRect volumRect = self.volumFrame;
     
+    // 量能区域的指标
+    CGRect volumRect = self.volumFrame;
     [self setVolumRect:volumRect];
     self.volumScaler.rect = CGRectMake(0, 0, self.redVolumLayer.gg_width, self.redVolumLayer.gg_height);
     self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
     [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
-    
     self.lableVolumIndex.frame = CGRectMake(0, self.redLineLayer.gg_bottom + KLINE_VOLUM_INTERVAL, self.gg_width, INDEX_STRING_INTERVAL);
     
     // 量能区域的指标
     _volumIndexLayer.frame = volumRect;
+    
+    [CATransaction commit];
 }
 
 /** 基础配置渲染器 */
@@ -602,8 +600,10 @@ static void * kLineTitle = "keyTitle";
     self.greenLineLayer.strokeColor = _fallColor.CGColor;
     self.greenLineLayer.fillColor = _fallColor.CGColor;
     
-    // 成交量网格设置
-    self.volumGrid.color = _gridColor;
+    // 绘制文字网格层
+    self.gridLayer.strokeColor = _gridColor.CGColor;
+    self.gridLayer.fillColor = [UIColor clearColor].CGColor;
+    self.gridLayer.lineWidth = .25f;
     
     // 成交量Y轴设置
     self.vAxisRenderer.strColor = _axisStringColor;
@@ -622,25 +622,9 @@ static void * kLineTitle = "keyTitle";
     self.axisRenderer.showLine = NO;
     self.axisRenderer.strFont = _axisFont;
     
-    // K线网格设置
-    self.kLineGrid.color = _gridColor;
-}
-
-/** 更新k线背景层绘制内容 */
-- (void)updateKLineGridLayerRenderders
-{
-    // 纵向分割高度
-    CGFloat v_spe = self.redLineLayer.gg_height / _kAxisSplit;
+    // 纵轴
     __weak KLineChart * weakSelf = self;
     
-    // 成交量网格设置
-    CGRect volumFrame = self.redVolumLayer.frame;
-    volumFrame.size.width = self.redVolumLayer.gg_width < self.gg_width ? self.gg_width : self.redVolumLayer.gg_width;
-    self.volumGrid.grid = GGGridRectMake(volumFrame, v_spe, 0);
-    
-    // 成交量Y轴设置
-    GGLine leftLine = GGLeftLineRect(self.redVolumLayer.frame);
-    self.vAxisRenderer.axis = GGAxisLineMake(leftLine, 0, v_spe);
     [self.vAxisRenderer setStringBlock:^NSString *(CGPoint point, NSInteger index, NSInteger max) {
         if (index == 0) { return @""; }
         point.y = point.y - weakSelf.redVolumLayer.gg_top;
@@ -648,41 +632,91 @@ static void * kLineTitle = "keyTitle";
         return [NSString stringWithFormat:@"%.2f%@", [weakSelf.volumScaler getPriceWithPoint:point], string];
     }];
     
-    // K线Y轴设置
-    leftLine = GGLeftLineRect(self.redLineLayer.frame);
-    self.kAxisRenderer.axis = GGAxisLineMake(leftLine, 0, GGLengthLine(leftLine) / _kAxisSplit);
     [self.kAxisRenderer setStringBlock:^NSString *(CGPoint point, NSInteger index, NSInteger max) {
         if (index == 0) { return @""; }
         point.y = point.y - weakSelf.redLineLayer.gg_top;
         return [NSString stringWithFormat:@"%.2f", [weakSelf.kLineScaler getPriceWithPoint:point]];
     }];
+}
+
+- (GGLine)lineWithX:(CGFloat)x rect:(CGRect)rect
+{
+    return GGLineMake(x, CGRectGetMinY(rect), x, CGRectGetMaxY(rect));
+}
+
+#pragma mark - 实时更新
+
+- (void)updateSubLayer
+{
+    // 计算显示的在屏幕中的k线
+    NSInteger index = (self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth);
+    NSInteger len = _kLineCountVisibale;
+    
+    if (index < 0) index = 0;
+    if (index > _kLineArray.count) index = _kLineArray.count;
+    if (index + _kLineCountVisibale > _kLineArray.count) { len = _kLineArray.count - index; }
+    
+    NSRange range = NSMakeRange(index, len);
+    
+    // 更新视图
+    [self updateKLineLayerWithRange:range];
+    [self updateVolumLayerWithRange:range];
+    [self updateGridBackLayerWithRange:range];
+    
+    [self updateIndexStringForIndex:NSMaxRange(range) - 1];
+}
+
+/** 实时更新背景层 */
+- (void)updateGridBackLayerWithRange:(NSRange)range
+{
+    CGMutablePathRef ref = CGPathCreateMutable();
+    
+    // 成交量网格
+    CGFloat v_spe = self.redLineLayer.gg_height / _kAxisSplit;
+    CGRect volumRect = self.redLineLayer.frame;
+    volumRect.size.height = self.redVolumLayer.gg_height;
+    volumRect.origin.y = self.redVolumLayer.gg_top;
+    GGGrid gridVolum = GGGridRectMake(volumRect, v_spe, 0);
+    GGPathAddGrid(ref, gridVolum);
+    
+    // k线网格
+    CGRect lineRect = self.redLineLayer.frame;
+    lineRect.size.width = self.gg_width;
+    lineRect.origin.x = 0;
+    GGGrid gridKLine = GGGridRectMake(self.redLineLayer.frame, v_spe, 0);
+    GGPathAddGrid(ref, gridKLine);
+    
+    NSInteger maxCount = NSMaxRange(range);
+    
+    // 成交量Y轴设置
+    GGLine leftLine = GGLeftLineRect(self.redVolumLayer.frame);
+    self.vAxisRenderer.axis = GGAxisLineMake(leftLine, 0, v_spe);
+    
+    // K线Y轴设置
+    leftLine = GGLeftLineRect(self.redLineLayer.frame);
+    self.kAxisRenderer.axis = GGAxisLineMake(leftLine, 0, GGLengthLine(leftLine) / _kAxisSplit);
     
     // X横轴设置
-    self.axisRenderer.axis = GGAxisLineMake(GGBottomLineRect(self.greenLineLayer.frame), 1.5, 0);
+    [self.axisRenderer removeAllPointString];
+    self.axisRenderer.axis = GGAxisLineMake(GGBottomLineRect(self.frame), 1.5, 0);
     
-    // K线网格设置
-    [self.kLineGrid removeAllLine];
-    self.kLineGrid.grid = GGGridRectMake(self.redLineLayer.frame, v_spe, 0);
-    
-    [_kLineArray enumerateObjectsUsingBlock:^(id<KLineAbstract,VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
+    for (NSInteger i = range.location; i < maxCount; i++) {
         
-        NSString * title = objc_getAssociatedObject(obj, kLineTitle);
+        NSString * title = objc_getAssociatedObject(_kLineArray[i], kLineTitle);
         
         if (title.length) {
-            
-            CGFloat x = self.kLineScaler.kShapes[idx].top.x;
-            [self.axisRenderer addString:title point:CGPointMake(x, CGRectGetMaxY(self.greenLineLayer.frame))];
-            
-            if (idx == 0) { return; }
-            
+
+            CGFloat x = self.kLineScaler.kShapes[i].top.x;
             GGLine kline = [self lineWithX:x rect:self.greenLineLayer.frame];
             GGLine vline = [self lineWithX:x rect:self.redVolumLayer.frame];
-            [self.kLineGrid addLine:kline];
-            [self.kLineGrid addLine:vline];
+            GGPathAddLine(ref, kline);
+            GGPathAddLine(ref, vline);
+            
+            [self.axisRenderer addString:title point:CGPointMake(x - self.scrollView.contentOffset.x, CGRectGetMaxY(self.greenLineLayer.frame))];
         }
-    }];
+    }
     
-    // 如果k线不足则手动绘制网格置末尾
+    // K线不足屏幕仍然绘制剩余分割线
     CGSize size = self.kLineScaler.contentSize;
     
     if (size.width + self.greenLineLayer.gg_left < self.gg_width) {
@@ -715,40 +749,18 @@ static void * kLineTitle = "keyTitle";
             
             GGLine kline = [self lineWithX:drawX rect:self.greenLineLayer.frame];
             GGLine vline = [self lineWithX:drawX rect:self.redVolumLayer.frame];
-            [self.kLineGrid addLine:kline];
-            [self.kLineGrid addLine:vline];
+            
+            GGPathAddLine(ref, kline);
+            GGPathAddLine(ref, vline);
             
             before = date;
         }
     }
     
-    [self.kLineBackLayer setNeedsDisplay];
-}
-
-- (GGLine)lineWithX:(CGFloat)x rect:(CGRect)rect
-{
-    return GGLineMake(x, CGRectGetMinY(rect), x, CGRectGetMaxY(rect));
-}
-
-#pragma mark - 实时更新
-
-- (void)updateSubLayer
-{
-    // 计算显示的在屏幕中的k线
-    NSInteger index = (self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth);
-    NSInteger len = _kLineCountVisibale;
+    self.gridLayer.path = ref;
+    CGPathRelease(ref);
     
-    if (index < 0) index = 0;
-    if (index > _kLineArray.count) index = _kLineArray.count;
-    if (index + _kLineCountVisibale > _kLineArray.count) { len = _kLineArray.count - index; }
-    
-    NSRange range = NSMakeRange(index, len);
-    
-    // 更新视图
-    [self updateKLineLayerWithRange:range];
-    [self updateVolumLayerWithRange:range];
-    
-    [self updateIndexStringForIndex:NSMaxRange(range) - 1];
+    [self.stringLayer setNeedsDisplay];
 }
 
 /** K线图实时更新 */
@@ -821,12 +833,10 @@ static void * kLineTitle = "keyTitle";
 
 GGLazyGetMethod(CAShapeLayer, redLineLayer);
 GGLazyGetMethod(CAShapeLayer, greenLineLayer);
+GGLazyGetMethod(CAShapeLayer, gridLayer);
 
 GGLazyGetMethod(UILabel, lableKLineIndex);
 GGLazyGetMethod(UILabel, lableVolumIndex);
-
-GGLazyGetMethod(GGGridRenderer, kLineGrid);
-GGLazyGetMethod(GGGridRenderer, volumGrid);
 
 GGLazyGetMethod(GGAxisRenderer, axisRenderer);
 GGLazyGetMethod(GGAxisRenderer, kAxisRenderer);

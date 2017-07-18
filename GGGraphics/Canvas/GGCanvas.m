@@ -67,8 +67,8 @@
  */
 - (void)drawInContext:(CGContextRef)ctx
 {
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
+    //[CATransaction begin];
+    //[CATransaction setDisableActions:YES];
     
     [super drawInContext:ctx];
     
@@ -77,7 +77,7 @@
         [renderer drawInContext:ctx];
     }
     
-    [CATransaction commit];
+    //[CATransaction commit];
 }
 
 @end

@@ -55,7 +55,33 @@
 
 - (NSAttributedString *)attrStringWithIndex:(NSInteger)index
 {
-    return [[NSAttributedString alloc] initWithString:@"TD(9)"];
+    NSDictionary * dictionary = self.aryTDs[index];
+    
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:@"TD(9)"];
+    
+    if ([dictionary[@"dir"] integerValue] > 0) {
+    
+        NSString * string = [NSString stringWithFormat:@"  TD上行计数 %zd",[dictionary[@"dir"] integerValue]];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : RGB(234, 82, 83)}]];
+    }
+    else if ([dictionary[@"dir"] integerValue] < 0) {
+    
+        NSString * string = [NSString stringWithFormat:@"  下行计数 %zd", labs([dictionary[@"dir"] integerValue])];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : RGB(77, 166, 73)}]];
+    }
+    
+    if ([dictionary[@"arrow"] integerValue] > 0) {
+        
+        NSString * string = [NSString stringWithFormat:@"  交易机会"];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : RGB(115, 190, 222)}]];
+    }
+    else if ([dictionary[@"arrow"] integerValue] < 0) {
+        
+        NSString * string = [NSString stringWithFormat:@"  风险管控"];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName : RGB(115, 190, 222)}]];
+    }
+    
+    return attrString;
 }
 
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray

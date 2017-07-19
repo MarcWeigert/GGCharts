@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) NSArray <NSDictionary *> *datas;
 
-@property (nonatomic, weak) DKLineScaler * kScaler;
+@property (nonatomic, assign) CGFloat currentKLineWidth;
 
 /**
  * 绘制折线

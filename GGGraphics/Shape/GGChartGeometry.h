@@ -187,28 +187,23 @@ GGAxisLineMake(GGLine line, CGFloat over, CGFloat sep) {
 
 struct GGArrow
 {
-    CGPoint vertex;
-    CGFloat edge;
-    CGFloat m_pi;
+    GGLine line;
+    CGFloat side;
 };
 typedef struct GGArrow GGArrow;
 
 CG_INLINE GGArrow
-GGArrowMake(CGFloat x, CGFloat y, CGFloat edge, CGFloat m_pi) {
+GGArrowLineMake(GGLine line, CGFloat side) {
     GGArrow arrow;
-    arrow.vertex = CGPointMake(x, y);
-    arrow.edge = edge;
-    arrow.m_pi = m_pi;
+    arrow.line = line;
+    arrow.side = side;
     return arrow;
 }
 
 CG_INLINE GGArrow
-GGArrowCenterMake(CGPoint center, CGFloat edge, CGFloat m_pi) {
-    GGArrow arrow;
-    arrow.vertex = center;
-    arrow.edge = edge;
-    arrow.m_pi = m_pi;
-    return arrow;
+GGArrowMake(CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat side) {
+    
+    return GGArrowLineMake(GGLineMake(x1, y1, x2, y2), side);
 }
 
 #pragma mark - 网格

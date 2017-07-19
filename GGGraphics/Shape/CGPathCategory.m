@@ -119,6 +119,30 @@ CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid)
 }
 
 /**
+ * 绘制箭头
+ */
+CG_EXTERN void GGPathAddArrow(CGMutablePathRef ref, GGArrow arrow, CGFloat barWidth)
+{
+    CGPoint left = GGPerpendicularMake(arrow.line, arrow.line.end, arrow.side / 2);
+    CGPoint right = GGPerpendicularMake(arrow.line, arrow.line.end, -arrow.side / 2);
+    GGLine line = GGLineMoveEnd(arrow.line, arrow.side / 2);
+    
+    CGPathMoveToPoint(ref, NULL, line.end.x, line.end.y);
+    CGPathAddLineToPoint(ref, NULL, left.x, left.y);
+    CGPathAddLineToPoint(ref, NULL, right.x, right.y);
+    
+    CGPoint barLeftStart = GGPerpendicularMake(arrow.line, arrow.line.start, barWidth / 2);
+    CGPoint barRightStart = GGPerpendicularMake(arrow.line, arrow.line.start, -barWidth / 2);
+    CGPoint barLeftEnd = GGPerpendicularMake(arrow.line, arrow.line.end, barWidth / 2);
+    CGPoint barRightEnd = GGPerpendicularMake(arrow.line, arrow.line.end, -barWidth / 2);
+    
+    CGPathMoveToPoint(ref, NULL, barLeftStart.x, barLeftStart.y);
+    CGPathAddLineToPoint(ref, NULL, barRightStart.x, barRightStart.y);
+    CGPathAddLineToPoint(ref, NULL, barRightEnd.x, barRightEnd.y);
+    CGPathAddLineToPoint(ref, NULL, barLeftEnd.x, barLeftEnd.y);
+}
+
+/**
  * 绘制k线形
  * @param ref 路径元素
  * @param kShape k线形态

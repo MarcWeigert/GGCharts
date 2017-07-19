@@ -27,6 +27,11 @@ CG_EXTERN void GGPathAddAnnular(CGMutablePathRef ref, GGAnnular annular);
 CG_EXTERN void GGPathAddSector(CGMutablePathRef ref, GGSector sector);
 
 /**
+ * 绘制箭头
+ */
+CG_EXTERN void GGPathAddArrow(CGMutablePathRef ref, GGArrow arrow, CGFloat barWidth);
+
+/**
  * 绘制网格
  */
 CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid);
@@ -59,6 +64,8 @@ CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape);
  * @param kShape k线形态
  */
 CG_EXTERN void GGPathAddKShapes(CGMutablePathRef ref, GGKShape * kShapes, size_t size);
+
+#pragma mark - 动画
 
 CG_EXTERN NSArray * GGPathAnimationSectorEject(GGSector sector, long frame, CGFloat outSide);
 

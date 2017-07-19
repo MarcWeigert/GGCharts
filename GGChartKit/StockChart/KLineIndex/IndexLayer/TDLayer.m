@@ -12,9 +12,18 @@
 @interface TDLayer ()
 
 @property (nonatomic, strong) NSArray * aryTDs;
+@property (nonatomic, strong) NSArray * kLineAry;
 
-@property (nonatomic, strong) CAShapeLayer * positiveLayer;
-@property (nonatomic, strong) CAShapeLayer * negativeLayer;
+@property (nonatomic, strong) CAShapeLayer * redArrowLayer;
+@property (nonatomic, strong) CAShapeLayer * greenArrowLayer;
+@property (nonatomic, strong) CAShapeLayer * upDownLineLayer;
+
+@property (nonatomic, strong) CAShapeLayer * upDashLineLayer;
+@property (nonatomic, strong) CAShapeLayer * downDashLineLayer;
+
+@property (nonatomic, strong) DLineScaler * lineScaler;
+
+@property (nonatomic, assign) NSInteger dashLineCount;
 
 @end
 
@@ -24,8 +33,24 @@
 {
     [super setFrame:frame];
     
-    _positiveLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    _negativeLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _redArrowLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _greenArrowLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _upDownLineLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _upDashLineLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    _downDashLineLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    
+    self.lineScaler.rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
+}
+
+/**
+ * 获取区间最大值最小值
+ */
+- (void)getIndexWithRange:(NSRange)range max:(CGFloat *)max min:(CGFloat *)min
+{
+    CGFloat base = *max - *min;
+    
+    *max = *max + base * .1f;
+    *min = *min - base * .1f;
 }
 
 - (NSAttributedString *)attrStringWithIndex:(NSInteger)index
@@ -35,9 +60,11 @@
 
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray
 {
+    _kLineAry = kLineArray;
+    
     NSArray * kDataJson = [NSArray JsonFromObj:kLineArray];
     
-    self.datas = kDataJson;
+    [self.lineScaler setObjAry:_kLineAry getSelector:@selector(ggHigh)];
     
     _aryTDs = [[KLineIndexManager shareInstans] getTDIndexWith:kDataJson
                                                          param:@9
@@ -47,28 +74,70 @@
     
     
     [self registerSideForPositiveColor:RGB(234, 82, 83)
-                         negativeColor:RGB(77, 166, 73)];
+                         negativeColor:RGB(77, 166, 73)
+                       upDownLineColor:RGB(115, 190, 222)];
+    
+    
+    __block NSInteger lineCount = 0;
+    
+    [_aryTDs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([obj[@"dir"] integerValue] == 9 || [obj[@"dir"] integerValue] == -9) {
+            
+            lineCount++;
+        }
+    }];
+    
+    _dashLineCount = lineCount;
+    
+    self.lineScaler.rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
 }
 
 - (void)registerSideForPositiveColor:(UIColor *)positiveColor
                        negativeColor:(UIColor *)negativeColor
+                     upDownLineColor:(UIColor *)upDownLineColor
 {
-    [_positiveLayer removeFromSuperlayer];
-    [_negativeLayer removeFromSuperlayer];
-        
-    _negativeLayer = [CAShapeLayer layer];
-    _negativeLayer.fillColor = negativeColor.CGColor;
-    _negativeLayer.strokeColor = negativeColor.CGColor;
-    _negativeLayer.lineWidth = 0;
-    _negativeLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
-    [self addSublayer:_negativeLayer];
+    [_redArrowLayer removeFromSuperlayer];
+    [_greenArrowLayer removeFromSuperlayer];
+    [_upDownLineLayer removeFromSuperlayer];
+    [_upDashLineLayer removeFromSuperlayer];
     
-    _positiveLayer = [CAShapeLayer layer];
-    _positiveLayer.fillColor = positiveColor.CGColor;
-    _positiveLayer.strokeColor = positiveColor.CGColor;
-    _positiveLayer.lineWidth = 0;
-    _positiveLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
-    [self addSublayer:_positiveLayer];
+    _upDownLineLayer = [CAShapeLayer layer];
+    _upDownLineLayer.fillColor = [UIColor clearColor].CGColor;
+    _upDownLineLayer.strokeColor = upDownLineColor.CGColor;
+    _upDownLineLayer.lineWidth = 1;
+    _upDownLineLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
+    [self addSublayer:_upDownLineLayer];
+    
+    _greenArrowLayer = [CAShapeLayer layer];
+    _greenArrowLayer.fillColor = negativeColor.CGColor;
+    _greenArrowLayer.strokeColor = negativeColor.CGColor;
+    _greenArrowLayer.lineWidth = 0;
+    _greenArrowLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
+    [self addSublayer:_greenArrowLayer];
+    
+    _redArrowLayer = [CAShapeLayer layer];
+    _redArrowLayer.fillColor = positiveColor.CGColor;
+    _redArrowLayer.strokeColor = positiveColor.CGColor;
+    _redArrowLayer.lineWidth = 0;
+    _redArrowLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
+    [self addSublayer:_redArrowLayer];
+    
+    _upDashLineLayer = [CAShapeLayer layer];
+    _upDashLineLayer.fillColor = positiveColor.CGColor;
+    _upDashLineLayer.strokeColor = positiveColor.CGColor;
+    _upDashLineLayer.lineWidth = 1;
+    _upDashLineLayer.lineDashPattern = @[@2, @2];
+    _upDashLineLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
+    [self addSublayer:_upDashLineLayer];
+    
+    _downDashLineLayer = [CAShapeLayer layer];
+    _downDashLineLayer.fillColor = negativeColor.CGColor;
+    _downDashLineLayer.strokeColor = negativeColor.CGColor;
+    _downDashLineLayer.lineWidth = 1;
+    _downDashLineLayer.lineDashPattern = @[@2, @2];
+    _downDashLineLayer.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
+    [self addSublayer:_downDashLineLayer];
 }
 
 /**
@@ -76,58 +145,162 @@
  */
 - (void)updateLayerWithRange:(NSRange)range max:(CGFloat)max min:(CGFloat)min
 {
-    NSUInteger count = NSMaxRange(range);
+    CGMutablePathRef redRef = CGPathCreateMutable();
+    CGMutablePathRef greenRef = CGPathCreateMutable();
+    CGMutablePathRef upDownRef = CGPathCreateMutable();
     
-    CGMutablePathRef refRed = CGPathCreateMutable();
-    CGMutablePathRef refGreen = CGPathCreateMutable();
+    CGMutablePathRef dashRefRed = CGPathCreateMutable();
+    CGMutablePathRef dashRefGreen = CGPathCreateMutable();
+    
+    // 更新k线层
+    self.lineScaler.max = max;
+    self.lineScaler.min = min;
+    [self.lineScaler updateScaler];
     
     [self removeAllRenderer];
     
-    for (NSInteger i = range.location; i < count; i++) {
+    GGLine * lines = malloc(sizeof(GGLine) * _dashLineCount);
+    NSInteger lineSize = 0;
+    
+    for (NSInteger i = 0; i < _aryTDs.count ; i++) {
         
         NSDictionary * dic = _aryTDs[i];
         NSInteger arrow = [dic[@"arrow"] integerValue];
-        GGKShape shape = self.kScaler.kShapes[i];
         
         if (arrow == -1) {
             
-            GGSide side = GGSideMake(CGPointMake(shape.end.x, shape.end.y + 10), 10, 3);
-            GGPathAddGGSide(refGreen, side, 0);
+            CGPoint point = self.lineScaler.linePoints[i];
+            point.y = [self.lineScaler getYPixelWithData:[_kLineAry[i] ggHigh]];
+            
+            CGPoint lineStart = point;
+            lineStart.y -= self.currentKLineWidth;
+            CGPoint lineEnd = point;
+            lineEnd.y -= (self.currentKLineWidth - 3);
+            
+            if ([dic[@"dir"] integerValue] != 0) {
+                
+                lineStart.y -= 10;
+                lineEnd.y -= 10;
+            }
+            
+            GGArrow arrow = GGArrowLineMake(GGPointLineMake(lineStart, lineEnd), self.currentKLineWidth * 1.5);
+            GGPathAddArrow(greenRef, arrow, self.currentKLineWidth / 2);
         }
         else if (arrow == 1) {
         
-            GGSide side = GGSideMake(CGPointMake(shape.top.x, shape.top.y - 10), 10, 3);
-            GGPathAddGGSide(refRed, side, M_PI);
+            CGPoint point = self.lineScaler.linePoints[i];
+            point.y = [self.lineScaler getYPixelWithData:[_kLineAry[i] ggLow]];
+            
+            CGPoint lineStart = point;
+            lineStart.y += self.currentKLineWidth;
+            CGPoint lineEnd = point;
+            lineEnd.y += (self.currentKLineWidth - 3);
+            
+            if ([dic[@"dir"] integerValue] != 0) {
+                
+                lineStart.y += 10;
+                lineEnd.y += 10;
+            }
+            
+            GGArrow arrow = GGArrowLineMake(GGPointLineMake(lineStart, lineEnd), self.currentKLineWidth * 1.5);
+            GGPathAddArrow(redRef, arrow, self.currentKLineWidth / 2);
         }
         
+        // 文字
         NSInteger dir = [dic[@"dir"] integerValue];
+        
+        if (dir == 9 || dir == -9) {
+            
+            CGPoint point = self.lineScaler.linePoints[i];
+            point.y = [self.lineScaler getYPixelWithData:dir > 0 ? [_kLineAry[i] ggHigh] : [_kLineAry[i] ggLow]];
+            
+            lines[lineSize] = GGPointLineMake(point, point);
+            
+            NSInteger before = lineSize - 1;
+            
+            if (before >= 0) {
+                
+                lines[before].end.x = point.x;
+            }
+            
+            lines[lineSize].start.x = dir > 0 ? point.x : -point.x;
+            
+            lineSize++;
+        }
         
         if (dir != 0) {
             
             GGStringRenderer *renderer = [[GGStringRenderer alloc] init];
             renderer.string = @(labs(dir)).stringValue;
-            [self addRenderer:renderer];
             
             if (dir > 0) {
                 
-                renderer.point = shape.top;
-                renderer.offSetRatio = CGPointMake(-.5, -1);
+                CGPoint point = self.lineScaler.linePoints[i];
+                point.y = [self.lineScaler getYPixelWithData:[_kLineAry[i] ggHigh]] - 6;
                 
-                //renderer.color = [UIColor yellowColor];
+                GGCircle circle = GGCirclePointMake(point, self.currentKLineWidth / 3);
+                GGPathAddCircle(redRef, circle);
+                
+                if (dir == 1) {
+                    
+                    CGPathMoveToPoint(upDownRef, NULL, point.x, point.y);
+                }
+                else {
+                
+                    CGPathAddLineToPoint(upDownRef, NULL, point.x, point.y);
+                }
             }
             else {
-            
-                renderer.point = shape.end;
-                renderer.offSetRatio = CGPointMake(-.5, 0);
-                //renderer.color = [UIColor yellowColor];
+                
+                CGPoint point = self.lineScaler.linePoints[i];
+                point.y = [self.lineScaler getYPixelWithData:[_kLineAry[i] ggLow]] + 6;
+
+                GGCircle circle = GGCirclePointMake(point, self.currentKLineWidth / 3);
+                GGPathAddCircle(greenRef, circle);
+                
+                if (dir == -1) {
+                    
+                    CGPathMoveToPoint(upDownRef, NULL, point.x, point.y);
+                }
+                else {
+                    
+                    CGPathAddLineToPoint(upDownRef, NULL, point.x, point.y);
+                }
             }
         }
     }
     
-    [self setNeedsDisplay];
+    for (NSInteger i = 0; i < lineSize; i++) {
+        
+        if (lines[i].start.x < 0) {
+            
+            lines[i].start.x *= -1;
+            
+            GGPathAddLine(dashRefGreen, lines[i]);
+        }
+        else{
+            
+            GGPathAddLine(dashRefRed, lines[i]);
+        }
+    }
     
-    //_positiveLayer.path = refRed;
-    //_negativeLayer.path = refGreen;
+    _upDashLineLayer.path = dashRefRed;
+    _downDashLineLayer.path = dashRefGreen;
+    _redArrowLayer.path = redRef;
+    _greenArrowLayer.path = greenRef;
+    _upDownLineLayer.path = upDownRef;
+
+    CGPathRelease(upDownRef);
+    CGPathRelease(greenRef);
+    CGPathRelease(redRef);
+    CGPathRelease(dashRefRed);
+    CGPathRelease(dashRefGreen);
+    
+    free(lines);
 }
+
+#pragma mark - GGLazy
+
+GGLazyGetMethod(DLineScaler, lineScaler);
 
 @end

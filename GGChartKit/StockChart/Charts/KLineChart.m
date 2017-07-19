@@ -367,7 +367,7 @@
         _volumIndexLayer = [[clazz alloc] init];
         _volumIndexLayer.frame = self.redVolumLayer.frame;
         [_volumIndexLayer setKLineArray:_kLineArray];
-        _volumIndexLayer.kScaler = self.kLineScaler;
+        _volumIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
         [self.scrollView.layer addSublayer:_volumIndexLayer];
         
         [self updateSubLayer];
@@ -386,7 +386,7 @@
         _kLineIndexLayer.frame = self.redLineLayer.frame;
         _kLineIndexLayer.gg_width = self.kLineScaler.contentSize.width;
         [_kLineIndexLayer setKLineArray:_kLineArray];
-        _kLineIndexLayer.kScaler = self.kLineScaler;
+        _kLineIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
         [self.scrollView.layer addSublayer:_kLineIndexLayer];
         
         [self updateSubLayer];
@@ -409,9 +409,6 @@
     [_kLineIndexLayer setKLineArray:kLineArray];
     [_volumIndexLayer setKLineArray:kLineArray];
     
-    _kLineIndexLayer.kScaler = self.kLineScaler;
-    _volumIndexLayer.kScaler = self.kLineScaler;
-
     [self updateKLineTitles:_kLineArray];
 }
 
@@ -546,6 +543,10 @@ static void * kLineTitle = "keyTitle";
     self.kLineScaler.rect = CGRectMake(0, 0, self.redLineLayer.gg_width, self.redLineLayer.gg_height);
     self.kLineScaler.shapeWidth = self.kLineScaler.rect.size.width / _kLineCountVisibale - _kInterval;
     self.kLineScaler.shapeInterval = _kInterval;
+    
+    // 设置附图宽度
+    self.volumIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
+    self.kLineIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
     
     CGSize contentSize = self.kLineScaler.contentSize;
     contentSize.width = contentSize.width < self.gg_width ? self.gg_width : contentSize.width;

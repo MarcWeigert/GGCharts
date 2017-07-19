@@ -110,8 +110,6 @@
     
     NSArray <KLineData *> *datas = [[[KLineData arrayForArray:stockJson class:[KLineData class]] reverseObjectEnumerator] allObjects];
     
-    datas = [datas subarrayWithRange:NSMakeRange(datas.count - 40, 40)];
-    
     self.title = @"伊利股份(600887)";
 
     [datas enumerateObjectsUsingBlock:^(KLineData * obj, NSUInteger idx, BOOL * stop) {

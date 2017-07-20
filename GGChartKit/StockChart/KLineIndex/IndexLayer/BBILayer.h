@@ -8,6 +8,6 @@
 
 #import "BaseIndexLayer.h"
 
-@interface BBIIndexLayer : BaseIndexLayer
+@interface BBILayer : BaseIndexLayer
 
 @end

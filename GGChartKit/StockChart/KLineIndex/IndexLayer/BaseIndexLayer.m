@@ -219,6 +219,8 @@
  */
 - (NSArray <NSString *> *)titles { return nil; }
 
+- (NSAttributedString *)attrStringWithIndex:(NSInteger)index { return nil; }
+
 /**
  * 更新指标图表
  */

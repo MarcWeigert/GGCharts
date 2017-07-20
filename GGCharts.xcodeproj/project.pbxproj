@@ -67,6 +67,9 @@
 		2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35BDC01F073FC900420B30 /* DPieScaler.m */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
+		2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */; };
+		2B68E9701F205564005D779A /* TableIndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E96F1F205564005D779A /* TableIndexCell.m */; };
+		2B68E9761F207244005D779A /* SlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E9751F207244005D779A /* SlideTabView.m */; };
 		2B6B23921F0C741B001D2B04 /* NSArray+Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B238F1F0C741B001D2B04 /* NSArray+Stock.m */; };
 		2B6B23931F0C741B001D2B04 /* NSObject+FireBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23911F0C741B001D2B04 /* NSObject+FireBlock.m */; };
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
@@ -83,7 +86,7 @@
 		2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FB51F1355FA00B2BE59 /* MA.lua */; };
 		2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB81F136BA400B2BE59 /* MACDLayer.m */; };
 		2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */; };
-		2B773FDB1F15F43100B2BE59 /* BBIIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */; };
+		2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD61F15F43100B2BE59 /* BBILayer.m */; };
 		2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD81F15F43100B2BE59 /* BOLLLayer.m */; };
 		2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDA1F15F43100B2BE59 /* MIKELayer.m */; };
 		2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */; };
@@ -101,7 +104,6 @@
 		2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */; };
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
-		2B79951F1F1772E200E73DFC /* HorizontalKLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */; };
 		2B8A24CE1F185CD2009A6F92 /* LoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */; };
 		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
 		2B9788721F09D4E2002A2A3C /* StockQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788441F09D4E2002A2A3C /* StockQueryView.m */; };
@@ -244,6 +246,12 @@
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
 		2B5DE6331F00BD0100B40676 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
 		2B5DE6341F00BD0100B40676 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		2B68E96B1F204D93005D779A /* HorizontalKLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalKLineViewController.h; sourceTree = "<group>"; };
+		2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalKLineViewController.m; sourceTree = "<group>"; };
+		2B68E96E1F205564005D779A /* TableIndexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableIndexCell.h; sourceTree = "<group>"; };
+		2B68E96F1F205564005D779A /* TableIndexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableIndexCell.m; sourceTree = "<group>"; };
+		2B68E9741F207244005D779A /* SlideTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabView.h; sourceTree = "<group>"; };
+		2B68E9751F207244005D779A /* SlideTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabView.m; sourceTree = "<group>"; };
 		2B6B238C1F0C7291001D2B04 /* MinuteAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinuteAbstract.h; sourceTree = "<group>"; };
 		2B6B238E1F0C741B001D2B04 /* NSArray+Stock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Stock.h"; sourceTree = "<group>"; };
 		2B6B238F1F0C741B001D2B04 /* NSArray+Stock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Stock.m"; sourceTree = "<group>"; };
@@ -276,8 +284,8 @@
 		2B773FB71F136BA400B2BE59 /* MACDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACDLayer.h; sourceTree = "<group>"; };
 		2B773FB81F136BA400B2BE59 /* MACDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACDLayer.m; sourceTree = "<group>"; };
 		2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MAVOL.lua; sourceTree = "<group>"; };
-		2B773FD51F15F43100B2BE59 /* BBIIndexLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBIIndexLayer.h; sourceTree = "<group>"; };
-		2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBIIndexLayer.m; sourceTree = "<group>"; };
+		2B773FD51F15F43100B2BE59 /* BBILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBILayer.h; sourceTree = "<group>"; };
+		2B773FD61F15F43100B2BE59 /* BBILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBILayer.m; sourceTree = "<group>"; };
 		2B773FD71F15F43100B2BE59 /* BOLLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOLLLayer.h; sourceTree = "<group>"; };
 		2B773FD81F15F43100B2BE59 /* BOLLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOLLLayer.m; sourceTree = "<group>"; };
 		2B773FD91F15F43100B2BE59 /* MIKELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIKELayer.h; sourceTree = "<group>"; };
@@ -309,8 +317,6 @@
 		2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GGDate.m"; sourceTree = "<group>"; };
 		2B7995191F175D6A00E73DFC /* month_k_data_600887.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = month_k_data_600887.json; sourceTree = "<group>"; };
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
-		2B79951D1F1772E200E73DFC /* HorizontalKLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalKLineViewController.h; sourceTree = "<group>"; };
-		2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalKLineViewController.m; sourceTree = "<group>"; };
 		2B8A24CC1F185CD2009A6F92 /* LoopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopScrollView.h; sourceTree = "<group>"; };
 		2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopScrollView.m; sourceTree = "<group>"; };
 		2B8B70FD1EF76066002FDC09 /* BaseScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScaler.h; sourceTree = "<group>"; };
@@ -384,10 +390,9 @@
 		2B20CC011EEADC1400D4F7F2 /* GGChartDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B68E96A1F204D93005D779A /* StockDemo */,
 				2B73B0011F0B619E0085095C /* KLineViewController.h */,
 				2B73B0021F0B619E0085095C /* KLineViewController.m */,
-				2B79951D1F1772E200E73DFC /* HorizontalKLineViewController.h */,
-				2B79951E1F1772E200E73DFC /* HorizontalKLineViewController.m */,
 				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
 				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
 				2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */,
@@ -507,8 +512,8 @@
 		2B2722AE1F0F68DE00E4A295 /* IndexLayer */ = {
 			isa = PBXGroup;
 			children = (
-				2B773FD51F15F43100B2BE59 /* BBIIndexLayer.h */,
-				2B773FD61F15F43100B2BE59 /* BBIIndexLayer.m */,
+				2B773FD51F15F43100B2BE59 /* BBILayer.h */,
+				2B773FD61F15F43100B2BE59 /* BBILayer.m */,
 				2B2D02C01F1C93C10052F4D5 /* TDLayer.h */,
 				2B2D02C11F1C93C10052F4D5 /* TDLayer.m */,
 				2B773FD71F15F43100B2BE59 /* BOLLLayer.h */,
@@ -602,6 +607,19 @@
 				2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2B68E96A1F204D93005D779A /* StockDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2B68E9741F207244005D779A /* SlideTabView.h */,
+				2B68E9751F207244005D779A /* SlideTabView.m */,
+				2B68E96E1F205564005D779A /* TableIndexCell.h */,
+				2B68E96F1F205564005D779A /* TableIndexCell.m */,
+				2B68E96B1F204D93005D779A /* HorizontalKLineViewController.h */,
+				2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */,
+			);
+			path = StockDemo;
 			sourceTree = "<group>";
 		};
 		2B6B238D1F0C741B001D2B04 /* GCategory */ = {
@@ -911,6 +929,7 @@
 				2B73B0031F0B619E0085095C /* KLineViewController.m in Sources */,
 				2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */,
 				2B2722971F0F550D00E4A295 /* luac.c in Sources */,
+				2B68E9761F207244005D779A /* SlideTabView.m in Sources */,
 				2B2722911F0F550D00E4A295 /* lstring.c in Sources */,
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
 				2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */,
@@ -921,7 +940,7 @@
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
 				2B2722791F0F550D00E4A295 /* lapi.c in Sources */,
-				2B773FDB1F15F43100B2BE59 /* BBIIndexLayer.m in Sources */,
+				2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */,
 				2B2722941F0F550D00E4A295 /* ltablib.c in Sources */,
 				2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */,
 				2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */,
@@ -933,6 +952,7 @@
 				2B2722811F0F550D00E4A295 /* ldebug.c in Sources */,
 				2B97887D1F09D4E2002A2A3C /* BaseLineData.m in Sources */,
 				2B6B23931F0C741B001D2B04 /* NSObject+FireBlock.m in Sources */,
+				2B68E9701F205564005D779A /* TableIndexCell.m in Sources */,
 				2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */,
 				2B252B851EFBC19B00AF541B /* DBarScaler.m in Sources */,
 				2B27228A1F0F550D00E4A295 /* lmem.c in Sources */,
@@ -951,6 +971,7 @@
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B27227B1F0F550D00E4A295 /* lbaselib.c in Sources */,
 				2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */,
+				2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */,
 				2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */,
 				2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */,
 				2B27227A1F0F550D00E4A295 /* lauxlib.c in Sources */,
@@ -960,7 +981,6 @@
 				2B73AFFD1F0B451B0085095C /* DKLineScaler.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
 				2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */,
-				2B79951F1F1772E200E73DFC /* HorizontalKLineViewController.m in Sources */,
 				2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,

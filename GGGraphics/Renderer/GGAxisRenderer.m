@@ -50,6 +50,8 @@
 
 - (void)addString:(NSString *)string point:(CGPoint)point
 {
+    if (string == nil) { return; }
+    
     [self.dictionaryString setValue:[NSValue valueWithCGPoint:point] forKey:string];
 }
 

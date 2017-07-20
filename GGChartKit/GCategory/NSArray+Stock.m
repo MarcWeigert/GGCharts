@@ -111,21 +111,23 @@
                        max:(CGFloat *)max
                        min:(CGFloat *)min
 {
-    __block CGFloat chartMax = FLT_MIN;
-    __block CGFloat chartMin = FLT_MAX;
-    
-    [array enumerateObjectsUsingBlock:^(NSDictionary<NSString *, NSNumber *> * obj, NSUInteger idx, BOOL * stop) {
+    CGFloat chartMax = FLT_MIN;
+    CGFloat chartMin = FLT_MAX;
         
-        [obj.allValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (NSDictionary<NSString *, NSNumber *> * objDic in array) {
+        
+        NSArray <NSNumber *> * allValues = objDic.allValues;
+        
+        for (NSNumber * obj in allValues) {
             
-            if (obj.floatValue == FLT_MIN) { return; }
+            if (obj.floatValue == FLT_MIN) { continue; }
             
             double objNumber = obj.floatValue;
             
             chartMax = objNumber > chartMax ? objNumber : chartMax;
             chartMin = objNumber < chartMin ? objNumber : chartMin;
-        }];
-    }];
+        }
+    }
     
     *max = chartMax;
     *min = chartMin;
@@ -146,13 +148,14 @@
     __block CGFloat chartMax = FLT_MIN;
     __block CGFloat chartMin = FLT_MAX;
     
-    [self enumerateObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:range]
-                            options:NSEnumerationConcurrent
-                         usingBlock:^(id <KLineAbstract> obj, NSUInteger idx, BOOL * stop) {
+    NSInteger count = NSMaxRange(range);
+    
+    for (NSInteger i = range.location; i < count; i++) {
         
-                             chartMax = obj.ggHigh > chartMax ? obj.ggHigh : chartMax;
-                             chartMin = obj.ggLow < chartMin ? obj.ggLow : chartMin;
-    }];
+        id <KLineAbstract> obj = self[i];
+        chartMax = obj.ggHigh > chartMax ? obj.ggHigh : chartMax;
+        chartMin = obj.ggLow < chartMin ? obj.ggLow : chartMin;
+    }
     
     *max = chartMax;
     *min = chartMin;

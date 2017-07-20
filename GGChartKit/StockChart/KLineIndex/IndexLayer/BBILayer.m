@@ -6,9 +6,9 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "BBIIndexLayer.h"
+#import "BBILayer.h"
 
-@interface BBIIndexLayer ()
+@interface BBILayer ()
 
 @property (nonatomic, strong) NSArray <NSNumber *> *param;
 @property (nonatomic, strong) NSArray <NSString *> *paramTitles;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation BBIIndexLayer
+@implementation BBILayer
 
 - (NSAttributedString *)attrStringWithIndex:(NSInteger)index
 {

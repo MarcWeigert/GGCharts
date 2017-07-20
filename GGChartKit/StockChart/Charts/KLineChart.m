@@ -11,18 +11,8 @@
 #import "NSArray+Stock.h"
 #import "CrissCrossQueryView.h"
 
-#import "MALayer.h"
+#import "BaseIndexLayer.h"
 #import "MAVOLLayer.h"
-#import "EMALayer.h"
-#import "BBIIndexLayer.h"
-#import "BOLLLayer.h"
-#import "TDLayer.h"
-
-#import "MACDLayer.h"
-#import "KDJLayer.h"
-#import "MIKELayer.h"
-#import "RSILayer.h"
-#import "ATRLayer.h"
 
 #import "NSDate+GGDate.h"
 #import "NSObject+FireBlock.h"
@@ -71,27 +61,48 @@
 @property (nonatomic, strong) UILabel * lableKLineIndex;
 @property (nonatomic, strong) UILabel * lableVolumIndex;
 
+@property (nonatomic, copy) void (^indexChangeBlk)(NSString *indexName);
+
 @end
 
 @implementation KLineChart
 
-+ (NSArray *)kLineIndexLayerClazz
++ (NSArray *)kLineIndexLayerClazzName
 {
-    return @[[MALayer class],
-             [EMALayer class],
-             [MIKELayer class],
-             [BOLLLayer class],
-             [BBIIndexLayer class],
-             [TDLayer class]];
+    return @[@"MA", @"EMA", @"MIKE", @"BOLL", @"BBI", @"TD"];
 }
 
-+ (NSArray *)kVolumIndexLayerClazz
++ (NSArray *)kVolumIndexLayerClazzName
 {
-    return @[[MAVOLLayer class],
-             [MACDLayer class],
-             [KDJLayer class],
-             [RSILayer class],
-             [ATRLayer class]];
+    return @[@"MAVOL", @"MACD", @"KDJ", @"RSI", @"ATR"];
+}
+
+#pragma mark - Setter
+
+/** 指标切换回调 */
+- (void)setIndexChangeBlock:(void(^)(NSString * indexName))block
+{
+    _indexChangeBlk = block;
+}
+
+/** 切换指标 */
+- (void)setIndex:(NSString *)string
+{
+    NSArray * kLineAry = [KLineChart kLineIndexLayerClazzName];
+    
+    if ([kLineAry containsObject:string]) {
+        
+        _kLineIndexIndex = [kLineAry indexOfObject:string];
+        [self updateKLineIndexLayer:_kLineIndexIndex];
+    }
+    
+    NSArray * volumAry = [KLineChart kVolumIndexLayerClazzName];
+    
+    if ([volumAry containsObject:string]) {
+        
+        _volumIndexIndex = [volumAry indexOfObject:string];
+        [self updateVolumIndexLayer:_volumIndexIndex];
+    }
 }
 
 #pragma mark - Surper
@@ -335,7 +346,7 @@
         
         _kLineIndexIndex++;
         
-        if (_kLineIndexIndex > [[KLineChart kLineIndexLayerClazz] count] - 1) {
+        if (_kLineIndexIndex > [[KLineChart kLineIndexLayerClazzName] count] - 1) {
             
             _kLineIndexIndex = 0;
         }
@@ -347,7 +358,7 @@
         
         _volumIndexIndex++;
         
-        if (_volumIndexIndex > [[KLineChart kVolumIndexLayerClazz] count] - 1) {
+        if (_volumIndexIndex > [[KLineChart kVolumIndexLayerClazzName] count] - 1) {
             
             _volumIndexIndex = 0;
         }
@@ -362,15 +373,17 @@
         
         [_volumIndexLayer removeFromSuperlayer];
         
-        Class clazz = [KLineChart kVolumIndexLayerClazz][index];
+        _volumIndexIndexName = [KLineChart kVolumIndexLayerClazzName][index];
+        Class clazz = NSClassFromString([_volumIndexIndexName stringByAppendingString:@"Layer"]);
         
         _volumIndexLayer = [[clazz alloc] init];
         _volumIndexLayer.frame = self.redVolumLayer.frame;
         [_volumIndexLayer setKLineArray:_kLineArray];
         _volumIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
         [self.scrollView.layer addSublayer:_volumIndexLayer];
-        
         [self updateSubLayer];
+        
+        if (_indexChangeBlk) { _indexChangeBlk([KLineChart kVolumIndexLayerClazzName][index]); }
     });
 }
 
@@ -380,7 +393,8 @@
         
         [_kLineIndexLayer removeFromSuperlayer];
         
-        Class clazz = [KLineChart kLineIndexLayerClazz][index];
+        _kLineIndexIndexName = [KLineChart kLineIndexLayerClazzName][index];
+        Class clazz = NSClassFromString([_kLineIndexIndexName stringByAppendingString:@"Layer"]);
         
         _kLineIndexLayer = [[clazz alloc] init];
         _kLineIndexLayer.frame = self.redLineLayer.frame;
@@ -388,8 +402,9 @@
         [_kLineIndexLayer setKLineArray:_kLineArray];
         _kLineIndexLayer.currentKLineWidth = self.kLineScaler.shapeWidth;
         [self.scrollView.layer addSublayer:_kLineIndexLayer];
-        
         [self updateSubLayer];
+        
+        if (_indexChangeBlk) { _indexChangeBlk([KLineChart kLineIndexLayerClazzName][index]); }
     });
 }
 
@@ -493,6 +508,8 @@ static void * kLineTitle = "keyTitle";
 
 - (void)updateChart
 {
+    if (_kLineArray.count == 0) { return; }
+    
     [self baseConfigRendererAndLayer];
     
     [self kLineSubLayerRespond];

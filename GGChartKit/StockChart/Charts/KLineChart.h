@@ -38,6 +38,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) NSInteger kLineIndexIndex;
 @property (nonatomic, assign) NSInteger volumIndexIndex;
 
+@property (nonatomic, readonly) NSString * kLineIndexIndexName;
+@property (nonatomic, readonly) NSString * volumIndexIndexName;
+
 @property (nonatomic, assign) CGFloat kLineProportion;  ///< 主图占比 默认 .6f
 @property (nonatomic, assign, readonly) KLineStyle kStyle;        ///< k线日期
 
@@ -46,5 +49,11 @@ typedef enum : NSUInteger {
 
 /** 更新K线图 */
 - (void)updateChart;
+
+/** 指标切换回调 */
+- (void)setIndexChangeBlock:(void(^)(NSString * indexName))block;
+
+/** 切换指标 */
+- (void)setIndex:(NSString *)string;
 
 @end

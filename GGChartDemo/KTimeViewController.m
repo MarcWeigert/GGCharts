@@ -35,9 +35,24 @@
     return _price;
 }
 
+- (CGFloat)ggTimeClosePrice
+{
+    return .0f;
+}
+
+- (NSDate *)ggTimeDate
+{
+    return nil;
+}
+
 - (CGFloat)ggVolume
 {
     return _volume;
+}
+
+- (NSDate *)ggVolumeDate
+{
+    return nil;
 }
 
 @end

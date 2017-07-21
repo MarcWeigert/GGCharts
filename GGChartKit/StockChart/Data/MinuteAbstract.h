@@ -17,7 +17,7 @@
 
 - (CGFloat)ggTimeClosePrice;            ///< 分时图涨跌比率
 
-- (NSString *)ggMinuteTitle;             ///< 标题
+- (NSDate *)ggTimeDate;            ///< 成交量标题
 
 @end
 

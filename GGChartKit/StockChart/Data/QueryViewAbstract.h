@@ -20,7 +20,7 @@
 
 /** 
  * 查询Key颜色 
- *
+ *  
  * @{@"key" : [UIColor redColor]}
  */
 - (NSDictionary *)queryValueForColor;

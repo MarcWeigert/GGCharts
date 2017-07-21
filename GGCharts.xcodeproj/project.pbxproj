@@ -41,8 +41,6 @@
 		2B2722931F0F550D00E4A295 /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722671F0F550D00E4A295 /* ltable.c */; };
 		2B2722941F0F550D00E4A295 /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722691F0F550D00E4A295 /* ltablib.c */; };
 		2B2722951F0F550D00E4A295 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B27226A1F0F550D00E4A295 /* ltm.c */; };
-		2B2722961F0F550D00E4A295 /* lua.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B27226C1F0F550D00E4A295 /* lua.c */; };
-		2B2722971F0F550D00E4A295 /* luac.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B27226F1F0F550D00E4A295 /* luac.c */; };
 		2B2722981F0F550D00E4A295 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722721F0F550D00E4A295 /* lundump.c */; };
 		2B2722991F0F550D00E4A295 /* lutf8lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722741F0F550D00E4A295 /* lutf8lib.c */; };
 		2B27229A1F0F550D00E4A295 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722751F0F550D00E4A295 /* lvm.c */; };
@@ -194,10 +192,8 @@
 		2B2722691F0F550D00E4A295 /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltablib.c; sourceTree = "<group>"; };
 		2B27226A1F0F550D00E4A295 /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltm.c; sourceTree = "<group>"; };
 		2B27226B1F0F550D00E4A295 /* ltm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltm.h; sourceTree = "<group>"; };
-		2B27226C1F0F550D00E4A295 /* lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua.c; sourceTree = "<group>"; };
 		2B27226D1F0F550D00E4A295 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		2B27226E1F0F550D00E4A295 /* lua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua.hpp; sourceTree = "<group>"; };
-		2B27226F1F0F550D00E4A295 /* luac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luac.c; sourceTree = "<group>"; };
 		2B2722701F0F550D00E4A295 /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
 		2B2722711F0F550D00E4A295 /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
 		2B2722721F0F550D00E4A295 /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lundump.c; sourceTree = "<group>"; };
@@ -480,10 +476,8 @@
 				2B2722691F0F550D00E4A295 /* ltablib.c */,
 				2B27226A1F0F550D00E4A295 /* ltm.c */,
 				2B27226B1F0F550D00E4A295 /* ltm.h */,
-				2B27226C1F0F550D00E4A295 /* lua.c */,
 				2B27226D1F0F550D00E4A295 /* lua.h */,
 				2B27226E1F0F550D00E4A295 /* lua.hpp */,
-				2B27226F1F0F550D00E4A295 /* luac.c */,
 				2B2722701F0F550D00E4A295 /* luaconf.h */,
 				2B2722711F0F550D00E4A295 /* lualib.h */,
 				2B2722721F0F550D00E4A295 /* lundump.c */,
@@ -923,12 +917,10 @@
 				2B27228D1F0F550D00E4A295 /* lopcodes.c in Sources */,
 				2B2722A21F0F55D500E4A295 /* LuaContext.m in Sources */,
 				2B97887B1F09D4E2002A2A3C /* BaseBarData.m in Sources */,
-				2B2722961F0F550D00E4A295 /* lua.c in Sources */,
 				2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */,
 				2B97887F1F09D4E2002A2A3C /* LineData.m in Sources */,
 				2B73B0031F0B619E0085095C /* KLineViewController.m in Sources */,
 				2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */,
-				2B2722971F0F550D00E4A295 /* luac.c in Sources */,
 				2B68E9761F207244005D779A /* SlideTabView.m in Sources */,
 				2B2722911F0F550D00E4A295 /* lstring.c in Sources */,
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
@@ -1143,7 +1135,7 @@
 				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Durex.GGCharts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1157,7 +1149,7 @@
 				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Durex.GGCharts;
 				PRODUCT_NAME = "$(TARGET_NAME)";

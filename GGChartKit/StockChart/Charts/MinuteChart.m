@@ -146,6 +146,28 @@
     barGreenShape.fillColor = _greenColor.CGColor;
     barGreenShape.path = greenBar;
     CGPathRelease(greenBar);
+    
+    //
+    // [LineLayerSet registerLineLayer.Node]
+    //
+    // LayerSet.frame = CGRectMake;
+    //
+    //
+    //
+    //
+    //
+    
+    //
+    //
+    // LineLayerNode.bindStrockColor(_lineFillColor).bindFillColor(_greenColor);
+    //
+    // LineLayerNode.scaler = self.lineScaler;
+    //
+    // [LineLayerNode addTragate forSelector]
+    //
+    // 
+    //
+    //
 }
 
 - (void)drawChart

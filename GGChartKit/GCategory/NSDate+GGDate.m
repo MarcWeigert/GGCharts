@@ -14,7 +14,7 @@
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
     return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
 #else
-    return [NSCalendar currentCalendar]
+    return [NSCalendar currentCalendar];
 #endif
 }
 

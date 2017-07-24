@@ -9,8 +9,10 @@
 #import "KTimeViewController.h"
 #import "BaseModel.h"
 #import "MinuteChart.h"
+#import "QueryViewAbstract.h"
+#import "NSDate+GGDate.h"
 
-@interface TimeModel : BaseModel <MinuteAbstract, VolumeAbstract>
+@interface TimeModel : BaseModel <MinuteAbstract, VolumeAbstract, QueryViewAbstract>
 
 @property (nonatomic , assign) NSInteger volume;
 @property (nonatomic , assign) CGFloat price_change;
@@ -20,6 +22,7 @@
 @property (nonatomic , copy) NSString * date;
 @property (nonatomic , assign) NSInteger total_volume;
 @property (nonatomic , assign) CGFloat avg_price;
+@property (nonatomic , strong) NSDate * ggDate;
 
 @end
 
@@ -37,12 +40,12 @@
 
 - (CGFloat)ggTimeClosePrice
 {
-    return .0f;
+    return _price / (1 + _price_change_rate / 100);
 }
 
 - (NSDate *)ggTimeDate
 {
-    return nil;
+    return _ggDate;
 }
 
 - (CGFloat)ggVolume
@@ -52,7 +55,45 @@
 
 - (NSDate *)ggVolumeDate
 {
-    return nil;
+    return _ggDate;
+}
+
+/**
+ * 查询Value颜色
+ *
+ * @{@"key" : [UIColor redColor]}
+ */
+- (NSDictionary *)queryKeyForColor
+{
+    return @{@"价格" : [UIColor blackColor],
+             @"均价" : [UIColor blackColor],
+             @"成交量" : [UIColor blackColor]};
+}
+
+/**
+ * 查询Key颜色
+ *
+ * @{@"key" : [UIColor redColor]}
+ */
+- (NSDictionary *)queryValueForColor
+{
+    return @{[NSString stringWithFormat:@"%.2f", _price] : [UIColor blackColor],
+             [NSString stringWithFormat:@"%.2f", _avg_price] : [UIColor blackColor],
+             [NSString stringWithFormat:@"%zd手", _volume] : [UIColor blackColor]};
+}
+
+/**
+ * 键值对
+ *
+ * @[@{@"key" : @"value"},
+ *   @{@"key" : @"value"},
+ *   @{@"key" : @"value"}]
+ */
+- (NSArray <NSDictionary *> *)valueForKeyArray
+{
+    return @[@{@"价格" : [NSString stringWithFormat:@"%.2f", _price]},
+             @{@"均价" : [NSString stringWithFormat:@"%.2f", _avg_price]},
+             @{@"成交量" : [NSString stringWithFormat:@"%zd手", _volume]}];
 }
 
 @end
@@ -72,8 +113,15 @@
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSArray * stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     
-    _timeChart = [[MinuteChart alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 200)];
-    _timeChart.objTimeAry = (NSArray <MinuteAbstract, VolumeAbstract> *)[BaseModel arrayForArray:stockJson class:[TimeModel class]];
+    NSArray <MinuteAbstract, VolumeAbstract> * timeAry = (NSArray <MinuteAbstract, VolumeAbstract> *) [BaseModel arrayForArray:stockJson class:[TimeModel class]];
+    
+    [timeAry enumerateObjectsUsingBlock:^(TimeModel * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.ggDate = [NSDate dateWithString:obj.date format:@"yyyy-MM-dd HH:mm:ss"];
+    }];
+    
+    _timeChart = [[MinuteChart alloc] initWithFrame:CGRectMake(10, 100, self.view.frame.size.width - 20, 250)];
+    _timeChart.objTimeAry = timeAry;
     
     [self.view addSubview:_timeChart];
     [_timeChart drawChart];

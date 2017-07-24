@@ -11,7 +11,7 @@
 
 @interface GGCanvas ()
 
-@property (nonatomic) NSMutableSet <id <GGRenderProtocol>>*aryRenderer;
+@property (nonatomic) NSMutableArray <id <GGRenderProtocol>>*aryRenderer;
 
 @end
 
@@ -26,7 +26,7 @@
         
         self.contentsScale = [UIScreen mainScreen].scale;
         self.masksToBounds = YES;
-        _aryRenderer = [NSMutableSet set];
+        _aryRenderer = [NSMutableArray array];
     }
     
     return self;
@@ -69,6 +69,11 @@
 {
     //[CATransaction begin];
     //[CATransaction setDisableActions:YES];
+    
+    if (_isCloseDisableActions) {
+        
+        [CATransaction setDisableActions:YES];
+    }
     
     [super drawInContext:ctx];
     

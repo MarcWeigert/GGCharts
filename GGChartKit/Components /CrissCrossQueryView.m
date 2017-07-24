@@ -111,6 +111,7 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         
         _cirssLayer = [[GGCanvas alloc] init];
         _cirssLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        _cirssLayer.isCloseDisableActions = YES;
         
         _lineWidth = .5f;
         _cirssLableColor = [UIColor blackColor];
@@ -121,13 +122,15 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         _xAxisLable = [[GGStringRenderer alloc] init];
         _xAxisLable.font = _cirssLableFont;
         _xAxisLable.color = _cirssLableColor;
-        _xAxisLable.fillColor = _cirssLableBackColor;
+        _xAxisLable.fillColor = RGB(235, 235, 235);
+        _xAxisLable.offSetRatio = CGPointMake(-.5f, 0);
         _xAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
         
         _yAxisLable = [[GGStringRenderer alloc] init];
         _yAxisLable.font = _cirssLableFont;
         _yAxisLable.color = _cirssLableColor;
-        _yAxisLable.fillColor = _cirssLableBackColor;
+        _yAxisLable.fillColor = RGB(235, 235, 235);
+        _yAxisLable.offSetRatio = CGPointMake(0, -.5f);
         _yAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
         
         _xLine = [[GGLineRenderer alloc] init];
@@ -145,9 +148,33 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         _queryView.layer.borderColor = _cirssLineColor.CGColor;
         _queryView.layer.borderWidth = _lineWidth / 2;
         [self addSubview:_queryView];
+        
+        [_cirssLayer addRenderer:_xLine];
+        [_cirssLayer addRenderer:_yLine];
+        [_cirssLayer addRenderer:_xAxisLable];
+        [_cirssLayer addRenderer:_yAxisLable];
     }
     
     return self;
+}
+
+- (void)setHidden:(BOOL)hidden
+{
+    [super setHidden:hidden];
+    
+    if (hidden) {
+        
+        [_cirssLayer removeAllRenderer];
+        [_cirssLayer setNeedsDisplay];
+    }
+    else {
+    
+        [_cirssLayer addRenderer:_xLine];
+        [_cirssLayer addRenderer:_yLine];
+        [_cirssLayer addRenderer:_xAxisLable];
+        [_cirssLayer addRenderer:_yAxisLable];
+        [_cirssLayer setNeedsDisplay];
+    }
 }
 
 - (void)setFrame:(CGRect)frame
@@ -166,11 +193,6 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
 /** 设置中心点 */
 - (void)setCenterPoint:(CGPoint)center
 {
-    [_cirssLayer addRenderer:_xAxisLable];
-    [_cirssLayer addRenderer:_yAxisLable];
-    [_cirssLayer addRenderer:_xLine];
-    [_cirssLayer addRenderer:_yLine];
-    
     _xLine.line = GGLineRectForX(_cirssLayer.frame, center.x);
     _yLine.line = GGLineRectForY(_cirssLayer.frame, center.y);
     [_cirssLayer setNeedsDisplay];
@@ -218,13 +240,6 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         animation.subtype = isLeft ? kCATransitionFromLeft:kCATransitionFromRight;
         [self.queryView.layer addAnimation:animation forKey:@"frame"];
     }
-}
-
-/** 清除 */
-- (void)clearLine
-{
-    [_cirssLayer removeAllRenderer];
-    [_cirssLayer setNeedsDisplay];
 }
 
 @end

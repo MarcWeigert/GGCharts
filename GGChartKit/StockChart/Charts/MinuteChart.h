@@ -16,6 +16,12 @@
 @property (nonatomic, strong) UIColor * redColor;       ///< 环比上次涨颜色
 @property (nonatomic, strong) UIColor * greenColor;     ///< 环比上次跌颜色
 @property (nonatomic, strong) UIColor * avgColor;       ///< 均价线颜色
+@property (nonatomic, strong) UIColor * gridColor;      ///< 网格颜色
+
+@property (nonatomic, strong) UIColor * axisStringColor;      ///< 文字颜色
+@property (nonatomic, strong) UIColor * posColor;
+@property (nonatomic, strong) UIColor * negColor;
+@property (nonatomic, strong) UIFont * axisFont;        ///< 轴字体
 
 @property (nonatomic, assign) CGFloat lineRatio;    ///< 分时线所占比率
 

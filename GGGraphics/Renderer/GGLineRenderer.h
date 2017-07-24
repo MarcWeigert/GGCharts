@@ -17,5 +17,6 @@
 @property (nonatomic, assign) GGLine line;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, assign) CGSize dash;
 
 @end

@@ -40,4 +40,7 @@
 /** 根据点获取价格 */
 - (CGFloat)getPriceWithPoint:(CGPoint)point;
 
+/** 根据点获取价格 */
+- (CGFloat)getPriceWithYPixel:(CGFloat)y;
+
 @end

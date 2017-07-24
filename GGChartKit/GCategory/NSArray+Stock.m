@@ -12,6 +12,47 @@
 @implementation NSArray (Stock)
 
 /**
+ * 获取数组对象的绝对值最大值
+ *
+ * @param max 最大值地址
+ */
+- (void)getAbsMax:(CGFloat *)max selGetter:(SEL)getter
+{
+    CGFloat byMax = FLT_MIN;
+    
+    IMP imp = [self.firstObject methodForSelector:getter];
+    double (*objGetter)(id obj, SEL getter) = (void *)imp;
+    
+    
+    for (id obj in self) {
+        
+        double objNumber = objGetter(obj, getter);
+        
+        byMax = ABS(objNumber) < byMax ? byMax : ABS(objNumber);
+    }
+    
+    *max = byMax;
+}
+
+/**
+ * 获取百分比字符传数组
+ */
+- (NSArray *)percentageStringWithBase:(CGFloat)baseFloat
+{
+    NSMutableArray * ratoAry = [NSMutableArray array];
+    
+    for (NSNumber * obj in self) {
+        
+        CGFloat rato = obj.floatValue - baseFloat;
+        rato = ( (float) ( (int) (rato * 10000))) / 10000;
+        
+        [ratoAry addObject:[NSString stringWithFormat:@"%.2f%%", rato / baseFloat * 100]];
+    }
+    
+    return [NSArray arrayWithArray:ratoAry];
+}
+
+/**
  * 获取数组对象的最大值最小值
  *
  * @param max 最大值地址

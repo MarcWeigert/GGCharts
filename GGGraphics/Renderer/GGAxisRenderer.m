@@ -89,7 +89,7 @@
     }
     
     CGFloat len = GGLengthLine(_axis.line);
-    NSInteger count = _axis.sep == 0 ? 0 : abs((int)(len / _axis.sep)) + 1;
+    NSInteger count = _axis.sep == 0 ? 0 : abs((int)(len / _axis.sep + 0.1)) + 1;   ///< 八社九入
     
     CGPoint from[count];
     CGPoint to[count];
@@ -137,6 +137,14 @@
             CGPoint point = to[i];
             CGSize size = [string sizeWithAttributes:_paramStr];
             
+            NSMutableDictionary * dicDrawString = [NSMutableDictionary dictionaryWithDictionary:_paramStr];
+            
+            if (_colorAry.count) {
+                
+                UIColor * color = _colorAry[i < (_colorAry.count - 1) ? i : (_colorAry.count - 1)];
+                [dicDrawString setObject:color forKey:NSForegroundColorAttributeName];
+            }
+            
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
             
             if (_drawAxisCenter) {
@@ -146,7 +154,17 @@
             
             point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
             
-            [string drawAtPoint:point withAttributes:_paramStr];
+            if (_isStringFirstLastindent && i == 0) {
+                
+                point = to[i];
+            }
+            
+            if (_isStringFirstLastindent && i + 1 == self.aryString.count) {
+                
+                point = cir > M_PI_4 / 2 ? CGPointMake(to[i].x, to[i].y - size.height) : CGPointMake(to[i].x - size.width, to[i].y);
+            }
+            
+            [string drawAtPoint:point withAttributes:dicDrawString];
         }
         
         [self.dictionaryString enumerateKeysAndObjectsUsingBlock:^(NSString * key, NSValue * obj, BOOL * stop) {

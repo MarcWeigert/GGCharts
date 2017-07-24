@@ -11,6 +11,8 @@
 
 @interface GGCanvas : CALayer
 
+@property (nonatomic, assign) BOOL isCloseDisableActions;
+
 /**
  * 增加一个绘图工具
  *

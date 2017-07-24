@@ -13,21 +13,22 @@
 
 @interface GGAxisRenderer : NSObject <GGRenderProtocol>
 
-@property (nonatomic, assign) GGAxis axis;
-@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) GGAxis axis;      ///< 轴
+@property (nonatomic, assign) CGFloat width;        ///< 轴宽度
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic, assign) BOOL showLine;
-@property (nonatomic, assign) BOOL showSep;
-@property (nonatomic, assign) CGSize textOffSet;
+@property (nonatomic, assign) BOOL showLine;    ///< 是否显示轴线
+@property (nonatomic, assign) BOOL showSep;         ///< 是否显示轴分割线
+@property (nonatomic, assign) CGSize textOffSet;        ///< 文字偏移量
 
-@property (nonatomic, strong) NSArray <NSString *>* aryString;
-@property (nonatomic, strong) UIColor *strColor;
-@property (nonatomic, strong) UIFont *strFont;
-@property (nonatomic, assign) BOOL showText;
-@property (nonatomic, assign) BOOL drawAxisCenter;
-@property (nonatomic, assign) CGPoint offSetRatio;          // base text frame  -1 ~ 1
-
-@property (nonatomic, assign) NSRange range;
+@property (nonatomic, strong) NSArray <NSString *>* aryString;     ///< 文字数组
+@property (nonatomic, strong) NSArray <UIColor *>* colorAry;        ///< 文字颜色字符串
+@property (nonatomic, strong) UIColor *strColor;                ///< 文字颜色
+@property (nonatomic, strong) UIFont *strFont;                      ///< 文字字体
+@property (nonatomic, assign) BOOL showText;        ///< 是否显示文字
+@property (nonatomic, assign) BOOL drawAxisCenter;          ///< 是否绘制在分割中部
+@property (nonatomic, assign) CGPoint offSetRatio;          ///< 文字偏移
+@property (nonatomic, assign) NSRange range;            ///< 文字绘制区域
+@property (nonatomic, assign) BOOL isStringFirstLastindent;    ///< 文字是否首位缩进 默认 NO
 
 - (void)addString:(NSString *)string point:(CGPoint)point;
 

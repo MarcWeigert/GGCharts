@@ -387,8 +387,6 @@
 			isa = PBXGroup;
 			children = (
 				2B68E96A1F204D93005D779A /* StockDemo */,
-				2B73B0011F0B619E0085095C /* KLineViewController.h */,
-				2B73B0021F0B619E0085095C /* KLineViewController.m */,
 				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
 				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
 				2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */,
@@ -399,6 +397,8 @@
 				2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */,
 				2B5DE6301F00BB9800B40676 /* KTimeViewController.h */,
 				2B5DE6311F00BB9800B40676 /* KTimeViewController.m */,
+				2B73B0011F0B619E0085095C /* KLineViewController.h */,
+				2B73B0021F0B619E0085095C /* KLineViewController.m */,
 				2B5DE6331F00BD0100B40676 /* BaseModel.h */,
 				2B5DE6341F00BD0100B40676 /* BaseModel.m */,
 			);

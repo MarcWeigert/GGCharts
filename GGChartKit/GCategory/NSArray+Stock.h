@@ -13,6 +13,20 @@
 
 @interface NSArray (Stock)
 
+/**
+ * 获取数组对象的绝对值最大值
+ *
+ * @param max 最大值地址
+ */
+- (void)getAbsMax:(CGFloat *)max selGetter:(SEL)getter;
+
+/**
+ * 获取涨跌百分比字符传数组
+ *
+ * @param baseFloat 基数注意不可以为0
+ */
+- (NSArray *)percentageStringWithBase:(CGFloat)baseFloat;
+
 /** 
  * 获取数组对象的最大值最小值
  *

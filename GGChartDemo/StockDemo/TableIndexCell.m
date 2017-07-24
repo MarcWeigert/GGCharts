@@ -32,14 +32,6 @@
     return self;
 }
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    
-//    self.textLabel.textColor = selected ? RGB(115, 190, 222) : [UIColor blackColor];
-//}
-
-
 - (void)showLine:(BOOL)lineHidden
 {
     _line.hidden = lineHidden;

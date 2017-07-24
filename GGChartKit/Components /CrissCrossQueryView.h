@@ -41,7 +41,4 @@
 
 - (void)setYString:(NSString *)ystring setXString:(NSString *)xString;
 
-/** 清除 */
-- (void)clearLine;
-
 @end

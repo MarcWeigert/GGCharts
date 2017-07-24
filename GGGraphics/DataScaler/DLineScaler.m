@@ -104,10 +104,25 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     CGFloat dis = CGRectGetHeight(self.rect);
     CGFloat pix = (_max - _min) / dis;
-    CGFloat hight = CGRectGetMaxY(self.rect) - point.y;
+    CGFloat hight = point.y - CGRectGetMinY(self.rect);
+
+    if (hight < 0) { hight = 0; }
     
     return _min + hight * pix;
 }
+
+/** 根据点获取价格 */
+- (CGFloat)getPriceWithYPixel:(CGFloat)y
+{
+    CGFloat dis = CGRectGetHeight(self.rect);
+    CGFloat pix = (_max - _min) / dis;
+    CGFloat hight = self.rect.size.height - (y - self.rect.origin.y);
+    
+    if (hight < 0) { hight = 0; }
+    
+    return _min + hight * pix;
+}
+
 
 - (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {

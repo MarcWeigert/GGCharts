@@ -218,7 +218,6 @@
         
         self.scrollView.scrollEnabled = YES;
         self.queryPriceView.hidden = YES;
-        [self.queryPriceView clearLine];
     }
     else if (recognizer.state == UIGestureRecognizerStateBegan) {
         

@@ -40,6 +40,10 @@
 
 @property (nonatomic, strong) CrissCrossQueryView * queryPriceView;     ///< 查价层
 
+@property (nonatomic, strong) GGCanvas * animationCanvas;   ///< 动画层
+@property (nonatomic, strong) GGCircleRenderer * circleGradeAnimation;
+@property (nonatomic, assign) CGFloat base;
+
 @end
 
 @implementation MinuteChart
@@ -62,6 +66,9 @@
         _axisFont = [UIFont fontWithName:@"ArialMT" size:10];
         
         [self.layer addSublayer:self.backCanvas];
+        [self.layer addSublayer:self.animationCanvas];
+        
+        [self.animationCanvas addRenderer:self.circleGradeAnimation];
         
         [self.backCanvas addRenderer:self.gridRenderer];
         [self.backCanvas addRenderer:self.bottomRenderer];
@@ -81,9 +88,36 @@
         
         UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressViewOnGesturer:)];
         [self addGestureRecognizer:longPress];
+        
+        _base = 1;
+        
+        CADisplayLink * displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayAnimationCircle)];
+        displayLink.frameInterval = 3;
+        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        displayLink.paused = NO;
     }
     
     return self;
+}
+
+- (void)displayAnimationCircle
+{
+    if (self.objTimeAry.count) {
+        
+        self.circleGradeAnimation.circle = GGCirclePointMake(self.lineScaler.linePoints[_objTimeAry.count - 1], self.circleGradeAnimation.circle.radius + 10.0f / 60 * _base);
+        
+        if (self.circleGradeAnimation.circle.radius > 8) {
+            
+            _base = -1;
+        }
+        
+        if (self.circleGradeAnimation.circle.radius < 2) {
+            
+            _base = 1;
+        }
+
+        [self.animationCanvas setNeedsDisplay];
+    }
 }
 
 - (void)setFrame:(CGRect)frame
@@ -91,6 +125,7 @@
     [super setFrame:frame];
     
     self.backCanvas.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    self.animationCanvas.frame = self.backCanvas.frame;
     
     CGRect lineRect = [self lineRect];
     CGFloat ySplit = lineRect.size.height / 4;
@@ -311,6 +346,9 @@
     self.ratoRenderer.string = [NSString stringWithFormat:@"%.2f%%", rato / baseFloat * 100];
     self.ratoRenderer.color = [self.objTimeAry.lastObject ggTimePrice] > [self.objTimeAry.lastObject ggTimeClosePrice] ? _posColor : _negColor;
     self.ratoRenderer.point = CGPointMake(CGRectGetMaxX(lineRect), lastPricePoint.y);
+    
+    // 设置动画点
+    self.circleGradeAnimation.gradentColors = @[(__bridge id)_redColor.CGColor, (__bridge id)[UIColor whiteColor].CGColor];
 }
 
 - (void)configBarScaler
@@ -372,6 +410,7 @@
     [self configBackLayer];
     
     [self.backCanvas setNeedsDisplay];
+    [self.animationCanvas setNeedsDisplay];
     [self addSubview:self.queryPriceView];
 }
 
@@ -382,6 +421,7 @@ GGLazyGetMethod(DLineScaler, averageScaler);
 GGLazyGetMethod(DBarScaler, barScaler);
 
 GGLazyGetMethod(GGCanvas, backCanvas);
+GGLazyGetMethod(GGCanvas, animationCanvas);
 GGLazyGetMethod(GGGridRenderer, gridRenderer);
 GGLazyGetMethod(GGAxisRenderer, leftRenderer);
 GGLazyGetMethod(GGAxisRenderer, rightRenderer);
@@ -398,5 +438,6 @@ GGLazyGetMethod(GGCircleRenderer, priceCircle);
 GGLazyGetMethod(GGCircleRenderer, avgCircle);
 
 GGLazyGetMethod(CrissCrossQueryView, queryPriceView);
+GGLazyGetMethod(GGCircleRenderer, circleGradeAnimation);
 
 @end

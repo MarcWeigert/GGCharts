@@ -23,4 +23,6 @@
 
 @property (nonatomic) NSString *title;
 
+@property (nonatomic, strong) NSArray * gradentColors;  ///< CGColors
+
 @end

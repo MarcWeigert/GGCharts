@@ -63,6 +63,7 @@
 		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
 		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35BDC01F073FC900420B30 /* DPieScaler.m */; };
+		2B4A83FA1F26F68D00028DB7 /* 600887_five_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
 		2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */; };
@@ -237,6 +238,7 @@
 		2B330A681EE44F8E003D17C4 /* GGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGraphics.h; sourceTree = "<group>"; };
 		2B35BDBF1F073FC900420B30 /* DPieScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPieScaler.h; sourceTree = "<group>"; };
 		2B35BDC01F073FC900420B30 /* DPieScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPieScaler.m; sourceTree = "<group>"; };
+		2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_five_day.json; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5DE6301F00BB9800B40676 /* KTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTimeViewController.h; sourceTree = "<group>"; };
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 				2B97888D1F0A39FE002A2A3C /* ListVC.h */,
 				2B97888E1F0A39FE002A2A3C /* ListVC.m */,
 				2B97888F1F0A39FE002A2A3C /* main.m */,
+				2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */,
 				2B73B0041F0B61D20085095C /* 600887_kdata.json */,
 				2B7995191F175D6A00E73DFC /* month_k_data_600887.json */,
 				2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */,
@@ -894,6 +897,7 @@
 				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
 				2B3034241F111E1000706575 /* BBI.lua in Resources */,
 				2B773FB11F132BBC00B2BE59 /* MACD.lua in Resources */,
+				2B4A83FA1F26F68D00028DB7 /* 600887_five_day.json in Resources */,
 				2B773FB01F132BBC00B2BE59 /* EMA.lua in Resources */,
 				2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */,
 				2B3034271F111E1000706575 /* MIKE.lua in Resources */,

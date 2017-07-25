@@ -8,9 +8,11 @@
 
 #import "HorizontalKLineViewController.h"
 #import "KLineViewController.h"
+#import "KTimeViewController.h"
 #import "NSDate+GGDate.h"
 #import "TableIndexCell.h"
 #import "SlideTabView.h"
+#import "MinuteChart.h"
 
 #define GG_SCREEN_W     [UIScreen mainScreen].bounds.size.width
 #define GG_SCREEN_H     [UIScreen mainScreen].bounds.size.height
@@ -30,11 +32,17 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
 @property (nonatomic, strong) NSArray * menuDatas;
 
 @property (nonatomic, strong) UILabel * topLable;
-@property (nonatomic, strong) KLineChart * kChart;
 @property (nonatomic, strong) SlideTabView * bottomBar;
-@property (nonatomic, strong) UITableView * indexTableView;
 
+@property (nonatomic, strong) KLineChart * kChart;
+@property (nonatomic, strong) UITableView * indexTableView;
 @property (nonatomic, strong) NSArray * kLineArray;
+
+@property (nonatomic, strong) MinuteChart * kTimeChart;
+@property (nonatomic, strong) NSArray * timeDataAry;
+
+@property (nonatomic, strong) MinuteChart * kFiveTimeChart;
+@property (nonatomic, strong) NSArray * timeFiveDataAry;
 
 @end
 
@@ -48,11 +56,33 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     
     self.view.backgroundColor = RGB(255, 255, 255);
     
+    // k线
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSArray *stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     _kLineArray = [[[KLineData arrayForArray:stockJson class:[KLineData class]] reverseObjectEnumerator] allObjects];
     
     [_kLineArray enumerateObjectsUsingBlock:^(KLineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        obj.ggDate = [NSDate dateWithString:obj.date format:@"yyyy-MM-dd HH:mm:ss"];
+    }];
+    
+    // 日
+    NSData *dataTimeStock = [NSData dataWithContentsOfFile:[self stockTimeDataJsonPath]];
+    NSArray * stockTimeJson = [NSJSONSerialization JSONObjectWithData:dataTimeStock options:0 error:nil];
+    _timeDataAry = (NSArray <MinuteAbstract, VolumeAbstract> *) [BaseModel arrayForArray:stockTimeJson class:[TimeModel class]];
+    
+    [_timeDataAry enumerateObjectsUsingBlock:^(TimeModel * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.ggDate = [NSDate dateWithString:obj.date format:@"yyyy-MM-dd HH:mm:ss"];
+    }];
+    
+    
+    // 五日
+    NSData *dataFiveTimeStock = [NSData dataWithContentsOfFile:[self stockFiveDataJsonPath]];
+    NSArray * stockFiveTimeJson = [NSJSONSerialization JSONObjectWithData:dataFiveTimeStock options:0 error:nil];
+    _timeFiveDataAry = (NSArray <MinuteAbstract, VolumeAbstract> *) [BaseModel arrayForArray:stockFiveTimeJson class:[TimeModel class]];
+    
+    [_timeFiveDataAry enumerateObjectsUsingBlock:^(TimeModel * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         obj.ggDate = [NSDate dateWithString:obj.date format:@"yyyy-MM-dd HH:mm:ss"];
     }];
@@ -66,6 +96,8 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    
+    [self tabBtnClicked:0];
 }
 
 - (void)makeSubViews
@@ -77,6 +109,7 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     CGFloat kLineIndexTop = 12;
     CGRect indexRect = CGRectMake(GG_SCREEN_H - indexWidth - padding, indexWidth + kLineIndexTop, 40, GG_SCREEN_W - (indexWidth + kLineIndexTop) - 40);
     CGRect kLineRect = CGRectMake(padding, indexWidth, GG_SCREEN_H - padding * 3 - 40, indexRect.size.height + 11);
+    CGRect timeChartRect = CGRectMake(padding, indexWidth, GG_SCREEN_H - padding * 2, indexRect.size.height + 11);
     
     _topLable = [[UILabel alloc] initWithFrame:topRect];
     _topLable.text = @"  伊利股份(600887)       13.76       -0.44%           时间 14:01";
@@ -118,6 +151,24 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.bottomBar.gg_top, self.topLable.gg_width, .5f)];
     bottomLine.backgroundColor = RGB(235, 235, 235);
     [self.view addSubview:bottomLine];
+    
+    // 分时图
+    _kTimeChart = [[MinuteChart alloc] initWithFrame:timeChartRect];
+    [_kTimeChart setMinuteTimeArray:(NSArray <MinuteAbstract, VolumeAbstract> *)_timeDataAry timeChartType:TimeHalfAnHour];
+    _kTimeChart.lineRatio = 0.7f;
+    _kTimeChart.dirAxisSplitCount = 3;
+    [_kTimeChart setTrading:YES];
+    [self.view addSubview:_kTimeChart];
+    [_kTimeChart drawChart];
+    
+    // 五日线
+    _kFiveTimeChart = [[MinuteChart alloc] initWithFrame:timeChartRect];
+    [_kFiveTimeChart setMinuteTimeArray:(NSArray <MinuteAbstract, VolumeAbstract> *)_timeFiveDataAry timeChartType:TimeDay];
+    _kFiveTimeChart.lineRatio = 0.7f;
+    _kFiveTimeChart.dirAxisSplitCount = 3;
+    [_kFiveTimeChart setTrading:YES];
+    [self.view addSubview:_kFiveTimeChart];
+    [_kFiveTimeChart drawChart];
 }
 
 - (void)pop
@@ -154,6 +205,15 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
 
 - (void)tabBtnClicked:(NSInteger)btnTag
 {
+    // 刷新hidden
+    self.kTimeChart.hidden = !(btnTag == 0);
+    self.kFiveTimeChart.hidden = !(btnTag == 1);
+    self.kChart.hidden = !(btnTag == 2 || btnTag == 3 || btnTag == 4);
+    self.indexTableView.hidden = !(btnTag == 2 || btnTag == 3 || btnTag == 4);
+    
+    [self.kTimeChart setTrading:!self.kTimeChart.hidden];
+    [self.kFiveTimeChart setTrading:!self.kFiveTimeChart.hidden];
+    
     NSString * path = [self stockDataJsonPath];
     KLineStyle kStyle = KLineTypeDay;
     
@@ -242,6 +302,16 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     }
     
     return _menuDatas;
+}
+
+- (NSString *)stockTimeDataJsonPath
+{
+    return [[NSBundle mainBundle] pathForResource:@"time_chart_data" ofType:@"json"];
+}
+
+- (NSString *)stockFiveDataJsonPath
+{
+    return [[NSBundle mainBundle] pathForResource:@"600887_five_day" ofType:@"json"];
 }
 
 @end

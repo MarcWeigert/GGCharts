@@ -154,12 +154,12 @@
             
             point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
             
-            if (_isStringFirstLastindent && i == 0) {
+            if (_isStringFirstLastindent && i == 0 && !_drawAxisCenter) {
                 
                 point = to[i];
             }
             
-            if (_isStringFirstLastindent && i + 1 == self.aryString.count) {
+            if (_isStringFirstLastindent && i + 1 == self.aryString.count && !_drawAxisCenter) {
                 
                 point = cir > M_PI_4 / 2 ? CGPointMake(to[i].x, to[i].y - size.height) : CGPointMake(to[i].x - size.width, to[i].y);
             }

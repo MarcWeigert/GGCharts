@@ -11,20 +11,7 @@
 #import "MinuteChart.h"
 #import "QueryViewAbstract.h"
 #import "NSDate+GGDate.h"
-
-@interface TimeModel : BaseModel <MinuteAbstract, VolumeAbstract, QueryViewAbstract>
-
-@property (nonatomic , assign) NSInteger volume;
-@property (nonatomic , assign) CGFloat price_change;
-@property (nonatomic , assign) CGFloat price;
-@property (nonatomic , assign) CGFloat price_change_rate;
-@property (nonatomic , assign) CGFloat turnover;
-@property (nonatomic , copy) NSString * date;
-@property (nonatomic , assign) NSInteger total_volume;
-@property (nonatomic , assign) CGFloat avg_price;
-@property (nonatomic , strong) NSDate * ggDate;
-
-@end
+#import "HorizontalKLineViewController.h"
 
 @implementation TimeModel
 
@@ -110,7 +97,9 @@
 {
     [super viewDidLoad];
     
-    NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
+    self.title = @"伊利股份(600887)";
+    
+    NSData *dataStock = [NSData dataWithContentsOfFile:[self stockFiveDataJsonPath]];
     NSArray * stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     
     NSArray <MinuteAbstract, VolumeAbstract> * timeAry = (NSArray <MinuteAbstract, VolumeAbstract> *) [BaseModel arrayForArray:stockJson class:[TimeModel class]];
@@ -120,11 +109,19 @@
         obj.ggDate = [NSDate dateWithString:obj.date format:@"yyyy-MM-dd HH:mm:ss"];
     }];
     
-    _timeChart = [[MinuteChart alloc] initWithFrame:CGRectMake(10, 100, self.view.frame.size.width - 20, 250)];
-    _timeChart.objTimeAry = timeAry;
+    _timeChart = [[MinuteChart alloc] initWithFrame:CGRectMake(10, 80, self.view.frame.size.width - 20, 250)];
+    [_timeChart setMinuteTimeArray:timeAry timeChartType:TimeDay];
     
     [self.view addSubview:_timeChart];
     [_timeChart drawChart];
+    
+    UIBarButtonItem * bar = [[UIBarButtonItem alloc] initWithTitle:@"横屏" style:0 target:self action:@selector(present)];
+    self.navigationItem.rightBarButtonItem = bar;
+}
+
+- (void)present
+{
+    [self presentViewController:[HorizontalKLineViewController new] animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +132,11 @@
 - (NSString *)stockDataJsonPath
 {
     return [[NSBundle mainBundle] pathForResource:@"time_chart_data" ofType:@"json"];
+}
+
+- (NSString *)stockFiveDataJsonPath
+{
+    return [[NSBundle mainBundle] pathForResource:@"600887_five_day" ofType:@"json"];
 }
 
 @end

@@ -43,6 +43,11 @@
 @property (nonatomic, strong) GGCanvas * animationCanvas;   ///< 动画层
 @property (nonatomic, strong) GGCircleRenderer * circleGradeAnimation;
 @property (nonatomic, assign) CGFloat base;
+@property (nonatomic, strong) CADisplayLink * displayLink;
+
+@property (nonatomic, assign) TimeChartType timeType;
+
+@property (nonatomic, strong) NSArray * bottomTitleArray;       ///< 底部轴
 
 @end
 
@@ -63,10 +68,12 @@
         _axisStringColor = C_HEX(0xaeb1b6);
         _posColor = RGB(234, 82, 78);
         _negColor = RGB(74, 154, 84);
+        _dirAxisSplitCount = 2;
         _axisFont = [UIFont fontWithName:@"ArialMT" size:10];
         
         [self.layer addSublayer:self.backCanvas];
         [self.layer addSublayer:self.animationCanvas];
+        self.animationCanvas.hidden = YES;
         
         [self.animationCanvas addRenderer:self.circleGradeAnimation];
         
@@ -91,10 +98,10 @@
         
         _base = 1;
         
-        CADisplayLink * displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayAnimationCircle)];
-        displayLink.frameInterval = 3;
-        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        displayLink.paused = NO;
+        self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayAnimationCircle)];
+        self.displayLink.frameInterval = 3;
+        self.displayLink.paused = YES;
+        [self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     }
     
     return self;
@@ -120,26 +127,40 @@
     }
 }
 
+
+/** 是否正在交易 */
+- (void)setTrading:(BOOL)trading
+{
+    self.displayLink.paused = !trading;
+    self.animationCanvas.hidden = !trading;
+}
+
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
     
     self.backCanvas.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     self.animationCanvas.frame = self.backCanvas.frame;
+    self.queryPriceView.frame = CGRectMake(0, 15, frame.size.width, frame.size.height - 15);
+    
+    [self updateRenderers];
+}
+
+- (void)updateRenderers
+{
+    CGFloat bottomSplit = self.timeType == TimeDay ? self.bottomRenderer.aryString.count : (self.bottomRenderer.aryString.count - 1);
     
     CGRect lineRect = [self lineRect];
-    CGFloat ySplit = lineRect.size.height / 4;
+    CGFloat ySplit = lineRect.size.height / (_dirAxisSplitCount * 2);
     self.leftRenderer.axis = GGAxisLineMake(GGLeftLineRect(lineRect), 0, ySplit);
     self.rightRenderer.axis = GGAxisLineMake(GGRightLineRect(lineRect), 0, ySplit);
-    self.bottomRenderer.axis = GGAxisLineMake(GGBottomLineRect(lineRect), 1, frame.size.width / 8);
-    self.gridRenderer.grid = GGGridRectMake(lineRect, ySplit, frame.size.width / 8);
+    self.bottomRenderer.axis = GGAxisLineMake(GGBottomLineRect(lineRect), 1, self.frame.size.width / bottomSplit);
+    self.gridRenderer.grid = GGGridRectMake(lineRect, ySplit, self.frame.size.width / bottomSplit);
     
     CGRect volumRect = [self volumRect];
     CGFloat yVolumSplit = volumRect.size.height / 2;
     self.volumRenderer.axis = GGAxisLineMake(GGLeftLineRect(volumRect), 0, yVolumSplit);
-    self.volumGridRenderer.grid = GGGridRectMake(volumRect, yVolumSplit, frame.size.width / 8);
-    
-    self.queryPriceView.frame = CGRectMake(0, 15, frame.size.width, frame.size.height - 15);
+    self.volumGridRenderer.grid = GGGridRectMake(volumRect, yVolumSplit, self.frame.size.width / bottomSplit);
 }
 
 #pragma mark - 手势
@@ -171,7 +192,8 @@
 /** 更新十字星查价框 */
 - (void)updateQueryLayerWithPoint:(CGPoint)velocity
 {
-    NSInteger index = velocity.x / (self.frame.size.width / 240);
+    NSInteger count = self.timeType == TimeDay ? _bottomTitleArray.count * 240 : 240;
+    NSInteger index = velocity.x / (self.frame.size.width / count);
     index = index >= self.objTimeAry.count - 1 ? self.objTimeAry.count - 1 : index;
     
     id <KLineAbstract, QueryViewAbstract> kData = self.objTimeAry[index];
@@ -192,7 +214,8 @@
         yString = [NSString stringWithFormat:@"%.2f手", [self.barScaler getPriceWithYPixel:velocity.y]];
     }
 
-    [self.queryPriceView setYString:yString setXString:[[self.objTimeAry[index] ggTimeDate] stringWithFormat:@"HH:mm"]];
+    NSString * format = self.timeType == TimeDay ? @"yyyy:MM:dd HH:mm" : @"HH:mm";
+    [self.queryPriceView setYString:yString setXString:[[self.objTimeAry[index] ggTimeDate] stringWithFormat:format]];
     [self.queryPriceView.queryView setQueryData:kData];
     
     CGPoint point = self.lineScaler.linePoints[index];
@@ -220,16 +243,37 @@
 
 - (void)configBackLayer
 {
+    NSMutableArray * colorAry = [NSMutableArray array];
+    
+    CGFloat base = [[NSString stringWithFormat:@"%.2f", [self.objTimeAry.lastObject ggTimeClosePrice]] floatValue];
+    
+    [self.leftRenderer.aryString enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (base > obj.floatValue) {
+            
+            [colorAry addObject:_negColor];
+        }
+        else if (base < obj.floatValue) {
+        
+            [colorAry addObject:_posColor];
+        }
+        else {
+        
+            [colorAry addObject:_axisStringColor];
+        }
+    }];
+    
     self.leftRenderer.strFont = _axisFont;
     self.leftRenderer.offSetRatio = CGPointMake(0, -1);
-    self.leftRenderer.colorAry = @[_posColor, _posColor, _axisStringColor, _negColor, _negColor];
+    self.leftRenderer.colorAry = colorAry;
     
     self.rightRenderer.strFont = _axisFont;
     self.rightRenderer.offSetRatio = CGPointMake(-1, -1);
-    self.rightRenderer.colorAry = @[_posColor, _posColor, _axisStringColor, _negColor, _negColor];
+    self.rightRenderer.colorAry = colorAry;
     
     self.bottomRenderer.strFont = _axisFont;
     self.bottomRenderer.strColor = _axisStringColor;
+    self.bottomRenderer.offSetRatio = self.timeType == TimeDay ? CGPointMake(-0.5, 0) : CGPointZero;
     self.bottomRenderer.isStringFirstLastindent = YES;
     
     self.volumRenderer.strFont = _axisFont;
@@ -255,39 +299,86 @@
     self.ratoRenderer.font = _axisFont;
 }
 
-- (void)setObjTimeAry:(NSArray<VolumeAbstract, MinuteAbstract> *)objTimeAry
+/** 设置分时线数组 */
+- (void)setMinuteTimeArray:(NSArray <MinuteAbstract, VolumeAbstract> *)objTimeArray timeChartType:(TimeChartType)type
 {
-    _objTimeAry = objTimeAry;
+    self.timeType = type;
+    _objTimeAry = objTimeArray;
     
-    CGFloat max = FLT_MIN;
-    [objTimeAry getAbsMax:&max selGetter:@selector(ggTimePrice)];
-    _KTimeChartMaxPrice = max;
-    _KTimeChartMinPrice = [objTimeAry.firstObject ggTimeClosePrice] - (max - [objTimeAry.firstObject ggTimeClosePrice]);
+    // 更新底部轴文字
+    if (self.timeType == TimeHalfAnHour) {
+        
+        _bottomTitleArray = @[@"09:30", @"10:00", @"10:30", @"11:00", @"11:30", @"13:30", @"14:00", @"14:30", @"15:00"];
+    }
+    else if (self.timeType == TimeMiddle) {
+        
+        _bottomTitleArray = @[@"9:30", @"11:30", @"15:30"];
+    }
+    else if (self.timeType == TimeDay) {
+        
+        NSMutableArray * aryBottomTitles = [NSMutableArray array];
+        
+        __block NSInteger day = 0;
+        
+        [self.objTimeAry enumerateObjectsUsingBlock:^(id <MinuteAbstract> obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSInteger currentDay = [[obj ggTimeDate] day];
+            
+            if (day != currentDay) {
+                
+                [aryBottomTitles addObject:[[obj ggTimeDate] stringWithFormat:@"yy-MM-dd"]];
+                
+                day = currentDay;
+            }
+        }];
+        
+        _bottomTitleArray = [NSArray arrayWithArray:aryBottomTitles];
+    }
     
-    self.leftRenderer.aryString = [NSArray splitWithMax:_KTimeChartMaxPrice min:_KTimeChartMinPrice split:4 format:@"%.2f" attached:@""];
-    self.rightRenderer.aryString = [self.leftRenderer.aryString percentageStringWithBase:[objTimeAry.firstObject ggTimeClosePrice]];
-    self.bottomRenderer.aryString = @[@"09:30", @"10:00", @"10:30", @"11:00", @"11:30", @"13:30", @"14:00", @"14:30", @"15:00"];
+    if (self.timeType != TimeDay) {
+        
+        CGFloat max = FLT_MIN;
+        [objTimeArray getAbsMax:&max selGetter:@selector(ggTimePrice)];
+        _KTimeChartMaxPrice = max;
+        _KTimeChartMinPrice = [objTimeArray.lastObject ggTimeClosePrice] - (max - [objTimeArray.firstObject ggTimeClosePrice]);
+    }
+    else {
+        
+        CGFloat max = FLT_MIN;
+        CGFloat min = FLT_MAX;
+        [objTimeArray getMax:&max min:&min selGetter:@selector(ggTimePrice) base:.05f];
+        _KTimeChartMaxPrice = max;
+        _KTimeChartMinPrice = min;
+    }
+    
+    [self configLineScaler];
+    [self configBarScaler];
+}
+
+- (void)updateAxisStringPrice
+{
+    self.leftRenderer.aryString = [NSArray splitWithMax:_KTimeChartMaxPrice min:_KTimeChartMinPrice split:_dirAxisSplitCount * 2 format:@"%.2f" attached:@""];
+    self.rightRenderer.aryString = [self.leftRenderer.aryString percentageStringWithBase:[self.objTimeAry.firstObject ggTimeClosePrice]];
+    self.bottomRenderer.aryString = _bottomTitleArray;
+    self.bottomRenderer.drawAxisCenter = self.timeType == TimeDay;
     
     CGFloat barMax;
     CGFloat barMin;
     [_objTimeAry getMax:&barMax min:&barMin selGetter:@selector(ggVolume) base:0];
     self.volumRenderer.aryString = [NSArray splitWithMax:barMax min:0 split:2 format:@"%.f" attached:@"手"];
-    
-    [self configLineScaler];
-    [self configBarScaler];
 }
 
 - (void)configLineScaler
 {
     self.lineScaler.max = _KTimeChartMaxPrice;
     self.lineScaler.min = _KTimeChartMinPrice;
-    self.lineScaler.xMaxCount = 240;
+    self.lineScaler.xMaxCount = self.timeType == TimeDay ? _bottomTitleArray.count * 240 : 240;
     self.lineScaler.xRatio = 0;
     [self.lineScaler setObjAry:_objTimeAry getSelector:@selector(ggTimePrice)];
     
     self.averageScaler.max = _KTimeChartMaxPrice;
     self.averageScaler.min = _KTimeChartMinPrice;
-    self.averageScaler.xMaxCount = 240;
+    self.averageScaler.xMaxCount = self.timeType == TimeDay ? _bottomTitleArray.count * 240 : 240;
     self.averageScaler.xRatio = 0;
     [self.averageScaler setObjAry:_objTimeAry getSelector:@selector(ggTimeAveragePrice)];
 }
@@ -348,7 +439,7 @@
     self.ratoRenderer.point = CGPointMake(CGRectGetMaxX(lineRect), lastPricePoint.y);
     
     // 设置动画点
-    self.circleGradeAnimation.gradentColors = @[(__bridge id)_redColor.CGColor, (__bridge id)[UIColor whiteColor].CGColor];
+    self.circleGradeAnimation.gradentColors = @[(__bridge id)_lineColor.CGColor, (__bridge id)[UIColor whiteColor].CGColor];
 }
 
 - (void)configBarScaler
@@ -359,9 +450,9 @@
     
     self.barScaler.max = lineMax;
     self.barScaler.min = 0;
-    self.barScaler.xMaxCount = 240;
+    self.barScaler.xMaxCount = self.timeType == TimeDay ? _bottomTitleArray.count * 240 : 240;
     self.barScaler.xRatio = 0;
-    self.barScaler.barWidth = 1;
+    self.barScaler.barWidth = self.timeType == TimeDay ? .3f : 1;
     [self.barScaler setObjAry:_objTimeAry getSelector:@selector(ggVolume)];
 }
 
@@ -407,6 +498,8 @@
     [self drawLineChart];
     [self drawBarChart];
     
+    [self updateAxisStringPrice];
+    [self updateRenderers];
     [self configBackLayer];
     
     [self.backCanvas setNeedsDisplay];

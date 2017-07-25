@@ -63,6 +63,8 @@
 
 @property (nonatomic, copy) void (^indexChangeBlk)(NSString *indexName);
 
+@property (nonatomic, assign) BOOL isLoadingMore;       ///< 是否在刷新状态
+
 @end
 
 @implementation KLineChart
@@ -190,11 +192,27 @@
     [super setFrame:frame];
 }
 
+/** 结束刷新状态 */
+- (void)endLoadingState
+{
+    self.isLoadingMore = NO;
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self scrollViewContentSizeDidChange];
+    
+    if (scrollView.contentOffset.x < -40) {
+        
+        if (self.RefreshBlock && !self.isLoadingMore) {
+            
+            self.RefreshBlock();
+        }
+        
+        self.isLoadingMore = YES;
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -412,13 +430,17 @@
 /** 设置k线方法 */
 - (void)setKLineArray:(NSArray<id<KLineAbstract, VolumeAbstract, QueryViewAbstract>> *)kLineArray
 {
-    _kLineArray = [kLineArray copy];
+    _kLineArray = kLineArray;
     
     [self.kLineScaler setObjArray:kLineArray
                           getOpen:@selector(ggOpen)
                          getClose:@selector(ggClose)
                           getHigh:@selector(ggHigh)
                            getLow:@selector(ggLow)];
+    
+    self.volumScaler = [[DBarScaler alloc] init];
+    [self.volumScaler setObjAry:kLineArray
+                    getSelector:@selector(ggVolume)];
     
     [_kLineIndexLayer setKLineArray:kLineArray];
     [_volumIndexLayer setKLineArray:kLineArray];
@@ -591,7 +613,6 @@ static void * kLineTitle = "keyTitle";
     [self setVolumRect:volumRect];
     self.volumScaler.rect = CGRectMake(0, 0, self.redVolumLayer.gg_width, self.redVolumLayer.gg_height);
     self.volumScaler.barWidth = self.kLineScaler.shapeWidth;
-    [self.volumScaler setObjAry:_kLineArray getSelector:@selector(ggVolume)];
     self.lableVolumIndex.frame = CGRectMake(0, self.redLineLayer.gg_bottom + KLINE_VOLUM_INTERVAL, self.gg_width, INDEX_STRING_INTERVAL);
     
     // 量能区域的指标

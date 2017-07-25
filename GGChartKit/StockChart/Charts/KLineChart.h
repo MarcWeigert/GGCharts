@@ -44,6 +44,11 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat kLineProportion;  ///< 主图占比 默认 .6f
 @property (nonatomic, assign, readonly) KLineStyle kStyle;        ///< k线日期
 
+@property (nonatomic, copy) void (^RefreshBlock)(void);     ///< 刷新回调
+
+/** 结束刷新状态 */
+- (void)endLoadingState;
+
 /** 设置k线以及类型 */
 - (void)setKLineArray:(NSArray<id<KLineAbstract,VolumeAbstract,QueryViewAbstract>> *)kLineArray type:(KLineStyle)kType;
 

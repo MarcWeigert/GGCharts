@@ -137,11 +137,24 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
     _kChart.kMaxCountVisibale = 190;
     _kChart.kLineProportion = .7f;
     [_kChart updateChart];
+    
     __weak UITableView * tbIndex = _indexTableView;
     [_kChart setIndexChangeBlock:^(NSString *indexName) {
         
         [tbIndex reloadData];
     }];
+    
+    NSArray * kAry = _kLineArray;
+    __weak KLineChart * kChart = _kChart;
+    [_kChart setRefreshBlock:^{
+        
+        NSMutableArray * ary = [NSMutableArray arrayWithArray:kAry];
+        [ary addObjectsFromArray:kAry];
+        
+        [kChart setKLineArray:ary type:KLineTypeDay];
+        [kChart updateChart];
+    }];
+    
     [self.view addSubview:_kChart];
     
     UIView * topLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.topLable.gg_height - .5f, self.topLable.gg_width, .5f)];

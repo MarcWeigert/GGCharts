@@ -38,6 +38,7 @@
     if (_barRects != nil) {
         
         free(_barRects);
+        _barRects = nil;
     }
     
     _barRects = barRects;

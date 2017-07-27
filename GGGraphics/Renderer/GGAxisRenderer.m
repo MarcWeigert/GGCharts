@@ -13,7 +13,8 @@
 
 @property (nonatomic, strong) NSMutableDictionary * paramStr;
 
-@property (nonatomic, strong) NSMutableDictionary * dictionaryString;
+@property (nonatomic, strong) NSMutableArray * stringArray;
+@property (nonatomic, strong) NSMutableArray * stringPoints;
 
 @property (nonatomic, copy) NSString *(^stringBlock)(CGPoint point, NSInteger index, NSInteger max);
 
@@ -45,14 +46,16 @@
 
 - (void)removeAllPointString
 {
-    [self.dictionaryString removeAllObjects];
+    [self.stringArray removeAllObjects];
+    [self.stringPoints removeAllObjects];
 }
 
 - (void)addString:(NSString *)string point:(CGPoint)point
 {
     if (string == nil) { return; }
     
-    [self.dictionaryString setValue:[NSValue valueWithCGPoint:point] forKey:string];
+    [self.stringArray addObject:string];
+    [self.stringPoints addObject:[NSValue valueWithCGPoint:point] ];
 }
 
 - (void)setStrColor:(UIColor *)strColor
@@ -167,8 +170,9 @@
             [string drawAtPoint:point withAttributes:dicDrawString];
         }
         
-        [self.dictionaryString enumerateKeysAndObjectsUsingBlock:^(NSString * key, NSValue * obj, BOOL * stop) {
+        [self.stringArray enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
             
+            NSValue * obj = self.stringPoints[idx];
             CGSize size = [key sizeWithAttributes:_paramStr];
             CGPoint over_pt = GGPerpendicularMake(_axis.line, obj.CGPointValue, _axis.over);
             CGPoint point = CGPointMake(over_pt.x + size.width * _offSetRatio.x, over_pt.y + size.height * _offSetRatio.y);
@@ -197,6 +201,7 @@
     }
 }
 
-GGLazyGetMethod(NSMutableDictionary, dictionaryString);
+GGLazyGetMethod(NSMutableArray, stringArray);
+GGLazyGetMethod(NSMutableArray, stringPoints);
 
 @end

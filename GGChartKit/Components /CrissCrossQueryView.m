@@ -52,10 +52,10 @@
 {
     _queryData = queryData;
     
-    NSDictionary * valueColorDictionary = queryData.queryValueForColor;
-    NSDictionary * keyColorDictionary = queryData.queryValueForColor;
+    NSDictionary * valueColorDictionary = [queryData queryValueForColor];
+    NSDictionary * keyColorDictionary = [queryData queryKeyForColor];
     NSArray <NSDictionary *> * keyValueArray = queryData.valueForKeyArray;
-
+    
     CGFloat height = [@"1" sizeWithAttributes:@{NSFontAttributeName : _textFont}].height;
     _size = CGSizeMake(_width, height * keyValueArray.count + _interval * (keyValueArray.count + 2));
     
@@ -168,7 +168,7 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         [_cirssLayer setNeedsDisplay];
     }
     else {
-    
+        
         [_cirssLayer addRenderer:_xLine];
         [_cirssLayer addRenderer:_yLine];
         [_cirssLayer addRenderer:_xAxisLable];

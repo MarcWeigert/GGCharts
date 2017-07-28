@@ -105,7 +105,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     CGFloat dis = CGRectGetHeight(self.rect);
     CGFloat pix = (_max - _min) / dis;
     CGFloat hight = point.y - CGRectGetMinY(self.rect);
-
+    
     if (hight < 0) { hight = 0; }
     
     return _min + hight * pix;
@@ -165,13 +165,43 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
         }];
     }
     else {
-    
+        
         [self.dataAry enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL * stop) {
             
             if (obj.floatValue == FLT_MIN) { _linePoints[idx] = CGPointMake(FLT_MIN, FLT_MIN); return; }
             
             _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.floatValue));
         }];
+    }
+}
+
+/** 区域更新计算点 */
+- (void)updateScalerWithRange:(NSRange)range
+{
+    NSInteger start = range.location;
+    NSInteger end = NSMaxRange(range);
+    
+    _fig = y_axiScaler(_max, _min, self.rect);
+    _axis = x_axiScaler(_xMaxCount, self.rect, _xRatio);
+    
+    if (_lineObjAry.count) {
+        
+        for (NSInteger idx = start; idx < end; idx++) {
+            
+            NSObject * obj = _lineObjAry[idx];
+            CGFloat (* lineGetter)(id obj, SEL getter) = self.impGetter;
+            if (lineGetter(obj, _selGetter) == FLT_MIN) { _linePoints[idx] = CGPointMake(FLT_MIN, FLT_MIN); continue; }
+            _linePoints[idx] = CGPointMake(_axis(idx), _fig(lineGetter(obj, _selGetter)));
+        }
+    }
+    else {
+        
+        for (NSInteger idx = start; idx < end; idx++) {
+            
+            NSNumber * obj = _dataAry[idx];
+            if (obj.floatValue == FLT_MIN) { _linePoints[idx] = CGPointMake(FLT_MIN, FLT_MIN); continue; }
+            _linePoints[idx] = CGPointMake(_axis(idx), _fig(obj.floatValue));
+        }
     }
 }
 

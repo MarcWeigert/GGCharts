@@ -20,7 +20,7 @@
 
 @property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0-1 默认 0.5
 
-/** 
+/**
  * 自定义对象转换转换, 如果设置则忽略dataAry
  *
  * @param objAry 模型类数组
@@ -33,6 +33,9 @@
 
 /** 更新计算点 */
 - (void)updateScaler;
+
+/** 区域更新计算点 */
+- (void)updateScalerWithRange:(NSRange)range;
 
 /** 获取价格点 */
 - (CGFloat)getYPixelWithData:(CGFloat)data;

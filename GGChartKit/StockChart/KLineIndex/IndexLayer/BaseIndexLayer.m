@@ -47,7 +47,7 @@
 /**
  * 绘制折线
  *
- * @param dictionary 绘制数据格式 @[@{@"MA5" : xxx, @"MA10" : xxx}, ...]
+ * @param array 绘制数据格式 @[@{@"MA5" : xxx, @"MA10" : xxx}, ...]
  * @param keys 数据对象 @[@"MA5", @"MA10", ...]
  * @param colorForKeys 绘制数据对应颜色 @{@"MA5" : [UIColor red], @"MA10", ...};
  */
@@ -157,7 +157,7 @@
         lineScaler.max = max;
         lineScaler.min = min;
         lineScaler.rect = obj.frame;
-        [lineScaler updateScaler];
+        [lineScaler updateScalerWithRange:range];
         
         CGMutablePathRef ref = CGPathCreateMutable();
         GGPathAddRangePoints(ref, lineScaler.linePoints, range);
@@ -176,7 +176,7 @@
     _barScaler.rect = _positiveLayer.frame;
     _barScaler.bottomPrice = 0;
     _barScaler.barWidth = 1;
-    [_barScaler updateScaler];
+    [_barScaler updateScalerWithRange:range];
     
     CGMutablePathRef ref_p = CGPathCreateMutable();
     CGMutablePathRef ref_n = CGPathCreateMutable();
@@ -219,6 +219,9 @@
  */
 - (NSArray <NSString *> *)titles { return nil; }
 
+/**
+ * 指标字符串
+ */
 - (NSAttributedString *)attrStringWithIndex:(NSInteger)index { return nil; }
 
 /**

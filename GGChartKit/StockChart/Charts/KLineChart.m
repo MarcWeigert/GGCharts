@@ -64,6 +64,7 @@
 @property (nonatomic, copy) void (^indexChangeBlk)(NSString *indexName);
 
 @property (nonatomic, assign) BOOL isLoadingMore;       ///< 是否在刷新状态
+@property (nonatomic, assign) BOOL isWaitPulling;       ///< 是否正在等待刷新
 
 @end
 
@@ -206,12 +207,22 @@
     
     if (scrollView.contentOffset.x < -40) {
         
-        if (self.RefreshBlock && !self.isLoadingMore) {
+        if (!self.isLoadingMore) {
+            
+            self.isWaitPulling = YES;
+        }
+    }
+    
+    if (self.isWaitPulling &&
+        scrollView.contentOffset.x == 0) {
+        
+        if (self.RefreshBlock) {
             
             self.RefreshBlock();
         }
         
         self.isLoadingMore = YES;
+        self.isWaitPulling = NO;
     }
 }
 
@@ -463,7 +474,7 @@ static void * kLineTitle = "keyTitle";
 - (void)updateKLineTitles:(NSArray<id<KLineAbstract, VolumeAbstract, QueryViewAbstract>> *)kLineArray
 {
     if (_kStyle == KLineTypeDay) {
- 
+        
         __block NSInteger flag = 0;
         
         [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
@@ -485,7 +496,7 @@ static void * kLineTitle = "keyTitle";
         }];
     }
     else if (_kStyle == KLineTypeWeek) {
-    
+        
         __block NSInteger flag = -2;
         
         [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
@@ -507,19 +518,19 @@ static void * kLineTitle = "keyTitle";
         }];
     }
     else if (_kStyle == KLineTypeMonth) {
-    
+        
         __block NSInteger flag = 0;
         
         [kLineArray enumerateObjectsUsingBlock:^(id <KLineAbstract, VolumeAbstract, QueryViewAbstract> obj, NSUInteger idx, BOOL * stop) {
             
             NSString * title = nil;
             
-            if (flag != obj.ggKLineDate.year) {
+            if (flag < obj.ggKLineDate.year) {
                 
                 title = [obj.ggKLineDate stringWithFormat:@"yyyy/MM"];
-                flag = obj.ggKLineDate.year;
+                flag = obj.ggKLineDate.year + 1;
             }
-
+            
             objc_setAssociatedObject(obj, kLineTitle, title, OBJC_ASSOCIATION_COPY);
         }];
     }
@@ -743,7 +754,7 @@ static void * kLineTitle = "keyTitle";
         NSString * title = objc_getAssociatedObject(_kLineArray[i], kLineTitle);
         
         if (title.length) {
-
+            
             CGFloat x = self.kLineScaler.kShapes[i].top.x;
             GGLine kline = [self lineWithX:x rect:self.greenLineLayer.frame];
             GGLine vline = [self lineWithX:x rect:self.redVolumLayer.frame];
@@ -768,13 +779,18 @@ static void * kLineTitle = "keyTitle";
             NSInteger count;
             
             if (_kStyle == KLineTypeDay) {
+                
                 date = [before dateAddMonthScalerFirstDay:1];
                 count = [before interValDayWithoutWeekEndDay:date];
-            }else if (_kStyle == KLineTypeWeek) {
+            }
+            else if (_kStyle == KLineTypeWeek) {
+                
                 date = [before dateAddMonthScalerFirstDay:3];
                 count = [before interValWeek:date];
-            }else if (_kStyle == KLineTypeMonth) {
-                date = [before dateAddYearScalerFistMonthDay:1];
+            }
+            else if (_kStyle == KLineTypeMonth) {
+                
+                date = [before dateAddYearScalerFistMonthDay:2];
                 count = [before interValMonth:date];
             }
             
@@ -816,7 +832,7 @@ static void * kLineTitle = "keyTitle";
     // 更新k线层
     self.kLineScaler.max = max;
     self.kLineScaler.min = min;
-    [self.kLineScaler updateScaler];
+    [self.kLineScaler updateScalerWithRange:range];
     
     CGMutablePathRef refRed = CGPathCreateMutable();
     CGMutablePathRef refGreen = CGPathCreateMutable();
@@ -826,7 +842,7 @@ static void * kLineTitle = "keyTitle";
         id obj = _kLineArray[i];
         GGKShape shape = self.kLineScaler.kShapes[i];
         
-        [self isRed:obj] ? GGPathAddKShape(refRed, shape) : GGPathAddKShape(refGreen, shape);
+        [self isRed:obj] ? GGPathAddKShape(refGreen, shape) : GGPathAddKShape(refRed, shape);
     }
     
     self.redLineLayer.path = refRed;
@@ -861,7 +877,7 @@ static void * kLineTitle = "keyTitle";
     // 更新成交量
     self.volumScaler.min = 0;
     self.volumScaler.max = max;
-    [self.volumScaler updateScaler];
+    [self.volumScaler updateScalerWithRange:range];
     [self updateVolumLayer:range];
     
     [self.stringLayer setNeedsDisplay];

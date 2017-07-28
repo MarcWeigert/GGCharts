@@ -67,6 +67,21 @@
     }
 }
 
+- (void)updateScalerWithRange:(NSRange)range
+{
+    [super updateScalerWithRange:range];
+    
+    NSInteger start = range.location;
+    NSInteger end = NSMaxRange(range);
+    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    
+    for (NSInteger i = start; i < end; i++) {
+        
+        CGPoint point = self.linePoints[i];
+        _barRects[i] = GGLineDownRectMake(point, CGPointMake(point.x, bottomY), _barWidth);
+    }
+}
+
 - (void)setMin:(CGFloat)min
 {
     [super setMin:min];
@@ -89,7 +104,7 @@
 {
     CGRect rects[self.dataAry.count];
     CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
-
+    
     for (NSInteger i = 0; i < self.dataAry.count; i++) {
         
         CGFloat data = [self.dataAry[i] floatValue];

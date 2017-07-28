@@ -184,12 +184,14 @@
     [_barScaler getNegativeData:^(CGRect *rects, size_t size) {
         
         GGpathAddCGRects(ref_n, rects, size);
-    }];
+        
+    } range:range];
     
     [_barScaler getPositiveData:^(CGRect *rects, size_t size) {
         
         GGpathAddCGRects(ref_p, rects, size);
-    }];
+        
+    } range:range];
     
     _negativeLayer.path = ref_n;
     _positiveLayer.path = ref_p;

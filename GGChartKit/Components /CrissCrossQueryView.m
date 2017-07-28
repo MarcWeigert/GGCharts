@@ -96,6 +96,8 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
 @property (nonatomic, strong) GGLineRenderer * xLine;
 @property (nonatomic, strong) GGLineRenderer * yLine;
 
+@property (nonatomic, assign) BOOL isNeedAnimation;
+
 @end
 
 @implementation CrissCrossQueryView
@@ -166,6 +168,8 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         
         [_cirssLayer removeAllRenderer];
         [_cirssLayer setNeedsDisplay];
+        
+        _isNeedAnimation = NO;
     }
     else {
         
@@ -226,20 +230,32 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         
         pushAfterRect = self.queryView.frame;
         pushBeforeRect = self.queryView.frame;
+        
+        // 初始化在左边优先
+        if (CGRectEqualToRect(pushAfterRect, CGRectZero)) {
+            
+            pushBeforeRect = CGRectMake(-self.queryView.size.width, 0, self.queryView.size.width, self.queryView.size.height);
+            pushAfterRect = CGRectMake(0, 0, self.queryView.size.width, self.queryView.size.height);
+        }
     }
     
     if (CGRectEqualToRect(self.queryView.frame, pushAfterRect)) { return; }
     
     self.queryView.frame = pushAfterRect;
     
-    @autoreleasepool {
+    if (_isNeedAnimation) {
         
-        CATransition *animation = [CATransition animation];
-        [animation setDuration:0.35];
-        animation.type = kCATransitionPush;
-        animation.subtype = isLeft ? kCATransitionFromLeft:kCATransitionFromRight;
-        [self.queryView.layer addAnimation:animation forKey:@"frame"];
+        @autoreleasepool {
+            
+            CATransition *animation = [CATransition animation];
+            [animation setDuration:0.35];
+            animation.type = kCATransitionPush;
+            animation.subtype = isLeft ? kCATransitionFromLeft:kCATransitionFromRight;
+            [self.queryView.layer addAnimation:animation forKey:@"frame"];
+        }
     }
+    
+    _isNeedAnimation = YES;
 }
 
 @end

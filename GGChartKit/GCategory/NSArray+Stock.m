@@ -46,7 +46,14 @@
         CGFloat rato = obj.floatValue - baseFloat;
         rato = ( (float) ( (int) (rato * 10000))) / 10000;
         
-        [ratoAry addObject:[NSString stringWithFormat:@"%.2f%%", rato / baseFloat * 100]];
+        if (baseFloat == 0) {
+            
+            [ratoAry addObject:[NSString stringWithFormat:@"0%%"]];
+        }
+        else {
+            
+            [ratoAry addObject:[NSString stringWithFormat:@"%.2f%%", rato / baseFloat * 100]];
+        }
     }
     
     return [NSArray arrayWithArray:ratoAry];
@@ -68,17 +75,17 @@
     __block CGFloat chartMin = FLT_MAX;
     
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
-
+        
         IMP imp = [obj methodForSelector:getter];
         double (*objGetter)(id obj, SEL getter) = (void *)imp;
         double objNumber = objGetter(obj, getter);
-
+        
         chartMax = objNumber > chartMax ? objNumber : chartMax;
         chartMin = objNumber < chartMin ? objNumber : chartMin;
     }];
     
     CGFloat baseScaler = fabs(chartMax - chartMin) * base;
-        
+    
     *max = chartMax += baseScaler;
     *min = chartMin -= baseScaler;
 }
@@ -154,7 +161,7 @@
 {
     CGFloat chartMax = FLT_MIN;
     CGFloat chartMin = FLT_MAX;
-        
+    
     for (NSDictionary<NSString *, NSNumber *> * objDic in array) {
         
         NSArray <NSNumber *> * allValues = objDic.allValues;
@@ -271,25 +278,25 @@
             CGFloat c = [ary_c[j] floatValue];      // current 当前的数字
             CGFloat b = j >= ary_b.count ? 0 : [ary_b[j] floatValue];     // 临时
             
-//            // 前一个数组如果越界, 则前一个数字为当前数字的相反数(保证循环继续)
-//            CGFloat b = j >= ary_b.count ? -c : [ary_b[j] floatValue];
-//            
-//            // 数值同方向才可以相加
-//            while ((b * c) < 0) {   // before 和 current 数字正负为同方向跳出循环
-//                
-//                if (f < 0) {    // find 小于0为找到头
-//                    
-//                    b = 0;
-//                }
-//                else {
-//                    
-//                    NSArray *ary_f_b = aryAddData[f];
-//                    
-//                    b = j < ary_f_b.count ? [[aryAddData[f] objectAtIndex:j] floatValue] : -c;
-//                }
-//                
-//                f--;    // 非同方向向前寻找
-//            }
+            //            // 前一个数组如果越界, 则前一个数字为当前数字的相反数(保证循环继续)
+            //            CGFloat b = j >= ary_b.count ? -c : [ary_b[j] floatValue];
+            //
+            //            // 数值同方向才可以相加
+            //            while ((b * c) < 0) {   // before 和 current 数字正负为同方向跳出循环
+            //
+            //                if (f < 0) {    // find 小于0为找到头
+            //
+            //                    b = 0;
+            //                }
+            //                else {
+            //
+            //                    NSArray *ary_f_b = aryAddData[f];
+            //
+            //                    b = j < ary_f_b.count ? [[aryAddData[f] objectAtIndex:j] floatValue] : -c;
+            //                }
+            //
+            //                f--;    // 非同方向向前寻找
+            //            }
             
             // 将2数值之和叠加放入本次循环数组
             [aryAddBefor addObject:@(c + b)];

@@ -19,6 +19,12 @@ typedef void(^BarRects)(CGRect *rects, size_t size);
 @property (nonatomic, readonly) CGRect * barRects;    ///< bar 绘制位置
 
 /** 正数的rect */
+- (void)getPositiveData:(BarRects)block range:(NSRange)range;
+
+/** 负数的rect */
+- (void)getNegativeData:(BarRects)block range:(NSRange)range;
+
+/** 正数的rect */
 - (void)getPositiveData:(BarRects)block;
 
 /** 负数的rect */

@@ -100,6 +100,43 @@
 }
 
 /** 正数的rect */
+- (void)getPositiveData:(BarRects)block range:(NSRange)range
+{
+    CGRect rects[range.length];
+    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    
+    for (NSInteger i = 0; i < range.length; i++) {
+        
+        CGFloat data = [self.dataAry[range.location + i] floatValue];
+        CGPoint point = self.linePoints[range.location + i];
+        CGPoint zero = CGPointMake(point.x, bottomY);
+        CGRect zeroRect = GGLineDownRectMake(zero, zero, _barWidth);
+        
+        rects[i] = data >= 0 ? _barRects[range.location + i] : zeroRect;
+    }
+    
+    block(rects, range.length);
+}
+
+/** 负数的rect */
+- (void)getNegativeData:(BarRects)block range:(NSRange)range
+{
+    CGRect rects[range.length];
+    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    
+    for (NSInteger i = 0; i < range.length; i++) {
+        
+        CGFloat data = [self.dataAry[range.location + i] floatValue];
+        CGPoint point = self.linePoints[range.location + i];
+        CGPoint zero = CGPointMake(point.x, bottomY);
+        
+        rects[i] = data < 0 ? _barRects[range.location + i] : GGLineDownRectMake(zero, zero, _barWidth);
+    }
+    
+    block(rects, range.length);
+}
+
+/** 正数的rect */
 - (void)getPositiveData:(BarRects)block
 {
     CGRect rects[self.dataAry.count];

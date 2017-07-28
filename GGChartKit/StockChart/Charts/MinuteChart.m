@@ -122,7 +122,7 @@
             
             _base = 1;
         }
-
+        
         [self.animationCanvas setNeedsDisplay];
     }
 }
@@ -213,7 +213,7 @@
         
         yString = [NSString stringWithFormat:@"%.2f手", [self.barScaler getPriceWithYPixel:velocity.y]];
     }
-
+    
     NSString * format = self.timeType == TimeDay ? @"yyyy:MM:dd HH:mm" : @"HH:mm";
     [self.queryPriceView setYString:yString setXString:[[self.objTimeAry[index] ggTimeDate] stringWithFormat:format]];
     [self.queryPriceView.queryView setQueryData:kData];
@@ -254,11 +254,11 @@
             [colorAry addObject:_negColor];
         }
         else if (base < obj.floatValue) {
-        
+            
             [colorAry addObject:_posColor];
         }
         else {
-        
+            
             [colorAry addObject:_axisStringColor];
         }
     }];
@@ -338,9 +338,22 @@
     if (self.timeType != TimeDay) {
         
         CGFloat max = FLT_MIN;
-        [objTimeArray getAbsMax:&max selGetter:@selector(ggTimePrice)];
-        _KTimeChartMaxPrice = max;
-        _KTimeChartMinPrice = [objTimeArray.lastObject ggTimeClosePrice] - (max - [objTimeArray.firstObject ggTimeClosePrice]);
+        CGFloat min = FLT_MAX;
+        CGFloat closePrice = [self.objTimeAry.firstObject ggTimeClosePrice];
+        [objTimeArray getMax:&max min:&min selGetter:@selector(ggTimePrice) base:0];
+        
+        CGFloat upBase = ABS(closePrice - max);
+        CGFloat downBase = ABS(closePrice - min);
+        CGFloat base = upBase > downBase ? upBase : downBase;
+        
+        _KTimeChartMaxPrice = closePrice + base;
+        _KTimeChartMinPrice = closePrice - base;
+        
+        if (_KTimeChartMinPrice == _KTimeChartMaxPrice || closePrice == 0) {
+            
+            _KTimeChartMinPrice = [self.objTimeAry.firstObject ggTimePrice] * .98f;
+            _KTimeChartMaxPrice = [self.objTimeAry.firstObject ggTimePrice] * 1.02f;
+        }
     }
     else {
         
@@ -349,6 +362,12 @@
         [objTimeArray getMax:&max min:&min selGetter:@selector(ggTimePrice) base:.05f];
         _KTimeChartMaxPrice = max;
         _KTimeChartMinPrice = min;
+    }
+    
+    if (!_objTimeAry.count) {
+        
+        _KTimeChartMaxPrice = 0;
+        _KTimeChartMinPrice = 0;
     }
     
     [self configLineScaler];
@@ -494,6 +513,15 @@
 - (void)drawChart
 {
     [super drawChart];
+    
+    if (!self.objTimeAry.count) {
+        
+        [self updateAxisStringPrice];
+        [self updateRenderers];
+        [self configBackLayer];
+        [self.backCanvas setNeedsDisplay];
+        return;
+    }
     
     [self drawLineChart];
     [self drawBarChart];

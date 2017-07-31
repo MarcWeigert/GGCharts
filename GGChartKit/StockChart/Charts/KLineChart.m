@@ -270,7 +270,7 @@
     
     NSString * yString = @"";
     
-    self.queryPriceView.xAxisOffsetY = self.redLineLayer.gg_bottom;
+    self.queryPriceView.xAxisOffsetY = self.redLineLayer.gg_height + 2;
     
     if (CGRectContainsPoint(self.redLineLayer.frame, velocity)) {
         
@@ -678,7 +678,7 @@ static void * kLineTitle = "keyTitle";
         if (index == 0) { return @""; }
         point.y = point.y - weakSelf.redVolumLayer.gg_top;
         NSString * string = weakSelf.redVolumLayer.hidden ? @"" : @"万手";
-        return [NSString stringWithFormat:@"%.2f%@", [weakSelf.volumScaler getPriceWithPoint:point], string];
+        return [NSString stringWithFormat:@"%.2f%@", [weakSelf.volumScaler getPriceWithYPixel:point.y], string];
     }];
     
     [self.kAxisRenderer setStringBlock:^NSString *(CGPoint point, NSInteger index, NSInteger max) {
@@ -698,7 +698,7 @@ static void * kLineTitle = "keyTitle";
 - (void)updateSubLayer
 {
     // 计算显示的在屏幕中的k线
-    NSInteger index = (self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth);
+    NSInteger index = round((self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth));
     NSInteger len = _kLineCountVisibale;
     
     if (index < 0) index = 0;

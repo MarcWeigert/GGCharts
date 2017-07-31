@@ -104,7 +104,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     CGFloat dis = CGRectGetHeight(self.rect);
     CGFloat pix = (_max - _min) / dis;
-    CGFloat hight = point.y - CGRectGetMinY(self.rect);
+    CGFloat hight = self.rect.size.height - (point.y - self.rect.origin.y);
     
     if (hight < 0) { hight = 0; }
     

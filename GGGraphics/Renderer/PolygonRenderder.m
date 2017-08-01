@@ -127,27 +127,35 @@
         for (NSInteger i = 0; i < _polygon.side; i++) {
             
             GGLine line = GGPolygonGetLine(_polygon, i);
-            line = GGLineMoveEnd(line, 10.0f);
-            GGPathAddLine(ref, line);
+            //line = GGLineMoveEnd(line, 10.0f);
+            
             
             CGFloat cir_x = GGXCircular(line);
             CGFloat tmp_x = fabs(fabs(cir_x) - M_PI_2);
-            CGFloat baseWidth = tmp_x < 0.001f ? 1.0f : tan(cir_x);
+            CGFloat baseWidth = tmp_x < 0.001f ? 1 : tan(cir_x);
             
-            CGFloat cir_y = GGXCircular(line);
+            CGFloat cir_y = GGYCircular(line);
             CGFloat tmp_y = fabs(fabs(cir_y) - M_PI_2);
-            CGFloat baseHight = tmp_y < 0.001f ? 1.0f : tan(cir_y);
+            CGFloat baseHight = tmp_y < 0.001f ? 1 : tan(cir_y);
+            CGFloat move = sqrt(pow(fabs(baseWidth * width), 2) + pow(fabs(baseHight * high), 2));
             
-
-            CGPoint start = line.end;
-            CGPoint end1 = CGPointMake(baseWidth * width + start.x, start.y);
-            CGPoint end2 = CGPointMake(start.x, start.y + baseHight * high);
+            line = GGLineMoveEnd(line, move);
             
-            CGPathMoveToPoint(ref, NULL, start.x, start.y);
-            CGPathAddLineToPoint(ref, NULL, end1.x, end1.y);
+            GGPathAddLine(ref, line);
             
-            CGPathMoveToPoint(ref, NULL, start.x, start.y);
-            CGPathAddLineToPoint(ref, NULL, end2.x, end2.y);
+            CGRect rect = CGRectMake(line.end.x - width, line.end.y - high, width * 2, high * 2);
+            
+            CGContextFillRect(ctx, rect);
+            
+//            CGPoint start = line.end;
+//            CGPoint end1 = CGPointMake(baseWidth * width + start.x, start.y);
+//            CGPoint end2 = CGPointMake(start.x, start.y + baseHight * high);
+//            
+//            CGPathMoveToPoint(ref, NULL, start.x, start.y);
+//            CGPathAddLineToPoint(ref, NULL, end1.x, end1.y);
+//            
+//            CGPathMoveToPoint(ref, NULL, start.x, start.y);
+//            CGPathAddLineToPoint(ref, NULL, end2.x, end2.y);
         }
         
         CGContextAddPath(ctx, ref);

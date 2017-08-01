@@ -325,21 +325,38 @@ GGAnnularMake(CGFloat x, CGFloat y, CGFloat start, CGFloat end, CGFloat radius, 
 
 #pragma mark - 多边形
 
-struct GGSide {
+struct GGPolygon {
     CGFloat radius;
     CGPoint center;
     NSInteger side;
+    CGFloat radian;
 };
-typedef struct GGSide GGSide;
+typedef struct GGPolygon GGPolygon;
 
-CG_INLINE GGSide
-GGSideMake(CGPoint center, CGFloat radius, NSInteger side)
+CG_INLINE GGPolygon
+GGPolygonMake(CGFloat radius, CGFloat center_x, CGFloat center_y, NSInteger side, CGFloat radian)
 {
-    GGSide ggside;
-    ggside.center = center;
-    ggside.radius = radius;
-    ggside.side = side;
-    return ggside;
+    GGPolygon polygon;
+    polygon.radius = radius;
+    polygon.center = CGPointMake(center_x, center_y);
+    polygon.side = side;
+    polygon.radian = radian;
+    return polygon;
+}
+
+CG_INLINE GGPolygon
+GGPolygonCopy(GGPolygon polygon)
+{
+    return GGPolygonMake(polygon.radius, polygon.center.x, polygon.center.y, polygon.side, polygon.radian);
+}
+
+CG_INLINE GGLine
+GGPolygonGetLine(GGPolygon polygon, NSInteger index)
+{
+    index += 1;
+    CGFloat x = polygon.center.x - polygon.radius * sin(2 * M_PI * index / polygon.side + polygon.radian);
+    CGFloat y = polygon.center.y - polygon.radius * cos(2 * M_PI * index / polygon.side + polygon.radian);
+    return GGPointLineMake(polygon.center, CGPointMake(x, y));
 }
 
 #pragma mark - K线形态
@@ -422,7 +439,7 @@ GGArcLineMake(CGPoint center, CGFloat arc, CGFloat leg)
 CG_INLINE GGLine
 GGLineWithArcLine(GGArcLine arcLine, bool clockwise)
 {
-    int base = clockwise ? - 1 : 1;
+    int base = clockwise ? -1 : 1;
     
     CGFloat end_x = arcLine.center.x + cosf(arcLine.arc) * arcLine.leg * base;
     CGFloat end_y = arcLine.center.y + sinf(arcLine.arc) * arcLine.leg * base;

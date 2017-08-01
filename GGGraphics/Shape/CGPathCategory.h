@@ -39,7 +39,7 @@ CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid);
 /**
  * 绘制多边形
  */
-CG_EXTERN void GGPathAddGGSide(CGMutablePathRef ref, GGSide side, CGFloat radian);
+CG_EXTERN void GGPathAddGGPolygon(CGMutablePathRef ref, GGPolygon polygon);
 
 /**
  * 绘制折线

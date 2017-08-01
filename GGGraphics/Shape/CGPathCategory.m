@@ -159,19 +159,19 @@ CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape)
 /**
  * 绘制多边形
  */
-CG_EXTERN void GGPathAddGGSide(CGMutablePathRef ref, GGSide side, CGFloat radian)
+CG_EXTERN void GGPathAddGGPolygon(CGMutablePathRef ref, GGPolygon polygon)
 {
-    CGPathMoveToPoint(ref, NULL, side.center.x, side.center.y - side.radius);
+    CGPathMoveToPoint(ref, NULL, polygon.center.x, polygon.center.y - polygon.radius);
     
-    for (NSInteger i = 1; i <= side.side; i++) {
+    for (NSInteger i = 1; i <= polygon.side; i++) {
         
-        NSInteger x = side.center.x - side.radius * sin(2 * M_PI * i / side.side + radian);
-        NSInteger y = side.center.y - side.radius * cos(2 * M_PI * i / side.side + radian);
+        CGFloat x = polygon.center.x - polygon.radius * sin(2 * M_PI * i / polygon.side + polygon.radian);
+        CGFloat y = polygon.center.y - polygon.radius * cos(2 * M_PI * i / polygon.side + polygon.radian);
         
         CGPathAddLineToPoint(ref, NULL, x, y);
     }
     
-    CGPathAddLineToPoint(ref, NULL, side.center.x, side.center.y - side.radius);
+    CGPathAddLineToPoint(ref, NULL, polygon.center.x, polygon.center.y - polygon.radius);
 }
 
 /**

@@ -67,8 +67,7 @@
  */
 - (void)drawInContext:(CGContextRef)ctx
 {
-    //[CATransaction begin];
-    //[CATransaction setDisableActions:YES];
+    CGContextSaveGState(ctx);
     
     if (_isCloseDisableActions) {
         
@@ -82,7 +81,7 @@
         [renderer drawInContext:ctx];
     }
     
-    //[CATransaction commit];
+    CGContextRestoreGState(ctx);
 }
 
 @end

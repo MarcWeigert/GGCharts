@@ -37,5 +37,9 @@
 #import "GGGridRenderer.h"
 #import "GGLineRenderer.h"
 #import "GGStringRenderer.h"
+#import "PolygonRenderder.h"
+
+
+#import "RadarSetAbstract.h"
 
 #endif /* GGChart_h */

@@ -26,6 +26,25 @@
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
     
+    GGPolygon radar = GGPolygonMake(100, 150, 150, 12, 0);
+    
+    PolygonRenderder * polyRenderer = [[PolygonRenderder alloc] init];
+    polyRenderer.width = .5f;
+    polyRenderer.strockColor = [UIColor blackColor];
+    polyRenderer.polygon = radar;
+    polyRenderer.splitCount = 4;
+    polyRenderer.singleFillColor = [UIColor grayColor];
+    polyRenderer.isPiece = YES;
+    // polyRenderer.doubleFillColor = [UIColor blackColor];
+    
+    GGCanvas * canvas = [[GGCanvas alloc] init];
+    canvas.frame = CGRectMake(10, 10, 300, 300);
+    canvas.backgroundColor = [UIColor whiteColor].CGColor;
+    [canvas addRenderer:polyRenderer];
+    [canvas setNeedsDisplay];
+    
+//    [self.window.layer addSublayer:canvas];
+    
     return YES;
 }
 

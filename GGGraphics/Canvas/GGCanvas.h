@@ -8,10 +8,26 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "GGRenderProtocol.h"
+#import "GGShapeCanvas.h"
 
 @interface GGCanvas : CALayer
 
 @property (nonatomic, assign) BOOL isCloseDisableActions;
+
+/**
+ * 绘制图表(子类重写)
+ */
+- (void)drawChart;
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGShapeCanvas *)getGGCanvasSquareFrame;
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGShapeCanvas *)getGGCanvasEqualFrame;
 
 /**
  * 增加一个绘图工具

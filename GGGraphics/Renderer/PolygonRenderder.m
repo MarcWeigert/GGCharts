@@ -35,6 +35,7 @@
 
     [self drawSplitPolygon:ctx];
     [self drawPieceLine:ctx];
+    [self drawPolygonString:ctx];
 }
 
 /** 嵌套多边形 */
@@ -117,57 +118,51 @@
 {
     if (_isPiece) {
         
-        CGFloat width = 10;
-        CGFloat high = 10;
-        
-        
         CGContextBeginPath(ctx);
         CGMutablePathRef ref = CGPathCreateMutable();
         
         for (NSInteger i = 0; i < _polygon.side; i++) {
             
             GGLine line = GGPolygonGetLine(_polygon, i);
-            //line = GGLineMoveEnd(line, 10.0f);
-            
-            
-            CGFloat cir_x = GGXCircular(line);
-            CGFloat tmp_x = fabs(fabs(cir_x) - M_PI_2);
-            CGFloat baseWidth = tmp_x < 0.001f ? 1 : tan(cir_x);
-            
-            CGFloat cir_y = GGYCircular(line);
-            CGFloat tmp_y = fabs(fabs(cir_y) - M_PI_2);
-            CGFloat baseHight = tmp_y < 0.001f ? 1 : tan(cir_y);
-            CGFloat move = sqrt(pow(fabs(baseWidth * width), 2) + pow(fabs(baseHight * high), 2));
-            
-            line = GGLineMoveEnd(line, move);
-            
             GGPathAddLine(ref, line);
-            
-            CGRect rect = CGRectMake(line.end.x - width, line.end.y - high, width * 2, high * 2);
-            
-            CGContextFillRect(ctx, rect);
-            
-//            CGPoint start = line.end;
-//            CGPoint end1 = CGPointMake(baseWidth * width + start.x, start.y);
-//            CGPoint end2 = CGPointMake(start.x, start.y + baseHight * high);
-//            
-//            CGPathMoveToPoint(ref, NULL, start.x, start.y);
-//            CGPathAddLineToPoint(ref, NULL, end1.x, end1.y);
-//            
-//            CGPathMoveToPoint(ref, NULL, start.x, start.y);
-//            CGPathAddLineToPoint(ref, NULL, end2.x, end2.y);
         }
         
         CGContextAddPath(ctx, ref);
         CGPathRelease(ref);
         CGContextStrokePath(ctx);
     }
+}
+
+/** 绘制文字 */
+- (void)drawPolygonString:(CGContextRef)ctx
+{
+    if (_stringColor == nil || _stringFont == nil) { return; }
     
-    
+    NSDictionary * dictionary = @{NSForegroundColorAttributeName : _stringColor, NSFontAttributeName : _stringFont};
     
     if (_titles.count) {
-    
         
+        NSInteger count = _polygon.side > _titles.count ? _titles.count : _polygon.side;
+        UIGraphicsPushContext(ctx);
+        
+        for (NSInteger i = 0; i < count; i++) {
+            
+            NSString * string = _titles[i];
+            CGSize size = [string sizeWithAttributes:dictionary];
+            
+            GGLine line = GGPolygonGetLine(_polygon, i);
+
+            CGFloat a = _polygon.radius + size.width / 2 + _titleSpacing;
+            CGFloat b = _polygon.radius + size.height / 2 + _titleSpacing;
+            CGPoint point = CGPointMake(a * cos(GGXCircular(line)), b * sin(GGXCircular(line)));
+            point.x += _polygon.center.x;
+            point.y += _polygon.center.y;
+            
+            CGRect rect = CGRectMake(point.x - size.width / 2, point.y - size.height / 2, size.width, size.height);
+            [string drawAtPoint:rect.origin withAttributes:dictionary];
+        }
+        
+        UIGraphicsPopContext();
     }
 }
 

@@ -23,6 +23,8 @@
 
 @property (nonatomic, assign) CGFloat radius;
 
+@property (nonatomic, assign, readonly) NSInteger side;
+
 @end
 
 

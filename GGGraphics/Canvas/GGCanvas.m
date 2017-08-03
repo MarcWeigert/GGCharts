@@ -8,14 +8,91 @@
 
 #import "GGCanvas.h"
 #import <UIKit/UIKit.h>
+#import "GGShapeCanvas.h"
+
+#define GGLazyGetMethod(type, attribute)            \
+- (type *)attribute                                 \
+{                                                   \
+    if (!_##attribute) {                            \
+        _##attribute = [[type alloc] init];         \
+    }                                               \
+    return _##attribute;                            \
+}
 
 @interface GGCanvas ()
 
 @property (nonatomic) NSMutableArray <id <GGRenderProtocol>>*aryRenderer;
 
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;      ///< 显示的图层
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;         ///< 闲置的图层
+
 @end
 
 @implementation GGCanvas
+
+#pragma mark - 取层
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGShapeCanvas *)getGGCanvasEqualFrame
+{
+    GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
+    shape.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSublayer:shape];
+    [self.visibleLayers addObject:shape];
+    return shape;
+}
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGShapeCanvas *)getGGCanvasSquareFrame
+{
+    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+    GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
+    shape.frame = CGRectMake(0, 0, width, width);
+    shape.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    [self addSublayer:shape];
+    [self.visibleLayers addObject:shape];
+    return shape;
+}
+
+/**
+ * 获取图层
+ */
+- (GGShapeCanvas *)makeOrGetShapeCanvas
+{
+    GGShapeCanvas * shape = [self.idleLayers firstObject];
+    
+    if (shape == nil) {
+        
+        shape = [[GGShapeCanvas alloc] init];
+    }
+    else {
+        
+        [self.idleLayers removeObject:shape];
+    }
+    
+    return shape;
+}
+
+/**
+ * 绘制图表(子类重写)
+ */
+- (void)drawChart
+{
+    [self.idleLayers addObjectsFromArray:self.visibleLayers];
+    
+    [self.visibleLayers enumerateObjectsUsingBlock:^(GGShapeCanvas * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj removeFromSuperlayer];
+    }];
+    
+    [self.visibleLayers removeAllObjects];
+}
+
+#pragma mark - 绘制
 
 /** 初始化 */
 - (instancetype)init
@@ -83,5 +160,10 @@
     
     CGContextRestoreGState(ctx);
 }
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(NSMutableArray, visibleLayers);
+GGLazyGetMethod(NSMutableArray, idleLayers);
 
 @end

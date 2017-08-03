@@ -11,13 +11,13 @@
 
 @protocol RadarAbstract <NSObject>
 
-- (CGFloat)lineWidth;
+@property (nonatomic, assign) CGFloat lineWidth;
 
-- (UIColor *)fillColor;
+@property (nonatomic, strong) UIColor *fillColor;
 
-- (UIColor *)strockColor;
+@property (nonatomic, strong) UIColor *strockColor;
 
-- (NSArray <NSNumber *> *)datas;
+@property (nonatomic, strong) NSArray <NSNumber *> *ratios;
 
 @end
 

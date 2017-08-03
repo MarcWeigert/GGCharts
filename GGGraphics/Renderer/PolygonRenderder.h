@@ -26,5 +26,6 @@
 @property (nonatomic, strong) UIFont * stringFont;      ///< 文字字体
 @property (nonatomic, strong) UIColor * stringColor;        ///< 文字颜色
 @property (nonatomic, strong) NSArray * titles;         ///< 顶头文字
+@property (nonatomic, assign) CGFloat titleSpacing;         ///< 文字雷达图距离
 
 @end

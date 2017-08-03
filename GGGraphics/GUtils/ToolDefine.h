@@ -9,11 +9,11 @@
 #ifndef ToolDefine_h
 #define ToolDefine_h
 
-#define AAPropStatementAndFuncStatement(propertyModifyWord,className, propertyPointerType, propertyName)                \
+#define GGPropStatementAndFuncStatement(propertyModifyWord,className, propertyPointerType, propertyName)                 \
 @property(nonatomic,propertyModifyWord)propertyPointerType  propertyName;                                            \
 - (className * (^) (propertyPointerType propertyName)) propertyName##Set;
 
-#define AAPropSetFuncImplementation(className, propertyPointerType, propertyName)                                       \
+#define GGPropSetFuncImplementation(className, propertyPointerType, propertyName)                                       \
 - (className * (^) (propertyPointerType propertyName))propertyName##Set{                                                \
 return ^(propertyPointerType propertyName) {                                                                            \
 self.propertyName = propertyName;                                                                                       \

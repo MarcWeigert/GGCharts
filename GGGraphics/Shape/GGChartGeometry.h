@@ -353,7 +353,6 @@ GGPolygonCopy(GGPolygon polygon)
 CG_INLINE GGLine
 GGPolygonGetLine(GGPolygon polygon, NSInteger index)
 {
-    index += 1;
     CGFloat x = polygon.center.x - polygon.radius * sin(2 * M_PI * index / polygon.side + polygon.radian);
     CGFloat y = polygon.center.y - polygon.radius * cos(2 * M_PI * index / polygon.side + polygon.radian);
     return GGPointLineMake(polygon.center, CGPointMake(x, y));

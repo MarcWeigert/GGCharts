@@ -12,6 +12,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #import "GGGraphics.h"
 #endif
 
 #endif /* GGChartsPrefix_pch */

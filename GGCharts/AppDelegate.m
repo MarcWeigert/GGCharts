@@ -18,6 +18,10 @@
 
 #import "GGRadarChart.h"
 
+#import "LineCanvas.h"
+#import "LineDataSet.h"
+#import "GGLineData.h"
+
 @interface AppDelegate ()
 
 @end
@@ -32,6 +36,27 @@
     
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
+    
+    GGLineData * line = [[GGLineData alloc] init];
+    line.lineWidth = 1;
+    line.lineColor = [UIColor redColor];
+    line.lineDataAry = @[@820, @932, @901, @934, @1290, @1330, @1320];
+    line.lineScaler.max = 1500;
+    line.lineScaler.min = 500;
+    line.shapeRadius = 3;
+    line.stringFont = [UIFont systemFontOfSize:12];
+    line.dataFormatter = @"%.f";
+    
+    LineDataSet * lineSet = [[LineDataSet alloc] init];
+    lineSet.gridInside = UIEdgeInsetsMake(10, 10, 10, 10);
+    lineSet.lineAry = @[line];
+    
+    LineCanvas * lineCanvas = [[LineCanvas alloc] init];
+    lineCanvas.frame = CGRectMake(10, 10, 300, 300);
+    lineCanvas.lineDrawConfig = lineSet;
+    [lineCanvas drawChart];
+    
+    //[self.window.layer addSublayer:lineCanvas];
     
     return YES;
 }

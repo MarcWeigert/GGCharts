@@ -17,8 +17,10 @@
 @property (nonatomic, strong) NSArray <NSNumber *> *dataAry;    ///< 数据与lineObjAry二选一
 @property (nonatomic, readonly) NSArray <NSObject *> *lineObjAry;   ///< 数据与dataAry二选一
 @property (nonatomic, readonly) CGPoint * linePoints;           ///< 数据点 size 与数据一致
+@property (nonatomic, readonly) NSInteger pointSize;    ///< 点个数
 
 @property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0-1 默认 0.5
+
 
 /**
  * 自定义对象转换转换, 如果设置则忽略dataAry

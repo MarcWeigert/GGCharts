@@ -39,7 +39,10 @@
 #import "GGStringRenderer.h"
 #import "PolygonRenderder.h"
 
-
 #import "RadarSetAbstract.h"
+#import "AxisAbstract.h"
+#import "GridAbstract.h"
+#import "LineCanvasAbstract.h"
+#import "LineDrawAbstract.h"
 
 #endif /* GGChart_h */

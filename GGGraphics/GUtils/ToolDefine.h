@@ -21,6 +21,15 @@ return self;                                                                    
 };                                                                                                                      \
 }
 
+#define GGLazyGetMethod(type, attribute)            \
+- (type *)attribute                                 \
+{                                                   \
+if (!_##attribute) {                            \
+_##attribute = [[type alloc] init];         \
+}                                               \
+return _##attribute;                            \
+}
+
 #define GGPointMake(x, y)   [NSValue valueWithCGPoint:CGPointMake((x), (y))]
 #define GGPoint(point)      [NSValue valueWithCGPoint:point]
 

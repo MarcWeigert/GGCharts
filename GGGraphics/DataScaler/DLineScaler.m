@@ -86,6 +86,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
         _xMaxCount = objAry.count;
     }
     
+    _pointSize = objAry.count;
     _lineObjAry = objAry;
     _selGetter = getter;
     _impGetter = [objAry.firstObject methodForSelector:getter];
@@ -133,6 +134,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
         _xMaxCount = dataAry.count;
     }
     
+    _pointSize = dataAry.count;
     CGPoint * point = malloc(dataAry.count * sizeof(CGPoint));
     [self updateLinePoints:point];
 }

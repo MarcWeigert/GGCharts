@@ -10,15 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "GGShapeCanvas.h"
 
-#define GGLazyGetMethod(type, attribute)            \
-- (type *)attribute                                 \
-{                                                   \
-    if (!_##attribute) {                            \
-        _##attribute = [[type alloc] init];         \
-    }                                               \
-    return _##attribute;                            \
-}
-
 @interface GGCanvas ()
 
 @property (nonatomic) NSMutableArray <id <GGRenderProtocol>>*aryRenderer;

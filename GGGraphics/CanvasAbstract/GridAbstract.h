@@ -19,7 +19,11 @@
 
 @property (nonatomic, assign) UIEdgeInsets insets;
 
-@property (nonatomic, assign) NSArray <id <AxisAbstract>> * axis;
+@property (nonatomic, assign, readonly) NSUInteger horizontalCount;
+
+@property (nonatomic, assign, readonly) NSUInteger verticalCount;
+
+@property (nonatomic, assign, readonly) NSArray <id <AxisAbstract>> * axiss;
 
 @end
 

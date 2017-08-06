@@ -7,7 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AxisAbstract.h"
 
 @interface YAxis : NSObject
+
+@property (nonatomic, strong) NSNumber * max;
+
+@property (nonatomic, strong) NSNumber * min;
+
+@property (nonatomic, assign) NSInteger splitCount;
+
+@property (nonatomic, strong) UIFont * axisFont;
+
+@property (nonatomic, strong) UIColor * axisColor;
+
+@property (nonatomic, assign) CGFloat axisLineWidth;
+
+@property (nonatomic, assign) CGPoint startLocalRatio;
+
+@property (nonatomic, assign) CGPoint endLocalRatio;
+
+@property (nonatomic, assign) CGPoint textRatio;
+
+@property (nonatomic, assign) CGFloat over;
 
 @end

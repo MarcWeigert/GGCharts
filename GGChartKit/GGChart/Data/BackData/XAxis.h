@@ -21,6 +21,12 @@
 
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
-@property (nonatomic, assign) CGFloat textSpacing;
+@property (nonatomic, assign) CGPoint startLocalRatio;
+
+@property (nonatomic, assign) CGPoint endLocalRatio;
+
+@property (nonatomic, assign) CGPoint textRatio;
+
+@property (nonatomic, assign) CGFloat over;
 
 @end

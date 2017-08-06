@@ -116,7 +116,6 @@
 		2B8B62AE1F3339AC00028F40 /* GridBackCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62AD1F3339AC00028F40 /* GridBackCanvas.m */; };
 		2B8B62B31F34041500028F40 /* XAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62B21F34041500028F40 /* XAxis.m */; };
 		2B8B62B61F34042800028F40 /* YAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62B51F34042800028F40 /* YAxis.m */; };
-		2B8B62B91F34130000028F40 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62B81F34130000028F40 /* Grid.m */; };
 		2B8B62BD1F3419BA00028F40 /* LineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62BC1F3419BA00028F40 /* LineDataSet.m */; };
 		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
 		2B8CEB841F302CB5005D441D /* PolygonRenderder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8CEB831F302CB5005D441D /* PolygonRenderder.m */; };
@@ -360,8 +359,6 @@
 		2B8B62B21F34041500028F40 /* XAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxis.m; sourceTree = "<group>"; };
 		2B8B62B41F34042800028F40 /* YAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxis.h; sourceTree = "<group>"; };
 		2B8B62B51F34042800028F40 /* YAxis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxis.m; sourceTree = "<group>"; };
-		2B8B62B71F34130000028F40 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
-		2B8B62B81F34130000028F40 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 		2B8B62BB1F3419BA00028F40 /* LineDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDataSet.h; sourceTree = "<group>"; };
 		2B8B62BC1F3419BA00028F40 /* LineDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineDataSet.m; sourceTree = "<group>"; };
 		2B8B62BF1F3423C700028F40 /* LineCanvasAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineCanvasAbstract.h; sourceTree = "<group>"; };
@@ -777,8 +774,6 @@
 				2B8B62B21F34041500028F40 /* XAxis.m */,
 				2B8B62B41F34042800028F40 /* YAxis.h */,
 				2B8B62B51F34042800028F40 /* YAxis.m */,
-				2B8B62B71F34130000028F40 /* Grid.h */,
-				2B8B62B81F34130000028F40 /* Grid.m */,
 			);
 			path = BackData;
 			sourceTree = "<group>";
@@ -1131,7 +1126,6 @@
 				2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */,
 				2B2722A31F0F55D500E4A295 /* LuaExportMetaData.m in Sources */,
 				2B2722881F0F550D00E4A295 /* llex.c in Sources */,
-				2B8B62B91F34130000028F40 /* Grid.m in Sources */,
 				2B241AF41F34643000B9DFC3 /* GGLineData.m in Sources */,
 				2B9788771F09D4E2002A2A3C /* MDLineChart.m in Sources */,
 				2B2722931F0F550D00E4A295 /* ltable.c in Sources */,

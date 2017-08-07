@@ -77,4 +77,6 @@ CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGF
 
 CG_EXTERN NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y);
 
+CG_EXTERN NSArray * GGPathFillLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y);
+
 CG_EXTERN NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y);

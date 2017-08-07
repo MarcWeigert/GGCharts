@@ -367,6 +367,42 @@ CG_EXTERN NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, C
     return ary;
 }
 
+CG_EXTERN NSArray * GGPathFillLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        CGPoint basePoints[size];
+        
+        for (NSInteger j = 0; j < size; j++) {
+            
+            basePoints[j] = CGPointMake(points[j].x, y);
+        }
+        
+        for (NSInteger z = 0; z < i; z++) {
+            
+            basePoints[z] = CGPointMake(points[z].x, points[z].y);
+        }
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        CGPathAddLines(ref, NULL, basePoints, size);
+        CGPathAddLineToPoint(ref, NULL, basePoints[size - 1].x, y);
+        CGPathAddLineToPoint(ref, NULL, basePoints[0].x, y);
+        [ary addObject:(__bridge id)ref];
+        CGPathRelease(ref);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, points, size);
+    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
+    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}
+
 CG_EXTERN NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];

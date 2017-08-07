@@ -49,7 +49,7 @@
             axis.color = [axisAbstract axisColor];
             axis.strColor = [axisAbstract axisColor];
             axis.drawAxisCenter = [axisAbstract drawStringAxisCenter];
-            axis.showLine = YES;
+            axis.showLine = [axisAbstract needShowAxisLine];
             axis.showSep = YES;
             axis.axis = GGAxisMake(s_x, s_y, e_x, e_y, [axisAbstract over], sep);
             axis.aryString = titles;

@@ -10,8 +10,6 @@
 
 @interface GGShapeCanvas : CAShapeLayer
 
-//- (void)startShapeAnimation:(NSTimeInterval)duration;
-
 - (void)pathChangeAnimation:(NSTimeInterval)duration;
 
 - (CAAnimation *)animationForName:(NSString *)name;

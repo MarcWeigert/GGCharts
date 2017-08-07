@@ -8,20 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ListVC.h"
-
 #import "GGGraphics.h"
-
-#import "RadarIndicatorData.h"
-
-#import "RadarDataSet.h"
-#import "RadarCanvas.h"
-
-#import "GGRadarChart.h"
-
-#import "LineCanvas.h"
-#import "LineDataSet.h"
-#import "GGLineData.h"
-#import "GridBackCanvas.h"
 
 @interface AppDelegate ()
 
@@ -37,39 +24,6 @@
     
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
-    
-    GGLineData * line = [[GGLineData alloc] init];
-    line.lineWidth = 1;
-    line.lineColor = [UIColor redColor];
-    line.lineDataAry = @[@820, @932, @901, @934, @1290, @1330, @1320];
-    line.lineScaler.max = 1500;
-    line.lineScaler.min = 500;
-    line.shapeRadius = 3;
-    line.stringFont = [UIFont systemFontOfSize:12];
-    line.dataFormatter = @"%.f";
-    
-    LineDataSet * lineSet = [[LineDataSet alloc] init];
-    lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
-    lineSet.lineAry = @[line];
-    lineSet.gridColor = [UIColor blackColor];
-    lineSet.gridLineWidth = .5f;
-    lineSet.bottomAxis.titles = @[@"1月", @"2月", @"3月"];
-    lineSet.leftAxis.max = @1500;
-    lineSet.leftAxis.min = @500;
-    lineSet.leftAxis.splitCount = 5;
-    
-    LineCanvas * lineCanvas = [[LineCanvas alloc] init];
-    lineCanvas.frame = CGRectMake(10, 10, 300, 300);
-    lineCanvas.lineDrawConfig = lineSet;
-    [lineCanvas drawChart];
-    
-    GridBackCanvas * backCanvas = [[GridBackCanvas alloc] init];
-    backCanvas.frame = CGRectMake(10, 10, 300, 300);
-    backCanvas.gridDrawConfig = lineSet;
-    [backCanvas drawChart];
-    
-    [self.window.layer addSublayer:lineCanvas];
-    [self.window.layer addSublayer:backCanvas];
     
     return YES;
 }

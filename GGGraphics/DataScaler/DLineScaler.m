@@ -39,6 +39,8 @@ LineScaler y_axiScaler(CGFloat max, CGFloat min, CGRect rect)
 /** 横轴计算 */
 LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
+    sep = base == 0 ? sep - 1 : sep;    // 基数为0则减一
+    
     CGFloat interval = CGRectGetWidth(rect) / sep;
     
     return ^(double index) {

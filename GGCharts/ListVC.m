@@ -14,6 +14,7 @@
 #import "KTimeViewController.h"
 #import "KLineViewController.h"
 #import "RadarViewController.h"
+#import "LineViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -58,7 +59,7 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)rowAry
 {
-    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"MDLineView", @"RadarChartView"], @[@"TimeChartView", @"KLineChartView"]];
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"MDLineView", @"RadarChartView", @"LineChartView"], @[@"TimeChartView", @"KLineChartView"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -130,6 +131,10 @@ _Pragma("clang diagnostic pop") \
     else if ([selectStr isEqualToString:@"RadarChartView"]) {
     
         [self.navigationController pushViewController:[RadarViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"LineChartView"]) {
+    
+        [self.navigationController pushViewController:[LineViewController new] animated:NO];
     }
     else {
     

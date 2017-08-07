@@ -23,12 +23,14 @@
 
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
-@property (nonatomic, assign) CGPoint startLocalRatio;
-
-@property (nonatomic, assign) CGPoint endLocalRatio;
-
 @property (nonatomic, assign) CGPoint textRatio;
 
 @property (nonatomic, assign) CGFloat over;
+
+@property (nonatomic, assign) BOOL needShowGridLine;
+
+@property (nonatomic, assign) BOOL needShowAxisLine;
+
+@property (nonatomic, assign) NSString * dataFormatter;
 
 @end

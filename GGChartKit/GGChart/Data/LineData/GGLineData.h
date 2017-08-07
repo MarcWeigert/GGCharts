@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    ScalerAxisLeft = 0,
+    ScalerAxisRight,
+} ScalerAxisType;
+
 @interface GGLineData : NSObject
 
 @property (nonatomic, assign) CGFloat lineWidth;
@@ -25,5 +30,11 @@
 @property (nonatomic, strong, readonly) DLineScaler * lineScaler;
 
 @property (nonatomic, assign) NSArray <NSNumber *> *lineDataAry;
+
+@property (nonatomic, assign) ScalerAxisType scalerType;
+
+@property (nonatomic, strong) NSNumber * fillRoundPrice;        ///< 环绕填价格点(默认最小值DataSet)
+
+@property (nonatomic, strong) UIColor * lineFillColor;
 
 @end

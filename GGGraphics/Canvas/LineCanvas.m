@@ -40,6 +40,8 @@
 {
     [super drawChart];
     
+    [_stringCanvas removeAllRenderer];
+    
     CGRect rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
     rect = UIEdgeInsetsInsetRect(rect, [_lineDrawConfig lineInsets]);
     
@@ -49,14 +51,27 @@
         
         DLineScaler * lineScaler = [lineDraw lineScaler];
         lineScaler.rect = rect;
+        lineScaler.xRatio = 0;
+        
+        if ([_lineDrawConfig isGroupingAlignment]) {
+            
+            lineScaler.xRatio = (float)(i + 1) / ([[_lineDrawConfig lineAry] count] + 1);
+        }
+        else if ([_lineDrawConfig isCenterAlignment]) {
+        
+            lineScaler.xRatio = .5f;
+        }
+        
         [lineScaler updateScaler];
         
+        [self drawFillChartWithDraw:lineDraw];
         [self drawLineChartWithLineDraw:lineDraw];
         [self drawShapeChartWithLineDraw:lineDraw];
         [self drawStringChartWithDraw:lineDraw];
     }
     
     [self addSublayer:_stringCanvas];
+    [_stringCanvas setNeedsDisplay];
 }
 
 - (void)drawLineChartWithLineDraw:(id <LineDrawAbstract>)lineDraw
@@ -98,7 +113,6 @@
         
         NSString * dataFromatter = [lineDraw dataFormatter] == nil ? @"%.2f" : [lineDraw dataFormatter];
         DLineScaler * lineScaler = lineDraw.lineScaler;
-        [_stringCanvas removeAllRenderer];
         
         for (NSInteger i = 0; i < lineScaler.dataAry.count; i++) {
             
@@ -110,8 +124,27 @@
             stringRenderer.offSetRatio = CGPointMake(-.5f, -1.2f);
             [_stringCanvas addRenderer:stringRenderer];
         }
+    }
+}
+
+- (void)drawFillChartWithDraw:(id <LineDrawAbstract>)lineDraw
+{
+    if ([lineDraw lineFillColor]) {
         
-        [_stringCanvas setNeedsDisplay];
+        DLineScaler * lineScaler = lineDraw.lineScaler;
+        
+        GGShapeCanvas * shape = [self getGGCanvasEqualFrame];
+        shape.lineWidth = 0;
+        shape.fillColor = [lineDraw lineFillColor].CGColor;
+        
+        CGFloat bottomY = [lineDraw fillRoundPrice] == nil ? CGRectGetMaxY(lineScaler.rect) : [lineScaler getYPixelWithData:[lineDraw fillRoundPrice].floatValue];
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathAddLines(path, NULL, lineScaler.linePoints, lineScaler.pointSize);
+        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[lineScaler.pointSize - 1].x, bottomY);
+        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[0].x, bottomY);
+        CGPathCloseSubpath(path);
+        shape.path = path;
+        CGPathRelease(path);
     }
 }
 

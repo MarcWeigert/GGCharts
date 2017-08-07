@@ -27,6 +27,10 @@
 
 @property (nonatomic, strong) NSString * dataFormatter;
 
+@property (nonatomic, strong) NSNumber * fillRoundPrice;
+
+@property (nonatomic, strong) UIColor * lineFillColor;
+
 @end
 
 #endif /* LineDrawAbstract_h */

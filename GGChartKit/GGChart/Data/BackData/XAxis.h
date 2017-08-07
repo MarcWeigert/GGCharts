@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AxisAbstract.h"
 
-@interface XAxis : NSObject <AxisAbstract>
+@interface XAxis : NSObject
 
 @property (nonatomic, strong) UIFont * axisFont;
 
@@ -19,11 +19,11 @@
 
 @property (nonatomic, assign) BOOL drawStringAxisCenter;
 
+@property (nonatomic, assign) BOOL needShowGridLine;
+
+@property (nonatomic, assign) BOOL needShowAxisLine;
+
 @property (nonatomic, assign) CGFloat axisLineWidth;
-
-@property (nonatomic, assign) CGPoint startLocalRatio;
-
-@property (nonatomic, assign) CGPoint endLocalRatio;
 
 @property (nonatomic, assign) CGPoint textRatio;
 

@@ -8,6 +8,34 @@
 
 #import "XAxis.h"
 
+@interface XAxis () <AxisAbstract>
+
+@property (nonatomic, assign) CGPoint startLineRatio;
+
+@property (nonatomic, assign) CGPoint endLineRatio;
+
+@end
+
 @implementation XAxis
+
+- (void)setStartLocalRatio:(CGPoint)startLocalRatio
+{
+    _startLineRatio = startLocalRatio;
+}
+
+- (CGPoint)startLocalRatio
+{
+    return _startLineRatio;
+}
+
+- (void)setEndLocalRatio:(CGPoint)endLocalRatio
+{
+    _endLineRatio = endLocalRatio;
+}
+
+- (CGPoint)endLocalRatio
+{
+    return _endLineRatio;
+}
 
 @end

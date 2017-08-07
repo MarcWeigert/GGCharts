@@ -15,6 +15,7 @@
 
 @property (nonatomic, readonly) GGShapeCanvas * shapeCanvas;
 
+
 /**
  * 绘制线图层
  *

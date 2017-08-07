@@ -22,11 +22,8 @@
     [self removeAllRenderer];
     
     CGRect frame = UIEdgeInsetsInsetRect(CGRectMake(0, 0, self.gg_width, self.gg_height), [_gridDrawConfig insets]);
-    CGFloat x_dis = CGRectGetWidth(frame) / [_gridDrawConfig horizontalCount];
-    CGFloat y_dis = CGRectGetHeight(frame) / [_gridDrawConfig verticalCount];
     
     GGGridRenderer * gridRenderer = [[GGGridRenderer alloc] init];
-    gridRenderer.grid = GGGridRectMake(frame, y_dis, x_dis);
     gridRenderer.width = [_gridDrawConfig gridLineWidth];
     gridRenderer.color = [_gridDrawConfig gridColor];
     gridRenderer.isNeedRect = NO;
@@ -56,8 +53,35 @@
             axis.showSep = YES;
             axis.axis = GGAxisMake(s_x, s_y, e_x, e_y, [axisAbstract over], sep);
             axis.aryString = titles;
+            axis.strFont = [axisAbstract axisFont];
             axis.offSetRatio = [axisAbstract textRatio];
             [self addRenderer:axis];
+            
+            if ([axisAbstract needShowGridLine]) {
+                
+                CGFloat len = GGLengthLine(axis.axis.line);
+                NSInteger count = axis.axis.sep == 0 ? 0 : abs((int)(len / axis.axis.sep + 0.1)) + 1;   // 八社九入
+                
+                if (fabs(axis.axis.line.start.y - axis.axis.line.end.y) < .001f) {      // 平行于x轴
+                    
+                    for (int i = 0; i < count; i++) {
+                        
+                        CGPoint axis_pt = GGMoveStart(axis.axis.line, axis.axis.sep * i);
+                        GGLine line = GGLineMake(axis_pt.x, CGRectGetMinY(frame), axis_pt.x, CGRectGetMaxY(frame));
+                        [gridRenderer addLine:line];
+                    }
+                }
+                
+                if (fabs(axis.axis.line.start.x - axis.axis.line.end.x) < .001f) {      // 平行于y轴
+                    
+                    for (int i = 0; i < count; i++) {
+                        
+                        CGPoint axis_pt = GGMoveStart(axis.axis.line, axis.axis.sep * i);
+                        GGLine line = GGLineMake(CGRectGetMinX(frame), axis_pt.y, CGRectGetMaxX(frame), axis_pt.y);
+                        [gridRenderer addLine:line];
+                    }
+                }
+            }
         }
     }
     

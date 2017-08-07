@@ -12,7 +12,9 @@
 #import "XAxis.h"
 #import "YAxis.h"
 
-@interface LineDataSet : NSObject <GridAbstract>
+@class LineCanvas;
+
+@interface LineDataSet : NSObject
 
 @property (nonatomic, strong) NSArray <GGLineData *> * lineAry;
 
@@ -24,5 +26,10 @@
 @property (nonatomic, assign) CGFloat gridLineWidth;
 @property (nonatomic, assign) UIColor * gridColor;
 @property (nonatomic, assign) UIEdgeInsets insets;
+
+@property (nonatomic, assign) BOOL isGroupingAlignment;     ///< 是否分组排列
+@property (nonatomic, assign) BOOL isCenterAlignment;   ///< 是否居中排列
+
+- (void)drawOnLineCanvas:(LineCanvas *)lineCanvas;
 
 @end

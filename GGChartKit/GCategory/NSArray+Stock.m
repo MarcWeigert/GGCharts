@@ -71,18 +71,28 @@
 {
     if (!self.count) { NSLog(@"array is empty"); return; }
     
-    __block CGFloat chartMax = FLT_MIN;
-    __block CGFloat chartMin = FLT_MAX;
+    CGFloat chartMax = FLT_MIN;
+    CGFloat chartMin = FLT_MAX;
     
-    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
+    for (NSInteger idx = 0; idx < self.count; idx++) {
         
-        IMP imp = [obj methodForSelector:getter];
-        double (*objGetter)(id obj, SEL getter) = (void *)imp;
-        double objNumber = objGetter(obj, getter);
+        id obj = [self objectAtIndex:idx];
+        double objNumber = .0f;
+        
+        if (![obj isKindOfClass:[NSNumber class]]) {
+            
+            IMP imp = [obj methodForSelector:getter];
+            double (*objGetter)(id obj, SEL getter) = (void *)imp;
+            objNumber = objGetter(obj, getter);
+        }
+        else {
+            
+            objNumber = [obj floatValue];
+        }
         
         chartMax = objNumber > chartMax ? objNumber : chartMax;
         chartMin = objNumber < chartMin ? objNumber : chartMin;
-    }];
+    }
     
     CGFloat baseScaler = fabs(chartMax - chartMin) * base;
     
@@ -134,7 +144,9 @@
     __block CGFloat chartMax = FLT_MIN;
     __block CGFloat chartMin = FLT_MAX;
     
-    [self enumerateObjectsUsingBlock:^(NSArray <NSNumber *> * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (NSInteger idx = 0; idx < self.count; idx++) {
+        
+        NSArray <NSNumber *> * obj = [self objectAtIndex:idx];
         
         CGFloat subMax = 0;
         CGFloat subMin = 0;
@@ -143,7 +155,7 @@
         
         chartMax = subMax > chartMax ? subMax : chartMax;
         chartMin = subMin < chartMin ? subMin : chartMin;
-    }];
+    }
     
     *max = chartMax;
     *min = chartMin;

@@ -119,6 +119,8 @@
 		2B8B62BD1F3419BA00028F40 /* LineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62BC1F3419BA00028F40 /* LineDataSet.m */; };
 		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
 		2B8CEB841F302CB5005D441D /* PolygonRenderder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8CEB831F302CB5005D441D /* PolygonRenderder.m */; };
+		2B932C251F381A4300D19378 /* GGLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B932C241F381A4300D19378 /* GGLineChart.m */; };
+		2B932C281F381CA600D19378 /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B932C271F381CA600D19378 /* LineViewController.m */; };
 		2B9788721F09D4E2002A2A3C /* StockQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788441F09D4E2002A2A3C /* StockQueryView.m */; };
 		2B9788731F09D4E2002A2A3C /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788461F09D4E2002A2A3C /* UICountingLabel.m */; };
 		2B9788741F09D4E2002A2A3C /* BaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97884A1F09D4E2002A2A3C /* BaseChart.m */; };
@@ -368,6 +370,10 @@
 		2B8CEB7D1F3012E2005D441D /* RadarSetAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
 		2B8CEB821F302CB5005D441D /* PolygonRenderder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonRenderder.h; sourceTree = "<group>"; };
 		2B8CEB831F302CB5005D441D /* PolygonRenderder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonRenderder.m; sourceTree = "<group>"; };
+		2B932C231F381A4300D19378 /* GGLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineChart.h; sourceTree = "<group>"; };
+		2B932C241F381A4300D19378 /* GGLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineChart.m; sourceTree = "<group>"; };
+		2B932C261F381CA600D19378 /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
+		2B932C271F381CA600D19378 /* LineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineViewController.m; sourceTree = "<group>"; };
 		2B9788411F09D4E2002A2A3C /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
 		2B9788431F09D4E2002A2A3C /* StockQueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockQueryView.h; sourceTree = "<group>"; };
 		2B9788441F09D4E2002A2A3C /* StockQueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockQueryView.m; sourceTree = "<group>"; };
@@ -454,6 +460,8 @@
 				2B5DE6341F00BD0100B40676 /* BaseModel.m */,
 				2B8B62A21F331CCF00028F40 /* RadarViewController.h */,
 				2B8B62A31F331CCF00028F40 /* RadarViewController.m */,
+				2B932C261F381CA600D19378 /* LineViewController.h */,
+				2B932C271F381CA600D19378 /* LineViewController.m */,
 			);
 			path = GGChartDemo;
 			sourceTree = "<group>";
@@ -878,6 +886,8 @@
 				2B9788541F09D4E2002A2A3C /* PNBarChart.m */,
 				2B8B629F1F33146B00028F40 /* GGRadarChart.h */,
 				2B8B62A01F33146B00028F40 /* GGRadarChart.m */,
+				2B932C231F381A4300D19378 /* GGLineChart.h */,
+				2B932C241F381A4300D19378 /* GGLineChart.m */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -1032,6 +1042,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B932C251F381A4300D19378 /* GGLineChart.m in Sources */,
 				2B2722851F0F550D00E4A295 /* lgc.c in Sources */,
 				2B2722841F0F550D00E4A295 /* lfunc.c in Sources */,
 				2B8B628D1F32D1A700028F40 /* DRadarScaler.m in Sources */,
@@ -1139,6 +1150,7 @@
 				2B27228F1F0F550D00E4A295 /* lparser.c in Sources */,
 				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */,
+				2B932C281F381CA600D19378 /* LineViewController.m in Sources */,
 				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
 				2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */,
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,

@@ -19,6 +19,10 @@
 
 @property (nonatomic, assign) BOOL drawStringAxisCenter;
 
+@property (nonatomic, assign) BOOL needShowGridLine;
+
+@property (nonatomic, assign) BOOL needShowAxisLine;
+
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
 @property (nonatomic, assign) CGPoint startLocalRatio;

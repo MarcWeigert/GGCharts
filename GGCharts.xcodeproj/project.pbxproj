@@ -58,6 +58,7 @@
 		2B3034251F111E1000706575 /* BOLL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034211F111E1000706575 /* BOLL.lua */; };
 		2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034221F111E1000706575 /* IndexLibrary.lua */; };
 		2B3034271F111E1000706575 /* MIKE.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034231F111E1000706575 /* MIKE.lua */; };
+		2B31A0D01F389DDF00C053DD /* GGNumberRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B31A0CF1F389DDF00C053DD /* GGNumberRenderer.m */; };
 		2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */; };
 		2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A561EE44F19003D17C4 /* GGCircleRenderer.m */; };
 		2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A581EE44F19003D17C4 /* GGGridRenderer.m */; };
@@ -243,6 +244,8 @@
 		2B3034211F111E1000706575 /* BOLL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BOLL.lua; sourceTree = "<group>"; };
 		2B3034221F111E1000706575 /* IndexLibrary.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IndexLibrary.lua; sourceTree = "<group>"; };
 		2B3034231F111E1000706575 /* MIKE.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MIKE.lua; sourceTree = "<group>"; };
+		2B31A0CE1F389DDF00C053DD /* GGNumberRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGNumberRenderer.h; sourceTree = "<group>"; };
+		2B31A0CF1F389DDF00C053DD /* GGNumberRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGNumberRenderer.m; sourceTree = "<group>"; };
 		2B330A501EE44F19003D17C4 /* GGAxisRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGAxisRenderer.h; sourceTree = "<group>"; };
 		2B330A511EE44F19003D17C4 /* GGAxisRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGAxisRenderer.m; sourceTree = "<group>"; };
 		2B330A551EE44F19003D17C4 /* GGCircleRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCircleRenderer.h; sourceTree = "<group>"; };
@@ -644,6 +647,8 @@
 				2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */,
 				2B8CEB821F302CB5005D441D /* PolygonRenderder.h */,
 				2B8CEB831F302CB5005D441D /* PolygonRenderder.m */,
+				2B31A0CE1F389DDF00C053DD /* GGNumberRenderer.h */,
+				2B31A0CF1F389DDF00C053DD /* GGNumberRenderer.m */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -1151,6 +1156,7 @@
 				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */,
 				2B932C281F381CA600D19378 /* LineViewController.m in Sources */,
+				2B31A0D01F389DDF00C053DD /* GGNumberRenderer.m in Sources */,
 				2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */,
 				2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */,
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,

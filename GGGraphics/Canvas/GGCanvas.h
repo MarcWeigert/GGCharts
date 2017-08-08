@@ -30,6 +30,16 @@
 - (GGShapeCanvas *)getGGCanvasEqualFrame;
 
 /**
+ * 取图层视图大小为正方形
+ */
+- (CAGradientLayer *)getCAGradientSquareFrame;
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (CAGradientLayer *)getCAGradientEqualFrame;
+
+/**
  * 增加一个绘图工具
  *
  * @param renderer 绘制工具

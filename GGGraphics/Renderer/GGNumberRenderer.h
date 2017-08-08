@@ -22,10 +22,15 @@
 @property (nonatomic, strong) UIFont * font;        ///< 字体
 @property (nonatomic, strong) UIColor * color;      ///< 颜色
 @property (nonatomic, assign) CGPoint offSetRatio;  ///< 文字
-@property (nonatomic, assign) NSString * formatter; ///< 格式化字符串
+@property (nonatomic, strong) NSString * format;    ///< 格式化字符串
 
-- (void)drawAtLastNumber;
+/** 绘制起始点文字 */
+- (void)drawAtToNumberAndPoint;
 
-- (void)updateAnimationRenderer:(NSTimeInterval)duation current:(NSTimeInterval)current;
+/** 绘制终点文字 */
+- (void)drawAtFromNumberAndPoint;
+
+/** 更新 */
+- (void)drawProgressNumberAndPoint:(CGFloat)progress;
 
 @end

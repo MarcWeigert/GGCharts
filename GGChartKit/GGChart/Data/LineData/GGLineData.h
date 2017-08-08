@@ -17,7 +17,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) CGFloat lineWidth;
 
-@property (nonatomic, assign) UIColor * lineColor;
+@property (nonatomic, strong) UIColor * lineColor;
 
 @property (nonatomic, assign) CGFloat shapeRadius;
 
@@ -36,5 +36,13 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSNumber * fillRoundPrice;        ///< 环绕填价格点(默认最小值DataSet)
 
 @property (nonatomic, strong) UIColor * lineFillColor;
+
+@property (nonatomic, strong) UIColor * stringColor;
+
+#pragma mark - Gradient
+
+@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
+
+@property (nonatomic, strong) NSArray <NSNumber *> *locations;
 
 @end

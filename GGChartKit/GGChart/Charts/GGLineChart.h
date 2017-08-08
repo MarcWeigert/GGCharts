@@ -15,4 +15,6 @@
 
 - (void)drawLineChart;
 
+- (void)startAnimation:(NSTimeInterval)duration;
+
 @end

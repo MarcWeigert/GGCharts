@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) CGFloat lineWidth;
 
-@property (nonatomic, assign) UIColor * lineColor;
+@property (nonatomic, strong) UIColor * lineColor;
 
 @property (nonatomic, assign) CGFloat shapeRadius;
 
@@ -25,11 +25,19 @@
 
 @property (nonatomic, strong) UIFont * stringFont;
 
+@property (nonatomic, strong) UIColor * stringColor;
+
 @property (nonatomic, strong) NSString * dataFormatter;
 
 @property (nonatomic, strong) NSNumber * fillRoundPrice;
 
 @property (nonatomic, strong) UIColor * lineFillColor;
+
+#pragma mark - Gradient
+
+@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
+
+@property (nonatomic, strong) NSArray <NSNumber *> *locations;
 
 @end
 

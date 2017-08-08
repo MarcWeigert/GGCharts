@@ -61,4 +61,9 @@
     [_gridCanvas drawChart];
 }
 
+- (void)startAnimation:(NSTimeInterval)duration
+{
+    [_lineCanvas startAnimation:duration];
+}
+
 @end

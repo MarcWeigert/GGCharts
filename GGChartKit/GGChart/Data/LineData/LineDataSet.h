@@ -24,7 +24,7 @@
 @property (nonatomic, strong) YAxis * rightAxis;
 
 @property (nonatomic, assign) CGFloat gridLineWidth;
-@property (nonatomic, assign) UIColor * gridColor;
+@property (nonatomic, strong) UIColor * gridColor;
 @property (nonatomic, assign) UIEdgeInsets insets;
 
 @property (nonatomic, assign) BOOL isGroupingAlignment;     ///< 是否分组排列

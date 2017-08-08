@@ -26,4 +26,6 @@
 
 @property (nonatomic, assign) CGFloat radius;       ///< 雷达图半径
 
+@property (nonatomic, strong) UIColor * stringColor;
+
 @end

@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIColor * strockColor;
 
+@property (nonatomic, strong) UIColor * stringColor;
+
 @property (nonatomic, assign) NSUInteger splitCount;
 
 @property (nonatomic, strong) UIFont * titleFont;

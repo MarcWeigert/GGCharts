@@ -26,12 +26,15 @@
     
     GGLineData * line = [[GGLineData alloc] init];
     line.lineWidth = 1;
-    line.lineColor = [UIColor redColor];
+    line.lineColor = C_HEX(0xf64646);
     line.lineDataAry = @[@28, @65, @45, @78, @82, @65];
     line.shapeRadius = 3;
     line.stringFont = [UIFont systemFontOfSize:12];
     line.dataFormatter = @"%.f 分";
+    line.stringColor = C_HEX(0xf64646);
     line.lineFillColor = [[UIColor redColor] colorWithAlphaComponent:.5f];
+    line.gradientColors = @[(__bridge id)C_HEX(0xF9EDD9).CGColor, (__bridge id)[UIColor whiteColor].CGColor];
+    line.locations = @[@0.7, @1];
     
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
@@ -57,6 +60,8 @@
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];
+    
+    [lineChart startAnimation:1];
 }
 
 - (void)didReceiveMemoryWarning

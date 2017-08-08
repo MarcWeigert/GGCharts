@@ -49,7 +49,7 @@
     _polyRenderer.width = radarDrawConfig.lineWidth;
     _polyRenderer.strockColor = radarDrawConfig.strockColor;
     _polyRenderer.splitCount = radarDrawConfig.splitCount;
-    _polyRenderer.stringColor = radarDrawConfig.strockColor;
+    _polyRenderer.stringColor = radarDrawConfig.stringColor;
     _polyRenderer.stringFont = radarDrawConfig.titleFont;
     _polyRenderer.titles = radarDrawConfig.titles;
     _polyRenderer.isPiece = YES;

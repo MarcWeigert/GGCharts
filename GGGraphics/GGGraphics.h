@@ -38,11 +38,14 @@
 #import "GGLineRenderer.h"
 #import "GGStringRenderer.h"
 #import "PolygonRenderder.h"
+#import "GGNumberRenderer.h"
 
 #import "RadarSetAbstract.h"
 #import "AxisAbstract.h"
 #import "GridAbstract.h"
 #import "LineCanvasAbstract.h"
 #import "LineDrawAbstract.h"
+
+#import "Animator.h"
 
 #endif /* GGChart_h */

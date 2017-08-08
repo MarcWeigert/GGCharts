@@ -17,11 +17,14 @@
 @property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;      ///< 显示的图层
 @property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;         ///< 闲置的图层
 
+@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * visibleGradientLayers;      ///< 显示的图层
+@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * idleGradientLayers;         ///< 闲置的图层
+
 @end
 
 @implementation GGCanvas
 
-#pragma mark - 取层
+#pragma mark - Shape
 
 /**
  * 取图层视图大小与Chart一致
@@ -65,6 +68,53 @@
         [self.idleLayers removeObject:shape];
     }
     
+   return shape;
+}
+
+#pragma mark - Gradient
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (CAGradientLayer *)getCAGradientEqualFrame
+{
+    CAGradientLayer * gradientLayer = [self makeOrGetGradientCanvas];
+    gradientLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSublayer:gradientLayer];
+    [self.visibleGradientLayers addObject:gradientLayer];
+    return gradientLayer;
+}
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (CAGradientLayer *)getCAGradientSquareFrame
+{
+    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+    CAGradientLayer * gradientLayer = [self makeOrGetGradientCanvas];
+    gradientLayer.frame = CGRectMake(0, 0, width, width);
+    gradientLayer.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    [self addSublayer:gradientLayer];
+    [self.visibleGradientLayers addObject:gradientLayer];
+    return gradientLayer;
+}
+
+/**
+ * 渐变色
+ */
+- (CAGradientLayer *)makeOrGetGradientCanvas
+{
+    CAGradientLayer * shape = [self.idleGradientLayers firstObject];
+    
+    if (shape == nil) {
+        
+        shape = [[CAGradientLayer alloc] init];
+    }
+    else {
+        
+        [self.idleGradientLayers removeObject:shape];
+    }
+    
     return shape;
 }
 
@@ -73,6 +123,7 @@
  */
 - (void)drawChart
 {
+    // 形
     [self.idleLayers addObjectsFromArray:self.visibleLayers];
     
     [self.visibleLayers enumerateObjectsUsingBlock:^(GGShapeCanvas * obj, NSUInteger idx, BOOL * stop) {
@@ -81,6 +132,16 @@
     }];
     
     [self.visibleLayers removeAllObjects];
+    
+    // 渐变色
+    [self.idleGradientLayers addObjectsFromArray:self.visibleGradientLayers];
+    
+    [self.visibleGradientLayers enumerateObjectsUsingBlock:^(CAGradientLayer * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj removeFromSuperlayer];
+    }];
+    
+    [self.visibleGradientLayers removeAllObjects];
 }
 
 #pragma mark - 绘制
@@ -156,5 +217,8 @@
 
 GGLazyGetMethod(NSMutableArray, visibleLayers);
 GGLazyGetMethod(NSMutableArray, idleLayers);
+
+GGLazyGetMethod(NSMutableArray, visibleGradientLayers);
+GGLazyGetMethod(NSMutableArray, idleGradientLayers);
 
 @end

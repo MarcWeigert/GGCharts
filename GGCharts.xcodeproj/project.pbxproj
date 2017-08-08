@@ -105,6 +105,7 @@
 		2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */; };
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
+		2B7E411A1F396455000E0413 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E41191F396455000E0413 /* Animator.m */; };
 		2B8A24CE1F185CD2009A6F92 /* LoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */; };
 		2B8B628D1F32D1A700028F40 /* DRadarScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628C1F32D1A700028F40 /* DRadarScaler.m */; };
 		2B8B62901F32D6B700028F40 /* RadarCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628F1F32D6B700028F40 /* RadarCanvas.m */; };
@@ -337,6 +338,8 @@
 		2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GGDate.m"; sourceTree = "<group>"; };
 		2B7995191F175D6A00E73DFC /* month_k_data_600887.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = month_k_data_600887.json; sourceTree = "<group>"; };
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
+		2B7E41181F396455000E0413 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
+		2B7E41191F396455000E0413 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
 		2B8A24CC1F185CD2009A6F92 /* LoopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopScrollView.h; sourceTree = "<group>"; };
 		2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopScrollView.m; sourceTree = "<group>"; };
 		2B8B628B1F32D1A700028F40 /* DRadarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRadarScaler.h; sourceTree = "<group>"; };
@@ -621,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				2B330A681EE44F8E003D17C4 /* GGGraphics.h */,
+				2B7E41171F396309000E0413 /* Animation */,
 				2B8CEB7B1F300D48005D441D /* CanvasAbstract */,
 				2B8B70FC1EF75F0E002FDC09 /* DataScaler */,
 				2B7777B31EE829A500C99F55 /* GUtils */,
@@ -765,6 +769,15 @@
 				2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */,
 			);
 			path = GUtils;
+			sourceTree = "<group>";
+		};
+		2B7E41171F396309000E0413 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				2B7E41181F396455000E0413 /* Animator.h */,
+				2B7E41191F396455000E0413 /* Animator.m */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		2B8B62951F32ECF300028F40 /* RadarData */ = {
@@ -1166,6 +1179,7 @@
 				2B27228E1F0F550D00E4A295 /* loslib.c in Sources */,
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
 				2B9788821F09D4E2002A2A3C /* PNBarData.m in Sources */,
+				2B7E411A1F396455000E0413 /* Animator.m in Sources */,
 				2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */,
 				2B8B629B1F32ED7C00028F40 /* RadarData.m in Sources */,
 				2B9788741F09D4E2002A2A3C /* BaseChart.m in Sources */,

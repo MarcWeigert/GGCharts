@@ -15,7 +15,7 @@
 
 @property (nonatomic, assign) CGFloat gridLineWidth;
 
-@property (nonatomic, assign) UIColor * gridColor;
+@property (nonatomic, strong) UIColor * gridColor;
 
 @property (nonatomic, assign) UIEdgeInsets insets;
 

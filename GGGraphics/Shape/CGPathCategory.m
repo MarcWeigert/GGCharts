@@ -367,6 +367,30 @@ CG_EXTERN NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, C
     return ary;
 }
 
+CG_EXTERN NSArray * GGPathLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    CGPoint basePoints[size];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        basePoints[i] = CGPointMake(points[i].x, y);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, basePoints, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, points, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}
+
 CG_EXTERN NSArray * GGPathFillLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -430,6 +454,58 @@ CG_EXTERN NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radi
     
     CGMutablePathRef ref = CGPathCreateMutable();
     GGPathAddCircles(ref, points, radius, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}
+
+CG_EXTERN NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    CGPoint basePoints[size];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        basePoints[i] = CGPointMake(points[i].x, y);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    GGPathAddCircles(ref, basePoints, 0, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    ref = CGPathCreateMutable();
+    GGPathAddCircles(ref, points, radius, size);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    return ary;
+}
+
+CG_EXTERN NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y)
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    CGPoint basePoints[size];
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        basePoints[i] = CGPointMake(points[i].x, y);
+    }
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, basePoints, size);
+    CGPathAddLineToPoint(ref, NULL, basePoints[size - 1].x, y);
+    CGPathAddLineToPoint(ref, NULL, basePoints[0].x, y);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
+    
+    ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, points, size);
+    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
+    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
     [ary addObject:(__bridge id)ref];
     CGPathRelease(ref);
     

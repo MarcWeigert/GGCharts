@@ -50,6 +50,7 @@
     
     _radarDataSet.titleFont = [UIFont systemFontOfSize:12];
     _radarDataSet.strockColor = [UIColor blackColor];
+    _radarDataSet.stringColor = [UIColor blackColor];
     _radarDataSet.lineWidth = .5f;
     _radarDataSet.radius = 100;
     _radarDataSet.splitCount = 3;

@@ -19,4 +19,13 @@
 /** 更新子视图 */
 - (void)updateSubLayers;
 
+/** 动画 */
+- (void)addAnimationWithDuration:(NSTimeInterval)time;
+
+/** 增加渲染器 */
+- (void)addGGNumberRenderer:(GGNumberRenderer *)renderer;
+
+/** 清除渲染器 */
+- (void)removeAllGGNumberRenderer;
+
 @end

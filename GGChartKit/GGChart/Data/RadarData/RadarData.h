@@ -20,4 +20,10 @@
 
 @property (nonatomic, strong) NSArray <NSNumber *> *datas;    ///< 数据源
 
+#pragma mark - Gradient
+
+@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
+
+@property (nonatomic, strong) NSArray <NSNumber *> *locations;
+
 @end

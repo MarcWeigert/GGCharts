@@ -19,6 +19,12 @@
 
 @property (nonatomic, strong) NSArray <NSNumber *> *ratios;
 
+#pragma mark - Gradient
+
+@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
+
+@property (nonatomic, strong) NSArray <NSNumber *> *locations;
+
 @end
 
 #endif /* RadarAbstract_h */

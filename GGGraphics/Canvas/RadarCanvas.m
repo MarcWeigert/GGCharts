@@ -10,10 +10,21 @@
 #import "GGGraphics.h"
 #import "DRadarScaler.h"
 #import "CALayer+GGLayer.h"
+#include <objc/runtime.h>
+
+static const void * radarLayer = @"radarLayer";
+
+#define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
+#define SET_ASSOCIATED_RETAIN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
+#define GET_ASSOCIATED(obj, key) objc_getAssociatedObject(obj, key)
 
 @interface RadarCanvas ()
 
 @property (nonatomic, strong) PolygonRenderder * polyRenderer;
+
+@property (nonatomic, strong) NSMutableArray * arrayNumberRenderer;
+
+@property (nonatomic, strong) Animator * animator;
 
 @end
 
@@ -88,9 +99,67 @@
         CGPathCloseSubpath(ref);
         shapeCanvas.path = ref;
         CGPathRelease(ref);
+        
+        SET_ASSOCIATED_ASSIGN(drawData, radarLayer, shapeCanvas);
+        
+        if ([drawData gradientColors].count > 0) {
+            
+            CAGradientLayer * gradientLayer = [self getCAGradientEqualFrame];
+            gradientLayer.mask = shapeCanvas;
+            gradientLayer.colors = [drawData gradientColors];
+            gradientLayer.locations = [drawData locations];
+        }
     }
     
     [self addSublayer:_topCanvas];
 }
+
+/** 动画 */
+- (void)addAnimationWithDuration:(NSTimeInterval)duration
+{
+    for (NSInteger i = 0; i < _radarDrawConfig.radarSet.count; i++) {
+        
+        id <RadarAbstract> drawData = _radarDrawConfig.radarSet[i];
+        
+        GGShapeCanvas * shapeCanvas = GET_ASSOCIATED(drawData, radarLayer);
+        CAKeyframeAnimation * scaleAtnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+        scaleAtnimation.duration = duration;
+        scaleAtnimation.values = @[@0 , @1];
+        [shapeCanvas addAnimation:scaleAtnimation forKey:@"scaleAtnimation"];
+    }
+    
+    __weak RadarCanvas * weakSelf = self;
+    self.animator.animationType = AnimationLinear;
+    self.animator.updateBlock = ^(CGFloat progress) {
+        
+        for (NSInteger i = 0; i < weakSelf.arrayNumberRenderer.count; i++) {
+            
+            GGNumberRenderer * objRenderer = [weakSelf.arrayNumberRenderer objectAtIndex:i];
+            [objRenderer drawProgressNumberAndPoint:progress];
+        }
+        
+        [weakSelf.topCanvas setNeedsDisplay];
+    };
+    
+    [_animator startAnimationWithDuration:duration];
+}
+
+/** 增加渲染器 */
+- (void)addGGNumberRenderer:(GGNumberRenderer *)renderer
+{
+    [self.arrayNumberRenderer addObject:renderer];
+}
+
+/** 清除渲染器 */
+- (void)removeAllGGNumberRenderer
+{
+    [self.arrayNumberRenderer removeAllObjects];
+}
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(NSMutableArray, arrayNumberRenderer);
+
+GGLazyGetMethod(Animator, animator);
 
 @end

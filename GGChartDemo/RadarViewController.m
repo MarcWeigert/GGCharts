@@ -59,6 +59,7 @@
     GGRadarChart * radarChart = [[GGRadarChart alloc] initWithFrame:self.view.frame];
     radarChart.radarData = _radarDataSet;
     [radarChart drawRadarChart];
+    [radarChart.radarCanvas addAnimationWithDuration:2];
     
     [self.view addSubview:radarChart];
 }

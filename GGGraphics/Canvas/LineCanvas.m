@@ -157,7 +157,7 @@ static const void * lineFillLayer = @"lineFillLayer";
 /** 填充色 */
 - (void)drawFillChartWithDraw:(id <LineDrawAbstract>)lineDraw
 {
-    if ([lineDraw lineFillColor]) {
+    if ([lineDraw lineFillColor] || [lineDraw gradientColors].count > 0) {
         
         DLineScaler * lineScaler = lineDraw.lineScaler;
         

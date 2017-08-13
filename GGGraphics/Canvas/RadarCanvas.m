@@ -20,7 +20,7 @@ static const void * radarLayer = @"radarLayer";
 
 @interface RadarCanvas ()
 
-@property (nonatomic, strong) PolygonRenderder * polyRenderer;
+@property (nonatomic, strong) GGPolygonRenderder * polyRenderer;
 
 @property (nonatomic, strong) NSMutableArray * arrayNumberRenderer;
 
@@ -36,7 +36,7 @@ static const void * radarLayer = @"radarLayer";
     
     if (self) {
         
-        _polyRenderer = [[PolygonRenderder alloc] init];
+        _polyRenderer = [[GGPolygonRenderder alloc] init];
         [self addRenderer:_polyRenderer];
         
         _topCanvas = [[GGCanvas alloc] init];
@@ -89,7 +89,7 @@ static const void * radarLayer = @"radarLayer";
         dataScaler.radarProportions = drawData.ratios;
         [dataScaler updateScaler];
         
-        GGShapeCanvas * shapeCanvas = [self getGGCanvasEqualFrame];
+        GGShapeCanvas * shapeCanvas = [self getGGShapeCanvasEqualFrame];
         shapeCanvas.fillColor = [drawData fillColor].CGColor;
         shapeCanvas.strokeColor = [drawData strockColor].CGColor;
         shapeCanvas.lineWidth = [drawData lineWidth];

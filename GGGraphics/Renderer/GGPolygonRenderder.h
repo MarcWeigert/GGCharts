@@ -1,5 +1,5 @@
 //
-//  PolygonRenderder.h
+//  GGPolygonRenderder.h
 //  GGCharts
 //
 //  Created by 黄舜 on 17/8/1.
@@ -10,7 +10,7 @@
 #import "GGChartGeometry.h"
 #import "GGRenderProtocol.h"
 
-@interface PolygonRenderder : NSObject <GGRenderProtocol>
+@interface GGPolygonRenderder : NSObject <GGRenderProtocol>
 
 @property (nonatomic, assign) GGPolygon polygon;    ///< 多边形结构体
 

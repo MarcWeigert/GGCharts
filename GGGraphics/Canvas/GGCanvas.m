@@ -20,6 +20,9 @@
 @property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * visibleGradientLayers;      ///< 显示的图层
 @property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * idleGradientLayers;         ///< 闲置的图层
 
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * visibleCanvas;      ///< 显示的图层
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleCanvas;         ///< 闲置的图层
+
 @end
 
 @implementation GGCanvas
@@ -29,7 +32,7 @@
 /**
  * 取图层视图大小与Chart一致
  */
-- (GGShapeCanvas *)getGGCanvasEqualFrame
+- (GGShapeCanvas *)getGGShapeCanvasEqualFrame
 {
     GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
     shape.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
@@ -41,7 +44,7 @@
 /**
  * 取图层视图大小为正方形
  */
-- (GGShapeCanvas *)getGGCanvasSquareFrame
+- (GGShapeCanvas *)getGGShapeCanvasSquareFrame
 {
     CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
     GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
@@ -118,6 +121,53 @@
     return shape;
 }
 
+#pragma mark - Canvas
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (GGCanvas *)getCanvasSquareFrame
+{
+    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
+    GGCanvas * canvas = [self makeOrGetCanvas];
+    canvas.frame = CGRectMake(0, 0, width, width);
+    canvas.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    [self addSublayer:canvas];
+    [self.visibleCanvas addObject:canvas];
+    return canvas;
+}
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGCanvas *)getCanvasEqualFrame
+{
+    GGCanvas * canvas = [self makeOrGetCanvas];
+    canvas.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSublayer:canvas];
+    [self.visibleCanvas addObject:canvas];
+    return canvas;
+}
+
+/**
+ * 渐变色
+ */
+- (GGCanvas *)makeOrGetCanvas
+{
+    GGCanvas * shape = [self.idleCanvas firstObject];
+    
+    if (shape == nil) {
+        
+        shape = [[GGCanvas alloc] init];
+    }
+    else {
+        
+        [self.idleCanvas removeObject:shape];
+    }
+    
+    return shape;
+}
+
 /**
  * 绘制图表(子类重写)
  */
@@ -142,6 +192,16 @@
     }];
     
     [self.visibleGradientLayers removeAllObjects];
+    
+    // 普通图层
+    [self.idleCanvas addObjectsFromArray:self.visibleCanvas];
+    
+    [self.visibleCanvas enumerateObjectsUsingBlock:^(GGCanvas * obj, NSUInteger idx, BOOL * stop) {
+        
+        [obj removeFromSuperlayer];
+    }];
+    
+    [self.visibleCanvas removeAllObjects];
 }
 
 #pragma mark - 绘制
@@ -220,5 +280,8 @@ GGLazyGetMethod(NSMutableArray, idleLayers);
 
 GGLazyGetMethod(NSMutableArray, visibleGradientLayers);
 GGLazyGetMethod(NSMutableArray, idleGradientLayers);
+
+GGLazyGetMethod(NSMutableArray, visibleCanvas);
+GGLazyGetMethod(NSMutableArray, idleCanvas);
 
 @end

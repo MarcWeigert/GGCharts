@@ -37,7 +37,7 @@
 #import "GGGridRenderer.h"
 #import "GGLineRenderer.h"
 #import "GGStringRenderer.h"
-#import "PolygonRenderder.h"
+#import "GGPolygonRenderder.h"
 #import "GGNumberRenderer.h"
 
 #import "RadarSetAbstract.h"
@@ -45,6 +45,8 @@
 #import "GridAbstract.h"
 #import "LineCanvasAbstract.h"
 #import "LineDrawAbstract.h"
+#import "BarDrawAbstract.h"
+#import "BarCanvasAbstract.h"
 
 #import "Animator.h"
 

@@ -8,7 +8,6 @@
 
 #import "GGCanvas.h"
 #import "LineCanvasAbstract.h"
-#import "LineDrawAbstract.h"
 
 @interface LineCanvas : GGCanvas
 

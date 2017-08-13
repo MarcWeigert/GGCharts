@@ -65,6 +65,8 @@
 		2B330A661EE44F19003D17C4 /* GGLineRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */; };
 		2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */; };
 		2B35BDC11F073FC900420B30 /* DPieScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B35BDC01F073FC900420B30 /* DPieScaler.m */; };
+		2B45C4FF1F3FD4D1004F1AC6 /* BarCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45C4FE1F3FD4D1004F1AC6 /* BarCanvas.m */; };
+		2B45C50A1F3FDCB0004F1AC6 /* GGRectRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B45C5091F3FDCB0004F1AC6 /* GGRectRenderer.m */; };
 		2B4A83FA1F26F68D00028DB7 /* 600887_five_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */; };
 		2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6311F00BB9800B40676 /* KTimeViewController.m */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
@@ -106,7 +108,6 @@
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
 		2B7E411A1F396455000E0413 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E41191F396455000E0413 /* Animator.m */; };
-		2B8A24CE1F185CD2009A6F92 /* LoopScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */; };
 		2B8B628D1F32D1A700028F40 /* DRadarScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628C1F32D1A700028F40 /* DRadarScaler.m */; };
 		2B8B62901F32D6B700028F40 /* RadarCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628F1F32D6B700028F40 /* RadarCanvas.m */; };
 		2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62971F32ECF300028F40 /* RadarDataSet.m */; };
@@ -120,7 +121,7 @@
 		2B8B62B61F34042800028F40 /* YAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62B51F34042800028F40 /* YAxis.m */; };
 		2B8B62BD1F3419BA00028F40 /* LineDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62BC1F3419BA00028F40 /* LineDataSet.m */; };
 		2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B70FE1EF76066002FDC09 /* BaseScaler.m */; };
-		2B8CEB841F302CB5005D441D /* PolygonRenderder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8CEB831F302CB5005D441D /* PolygonRenderder.m */; };
+		2B8CEB841F302CB5005D441D /* GGPolygonRenderder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8CEB831F302CB5005D441D /* GGPolygonRenderder.m */; };
 		2B932C251F381A4300D19378 /* GGLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B932C241F381A4300D19378 /* GGLineChart.m */; };
 		2B932C281F381CA600D19378 /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B932C271F381CA600D19378 /* LineViewController.m */; };
 		2B9788721F09D4E2002A2A3C /* StockQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788441F09D4E2002A2A3C /* StockQueryView.m */; };
@@ -261,6 +262,12 @@
 		2B330A681EE44F8E003D17C4 /* GGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGraphics.h; sourceTree = "<group>"; };
 		2B35BDBF1F073FC900420B30 /* DPieScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPieScaler.h; sourceTree = "<group>"; };
 		2B35BDC01F073FC900420B30 /* DPieScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPieScaler.m; sourceTree = "<group>"; };
+		2B45C4FD1F3FD4D1004F1AC6 /* BarCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCanvas.h; sourceTree = "<group>"; };
+		2B45C4FE1F3FD4D1004F1AC6 /* BarCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCanvas.m; sourceTree = "<group>"; };
+		2B45C5001F3FD53B004F1AC6 /* BarCanvasAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarCanvasAbstract.h; sourceTree = "<group>"; };
+		2B45C5011F3FD56B004F1AC6 /* BarDrawAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarDrawAbstract.h; sourceTree = "<group>"; };
+		2B45C5081F3FDCB0004F1AC6 /* GGRectRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGRectRenderer.h; sourceTree = "<group>"; };
+		2B45C5091F3FDCB0004F1AC6 /* GGRectRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRectRenderer.m; sourceTree = "<group>"; };
 		2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_five_day.json; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5DE6301F00BB9800B40676 /* KTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTimeViewController.h; sourceTree = "<group>"; };
@@ -340,8 +347,6 @@
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
 		2B7E41181F396455000E0413 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		2B7E41191F396455000E0413 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
-		2B8A24CC1F185CD2009A6F92 /* LoopScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopScrollView.h; sourceTree = "<group>"; };
-		2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopScrollView.m; sourceTree = "<group>"; };
 		2B8B628B1F32D1A700028F40 /* DRadarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRadarScaler.h; sourceTree = "<group>"; };
 		2B8B628C1F32D1A700028F40 /* DRadarScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRadarScaler.m; sourceTree = "<group>"; };
 		2B8B628E1F32D6B700028F40 /* RadarCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarCanvas.h; sourceTree = "<group>"; };
@@ -374,8 +379,8 @@
 		2B8B70FE1EF76066002FDC09 /* BaseScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScaler.m; sourceTree = "<group>"; };
 		2B8CEB7C1F300D97005D441D /* RadarAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadarAbstract.h; sourceTree = "<group>"; };
 		2B8CEB7D1F3012E2005D441D /* RadarSetAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
-		2B8CEB821F302CB5005D441D /* PolygonRenderder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonRenderder.h; sourceTree = "<group>"; };
-		2B8CEB831F302CB5005D441D /* PolygonRenderder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonRenderder.m; sourceTree = "<group>"; };
+		2B8CEB821F302CB5005D441D /* GGPolygonRenderder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPolygonRenderder.h; sourceTree = "<group>"; };
+		2B8CEB831F302CB5005D441D /* GGPolygonRenderder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPolygonRenderder.m; sourceTree = "<group>"; };
 		2B932C231F381A4300D19378 /* GGLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineChart.h; sourceTree = "<group>"; };
 		2B932C241F381A4300D19378 /* GGLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineChart.m; sourceTree = "<group>"; };
 		2B932C261F381CA600D19378 /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
@@ -649,10 +654,12 @@
 				2B330A5A1EE44F19003D17C4 /* GGLineRenderer.m */,
 				2B330A5C1EE44F19003D17C4 /* GGStringRenderer.h */,
 				2B330A5D1EE44F19003D17C4 /* GGStringRenderer.m */,
-				2B8CEB821F302CB5005D441D /* PolygonRenderder.h */,
-				2B8CEB831F302CB5005D441D /* PolygonRenderder.m */,
+				2B8CEB821F302CB5005D441D /* GGPolygonRenderder.h */,
+				2B8CEB831F302CB5005D441D /* GGPolygonRenderder.m */,
 				2B31A0CE1F389DDF00C053DD /* GGNumberRenderer.h */,
 				2B31A0CF1F389DDF00C053DD /* GGNumberRenderer.m */,
+				2B45C5081F3FDCB0004F1AC6 /* GGRectRenderer.h */,
+				2B45C5091F3FDCB0004F1AC6 /* GGRectRenderer.m */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -735,6 +742,8 @@
 				2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */,
 				2B8B628E1F32D6B700028F40 /* RadarCanvas.h */,
 				2B8B628F1F32D6B700028F40 /* RadarCanvas.m */,
+				2B45C4FD1F3FD4D1004F1AC6 /* BarCanvas.h */,
+				2B45C4FE1F3FD4D1004F1AC6 /* BarCanvas.m */,
 				2B8B62A51F33203B00028F40 /* LineCanvas.h */,
 				2B8B62A61F33203B00028F40 /* LineCanvas.m */,
 				2B8B62AC1F3339AC00028F40 /* GridBackCanvas.h */,
@@ -846,6 +855,8 @@
 				2B8B62A81F33275000028F40 /* AxisAbstract.h */,
 				2B241AF11F345A0200B9DFC3 /* LineDrawAbstract.h */,
 				2B8B62BF1F3423C700028F40 /* LineCanvasAbstract.h */,
+				2B45C5001F3FD53B004F1AC6 /* BarCanvasAbstract.h */,
+				2B45C5011F3FD56B004F1AC6 /* BarDrawAbstract.h */,
 			);
 			path = CanvasAbstract;
 			sourceTree = "<group>";
@@ -872,8 +883,6 @@
 				2B9788461F09D4E2002A2A3C /* UICountingLabel.m */,
 				2B73D35B1F0E0688009F01CF /* CrissCrossQueryView.h */,
 				2B73D35C1F0E0688009F01CF /* CrissCrossQueryView.m */,
-				2B8A24CC1F185CD2009A6F92 /* LoopScrollView.h */,
-				2B8A24CD1F185CD2009A6F92 /* LoopScrollView.m */,
 			);
 			path = "Components ";
 			sourceTree = "<group>";
@@ -1078,13 +1087,13 @@
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
 				2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */,
 				2B2722AD1F0F603600E4A295 /* KLineIndexManager.m in Sources */,
-				2B8A24CE1F185CD2009A6F92 /* LoopScrollView.m in Sources */,
 				2B8B62A41F331CCF00028F40 /* RadarViewController.m in Sources */,
 				2B2722B71F0F694400E4A295 /* MALayer.m in Sources */,
 				2B97887E1F09D4E2002A2A3C /* ChartBaseEvent.m in Sources */,
+				2B45C50A1F3FDCB0004F1AC6 /* GGRectRenderer.m in Sources */,
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B8B62A11F33146B00028F40 /* GGRadarChart.m in Sources */,
-				2B8CEB841F302CB5005D441D /* PolygonRenderder.m in Sources */,
+				2B8CEB841F302CB5005D441D /* GGPolygonRenderder.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
 				2B2722791F0F550D00E4A295 /* lapi.c in Sources */,
 				2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */,
@@ -1155,6 +1164,7 @@
 				2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */,
 				2B2722A31F0F55D500E4A295 /* LuaExportMetaData.m in Sources */,
 				2B2722881F0F550D00E4A295 /* llex.c in Sources */,
+				2B45C4FF1F3FD4D1004F1AC6 /* BarCanvas.m in Sources */,
 				2B241AF41F34643000B9DFC3 /* GGLineData.m in Sources */,
 				2B9788771F09D4E2002A2A3C /* MDLineChart.m in Sources */,
 				2B2722931F0F550D00E4A295 /* ltable.c in Sources */,

@@ -93,7 +93,7 @@ static const void * lineFillLayer = @"lineFillLayer";
 {
     DLineScaler * lineScaler = lineDraw.lineScaler;
     
-    GGShapeCanvas * shape = [self getGGCanvasEqualFrame];
+    GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
     shape.lineWidth = [lineDraw lineWidth];
     shape.strokeColor = [lineDraw lineColor].CGColor;
     shape.fillColor = [UIColor clearColor].CGColor;
@@ -113,7 +113,7 @@ static const void * lineFillLayer = @"lineFillLayer";
         
         DLineScaler * lineScaler = lineDraw.lineScaler;
         
-        GGShapeCanvas * shape = [self getGGCanvasEqualFrame];
+        GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
         shape.lineWidth = [lineDraw lineWidth];
         shape.strokeColor = [lineDraw lineColor].CGColor;
         shape.fillColor = [lineDraw shapeFillColor] == nil ? [UIColor whiteColor].CGColor : [lineDraw shapeFillColor].CGColor;
@@ -161,7 +161,7 @@ static const void * lineFillLayer = @"lineFillLayer";
         
         DLineScaler * lineScaler = lineDraw.lineScaler;
         
-        GGShapeCanvas * shape = [self getGGCanvasEqualFrame];
+        GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
         shape.lineWidth = 0;
         shape.fillColor = [lineDraw lineFillColor].CGColor;
         

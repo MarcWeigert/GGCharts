@@ -22,12 +22,12 @@
 /**
  * 取图层视图大小为正方形
  */
-- (GGShapeCanvas *)getGGCanvasSquareFrame;
+- (GGShapeCanvas *)getGGShapeCanvasSquareFrame;
 
 /**
  * 取图层视图大小与Chart一致
  */
-- (GGShapeCanvas *)getGGCanvasEqualFrame;
+- (GGShapeCanvas *)getGGShapeCanvasEqualFrame;
 
 /**
  * 取图层视图大小为正方形
@@ -38,6 +38,16 @@
  * 取图层视图大小与Chart一致
  */
 - (CAGradientLayer *)getCAGradientEqualFrame;
+
+/**
+ * 取图层视图大小为正方形
+ */
+- (CAGradientLayer *)getCanvasSquareFrame;
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (CAGradientLayer *)getCanvasEqualFrame;
 
 /**
  * 增加一个绘图工具

@@ -1,0 +1,1002 @@
+[
+    {
+        "close_price": 7.069,
+        "chg_describe": "",
+        "eps_y1": 0.4338398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4408714710166962,
+        "date": "2017-02-13 00:00:00"
+    },
+    {
+        "close_price": 7.12,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-14 00:00:00"
+    },
+    {
+        "close_price": 7.04,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-15 00:00:00"
+    },
+    {
+        "close_price": 7.13,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-16 00:00:00"
+    },
+    {
+        "close_price": 6.98,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-17 00:00:00"
+    },
+    {
+        "close_price": 7.19,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-02-20 00:00:00"
+    },
+    {
+        "close_price": 7.17,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-02-21 00:00:00"
+    },
+    {
+        "close_price": 7.21,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-02-22 00:00:00"
+    },
+    {
+        "close_price": 7.1,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-02-23 00:00:00"
+    },
+    {
+        "close_price": 7.13,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-02-24 00:00:00"
+    },
+    {
+        "close_price": 7,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-27 00:00:00"
+    },
+    {
+        "close_price": 7.04,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-02-28 00:00:00"
+    },
+    {
+        "close_price": 7.02,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-01 00:00:00"
+    },
+    {
+        "close_price": 6.98,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-02 00:00:00"
+    },
+    {
+        "close_price": 6.87,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-03 00:00:00"
+    },
+    {
+        "close_price": 6.92,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-06 00:00:00"
+    },
+    {
+        "close_price": 6.92,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-07 00:00:00"
+    },
+    {
+        "close_price": 6.93,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-08 00:00:00"
+    },
+    {
+        "close_price": 6.83,
+        "chg_describe": "",
+        "eps_y1": 0.4348398875477961,
+        "equity_change": 0,
+        "eps_y2": 0.4418714710166962,
+        "date": "2017-03-09 00:00:00"
+    },
+    {
+        "close_price": 6.82,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-10 00:00:00"
+    },
+    {
+        "close_price": 6.88,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-13 00:00:00"
+    },
+    {
+        "close_price": 6.86,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-14 00:00:00"
+    },
+    {
+        "close_price": 6.87,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-15 00:00:00"
+    },
+    {
+        "close_price": 6.94,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-16 00:00:00"
+    },
+    {
+        "close_price": 6.82,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-17 00:00:00"
+    },
+    {
+        "close_price": 6.9,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-20 00:00:00"
+    },
+    {
+        "close_price": 6.91,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-21 00:00:00"
+    },
+    {
+        "close_price": 7.02,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-22 00:00:00"
+    },
+    {
+        "close_price": 7,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-23 00:00:00"
+    },
+    {
+        "close_price": 7.15,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-24 00:00:00"
+    },
+    {
+        "close_price": 7.08,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-27 00:00:00"
+    },
+    {
+        "close_price": 7.11,
+        "chg_describe": "",
+        "eps_y1": 0.4175266853371178,
+        "equity_change": 0,
+        "eps_y2": 0.4259721396688499,
+        "date": "2017-03-28 00:00:00"
+    },
+    {
+        "close_price": 7.26,
+        "chg_describe": "",
+        "eps_y1": 0.244765773434987,
+        "equity_change": 0,
+        "eps_y2": 0.2915383472711845,
+        "date": "2017-03-29 00:00:00"
+    },
+    {
+        "close_price": 7.15,
+        "chg_describe": "",
+        "eps_y1": 0.2385573034522688,
+        "equity_change": 0,
+        "eps_y2": 0.2728686477547758,
+        "date": "2017-03-30 00:00:00"
+    },
+    {
+        "close_price": 6.95,
+        "chg_describe": "",
+        "eps_y1": 0.2385573034522688,
+        "equity_change": 0,
+        "eps_y2": 0.2728686477547758,
+        "date": "2017-03-31 00:00:00"
+    },
+    {
+        "close_price": 7,
+        "chg_describe": "",
+        "eps_y1": 0.2518929280220681,
+        "equity_change": 0,
+        "eps_y2": 0.2852433353660312,
+        "date": "2017-04-05 00:00:00"
+    },
+    {
+        "close_price": 7.11,
+        "chg_describe": "",
+        "eps_y1": 0.2518929280220681,
+        "equity_change": 0,
+        "eps_y2": 0.2852433353660312,
+        "date": "2017-04-06 00:00:00"
+    },
+    {
+        "close_price": 7.02,
+        "chg_describe": "",
+        "eps_y1": 0.2518929280220681,
+        "equity_change": 0,
+        "eps_y2": 0.2852433353660312,
+        "date": "2017-04-07 00:00:00"
+    },
+    {
+        "close_price": 7.09,
+        "chg_describe": "",
+        "eps_y1": 0.2727733145968232,
+        "equity_change": 0,
+        "eps_y2": 0.3039456909384426,
+        "date": "2017-04-10 00:00:00"
+    },
+    {
+        "close_price": 7.18,
+        "chg_describe": "",
+        "eps_y1": 0.2906544943392523,
+        "equity_change": 0,
+        "eps_y2": 0.3193751856125391,
+        "date": "2017-04-11 00:00:00"
+    },
+    {
+        "close_price": 7.1,
+        "chg_describe": "",
+        "eps_y1": 0.2906544943392523,
+        "equity_change": 0,
+        "eps_y2": 0.3193751856125391,
+        "date": "2017-04-12 00:00:00"
+    },
+    {
+        "close_price": 7.17,
+        "chg_describe": "",
+        "eps_y1": 0.2906544943392523,
+        "equity_change": 0,
+        "eps_y2": 0.3193751856125391,
+        "date": "2017-04-13 00:00:00"
+    },
+    {
+        "close_price": 7.02,
+        "chg_describe": "",
+        "eps_y1": 0.2906544943392523,
+        "equity_change": 0,
+        "eps_y2": 0.3193751856125391,
+        "date": "2017-04-14 00:00:00"
+    },
+    {
+        "close_price": 6.99,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-17 00:00:00"
+    },
+    {
+        "close_price": 6.93,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-18 00:00:00"
+    },
+    {
+        "close_price": 6.74,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-19 00:00:00"
+    },
+    {
+        "close_price": 6.72,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-20 00:00:00"
+    },
+    {
+        "close_price": 6.7,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-21 00:00:00"
+    },
+    {
+        "close_price": 6.44,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-24 00:00:00"
+    },
+    {
+        "close_price": 6.47,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-25 00:00:00"
+    },
+    {
+        "close_price": 6.45,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-26 00:00:00"
+    },
+    {
+        "close_price": 6.5,
+        "chg_describe": "",
+        "eps_y1": 0.2845289325597832,
+        "equity_change": 0,
+        "eps_y2": 0.3135073551060732,
+        "date": "2017-04-27 00:00:00"
+    },
+    {
+        "close_price": 6.48,
+        "chg_describe": "",
+        "eps_y1": 0.2807869603624397,
+        "equity_change": 0,
+        "eps_y2": 0.3111953937755144,
+        "date": "2017-04-28 00:00:00"
+    },
+    {
+        "close_price": 6.49,
+        "chg_describe": "",
+        "eps_y1": 0.2906544943392523,
+        "equity_change": 0,
+        "eps_y2": 0.3193751856125391,
+        "date": "2017-05-02 00:00:00"
+    },
+    {
+        "close_price": 6.49,
+        "chg_describe": "",
+        "eps_y1": 0.2598980501153907,
+        "equity_change": 0,
+        "eps_y2": 0.306222751500949,
+        "date": "2017-05-03 00:00:00"
+    },
+    {
+        "close_price": 6.47,
+        "chg_describe": "",
+        "eps_y1": 0.2598980501153907,
+        "equity_change": 0,
+        "eps_y2": 0.306222751500949,
+        "date": "2017-05-04 00:00:00"
+    },
+    {
+        "close_price": 6.3,
+        "chg_describe": "",
+        "eps_y1": 0.2541472963015817,
+        "equity_change": 0,
+        "eps_y2": 0.3017333302055005,
+        "date": "2017-05-05 00:00:00"
+    },
+    {
+        "close_price": 6.16,
+        "chg_describe": "",
+        "eps_y1": 0.2541472963015817,
+        "equity_change": 0,
+        "eps_y2": 0.3017333302055005,
+        "date": "2017-05-08 00:00:00"
+    },
+    {
+        "close_price": 6.22,
+        "chg_describe": "",
+        "eps_y1": 0.2541472963015817,
+        "equity_change": 0,
+        "eps_y2": 0.3017333302055005,
+        "date": "2017-05-09 00:00:00"
+    },
+    {
+        "close_price": 5.98,
+        "chg_describe": "",
+        "eps_y1": 0.2541472963015817,
+        "equity_change": 0,
+        "eps_y2": 0.3017333302055005,
+        "date": "2017-05-10 00:00:00"
+    },
+    {
+        "close_price": 5.94,
+        "chg_describe": "",
+        "eps_y1": 0.2541472963015817,
+        "equity_change": 0,
+        "eps_y2": 0.3017333302055005,
+        "date": "2017-05-11 00:00:00"
+    },
+    {
+        "close_price": 6,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-12 00:00:00"
+    },
+    {
+        "close_price": 5.99,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-15 00:00:00"
+    },
+    {
+        "close_price": 6.06,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-16 00:00:00"
+    },
+    {
+        "close_price": 6.11,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-17 00:00:00"
+    },
+    {
+        "close_price": 6.03,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-18 00:00:00"
+    },
+    {
+        "close_price": 6.06,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-19 00:00:00"
+    },
+    {
+        "close_price": 5.96,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-22 00:00:00"
+    },
+    {
+        "close_price": 5.91,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-23 00:00:00"
+    },
+    {
+        "close_price": 5.94,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-24 00:00:00"
+    },
+    {
+        "close_price": 6.07,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-25 00:00:00"
+    },
+    {
+        "close_price": 6.05,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-26 00:00:00"
+    },
+    {
+        "close_price": 6.06,
+        "chg_describe": "",
+        "eps_y1": 0.2488630618436193,
+        "equity_change": 0,
+        "eps_y2": 0.2923111070027773,
+        "date": "2017-05-31 00:00:00"
+    },
+    {
+        "close_price": 6.02,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-01 00:00:00"
+    },
+    {
+        "close_price": 6.1,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-02 00:00:00"
+    },
+    {
+        "close_price": 6.1,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-05 00:00:00"
+    },
+    {
+        "close_price": 6.12,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-06 00:00:00"
+    },
+    {
+        "close_price": 6.2,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-07 00:00:00"
+    },
+    {
+        "close_price": 6.18,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-08 00:00:00"
+    },
+    {
+        "close_price": 6.15,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-09 00:00:00"
+    },
+    {
+        "close_price": 6.06,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-12 00:00:00"
+    },
+    {
+        "close_price": 6.14,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-13 00:00:00"
+    },
+    {
+        "close_price": 6.16,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-14 00:00:00"
+    },
+    {
+        "close_price": 6.18,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-15 00:00:00"
+    },
+    {
+        "close_price": 6.17,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-16 00:00:00"
+    },
+    {
+        "close_price": 6.23,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-19 00:00:00"
+    },
+    {
+        "close_price": 6.22,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-20 00:00:00"
+    },
+    {
+        "close_price": 6.23,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-21 00:00:00"
+    },
+    {
+        "close_price": 6.21,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-22 00:00:00"
+    },
+    {
+        "close_price": 6.21,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-23 00:00:00"
+    },
+    {
+        "close_price": 6.37,
+        "chg_describe": "",
+        "eps_y1": 0.2446356741344679,
+        "equity_change": 0,
+        "eps_y2": 0.284773328344982,
+        "date": "2017-06-26 00:00:00"
+    },
+    {
+        "close_price": 6.38,
+        "chg_describe": "",
+        "eps_y1": 0.2323033708155811,
+        "equity_change": 0,
+        "eps_y2": 0.2766998513835193,
+        "date": "2017-06-27 00:00:00"
+    },
+    {
+        "close_price": 6.36,
+        "chg_describe": "",
+        "eps_y1": 0.2973033707867861,
+        "equity_change": 0,
+        "eps_y2": 0.346017830532589,
+        "date": "2017-06-28 00:00:00"
+    },
+    {
+        "close_price": 6.42,
+        "chg_describe": "",
+        "eps_y1": 0.2973033707867861,
+        "equity_change": 0,
+        "eps_y2": 0.346017830532589,
+        "date": "2017-06-29 00:00:00"
+    },
+    {
+        "close_price": 6.44,
+        "chg_describe": "",
+        "eps_y1": 0.2973033707867861,
+        "equity_change": 0,
+        "eps_y2": 0.346017830532589,
+        "date": "2017-06-30 00:00:00"
+    },
+    {
+        "close_price": 6.42,
+        "chg_describe": "",
+        "eps_y1": 0.2973033707867861,
+        "equity_change": 0,
+        "eps_y2": 0.346017830532589,
+        "date": "2017-07-03 00:00:00"
+    },
+    {
+        "close_price": 6.32,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-04 00:00:00"
+    },
+    {
+        "close_price": 6.37,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-05 00:00:00"
+    },
+    {
+        "close_price": 6.37,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-06 00:00:00"
+    },
+    {
+        "close_price": 6.45,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-07 00:00:00"
+    },
+    {
+        "close_price": 6.49,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-10 00:00:00"
+    },
+    {
+        "close_price": 6.44,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-11 00:00:00"
+    },
+    {
+        "close_price": 6.39,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-12 00:00:00"
+    },
+    {
+        "close_price": 6.51,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-13 00:00:00"
+    },
+    {
+        "close_price": 6.5,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-14 00:00:00"
+    },
+    {
+        "close_price": 6.31,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-17 00:00:00"
+    },
+    {
+        "close_price": 6.45,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-18 00:00:00"
+    },
+    {
+        "close_price": 6.63,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-19 00:00:00"
+    },
+    {
+        "close_price": 6.59,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-20 00:00:00"
+    },
+    {
+        "close_price": 6.67,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-21 00:00:00"
+    },
+    {
+        "close_price": 6.82,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-24 00:00:00"
+    },
+    {
+        "close_price": 6.71,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-25 00:00:00"
+    },
+    {
+        "close_price": 6.71,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-26 00:00:00"
+    },
+    {
+        "close_price": 6.72,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-27 00:00:00"
+    },
+    {
+        "close_price": 6.74,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-28 00:00:00"
+    },
+    {
+        "close_price": 6.84,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-07-31 00:00:00"
+    },
+    {
+        "close_price": 6.8,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-01 00:00:00"
+    },
+    {
+        "close_price": 6.74,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-02 00:00:00"
+    },
+    {
+        "close_price": 6.75,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-03 00:00:00"
+    },
+    {
+        "close_price": 6.87,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-04 00:00:00"
+    },
+    {
+        "close_price": 6.98,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-07 00:00:00"
+    },
+    {
+        "close_price": 6.99,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-08 00:00:00"
+    },
+    {
+        "close_price": 6.93,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-09 00:00:00"
+    },
+    {
+        "close_price": 7.07,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-10 00:00:00"
+    },
+    {
+        "close_price": 6.74,
+        "chg_describe": "",
+        "eps_y1": 0.27,
+        "equity_change": 0,
+        "eps_y2": 0.33,
+        "date": "2017-08-11 00:00:00"
+    }
+]

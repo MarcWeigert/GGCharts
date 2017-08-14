@@ -11,6 +11,18 @@
 
 @implementation NSArray (Stock)
 
+- (NSArray <NSNumber *> *)numbarArrayForKey:(NSString *)key
+{
+    NSMutableArray * ary = [NSMutableArray array];
+    
+    for (NSObject * obj in self) {
+        
+        [ary addObject:[obj valueForKey:key]];
+    }
+    
+    return [NSArray arrayWithArray:ary];
+}
+
 /**
  * 获取数组对象的绝对值最大值
  *
@@ -228,7 +240,7 @@
  * @param min 最小值
  * @param splitCount 分割数
  * @param format 格式化字符串
- * @param attachedString 附加串
+ * @param attachedString 附加串    
  */
 + (NSArray <NSString *> *)splitWithMax:(CGFloat)max min:(CGFloat)min split:(NSInteger)splitCount format:(NSString *)format attached:(NSString *)attachedString
 {

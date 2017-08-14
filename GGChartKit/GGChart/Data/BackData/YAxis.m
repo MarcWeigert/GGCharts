@@ -15,9 +15,38 @@
 
 @property (nonatomic, assign) CGPoint endLineRatio;
 
+@property (nonatomic, assign) CGSize yAxisTextOffset;        ///< 偏移量
+
 @end
 
 @implementation YAxis
+
+- (void)setTextOffset:(CGSize)textOffset
+{
+    _yAxisTextOffset = textOffset;
+}
+
+- (CGSize)textOffset
+{
+    return _yAxisTextOffset;
+}
+
+- (void)setOffset:(CGFloat)offset
+{
+    _offset = offset;
+    
+    _yAxisTextOffset = CGSizeMake(_offset, 0);
+}
+
+- (void)setHiddenPattern:(NSArray<NSNumber *> *)hiddenPattern
+{
+    
+}
+
+- (NSArray *)hiddenPattern
+{
+    return nil;
+}
 
 - (void)setStartLocalRatio:(CGPoint)startLocalRatio
 {
@@ -78,6 +107,29 @@
 - (BOOL)drawStringAxisCenter
 {
     return NO;
+}
+
+- (void)setAxisName:(id<AxisTitleAbstract>)axisName
+{
+    ;
+}
+
+- (id <AxisTitleAbstract> )axisName
+{
+    return _drawAxisName;
+}
+
+- (AxisName *)drawAxisName
+{
+    if (_drawAxisName == nil) {
+        
+        _drawAxisName = [AxisName new];
+        _drawAxisName.font = [UIFont systemFontOfSize:12];
+        _drawAxisName.offsetOfEndPoint = 10;
+        _drawAxisName.offsetRatio = CGPointMake(-.5f, -.5f);
+    }
+    
+    return _drawAxisName;
 }
 
 @end

@@ -14,9 +14,38 @@
 
 @property (nonatomic, assign) CGPoint endLineRatio;
 
+@property (nonatomic, assign) CGSize xAxisTextOffset;        ///< 偏移量
+
 @end
 
 @implementation XAxis
+
+- (void)setAxisName:(id<AxisTitleAbstract>)axisName
+{
+
+}
+
+- (id<AxisTitleAbstract>)axisName
+{
+    return nil;
+}
+
+- (void)setTextOffset:(CGSize)textOffset
+{
+    _xAxisTextOffset = textOffset;
+}
+
+- (CGSize)textOffset
+{
+    return _xAxisTextOffset;
+}
+
+- (void)setOffset:(CGFloat)offset
+{
+    _offset = offset;
+    
+    _xAxisTextOffset = CGSizeMake(0, _offset);
+}
 
 - (void)setStartLocalRatio:(CGPoint)startLocalRatio
 {

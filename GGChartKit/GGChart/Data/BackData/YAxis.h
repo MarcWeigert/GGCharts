@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AxisAbstract.h"
+#import "AxisName.h"
 
 @interface YAxis : NSObject
 
@@ -21,6 +22,8 @@
 
 @property (nonatomic, strong) UIColor * axisColor;
 
+@property (nonatomic, strong) UIColor * stringColor;
+
 @property (nonatomic, assign) CGFloat axisLineWidth;
 
 @property (nonatomic, assign) CGPoint textRatio;
@@ -32,5 +35,9 @@
 @property (nonatomic, assign) BOOL needShowAxisLine;
 
 @property (nonatomic, assign) NSString * dataFormatter;
+
+@property (nonatomic, assign) CGFloat offset;
+
+@property (nonatomic, strong) AxisName * drawAxisName;     ///< 轴标题文字
 
 @end

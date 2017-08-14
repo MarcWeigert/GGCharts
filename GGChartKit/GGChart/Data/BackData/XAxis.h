@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UIColor * axisColor;
 
+@property (nonatomic, strong) UIColor * stringColor;
+
 @property (nonatomic, strong) NSArray * titles;
 
 @property (nonatomic, assign) BOOL drawStringAxisCenter;
@@ -28,5 +30,9 @@
 @property (nonatomic, assign) CGPoint textRatio;
 
 @property (nonatomic, assign) CGFloat over;
+
+@property (nonatomic, strong) NSArray <NSNumber *> *hiddenPattern;      ///< 隐藏文字
+
+@property (nonatomic, assign) CGFloat offset;
 
 @end

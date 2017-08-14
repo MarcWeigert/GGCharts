@@ -42,21 +42,40 @@
         CGFloat sep = GGLengthLine(line) / ([axisAbstract drawStringAxisCenter] ? titleCount : (titleCount - 1));
         NSArray * titles = [axisAbstract titles];
         
+        // 轴标题
+        if ([axisAbstract axisName]) {
+            
+            GGLine moveLine = GGLineMoveEnd(line, [[axisAbstract axisName] offsetOfEndPoint]);
+            
+            GGStringRenderer * string = [[GGStringRenderer alloc] init];
+            string.point = moveLine.end;
+            string.font = [[axisAbstract axisName] font];
+            string.string = [[axisAbstract axisName] string];
+            string.offSetRatio = [[axisAbstract axisName] offsetRatio];
+            string.offset = [[axisAbstract axisName] offsetSize];
+            string.color = [[axisAbstract axisName] color];
+            [self addRenderer:string];
+        }
+        
         if (titles.count > 0) {
             
             GGAxisRenderer * axis = [[GGAxisRenderer alloc] init];
             axis.width = [axisAbstract axisLineWidth];
             axis.color = [axisAbstract axisColor];
-            axis.strColor = [axisAbstract axisColor];
+            axis.strColor = [axisAbstract stringColor] == nil ? [axisAbstract axisColor] : [axisAbstract stringColor];
             axis.drawAxisCenter = [axisAbstract drawStringAxisCenter];
             axis.showLine = [axisAbstract needShowAxisLine];
             axis.showSep = YES;
+            axis.hiddenPattern = [axisAbstract hiddenPattern];
+            axis.textOffSet = [axisAbstract textOffset];
             axis.axis = GGAxisMake(s_x, s_y, e_x, e_y, [axisAbstract over], sep);
             axis.aryString = titles;
             axis.strFont = [axisAbstract axisFont];
             axis.offSetRatio = [axisAbstract textRatio];
+            axis.textOffSet = [axisAbstract textOffset];
             [self addRenderer:axis];
             
+            /** falg 网格分割线 */
             if ([axisAbstract needShowGridLine]) {
                 
                 CGFloat len = GGLengthLine(axis.axis.line);
@@ -82,6 +101,7 @@
                     }
                 }
             }
+            /** end */
         }
     }
     

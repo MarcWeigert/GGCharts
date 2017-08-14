@@ -13,6 +13,8 @@
 
 @interface NSArray (Stock)
 
+- (NSArray <NSNumber *> *)numbarArrayForKey:(NSString *)key;
+
 /**
  * 获取数组对象的绝对值最大值
  *

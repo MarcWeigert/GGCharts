@@ -76,6 +76,9 @@
 		2B6B23921F0C741B001D2B04 /* NSArray+Stock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B238F1F0C741B001D2B04 /* NSArray+Stock.m */; };
 		2B6B23931F0C741B001D2B04 /* NSObject+FireBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23911F0C741B001D2B04 /* NSObject+FireBlock.m */; };
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
+		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
+		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
+		2B6BB30A1F41A9CE00DFF2B2 /* AxisName.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3091F41A9CE00DFF2B2 /* AxisName.m */; };
 		2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF61F0B328B0085095C /* BaseStockChart.m */; };
 		2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF91F0B42E00085095C /* BaseShapeScaler.m */; };
 		2B73AFFD1F0B451B0085095C /* DKLineScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFFC1F0B451B0085095C /* DKLineScaler.m */; };
@@ -287,6 +290,11 @@
 		2B6B23911F0C741B001D2B04 /* NSObject+FireBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FireBlock.m"; sourceTree = "<group>"; };
 		2B6B23941F0C742C001D2B04 /* MinuteChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinuteChart.h; sourceTree = "<group>"; };
 		2B6B23951F0C742C001D2B04 /* MinuteChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinuteChart.m; sourceTree = "<group>"; };
+		2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eps_line_data.json; sourceTree = "<group>"; };
+		2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpsLineViewController.h; sourceTree = "<group>"; };
+		2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpsLineViewController.m; sourceTree = "<group>"; };
+		2B6BB3081F41A9CE00DFF2B2 /* AxisName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisName.h; sourceTree = "<group>"; };
+		2B6BB3091F41A9CE00DFF2B2 /* AxisName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisName.m; sourceTree = "<group>"; };
 		2B73AFF11F0B2DC70085095C /* VolumeAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeAbstract.h; sourceTree = "<group>"; };
 		2B73AFF21F0B2F8E0085095C /* GGChartsPrefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGChartsPrefix.pch; sourceTree = "<group>"; };
 		2B73AFF31F0B30CA0085095C /* KLineAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KLineAbstract.h; sourceTree = "<group>"; };
@@ -454,6 +462,8 @@
 		2B20CC011EEADC1400D4F7F2 /* GGChartDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B5DE6331F00BD0100B40676 /* BaseModel.h */,
+				2B5DE6341F00BD0100B40676 /* BaseModel.m */,
 				2B68E96A1F204D93005D779A /* StockDemo */,
 				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
 				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
@@ -467,12 +477,12 @@
 				2B5DE6311F00BB9800B40676 /* KTimeViewController.m */,
 				2B73B0011F0B619E0085095C /* KLineViewController.h */,
 				2B73B0021F0B619E0085095C /* KLineViewController.m */,
-				2B5DE6331F00BD0100B40676 /* BaseModel.h */,
-				2B5DE6341F00BD0100B40676 /* BaseModel.m */,
 				2B8B62A21F331CCF00028F40 /* RadarViewController.h */,
 				2B8B62A31F331CCF00028F40 /* RadarViewController.m */,
 				2B932C261F381CA600D19378 /* LineViewController.h */,
 				2B932C271F381CA600D19378 /* LineViewController.m */,
+				2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */,
+				2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */,
 			);
 			path = GGChartDemo;
 			sourceTree = "<group>";
@@ -809,6 +819,8 @@
 				2B8B62B21F34041500028F40 /* XAxis.m */,
 				2B8B62B41F34042800028F40 /* YAxis.h */,
 				2B8B62B51F34042800028F40 /* YAxis.m */,
+				2B6BB3081F41A9CE00DFF2B2 /* AxisName.h */,
+				2B6BB3091F41A9CE00DFF2B2 /* AxisName.m */,
 			);
 			path = BackData;
 			sourceTree = "<group>";
@@ -970,6 +982,7 @@
 				2B97888D1F0A39FE002A2A3C /* ListVC.h */,
 				2B97888E1F0A39FE002A2A3C /* ListVC.m */,
 				2B97888F1F0A39FE002A2A3C /* main.m */,
+				2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */,
 				2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */,
 				2B73B0041F0B61D20085095C /* 600887_kdata.json */,
 				2B7995191F175D6A00E73DFC /* month_k_data_600887.json */,
@@ -1046,6 +1059,7 @@
 				2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */,
 				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
 				2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */,
+				2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */,
 				2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */,
 				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
 				2B3034241F111E1000706575 /* BBI.lua in Resources */,
@@ -1123,10 +1137,12 @@
 				2B2722891F0F550D00E4A295 /* lmathlib.c in Sources */,
 				2B27228C1F0F550D00E4A295 /* lobject.c in Sources */,
 				2B8B70FF1EF76066002FDC09 /* BaseScaler.m in Sources */,
+				2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */,
 				2B8B62AE1F3339AC00028F40 /* GridBackCanvas.m in Sources */,
 				2B27227C1F0F550D00E4A295 /* lbitlib.c in Sources */,
 				2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */,
 				2B9788811F09D4E2002A2A3C /* PieData.m in Sources */,
+				2B6BB30A1F41A9CE00DFF2B2 /* AxisName.m in Sources */,
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B27227B1F0F550D00E4A295 /* lbaselib.c in Sources */,
 				2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */,

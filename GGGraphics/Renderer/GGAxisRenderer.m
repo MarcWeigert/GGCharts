@@ -142,7 +142,7 @@
             
             NSMutableDictionary * dicDrawString = [NSMutableDictionary dictionaryWithDictionary:_paramStr];
             
-            if (_colorAry.count) {
+            if (_colorAry.count) {      // 多色值
                 
                 UIColor * color = _colorAry[i < (_colorAry.count - 1) ? i : (_colorAry.count - 1)];
                 [dicDrawString setObject:color forKey:NSForegroundColorAttributeName];
@@ -150,13 +150,14 @@
             
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
             
-            if (_drawAxisCenter) {
+            if (_drawAxisCenter) {      // 中心绘制
                 
                 point = cir > M_PI_4 / 2 ? CGPointMake(point.x, point.y + _axis.sep / 2) : CGPointMake(point.x + _axis.sep / 2, point.y);
             }
             
             point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
             
+            /** flag 首位缩进 */
             if (_isStringFirstLastindent && i == 0 && !_drawAxisCenter) {
                 
                 point = to[i];
@@ -166,8 +167,12 @@
                 
                 point = cir > M_PI_4 / 2 ? CGPointMake(to[i].x, to[i].y - size.height) : CGPointMake(to[i].x - size.width, to[i].y);
             }
+            /** end */
             
-            [string drawAtPoint:point withAttributes:dicDrawString];
+            if ([self isDrawTextWithIndex:i]) {     ///< 是否绘制文字
+                
+                [string drawAtPoint:point withAttributes:dicDrawString];
+            }
         }
         
         [self.stringArray enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -199,6 +204,45 @@
         
         UIGraphicsPopContext();
     }
+}
+
+- (BOOL)isDrawTextWithIndex:(NSInteger)index
+{
+    if (_hiddenPattern.count > 0) {
+        
+        NSArray * aryAddPattern = [self aryAddUp:_hiddenPattern];
+        
+        for (NSNumber * number in aryAddPattern) {
+            
+            if (index % number.integerValue == 0) {
+                
+                return NO;
+            }
+        }
+        
+        return YES;
+    }
+    
+    return YES;
+}
+
+- (NSArray *)aryAddUp:(NSArray *)array
+{
+    NSMutableArray * ary = [NSMutableArray arrayWithCapacity:array.count];
+    
+    for (NSInteger i = 0; i < array.count; i++) {
+        
+        if (i == 0) {
+            
+            ary[i] = array[i];
+        }
+        else {
+        
+            ary[i] = @([ary[i - 1] floatValue] + [array[i] floatValue]);
+        }
+    }
+    
+    return ary;
 }
 
 GGLazyGetMethod(NSMutableArray, stringArray);

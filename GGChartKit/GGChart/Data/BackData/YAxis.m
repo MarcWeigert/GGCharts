@@ -125,8 +125,9 @@
         
         _drawAxisName = [AxisName new];
         _drawAxisName.font = [UIFont systemFontOfSize:12];
-        _drawAxisName.offsetOfEndPoint = 10;
+        _drawAxisName.offsetOfEndPoint = 20;
         _drawAxisName.offsetRatio = CGPointMake(-.5f, -.5f);
+        _drawAxisName.color = [UIColor blackColor];
     }
     
     return _drawAxisName;

@@ -94,7 +94,7 @@
     lineSet.leftAxis.over = 0;
     lineSet.leftAxis.offset = -2;
     lineSet.leftAxis.drawAxisName.string = @"EPS";
-    lineSet.leftAxis.drawAxisName.offsetOfEndPoint = 20;
+    lineSet.leftAxis.drawAxisName.offsetOfEndPoint = 15;
     lineSet.leftAxis.drawAxisName.offsetRatio = CGPointMake(-1, -0.5);
     lineSet.leftAxis.drawAxisName.font = [UIFont boldSystemFontOfSize:10];
     lineSet.leftAxis.drawAxisName.color = RGB(181, 220, 249);
@@ -106,7 +106,7 @@
     lineSet.rightAxis.offset = 2;
     lineSet.rightAxis.drawAxisName.string = @"股票价格";
     lineSet.rightAxis.drawAxisName.font = [UIFont boldSystemFontOfSize:10];
-    lineSet.rightAxis.drawAxisName.offsetOfEndPoint = 20;
+    lineSet.rightAxis.drawAxisName.offsetOfEndPoint = 15;
     lineSet.rightAxis.drawAxisName.color = RGB(181, 220, 249);
     
     GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 250)];

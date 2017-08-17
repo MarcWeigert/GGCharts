@@ -89,13 +89,15 @@
     
     [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
         
-        if (obj.scalerType == ScalerAxisLeft) {
+        if (obj.scalerType == ScalerAxisLeft &&
+            obj.lineDataAry) {
             
             [leftYAxisDataAry addObject:obj.lineDataAry];
             [leftObjDataAry addObject:obj];
         }
-        else {
-        
+        else if (obj.scalerType == ScalerAxisRight &&
+                 obj.lineDataAry) {
+            
             [rightYAxisDataAry addObject:obj.lineDataAry];
             [rightObjDataAry addObject:obj];
         }

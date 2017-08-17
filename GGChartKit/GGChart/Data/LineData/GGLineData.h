@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong, readonly) DLineScaler * lineScaler;
 
-@property (nonatomic, assign) NSArray <NSNumber *> *lineDataAry;
+@property (nonatomic, strong) NSArray <NSNumber *> *lineDataAry;
 
 @property (nonatomic, assign) ScalerAxisType scalerType;
 

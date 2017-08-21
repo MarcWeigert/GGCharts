@@ -19,8 +19,16 @@
 @property (nonatomic, readonly) CGPoint * linePoints;           ///< 数据点 size 与数据一致
 @property (nonatomic, readonly) NSInteger pointSize;    ///< 点个数
 
-@property (nonatomic, assign) CGFloat xRatio;       ///< x轴偏移比例 0-1 默认 0.5
+@property (nonatomic, assign) CGFloat xRatio;           ///< x轴偏移比例 0-1 默认 0.5
 
+@property (nonatomic, strong) NSNumber * aroundNumber;          ///< 环绕点数据
+
+/**
+ * 根据 aroundNumber 计算出的最低点
+ *
+ * 注意 : 如果 aroundNumber == nil, 则 : CGRectGetMaxY(self.rect)
+ */
+@property (nonatomic, readonly) CGFloat aroundY;
 
 /**
  * 自定义对象转换转换, 如果设置则忽略dataAry

@@ -73,6 +73,16 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     return self;
 }
 
+- (CGFloat)aroundY
+{
+    if (_aroundNumber) {
+        
+        return [self getYPixelWithData:_aroundNumber.floatValue];
+    }
+    
+    return CGRectGetMaxY(self.rect);
+}
+
 /**
  * 自定义对象转换转换
  *

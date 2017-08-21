@@ -8,11 +8,11 @@
 
 #import "LineCanvas.h"
 #import "DLineScaler.h"
+#import "LineAnimation.h"
 #include <objc/runtime.h>
 
 static const void * lineLayer = @"lineLayer";
 static const void * lineShapeLayer = @"lineShapeLayer";
-static const void * lineStringRenderer = @"lineStringRenderer";
 static const void * lineFillLayer = @"lineFillLayer";
 
 #define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
@@ -24,6 +24,8 @@ static const void * lineFillLayer = @"lineFillLayer";
 @property (nonatomic, strong) GGCanvas * stringCanvas;
 
 @property (nonatomic, strong) Animator * animator;
+
+@property (nonatomic, strong) NSMutableArray <GGNumberRenderer *> * allGGNumberArray;
 
 @end
 
@@ -38,6 +40,7 @@ static const void * lineFillLayer = @"lineFillLayer";
         _stringCanvas = [[GGCanvas alloc] init];
         _stringCanvas.isCloseDisableActions = YES;
         _animator = [Animator new];
+        _allGGNumberArray = [NSMutableArray array];
     }
     
     return self;
@@ -55,6 +58,7 @@ static const void * lineFillLayer = @"lineFillLayer";
     [super drawChart];
     
     [_stringCanvas removeAllRenderer];
+    [_allGGNumberArray removeAllObjects];
     
     CGRect rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
     rect = UIEdgeInsetsInsetRect(rect, [_lineDrawConfig lineInsets]);
@@ -106,7 +110,7 @@ static const void * lineFillLayer = @"lineFillLayer";
     SET_ASSOCIATED_ASSIGN(lineDraw, lineLayer, shape);
 }
 
-/** 绘制远点 */
+/** 绘制圆点 */
 - (void)drawShapeChartWithLineDraw:(id <LineDrawAbstract>)lineDraw
 {
     if ([lineDraw shapeRadius] > 0) {
@@ -130,27 +134,29 @@ static const void * lineFillLayer = @"lineFillLayer";
 /** 绘制文字 */
 - (void)drawStringChartWithDraw:(id <LineDrawAbstract>)lineDraw
 {
-    if ([lineDraw stringFont] != nil) {
+    if ([lineDraw stringFont] != nil &&
+        [lineDraw stringColor] != nil &&
+        [lineDraw dataFormatter] != nil) {
         
-        NSMutableArray * arrayRenderer = [NSMutableArray array];
         NSString * dataFromatter = [lineDraw dataFormatter] == nil ? @"%.2f" : [lineDraw dataFormatter];
         DLineScaler * lineScaler = lineDraw.lineScaler;
+        lineScaler.aroundNumber = [lineDraw fillRoundPrice];
         
         for (NSInteger i = 0; i < lineScaler.dataAry.count; i++) {
             
             GGNumberRenderer * stringRenderer = [[GGNumberRenderer alloc] init];
             stringRenderer.color = [lineDraw stringColor];
+            stringRenderer.fromPoint = CGPointMake(lineScaler.linePoints[i].x, lineScaler.aroundY);
             stringRenderer.toPoint = lineScaler.linePoints[i];
             stringRenderer.font = [lineDraw stringFont];
             stringRenderer.toNumber = [lineScaler.dataAry[i] floatValue];
             stringRenderer.offSetRatio = CGPointMake(-.5f, -1.2f);
             stringRenderer.format = dataFromatter;
             [stringRenderer drawAtToNumberAndPoint];
+            
             [_stringCanvas addRenderer:stringRenderer];
-            [arrayRenderer addObject:stringRenderer];
+            [_allGGNumberArray addObject:stringRenderer];
         }
-        
-        SET_ASSOCIATED_RETAIN(lineDraw, lineStringRenderer, arrayRenderer);
     }
 }
 
@@ -160,16 +166,16 @@ static const void * lineFillLayer = @"lineFillLayer";
     if ([lineDraw lineFillColor] || [lineDraw gradientColors].count > 0) {
         
         DLineScaler * lineScaler = lineDraw.lineScaler;
+        lineScaler.aroundNumber = [lineDraw fillRoundPrice];
         
         GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
         shape.lineWidth = 0;
         shape.fillColor = [lineDraw lineFillColor].CGColor;
         
-        CGFloat bottomY = [lineDraw fillRoundPrice] == nil ? CGRectGetMaxY(lineScaler.rect) : [lineScaler getYPixelWithData:[lineDraw fillRoundPrice].floatValue];
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathAddLines(path, NULL, lineScaler.linePoints, lineScaler.pointSize);
-        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[lineScaler.pointSize - 1].x, bottomY);
-        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[0].x, bottomY);
+        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[lineScaler.pointSize - 1].x, lineScaler.aroundY);
+        CGPathAddLineToPoint(path, NULL, lineScaler.linePoints[0].x, lineScaler.aroundY);
         CGPathCloseSubpath(path);
         shape.path = path;
         CGPathRelease(path);
@@ -190,58 +196,28 @@ static const void * lineFillLayer = @"lineFillLayer";
 {
     [[self.lineDrawConfig lineAry] enumerateObjectsUsingBlock:^(id <LineDrawAbstract> obj, NSUInteger idx, BOOL * stop) {
         
-        GGShapeCanvas * lineCanvas = GET_ASSOCIATED(obj, lineLayer);
-        GGShapeCanvas * shapeCanvas = GET_ASSOCIATED(obj, lineShapeLayer);
-        GGShapeCanvas * fillCanvas = GET_ASSOCIATED(obj, lineFillLayer);
+        [LineAnimation addLineCircleAnimationWithDuration:duration
+                                           lineShapeLater:GET_ASSOCIATED(obj, lineShapeLayer)
+                                               lineScaler:obj.lineScaler
+                                               fromRadius:0
+                                                 toRadius:obj.shapeRadius];
         
-        DLineScaler * scaler = [obj lineScaler];
-        CGFloat y = [obj fillRoundPrice] == nil ? [obj.lineScaler getYPixelWithData:obj.lineScaler.min] : [obj.lineScaler getYPixelWithData:[[obj fillRoundPrice] floatValue]];
+        [LineAnimation addLineFoldAnimationWithDuration:duration
+                                         lineShapeLater:GET_ASSOCIATED(obj, lineLayer)
+                                             lineScaler:obj.lineScaler];
         
-        CAKeyframeAnimation * lineAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        lineAnimation.duration = duration;
-        lineAnimation.values = GGPathLinesUpspringAnimation(obj.lineScaler.linePoints, obj.lineScaler.pointSize, y);
-        [lineCanvas addAnimation:lineAnimation forKey:@"lineAnimation"];
-        
-        CAKeyframeAnimation * pointAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        pointAnimation.duration = duration;
-        pointAnimation.values = GGPathCirclesUpspringAnimation(obj.lineScaler.linePoints, [obj shapeRadius], obj.lineScaler.pointSize, y);
-        [shapeCanvas addAnimation:pointAnimation forKey:@"pointAnimation"];
-        
-        CAKeyframeAnimation * fillAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        fillAnimation.duration = duration;
-        fillAnimation.values = GGPathFillLinesUpspringAnimation(obj.lineScaler.linePoints, obj.lineScaler.pointSize, y);
-        [fillCanvas addAnimation:fillAnimation forKey:@"fillAnimation"];
-        
-        NSArray <GGNumberRenderer *> * numberRenders = GET_ASSOCIATED(obj, lineStringRenderer);
-        
-        [numberRenders enumerateObjectsUsingBlock:^(GGNumberRenderer * objRenderer, NSUInteger idx, BOOL * stop) {
-            
-            objRenderer.fromNumber = 0;
-            objRenderer.fromPoint = CGPointMake(scaler.linePoints[idx].x , y);
-        }];
+        [LineAnimation addLineRectFoldAnimationWithDuration:duration
+                                             lineShapeLater:GET_ASSOCIATED(obj, lineFillLayer)
+                                                 lineScaler:obj.lineScaler];
     }];
     
     __weak LineCanvas * weakSelf = self;
     _animator.animationType = AnimationLinear;
     
-    _animator.updateBlock = ^(CGFloat progress) {
-    
-        for (NSInteger i = 0; i < weakSelf.lineDrawConfig.lineAry.count; i++) {
-            
-            id <LineDrawAbstract> obj = weakSelf.lineDrawConfig.lineAry[i];
-            NSArray <GGNumberRenderer *> * numberRenders = GET_ASSOCIATED(obj, lineStringRenderer);
-            
-            for (NSInteger j = 0; j < numberRenders.count; j++) {
-                
-                GGNumberRenderer * objRenderer = [numberRenders objectAtIndex:j];
-                [objRenderer drawProgressNumberAndPoint:progress];
-            }
-        }
+    [_animator startAnimationWithDuration:duration animationArray:_allGGNumberArray updateBlock:^(CGFloat progress) {
         
         [weakSelf.stringCanvas setNeedsDisplay];
-    };
-    
-    [_animator startAnimationWithDuration:duration];
+    }];
 }
 
 @end

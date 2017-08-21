@@ -15,28 +15,30 @@
 
 @property (nonatomic, strong, readonly) DLineScaler * lineScaler;
 
-@property (nonatomic, assign) CGFloat lineWidth;
+#pragma mark - Line
 
+@property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) UIColor * lineColor;
 
-@property (nonatomic, assign) CGFloat shapeRadius;
+#pragma mark - Point
 
+@property (nonatomic, assign) CGFloat shapeRadius;
 @property (nonatomic, strong) UIColor * shapeFillColor;
 
+#pragma mark - String
+
 @property (nonatomic, strong) UIFont * stringFont;
-
 @property (nonatomic, strong) UIColor * stringColor;
-
 @property (nonatomic, strong) NSString * dataFormatter;
 
-@property (nonatomic, strong) NSNumber * fillRoundPrice;
+#pragma mark - Fill
 
+@property (nonatomic, strong) NSNumber * fillRoundPrice;
 @property (nonatomic, strong) UIColor * lineFillColor;
 
 #pragma mark - Gradient
 
 @property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
-
 @property (nonatomic, strong) NSArray <NSNumber *> *locations;
 
 @end

@@ -10,8 +10,9 @@
 
 #import "GGChartGeometry.h"
 #import "GGRenderProtocol.h"
+#import "Animator.h"
 
-@interface GGNumberRenderer : NSObject <GGRenderProtocol>
+@interface GGNumberRenderer : NSObject <GGRenderProtocol, AnimatorProtocol>
 
 @property (nonatomic, assign) CGFloat fromNumber;   ///< 开始数字
 @property (nonatomic, assign) CGFloat toNumber;     ///< 结束数字
@@ -24,13 +25,12 @@
 @property (nonatomic, assign) CGPoint offSetRatio;  ///< 文字
 @property (nonatomic, strong) NSString * format;    ///< 格式化字符串
 
+@property (nonatomic, assign) BOOL hidden;          ///< 是否显示
+
 /** 绘制起始点文字 */
 - (void)drawAtToNumberAndPoint;
 
 /** 绘制终点文字 */
 - (void)drawAtFromNumberAndPoint;
-
-/** 更新 */
-- (void)drawProgressNumberAndPoint:(CGFloat)progress;
 
 @end

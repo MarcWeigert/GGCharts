@@ -130,18 +130,11 @@ static const void * radarLayer = @"radarLayer";
     
     __weak RadarCanvas * weakSelf = self;
     self.animator.animationType = AnimationLinear;
-    self.animator.updateBlock = ^(CGFloat progress) {
-        
-        for (NSInteger i = 0; i < weakSelf.arrayNumberRenderer.count; i++) {
-            
-            GGNumberRenderer * objRenderer = [weakSelf.arrayNumberRenderer objectAtIndex:i];
-            [objRenderer drawProgressNumberAndPoint:progress];
-        }
+    
+    [_animator startAnimationWithDuration:duration animationArray:self.arrayNumberRenderer updateBlock:^(CGFloat progress) {
         
         [weakSelf.topCanvas setNeedsDisplay];
-    };
-    
-    [_animator startAnimationWithDuration:duration];
+    }];
 }
 
 /** 增加渲染器 */

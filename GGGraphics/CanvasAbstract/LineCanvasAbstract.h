@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) BOOL isGroupingAlignment;     ///< 是否分组排列
 
-@property (nonatomic, assign) BOOL isCenterAlignment;   ///< 是否居中排列
+@property (nonatomic, assign) BOOL isCenterAlignment;       ///< 是否居中排列
 
 @property (nonatomic, strong) NSArray <id <LineDrawAbstract>> * lineAry;
 

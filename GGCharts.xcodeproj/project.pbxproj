@@ -154,6 +154,7 @@
 		2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */; };
 		2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */; };
 		2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */; };
+		2BA340C51F4A789600E940C8 /* LineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA340C41F4A789600E940C8 /* LineAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -446,6 +447,8 @@
 		2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLineViewController.m; sourceTree = "<group>"; };
 		2BA1C74A1EEC36BC007733CC /* NTPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieViewController.h; sourceTree = "<group>"; };
 		2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
+		2BA340C31F4A789600E940C8 /* LineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineAnimation.h; sourceTree = "<group>"; };
+		2BA340C41F4A789600E940C8 /* LineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -795,6 +798,8 @@
 			children = (
 				2B7E41181F396455000E0413 /* Animator.h */,
 				2B7E41191F396455000E0413 /* Animator.m */,
+				2BA340C31F4A789600E940C8 /* LineAnimation.h */,
+				2BA340C41F4A789600E940C8 /* LineAnimation.m */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -1108,6 +1113,7 @@
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B8B62A11F33146B00028F40 /* GGRadarChart.m in Sources */,
 				2B8CEB841F302CB5005D441D /* GGPolygonRenderder.m in Sources */,
+				2BA340C51F4A789600E940C8 /* LineAnimation.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
 				2B2722791F0F550D00E4A295 /* lapi.c in Sources */,
 				2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */,

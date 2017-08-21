@@ -14,6 +14,6 @@
 
 @optional
 
-@property (nonatomic, assign) BOOL hiddne;
+@property (nonatomic, assign) BOOL hidden;
 
 @end

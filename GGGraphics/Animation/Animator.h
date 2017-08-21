@@ -15,6 +15,12 @@ typedef enum : NSUInteger {
     AnimationLinear
 } AnimationType;
 
+@protocol AnimatorProtocol <NSObject>
+
+- (void)startUpdateWithProgress:(CGFloat)progress;
+
+@end
+
 typedef void(^AnimationUpdateBlock)(CGFloat progress);
 
 @interface Animator : NSObject
@@ -27,5 +33,16 @@ typedef void(^AnimationUpdateBlock)(CGFloat progress);
 
 /** 开始动画 */
 - (void)startAnimationWithDuration:(NSTimeInterval)duration;
+
+/**
+ * 开始动画 
+ * 
+ * @param duration 时间
+ * @param animators 动画更新数组
+ * @param block 每次更新轮询blk
+ */
+- (void)startAnimationWithDuration:(NSTimeInterval)duration
+                    animationArray:(NSArray <id <AnimatorProtocol>> *)animators
+                       updateBlock:(AnimationUpdateBlock)block;
 
 @end

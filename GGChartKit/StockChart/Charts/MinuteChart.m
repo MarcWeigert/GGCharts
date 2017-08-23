@@ -142,8 +142,6 @@
     self.backCanvas.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     self.animationCanvas.frame = self.backCanvas.frame;
     self.queryPriceView.frame = CGRectMake(0, 15, frame.size.width, frame.size.height - 15);
-    
-    [self updateRenderers];
 }
 
 - (void)updateRenderers
@@ -152,15 +150,17 @@
     
     CGRect lineRect = [self lineRect];
     CGFloat ySplit = lineRect.size.height / (_dirAxisSplitCount * 2);
+    CGFloat split = bottomSplit > 0 ? self.frame.size.width / bottomSplit : self.frame.size.width;
+    
     self.leftRenderer.axis = GGAxisLineMake(GGLeftLineRect(lineRect), 0, ySplit);
     self.rightRenderer.axis = GGAxisLineMake(GGRightLineRect(lineRect), 0, ySplit);
-    self.bottomRenderer.axis = GGAxisLineMake(GGBottomLineRect(lineRect), 1, self.frame.size.width / bottomSplit);
-    self.gridRenderer.grid = GGGridRectMake(lineRect, ySplit, self.frame.size.width / bottomSplit);
+    self.bottomRenderer.axis = GGAxisLineMake(GGBottomLineRect(lineRect), 1, split);
+    self.gridRenderer.grid = GGGridRectMake(lineRect, ySplit, split);
     
     CGRect volumRect = [self volumRect];
     CGFloat yVolumSplit = volumRect.size.height / 2;
     self.volumRenderer.axis = GGAxisLineMake(GGLeftLineRect(volumRect), 0, yVolumSplit);
-    self.volumGridRenderer.grid = GGGridRectMake(volumRect, yVolumSplit, self.frame.size.width / bottomSplit);
+    self.volumGridRenderer.grid = GGGridRectMake(volumRect, yVolumSplit, split);
 }
 
 #pragma mark - 手势

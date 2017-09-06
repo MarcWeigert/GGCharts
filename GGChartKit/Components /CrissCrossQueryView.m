@@ -142,7 +142,6 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         _yLine = [[GGLineRenderer alloc] init];
         _yLine.width = _lineWidth;
         _yLine.color = _cirssLineColor;
-        
         [self.layer addSublayer:_cirssLayer];
         
         _queryView = [[QueryView alloc] initWithFrame:CGRectZero];

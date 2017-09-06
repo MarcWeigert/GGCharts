@@ -11,7 +11,11 @@
 
 @interface LineCanvas : GGCanvas
 
+/**
+ * 折线配置接口
+ */
 @property (nonatomic, strong) id <LineCanvasAbstract> lineDrawConfig;
+
 
 - (void)startAnimation:(NSTimeInterval)duration;
 

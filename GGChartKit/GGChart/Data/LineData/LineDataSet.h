@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GGLineData.h"
 #import "GridAbstract.h"
+#import "LineQueryData.h"
 #import "XAxis.h"
 #import "YAxis.h"
 
@@ -17,6 +18,8 @@
 @interface LineDataSet : NSObject
 
 @property (nonatomic, strong) NSArray <GGLineData *> * lineAry;
+
+@property (nonatomic, strong) LineQueryData * lineQueryData;
 
 @property (nonatomic, strong) XAxis * bottomAxis;
 @property (nonatomic, strong) XAxis * topAxis;

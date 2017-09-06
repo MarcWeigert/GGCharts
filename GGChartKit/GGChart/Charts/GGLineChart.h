@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LineDataSet.h"
+#import "BaseLineBarChart.h"
 
-@interface GGLineChart : UIView
+@interface GGLineChart : BaseLineBarChart
 
 @property (nonatomic, strong) LineDataSet * lineDataSet;
 

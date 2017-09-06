@@ -10,6 +10,7 @@
 #define GridAbstract_h
 
 #import "AxisAbstract.h"
+#import "YNumberAbstract.h"
 
 @protocol GridAbstract <NSObject>
 

@@ -13,33 +13,92 @@
 
 @protocol LineDrawAbstract <NSObject>
 
-@property (nonatomic, strong, readonly) DLineScaler * lineScaler;
+#pragma mark - 折线数据
 
-#pragma mark - Line
+/**
+ * 用来显示的数据
+ */
+@property (nonatomic, strong, readonly) NSArray <NSNumber *> *lineDataAry;
 
-@property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, strong) UIColor * lineColor;
+/**
+ * 绘制折线点
+ */
+@property (nonatomic, assign, readonly) CGPoint * points;
 
-#pragma mark - Point
+#pragma mark - 折线配置
 
-@property (nonatomic, assign) CGFloat shapeRadius;
-@property (nonatomic, strong) UIColor * shapeFillColor;
+/**
+ * 折线线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat lineWidth;
 
-#pragma mark - String
+/**
+ * 折线颜色
+ */
+@property (nonatomic, strong, readonly) UIColor * lineColor;
 
-@property (nonatomic, strong) UIFont * stringFont;
-@property (nonatomic, strong) UIColor * stringColor;
-@property (nonatomic, strong) NSString * dataFormatter;
+#pragma mark - 折线关键点配置
 
-#pragma mark - Fill
+/**
+ * 折线关键点半径
+ */
+@property (nonatomic, assign, readonly) CGFloat shapeRadius;
 
-@property (nonatomic, strong) NSNumber * fillRoundPrice;
-@property (nonatomic, strong) UIColor * lineFillColor;
+/**
+ * 折线关键点填充色
+ */
+@property (nonatomic, strong, readonly) UIColor * shapeFillColor;
 
-#pragma mark - Gradient
+#pragma mark - 折线文字
 
-@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
-@property (nonatomic, strong) NSArray <NSNumber *> *locations;
+/**
+ * 折线文字字体
+ */
+@property (nonatomic, strong, readonly) UIFont * stringFont;
+
+/**
+ * 折线文字颜色
+ */
+@property (nonatomic, strong, readonly) UIColor * stringColor;
+
+/**
+ * 折线格式化字符串
+ */
+@property (nonatomic, strong, readonly) NSString * dataFormatter;
+
+/**
+ * 折线文字偏移比例
+ * 
+ * {0, 0} 数据点左下方绘制, {0.5, 0.5} 数据点中心绘制, {-1, -1} 数据点右上方绘制
+ */
+@property (nonatomic, assign, readonly) CGPoint offSetRatio;
+
+/**
+ * 折线文字偏移
+ */
+@property (nonatomic, assign, readonly) CGSize stringOffset;
+
+#pragma mark - 折线填充
+
+/**
+ * 围绕该Y轴坐标点填充, FLT_MIN 代表不填充
+ */
+@property (nonatomic, assign, readonly) CGFloat bottomYPix;
+
+/**
+ * 折线填充色, 优先级比渐变色高
+ */
+@property (nonatomic, strong, readonly) UIColor * lineFillColor;
+
+/**
+ * 折线填充渐变色, 数据内传入CGColor
+ */
+@property (nonatomic, strong, readonly) NSArray * gradientColors;
+
+/**
+ * 填充色变化曲线, 由上至下
+ */
+@property (nonatomic, strong, readonly) NSArray <NSNumber *> *locations;
 
 @end
 

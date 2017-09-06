@@ -69,6 +69,13 @@
     return self;
 }
 
+- (void)setInsets:(UIEdgeInsets)insets
+{
+    _insets = insets;
+    
+    self.lineQueryData.insets = insets;
+}
+
 - (UIEdgeInsets)lineInsets
 {
     return _insets;
@@ -81,85 +88,97 @@
 
 - (void)drawOnLineCanvas:(LineCanvas *)lineCanvas
 {
-    NSMutableArray * leftYAxisDataAry = [NSMutableArray array];
-    NSMutableArray * rightYAxisDataAry = [NSMutableArray array];
-    
-    NSMutableArray * leftObjDataAry = [NSMutableArray array];
-    NSMutableArray * rightObjDataAry = [NSMutableArray array];
-    
-    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+//    NSMutableArray * leftYAxisDataAry = [NSMutableArray array];
+//    NSMutableArray * rightYAxisDataAry = [NSMutableArray array];
+//    
+//    NSMutableArray * leftObjDataAry = [NSMutableArray array];
+//    NSMutableArray * rightObjDataAry = [NSMutableArray array];
+//    
+//    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+//        
+//        if (obj.scalerType == ScalerAxisLeft &&
+//            obj.lineDataAry) {
+//            
+//            [leftYAxisDataAry addObject:obj.lineDataAry];
+//            [leftObjDataAry addObject:obj];
+//        }
+//        else if (obj.scalerType == ScalerAxisRight &&
+//                 obj.lineDataAry) {
+//            
+//            [rightYAxisDataAry addObject:obj.lineDataAry];
+//            [rightObjDataAry addObject:obj];
+//        }
+//    }];
+//    
+//    if (leftObjDataAry.count > 0) {
+//     
+//        // 获取最大值最小值(左边)
+//        CGFloat leftMax = FLT_MIN;
+//        CGFloat leftMin = FLT_MAX;
+//        
+//        if (_leftAxis.max == nil || _leftAxis.max == nil) {
+//            
+//            [leftYAxisDataAry getTwoDimensionaMax:&leftMax
+//                                              min:&leftMin
+//                                        selGetter:@selector(floatValue)
+//                                             base:.1f];
+//            
+//            _leftAxis.max = @(leftMax);
+//            _leftAxis.min = @(leftMin);
+//        }
+//        else {
+//            
+//            leftMax = _leftAxis.max.floatValue;
+//            leftMin = _leftAxis.min.floatValue;
+//        }
+//        
+//        [leftObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            
+//            obj.lineScaler.max = leftMax;
+//            obj.lineScaler.min = leftMin;
+//        }];
+//    }
+//    
+//    if (rightObjDataAry.count > 0) {
+//        
+//        // 获取最大值最小值(右边)
+//        CGFloat rightMax = FLT_MIN;
+//        CGFloat rightMin = FLT_MAX;
+//        
+//        if (_rightAxis.max == nil || _rightAxis.max == nil) {
+//            
+//            [rightYAxisDataAry getTwoDimensionaMax:&rightMax
+//                                               min:&rightMin
+//                                         selGetter:@selector(floatValue)
+//                                              base:.1f];
+//            
+//            _rightAxis.max = @(rightMax);
+//            _rightAxis.min = @(rightMin);
+//        }
+//        else {
+//            
+//            rightMax = _rightAxis.max.floatValue;
+//            rightMin = _rightAxis.min.floatValue;
+//        }
+//        
+//        [rightObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            
+//            obj.lineScaler.max = rightMax;
+//            obj.lineScaler.min = rightMin;
+//        }];
+//    }
+}
+
+#pragma mark - Lazy
+
+- (LineQueryData *)lineQueryData
+{
+    if (_lineQueryData == nil) {
         
-        if (obj.scalerType == ScalerAxisLeft &&
-            obj.lineDataAry) {
-            
-            [leftYAxisDataAry addObject:obj.lineDataAry];
-            [leftObjDataAry addObject:obj];
-        }
-        else if (obj.scalerType == ScalerAxisRight &&
-                 obj.lineDataAry) {
-            
-            [rightYAxisDataAry addObject:obj.lineDataAry];
-            [rightObjDataAry addObject:obj];
-        }
-    }];
-    
-    if (leftObjDataAry.count > 0) {
-     
-        // 获取最大值最小值(左边)
-        CGFloat leftMax = FLT_MIN;
-        CGFloat leftMin = FLT_MAX;
-        
-        if (_leftAxis.max == nil || _leftAxis.max == nil) {
-            
-            [leftYAxisDataAry getTwoDimensionaMax:&leftMax
-                                              min:&leftMin
-                                        selGetter:@selector(floatValue)
-                                             base:.1f];
-            
-            _leftAxis.max = @(leftMax);
-            _leftAxis.min = @(leftMin);
-        }
-        else {
-            
-            leftMax = _leftAxis.max.floatValue;
-            leftMin = _leftAxis.min.floatValue;
-        }
-        
-        [leftObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.lineScaler.max = leftMax;
-            obj.lineScaler.min = leftMin;
-        }];
+        _lineQueryData = [[LineQueryData alloc] init];
     }
     
-    if (rightObjDataAry.count > 0) {
-        
-        // 获取最大值最小值(右边)
-        CGFloat rightMax = FLT_MIN;
-        CGFloat rightMin = FLT_MAX;
-        
-        if (_rightAxis.max == nil || _rightAxis.max == nil) {
-            
-            [rightYAxisDataAry getTwoDimensionaMax:&rightMax
-                                               min:&rightMin
-                                         selGetter:@selector(floatValue)
-                                              base:.1f];
-            
-            _rightAxis.max = @(rightMax);
-            _rightAxis.min = @(rightMin);
-        }
-        else {
-            
-            rightMax = _rightAxis.max.floatValue;
-            rightMin = _rightAxis.min.floatValue;
-        }
-        
-        [rightObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.lineScaler.max = rightMax;
-            obj.lineScaler.min = rightMin;
-        }];
-    }
+    return _lineQueryData;
 }
 
 @end

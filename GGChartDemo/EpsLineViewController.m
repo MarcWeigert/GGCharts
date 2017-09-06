@@ -69,7 +69,7 @@
     line.lineWidth = 1.2;
     line.lineColor = RGB(202, 71, 33);
     line.lineDataAry = stockPrice;
-    line.scalerType = ScalerAxisRight;
+    //line.scalerType = ScalerAxisRight;
     
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 50);

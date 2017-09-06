@@ -10,24 +10,28 @@
 #import "LineDrawAbstract.h"
 
 @interface GGLineData () <LineDrawAbstract>
-
-@property (nonatomic, strong) DLineScaler * myLineScaler;
+{
+    DLineScaler * _lineScaler;
+}
 
 @end
 
 @implementation GGLineData
 
+- (DLineScaler *)lineScaler
+{
+    if (_lineScaler == nil) {
+        
+        _lineScaler = [[DLineScaler alloc] init];
+    }
+    
+    return _lineScaler;
+}
+
 - (void)setLineDataAry:(NSArray<NSNumber *> *)lineDataAry
 {
     _lineDataAry = lineDataAry;
-    
-    _myLineScaler = [DLineScaler new];
-    _myLineScaler.dataAry = lineDataAry;
-}
-
-- (DLineScaler *)lineScaler
-{
-    return _myLineScaler;
+    self.lineScaler.dataAry = lineDataAry;
 }
 
 @end

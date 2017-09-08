@@ -842,7 +842,7 @@ static void * kLineTitle = "keyTitle";
         id obj = _kLineArray[i];
         GGKShape shape = self.kLineScaler.kShapes[i];
         
-        [self isRed:obj] ? GGPathAddKShape(refGreen, shape) : GGPathAddKShape(refRed, shape);
+        [self isRed:obj] ? GGPathAddKShape(refRed, shape) : GGPathAddKShape(refGreen, shape);
     }
     
     self.redLineLayer.path = refRed;

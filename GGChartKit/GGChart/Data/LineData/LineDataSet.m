@@ -11,174 +11,168 @@
 #import "LineCanvas.h"
 #import "NSArray+Stock.h"
 
-@interface LineDataSet () <LineCanvasAbstract, GridAbstract>
+@interface LineDataSet () <LineCanvasAbstract>
+
+/**
+ * 绘制区域
+ */
+@property (nonatomic, assign) CGRect rect;
 
 @end
 
 @implementation LineDataSet
 
+/**
+ * 初始化方法
+ */
 - (instancetype)init
 {
     self = [super init];
     
     if (self) {
         
-        _bottomAxis = [[XAxis alloc] init];
-        _bottomAxis.textRatio = CGPointMake(-.5f, 0.1);
-        _bottomAxis.over = 2;
-        _bottomAxis.axisLineWidth = .7f;
-        _bottomAxis.axisFont = [UIFont systemFontOfSize:12];
-        _bottomAxis.axisColor = [UIColor blackColor];
-        _bottomAxis.needShowGridLine = YES;
-        [(id <AxisAbstract>)_bottomAxis setStartLocalRatio:CGPointMake(0, 1)];
-        [(id <AxisAbstract>)_bottomAxis setEndLocalRatio:CGPointMake(1, 1)];
-        
-        _topAxis = [[XAxis alloc] init];
-        _topAxis.textRatio = CGPointMake(-.5f, -1.1f);
-        _topAxis.over = -2;
-        _topAxis.axisLineWidth = .7f;
-        _topAxis.axisFont = [UIFont systemFontOfSize:12];
-        _topAxis.axisColor = [UIColor blackColor];
-        _topAxis.needShowGridLine = YES;
-        [(id <AxisAbstract>)_topAxis setStartLocalRatio:CGPointMake(0, 0)];
-        [(id <AxisAbstract>)_topAxis setEndLocalRatio:CGPointMake(1, 0)];
-        
-        _leftAxis = [[YAxis alloc] init];
-        _leftAxis.textRatio = CGPointMake(-1.1f, -.5f);
-        _leftAxis.over = -2;
-        _leftAxis.axisLineWidth = .7f;
-        _leftAxis.splitCount = 5;
-        _leftAxis.axisFont = [UIFont systemFontOfSize:12];
-        _leftAxis.axisColor = [UIColor blackColor];
-        _leftAxis.needShowGridLine = YES;
-        [(id <AxisAbstract>)_leftAxis setStartLocalRatio:CGPointMake(0, 1)];
-        [(id <AxisAbstract>)_leftAxis setEndLocalRatio:CGPointMake(0, 0)];
-        
-        _rightAxis = [[YAxis alloc] init];
-        _rightAxis.textRatio = CGPointMake(0.1f, -.5f);
-        _rightAxis.over = 2;
-        _rightAxis.axisLineWidth = .7f;
-        _rightAxis.splitCount = 5;
-        _rightAxis.axisFont = [UIFont systemFontOfSize:12];
-        _rightAxis.axisColor = [UIColor blackColor];
-        _rightAxis.needShowGridLine = YES;
-        [(id <AxisAbstract>)_rightAxis setStartLocalRatio:CGPointMake(1, 1)];
-        [(id <AxisAbstract>)_rightAxis setEndLocalRatio:CGPointMake(1, 0)];
+        _idRatio = .1f;
     }
     
     return self;
 }
 
-- (void)setInsets:(UIEdgeInsets)insets
+/**
+ * 折线图更新数据, 绘制前配置
+ */
+- (void)updateChartConfigs:(CGRect)rect
 {
-    _insets = insets;
+    _rect = rect;
     
-    self.lineQueryData.insets = insets;
+    [self configSubModelRectAndInsets];
+    [self configGridSubModel];
+    [self configLineAndAxisModel];
 }
 
-- (UIEdgeInsets)lineInsets
+/**
+ * 设置绘制模型区域数据
+ */
+- (void)configSubModelRectAndInsets
 {
-    return _insets;
+    _gridConfig.insets = _insets;
+    _queryConfig.insets = _insets;
+    
+    for (GGLineData * lineData in _lineAry) {
+        
+        lineData.lineScaler.rect = UIEdgeInsetsInsetRect(_rect, _insets);
+    }
 }
 
-- (NSArray *)axiss
+/**
+ * 设置折线背景层数据
+ */
+- (void)configGridSubModel
 {
-    return @[_bottomAxis, _leftAxis, _topAxis, _rightAxis];
+    CGRect gridRect = UIEdgeInsetsInsetRect(_rect, _insets);
+    
+    _gridConfig.leftNumberAxis.axisLine = GGLeftLineRect(gridRect);
+    _gridConfig.rightNumberAxis.axisLine = GGRightLineRect(gridRect);
+    _gridConfig.bottomLableAxis.axisLine = GGBottomLineRect(gridRect);
+    _gridConfig.topLableAxis.axisLine = GGTopLineRect(gridRect);
+    
+    _queryConfig.leftNumberAxis = _gridConfig.leftNumberAxis;
+    _queryConfig.rightNumberAxis = _gridConfig.rightNumberAxis;
+    _queryConfig.bottomLableAxis = _gridConfig.bottomLableAxis;
+    _queryConfig.topLableAxis = _gridConfig.topLableAxis;
 }
 
-- (void)drawOnLineCanvas:(LineCanvas *)lineCanvas
+/**
+ * 设置折线与轴数据
+ */
+- (void)configLineAndAxisModel
 {
-//    NSMutableArray * leftYAxisDataAry = [NSMutableArray array];
-//    NSMutableArray * rightYAxisDataAry = [NSMutableArray array];
-//    
-//    NSMutableArray * leftObjDataAry = [NSMutableArray array];
-//    NSMutableArray * rightObjDataAry = [NSMutableArray array];
-//    
-//    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
-//        
-//        if (obj.scalerType == ScalerAxisLeft &&
-//            obj.lineDataAry) {
-//            
-//            [leftYAxisDataAry addObject:obj.lineDataAry];
-//            [leftObjDataAry addObject:obj];
-//        }
-//        else if (obj.scalerType == ScalerAxisRight &&
-//                 obj.lineDataAry) {
-//            
-//            [rightYAxisDataAry addObject:obj.lineDataAry];
-//            [rightObjDataAry addObject:obj];
-//        }
-//    }];
-//    
-//    if (leftObjDataAry.count > 0) {
-//     
-//        // 获取最大值最小值(左边)
-//        CGFloat leftMax = FLT_MIN;
-//        CGFloat leftMin = FLT_MAX;
-//        
-//        if (_leftAxis.max == nil || _leftAxis.max == nil) {
-//            
-//            [leftYAxisDataAry getTwoDimensionaMax:&leftMax
-//                                              min:&leftMin
-//                                        selGetter:@selector(floatValue)
-//                                             base:.1f];
-//            
-//            _leftAxis.max = @(leftMax);
-//            _leftAxis.min = @(leftMin);
-//        }
-//        else {
-//            
-//            leftMax = _leftAxis.max.floatValue;
-//            leftMin = _leftAxis.min.floatValue;
-//        }
-//        
-//        [leftObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            
-//            obj.lineScaler.max = leftMax;
-//            obj.lineScaler.min = leftMin;
-//        }];
-//    }
-//    
-//    if (rightObjDataAry.count > 0) {
-//        
-//        // 获取最大值最小值(右边)
-//        CGFloat rightMax = FLT_MIN;
-//        CGFloat rightMin = FLT_MAX;
-//        
-//        if (_rightAxis.max == nil || _rightAxis.max == nil) {
-//            
-//            [rightYAxisDataAry getTwoDimensionaMax:&rightMax
-//                                               min:&rightMin
-//                                         selGetter:@selector(floatValue)
-//                                              base:.1f];
-//            
-//            _rightAxis.max = @(rightMax);
-//            _rightAxis.min = @(rightMin);
-//        }
-//        else {
-//            
-//            rightMax = _rightAxis.max.floatValue;
-//            rightMin = _rightAxis.min.floatValue;
-//        }
-//        
-//        [rightObjDataAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            
-//            obj.lineScaler.max = rightMax;
-//            obj.lineScaler.min = rightMin;
-//        }];
-//    }
+    // 区分左右折线数据
+    NSMutableArray * leftDataAry = [NSMutableArray array];
+    NSMutableArray * rightDataAry = [NSMutableArray array];
+    
+    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        if (obj.scalerMode == ScalerAxisLeft && obj.lineDataAry) {
+        
+            [leftDataAry addObject:obj.lineDataAry];
+        }
+        else if (obj.scalerMode == ScalerAxisRight && obj.lineDataAry) {
+        
+            [rightDataAry addObject:obj.lineDataAry];
+        }
+    }];
+    
+    // 填充左轴极大极小值
+    if (_gridConfig.leftNumberAxis.max == nil ||
+        _gridConfig.leftNumberAxis.min == nil) {
+        
+        CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
+        [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:_idRatio];
+        
+        _gridConfig.leftNumberAxis.max = @(leftMax);
+        _gridConfig.leftNumberAxis.min = @(leftMin);
+    }
+    
+    // 填充右轴极大极小值
+    if (_gridConfig.rightNumberAxis.max == nil ||
+        _gridConfig.rightNumberAxis.min == nil) {
+        
+        CGFloat rightMax = FLT_MIN, rightMin = FLT_MAX;
+        [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:_idRatio];
+        
+        _gridConfig.rightNumberAxis.max = @(rightMax);
+        _gridConfig.rightNumberAxis.min = @(rightMin);
+    }
+    
+    // 填充定标器
+    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+        
+        if (_lineMode == LineDrawParallel) {      ///< 并列排列
+            
+            obj.lineScaler.xRatio = idx / self.lineAry.count;
+        }
+        
+        if (obj.scalerMode == ScalerAxisLeft) {
+            
+            obj.lineScaler.max = _gridConfig.leftNumberAxis.max.floatValue;
+            obj.lineScaler.min = _gridConfig.leftNumberAxis.min.floatValue;
+        }
+        else if (obj.scalerMode == ScalerAxisRight) {
+            
+            obj.lineScaler.max = _gridConfig.rightNumberAxis.max.floatValue;
+            obj.lineScaler.min = _gridConfig.rightNumberAxis.min.floatValue;
+        }
+        
+        [obj.lineScaler updateScaler];
+    }];
 }
 
 #pragma mark - Lazy
 
-- (LineQueryData *)lineQueryData
+/**
+ * 折线图背景层设置
+ */
+- (LineBarGird *)gridConfig
 {
-    if (_lineQueryData == nil) {
+    if (_gridConfig == nil) {
         
-        _lineQueryData = [[LineQueryData alloc] init];
+        _gridConfig = [[LineBarGird alloc] init];
     }
     
-    return _lineQueryData;
+    return _gridConfig;
+}
+
+/**
+ * 折线图查价配置
+ */
+- (LineBarQuery *)queryConfig
+{
+    if (_queryConfig == nil) {
+        
+        _queryConfig = [[LineBarQuery alloc] init];
+    }
+    
+    return _queryConfig;
 }
 
 @end

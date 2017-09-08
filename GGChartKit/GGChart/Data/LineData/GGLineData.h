@@ -10,9 +10,9 @@
 #import "DLineScaler.h"
 
 typedef enum : NSUInteger {
-    ScalerAxisLeft = 0,
-    ScalerAxisRight,
-} ScalerAxisType;
+    ScalerAxisLeft = 0,         ///< 左边轴
+    ScalerAxisRight,            ///< 右边轴
+} ScalerAxisMode;
 
 @interface GGLineData : NSObject
 
@@ -21,6 +21,11 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong, readonly) DLineScaler * lineScaler;
 
+/**
+ * 折线定标轴, 默认左轴
+ */
+@property (nonatomic, assign) ScalerAxisMode scalerMode;
+
 #pragma mark - 折线数据
 
 /**
@@ -28,10 +33,6 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *lineDataAry;
 
-/**
- * 绘制折线点
- */
-@property (nonatomic, assign, readonly) CGPoint * points;
 
 #pragma mark - 折线配置
 
@@ -45,6 +46,7 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) UIColor * lineColor;
 
+
 #pragma mark - 折线关键点配置
 
 /**
@@ -56,6 +58,7 @@ typedef enum : NSUInteger {
  * 折线关键点填充色
  */
 @property (nonatomic, strong) UIColor * shapeFillColor;
+
 
 #pragma mark - 折线文字
 
@@ -77,7 +80,7 @@ typedef enum : NSUInteger {
 /**
  * 折线文字偏移比例
  *
- * {-1, -1} 数据点右上方绘制, {0, 0} 数据点左下方绘制, {0.5, 0.5} 数据点中心绘制
+ * {-1, -1} 数据点右上方绘制, {0, 0} 数据点左下方绘制, {-0.5, -0.5} 数据点中心绘制
  */
 @property (nonatomic, assign) CGPoint offSetRatio;
 
@@ -86,12 +89,13 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, assign) CGSize stringOffset;
 
+
 #pragma mark - 折线填充
 
 /**
  * 围绕该Y轴坐标点填充, FLT_MIN 代表不填充
  */
-@property (nonatomic, assign, readonly) CGFloat bottomYPix;
+@property (nonatomic, strong) NSNumber * fillRoundNumber;
 
 /**
  * 折线填充色, 优先级比渐变色高

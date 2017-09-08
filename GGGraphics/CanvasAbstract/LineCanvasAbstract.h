@@ -13,8 +13,14 @@
 
 @protocol LineCanvasAbstract <NSObject>
 
-@property (nonatomic, assign, readonly) UIEdgeInsets lineInsets;
+/**
+ * 线内边距
+ */
+@property (nonatomic, assign, readonly) UIEdgeInsets insets;
 
+/**
+ * 线数据数组
+ */
 @property (nonatomic, strong) NSArray <id <LineDrawAbstract>> * lineAry;
 
 @end

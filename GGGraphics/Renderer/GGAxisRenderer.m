@@ -175,6 +175,7 @@
             }
         }
         
+        // 轴上增加关键点以及文字
         [self.stringArray enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
             
             NSValue * obj = self.stringPoints[idx];

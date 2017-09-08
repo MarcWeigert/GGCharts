@@ -136,6 +136,25 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     return _min + hight * pix;
 }
 
+/**
+ * 根据点获取价格
+ *
+ * @param y y轴坐标
+ * @param max 最大值
+ * @param min 最小值
+ *
+ * @return 价格点
+ */
++ (CGFloat)getPriceWithYPixel:(CGFloat)y line:(GGLine)line max:(CGFloat)max min:(CGFloat)min
+{
+    CGFloat dis = GGLengthLine(line);
+    CGFloat pix = (max - min) / dis;
+    CGFloat hight = dis - (y - line.start.y);
+    
+    if (hight < 0) { hight = 0; }
+    
+    return min + hight * pix;
+}
 
 - (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {

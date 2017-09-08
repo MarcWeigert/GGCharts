@@ -39,22 +39,20 @@
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
     lineSet.lineAry = @[line];
-    lineSet.gridColor = C_HEX(0xe4e4e4);
-    lineSet.gridLineWidth = .5f;
     
-    lineSet.bottomAxis.titles = @[@"2月", @"3月", @"4月", @"5月", @"6月", @"7月"];
-    lineSet.bottomAxis.drawStringAxisCenter = YES;
-    lineSet.bottomAxis.needShowGridLine = NO;
-    lineSet.bottomAxis.over = 0;
-    lineSet.bottomAxis.axisColor = RGB(146, 146, 146);
+    lineSet.gridConfig.lineColor = C_HEX(0xe4e4e4);
+    lineSet.gridConfig.lineWidth = .5f;
+    lineSet.gridConfig.axisLineColor = RGB(146, 146, 146);
+    lineSet.gridConfig.axisLableColor = RGB(146, 146, 146);
     
-    lineSet.leftAxis.splitCount = 2;
-    lineSet.leftAxis.max = @100;
-    lineSet.leftAxis.min = @0;
-    lineSet.leftAxis.dataFormatter = @"%.f";
-    lineSet.leftAxis.axisColor = RGB(146, 146, 146);
-    lineSet.leftAxis.needShowAxisLine = NO;
-    lineSet.isCenterAlignment = YES;
+    lineSet.gridConfig.bottomLableAxis.lables = @[@"2月", @"3月", @"4月", @"5月", @"6月", @"7月"];
+    lineSet.gridConfig.bottomLableAxis.drawStringAxisCenter = YES;
+    lineSet.gridConfig.bottomLableAxis.over = 0;
+    
+    lineSet.gridConfig.leftNumberAxis.splitCount = 2;
+    lineSet.gridConfig.leftNumberAxis.max = @100;
+    lineSet.gridConfig.leftNumberAxis.min = @0;
+    lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.f";
     
     GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 180)];
     lineChart.lineDataSet = lineSet;

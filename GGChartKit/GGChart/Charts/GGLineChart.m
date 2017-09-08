@@ -13,16 +13,28 @@
 
 @interface GGLineChart ()
 
+/**
+ * 折线渲染层
+ */
 @property (nonatomic, strong) LineCanvas * lineCanvas;
 
+/**
+ * 折线背景层
+ */
 @property (nonatomic, strong) GridBackCanvas * gridCanvas;
 
+/**
+ * 查价图层
+ */
 @property (nonatomic, strong) QueryCanvas * queryCanvas;
 
 @end
 
 @implementation GGLineChart
 
+/**
+ * 初始化
+ */
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -45,15 +57,21 @@
     return self;
 }
 
+/**
+ * 设置图层接口
+ */
 - (void)setLineDataSet:(LineDataSet *)lineDataSet
 {
     _lineDataSet = lineDataSet;
     
     _lineCanvas.lineDrawConfig = (id <LineCanvasAbstract>)lineDataSet;
-    _gridCanvas.gridDrawConfig = (id <GridAbstract>)lineDataSet;
-    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)lineDataSet.lineQueryData;
+    _gridCanvas.gridDrawConfig = (id <GridAbstract>)lineDataSet.gridConfig;
+    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)lineDataSet.queryConfig;
 }
 
+/**
+ * 设置各个视图的大小
+ */
 - (void)setFrame:(CGRect)frame
 {
     [super setFrame:frame];
@@ -63,14 +81,20 @@
     _queryCanvas.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
 }
 
+/**
+ * 渲染折线图
+ */
 - (void)drawLineChart
 {
-    [_lineDataSet drawOnLineCanvas:_lineCanvas];
+    [_lineDataSet updateChartConfigs:CGRectMake(0, 0, self.gg_width, self.gg_height)];
     
     [_lineCanvas drawChart];
     [_gridCanvas drawChart];
 }
 
+/**
+ * 启动动画
+ */
 - (void)startAnimation:(NSTimeInterval)duration
 {
     [_lineCanvas startAnimation:duration];

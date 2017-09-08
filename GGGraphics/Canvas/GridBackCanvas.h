@@ -12,6 +12,9 @@
 
 @interface GridBackCanvas : GGCanvas
 
+/**
+ * 配置接口类
+ */
 @property (nonatomic, strong) id <GridAbstract> gridDrawConfig;
 
 @end

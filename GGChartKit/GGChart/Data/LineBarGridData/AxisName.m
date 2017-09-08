@@ -8,6 +8,10 @@
 
 #import "AxisName.h"
 
+@interface AxisName () <NumberAxisNameAbstract>
+
+@end
+
 @implementation AxisName
 
 @end

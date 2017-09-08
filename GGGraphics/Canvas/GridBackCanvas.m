@@ -10,102 +10,213 @@
 
 @interface GridBackCanvas ()
 
-@property (nonatomic, strong) GGGridRenderer * gridRenderer;
+/**
+ * 左轴渲染器
+ */
+@property (nonatomic, strong) GGAxisRenderer * leftAxisRenderer;
+
+/**
+ * 右轴渲染器
+ */
+@property (nonatomic, strong) GGAxisRenderer * rightAxisRenderer;
+
+/**
+ * 顶轴渲染器
+ */
+@property (nonatomic, strong) GGAxisRenderer * topAxisRenderer;
+
+/**
+ * 底轴渲染器
+ */
+@property (nonatomic, strong) GGAxisRenderer * bottomAxisRenderer;
 
 @end
 
 @implementation GridBackCanvas
 
-- (void)drawChart
+/** 
+ * 配置Number轴 
+ */
+- (void)configNumberAxis
 {
-    [super drawChart];
-    [self removeAllRenderer];
+    NSArray * axisRenderers = @[self.leftAxisRenderer, self.rightAxisRenderer];
+    NSArray * axisAbstracts = @[[_gridDrawConfig leftNumberAxis], [_gridDrawConfig rightNumberAxis]];
     
-    CGRect frame = UIEdgeInsetsInsetRect(CGRectMake(0, 0, self.gg_width, self.gg_height), [_gridDrawConfig insets]);
-    
-    GGGridRenderer * gridRenderer = [[GGGridRenderer alloc] init];
-    gridRenderer.width = [_gridDrawConfig gridLineWidth];
-    gridRenderer.color = [_gridDrawConfig gridColor];
-    gridRenderer.isNeedRect = NO;
-    [self addRenderer:gridRenderer];
-    
-    for (NSInteger i = 0; i < [_gridDrawConfig axiss].count; i++) {
+    for (NSInteger i = 0; i < axisRenderers.count; i++) {
         
-        id <AxisAbstract> axisAbstract = [_gridDrawConfig axiss][i];
+        GGAxisRenderer * renderer = axisRenderers[i];
+        id <NumberAxisAbstract> abstract = axisAbstracts[i];
         
-        CGFloat s_x = frame.origin.x + CGRectGetWidth(frame) * [axisAbstract startLocalRatio].x;
-        CGFloat s_y = frame.origin.y + CGRectGetHeight(frame) * [axisAbstract startLocalRatio].y;
-        CGFloat e_x = frame.origin.x + CGRectGetWidth(frame) * [axisAbstract endLocalRatio].x;
-        CGFloat e_y = frame.origin.y + CGRectGetHeight(frame) * [axisAbstract endLocalRatio].y;
-        GGLine line = GGLineMake(s_x, s_y, e_x, e_y);
-        NSInteger titleCount = [axisAbstract titles].count;
-        CGFloat sep = GGLengthLine(line) / ([axisAbstract drawStringAxisCenter] ? titleCount : (titleCount - 1));
-        NSArray * titles = [axisAbstract titles];
-        
-        // 轴标题
-        if ([axisAbstract axisName]) {
+        if ([abstract splitCount] > 0) {        // 分割个数大于0则配置
             
-            GGLine moveLine = GGLineMoveEnd(line, [[axisAbstract axisName] offsetOfEndPoint]);
+            // 构建轴结构
+            CGFloat length =  GGLengthLine([abstract axisLine]);
+            CGFloat splitLength = length / [abstract splitCount];
+            GGAxis axis = GGAxisLineMake([abstract axisLine], [abstract over], splitLength);
             
-            GGStringRenderer * string = [[GGStringRenderer alloc] init];
-            string.point = moveLine.end;
-            string.font = [[axisAbstract axisName] font];
-            string.string = [[axisAbstract axisName] string];
-            string.offSetRatio = [[axisAbstract axisName] offsetRatio];
-            string.offset = [[axisAbstract axisName] offsetSize];
-            string.color = [[axisAbstract axisName] color];
-            [self addRenderer:string];
-        }
-        
-        if (titles.count > 0) {
+            // 取轴文字数据
+            BOOL isInt = [self formatIsInt:[abstract dataFormatter]];
+            NSArray * titles = [self numbersTitlesForAxis:abstract isIntFormat:isInt];
             
-            GGAxisRenderer * axis = [[GGAxisRenderer alloc] init];
-            axis.width = [axisAbstract axisLineWidth];
-            axis.color = [axisAbstract axisColor];
-            axis.strColor = [axisAbstract stringColor] == nil ? [axisAbstract axisColor] : [axisAbstract stringColor];
-            axis.drawAxisCenter = [axisAbstract drawStringAxisCenter];
-            axis.showLine = [axisAbstract needShowAxisLine];
-            axis.showSep = YES;
-            axis.hiddenPattern = [axisAbstract hiddenPattern];
-            axis.textOffSet = [axisAbstract textOffset];
-            axis.axis = GGAxisMake(s_x, s_y, e_x, e_y, [axisAbstract over], sep);
-            axis.aryString = titles;
-            axis.strFont = [axisAbstract axisFont];
-            axis.offSetRatio = [axisAbstract textRatio];
-            axis.textOffSet = [axisAbstract textOffset];
-            [self addRenderer:axis];
+            renderer.aryString = titles;
+            renderer.axis = axis;
+            renderer.width = [_gridDrawConfig lineWidth];
+            renderer.color = [_gridDrawConfig axisLineColor];
+            renderer.strColor = [_gridDrawConfig axisLableColor];
+            renderer.showSep = [abstract over] > 0;
+            renderer.textOffSet = CGSizeMake([abstract stringGap], 0);
+            renderer.offSetRatio = [abstract offSetRatio];
             
-            /** falg 网格分割线 */
-            if ([axisAbstract needShowGridLine]) {
-                
-                CGFloat len = GGLengthLine(axis.axis.line);
-                NSInteger count = axis.axis.sep == 0 ? 0 : abs((int)(len / axis.axis.sep + 0.1)) + 1;   // 八社九入
-                
-                if (fabs(axis.axis.line.start.y - axis.axis.line.end.y) < .001f) {      // 平行于x轴
-                    
-                    for (int i = 0; i < count; i++) {
-                        
-                        CGPoint axis_pt = GGMoveStart(axis.axis.line, axis.axis.sep * i);
-                        GGLine line = GGLineMake(axis_pt.x, CGRectGetMinY(frame), axis_pt.x, CGRectGetMaxY(frame));
-                        [gridRenderer addLine:line];
-                    }
-                }
-                
-                if (fabs(axis.axis.line.start.x - axis.axis.line.end.x) < .001f) {      // 平行于y轴
-                    
-                    for (int i = 0; i < count; i++) {
-                        
-                        CGPoint axis_pt = GGMoveStart(axis.axis.line, axis.axis.sep * i);
-                        GGLine line = GGLineMake(CGRectGetMinX(frame), axis_pt.y, CGRectGetMaxX(frame), axis_pt.y);
-                        [gridRenderer addLine:line];
-                    }
-                }
-            }
-            /** end */
+            [self addRenderer:renderer];
         }
     }
+}
+
+/**
+ * 配置Number轴
+ */
+- (void)configLableAxis
+{
+    NSArray * axisRenderers = @[self.topAxisRenderer, self.bottomAxisRenderer];
+    NSArray * axisAbstracts = @[[_gridDrawConfig topLableAxis], [_gridDrawConfig bottomLableAxis]];
     
+    for (NSInteger i = 0; i < axisRenderers.count; i++) {
+        
+        GGAxisRenderer * renderer = axisRenderers[i];
+        id <LableAxisAbstract> abstract = axisAbstracts[i];
+        
+        if ([abstract lables].count > 0) {      // 轴文字数组个数大于0则绘制
+            
+            if ([abstract showIndexSet].count > 0) {    // 文字选择性显示
+                
+                
+            }
+            else {      // 文字全部绘制
+                
+                NSInteger splitCount = [abstract lables].count;
+                splitCount -= ![abstract drawStringAxisCenter];
+                CGFloat length =  GGLengthLine([abstract axisLine]);
+                GGAxis axis = GGAxisLineMake([abstract axisLine], [abstract over], length / splitCount);
+                
+                renderer.aryString = [abstract lables];
+                renderer.axis = axis;
+            }
+            
+            renderer.width = [_gridDrawConfig lineWidth];
+            renderer.color = [_gridDrawConfig axisLineColor];
+            renderer.strColor = [_gridDrawConfig axisLableColor];
+            renderer.showSep = [abstract over] > 0;
+            renderer.textOffSet = CGSizeMake(0, [abstract stringGap]);
+            renderer.offSetRatio = [abstract offSetRatio];
+            renderer.drawAxisCenter = [abstract drawStringAxisCenter];
+            renderer.hiddenPattern = [abstract hiddenPattern];
+            
+            [self addRenderer:renderer];
+        }
+    }
+}
+
+/**
+ * 判断格式化字符串是否为Int
+ *
+ * @param format 格式化字符串
+ */
+- (BOOL)formatIsInt:(NSString *)format
+{
+    return ([format rangeOfString:@"%(.*)d" options:NSRegularExpressionSearch].location != NSNotFound
+            || [format rangeOfString:@"%(.*)i"].location != NSNotFound);
+}
+
+/**
+ * 获取Number文字数据
+ *
+ * @param numberAxisAbstract 数字轴接口
+ * @param isIntFormat 是否带有int格式化字符串
+ *
+ * @return 转换文字数据
+ */
+- (NSArray <NSString *> *)numbersTitlesForAxis:(id <NumberAxisAbstract>)numberAxisAbstract isIntFormat:(BOOL)isIntFormat
+{
+    NSMutableArray * aryStrings = [NSMutableArray array];
+    
+    GGLine line = [numberAxisAbstract axisLine];
+    CGFloat lineLength = GGLengthLine(line);
+    CGFloat splitLength = lineLength / ([numberAxisAbstract splitCount] + 1);
+    
+    for (NSInteger i = 0; i < [numberAxisAbstract splitCount] + 1; i++) {
+        
+        CGFloat dataForPix = [numberAxisAbstract getNumberWithPix:splitLength * i + line.start.y];
+        [aryStrings addObject:[NSString stringWithFormat:[numberAxisAbstract dataFormatter], isIntFormat ? (int)dataForPix : dataForPix]];
+    }
+    
+    return aryStrings;
+}
+
+#pragma mark - 父类方法
+
+/**
+ * 渲染图层
+ */
+- (void)drawChart
+{
+    [self removeAllRenderer];
+    [self configNumberAxis];
+    [self configLableAxis];
     [self setNeedsDisplay];
+}
+
+#pragma mark - Lazy
+
+/**
+ * 左轴渲染器
+ */
+- (GGAxisRenderer *)leftAxisRenderer
+{
+    if (_leftAxisRenderer == nil) {
+        
+        _leftAxisRenderer = [[GGAxisRenderer alloc] init];
+    }
+    
+    return _leftAxisRenderer;
+}
+
+/**
+ * 右轴渲染器
+ */
+- (GGAxisRenderer *)rightAxisRenderer
+{
+    if (_rightAxisRenderer == nil) {
+        
+        _rightAxisRenderer = [[GGAxisRenderer alloc] init];
+    }
+    
+    return _rightAxisRenderer;
+}
+
+/**
+ * 顶轴渲染器
+ */
+- (GGAxisRenderer *)topAxisRenderer
+{
+    if (_topAxisRenderer == nil) {
+        
+        _topAxisRenderer = [[GGAxisRenderer alloc] init];
+    }
+    
+    return _topAxisRenderer;
+}
+
+/**
+ * 底轴渲染器
+ */
+- (GGAxisRenderer *)bottomAxisRenderer
+{
+    if (_bottomAxisRenderer == nil) {
+        
+        _bottomAxisRenderer = [[GGAxisRenderer alloc] init];
+    }
+    
+    return _bottomAxisRenderer;
 }
 
 @end

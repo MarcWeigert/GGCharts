@@ -25,6 +25,7 @@
  */
 @property (nonatomic, assign, readonly) CGPoint * points;
 
+
 #pragma mark - 折线配置
 
 /**
@@ -37,6 +38,7 @@
  */
 @property (nonatomic, strong, readonly) UIColor * lineColor;
 
+
 #pragma mark - 折线关键点配置
 
 /**
@@ -48,6 +50,7 @@
  * 折线关键点填充色
  */
 @property (nonatomic, strong, readonly) UIColor * shapeFillColor;
+
 
 #pragma mark - 折线文字
 
@@ -69,7 +72,7 @@
 /**
  * 折线文字偏移比例
  * 
- * {0, 0} 数据点左下方绘制, {0.5, 0.5} 数据点中心绘制, {-1, -1} 数据点右上方绘制
+ * {0, 0} 数据点左下方绘制, {-0.5, -0.5} 数据点中心绘制, {-1, -1} 数据点右上方绘制
  */
 @property (nonatomic, assign, readonly) CGPoint offSetRatio;
 
@@ -77,6 +80,7 @@
  * 折线文字偏移
  */
 @property (nonatomic, assign, readonly) CGSize stringOffset;
+
 
 #pragma mark - 折线填充
 
@@ -91,7 +95,7 @@
 @property (nonatomic, strong, readonly) UIColor * lineFillColor;
 
 /**
- * 折线填充渐变色, 数据内传入CGColor
+ * 折线填充渐变色, 数组传入CGColor
  */
 @property (nonatomic, strong, readonly) NSArray * gradientColors;
 

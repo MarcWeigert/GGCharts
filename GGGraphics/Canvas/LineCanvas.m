@@ -61,7 +61,7 @@ static const void * lineFillLayer = @"lineFillLayer";
     [_allGGNumberArray removeAllObjects];
     
     CGRect rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
-    rect = UIEdgeInsetsInsetRect(rect, [_lineDrawConfig lineInsets]);
+    rect = UIEdgeInsetsInsetRect(rect, [_lineDrawConfig insets]);
     
     for (NSInteger i = 0; i < _lineDrawConfig.lineAry.count; i++) {
         
@@ -162,6 +162,8 @@ static const void * lineFillLayer = @"lineFillLayer";
         SET_ASSOCIATED_ASSIGN(lineDraw, lineFillLayer, shape);
         
         if ([lineDraw gradientColors].count > 0) {
+            
+            [shape removeFromSuperlayer];
             
             CAGradientLayer * gradientLayer = [self getCAGradientEqualFrame];
             gradientLayer.mask = shape;

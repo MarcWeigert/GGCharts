@@ -61,12 +61,6 @@
 - (void)setQueryDrawConfig:(id<QueryAbstract>)queryDrawConfig
 {
     _queryDrawConfig = queryDrawConfig;
-    
-    _xLine.width = [_queryDrawConfig queryLineWidth];
-    _xLine.color = [_queryDrawConfig queryLineColor];
-    
-    _yLine.width = [_queryDrawConfig queryLineWidth];
-    _yLine.color = [_queryDrawConfig queryLineColor];
 }
 
 /**
@@ -80,6 +74,7 @@
     
     _xLine.line = GGLineRectForX(drawFrame, touchPoint.x);
     _yLine.line = GGLineRectForY(drawFrame, touchPoint.y);
+    
     [self setNeedsDisplay];
 }
 

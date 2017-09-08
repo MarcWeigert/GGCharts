@@ -7,6 +7,7 @@
 //
 
 #import "BaseScaler.h"
+#import "GGChartGeometry.h"
 
 @interface DLineScaler : BaseScaler
 
@@ -75,5 +76,16 @@
  * @param y y轴坐标
  */
 - (CGFloat)getPriceWithYPixel:(CGFloat)y;
+
+/**
+ * 根据点获取价格
+ *
+ * @param y y轴坐标
+ * @param max 最大值
+ * @param min 最小值
+ *
+ * @return 价格点
+ */
++ (CGFloat)getPriceWithYPixel:(CGFloat)y line:(GGLine)line max:(CGFloat)max min:(CGFloat)min;
 
 @end

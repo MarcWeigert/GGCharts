@@ -18,6 +18,9 @@
 
 @implementation GGLineData
 
+/**
+ * 折线定标器
+ */
 - (DLineScaler *)lineScaler
 {
     if (_lineScaler == nil) {
@@ -28,10 +31,34 @@
     return _lineScaler;
 }
 
+/**
+ * 用来显示的数据
+ */
 - (void)setLineDataAry:(NSArray<NSNumber *> *)lineDataAry
 {
     _lineDataAry = lineDataAry;
     self.lineScaler.dataAry = lineDataAry;
+}
+
+/**
+ * 绘制折线点
+ */
+- (CGPoint *)points
+{
+    return _lineScaler.linePoints;
+}
+
+/**
+ * 围绕该Y轴坐标点填充, FLT_MIN 代表不填充
+ */
+- (CGFloat)bottomYPix
+{
+    if (_fillRoundNumber == nil) {      // 如果没有底部定标, 则取最低值
+        
+        return CGRectGetMaxY(_lineScaler.rect);
+    }
+    
+    return [_lineScaler getYPixelWithData:_fillRoundNumber.floatValue];
 }
 
 @end

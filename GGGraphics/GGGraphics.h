@@ -39,6 +39,7 @@
 #import "GGStringRenderer.h"
 #import "GGPolygonRenderder.h"
 #import "GGNumberRenderer.h"
+#import "LableAxisAbstract.h"
 
 #import "RadarSetAbstract.h"
 #import "AxisAbstract.h"

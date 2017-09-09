@@ -63,9 +63,10 @@
             renderer.width = [_gridDrawConfig lineWidth];
             renderer.color = [_gridDrawConfig axisLineColor];
             renderer.strColor = [_gridDrawConfig axisLableColor];
-            renderer.showSep = [abstract over] > 0;
+            renderer.showSep = [abstract over] != 0;
             renderer.textOffSet = CGSizeMake([abstract stringGap], 0);
             renderer.offSetRatio = [abstract offSetRatio];
+            renderer.showLine = NO;
             
             [self addRenderer:renderer];
         }
@@ -73,7 +74,7 @@
 }
 
 /**
- * 配置Number轴
+ * 配置Lable轴
  */
 - (void)configLableAxis
 {
@@ -105,13 +106,64 @@
             renderer.width = [_gridDrawConfig lineWidth];
             renderer.color = [_gridDrawConfig axisLineColor];
             renderer.strColor = [_gridDrawConfig axisLableColor];
-            renderer.showSep = [abstract over] > 0;
+            renderer.showSep = [abstract over] != 0;
             renderer.textOffSet = CGSizeMake(0, [abstract stringGap]);
             renderer.offSetRatio = [abstract offSetRatio];
             renderer.drawAxisCenter = [abstract drawStringAxisCenter];
             renderer.hiddenPattern = [abstract hiddenPattern];
+            renderer.showLine = NO;
             
             [self addRenderer:renderer];
+        }
+    }
+}
+
+/**
+ * 配置网格线
+ */
+- (void)configSplitGridLine
+{
+    NSArray * numberAbstracts = @[[_gridDrawConfig rightNumberAxis], [_gridDrawConfig leftNumberAxis]];
+    NSArray * lableAbstracts = @[[_gridDrawConfig topLableAxis], [_gridDrawConfig bottomLableAxis]];
+    
+    CGRect gridRect = UIEdgeInsetsInsetRect(self.frame, _gridDrawConfig.insets);
+    
+    for (id <NumberAxisAbstract> numberAxis in numberAbstracts) {
+        
+        if (![numberAxis showSplitLine]) continue;
+        
+        GGLine line = [numberAxis axisLine];
+        CGFloat lineLength = GGLengthLine(line);
+        CGFloat splitLength = lineLength / [numberAxis splitCount];
+        
+        for (NSInteger i = 0; i <= [numberAxis splitCount]; i++) {
+            
+            GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
+            lineRenderer.line = GGLineRectForY(gridRect, line.start.y + splitLength * i);
+            lineRenderer.color = [_gridDrawConfig axisSplitLineColor];
+            lineRenderer.width = [_gridDrawConfig lineWidth];
+            lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
+            [self addRenderer:lineRenderer];
+        }
+    }
+    
+    for (id <LableAxisAbstract> lableAxis in lableAbstracts) {
+        
+        if (![lableAxis showSplitLine]) continue;
+        
+        NSInteger splitCount = [lableAxis lables].count;
+        splitCount -= ![lableAxis drawStringAxisCenter];
+        CGFloat length = GGLengthLine([lableAxis axisLine]);
+        CGFloat splitLength = length / splitCount;
+        
+        for (NSInteger i = 0; i <= splitCount; i++) {
+            
+            GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
+            lineRenderer.line = GGLineRectForX(gridRect, [lableAxis axisLine].start.x + splitLength * i);
+            lineRenderer.color = [_gridDrawConfig axisSplitLineColor];
+            lineRenderer.width = [_gridDrawConfig lineWidth];
+            lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
+            [self addRenderer:lineRenderer];
         }
     }
 }
@@ -160,8 +212,11 @@
 - (void)drawChart
 {
     [self removeAllRenderer];
+    
     [self configNumberAxis];
     [self configLableAxis];
+    [self configSplitGridLine];
+    
     [self setNeedsDisplay];
 }
 

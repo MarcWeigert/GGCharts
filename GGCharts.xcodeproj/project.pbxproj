@@ -84,7 +84,6 @@
 		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
 		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
 		2B71245F1F5CEC85004C0FA8 /* QueryCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71245E1F5CEC85004C0FA8 /* QueryCanvas.m */; };
-		2B7124621F5CF1B1004C0FA8 /* LineQueryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7124611F5CF1B1004C0FA8 /* LineQueryData.m */; };
 		2B7124651F5E48D3004C0FA8 /* BaseLineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7124641F5E48D3004C0FA8 /* BaseLineBarChart.m */; };
 		2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF61F0B328B0085095C /* BaseStockChart.m */; };
 		2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF91F0B42E00085095C /* BaseShapeScaler.m */; };
@@ -315,8 +314,6 @@
 		2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpsLineViewController.m; sourceTree = "<group>"; };
 		2B71245D1F5CEC85004C0FA8 /* QueryCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCanvas.h; sourceTree = "<group>"; };
 		2B71245E1F5CEC85004C0FA8 /* QueryCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCanvas.m; sourceTree = "<group>"; };
-		2B7124601F5CF1B1004C0FA8 /* LineQueryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineQueryData.h; sourceTree = "<group>"; };
-		2B7124611F5CF1B1004C0FA8 /* LineQueryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineQueryData.m; sourceTree = "<group>"; };
 		2B7124631F5E48D3004C0FA8 /* BaseLineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineBarChart.h; sourceTree = "<group>"; };
 		2B7124641F5E48D3004C0FA8 /* BaseLineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLineBarChart.m; sourceTree = "<group>"; };
 		2B73AFF11F0B2DC70085095C /* VolumeAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeAbstract.h; sourceTree = "<group>"; };
@@ -872,8 +869,6 @@
 				2B8B62BC1F3419BA00028F40 /* LineDataSet.m */,
 				2B241AF21F34643000B9DFC3 /* GGLineData.h */,
 				2B241AF31F34643000B9DFC3 /* GGLineData.m */,
-				2B7124601F5CF1B1004C0FA8 /* LineQueryData.h */,
-				2B7124611F5CF1B1004C0FA8 /* LineQueryData.m */,
 			);
 			path = LineData;
 			sourceTree = "<group>";
@@ -1249,7 +1244,6 @@
 				2B6843111F612D1D00559001 /* XAxis.m in Sources */,
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,
 				2B9788751F09D4E2002A2A3C /* BaseCountChart.m in Sources */,
-				2B7124621F5CF1B1004C0FA8 /* LineQueryData.m in Sources */,
 				2B2722831F0F550D00E4A295 /* ldump.c in Sources */,
 				2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */,
 				2B27228E1F0F550D00E4A295 /* loslib.c in Sources */,

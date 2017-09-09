@@ -54,6 +54,11 @@
 @property (nonatomic, strong, readonly) NSSet *showIndexSet;
 
 /**
+ * 是否显示轴网格线
+ */
+@property (nonatomic, assign, readonly) BOOL showSplitLine;
+
+/**
  * 是否显示分割线
  */
 

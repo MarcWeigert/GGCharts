@@ -79,6 +79,11 @@
 @property (nonatomic, assign, readonly) CGPoint offSetRatio;
 
 /**
+ * 是否显示轴网格线
+ */
+@property (nonatomic, assign, readonly) BOOL showSplitLine;
+
+/**
  * 轴标题
  */
 @property (nonatomic, assign, readonly) id <NumberAxisAbstract> name;

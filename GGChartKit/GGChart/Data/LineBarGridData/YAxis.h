@@ -55,6 +55,11 @@
 @property (nonatomic, assign) CGPoint offSetRatio;
 
 /**
+ * 是否显示轴网格线
+ */
+@property (nonatomic, assign) BOOL showSplitLine;
+
+/**
  * 轴标题
  */
 @property (nonatomic, assign) AxisName * name;

@@ -14,9 +14,24 @@
 
 @interface GGLineRenderer : NSObject <GGRenderProtocol>
 
+/**
+ * 渲染器线结构体
+ */
 @property (nonatomic, assign) GGLine line;
+
+/**
+ * 线宽
+ */
 @property (nonatomic, assign) CGFloat width;
+
+/**
+ * 折线颜色
+ */
 @property (nonatomic, strong) UIColor *color;
-@property (nonatomic, assign) CGSize dash;
+
+/**
+ * 虚线样式
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *dashPattern;
 
 @end

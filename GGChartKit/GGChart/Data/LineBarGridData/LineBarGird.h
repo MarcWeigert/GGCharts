@@ -53,6 +53,11 @@
  */
 @property (nonatomic, strong) UIColor * lineColor;
 
+/**
+ * 虚线样式
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *dashPattern;
+
 
 #pragma mark - 轴设置
 

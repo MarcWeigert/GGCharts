@@ -286,7 +286,7 @@
     
     self.lineRenderer.width = .7f;
     self.lineRenderer.color = RGB(198, 119, 63);
-    self.lineRenderer.dash = CGSizeMake(4, 2);
+    self.lineRenderer.dashPattern = @[@4, @2];
     
     self.priceRenderer.fillColor = RGB(248, 221, 203);
     self.priceRenderer.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);

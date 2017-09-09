@@ -53,5 +53,9 @@
  */
 @property (nonatomic, strong) NSSet <NSNumber *> * showIndexSet;
 
+/**
+ * 是否显示轴网格线
+ */
+@property (nonatomic, assign) BOOL showSplitLine;
 
 @end

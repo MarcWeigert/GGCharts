@@ -70,8 +70,8 @@
     line.lineColor = RGB(202, 71, 33);
     line.lineDataAry = stockPrice;
     line.scalerMode = ScalerAxisRight;
-    line.shapeRadius = 3.0f;
-    line.shapeFillColor = [UIColor whiteColor];
+//    line.shapeRadius = 3.0f;
+//    line.shapeFillColor = [UIColor whiteColor];
     
     NSArray * bottomLables = @[@"02", @"03", @"03", @"04", @"04", @"05", @"05", @"06", @"06", @"07", @"07"];
     
@@ -86,20 +86,19 @@
     lineSet.gridConfig.axisLineColor = [UIColor blackColor];
     lineSet.gridConfig.axisLableFont = [UIFont systemFontOfSize:9];
     lineSet.gridConfig.axisLableColor = RGB(186, 167, 169);
+    lineSet.gridConfig.dashPattern = @[@2, @4, @2];
     
     /** 底轴 */
     lineSet.gridConfig.bottomLableAxis.lables = bottomLables;
     lineSet.gridConfig.bottomLableAxis.over = 2;
     lineSet.gridConfig.bottomLableAxis.hiddenPattern = @[@2];
-    
-    lineSet.gridConfig.topLableAxis.lables = bottomLables;
-    lineSet.gridConfig.topLableAxis.over = -2;
-    lineSet.gridConfig.topLableAxis.drawStringAxisCenter = YES;
+    lineSet.gridConfig.bottomLableAxis.showSplitLine = YES;
     
     /** 左轴 */
     lineSet.gridConfig.leftNumberAxis.splitCount = 5;
     lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.2f";
     lineSet.gridConfig.leftNumberAxis.over = 3;
+    lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
     lineSet.gridConfig.leftNumberAxis.name.string = @"EPS";
     lineSet.gridConfig.leftNumberAxis.name.offSetSize = CGSizeMake(0, -15);
     lineSet.gridConfig.leftNumberAxis.name.offSetRatio = CGPointMake(-1, -0.5);

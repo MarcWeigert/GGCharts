@@ -30,6 +30,16 @@
  */
 @property (nonatomic, strong) GGAxisRenderer * bottomAxisRenderer;
 
+/**
+ * 左轴标题
+ */
+@property (nonatomic, strong) GGStringRenderer * leftAxisName;
+
+/**
+ * 右轴标题
+ */
+@property (nonatomic, strong) GGStringRenderer * rightAxisName;
+
 @end
 
 @implementation GridBackCanvas
@@ -140,7 +150,7 @@
             
             GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
             lineRenderer.line = GGLineRectForY(gridRect, line.start.y + splitLength * i);
-            lineRenderer.color = [_gridDrawConfig axisSplitLineColor];
+            lineRenderer.color = [_gridDrawConfig lineColor];
             lineRenderer.width = [_gridDrawConfig lineWidth];
             lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
             [self addRenderer:lineRenderer];
@@ -160,10 +170,39 @@
             
             GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
             lineRenderer.line = GGLineRectForX(gridRect, [lableAxis axisLine].start.x + splitLength * i);
-            lineRenderer.color = [_gridDrawConfig axisSplitLineColor];
+            lineRenderer.color = [_gridDrawConfig lineColor];
             lineRenderer.width = [_gridDrawConfig lineWidth];
             lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
             [self addRenderer:lineRenderer];
+        }
+    }
+}
+
+/**
+ * 设置轴标题
+ */
+- (void)configNumberAxisName
+{
+    NSArray * axisNames = @[[[_gridDrawConfig leftNumberAxis] name], [[_gridDrawConfig rightNumberAxis] name]];
+    NSArray * titleRenderers = @[self.leftAxisName, self.rightAxisName];
+    NSArray * axisRenderers = @[self.leftAxisRenderer, self.rightAxisRenderer];
+    
+    for (NSInteger i = 0; i < axisNames.count; i++) {
+        
+        id <NumberAxisNameAbstract> axisName = axisNames[i];
+        GGStringRenderer * renderer = titleRenderers[i];
+        GGAxisRenderer * axisRenderer = axisRenderers[i];
+        
+        if ([axisName string].length > 0) {
+            
+            renderer.string = [axisName string];
+            renderer.font = [axisName font];
+            renderer.color = [axisName color];
+            renderer.offSetRatio = [axisName offSetRatio];
+            renderer.offset = [axisName offSetSize];
+            renderer.point = axisRenderer.axis.line.start;
+            
+            [self addRenderer:renderer];
         }
     }
 }
@@ -216,62 +255,19 @@
     [self configNumberAxis];
     [self configLableAxis];
     [self configSplitGridLine];
+    [self configNumberAxisName];
     
     [self setNeedsDisplay];
 }
 
 #pragma mark - Lazy
 
-/**
- * 左轴渲染器
- */
-- (GGAxisRenderer *)leftAxisRenderer
-{
-    if (_leftAxisRenderer == nil) {
-        
-        _leftAxisRenderer = [[GGAxisRenderer alloc] init];
-    }
-    
-    return _leftAxisRenderer;
-}
+GGLazyGetMethod(GGAxisRenderer, rightAxisRenderer);
+GGLazyGetMethod(GGAxisRenderer, leftAxisRenderer);
+GGLazyGetMethod(GGAxisRenderer, topAxisRenderer);
+GGLazyGetMethod(GGAxisRenderer, bottomAxisRenderer);
 
-/**
- * 右轴渲染器
- */
-- (GGAxisRenderer *)rightAxisRenderer
-{
-    if (_rightAxisRenderer == nil) {
-        
-        _rightAxisRenderer = [[GGAxisRenderer alloc] init];
-    }
-    
-    return _rightAxisRenderer;
-}
-
-/**
- * 顶轴渲染器
- */
-- (GGAxisRenderer *)topAxisRenderer
-{
-    if (_topAxisRenderer == nil) {
-        
-        _topAxisRenderer = [[GGAxisRenderer alloc] init];
-    }
-    
-    return _topAxisRenderer;
-}
-
-/**
- * 底轴渲染器
- */
-- (GGAxisRenderer *)bottomAxisRenderer
-{
-    if (_bottomAxisRenderer == nil) {
-        
-        _bottomAxisRenderer = [[GGAxisRenderer alloc] init];
-    }
-    
-    return _bottomAxisRenderer;
-}
+GGLazyGetMethod(GGStringRenderer, rightAxisName);
+GGLazyGetMethod(GGStringRenderer, leftAxisName);
 
 @end

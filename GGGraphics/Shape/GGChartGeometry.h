@@ -147,12 +147,18 @@ GGRightLineRect(CGRect rect)
 CG_INLINE GGLine
 GGLineRectForX(CGRect rect, CGFloat x)
 {
-   return GGLineMake(x, CGRectGetMinY(rect), x, CGRectGetMaxY(rect));
+    x = x > CGRectGetMaxX(rect) ? CGRectGetMaxX(rect) : x;
+    x = x < CGRectGetMinX(rect) ? CGRectGetMinX(rect) : x;
+    
+    return GGLineMake(x, CGRectGetMinY(rect), x, CGRectGetMaxY(rect));
 }
 
 CG_INLINE GGLine
 GGLineRectForY(CGRect rect, CGFloat y)
 {
+    y = y > CGRectGetMaxY(rect) ? CGRectGetMaxY(rect) : y;
+    y = y < CGRectGetMinY(rect) ? CGRectGetMinY(rect) : y;
+    
     return GGLineMake(CGRectGetMinX(rect), y, CGRectGetMaxX(rect), y);
 }
 
@@ -452,4 +458,29 @@ GGGetLineEndPointArcMoveX(GGLine line, CGFloat move)
     CGFloat arc = GGYCircular(line);
     NSInteger base = arc > 0 ? 1 : -1;
     return CGPointMake(move * base + line.end.x, line.end.y);
+}
+
+#pragma mark - 范围
+
+struct GGSizeRange
+{
+    CGFloat max;
+    CGFloat min;
+};
+typedef struct GGSizeRange GGSizeRange;
+
+CG_INLINE GGSizeRange
+GGSizeRangeMake(CGFloat max, CGFloat min)
+{
+    GGSizeRange range;
+    range.max = max;
+    range.min = min;
+    
+    return range;
+}
+
+CG_INLINE BOOL
+GGSizeRangeEqual(GGSizeRange size_range1, GGSizeRange size_range2)
+{
+    return size_range1.max == size_range2.max && size_range1.min == size_range2.min;
 }

@@ -9,6 +9,8 @@
 #ifndef NumberAxisAbstract_h
 #define NumberAxisAbstract_h
 
+#import "BaseAxisAbstract.h"
+
 #pragma mark - 数字轴标题
 
 @protocol NumberAxisNameAbstract <NSObject>
@@ -44,12 +46,7 @@
 
 #pragma mark - 数字轴
 
-@protocol NumberAxisAbstract <NSObject>
-
-/**
- * 轴线结构体
- */
-@property (nonatomic, assign, readonly) GGLine axisLine;
+@protocol NumberAxisAbstract <BaseAxisAbstract>
 
 /**
  * 轴格式化字符串
@@ -62,31 +59,9 @@
 @property (nonatomic, assign, readonly) NSUInteger splitCount;
 
 /**
- * 轴线分割线长度
- */
-@property (nonatomic, assign, readonly) CGFloat over;
-
-/**
- * 文字与轴之间的间距
- */
-@property (nonatomic, assign, readonly) CGFloat stringGap;
-
-/**
- * 轴文字偏移比例
- *
- * {0, 0} 数据点左下方绘制, {-0.5, -0.5} 数据点中心绘制, {-1, -1} 数据点右上方绘制
- */
-@property (nonatomic, assign, readonly) CGPoint offSetRatio;
-
-/**
- * 是否显示轴网格线
- */
-@property (nonatomic, assign, readonly) BOOL showSplitLine;
-
-/**
  * 轴标题
  */
-@property (nonatomic, assign, readonly) id <NumberAxisAbstract> name;
+@property (nonatomic, strong, readonly) id <NumberAxisNameAbstract> name;
 
 /**
  * 通过轴线当前长度获取数据

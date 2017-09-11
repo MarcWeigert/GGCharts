@@ -393,7 +393,6 @@
 		2B8B62A31F331CCF00028F40 /* RadarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarViewController.m; sourceTree = "<group>"; };
 		2B8B62A51F33203B00028F40 /* LineCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineCanvas.h; sourceTree = "<group>"; };
 		2B8B62A61F33203B00028F40 /* LineCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineCanvas.m; sourceTree = "<group>"; };
-		2B8B62A81F33275000028F40 /* AxisAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AxisAbstract.h; sourceTree = "<group>"; };
 		2B8B62AC1F3339AC00028F40 /* GridBackCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridBackCanvas.h; sourceTree = "<group>"; };
 		2B8B62AD1F3339AC00028F40 /* GridBackCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridBackCanvas.m; sourceTree = "<group>"; };
 		2B8B62BB1F3419BA00028F40 /* LineDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDataSet.h; sourceTree = "<group>"; };
@@ -405,6 +404,7 @@
 		2B8CEB7D1F3012E2005D441D /* RadarSetAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
 		2B8CEB821F302CB5005D441D /* GGPolygonRenderder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPolygonRenderder.h; sourceTree = "<group>"; };
 		2B8CEB831F302CB5005D441D /* GGPolygonRenderder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPolygonRenderder.m; sourceTree = "<group>"; };
+		2B8DE4411F663D1C000F3DB4 /* BaseAxisAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseAxisAbstract.h; sourceTree = "<group>"; };
 		2B932C231F381A4300D19378 /* GGLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGLineChart.h; sourceTree = "<group>"; };
 		2B932C241F381A4300D19378 /* GGLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGLineChart.m; sourceTree = "<group>"; };
 		2B932C261F381CA600D19378 /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
@@ -716,6 +716,7 @@
 			children = (
 				2B6842FF1F60F5DC00559001 /* GridAbstract.h */,
 				2B6843021F60F5DC00559001 /* QueryAbstract.h */,
+				2B8DE4411F663D1C000F3DB4 /* BaseAxisAbstract.h */,
 				2B6843001F60F5DC00559001 /* LableAxisAbstract.h */,
 				2B6843011F60F5DC00559001 /* NumberAxisAbstract.h */,
 			);
@@ -901,7 +902,6 @@
 				2B8CEB7C1F300D97005D441D /* RadarAbstract.h */,
 				2B8CEB7D1F3012E2005D441D /* RadarSetAbstract.h */,
 				2B8B62911F32DA2400028F40 /* RadarBackAbstract.h */,
-				2B8B62A81F33275000028F40 /* AxisAbstract.h */,
 				2B241AF11F345A0200B9DFC3 /* LineDrawAbstract.h */,
 				2B8B62BF1F3423C700028F40 /* LineCanvasAbstract.h */,
 				2B45C5001F3FD53B004F1AC6 /* BarCanvasAbstract.h */,

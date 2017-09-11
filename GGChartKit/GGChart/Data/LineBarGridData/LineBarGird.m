@@ -47,6 +47,8 @@
         _leftNumberAxis = [[YAxis alloc] init];
         _leftNumberAxis.offSetRatio = CGPointMake(-1.0f, -.5f);
         _leftNumberAxis.stringGap = -2.0f;
+        _leftNumberAxis.name.offSetRatio = CGPointMake(-.5f, -1.0f);
+        _leftNumberAxis.name.offSetSize = CGSizeMake(0, -5);
     }
     
     return _leftNumberAxis;
@@ -62,6 +64,8 @@
         _rightNumberAxis = [[YAxis alloc] init];
         _rightNumberAxis.offSetRatio = CGPointMake(.0f, -.5f);
         _rightNumberAxis.stringGap = 2.0f;
+        _rightNumberAxis.name.offSetRatio = CGPointMake(-.5f, -1.0f);
+        _rightNumberAxis.name.offSetSize = CGSizeMake(0, -5);
     }
     
     return _rightNumberAxis;

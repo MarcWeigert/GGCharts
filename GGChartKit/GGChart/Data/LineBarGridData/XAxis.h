@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AxisAbstract.h"
 
 @interface XAxis : NSObject
 
@@ -57,5 +56,10 @@
  * 是否显示轴网格线
  */
 @property (nonatomic, assign) BOOL showSplitLine;
+
+/**
+ * 是否显示查价标
+ */
+@property (nonatomic, assign) BOOL showQueryLable;
 
 @end

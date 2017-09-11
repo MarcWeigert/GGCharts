@@ -142,7 +142,7 @@ static const void * lineFillLayer = @"lineFillLayer";
 /** 填充色 */
 - (void)drawFillChartWithDraw:(id <LineDrawAbstract>)lineDraw
 {
-    if ([lineDraw lineFillColor] || [lineDraw gradientColors].count > 0) {
+    if ([lineDraw lineFillColor] || [lineDraw gradientFillColors].count > 0) {
         
         GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
         shape.lineWidth = 0;
@@ -161,13 +161,13 @@ static const void * lineFillLayer = @"lineFillLayer";
         
         SET_ASSOCIATED_ASSIGN(lineDraw, lineFillLayer, shape);
         
-        if ([lineDraw gradientColors].count > 0) {
+        if ([lineDraw gradientFillColors].count > 0) {
             
             [shape removeFromSuperlayer];
             
             CAGradientLayer * gradientLayer = [self getCAGradientEqualFrame];
             gradientLayer.mask = shape;
-            gradientLayer.colors = [lineDraw gradientColors];
+            gradientLayer.colors = [lineDraw gradientFillColors];
             gradientLayer.locations = [lineDraw locations];
         }
     }

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AxisAbstract.h"
 #import "AxisName.h"
 
 @interface YAxis : NSObject
@@ -60,8 +59,13 @@
 @property (nonatomic, assign) BOOL showSplitLine;
 
 /**
+ * 是否显示查价标
+ */
+@property (nonatomic, assign) BOOL showQueryLable;
+
+/**
  * 轴标题
  */
-@property (nonatomic, assign) AxisName * name;
+@property (nonatomic, strong) AxisName * name;
 
 @end

@@ -28,31 +28,7 @@
     
     if (self) {
         
-        _xTopAxisLable = [[GGStringRenderer alloc] init];
-        _xTopAxisLable.offSetRatio = CGPointMake(-.5f, 0);
-        _xTopAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-        [self addRenderer:_xTopAxisLable];
-        
-        _yLeftAxisLable = [[GGStringRenderer alloc] init];
-        _yLeftAxisLable.offSetRatio = CGPointMake(-.5f, 0);
-        _yLeftAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-        [self addRenderer:_yLeftAxisLable];
-        
-        _xBottomAxisLable = [[GGStringRenderer alloc] init];
-        _xBottomAxisLable.offSetRatio = CGPointMake(-.5f, 0);
-        _xBottomAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-        [self addRenderer:_xBottomAxisLable];
-        
-        _yRightAxisLable = [[GGStringRenderer alloc] init];
-        _yRightAxisLable.offSetRatio = CGPointMake(-.5f, 0);
-        _yRightAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-        [self addRenderer:_yRightAxisLable];
-        
-        _xLine = [[GGLineRenderer alloc] init];
-        [self addRenderer:_xLine];
-        
-        _yLine = [[GGLineRenderer alloc] init];
-        [self addRenderer:_yLine];
+        self.isCloseDisableActions = YES;
     }
     
     return self;
@@ -61,6 +37,101 @@
 - (void)setQueryDrawConfig:(id<QueryAbstract>)queryDrawConfig
 {
     _queryDrawConfig = queryDrawConfig;
+    
+    [self removeAllRenderer];
+    [self configLineRenderers];
+    [self configAxisRenderers];
+}
+
+/**
+ * 配置线
+ */
+- (void)configLineRenderers
+{
+    NSArray * lineAry = @[self.xLine, self.yLine];
+    
+    for (GGLineRenderer * lineRenderer in lineAry) {
+        
+        lineRenderer.dashPattern = [_queryDrawConfig dashPattern];
+        lineRenderer.color = [_queryDrawConfig lineColor];
+        lineRenderer.width = [_queryDrawConfig lineWidth];
+        [self addRenderer:lineRenderer];
+    }
+    
+    if (![[_queryDrawConfig leftNumberAxis] showQueryLable] &&
+        ![[_queryDrawConfig rightNumberAxis] showQueryLable]) {
+        
+        [self removeRenderer:self.yLine];
+    }
+}
+
+/** 
+ * 轴配置 
+ */
+- (void)configAxisRenderers
+{
+    CGRect drawRect = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
+    
+    NSArray * aryStringRenderders = @[self.yLeftAxisLable, self.yRightAxisLable, self.xTopAxisLable, self.xBottomAxisLable];
+    NSArray * aryAxisAbstract = @[[_queryDrawConfig leftNumberAxis], [_queryDrawConfig rightNumberAxis], [_queryDrawConfig topLableAxis], [_queryDrawConfig bottomLableAxis]];
+    
+    for (NSInteger i = 0; i < aryStringRenderders.count; i++) {
+        
+        GGStringRenderer * renderer = aryStringRenderders[i];
+        id <BaseAxisAbstract> baseAxis = aryAxisAbstract[i];
+        
+        if ([baseAxis showQueryLable]) {
+            
+            renderer.edgeInsets = [_queryDrawConfig lableInsets];
+            renderer.fillColor = [_queryDrawConfig lableBackgroundColor];
+            renderer.color = [_queryDrawConfig lableColor];
+            renderer.font = [_queryDrawConfig lableFont];
+            renderer.offSetRatio = [baseAxis offSetRatio];
+            [self addRenderer:renderer];
+            
+            if ([renderer isEqual:self.yLeftAxisLable] ||
+                [renderer isEqual:self.yRightAxisLable]) {
+                
+                renderer.verticalRange = GGSizeRangeMake(CGRectGetMaxY(drawRect), CGRectGetMinY(drawRect));
+            }
+            
+            if ([renderer isEqual:self.xTopAxisLable] ||
+                [renderer isEqual:self.xBottomAxisLable]) {
+                
+                renderer.horizontalRange = GGSizeRangeMake(CGRectGetMaxX(drawRect), CGRectGetMinX(drawRect));
+            }
+        }
+    }
+}
+
+/**
+ * 判断格式化字符串是否为Int
+ *
+ * @param format 格式化字符串
+ */
+- (BOOL)formatIsInt:(NSString *)format
+{
+    return ([format rangeOfString:@"%(.*)d" options:NSRegularExpressionSearch].location != NSNotFound
+            || [format rangeOfString:@"%(.*)i"].location != NSNotFound);
+}
+
+/**
+ * 获取Number轴格式化字符串
+ *
+ * @param numberAxis 轴数据格式
+ * @param pixY Y轴数据
+ */
+- (NSString *)getStringWithNumberAxis:(id <NumberAxisAbstract>)numberAxis pixY:(CGFloat)pixY
+{
+    CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
+    
+    pixY = pixY > CGRectGetMaxY(drawFrame) ? CGRectGetMaxY(drawFrame) : pixY;
+    pixY = pixY < CGRectGetMinY(drawFrame) ? CGRectGetMinY(drawFrame) : pixY;
+    
+    CGFloat dataForPix = [numberAxis getNumberWithPix:pixY];
+    NSString * dataFormat = [numberAxis dataFormatter];
+    
+    return [NSString stringWithFormat:dataFormat, [self formatIsInt:dataFormat] ? (int)dataForPix : dataForPix];
 }
 
 /**
@@ -70,12 +141,36 @@
  */
 - (void)updateWithPoint:(CGPoint)touchPoint
 {
+    if ([_queryDrawConfig lineWidth] <= 0) return;
+    
     CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
     
-    _xLine.line = GGLineRectForX(drawFrame, touchPoint.x);
-    _yLine.line = GGLineRectForY(drawFrame, touchPoint.y);
+    self.xLine.line = GGLineRectForX(drawFrame, touchPoint.x);
+    self.yLine.line = GGLineRectForY(drawFrame, touchPoint.y);
+    
+    self.yLeftAxisLable.string = [self getStringWithNumberAxis:[_queryDrawConfig leftNumberAxis] pixY:touchPoint.y];
+    self.yLeftAxisLable.point = self.yLine.line.start;
+    
+    self.yRightAxisLable.string = [self getStringWithNumberAxis:[_queryDrawConfig rightNumberAxis] pixY:touchPoint.y];
+    self.yRightAxisLable.point = self.yLine.line.end;
+    
+    self.xTopAxisLable.string = [[_queryDrawConfig topLableAxis] getLablesPix:touchPoint.x];
+    self.xTopAxisLable.point = self.xLine.line.start;
+    
+    self.xBottomAxisLable.string = [[_queryDrawConfig bottomLableAxis] getLablesPix:touchPoint.x];
+    self.xBottomAxisLable.point = self.xLine.line.end;
     
     [self setNeedsDisplay];
 }
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(GGStringRenderer, xTopAxisLable);
+GGLazyGetMethod(GGStringRenderer, yLeftAxisLable);
+GGLazyGetMethod(GGStringRenderer, xBottomAxisLable);
+GGLazyGetMethod(GGStringRenderer, yRightAxisLable);
+
+GGLazyGetMethod(GGLineRenderer, xLine);
+GGLazyGetMethod(GGLineRenderer, yLine);
 
 @end

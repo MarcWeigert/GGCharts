@@ -14,4 +14,18 @@
 
 @implementation AxisName
 
+/** 初始化方法 */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _font = [UIFont systemFontOfSize:9];
+        _color = [UIColor blackColor];
+    }
+    
+    return self;
+}
+
 @end

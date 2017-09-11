@@ -23,7 +23,17 @@
  */
 - (NSString *)getLablesPix:(CGFloat)pix
 {
-    return nil;
+    NSInteger splitCount = [self lables].count;
+    splitCount -= ![self drawStringAxisCenter];
+    
+    CGFloat lineLength = GGLengthLine(_axisLine);
+    CGFloat splitWidth = lineLength / splitCount;
+    
+    NSInteger idx = (pix - _axisLine.start.x) / splitWidth;
+    idx = idx < _lables.count ? idx : _lables.count - 1;
+    idx = idx < 0 ? 0 : idx;
+    
+    return _lables[idx];
 }
 
 @end

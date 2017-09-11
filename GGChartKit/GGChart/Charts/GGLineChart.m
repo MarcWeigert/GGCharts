@@ -63,10 +63,16 @@
 - (void)setLineDataSet:(LineDataSet *)lineDataSet
 {
     _lineDataSet = lineDataSet;
-    
-    _lineCanvas.lineDrawConfig = (id <LineCanvasAbstract>)lineDataSet;
-    _gridCanvas.gridDrawConfig = (id <GridAbstract>)lineDataSet.gridConfig;
-    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)lineDataSet.queryConfig;
+}
+
+/**
+ * 配置各层接口类
+ */
+- (void)configSubLayerModels
+{
+    _lineCanvas.lineDrawConfig = (id <LineCanvasAbstract>)_lineDataSet;
+    _gridCanvas.gridDrawConfig = (id <GridAbstract>)_lineDataSet.gridConfig;
+    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)_lineDataSet.queryConfig;
 }
 
 /**
@@ -87,6 +93,7 @@
 - (void)drawLineChart
 {
     [_lineDataSet updateChartConfigs:CGRectMake(0, 0, self.gg_width, self.gg_height)];
+    [self configSubLayerModels];
     
     [_lineCanvas drawChart];
     [_gridCanvas drawChart];

@@ -42,7 +42,6 @@
 #import "LableAxisAbstract.h"
 
 #import "RadarSetAbstract.h"
-#import "AxisAbstract.h"
 #import "GridAbstract.h"
 #import "LineCanvasAbstract.h"
 #import "LineDrawAbstract.h"

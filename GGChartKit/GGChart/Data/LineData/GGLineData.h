@@ -26,6 +26,7 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, assign) ScalerAxisMode scalerMode;
 
+
 #pragma mark - 折线数据
 
 /**
@@ -105,7 +106,7 @@ typedef enum : NSUInteger {
 /**
  * 折线填充渐变色, 数据内传入CGColor
  */
-@property (nonatomic, strong) NSArray * gradientColors;
+@property (nonatomic, strong) NSArray * gradientFillColors;
 
 /**
  * 填充色变化曲线, 由上至下

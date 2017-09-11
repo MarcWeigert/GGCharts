@@ -18,22 +18,22 @@
 /**
  * 查价层左边数据轴
  */
-@property (nonatomic, weak) YAxis * leftNumberAxis;
+@property (nonatomic, strong) YAxis * leftNumberAxis;
 
 /**
  * 查价层右边数据轴
  */
-@property (nonatomic, weak) YAxis * rightNumberAxis;
+@property (nonatomic, strong) YAxis * rightNumberAxis;
 
 /**
  * 查价层上层标签轴
  */
-@property (nonatomic, weak) XAxis * topLableAxis;
+@property (nonatomic, strong) XAxis * topLableAxis;
 
 /**
  * 查价层下层标签轴
  */
-@property (nonatomic, weak) XAxis * bottomLableAxis;
+@property (nonatomic, strong) XAxis * bottomLableAxis;
 
 
 #pragma mark - 查价设置
@@ -54,9 +54,9 @@
 @property (nonatomic, strong) UIColor * lineColor;
 
 /**
- * 查价虚线设置
+ * 虚线样式
  */
-@property (nonatomic, strong) NSArray <NSNumber *> *lineDash;
+@property (nonatomic, strong) NSArray <NSNumber *> *dashPattern;
 
 
 #pragma mark - 查价文字设置
@@ -80,5 +80,10 @@
  * 查价背景颜色
  */
 @property (nonatomic, strong) UIColor * lableBackgroundColor;
+
+/**
+ * 查价标签弧度
+ */
+@property (nonatomic, assign) CGFloat lableRadius;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "LineDataSet.h"
-#import "AxisAbstract.h"
 #import "LineCanvas.h"
 #import "NSArray+Stock.h"
 
@@ -47,6 +46,7 @@
     [self configSubModelRectAndInsets];
     [self configGridSubModel];
     [self configLineAndAxisModel];
+    [self configQueryModel];
 }
 
 /**
@@ -70,15 +70,21 @@
 {
     CGRect gridRect = UIEdgeInsetsInsetRect(_rect, _insets);
     
-    _gridConfig.leftNumberAxis.axisLine = GGLeftLineRect(gridRect);
-    _gridConfig.rightNumberAxis.axisLine = GGRightLineRect(gridRect);
-    _gridConfig.bottomLableAxis.axisLine = GGBottomLineRect(gridRect);
-    _gridConfig.topLableAxis.axisLine = GGTopLineRect(gridRect);
-    
-    _queryConfig.leftNumberAxis = _gridConfig.leftNumberAxis;
-    _queryConfig.rightNumberAxis = _gridConfig.rightNumberAxis;
-    _queryConfig.bottomLableAxis = _gridConfig.bottomLableAxis;
-    _queryConfig.topLableAxis = _gridConfig.topLableAxis;
+    self.gridConfig.leftNumberAxis.axisLine = GGLeftLineRect(gridRect);
+    self.gridConfig.rightNumberAxis.axisLine = GGRightLineRect(gridRect);
+    self.gridConfig.bottomLableAxis.axisLine = GGBottomLineRect(gridRect);
+    self.gridConfig.topLableAxis.axisLine = GGTopLineRect(gridRect);
+}
+
+/**
+ * 设置查价层数据
+ */
+- (void)configQueryModel
+{
+    self.queryConfig.leftNumberAxis = self.gridConfig.leftNumberAxis;
+    self.queryConfig.rightNumberAxis = self.gridConfig.rightNumberAxis;
+    self.queryConfig.bottomLableAxis = self.gridConfig.bottomLableAxis;
+    self.queryConfig.topLableAxis = self.gridConfig.topLableAxis;
 }
 
 /**

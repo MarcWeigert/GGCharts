@@ -9,8 +9,6 @@
 #ifndef GridAbstract_h
 #define GridAbstract_h
 
-#import "AxisAbstract.h"
-
 #import "NumberAxisAbstract.h"
 #import "LableAxisAbstract.h"
 

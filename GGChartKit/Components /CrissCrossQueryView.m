@@ -211,6 +211,9 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
     CGRect pushBeforeRect;
     CGRect pushAfterRect;
     
+//    _yAxisLable.verticalRange = GGSizeRangeMake(CGRectGetMaxY(self.frame), CGRectGetMinY(self.frame));
+    _xAxisLable.horizontalRange = GGSizeRangeMake(CGRectGetMaxX(self.frame), CGRectGetMinX(self.frame));
+    
     BOOL isLeft = NO;
     
     if (center.x < CGRectGetMinX(self.frame) + self.queryView.width) {

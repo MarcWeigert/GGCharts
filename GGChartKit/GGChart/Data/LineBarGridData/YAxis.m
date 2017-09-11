@@ -41,4 +41,19 @@
     return [DLineScaler getPriceWithYPixel:pix line:_axisLine max:_max.floatValue min:_min.floatValue];
 }
 
+#pragma mark - Lazy
+
+/**
+ * 轴名称
+ */
+- (AxisName *)name
+{
+    if (_name == nil) {
+        
+        _name = [[AxisName alloc] init];
+    }
+    
+    return _name;
+}
+
 @end

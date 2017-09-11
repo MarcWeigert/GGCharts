@@ -57,7 +57,7 @@
 /**
  * 查价虚线设置
  */
-@property (nonatomic, strong, readonly) NSArray <NSNumber *> *lineDash;
+@property (nonatomic, strong, readonly) NSArray <NSNumber *> *dashPattern;
 
 
 #pragma mark - 查价文字设置
@@ -81,6 +81,11 @@
  * 查价背景颜色
  */
 @property (nonatomic, strong, readonly) UIColor * lableBackgroundColor;
+
+/**
+ * 查价标签弧度
+ */
+@property (nonatomic, assign, readonly) CGFloat lableRadius;
 
 @end
 

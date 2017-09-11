@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AxisAbstract.h"
 
 @interface AxisName : NSObject
 

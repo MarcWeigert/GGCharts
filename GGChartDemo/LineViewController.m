@@ -33,7 +33,7 @@
     line.dataFormatter = @"%.f 分";
     line.stringColor = C_HEX(0xf64646);
     line.lineFillColor = [[UIColor redColor] colorWithAlphaComponent:.5f];
-    line.gradientColors = @[(__bridge id)C_HEX(0xF9EDD9).CGColor, (__bridge id)[UIColor whiteColor].CGColor];
+    line.gradientFillColors = @[(__bridge id)C_HEX(0xF9EDD9).CGColor, (__bridge id)[UIColor whiteColor].CGColor];
     line.locations = @[@0.7, @1];
     
     LineDataSet * lineSet = [[LineDataSet alloc] init];
@@ -53,6 +53,7 @@
     lineSet.gridConfig.leftNumberAxis.max = @100;
     lineSet.gridConfig.leftNumberAxis.min = @0;
     lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.f";
+    lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
     
     GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 180)];
     lineChart.lineDataSet = lineSet;

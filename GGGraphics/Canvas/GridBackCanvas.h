@@ -8,7 +8,6 @@
 
 #import "GGCanvas.h"
 #import "GridAbstract.h"
-#import "AxisAbstract.h"
 
 @interface GridBackCanvas : GGCanvas
 

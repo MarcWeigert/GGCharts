@@ -80,25 +80,33 @@
     lineSet.lineAry = @[liney1, liney2, line];
     lineSet.idRatio = .2f;
     
+    /** 查价 */
+    lineSet.queryConfig.lineWidth = .5f;
+    lineSet.queryConfig.lineColor = RGB(186, 167, 169);
+    lineSet.queryConfig.dashPattern = @[@2, @4, @2];
+    lineSet.queryConfig.lableInsets = UIEdgeInsetsMake(2, 2, 2, 2);
+    
     /** 网格 */
     lineSet.gridConfig.lineColor = RGB(186, 167, 169);
     lineSet.gridConfig.lineWidth = .7f;
     lineSet.gridConfig.axisLineColor = [UIColor blackColor];
-    lineSet.gridConfig.axisLableFont = [UIFont systemFontOfSize:9];
+    lineSet.gridConfig.axisLableFont = [UIFont systemFontOfSize:8.5];
     lineSet.gridConfig.axisLableColor = RGB(186, 167, 169);
-    lineSet.gridConfig.dashPattern = @[@2, @4, @2];
+    //lineSet.gridConfig.dashPattern = @[@2, @4, @2];
     
     /** 底轴 */
     lineSet.gridConfig.bottomLableAxis.lables = bottomLables;
     lineSet.gridConfig.bottomLableAxis.over = 2;
     lineSet.gridConfig.bottomLableAxis.hiddenPattern = @[@2];
     lineSet.gridConfig.bottomLableAxis.showSplitLine = YES;
+    lineSet.gridConfig.bottomLableAxis.showQueryLable = YES;
     
     /** 左轴 */
     lineSet.gridConfig.leftNumberAxis.splitCount = 5;
     lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.2f";
     lineSet.gridConfig.leftNumberAxis.over = 3;
     lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
+    lineSet.gridConfig.leftNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.leftNumberAxis.name.string = @"EPS";
     lineSet.gridConfig.leftNumberAxis.name.offSetSize = CGSizeMake(0, -15);
     lineSet.gridConfig.leftNumberAxis.name.offSetRatio = CGPointMake(-1, -0.5);
@@ -108,12 +116,14 @@
     /** 右轴 */
     lineSet.gridConfig.rightNumberAxis.splitCount = 5;
     lineSet.gridConfig.rightNumberAxis.over = -3;
+    lineSet.gridConfig.rightNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.rightNumberAxis.name.string = @"股票价格";
     lineSet.gridConfig.rightNumberAxis.name.font = [UIFont boldSystemFontOfSize:10];
+    lineSet.gridConfig.leftNumberAxis.name.offSetRatio = CGPointMake(-1, -0.5);
     lineSet.gridConfig.rightNumberAxis.name.offSetSize = CGSizeMake(0, -15);
     lineSet.gridConfig.rightNumberAxis.name.color = RGB(181, 220, 249);
     
-    CGRect rect = CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 250);
+    CGRect rect = CGRectMake(0, 190, [UIScreen mainScreen].bounds.size.width, 250);
     GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:rect];
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];

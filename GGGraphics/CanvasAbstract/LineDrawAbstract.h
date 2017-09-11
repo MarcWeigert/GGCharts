@@ -97,7 +97,7 @@
 /**
  * 折线填充渐变色, 数组传入CGColor
  */
-@property (nonatomic, strong, readonly) NSArray * gradientColors;
+@property (nonatomic, strong, readonly) NSArray * gradientFillColors;
 
 /**
  * 填充色变化曲线, 由上至下

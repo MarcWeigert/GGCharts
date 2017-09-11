@@ -27,7 +27,7 @@
     GGLineData * line = [[GGLineData alloc] init];
     line.lineWidth = 1;
     line.lineColor = C_HEX(0xf64646);
-    line.lineDataAry = @[@28, @65, @45, @78, @82, @65];
+    line.dataAry = @[@28, @65, @45, @78, @82, @65];
     line.shapeRadius = 3;
     line.stringFont = [UIFont systemFontOfSize:12];
     line.dataFormatter = @"%.f 分";

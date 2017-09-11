@@ -48,6 +48,7 @@
 #import "BarDrawAbstract.h"
 #import "BarCanvasAbstract.h"
 #import "QueryAbstract.h"
+#import "BaseLineBarAbstract.h"
 
 #import "Animator.h"
 

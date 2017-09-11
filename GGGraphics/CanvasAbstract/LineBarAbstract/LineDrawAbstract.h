@@ -9,22 +9,9 @@
 #ifndef LineDrawAbstract_h
 #define LineDrawAbstract_h
 
-#import "DLineScaler.h"
+#import "BaseLineBarAbstract.h"
 
-@protocol LineDrawAbstract <NSObject>
-
-#pragma mark - 折线数据
-
-/**
- * 用来显示的数据
- */
-@property (nonatomic, strong, readonly) NSArray <NSNumber *> *lineDataAry;
-
-/**
- * 绘制折线点
- */
-@property (nonatomic, assign, readonly) CGPoint * points;
-
+@protocol LineDrawAbstract <BaseLineBarAbstract>
 
 #pragma mark - 折线配置
 

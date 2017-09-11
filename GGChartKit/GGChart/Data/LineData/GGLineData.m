@@ -34,10 +34,10 @@
 /**
  * 用来显示的数据
  */
-- (void)setLineDataAry:(NSArray<NSNumber *> *)lineDataAry
+- (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {
-    _lineDataAry = lineDataAry;
-    self.lineScaler.dataAry = lineDataAry;
+    _dataAry = dataAry;
+    self.lineScaler.dataAry = dataAry;
 }
 
 /**

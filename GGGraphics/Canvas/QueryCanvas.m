@@ -135,6 +135,28 @@
 }
 
 /**
+ * 通过像素点获取轴向文字
+ *
+ * @param pix 像素点
+ *
+ * @return 转换像素点
+ */
+- (CGFloat)convertXAxisPix:(CGFloat)pixX
+{
+    CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
+    NSInteger splitCount = [[_queryDrawConfig lineBarArray].firstObject dataAry].count;
+    
+    CGFloat lineLength = drawFrame.size.width;
+    CGFloat splitWidth = lineLength / splitCount;
+    
+    NSInteger idx = (pixX - drawFrame.origin.x) / splitWidth;
+    idx = idx < splitCount ? idx : splitCount - 1;
+    idx = idx < 0 ? 0 : idx;
+
+    return [[_queryDrawConfig lineBarArray].firstObject points][idx].x;
+}
+
+/**
  * 更新查价层
  *
  * touchPoint 显示中心点
@@ -145,7 +167,7 @@
     
     CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
     
-    self.xLine.line = GGLineRectForX(drawFrame, touchPoint.x);
+    self.xLine.line = GGLineRectForX(drawFrame, [self convertXAxisPix:touchPoint.x]);
     self.yLine.line = GGLineRectForY(drawFrame, touchPoint.y);
     
     self.yLeftAxisLable.string = [self getStringWithNumberAxis:[_queryDrawConfig leftNumberAxis] pixY:touchPoint.y];
@@ -154,10 +176,10 @@
     self.yRightAxisLable.string = [self getStringWithNumberAxis:[_queryDrawConfig rightNumberAxis] pixY:touchPoint.y];
     self.yRightAxisLable.point = self.yLine.line.end;
     
-    self.xTopAxisLable.string = [[_queryDrawConfig topLableAxis] getLablesPix:touchPoint.x];
+    self.xTopAxisLable.string = [[_queryDrawConfig topLableAxis] getLablesPix:[self convertXAxisPix:touchPoint.x]];
     self.xTopAxisLable.point = self.xLine.line.start;
     
-    self.xBottomAxisLable.string = [[_queryDrawConfig bottomLableAxis] getLablesPix:touchPoint.x];
+    self.xBottomAxisLable.string = [[_queryDrawConfig bottomLableAxis] getLablesPix:[self convertXAxisPix:touchPoint.x]];
     self.xBottomAxisLable.point = self.xLine.line.end;
     
     [self setNeedsDisplay];

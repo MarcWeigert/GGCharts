@@ -32,7 +32,7 @@ typedef enum : NSUInteger {
 /**
  * 用来显示的数据
  */
-@property (nonatomic, strong) NSArray <NSNumber *> *lineDataAry;
+@property (nonatomic, strong) NSArray <NSNumber *> *dataAry;
 
 
 #pragma mark - 折线配置

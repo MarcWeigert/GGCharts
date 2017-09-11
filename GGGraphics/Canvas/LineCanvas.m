@@ -86,7 +86,7 @@ static const void * lineFillLayer = @"lineFillLayer";
     shape.fillColor = [UIColor clearColor].CGColor;
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddLines(path, NULL, [lineDraw points], [lineDraw lineDataAry].count);
+    CGPathAddLines(path, NULL, [lineDraw points], [lineDraw dataAry].count);
     shape.path = path;
     CGPathRelease(path);
     
@@ -104,7 +104,7 @@ static const void * lineFillLayer = @"lineFillLayer";
         shape.fillColor = [lineDraw shapeFillColor] == nil ? [UIColor whiteColor].CGColor : [lineDraw shapeFillColor].CGColor;
         
         CGMutablePathRef path = CGPathCreateMutable();
-        GGPathAddCircles(path, [lineDraw points], [lineDraw shapeRadius], [lineDraw lineDataAry].count);
+        GGPathAddCircles(path, [lineDraw points], [lineDraw shapeRadius], [lineDraw dataAry].count);
         shape.path = path;
         CGPathRelease(path);
         
@@ -121,14 +121,14 @@ static const void * lineFillLayer = @"lineFillLayer";
         
         NSString * dataFromatter = [lineDraw dataFormatter] == nil ? @"%.2f" : [lineDraw dataFormatter];
         
-        for (NSInteger i = 0; i < [lineDraw lineDataAry].count; i++) {
+        for (NSInteger i = 0; i < [lineDraw dataAry].count; i++) {
             
             GGNumberRenderer * stringRenderer = [[GGNumberRenderer alloc] init];
             stringRenderer.color = [lineDraw stringColor];
             stringRenderer.fromPoint = CGPointMake([lineDraw points][i].x, [lineDraw bottomYPix]);
             stringRenderer.toPoint = [lineDraw points][i];
             stringRenderer.font = [lineDraw stringFont];
-            stringRenderer.toNumber = [[lineDraw lineDataAry][i] floatValue];
+            stringRenderer.toNumber = [[lineDraw dataAry][i] floatValue];
             stringRenderer.offSetRatio = CGPointMake(-.5f, -1.2f);
             stringRenderer.format = dataFromatter;
             [stringRenderer drawAtToNumberAndPoint];
@@ -149,10 +149,10 @@ static const void * lineFillLayer = @"lineFillLayer";
         shape.fillColor = [lineDraw lineFillColor].CGColor;
         
         CGPoint lineFirstPoint = [lineDraw points][0];
-        CGPoint lineLastPoint = [lineDraw points][lineDraw.lineDataAry.count - 1];
+        CGPoint lineLastPoint = [lineDraw points][lineDraw.dataAry.count - 1];
         
         CGMutablePathRef path = CGPathCreateMutable();
-        CGPathAddLines(path, NULL, [lineDraw points], lineDraw.lineDataAry.count);
+        CGPathAddLines(path, NULL, [lineDraw points], lineDraw.dataAry.count);
         CGPathAddLineToPoint(path, NULL, lineLastPoint.x, [lineDraw bottomYPix]);
         CGPathAddLineToPoint(path, NULL, lineFirstPoint.x, [lineDraw bottomYPix]);
         CGPathCloseSubpath(path);

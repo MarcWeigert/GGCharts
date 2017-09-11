@@ -58,17 +58,17 @@
     GGLineData * liney1 = [[GGLineData alloc] init];
     liney1.lineWidth = .5f;
     liney1.lineColor = RGB(234, 120, 86);
-    liney1.lineDataAry = epsY1;
+    liney1.dataAry = epsY1;
     
     GGLineData * liney2 = [[GGLineData alloc] init];
     liney2.lineWidth = .5f;
     liney2.lineColor = RGB(181, 220, 249);
-    liney2.lineDataAry = epsY2;
+    liney2.dataAry = epsY2;
     
     GGLineData * line = [[GGLineData alloc] init];
     line.lineWidth = 1.2;
     line.lineColor = RGB(202, 71, 33);
-    line.lineDataAry = stockPrice;
+    line.dataAry = stockPrice;
     line.scalerMode = ScalerAxisRight;
 //    line.shapeRadius = 3.0f;
 //    line.shapeFillColor = [UIColor whiteColor];

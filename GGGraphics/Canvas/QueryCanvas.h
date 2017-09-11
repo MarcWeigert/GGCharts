@@ -11,7 +11,10 @@
 
 @interface QueryCanvas : GGCanvas
 
-@property (nonatomic, strong) id <QueryAbstract> queryDrawConfig;       ///< 查价配置
+/**
+ * 查价配置
+ */
+@property (nonatomic, strong) id <QueryAbstract> queryDrawConfig;
 
 /**
  * 更新查价层

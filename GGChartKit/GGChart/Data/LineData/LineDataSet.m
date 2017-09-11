@@ -85,6 +85,7 @@
     self.queryConfig.rightNumberAxis = self.gridConfig.rightNumberAxis;
     self.queryConfig.bottomLableAxis = self.gridConfig.bottomLableAxis;
     self.queryConfig.topLableAxis = self.gridConfig.topLableAxis;
+    self.queryConfig.lineBarArray = (NSArray <id <BaseLineBarAbstract>> *)self.lineAry;
 }
 
 /**
@@ -98,13 +99,13 @@
     
     [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
         
-        if (obj.scalerMode == ScalerAxisLeft && obj.lineDataAry) {
+        if (obj.scalerMode == ScalerAxisLeft && obj.dataAry) {
         
-            [leftDataAry addObject:obj.lineDataAry];
+            [leftDataAry addObject:obj.dataAry];
         }
-        else if (obj.scalerMode == ScalerAxisRight && obj.lineDataAry) {
+        else if (obj.scalerMode == ScalerAxisRight && obj.dataAry) {
         
-            [rightDataAry addObject:obj.lineDataAry];
+            [rightDataAry addObject:obj.dataAry];
         }
     }];
     

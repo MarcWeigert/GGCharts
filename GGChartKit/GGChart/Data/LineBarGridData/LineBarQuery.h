@@ -18,22 +18,27 @@
 /**
  * 查价层左边数据轴
  */
-@property (nonatomic, strong) YAxis * leftNumberAxis;
+@property (nonatomic, weak) YAxis * leftNumberAxis;
 
 /**
  * 查价层右边数据轴
  */
-@property (nonatomic, strong) YAxis * rightNumberAxis;
+@property (nonatomic, weak) YAxis * rightNumberAxis;
 
 /**
  * 查价层上层标签轴
  */
-@property (nonatomic, strong) XAxis * topLableAxis;
+@property (nonatomic, weak) XAxis * topLableAxis;
 
 /**
  * 查价层下层标签轴
  */
-@property (nonatomic, strong) XAxis * bottomLableAxis;
+@property (nonatomic, weak) XAxis * bottomLableAxis;
+
+/**
+ * 查价中数据数组
+ */
+@property (nonatomic, weak) NSArray <id <BaseLineBarAbstract>> * lineBarArray;
 
 
 #pragma mark - 查价设置

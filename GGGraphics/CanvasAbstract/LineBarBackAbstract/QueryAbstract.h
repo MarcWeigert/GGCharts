@@ -37,10 +37,10 @@
  */
 @property (nonatomic, weak, readonly) id <LableAxisAbstract> bottomLableAxis;
 
-/**
- * 查价中数据数组
- */
-@property (nonatomic, weak, readonly) NSArray <id <BaseLineBarAbstract>> * lineBarArray;
+///**
+// * 查价中数据数组
+// */
+//@property (nonatomic, weak, readonly) NSArray <id <BaseLineBarAbstract>> * lineBarArray;
 
 
 #pragma mark - 查价设置

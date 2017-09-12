@@ -1,8 +1,8 @@
 //
-//  LineDataSet.h
+//  BaseLineBarSet.h
 //  GGCharts
 //
-//  Created by 黄舜 on 17/8/4.
+//  Created by 黄舜 on 17/9/12.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -13,24 +13,19 @@
 #import "LineBarQuery.h"
 
 typedef enum : NSUInteger {
-    LineDrawNomal,              ///< 默认格式
-    LineDrawHeapUp,             ///< 折线堆叠
-    LineDrawPNHeapUp,           ///< 折线正负堆叠
-    LineDrawParallel,           ///< 折线并列显示
-    LineDrawCenter,             ///< 折线居中
-} LineDataMode;
+    LineBarDrawNomal,              ///< 默认格式
+    LineBarDrawHeapUp,             ///< 折线堆叠
+    LineBarDrawPNHeapUp,           ///< 折线正负堆叠
+    LineBarDrawParallel,           ///< 折线并列显示
+    LineBarDrawCenter,             ///< 折线居中
+} LineBarDataMode;
 
-@interface LineDataSet : NSObject
+@interface BaseLineBarSet : NSObject
 
 /**
  * 折线图内边距
  */
 @property (nonatomic, assign) UIEdgeInsets insets;
-
-/**
- * 折线图数据数组
- */
-@property (nonatomic, strong) NSArray <GGLineData *> * lineAry;
 
 /**
  * 折线图背景层设置
@@ -45,12 +40,22 @@ typedef enum : NSUInteger {
 /**
  * 折线表现形式
  */
-@property (nonatomic, assign) LineDataMode lineMode;
+@property (nonatomic, assign) LineBarDataMode lineBarMode;
 
 /**
  * 数据中极大极小值偏移比率, 默认0.1
  */
 @property (nonatomic, assign) CGFloat idRatio;
+
+/**
+ * 设置折线与轴数据
+ */
+- (void)configLineAndAxisModel;
+
+/**
+ * 获取数据数组(子类重写)
+ */
+- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray;
 
 /**
  * 折线图更新数据, 绘制前配置

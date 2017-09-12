@@ -143,17 +143,19 @@
  */
 - (CGFloat)convertXAxisPix:(CGFloat)pixX
 {
-    CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
-    NSInteger splitCount = [[_queryDrawConfig lineBarArray].firstObject dataAry].count;
+//    CGRect drawFrame = UIEdgeInsetsInsetRect(self.frame, [_queryDrawConfig insets]);
+//    NSInteger splitCount = [[_queryDrawConfig lineBarArray].firstObject dataAry].count;
+//    
+//    CGFloat lineLength = drawFrame.size.width;
+//    CGFloat splitWidth = lineLength / splitCount;
+//    
+//    NSInteger idx = (pixX - drawFrame.origin.x) / splitWidth;
+//    idx = idx < splitCount ? idx : splitCount - 1;
+//    idx = idx < 0 ? 0 : idx;
+//
+//    return [[_queryDrawConfig lineBarArray].firstObject points][idx].x;
     
-    CGFloat lineLength = drawFrame.size.width;
-    CGFloat splitWidth = lineLength / splitCount;
-    
-    NSInteger idx = (pixX - drawFrame.origin.x) / splitWidth;
-    idx = idx < splitCount ? idx : splitCount - 1;
-    idx = idx < 0 ? 0 : idx;
-
-    return [[_queryDrawConfig lineBarArray].firstObject points][idx].x;
+    return pixX;
 }
 
 /**

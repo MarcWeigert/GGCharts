@@ -45,7 +45,7 @@
 /**
  * 隐藏文字间隔
  */
-@property (nonatomic, strong) NSArray <NSNumber *> *hiddenPattern;
+@property (nonatomic, strong) NSArray <NSNumber *> * hiddenPattern;
 
 /**
  * 显示文字标签集合, 设置改选项 hiddenPattern 失效

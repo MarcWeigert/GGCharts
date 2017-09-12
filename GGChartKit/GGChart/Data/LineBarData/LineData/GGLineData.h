@@ -7,33 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DLineScaler.h"
+#import "BaseLineBarData.h"
 
-typedef enum : NSUInteger {
-    ScalerAxisLeft = 0,         ///< 左边轴
-    ScalerAxisRight,            ///< 右边轴
-} ScalerAxisMode;
-
-@interface GGLineData : NSObject
-
-/**
- * 折线定标器
- */
-@property (nonatomic, strong, readonly) DLineScaler * lineScaler;
-
-/**
- * 折线定标轴, 默认左轴
- */
-@property (nonatomic, assign) ScalerAxisMode scalerMode;
-
-
-#pragma mark - 折线数据
-
-/**
- * 用来显示的数据
- */
-@property (nonatomic, strong) NSArray <NSNumber *> *dataAry;
-
+@interface GGLineData : BaseLineBarData
 
 #pragma mark - 折线配置
 
@@ -74,36 +50,6 @@ typedef enum : NSUInteger {
  * 折线线宽
  */
 @property (nonatomic, assign) CGFloat shapeLineWidth;
-
-
-#pragma mark - 折线文字
-
-/**
- * 折线文字字体
- */
-@property (nonatomic, strong) UIFont * stringFont;
-
-/**
- * 折线文字颜色
- */
-@property (nonatomic, strong) UIColor * stringColor;
-
-/**
- * 折线格式化字符串
- */
-@property (nonatomic, strong) NSString * dataFormatter;
-
-/**
- * 折线文字偏移比例
- *
- * {-1, -1} 数据点右上方绘制, {0, 0} 数据点左下方绘制, {-0.5, -0.5} 数据点中心绘制
- */
-@property (nonatomic, assign) CGPoint offSetRatio;
-
-/**
- * 折线文字偏移
- */
-@property (nonatomic, assign) CGSize stringOffset;
 
 
 #pragma mark - 折线填充

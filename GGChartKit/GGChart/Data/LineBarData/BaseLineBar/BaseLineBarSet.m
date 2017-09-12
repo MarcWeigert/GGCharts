@@ -1,16 +1,15 @@
 //
-//  LineDataSet.m
+//  BaseLineBarSet.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/8/4.
+//  Created by 黄舜 on 17/9/12.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "LineDataSet.h"
-#import "LineCanvas.h"
+#import "BaseLineBarSet.h"
 #import "NSArray+Stock.h"
 
-@interface LineDataSet () <LineCanvasAbstract>
+@interface BaseLineBarSet ()
 
 /**
  * 绘制区域
@@ -19,7 +18,7 @@
 
 @end
 
-@implementation LineDataSet
+@implementation BaseLineBarSet
 
 /**
  * 初始化方法
@@ -35,6 +34,16 @@
     
     return self;
 }
+
+/**
+ * 获取数据数组
+ */
+- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray
+{
+    return nil;
+}
+
+#pragma mark - ConfigDatas
 
 /**
  * 折线图更新数据, 绘制前配置
@@ -54,13 +63,13 @@
  */
 - (void)configSubModelRectAndInsets
 {
-    _gridConfig.insets = _insets;
-    _queryConfig.insets = _insets;
+    self.gridConfig.insets = self.insets;
+    self.queryConfig.insets = self.insets;
     
-    for (GGLineData * lineData in _lineAry) {
+    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
         
-        lineData.lineScaler.rect = UIEdgeInsetsInsetRect(_rect, _insets);
-    }
+        obj.lineBarScaler.rect = UIEdgeInsetsInsetRect(_rect, self.insets);
+    }];
 }
 
 /**
@@ -68,7 +77,7 @@
  */
 - (void)configGridSubModel
 {
-    CGRect gridRect = UIEdgeInsetsInsetRect(_rect, _insets);
+    CGRect gridRect = UIEdgeInsetsInsetRect(_rect, self.insets);
     
     self.gridConfig.leftNumberAxis.axisLine = GGLeftLineRect(gridRect);
     self.gridConfig.rightNumberAxis.axisLine = GGRightLineRect(gridRect);
@@ -85,7 +94,6 @@
     self.queryConfig.rightNumberAxis = self.gridConfig.rightNumberAxis;
     self.queryConfig.bottomLableAxis = self.gridConfig.bottomLableAxis;
     self.queryConfig.topLableAxis = self.gridConfig.topLableAxis;
-    self.queryConfig.lineBarArray = (NSArray <id <BaseLineBarAbstract>> *)self.lineAry;
 }
 
 /**
@@ -97,60 +105,58 @@
     NSMutableArray * leftDataAry = [NSMutableArray array];
     NSMutableArray * rightDataAry = [NSMutableArray array];
     
-    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
         
         if (obj.scalerMode == ScalerAxisLeft && obj.dataAry) {
-        
+            
             [leftDataAry addObject:obj.dataAry];
         }
         else if (obj.scalerMode == ScalerAxisRight && obj.dataAry) {
-        
+            
             [rightDataAry addObject:obj.dataAry];
         }
     }];
     
     // 填充左轴极大极小值
-    if (_gridConfig.leftNumberAxis.max == nil ||
-        _gridConfig.leftNumberAxis.min == nil) {
+    if (self.gridConfig.leftNumberAxis.max == nil ||
+        self.gridConfig.leftNumberAxis.min == nil) {
         
         CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
-        [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:_idRatio];
+        [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:self.idRatio];
         
-        _gridConfig.leftNumberAxis.max = @(leftMax);
-        _gridConfig.leftNumberAxis.min = @(leftMin);
+        self.gridConfig.leftNumberAxis.max = @(leftMax);
+        self.gridConfig.leftNumberAxis.min = @(leftMin);
     }
     
     // 填充右轴极大极小值
-    if (_gridConfig.rightNumberAxis.max == nil ||
-        _gridConfig.rightNumberAxis.min == nil) {
+    if (self.gridConfig.rightNumberAxis.max == nil ||
+        self.gridConfig.rightNumberAxis.min == nil) {
         
         CGFloat rightMax = FLT_MIN, rightMin = FLT_MAX;
-        [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:_idRatio];
+        [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:self.idRatio];
         
-        _gridConfig.rightNumberAxis.max = @(rightMax);
-        _gridConfig.rightNumberAxis.min = @(rightMin);
+        self.gridConfig.rightNumberAxis.max = @(rightMax);
+        self.gridConfig.rightNumberAxis.min = @(rightMin);
     }
     
     // 填充定标器
-    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
         
-        if (_lineMode == LineDrawParallel) {      ///< 并列排列
+        if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
             
-            obj.lineScaler.xRatio = idx / self.lineAry.count;
+            obj.lineBarScaler.xRatio = idx / [self getBaseLineBarDataArray].count;
         }
         
         if (obj.scalerMode == ScalerAxisLeft) {
             
-            obj.lineScaler.max = _gridConfig.leftNumberAxis.max.floatValue;
-            obj.lineScaler.min = _gridConfig.leftNumberAxis.min.floatValue;
+            obj.lineBarScaler.max = self.gridConfig.leftNumberAxis.max.floatValue;
+            obj.lineBarScaler.min = self.gridConfig.leftNumberAxis.min.floatValue;
         }
         else if (obj.scalerMode == ScalerAxisRight) {
             
-            obj.lineScaler.max = _gridConfig.rightNumberAxis.max.floatValue;
-            obj.lineScaler.min = _gridConfig.rightNumberAxis.min.floatValue;
+            obj.lineBarScaler.max = self.gridConfig.rightNumberAxis.max.floatValue;
+            obj.lineBarScaler.min = self.gridConfig.rightNumberAxis.min.floatValue;
         }
-        
-        [obj.lineScaler updateScaler];
     }];
 }
 

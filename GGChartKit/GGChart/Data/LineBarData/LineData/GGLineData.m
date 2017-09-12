@@ -21,7 +21,7 @@
 /**
  * 折线定标器
  */
-- (DLineScaler *)lineScaler
+- (DLineScaler *)lineBarScaler
 {
     if (_lineScaler == nil) {
         
@@ -36,8 +36,9 @@
  */
 - (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {
-    _dataAry = dataAry;
-    self.lineScaler.dataAry = dataAry;
+    [super setDataAry:dataAry];
+    
+    self.lineBarScaler.dataAry = dataAry;
 }
 
 /**
@@ -45,7 +46,7 @@
  */
 - (CGPoint *)points
 {
-    return _lineScaler.linePoints;
+    return self.lineBarScaler.linePoints;
 }
 
 /**
@@ -55,10 +56,10 @@
 {
     if (_fillRoundNumber == nil) {      // 如果没有底部定标, 则取最低值
         
-        return CGRectGetMaxY(_lineScaler.rect);
+        return CGRectGetMaxY(self.lineBarScaler.rect);
     }
     
-    return [_lineScaler getYPixelWithData:_fillRoundNumber.floatValue];
+    return [self.lineBarScaler getYPixelWithData:_fillRoundNumber.floatValue];
 }
 
 @end

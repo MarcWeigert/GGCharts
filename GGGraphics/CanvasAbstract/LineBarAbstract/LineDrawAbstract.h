@@ -13,7 +13,7 @@
 
 @protocol LineDrawAbstract <BaseLineBarAbstract>
 
-#pragma mark - 折线配置
+#pragma mark - 折线样式
 
 /**
  * 折线线宽
@@ -24,6 +24,16 @@
  * 折线颜色
  */
 @property (nonatomic, strong, readonly) UIColor * lineColor;
+
+/**
+ * 折线虚线样式
+ */
+@property (nonatomic, strong, readonly) NSArray <NSNumber *> *dashPattern;
+
+/**
+ * 显示关键点设置
+ */
+@property (nonatomic, strong, readonly) NSSet <NSNumber *> * showShapeIndexSet;
 
 
 #pragma mark - 折线关键点配置
@@ -37,6 +47,11 @@
  * 折线关键点填充色
  */
 @property (nonatomic, strong, readonly) UIColor * shapeFillColor;
+
+/**
+ * 折线线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat shapeLineWidth;
 
 
 #pragma mark - 折线文字

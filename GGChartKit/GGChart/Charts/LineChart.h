@@ -10,7 +10,7 @@
 #import "LineDataSet.h"
 #import "BaseLineBarChart.h"
 
-@interface GGLineChart : BaseLineBarChart
+@interface LineChart : BaseLineBarChart
 
 /**
  * 折线配置类

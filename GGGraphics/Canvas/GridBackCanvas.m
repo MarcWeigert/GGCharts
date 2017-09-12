@@ -77,6 +77,7 @@
             renderer.textOffSet = CGSizeMake([abstract stringGap], 0);
             renderer.offSetRatio = [abstract offSetRatio];
             renderer.showLine = NO;
+            renderer.strFont = [_gridDrawConfig axisLableFont];
             
             [self addRenderer:renderer];
         }
@@ -100,7 +101,15 @@
             
             if ([abstract showIndexSet].count > 0) {    // 文字选择性显示
                 
+                GGLine line = [abstract axisLine];
+                CGFloat splitWidth = GGLengthLine(line) / ([abstract lables].count - 1);
+                renderer.axis = GGAxisLineMake(line, [abstract over], 0);
                 
+                [[abstract showIndexSet] enumerateObjectsUsingBlock:^(NSNumber * obj, BOOL * _Nonnull stop) {
+                    
+                    CGPoint point = CGPointMake(splitWidth * obj.integerValue, renderer.axis.line.start.y);
+                    [renderer addString:[abstract lables][obj.integerValue] point:point];
+                }];
             }
             else {      // 文字全部绘制
                 
@@ -116,6 +125,7 @@
             renderer.width = [_gridDrawConfig lineWidth];
             renderer.color = [_gridDrawConfig axisLineColor];
             renderer.strColor = [_gridDrawConfig axisLableColor];
+            renderer.strFont = [_gridDrawConfig axisLableFont];
             renderer.showSep = [abstract over] != 0;
             renderer.textOffSet = CGSizeMake(0, [abstract stringGap]);
             renderer.offSetRatio = [abstract offSetRatio];
@@ -161,19 +171,50 @@
         
         if (![lableAxis showSplitLine]) continue;
         
-        NSInteger splitCount = [lableAxis lables].count;
-        splitCount -= ![lableAxis drawStringAxisCenter];
-        CGFloat length = GGLengthLine([lableAxis axisLine]);
-        CGFloat splitLength = length / splitCount;
-        
-        for (NSInteger i = 0; i <= splitCount; i++) {
+        if ([lableAxis showIndexSet].count > 0) {    // 文字选择性显示
+            
+            GGLine line = [lableAxis axisLine];
+            CGFloat splitWidth = GGLengthLine(line) / ([lableAxis lables].count - 1);
+            
+            [[lableAxis showIndexSet] enumerateObjectsUsingBlock:^(NSNumber * obj, BOOL * _Nonnull stop) {
+                
+                CGPoint start = CGPointMake(splitWidth * obj.integerValue + gridRect.origin.x, CGRectGetMinY(gridRect));
+                CGPoint end = CGPointMake(splitWidth * obj.integerValue + gridRect.origin.x, CGRectGetMaxY(gridRect));
+                
+                GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
+                lineRenderer.line = GGPointLineMake(start, end);
+                lineRenderer.color = [_gridDrawConfig lineColor];
+                lineRenderer.width = [_gridDrawConfig lineWidth];
+                lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
+                [self addRenderer:lineRenderer];
+            }];
+            
+            CGPoint start = CGPointMake(GGLengthLine(line) + gridRect.origin.x, CGRectGetMinY(gridRect));
+            CGPoint end = CGPointMake(GGLengthLine(line) + gridRect.origin.x, CGRectGetMaxY(gridRect));
             
             GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
-            lineRenderer.line = GGLineRectForX(gridRect, [lableAxis axisLine].start.x + splitLength * i);
+            lineRenderer.line = GGPointLineMake(start, end);
             lineRenderer.color = [_gridDrawConfig lineColor];
             lineRenderer.width = [_gridDrawConfig lineWidth];
             lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
             [self addRenderer:lineRenderer];
+        }
+        else {
+        
+            NSInteger splitCount = [lableAxis lables].count;
+            splitCount -= ![lableAxis drawStringAxisCenter];
+            CGFloat length = GGLengthLine([lableAxis axisLine]);
+            CGFloat splitLength = length / splitCount;
+            
+            for (NSInteger i = 0; i <= splitCount; i++) {
+                
+                GGLineRenderer * lineRenderer = [[GGLineRenderer alloc] init];
+                lineRenderer.line = GGLineRectForX(gridRect, [lableAxis axisLine].start.x + splitLength * i);
+                lineRenderer.color = [_gridDrawConfig lineColor];
+                lineRenderer.width = [_gridDrawConfig lineWidth];
+                lineRenderer.dashPattern = [_gridDrawConfig dashPattern];
+                [self addRenderer:lineRenderer];
+            }
         }
     }
 }

@@ -7,10 +7,10 @@
 //
 
 #import "MDLineViewController.h"
-#import "MassChartData.h"
-#import "MDLineChart.h"
+#import "LineChart.h"
+#import "Colors.h"
 
-@interface MDLineViewController () <MDLineChartDelegate>
+@interface MDLineViewController ()
 
 @end
 
@@ -20,36 +20,83 @@
 {
     [super viewDidLoad];
 
-    self.title = @"MDLineChart";
+    self.title = @"LineChart";
     
     NSData *dataStock = [NSData dataWithContentsOfFile:[self stockDataJsonPath]];
     NSDictionary *stockJson = [NSJSONSerialization JSONObjectWithData:dataStock options:0 error:nil];
     NSArray *beforeAry = stockJson[@"beforeData"];
     
     NSMutableArray * aryLineData = [NSMutableArray array];
+    NSMutableSet * indexSet = [NSMutableSet set];
+    NSMutableSet * indexPointSet = [NSMutableSet set];
+    NSMutableArray * aryTitles = [NSMutableArray array];
     
-    for (NSDictionary * dictionary in beforeAry) {
+    for (NSInteger i = 0; i < beforeAry.count; i++) {
         
-        MassChartData * chartData = [MassChartData new];
-        chartData.title = [self titleDataString:dictionary[@"date"]];
-        chartData.value = [dictionary[@"close_price"] floatValue];
-        chartData.attribute = dictionary[@"dividend"];
-        [aryLineData addObject:chartData];
+        NSDictionary * dictionary = beforeAry[i];
+        [aryLineData addObject:dictionary[@"close_price"]];
+        [aryTitles addObject:[self titleDataString:dictionary[@"date"]]];
         
-        if (![chartData.attribute isKindOfClass:[NSNull class]]) {
+        if (i % 130 == 0) {
             
-            chartData.isKeyNote = YES;
+            [indexSet addObject:@(i)];
+        }
+        
+        if (![dictionary[@"dividend"] isKindOfClass:[NSNull class]]) {
+            
+            [indexPointSet addObject:@(i)];
         }
     }
     
-    MDLineChart * lineChart = [[MDLineChart alloc] initWithFrame:CGRectZero];
-    lineChart.frame = CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 250);
-    lineChart.dataSet = aryLineData;
-    [lineChart strockChart];
-    lineChart.delegate = self;
-    [self.view addSubview:lineChart];
+    GGLineData * lineData = [[GGLineData alloc] init];
+    lineData.dataAry = aryLineData;
+    lineData.lineWidth = .5f;
+    lineData.lineColor = __RGB_BLUE;
+    lineData.lineFillColor = [__RGB_BLUE colorWithAlphaComponent:.3f];
+    lineData.showShapeIndexSet = indexPointSet;
+    lineData.shapeRadius = 1.5f;
+    lineData.shapeFillColor = __RGB_RED;
     
-    [lineChart addAnimation:3];
+    LineDataSet * lineSet = [[LineDataSet alloc] init];
+    lineSet.insets = UIEdgeInsetsMake(15, 0, 15, 0);
+    lineSet.lineAry = @[lineData];
+    lineSet.idRatio = .1f;
+    
+    /** 查价 */
+    lineSet.queryConfig.lineWidth = .5f;
+    lineSet.queryConfig.lineColor = RGB(186, 167, 169);
+    lineSet.queryConfig.lableInsets = UIEdgeInsetsMake(2, 2, 2, 2);
+    
+    /** 网格 */
+    lineSet.gridConfig.lineColor = RGB(186, 167, 169);
+    lineSet.gridConfig.lineWidth = .7f;
+    lineSet.gridConfig.axisLineColor = [UIColor blackColor];
+    lineSet.gridConfig.axisLableFont = [UIFont systemFontOfSize:8];
+    lineSet.gridConfig.axisLableColor = RGB(186, 167, 169);
+    lineSet.gridConfig.dashPattern = @[@2, @2];
+    
+    /** 底轴 */
+    lineSet.gridConfig.bottomLableAxis.lables = aryTitles;
+    lineSet.gridConfig.bottomLableAxis.over = 0;
+    lineSet.gridConfig.bottomLableAxis.showSplitLine = YES;
+    lineSet.gridConfig.bottomLableAxis.showQueryLable = YES;
+    lineSet.gridConfig.bottomLableAxis.showIndexSet = indexSet;
+    lineSet.gridConfig.bottomLableAxis.offSetRatio = CGPointMake(0, 0);
+    
+    /** 左轴 */
+    lineSet.gridConfig.leftNumberAxis.splitCount = 7;
+    lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.2f";
+    lineSet.gridConfig.leftNumberAxis.over = 0;
+    lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
+    lineSet.gridConfig.leftNumberAxis.showQueryLable = YES;
+    lineSet.gridConfig.leftNumberAxis.offSetRatio = CGPointMake(0, -1.0f);
+    lineSet.gridConfig.leftNumberAxis.stringGap = 2;
+    
+    CGRect rect = CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 250);
+    LineChart * lineChart = [[LineChart alloc] initWithFrame:rect];
+    lineChart.lineDataSet = lineSet;
+    [lineChart drawLineChart];
+    [self.view addSubview:lineChart];
 }
 
 - (NSString *)titleDataString:(NSString *)string
@@ -67,108 +114,6 @@
     showFormatter.dateFormat = @"yy/MM/dd";
     
     return [showFormatter stringFromDate:date];
-}
-
-- (void)moveToKeyNodeData:(MassChartData *)chartData queryView:(StockQueryView *)queryView
-{
-    NSMutableArray * aryData = [NSMutableArray array];
-    
-    QueryData * q_data0 = [QueryData new];
-    q_data0.keyColor = [UIColor blackColor];
-    q_data0.valueColor = [UIColor blackColor];
-    q_data0.key = @"时间";
-    q_data0.value = chartData.title;
-    [aryData addObject:q_data0];
-    
-    QueryData * q_data1 = [QueryData new];
-    q_data1.keyColor = [UIColor blackColor];
-    q_data1.valueColor = [UIColor blackColor];
-    q_data1.key = @"收盘";
-    q_data1.value = [NSString stringWithFormat:@"%.2f", chartData.value];
-    [aryData addObject:q_data1];
-    
-    if ([chartData.attribute isKindOfClass:[NSNull class]]) {
-        
-        chartData.attribute = @{@"ex-dividend_date" : @"--",
-                                @"dividend_payout_ratio" : @"--",
-                                @"dividend_radio" : @"--",
-                                @"dividend_date" : @"--",
-                                @"stock_record_date" : @"--"};
-    }
-    
-    [chartData.attribute enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * stop) {
-        
-        QueryData * q_data = [QueryData new];
-        q_data.keyColor = [UIColor blackColor];
-        q_data.valueColor = [UIColor blackColor];
-        [aryData addObject:q_data];
-        
-        if ([key isEqualToString:@"ex-dividend_date"]) {
-            
-            q_data.key = @"股票除权日期";
-            q_data.value = obj;
-            
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                q_data.value = @"--";
-            }
-            else {
-            
-                q_data.value = [self titleDataString:(NSString *)obj];
-            }
-        }
-        else if ([key isEqualToString:@"dividend_payout_ratio"]) {
-            
-            q_data.key = @"股利支付率";
-            q_data.value = obj;
-            
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                q_data.value = @"--";
-            }
-        }
-        else if ([key isEqualToString:@"dividend_radio"]) {
-            
-            q_data.key = @"分红率";
-            q_data.value = obj;
-            
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                q_data.value = @"--";
-            }
-        }
-        else if ([key isEqualToString:@"dividend_date"]) {
-            
-            q_data.key = @"派息日";
-            q_data.value = obj;
-            
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                q_data.value = @"--";
-            }
-            else {
-                
-                q_data.value = [self titleDataString:(NSString *)obj];
-            }
-            
-        }
-        else if ([key isEqualToString:@"stock_record_date"]) {
-            
-            q_data.key = @"股票登记日期";
-            q_data.value = obj;
-            
-            if ([obj isKindOfClass:[NSNull class]]) {
-                
-                q_data.value = @"--";
-            }
-            else {
-                
-                q_data.value = [self titleDataString:(NSString *)obj];
-            }
-        }
-    }];
-    
-    queryView.aryData = aryData;
 }
 
 - (NSString *)stockDataJsonPath

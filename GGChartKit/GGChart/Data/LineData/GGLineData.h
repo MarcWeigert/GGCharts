@@ -47,6 +47,16 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) UIColor * lineColor;
 
+/**
+ * 折线虚线样式
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *dashPattern;
+
+/**
+ * 显示关键点设置
+ */
+@property (nonatomic, strong) NSSet <NSNumber *> * showShapeIndexSet;
+
 
 #pragma mark - 折线关键点配置
 
@@ -59,6 +69,11 @@ typedef enum : NSUInteger {
  * 折线关键点填充色
  */
 @property (nonatomic, strong) UIColor * shapeFillColor;
+
+/**
+ * 折线线宽
+ */
+@property (nonatomic, assign) CGFloat shapeLineWidth;
 
 
 #pragma mark - 折线文字

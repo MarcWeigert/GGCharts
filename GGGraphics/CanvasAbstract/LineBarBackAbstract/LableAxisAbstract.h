@@ -31,7 +31,7 @@
 /**
  * 显示文字标签集合, 设置改选项 hiddenPattern 失效
  */
-@property (nonatomic, strong, readonly) NSSet *showIndexSet;
+@property (nonatomic, strong, readonly) NSSet <NSNumber *> * showIndexSet;
 
 /**
  * 通过像素点获取轴向文字

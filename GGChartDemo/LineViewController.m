@@ -12,7 +12,7 @@
 #import "GGLineData.h"
 #import "GridBackCanvas.h"
 #import "GGChartDefine.h"
-#import "GGLineChart.h"
+#import "LineChart.h"
 
 @interface LineViewController ()
 
@@ -35,6 +35,8 @@
     line.lineFillColor = [[UIColor redColor] colorWithAlphaComponent:.5f];
     line.gradientFillColors = @[(__bridge id)C_HEX(0xF9EDD9).CGColor, (__bridge id)[UIColor whiteColor].CGColor];
     line.locations = @[@0.7, @1];
+    line.shapeLineWidth = 1;
+    line.dashPattern = @[@2, @2];
     
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
@@ -55,7 +57,7 @@
     lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.f";
     lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
     
-    GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 180)];
+    LineChart * lineChart = [[LineChart alloc] initWithFrame:CGRectMake(0, 90, [UIScreen mainScreen].bounds.size.width, 180)];
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];

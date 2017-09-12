@@ -6,12 +6,12 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "GGLineChart.h"
+#import "LineChart.h"
 #import "LineCanvas.h"
 #import "GridBackCanvas.h"
 #import "QueryCanvas.h"
 
-@interface GGLineChart ()
+@interface LineChart ()
 
 /**
  * 折线渲染层
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation GGLineChart
+@implementation LineChart
 
 /**
  * 初始化
@@ -95,8 +95,8 @@
     [_lineDataSet updateChartConfigs:CGRectMake(0, 0, self.gg_width, self.gg_height)];
     [self configSubLayerModels];
     
-    [_lineCanvas drawChart];
     [_gridCanvas drawChart];
+    [_lineCanvas drawChart];
 }
 
 /**

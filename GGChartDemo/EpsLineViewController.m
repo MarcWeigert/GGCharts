@@ -13,7 +13,7 @@
 #import "GGLineData.h"
 #import "GridBackCanvas.h"
 #import "GGChartDefine.h"
-#import "GGLineChart.h"
+#import "LineChart.h"
 #import "NSArray+Stock.h"
 
 @interface Eps : BaseModel
@@ -104,7 +104,8 @@
     /** 左轴 */
     lineSet.gridConfig.leftNumberAxis.splitCount = 5;
     lineSet.gridConfig.leftNumberAxis.dataFormatter = @"%.2f";
-    lineSet.gridConfig.leftNumberAxis.over = 3;
+//    lineSet.gridConfig.leftNumberAxis.over = 3;
+    lineSet.gridConfig.leftNumberAxis.stringGap = -3;
     lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
     lineSet.gridConfig.leftNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.leftNumberAxis.name.string = @"EPS";
@@ -115,7 +116,8 @@
     
     /** 右轴 */
     lineSet.gridConfig.rightNumberAxis.splitCount = 5;
-    lineSet.gridConfig.rightNumberAxis.over = -3;
+//    lineSet.gridConfig.rightNumberAxis.over = -3;
+    lineSet.gridConfig.rightNumberAxis.stringGap = 3;
     lineSet.gridConfig.rightNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.rightNumberAxis.name.string = @"股票价格";
     lineSet.gridConfig.rightNumberAxis.name.font = [UIFont boldSystemFontOfSize:10];
@@ -124,7 +126,7 @@
     lineSet.gridConfig.rightNumberAxis.name.color = RGB(181, 220, 249);
     
     CGRect rect = CGRectMake(0, 190, [UIScreen mainScreen].bounds.size.width, 250);
-    GGLineChart * lineChart = [[GGLineChart alloc] initWithFrame:rect];
+    LineChart * lineChart = [[LineChart alloc] initWithFrame:rect];
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];

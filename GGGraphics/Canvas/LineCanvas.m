@@ -84,6 +84,7 @@ static const void * lineFillLayer = @"lineFillLayer";
     shape.lineWidth = [lineDraw lineWidth];
     shape.strokeColor = [lineDraw lineColor].CGColor;
     shape.fillColor = [UIColor clearColor].CGColor;
+    shape.lineDashPattern = [lineDraw dashPattern];
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddLines(path, NULL, [lineDraw points], [lineDraw dataAry].count);
@@ -99,12 +100,24 @@ static const void * lineFillLayer = @"lineFillLayer";
     if ([lineDraw shapeRadius] > 0) {
         
         GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
-        shape.lineWidth = [lineDraw lineWidth];
+        shape.lineWidth = [lineDraw shapeLineWidth];
         shape.strokeColor = [lineDraw lineColor].CGColor;
         shape.fillColor = [lineDraw shapeFillColor] == nil ? [UIColor whiteColor].CGColor : [lineDraw shapeFillColor].CGColor;
         
         CGMutablePathRef path = CGPathCreateMutable();
-        GGPathAddCircles(path, [lineDraw points], [lineDraw shapeRadius], [lineDraw dataAry].count);
+        
+        if ([lineDraw showShapeIndexSet].count > 0) {
+            
+            for (NSNumber * number in [lineDraw showShapeIndexSet]) {
+                
+                GGPathAddCircle(path, GGCirclePointMake([lineDraw points][number.integerValue], [lineDraw shapeRadius]));
+            }
+        }
+        else {
+        
+            GGPathAddCircles(path, [lineDraw points], [lineDraw shapeRadius], [lineDraw dataAry].count);
+        }
+        
         shape.path = path;
         CGPathRelease(path);
         

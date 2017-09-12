@@ -142,7 +142,8 @@ static const void * lineFillLayer = @"lineFillLayer";
             stringRenderer.toPoint = [lineDraw points][i];
             stringRenderer.font = [lineDraw stringFont];
             stringRenderer.toNumber = [[lineDraw dataAry][i] floatValue];
-            stringRenderer.offSetRatio = CGPointMake(-.5f, -1.2f);
+            stringRenderer.offSetRatio = [lineDraw offSetRatio];
+            stringRenderer.offSet = [lineDraw stringOffset];
             stringRenderer.format = dataFromatter;
             [stringRenderer drawAtToNumberAndPoint];
             

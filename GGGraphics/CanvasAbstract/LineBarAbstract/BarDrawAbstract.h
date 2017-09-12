@@ -24,6 +24,11 @@
 @property (nonatomic, strong, readonly) UIColor * barBorderColor;
 
 /**
+ * 柱状图边框
+ */
+@property (nonatomic, assign, readonly) CGFloat borderWidth;
+
+/**
  * 柱状图填充色
  */
 @property (nonatomic, strong, readonly) UIColor * barFillColor;

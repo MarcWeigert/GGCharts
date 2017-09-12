@@ -140,11 +140,13 @@
     }
     
     // 填充定标器
-    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
+    for (NSInteger i = 0; i < [self getBaseLineBarDataArray].count; i++) {
+        
+        BaseLineBarData * obj = [self getBaseLineBarDataArray][i];
         
         if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
             
-            obj.lineBarScaler.xRatio = idx / [self getBaseLineBarDataArray].count;
+            obj.lineBarScaler.xRatio = i / [self getBaseLineBarDataArray].count;
         }
         
         if (obj.scalerMode == ScalerAxisLeft) {
@@ -157,7 +159,7 @@
             obj.lineBarScaler.max = self.gridConfig.rightNumberAxis.max.floatValue;
             obj.lineBarScaler.min = self.gridConfig.rightNumberAxis.min.floatValue;
         }
-    }];
+    }
 }
 
 #pragma mark - Lazy

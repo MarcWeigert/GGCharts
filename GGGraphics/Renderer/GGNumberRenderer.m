@@ -38,6 +38,26 @@
     return self;
 }
 
+- (void)setFromPoint:(CGPoint)fromPoint
+{
+    _fromPoint = fromPoint;
+    _fromPoint = CGPointMake(_fromPoint.x + _offSet.width, _fromPoint.y + _offSet.height);
+}
+
+- (void)setToPoint:(CGPoint)toPoint
+{
+    _toPoint = toPoint;
+    _toPoint = CGPointMake(_toPoint.x + _offSet.width, _toPoint.y + _offSet.height);
+}
+
+- (void)setOffSet:(CGSize)offSet
+{
+    _offSet = offSet;
+    
+    _fromPoint = CGPointMake(_fromPoint.x + _offSet.width, _fromPoint.y + _offSet.height);
+    _toPoint = CGPointMake(_toPoint.x + _offSet.width, _toPoint.y + _offSet.height);
+}
+
 /** 绘制起始点文字 */
 - (void)drawAtToNumberAndPoint
 {

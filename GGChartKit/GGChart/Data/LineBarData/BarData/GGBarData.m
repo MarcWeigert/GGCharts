@@ -18,6 +18,23 @@
 @implementation GGBarData
 
 /**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.barWidth = 5;
+        self.barFillColor = [UIColor blackColor];
+        self.offSetRatio = CGPointMake(-.5f, -1.0f);
+    }
+    
+    return self;
+}
+
+/**
  * 绘制折线点
  */
 - (CGPoint *)points
@@ -56,11 +73,11 @@
 /**
  * 柱状图底部价格
  */
-- (void)setBottomPrice:(NSNumber *)bottomPrice
+- (void)setRoundNumber:(NSNumber *)roundNumber
 {
-    _bottomPrice = bottomPrice;
+    [super setRoundNumber:roundNumber];
     
-    [(DBarScaler *)self.lineBarScaler setBottomPrice:_bottomPrice.floatValue];
+    [(DBarScaler *)self.lineBarScaler setBottomPrice:roundNumber.floatValue];
 }
 
 /**

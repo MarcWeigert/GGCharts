@@ -31,10 +31,10 @@
     [super configLineAndAxisModel];
     
     // 填充定标器
-    [self.barAry enumerateObjectsUsingBlock:^(GGBarData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    for (GGBarData * obj in self.barAry) {
         
         [obj.lineBarScaler updateScaler];
-    }];
+    }
 }
 
 @end

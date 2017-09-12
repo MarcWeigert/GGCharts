@@ -25,6 +25,8 @@
 @property (nonatomic, assign) CGPoint offSetRatio;  ///< 文字
 @property (nonatomic, strong) NSString * format;    ///< 格式化字符串
 
+@property (nonatomic, assign) CGSize offSet;        ///< 文字偏移量
+
 @property (nonatomic, assign) BOOL hidden;          ///< 是否显示
 
 /** 绘制起始点文字 */

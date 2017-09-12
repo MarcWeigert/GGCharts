@@ -11,6 +11,9 @@
 
 @interface BarCanvas : GGCanvas
 
-@property (nonatomic, strong) id <BarCanvasAbstract> barCanvas;
+/**
+ * 柱状图配置类
+ */
+@property (nonatomic, strong) id <BarCanvasAbstract> barDrawConfig;
 
 @end

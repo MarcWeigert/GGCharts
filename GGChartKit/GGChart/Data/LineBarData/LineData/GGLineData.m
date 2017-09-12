@@ -54,12 +54,12 @@
  */
 - (CGFloat)bottomYPix
 {
-    if (_fillRoundNumber == nil) {      // 如果没有底部定标, 则取最低值
+    if (self.roundNumber == nil) {      // 如果没有底部定标, 则取最低值
         
         return CGRectGetMaxY(self.lineBarScaler.rect);
     }
     
-    return [self.lineBarScaler getYPixelWithData:_fillRoundNumber.floatValue];
+    return [self.lineBarScaler getYPixelWithData:self.roundNumber.floatValue];
 }
 
 @end

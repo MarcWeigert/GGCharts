@@ -14,8 +14,14 @@
 
 /**
  * 柱状图颜色
+ * 优先级高于 BarData.fillColor
+ *
+ * @param indexPath 柱状位置
+ * @param number 柱状图数据
+ *
+ * @return 柱状图颜色
  */
-@property (nonatomic, copy) UIColor *(^barColorsAtIndexPath)(NSIndexPath *indexPath);
+@property (nonatomic, copy) UIColor *(^barColorsAtIndexPath)(NSIndexPath *indexPath, NSNumber * number);
 
 /**
  * 柱状图数据数组

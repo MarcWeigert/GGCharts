@@ -11,8 +11,24 @@
 
 @interface GGRectRenderer : NSObject <GGRenderProtocol>
 
+/**
+ * 绘制区域
+ */
 @property (nonatomic, assign) CGRect rect;
 
+/**
+ * 区域边框宽度
+ */
+@property (nonatomic, assign) CGFloat borderWidth;
+
+/**
+ * 区域边框颜色
+ */
+@property (nonatomic, strong) UIColor * borderColor;
+
+/**
+ * 区域填充颜色
+ */
 @property (nonatomic, strong) UIColor * fillColor;
 
 @end

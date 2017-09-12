@@ -10,11 +10,25 @@
 
 @implementation GGRectRenderer
 
+/**
+ * 绘制
+ */
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if (_fillColor) {
+    CGContextSetLineWidth(ctx, _borderWidth);
+    
+    if (_borderColor) {
         
+        CGContextSetStrokeColorWithColor(ctx, _borderColor.CGColor);
+        CGContextAddRect(ctx, _rect);
+        CGContextStrokePath(ctx);
+    }
+    
+    if (_fillColor) {
+ 
+        CGContextSetFillColorWithColor(ctx, _fillColor.CGColor);
         CGContextFillRect(ctx, _rect);
+        CGContextStrokePath(ctx);
     }
 }
 

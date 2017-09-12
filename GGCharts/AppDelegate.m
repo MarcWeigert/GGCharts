@@ -10,6 +10,11 @@
 #import "ListVC.h"
 #import "GGGraphics.h"
 
+#import "BarDataSet.h"
+#import "GGBarData.h"
+#import "BarCanvas.h"
+#import "Colors.h"
+
 @interface AppDelegate ()
 
 @end

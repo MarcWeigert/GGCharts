@@ -11,6 +11,21 @@
 
 @implementation DBarScaler
 
+/**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _bottomPrice = FLT_MIN;
+    }
+    
+    return self;
+}
+
 - (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {
     [super setDataAry:dataAry];
@@ -85,7 +100,11 @@
 - (void)setMin:(CGFloat)min
 {
     [super setMin:min];
-    _bottomPrice = min;
+    
+    if (_bottomPrice == FLT_MIN) {
+        
+        _bottomPrice = min;
+    }
 }
 
 /** 靠近点的数据index */

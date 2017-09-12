@@ -12,20 +12,68 @@
 
 @interface GGCanvas ()
 
-@property (nonatomic) NSMutableArray <id <GGRenderProtocol>>*aryRenderer;
+/**
+ * 渲染器
+ */
+@property (nonatomic, strong) NSMutableArray <id <GGRenderProtocol>> * aryRenderer;
 
-@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;      ///< 显示的图层
-@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;         ///< 闲置的图层
+/**
+ * 更新页面之前的渲染器数组
+ */
+@property (nonatomic, strong) NSMutableArray <id <GGRenderProtocol>> * aryBeforeRenderer;
 
-@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * visibleGradientLayers;      ///< 显示的图层
-@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * idleGradientLayers;         ///< 闲置的图层
+/**
+ * 当前页面渲染器数组
+ */
+@property (nonatomic, strong) NSMutableArray <id <GGRenderProtocol>> * aryCurrentRenderer;
 
-@property (nonatomic, strong) NSMutableArray <GGCanvas *> * visibleCanvas;      ///< 显示的图层
-@property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleCanvas;         ///< 闲置的图层
+/**
+ * 显示的图层(路径层)
+ */
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * visibleLayers;
+
+/**
+ * 闲置的图层(路径层)
+ */
+@property (nonatomic, strong) NSMutableArray <GGShapeCanvas *> * idleLayers;
+
+/**
+ * 显示的图层(渐变色)
+ */
+@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * visibleGradientLayers;
+
+/**
+ * 闲置的图层(渐变色)
+ */
+@property (nonatomic, strong) NSMutableArray <CAGradientLayer *> * idleGradientLayers;
+
+/**
+ * 显示的图层(普通)
+ */
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * visibleCanvas;
+
+/**
+ * 闲置的图层(普通)
+ */
+@property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleCanvas;
 
 @end
 
 @implementation GGCanvas
+
+/** 初始化 */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.contentsScale = [UIScreen mainScreen].scale;
+        self.masksToBounds = YES;
+    }
+    
+    return self;
+}
 
 #pragma mark - Shape
 
@@ -206,21 +254,6 @@
 
 #pragma mark - 绘制
 
-/** 初始化 */
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        
-        self.contentsScale = [UIScreen mainScreen].scale;
-        self.masksToBounds = YES;
-        _aryRenderer = [NSMutableArray array];
-    }
-    
-    return self;
-}
-
 /**
  * 增加一个绘图工具
  *
@@ -228,7 +261,14 @@
  */
 - (void)addRenderer:(id <GGRenderProtocol>)renderer
 {
-    [self.aryRenderer addObject:renderer];
+    if (_isCashBeforeRenderers) {
+        
+        [self.aryCurrentRenderer addObject:renderer];
+    }
+    else {
+    
+        [self.aryRenderer addObject:renderer];
+    }
 }
 
 /**
@@ -238,7 +278,14 @@
  */
 - (void)removeRenderer:(id <GGRenderProtocol>)renderer
 {
-    [self.aryRenderer removeObject:renderer];
+    if (_isCashBeforeRenderers) {
+        
+        [self.aryCurrentRenderer addObject:renderer];
+    }
+    else {
+    
+        [self.aryRenderer removeObject:renderer];
+    }
 }
 
 /**
@@ -247,6 +294,27 @@
 - (void)removeAllRenderer
 {
     [self.aryRenderer removeAllObjects];
+    
+    if (_isCashBeforeRenderers) {   // 开启上级缓存, 讲current中的渲染器同步到before中
+        
+        [self.aryBeforeRenderer removeAllObjects];
+        [self.aryBeforeRenderer addObjectsFromArray:self.aryCurrentRenderer];
+        [self.aryCurrentRenderer removeAllObjects];
+    }
+}
+
+/**
+ * 更新视图页面
+ */
+- (void)setNeedsDisplay
+{
+    if (_isCashBeforeRenderers) {   // 如果开启上级缓存, 则将befor, current 加入当前数组
+        
+        [self.aryRenderer addObjectsFromArray:self.aryCurrentRenderer];
+        [self.aryRenderer addObjectsFromArray:self.aryBeforeRenderer];
+    }
+    
+    [super setNeedsDisplay];
 }
 
 /**
@@ -274,6 +342,10 @@
 }
 
 #pragma mark - Lazy
+
+GGLazyGetMethod(NSMutableArray, aryRenderer);
+GGLazyGetMethod(NSMutableArray, aryBeforeRenderer);
+GGLazyGetMethod(NSMutableArray, aryCurrentRenderer);
 
 GGLazyGetMethod(NSMutableArray, visibleLayers);
 GGLazyGetMethod(NSMutableArray, idleLayers);

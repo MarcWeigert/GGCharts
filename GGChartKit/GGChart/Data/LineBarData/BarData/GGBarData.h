@@ -25,13 +25,13 @@
 @property (nonatomic, strong) UIColor * barFillColor;
 
 /**
+ * 柱状图边框
+ */
+@property (nonatomic, assign) CGFloat borderWidth;
+
+/**
  * 柱状图宽度
  */
 @property (nonatomic, assign) CGFloat barWidth;
-
-/**
- * 柱状图底部价格
- */
-@property (nonatomic, strong) NSNumber * bottomPrice;
 
 @end

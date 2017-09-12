@@ -12,7 +12,20 @@
 
 @interface GGCanvas : CALayer
 
+/**
+ * 是否关闭隐士动画
+ */
 @property (nonatomic, assign) BOOL isCloseDisableActions;
+
+/**
+ * 是否保存上级缓存
+ *
+ * 如果开启该缓存, 调用removeAllRenderers, 会保留上一次绘制内容
+ */
+@property (nonatomic, assign) BOOL isCashBeforeRenderers;
+
+
+#pragma mark - 取层
 
 /**
  * 绘制图表(子类重写)
@@ -42,12 +55,15 @@
 /**
  * 取图层视图大小为正方形
  */
-- (CAGradientLayer *)getCanvasSquareFrame;
+- (GGCanvas *)getCanvasSquareFrame;
 
 /**
  * 取图层视图大小与Chart一致
  */
-- (CAGradientLayer *)getCanvasEqualFrame;
+- (GGCanvas *)getCanvasEqualFrame;
+
+
+#pragma mark - 绘制
 
 /**
  * 增加一个绘图工具

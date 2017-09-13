@@ -71,16 +71,6 @@
 }
 
 /**
- * 柱状图底部价格
- */
-- (void)setRoundNumber:(NSNumber *)roundNumber
-{
-    [super setRoundNumber:roundNumber];
-    
-    [(DBarScaler *)self.lineBarScaler setBottomPrice:roundNumber.floatValue];
-}
-
-/**
  * 柱状图定标器
  */
 - (DLineScaler *)lineBarScaler

@@ -35,6 +35,11 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic, strong) NSNumber * roundNumber;
 
+/**
+ * 围绕该Y轴坐标点填充, FLT_MIN 代表不填充
+ */
+@property (nonatomic, assign, readonly) CGFloat bottomYPix;
+
 
 #pragma mark - 折线文字
 

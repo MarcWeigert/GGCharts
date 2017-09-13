@@ -174,7 +174,7 @@
     _barScaler.max = max;
     _barScaler.min = min;
     _barScaler.rect = _positiveLayer.frame;
-    _barScaler.bottomPrice = 0;
+    _barScaler.aroundNumber = @0;
     _barScaler.barWidth = 1;
     [_barScaler updateScalerWithRange:range];
     

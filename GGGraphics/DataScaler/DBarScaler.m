@@ -11,21 +11,6 @@
 
 @implementation DBarScaler
 
-/**
- * 初始化方法
- */
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        
-        _bottomPrice = FLT_MIN;
-    }
-    
-    return self;
-}
-
 - (void)setDataAry:(NSArray<NSNumber *> *)dataAry
 {
     [super setDataAry:dataAry];
@@ -72,7 +57,7 @@
 {
     [super updateScaler];
     
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     NSInteger count = self.lineObjAry.count > 0 ? self.lineObjAry.count : self.dataAry.count;
     
     for (NSInteger i = 0; i < count; i++) {
@@ -88,22 +73,12 @@
     
     NSInteger start = range.location;
     NSInteger end = NSMaxRange(range);
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     
     for (NSInteger i = start; i < end; i++) {
         
         CGPoint point = self.linePoints[i];
         _barRects[i] = GGLineDownRectMake(point, CGPointMake(point.x, bottomY), _barWidth);
-    }
-}
-
-- (void)setMin:(CGFloat)min
-{
-    [super setMin:min];
-    
-    if (_bottomPrice == FLT_MIN) {
-        
-        _bottomPrice = min;
     }
 }
 
@@ -122,7 +97,7 @@
 - (void)getPositiveData:(BarRects)block range:(NSRange)range
 {
     CGRect rects[range.length];
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     
     for (NSInteger i = 0; i < range.length; i++) {
         
@@ -141,7 +116,7 @@
 - (void)getNegativeData:(BarRects)block range:(NSRange)range
 {
     CGRect rects[range.length];
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     
     for (NSInteger i = 0; i < range.length; i++) {
         
@@ -159,7 +134,7 @@
 - (void)getPositiveData:(BarRects)block
 {
     CGRect rects[self.dataAry.count];
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     
     for (NSInteger i = 0; i < self.dataAry.count; i++) {
         
@@ -178,7 +153,7 @@
 - (void)getNegativeData:(BarRects)block
 {
     CGRect rects[self.dataAry.count];
-    CGFloat bottomY = [self getYPixelWithData:_bottomPrice];
+    CGFloat bottomY = self.aroundY;
     
     for (NSInteger i = 0; i < self.dataAry.count; i++) {
         

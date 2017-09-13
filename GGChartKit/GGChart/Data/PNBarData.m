@@ -41,7 +41,7 @@
     _pBarCanvas = pBarCanvas;
     _nBarCanvas = nBarCanvas;
     
-    self.barScaler.bottomPrice = 0;
+    self.barScaler.aroundNumber = 0;
     [self.barScaler updateScaler];
     
     // 正数柱图层

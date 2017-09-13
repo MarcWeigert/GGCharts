@@ -17,12 +17,9 @@
 {
     CGContextSetLineWidth(ctx, _borderWidth);
     
-    if (_borderColor) {
-        
-        CGContextSetStrokeColorWithColor(ctx, _borderColor.CGColor);
-        CGContextAddRect(ctx, _rect);
-        CGContextStrokePath(ctx);
-    }
+    CGContextSetStrokeColorWithColor(ctx, _borderColor.CGColor);
+    CGContextAddRect(ctx, _rect);
+    CGContextStrokePath(ctx);
     
     if (_fillColor) {
  

@@ -9,9 +9,17 @@
 #import "IOBarChartViewController.h"
 #import "PNBarChart.h"
 
+#import "BarChart.h"
+#import "Colors.h"
+
 @interface IOBarChartViewController ()
 
-@property (nonatomic, strong) PNBarChart * barChart;
+@property (nonatomic, strong) BarChart * barChart;
+
+@property (nonatomic, strong) BarDataSet * barDataSet;
+
+@property (nonatomic, strong) GGBarData * barData;
+@property (nonatomic, strong) GGBarData * barData2;
 
 @end
 
@@ -23,23 +31,29 @@
     
     self.title = @"IOBarChart";
     
-    PNBarData * bar = [[PNBarData alloc] init];
-    bar.datas = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
-    bar.width = 25;
+    _barData = [[GGBarData alloc] init];
+    _barData.barWidth = 25;
+    _barData.roundNumber = @0;
+    _barData.dataAry = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
     
-    [bar addTarget:self
-            action:@selector(clickBar:index:)
-      forBarEvents:TouchEventMoveNear];
+    _barData2 = [[GGBarData alloc] init];
+    _barData2.barWidth = 10;
+    _barData2.roundNumber = @0;
     
-    _barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
-    _barChart.lbTop.text = @"最近五日主力增减仓";
-    _barChart.lbBottom.text = @"净利润 (万元) ";
-    _barChart.axisTitles = @[@"15Q2", @"15Q3", @"15Q4", @"16Q1", @"16Q2", @"16Q3", @"16Q4", @"17Q1"];
-    _barChart.axisFont = [UIFont systemFontOfSize:9];
-    _barChart.pnBarData = bar;
-    [_barChart drawChart];
-    [_barChart addAnimation:1];
+    _barDataSet = [[BarDataSet alloc] init];
+    _barDataSet.barAry = @[_barData];
+    _barDataSet.lineBarMode = LineBarDrawParallel;
+    
+    [_barDataSet setBarColorsAtIndexPath:^UIColor *(NSIndexPath * index, NSNumber * number) {
+        
+        return number.floatValue > 0 ? RGB(241, 73, 81) : RGB(30, 191, 97);
+    }];
+    
+    _barChart = [[BarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+    _barChart.barDataSet = _barDataSet;
     [self.view addSubview:_barChart];
+    
+    [_barChart drawBarChart];
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundColor:[UIColor redColor]];
@@ -63,29 +77,25 @@
     [self.view addSubview:btn];
 }
 
-- (void)clickBar:(CGRect)rect index:(NSInteger)index
-{
-    NSLog(@"%.2f", rect.size.width);
-    
-    NSLog(@"%zd", index);
-}
-
 - (void)analogDataFirst
 {
-    _barChart.pnBarData.datas = @[@2225.6, @2563.1, @531.4, @839.4, @107.4, @1000, @897.0, @1500];
-    [_barChart updateChart];
+    _barData.dataAry = @[@2225.6, @2563.1, @531.4, @839.4, @107.4, @1000, @897.0, @1500];
+    
+    [_barChart drawBarChart];
 }
 
 - (void)analogDataSecond
 {
-    _barChart.pnBarData.datas = @[@-2225.6, @-2563.1, @-531.4, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
-    [_barChart updateChart];
+    _barData.dataAry = @[@-2225.6, @-2563.1, @-531.4, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
+    
+    [_barChart drawBarChart];
 }
 
 - (void)analogDataThird
 {
-    _barChart.pnBarData.datas = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000, @897.0, @-1500];
-    [_barChart updateChart];
+    _barData.dataAry = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000, @897.0, @-1500];
+    
+    [_barChart drawBarChart];
 }
 
 @end

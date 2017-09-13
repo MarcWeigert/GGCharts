@@ -101,6 +101,13 @@
  */
 - (void)configLineAndAxisModel
 {
+    if ([self getBaseLineBarDataArray].count == 0) {
+        
+        NSLog(@"error : none data array");
+        
+        return;
+    }
+    
     // 区分左右折线数据
     NSMutableArray * leftDataAry = [NSMutableArray array];
     NSMutableArray * rightDataAry = [NSMutableArray array];
@@ -118,26 +125,26 @@
     }];
     
     // 填充左轴极大极小值
-    if (self.gridConfig.leftNumberAxis.max == nil ||
-        self.gridConfig.leftNumberAxis.min == nil) {
-        
+//    if (self.gridConfig.leftNumberAxis.max == nil ||
+//        self.gridConfig.leftNumberAxis.min == nil) {
+    
         CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
         [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:self.idRatio];
         
         self.gridConfig.leftNumberAxis.max = @(leftMax);
         self.gridConfig.leftNumberAxis.min = @(leftMin);
-    }
+//    }
     
     // 填充右轴极大极小值
-    if (self.gridConfig.rightNumberAxis.max == nil ||
-        self.gridConfig.rightNumberAxis.min == nil) {
-        
+//    if (self.gridConfig.rightNumberAxis.max == nil ||
+//        self.gridConfig.rightNumberAxis.min == nil) {
+    
         CGFloat rightMax = FLT_MIN, rightMin = FLT_MAX;
         [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:self.idRatio];
         
         self.gridConfig.rightNumberAxis.max = @(rightMax);
         self.gridConfig.rightNumberAxis.min = @(rightMin);
-    }
+//    }
     
     // 填充定标器
     for (NSInteger i = 0; i < [self getBaseLineBarDataArray].count; i++) {
@@ -146,7 +153,7 @@
         
         if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
             
-            obj.lineBarScaler.xRatio = i / [self getBaseLineBarDataArray].count;
+            obj.lineBarScaler.xRatio = 1.0 / ([self getBaseLineBarDataArray].count + 1) * (i + 1);;
         }
         
         if (obj.scalerMode == ScalerAxisLeft) {

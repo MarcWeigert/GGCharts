@@ -42,40 +42,84 @@
  */
 - (void)drawBarRectsWidthBar:(id <BarDrawAbstract>)barAbstract section:(NSInteger)section
 {
-    GGShapeCanvas * shapeCanvas = [self getGGShapeCanvasEqualFrame];
-    shapeCanvas.fillColor = [barAbstract barFillColor].CGColor;
-    shapeCanvas.lineWidth = [barAbstract borderWidth];
-    shapeCanvas.strokeColor = [barAbstract barBorderColor].CGColor;
+    CGMutablePathRef upBarRef = CGPathCreateMutable();
+    CGMutablePathRef downBarRef = CGPathCreateMutable();
     
-    CGMutablePathRef ref = CGPathCreateMutable();
-    GGpathAddCGRects(ref, [barAbstract barRects], [barAbstract dataAry].count);
-    shapeCanvas.path = ref;
-    CGPathRelease(ref);
+    for (NSInteger i = 0; i < [barAbstract dataAry].count; i++) {
+        
+        CGRect barRect = [barAbstract barRects][i];
+        CGRect mixRect = CGRectMake(barRect.origin.x, [barAbstract bottomYPix], [barAbstract barWidth], 0);
+        
+        if (CGRectGetMaxY(barRect) > [barAbstract bottomYPix]) {
+            
+            GGPathAddCGRect(upBarRef, barRect);
+            GGPathAddCGRect(downBarRef, mixRect);
+        }
+        else {
+        
+            GGPathAddCGRect(downBarRef, barRect);
+            GGPathAddCGRect(upBarRef, mixRect);
+        }
+    }
+    
+    GGShapeCanvas * upBarCanvas = [self getGGShapeCanvasEqualFrame];
+    upBarCanvas.fillColor = [barAbstract barFillColor].CGColor;
+    upBarCanvas.lineWidth = 0;
+    upBarCanvas.strokeColor = [barAbstract barBorderColor].CGColor;
+    upBarCanvas.path = upBarRef;
+    CGPathRelease(upBarRef);
+    
+    GGShapeCanvas * downBarCanvas = [self getGGShapeCanvasEqualFrame];
+    downBarCanvas.fillColor = [barAbstract barFillColor].CGColor;
+    downBarCanvas.lineWidth = 0;
+    downBarCanvas.strokeColor = [barAbstract barBorderColor].CGColor;
+    downBarCanvas.path = downBarRef;
+    CGPathRelease(downBarRef);
     
     if ([_barDrawConfig barColorsAtIndexPath]) {    // 分布绘制颜色
         
-        GGCanvas * canvas = [self getCanvasEqualFrame];
-        canvas.isCashBeforeRenderers = YES;
-        [canvas removeAllRenderer];
-        [shapeCanvas removeFromSuperlayer];
+        GGCanvas * upCanvas = [self getCanvasEqualFrame];
+        upCanvas.isCloseDisableActions = YES;
+        upCanvas.isCashBeforeRenderers = YES;
+        [upCanvas removeAllRenderer];
+        [upBarCanvas removeFromSuperlayer];
+        upCanvas.mask = upBarCanvas;
+        
+        GGCanvas * downCanvas = [self getCanvasEqualFrame];
+        downCanvas.isCloseDisableActions = YES;
+        downCanvas.isCashBeforeRenderers = YES;
+        [downCanvas removeAllRenderer];
+        [downBarCanvas removeFromSuperlayer];
+        downCanvas.mask = downBarCanvas;
+        
+        CGRect drawRect = UIEdgeInsetsInsetRect(self.frame, [_barDrawConfig insets]);
         
         for (NSInteger row = 0; row < [barAbstract dataAry].count; row++) {
             
+            CGRect barRect = [barAbstract barRects][row];
             NSNumber * data = [barAbstract dataAry][row];
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:row inSection:section];
             UIColor * blockColor = [_barDrawConfig barColorsAtIndexPath](indexPath, data);
             
             GGRectRenderer * rectRenderder = [[GGRectRenderer alloc] init];
-            rectRenderder.rect = [barAbstract barRects][row];
+            rectRenderder.rect = CGRectMake(barRect.origin.x, drawRect.origin.y, [barAbstract barWidth], drawRect.size.height);
             rectRenderder.fillColor = blockColor == nil ? [barAbstract barFillColor] : blockColor;
-            [canvas addRenderer:rectRenderder];
-        
-            canvas.mask = shapeCanvas;
+            
+            if (CGRectGetMaxY(barRect) > [barAbstract bottomYPix]) {
+                
+                [upCanvas addRenderer:rectRenderder];
+            }
+            else {
+                
+                [downCanvas addRenderer:rectRenderder];
+            }
         }
         
-        [canvas setNeedsDisplay];
+        [downCanvas setNeedsDisplay];
+        [upCanvas setNeedsDisplay];
         
-        [shapeCanvas pathChangeAnimation:3];
+        [upBarCanvas pathChangeAnimation:1.0f];
+        [downBarCanvas pathChangeAnimation:1.0f];
     }
 }
 

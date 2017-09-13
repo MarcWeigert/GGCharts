@@ -1,26 +1,25 @@
 //
-//  GGLineChart.h
+//  BarChart.h
 //  GGCharts
 //
-//  Created by 黄舜 on 17/8/7.
+//  Created by 黄舜 on 17/9/12.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "LineDataSet.h"
+#import "BarDataSet.h"
 #import "BaseLineBarChart.h"
 
-@interface LineChart : BaseLineBarChart
+@interface BarChart : BaseLineBarChart
 
 /**
  * 折线配置类
  */
-@property (nonatomic, strong) LineDataSet * lineDataSet;
+@property (nonatomic, strong) BarDataSet * barDataSet;
 
 /**
  * 渲染折线图
  */
-- (void)drawLineChart;
+- (void)drawBarChart;
 
 /**
  * 开始动画

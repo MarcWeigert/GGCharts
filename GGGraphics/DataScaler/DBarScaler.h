@@ -12,8 +12,6 @@ typedef void(^BarRects)(CGRect *rects, size_t size);
 
 @interface DBarScaler : DLineScaler
 
-@property (nonatomic, assign) CGFloat bottomPrice;  ///< 柱状图底部价格点默认0
-
 @property (nonatomic, assign) CGFloat barWidth;     ///< 柱宽
 
 @property (nonatomic, readonly) CGRect * barRects;    ///< bar 绘制位置

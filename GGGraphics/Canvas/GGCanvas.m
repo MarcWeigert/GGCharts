@@ -310,8 +310,8 @@
 {
     if (_isCashBeforeRenderers) {   // 如果开启上级缓存, 则将befor, current 加入当前数组
         
-        [self.aryRenderer addObjectsFromArray:self.aryCurrentRenderer];
         [self.aryRenderer addObjectsFromArray:self.aryBeforeRenderer];
+        [self.aryRenderer addObjectsFromArray:self.aryCurrentRenderer];
     }
     
     [super setNeedsDisplay];

@@ -58,14 +58,6 @@
 }
 
 /**
- * 设置图层接口
- */
-- (void)setLineDataSet:(LineDataSet *)lineDataSet
-{
-    _lineDataSet = lineDataSet;
-}
-
-/**
  * 配置各层接口类
  */
 - (void)configSubLayerModels

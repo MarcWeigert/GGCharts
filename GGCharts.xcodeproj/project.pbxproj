@@ -143,7 +143,6 @@
 		2B9788741F09D4E2002A2A3C /* BaseChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97884A1F09D4E2002A2A3C /* BaseChart.m */; };
 		2B9788751F09D4E2002A2A3C /* BaseCountChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97884C1F09D4E2002A2A3C /* BaseCountChart.m */; };
 		2B9788781F09D4E2002A2A3C /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788521F09D4E2002A2A3C /* PieChart.m */; };
-		2B9788791F09D4E2002A2A3C /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788541F09D4E2002A2A3C /* PNBarChart.m */; };
 		2B97887A1F09D4E2002A2A3C /* BarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788571F09D4E2002A2A3C /* BarData.m */; };
 		2B97887B1F09D4E2002A2A3C /* BaseBarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788591F09D4E2002A2A3C /* BaseBarData.m */; };
 		2B97887C1F09D4E2002A2A3C /* BaseChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97885B1F09D4E2002A2A3C /* BaseChartData.m */; };
@@ -151,7 +150,6 @@
 		2B97887E1F09D4E2002A2A3C /* ChartBaseEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97885F1F09D4E2002A2A3C /* ChartBaseEvent.m */; };
 		2B97887F1F09D4E2002A2A3C /* LineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788631F09D4E2002A2A3C /* LineData.m */; };
 		2B9788811F09D4E2002A2A3C /* PieData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788671F09D4E2002A2A3C /* PieData.m */; };
-		2B9788821F09D4E2002A2A3C /* PNBarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788691F09D4E2002A2A3C /* PNBarData.m */; };
 		2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9788881F0A39FE002A2A3C /* AppDelegate.m */; };
 		2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788891F0A39FE002A2A3C /* Assets.xcassets */; };
 		2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B97888A1F0A39FE002A2A3C /* LaunchScreen.storyboard */; };
@@ -375,6 +373,7 @@
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
 		2B7E41181F396455000E0413 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		2B7E41191F396455000E0413 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
+		2B87627F1F6B7AED0050D897 /* BaseLineBarCanvasAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLineBarCanvasAbstract.h; sourceTree = "<group>"; };
 		2B8B628B1F32D1A700028F40 /* DRadarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRadarScaler.h; sourceTree = "<group>"; };
 		2B8B628C1F32D1A700028F40 /* DRadarScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRadarScaler.m; sourceTree = "<group>"; };
 		2B8B628E1F32D6B700028F40 /* RadarCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarCanvas.h; sourceTree = "<group>"; };
@@ -439,8 +438,6 @@
 		2B97884C1F09D4E2002A2A3C /* BaseCountChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCountChart.m; sourceTree = "<group>"; };
 		2B9788511F09D4E2002A2A3C /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
 		2B9788521F09D4E2002A2A3C /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
-		2B9788531F09D4E2002A2A3C /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
-		2B9788541F09D4E2002A2A3C /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
 		2B9788561F09D4E2002A2A3C /* BarData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarData.h; sourceTree = "<group>"; };
 		2B9788571F09D4E2002A2A3C /* BarData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarData.m; sourceTree = "<group>"; };
 		2B9788581F09D4E2002A2A3C /* BaseBarData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseBarData.h; sourceTree = "<group>"; };
@@ -457,8 +454,6 @@
 		2B9788631F09D4E2002A2A3C /* LineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineData.m; sourceTree = "<group>"; };
 		2B9788661F09D4E2002A2A3C /* PieData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieData.h; sourceTree = "<group>"; };
 		2B9788671F09D4E2002A2A3C /* PieData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieData.m; sourceTree = "<group>"; };
-		2B9788681F09D4E2002A2A3C /* PNBarData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarData.h; sourceTree = "<group>"; };
-		2B9788691F09D4E2002A2A3C /* PNBarData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarData.m; sourceTree = "<group>"; };
 		2B9788871F0A39FE002A2A3C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B9788881F0A39FE002A2A3C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B9788891F0A39FE002A2A3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -912,10 +907,11 @@
 		2B8DE4421F668A17000F3DB4 /* LineBarAbstract */ = {
 			isa = PBXGroup;
 			children = (
-				2B8DE4471F678227000F3DB4 /* BarDrawAbstract.h */,
 				2B8DE4461F678227000F3DB4 /* BarCanvasAbstract.h */,
-				2B8DE4441F668A17000F3DB4 /* LineDrawAbstract.h */,
 				2B8DE4431F668A17000F3DB4 /* LineCanvasAbstract.h */,
+				2B87627F1F6B7AED0050D897 /* BaseLineBarCanvasAbstract.h */,
+				2B8DE4471F678227000F3DB4 /* BarDrawAbstract.h */,
+				2B8DE4441F668A17000F3DB4 /* LineDrawAbstract.h */,
 				2B8DE4451F668A54000F3DB4 /* BaseLineBarAbstract.h */,
 			);
 			path = LineBarAbstract;
@@ -1026,8 +1022,6 @@
 				2B97884C1F09D4E2002A2A3C /* BaseCountChart.m */,
 				2B9788511F09D4E2002A2A3C /* PieChart.h */,
 				2B9788521F09D4E2002A2A3C /* PieChart.m */,
-				2B9788531F09D4E2002A2A3C /* PNBarChart.h */,
-				2B9788541F09D4E2002A2A3C /* PNBarChart.m */,
 				2B8B629F1F33146B00028F40 /* GGRadarChart.h */,
 				2B8B62A01F33146B00028F40 /* GGRadarChart.m */,
 			);
@@ -1056,8 +1050,6 @@
 				2B9788631F09D4E2002A2A3C /* LineData.m */,
 				2B9788661F09D4E2002A2A3C /* PieData.h */,
 				2B9788671F09D4E2002A2A3C /* PieData.m */,
-				2B9788681F09D4E2002A2A3C /* PNBarData.h */,
-				2B9788691F09D4E2002A2A3C /* PNBarData.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1220,7 +1212,6 @@
 				2B27227F1F0F550D00E4A295 /* lctype.c in Sources */,
 				2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */,
 				2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */,
-				2B9788791F09D4E2002A2A3C /* PNBarChart.m in Sources */,
 				2B97887C1F09D4E2002A2A3C /* BaseChartData.m in Sources */,
 				2B2722811F0F550D00E4A295 /* ldebug.c in Sources */,
 				2B97887D1F09D4E2002A2A3C /* BaseLineData.m in Sources */,
@@ -1314,7 +1305,6 @@
 				2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */,
 				2B27228E1F0F550D00E4A295 /* loslib.c in Sources */,
 				2B330A671EE44F19003D17C4 /* GGStringRenderer.m in Sources */,
-				2B9788821F09D4E2002A2A3C /* PNBarData.m in Sources */,
 				2B7E411A1F396455000E0413 /* Animator.m in Sources */,
 				2B5DE6321F00BB9800B40676 /* KTimeViewController.m in Sources */,
 				2B8B629B1F32ED7C00028F40 /* RadarData.m in Sources */,

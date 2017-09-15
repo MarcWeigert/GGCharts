@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "GGRenderProtocol.h"
 #import "GGShapeCanvas.h"
+#import "GGNumberRenderer.h"
 
 @interface GGCanvas : CALayer
 
@@ -23,6 +24,19 @@
  * 如果开启该缓存, 调用removeAllRenderers, 会保留上一次绘制内容
  */
 @property (nonatomic, assign) BOOL isCashBeforeRenderers;
+
+/**
+ * 当前显示的NumberRenderer
+ */
+@property (nonatomic, strong, readonly) NSArray <GGNumberRenderer *> * visibleNumberRenderers;
+
+
+#pragma mark - 渲染器
+
+/**
+ * 获取Number渲染器
+ */
+- (GGNumberRenderer *)getNumberRenderer;
 
 
 #pragma mark - 取层

@@ -7,7 +7,6 @@
 //
 
 #import "IOBarChartViewController.h"
-#import "PNBarChart.h"
 
 #import "BarChart.h"
 #import "Colors.h"
@@ -19,7 +18,6 @@
 @property (nonatomic, strong) BarDataSet * barDataSet;
 
 @property (nonatomic, strong) GGBarData * barData;
-@property (nonatomic, strong) GGBarData * barData2;
 
 @end
 
@@ -34,19 +32,31 @@
     _barData = [[GGBarData alloc] init];
     _barData.barWidth = 25;
     _barData.roundNumber = @0;
-    _barData.dataAry = @[@-2225.6, @-2563.1, @531.4, @839.4, @7.4, @1000, @-897.0, @1500];
+    _barData.dataAry = @[@-2225.6, @-2563.1, @531.4, @839.4, @-897.0, @1500];
     
-    _barData2 = [[GGBarData alloc] init];
-    _barData2.barWidth = 10;
-    _barData2.roundNumber = @0;
+    _barData.dataFormatter = @"%.2f";
+    _barData.stringColor = [UIColor blackColor];
+    _barData.stringFont = [UIFont systemFontOfSize:9];
     
     _barDataSet = [[BarDataSet alloc] init];
     _barDataSet.barAry = @[_barData];
     _barDataSet.lineBarMode = LineBarDrawParallel;
+    _barDataSet.midLineWidth = .5f;
+    _barDataSet.midLineColor = RGB(140, 154, 163);
+    _barDataSet.updateNeedAnimation = YES;
+    _barDataSet.idRatio = 0;
+    
+    _barDataSet.gridConfig.bottomLableAxis.lables = @[@"7-24", @"7-25", @"7-26", @"7-27", @"7-28", @"7-29"];
+    _barDataSet.gridConfig.bottomLableAxis.drawStringAxisCenter = YES;
     
     [_barDataSet setBarColorsAtIndexPath:^UIColor *(NSIndexPath * index, NSNumber * number) {
         
         return number.floatValue > 0 ? RGB(241, 73, 81) : RGB(30, 191, 97);
+    }];
+    
+    [_barDataSet setStringColorForValue:^UIColor *(CGFloat value) {
+        
+        return value > 0 ? RGB(241, 73, 81) : RGB(30, 191, 97);
     }];
     
     _barChart = [[BarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
@@ -79,21 +89,21 @@
 
 - (void)analogDataFirst
 {
-    _barData.dataAry = @[@2225.6, @2563.1, @531.4, @839.4, @107.4, @1000, @897.0, @1500];
+    _barData.dataAry = @[@2225.6, @2563.1, @531.4, @839.4, @107.4, @1500];
     
     [_barChart drawBarChart];
 }
 
 - (void)analogDataSecond
 {
-    _barData.dataAry = @[@-2225.6, @-2563.1, @-531.4, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
+    _barData.dataAry = @[@-2225.6, @-839.4, @-7.4, @-1000, @-897.0, @-1500];
     
     [_barChart drawBarChart];
 }
 
 - (void)analogDataThird
 {
-    _barData.dataAry = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000, @897.0, @-1500];
+    _barData.dataAry = @[@-2225.6, @2563.1, @-531.4, @-839.4, @7.4, @-1000];
     
     [_barChart drawBarChart];
 }

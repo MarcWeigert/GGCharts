@@ -16,6 +16,21 @@
 @implementation BarDataSet
 
 /**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _midLineColor = [UIColor grayColor];
+    }
+    
+    return self;
+}
+
+/**
  * 获取数据数组(子类重写)
  */
 - (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray

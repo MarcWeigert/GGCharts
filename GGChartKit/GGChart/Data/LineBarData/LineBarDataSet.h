@@ -34,4 +34,14 @@
  */
 @property (nonatomic, copy) UIColor *(^barColorsAtIndexPath)(NSIndexPath *indexPath, NSNumber * number);
 
+/**
+ * 中间分割线线宽
+ */
+@property (nonatomic, assign) CGFloat midLineWidth;
+
+/**
+ * 中间线颜色
+ */
+@property (nonatomic, strong) UIColor * midLineColor;
+
 @end

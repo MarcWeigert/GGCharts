@@ -29,6 +29,12 @@
 
 @property (nonatomic, assign) BOOL hidden;          ///< 是否显示
 
+/**
+ * 获取文字颜色
+ */
+@property (nonatomic, copy) UIColor *(^getNumberColorBlock)(CGFloat value);
+
+
 /** 绘制起始点文字 */
 - (void)drawAtToNumberAndPoint;
 

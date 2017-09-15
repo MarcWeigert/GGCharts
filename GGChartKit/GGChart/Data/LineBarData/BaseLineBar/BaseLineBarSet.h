@@ -48,6 +48,21 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) CGFloat idRatio;
 
 /**
+ * 更新时是否需要动画
+ */
+@property (nonatomic, assign) BOOL updateNeedAnimation;
+
+/**
+ * 柱状图颜色
+ * 优先级高于 data.stringColor
+ *
+ * @param value 数据
+ *
+ * @return 柱状图颜色
+ */
+@property (nonatomic, copy) UIColor *(^stringColorForValue)(CGFloat value);
+
+/**
  * 设置折线与轴数据
  */
 - (void)configLineAndAxisModel;

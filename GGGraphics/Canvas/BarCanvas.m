@@ -8,13 +8,32 @@
 
 #import "BarCanvas.h"
 #import "GGRectRenderer.h"
+#include <objc/runtime.h>
+
+static const void * barUpLayer = @"barUpLayer";
+static const void * barDownLayer = @"barDownLayer";
+static const void * barStringLayer = @"barStringLayer";
+
+#define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
+#define SET_ASSOCIATED_RETAIN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
+#define GET_ASSOCIATED(obj, key) objc_getAssociatedObject(obj, key)
 
 @interface BarCanvas ()
 
 /**
- * 文字数据
+ * 中线位置
  */
-@property (nonatomic, strong) NSMutableArray <GGNumberRenderer *> * allGGNumberArray;
+@property (nonatomic, assign) CGFloat lastMidLinePix;
+
+/**
+ * 中轴线层
+ */
+@property (nonatomic, weak) GGShapeCanvas * midLineLayer;
+
+/**
+ * 动画类
+ */
+@property (nonatomic, strong) Animator * animator;
 
 @end
 
@@ -27,13 +46,18 @@
 {
     [super drawChart];
     
-    // 清空文字信息
-    [self.allGGNumberArray removeAllObjects];
-    
     for (NSInteger i = 0; i < [_barDrawConfig barAry].count; i++) {
         
         [self drawBarRectsWidthBar:[_barDrawConfig barAry][i] section:i];
         [self drawBarStringWithBar:[_barDrawConfig barAry][i]];
+    }
+    
+    [self drawMidLine];
+    
+    // 启动动画
+    if ([_barDrawConfig updateNeedAnimation]) {
+        
+        [self updateSubLayerWithAnimations];
     }
 }
 
@@ -42,6 +66,8 @@
  */
 - (void)drawBarRectsWidthBar:(id <BarDrawAbstract>)barAbstract section:(NSInteger)section
 {
+    _lastMidLinePix = [barAbstract bottomYPix];
+    
     CGMutablePathRef upBarRef = CGPathCreateMutable();
     CGMutablePathRef downBarRef = CGPathCreateMutable();
     
@@ -68,6 +94,7 @@
     upBarCanvas.strokeColor = [barAbstract barBorderColor].CGColor;
     upBarCanvas.path = upBarRef;
     CGPathRelease(upBarRef);
+    SET_ASSOCIATED_ASSIGN(barAbstract, barUpLayer, upBarCanvas);
     
     GGShapeCanvas * downBarCanvas = [self getGGShapeCanvasEqualFrame];
     downBarCanvas.fillColor = [barAbstract barFillColor].CGColor;
@@ -75,6 +102,7 @@
     downBarCanvas.strokeColor = [barAbstract barBorderColor].CGColor;
     downBarCanvas.path = downBarRef;
     CGPathRelease(downBarRef);
+    SET_ASSOCIATED_ASSIGN(barAbstract, barDownLayer, downBarCanvas);
     
     if ([_barDrawConfig barColorsAtIndexPath]) {    // 分布绘制颜色
         
@@ -117,9 +145,6 @@
         
         [downCanvas setNeedsDisplay];
         [upCanvas setNeedsDisplay];
-        
-        [upBarCanvas pathChangeAnimation:1.0f];
-        [downBarCanvas pathChangeAnimation:1.0f];
     }
 }
 
@@ -132,6 +157,7 @@
         [barAbstract stringColor] != nil) {
         
         GGCanvas * stringCanvas = [self getCanvasEqualFrame];
+        stringCanvas.isCloseDisableActions = YES;
         [stringCanvas removeAllRenderer];
         
         for (NSInteger i = 0; i < [barAbstract dataAry].count; i++) {
@@ -140,26 +166,86 @@
             CGFloat x = rect.origin.x - [barAbstract offSetRatio].x * rect.size.width;
             CGFloat y = rect.origin.y + ([barAbstract offSetRatio].y + 1) * rect.size.height;
             
-            GGNumberRenderer * number = [[GGNumberRenderer alloc] init];
+            GGNumberRenderer * number = [self getNumberRenderer];
             number.offSetRatio = [barAbstract offSetRatio];
             number.format = [barAbstract dataFormatter];
-            number.fromNumber = 0;
             number.toNumber = [[barAbstract dataAry][i] floatValue];
-            number.fromPoint = CGPointZero;
             number.toPoint = CGPointMake(x, y);
             number.offSet = [barAbstract stringOffset];
+            number.getNumberColorBlock = [_barDrawConfig stringColorForValue];
+            
+            if (CGPointEqualToPoint(number.fromPoint, CGPointZero)) {
+                
+                number.fromPoint = CGPointMake(number.toPoint.x, [barAbstract bottomYPix]);
+            }
             
             [number drawAtToNumberAndPoint];
             [stringCanvas addRenderer:number];
         }
         
         [stringCanvas setNeedsDisplay];
+        
+        SET_ASSOCIATED_ASSIGN(barAbstract, barStringLayer, stringCanvas);
     }
 }
 
+/**
+ * 绘制中轴线
+ */
+- (void)drawMidLine
+{
+    if ([_barDrawConfig midLineWidth] > 0) {
+        
+        CGRect drawRect = UIEdgeInsetsInsetRect(self.frame, [_barDrawConfig insets]);
+        GGLine line = GGLineRectForY(drawRect, _lastMidLinePix);
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        CGPathMoveToPoint(ref, NULL, line.start.x, line.start.y);
+        CGPathAddLineToPoint(ref, NULL, line.end.x, line.end.y);
+        
+        self.midLineLayer = [self getGGShapeCanvasEqualFrame];
+        self.midLineLayer.path = ref;
+        self.midLineLayer.lineWidth = [_barDrawConfig midLineWidth];
+        self.midLineLayer.strokeColor = [_barDrawConfig midLineColor].CGColor;
+    }
+}
+
+/**
+ * 更新动画
+ */
+- (void)updateSubLayerWithAnimations
+{
+    [self.midLineLayer pathChangeAnimation:.5f];
+    
+    for (id <BarDrawAbstract> drawBarAbstract in [_barDrawConfig barAry]) {
+        
+        [GET_ASSOCIATED(drawBarAbstract, barUpLayer) pathChangeAnimation:.5f];
+        [GET_ASSOCIATED(drawBarAbstract, barDownLayer) pathChangeAnimation:.5f];
+    }
+    
+    [self.animator startAnimationWithDuration:.5f animationArray:self.visibleNumberRenderers updateBlock:^(CGFloat progress) {
+        
+        for (id <BarDrawAbstract> drawBarAbstract in [_barDrawConfig barAry]) {
+            
+            [GET_ASSOCIATED(drawBarAbstract, barStringLayer) setNeedsDisplay];
+        }
+    }];
+}
 
 #pragma mark - Lazy
 
-GGLazyGetMethod(NSMutableArray, allGGNumberArray);
+/**
+ * 动画类
+ */
+- (Animator *)animator
+{
+    if (_animator == nil) {
+        
+        _animator = [[Animator alloc] init];
+        _animator.animationType = AnimationLinear;
+    }
+    
+    return _animator;
+}
 
 @end

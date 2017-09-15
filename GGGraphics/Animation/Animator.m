@@ -84,7 +84,7 @@
 
 @property (nonatomic, assign) NSTimeInterval progress;
 
-@property (nonatomic, strong) NSArray <id <AnimatorProtocol>> * animators;
+@property (nonatomic, weak) NSArray <id <AnimatorProtocol>> * animators;
 
 @end
 
@@ -128,7 +128,7 @@
     self.lastUpdateTime = [NSDate timeIntervalSinceReferenceDate];
     
     self.disPlaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateDisplay:)];
-    self.disPlaylink.frameInterval = 2;
+    self.disPlaylink.frameInterval = 1;
     [self.disPlaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     [self.disPlaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:UITrackingRunLoopMode];
 }
@@ -151,7 +151,6 @@
     if (self.progress >= self.maximumProgress) {
         
         [self.disPlaylink invalidate];
-        self.animators = nil;
         self.disPlaylink = nil;
         self.progress = self.maximumProgress;
     }
@@ -159,7 +158,7 @@
     CGFloat percent = self.progress / self.maximumProgress;
     CGFloat progressValue = [self.animatorCounter updateConvert:percent];
     
-    for (id <AnimatorProtocol> animator in _animators) {    // 多次轮询
+    for (id <AnimatorProtocol> animator in self.animators) {    // 多次轮询
         
         [animator startUpdateWithProgress:progressValue];
     }

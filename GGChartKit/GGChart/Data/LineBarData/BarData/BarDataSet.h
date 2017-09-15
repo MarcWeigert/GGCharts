@@ -28,4 +28,14 @@
  */
 @property (nonatomic, strong) NSArray <GGBarData *> *barAry;
 
+/**
+ * 中间分割线线宽
+ */
+@property (nonatomic, assign) CGFloat midLineWidth;
+
+/**
+ * 中间线颜色
+ */
+@property (nonatomic, strong) UIColor * midLineColor;
+
 @end

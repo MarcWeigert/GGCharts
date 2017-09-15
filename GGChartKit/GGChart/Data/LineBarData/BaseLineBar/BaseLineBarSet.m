@@ -30,6 +30,7 @@
     if (self) {
         
         _idRatio = .1f;
+        _insets = UIEdgeInsetsMake(20, 5, 20, 5);
     }
     
     return self;

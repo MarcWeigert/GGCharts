@@ -9,9 +9,10 @@
 #ifndef LineCanvasAbstract_h
 #define LineCanvasAbstract_h
 
+#import "BaseLineBarCanvasAbstract.h"
 #import "LineDrawAbstract.h"
 
-@protocol LineCanvasAbstract <NSObject>
+@protocol LineCanvasAbstract <BaseLineBarCanvasAbstract>
 
 /**
  * 线内边距

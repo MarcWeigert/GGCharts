@@ -27,6 +27,9 @@
  */
 @property (nonatomic, strong) NSMutableArray <id <GGRenderProtocol>> * aryCurrentRenderer;
 
+
+#pragma mark - Layers
+
 /**
  * 显示的图层(路径层)
  */
@@ -57,6 +60,19 @@
  */
 @property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleCanvas;
 
+
+#pragma mark - Renderer
+
+/**
+ * 当前显示的NumberRenderer
+ */
+@property (nonatomic, strong) NSMutableArray <GGNumberRenderer *> * visibleNumberRenderer;
+
+/**
+ * 闲置的NumberRenderer
+ */
+@property (nonatomic, strong) NSMutableArray <GGNumberRenderer *> * idleNumberRenderer;
+
 @end
 
 @implementation GGCanvas
@@ -73,6 +89,37 @@
     }
     
     return self;
+}
+
+#pragma mark - Renderer
+
+/**
+ * 获取Number渲染器
+ */
+- (GGNumberRenderer *)getNumberRenderer
+{
+    GGNumberRenderer * numberRenderer = [self makeOrGetNumberRenrer];
+    [self.visibleNumberRenderer addObject:numberRenderer];
+    return numberRenderer;
+}
+
+/**
+ * 获取number渲染器
+ */
+- (GGNumberRenderer *)makeOrGetNumberRenrer
+{
+    GGNumberRenderer * renderer = [self.idleNumberRenderer firstObject];
+    
+    if (renderer == nil) {
+        
+        renderer = [[GGNumberRenderer alloc] init];
+    }
+    else {
+        
+        [self.idleNumberRenderer removeObject:renderer];
+    }
+    
+    return renderer;
 }
 
 #pragma mark - Shape
@@ -250,6 +297,11 @@
     }];
     
     [self.visibleCanvas removeAllObjects];
+    
+    // 渲染器
+    [self.idleNumberRenderer addObjectsFromArray:self.visibleNumberRenderer];
+    
+    [self.visibleNumberRenderer removeAllObjects];
 }
 
 #pragma mark - 绘制
@@ -341,11 +393,24 @@
     CGContextRestoreGState(ctx);
 }
 
+#pragma mark - Getter
+
+/**
+ * 获取Number渲染器
+ */
+- (NSArray<GGNumberRenderer *> *)visibleNumberRenderers
+{
+    return self.visibleNumberRenderer;
+}
+
 #pragma mark - Lazy
 
 GGLazyGetMethod(NSMutableArray, aryRenderer);
 GGLazyGetMethod(NSMutableArray, aryBeforeRenderer);
 GGLazyGetMethod(NSMutableArray, aryCurrentRenderer);
+
+GGLazyGetMethod(NSMutableArray, visibleNumberRenderer);
+GGLazyGetMethod(NSMutableArray, idleNumberRenderer);
 
 GGLazyGetMethod(NSMutableArray, visibleLayers);
 GGLazyGetMethod(NSMutableArray, idleLayers);

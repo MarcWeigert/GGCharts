@@ -38,6 +38,17 @@
     return self;
 }
 
+- (void)setToNumber:(CGFloat)toNumber
+{
+    _fromNumber = _toNumber;
+    _toNumber = toNumber;
+}
+
+- (void)setFromNumber:(CGFloat)fromNumber
+{
+    _fromNumber = fromNumber;
+}
+
 - (void)setFromPoint:(CGPoint)fromPoint
 {
     _fromPoint = fromPoint;
@@ -46,6 +57,7 @@
 
 - (void)setToPoint:(CGPoint)toPoint
 {
+    _fromPoint = _toPoint;
     _toPoint = toPoint;
     _toPoint = CGPointMake(_toPoint.x + _offSet.width, _toPoint.y + _offSet.height);
 }
@@ -63,6 +75,11 @@
 {
     _currentNumber = _toNumber;
     _currentPoint = _toPoint;
+    
+    if (self.getNumberColorBlock) {
+        
+        [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];
+    }
 }
 
 /** 绘制终点文字 */
@@ -70,18 +87,14 @@
 {
     _currentNumber = _fromNumber;
     _currentPoint = _toPoint;
+    
+    if (self.getNumberColorBlock) {
+        
+        [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];
+    }
 }
 
 /** 更新 */
-- (void)drawProgressNumberAndPoint:(CGFloat)progress
-{
-    _currentNumber = _fromNumber + (_toNumber - _fromNumber) * progress;
-    
-    GGLine line = GGPointLineMake(_fromPoint, _toPoint);
-    line = GGLineMoveStart(line, GGLengthLine(line) * progress);
-    _currentPoint = line.start;
-}
-
 - (void)startUpdateWithProgress:(CGFloat)progress
 {
     _currentNumber = _fromNumber + (_toNumber - _fromNumber) * progress;
@@ -89,6 +102,11 @@
     GGLine line = GGPointLineMake(_fromPoint, _toPoint);
     line = GGLineMoveStart(line, GGLengthLine(line) * progress);
     _currentPoint = line.start;
+    
+    if (self.getNumberColorBlock) {
+        
+        [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];
+    }
 }
 
 - (void)setFont:(UIFont *)font

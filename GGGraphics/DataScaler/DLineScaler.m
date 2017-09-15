@@ -73,6 +73,9 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     return self;
 }
 
+/**
+ * 环绕点
+ */
 - (CGFloat)aroundY
 {
     if (_aroundNumber) {
@@ -81,6 +84,32 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
     }
     
     return CGRectGetMaxY(self.rect);
+}
+
+/**
+ * 设置定标器最小值
+ */
+- (void)setMin:(CGFloat)min
+{
+    _min = min;
+    
+    if (_min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
+        
+        _min = self.aroundNumber.floatValue;
+    }
+}
+
+/**
+ * 设置环绕加个点
+ */
+- (void)setAroundNumber:(NSNumber *)aroundNumber
+{
+    _aroundNumber = aroundNumber;
+    
+    if (_min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
+        
+        _min = self.aroundNumber.floatValue;
+    }
 }
 
 /**

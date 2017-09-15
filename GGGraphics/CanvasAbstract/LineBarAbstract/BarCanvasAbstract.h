@@ -9,14 +9,25 @@
 #ifndef BarCanvasAbstract_h
 #define BarCanvasAbstract_h
 
+#import "BaseLineBarCanvasAbstract.h"
 #import "BarDrawAbstract.h"
 
-@protocol BarCanvasAbstract <NSObject>
+@protocol BarCanvasAbstract <BaseLineBarCanvasAbstract>
 
 /**
  * 柱状图内边距
  */
 @property (nonatomic, assign, readonly) UIEdgeInsets insets;
+
+/**
+ * 中间分割线线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat midLineWidth;
+
+/**
+ * 中间线颜色
+ */
+@property (nonatomic, strong, readonly) UIColor * midLineColor;
 
 /**
  * 柱状图颜色

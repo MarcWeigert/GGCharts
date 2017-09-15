@@ -10,4 +10,19 @@
 
 @implementation LineBarDataSet
 
+/**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _midLineColor = [UIColor grayColor];
+    }
+    
+    return self;
+}
+
 @end

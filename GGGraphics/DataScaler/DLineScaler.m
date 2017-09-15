@@ -93,7 +93,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     _min = min;
     
-    if (_min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
+    if (self.aroundNumber && _min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
         
         _min = self.aroundNumber.floatValue;
     }
@@ -106,7 +106,7 @@ LineScaler x_axiScaler(NSInteger sep, CGRect rect, CGFloat base)
 {
     _aroundNumber = aroundNumber;
     
-    if (_min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
+    if (self.aroundNumber && _min > self.aroundNumber.floatValue) {  // 如果最小值大于aroundNumber, 则重新设置最小值
         
         _min = self.aroundNumber.floatValue;
     }

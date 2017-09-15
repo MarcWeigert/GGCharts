@@ -16,6 +16,22 @@
 @implementation BaseLineBarData
 
 /**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.offSetRatio = CGPointMake(-.5f, -1.0f);
+        self.stringOffset = CGSizeMake(0, -2.0f);
+    }
+    
+    return self;
+}
+
+/**
  * 围绕该Y轴坐标点填充, FLT_MIN 代表不填充
  */
 - (CGFloat)bottomYPix

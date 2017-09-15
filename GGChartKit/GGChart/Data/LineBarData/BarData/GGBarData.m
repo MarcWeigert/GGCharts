@@ -28,7 +28,6 @@
         
         self.barWidth = 5;
         self.barFillColor = [UIColor blackColor];
-        self.offSetRatio = CGPointMake(-.5f, -1.0f);
     }
     
     return self;

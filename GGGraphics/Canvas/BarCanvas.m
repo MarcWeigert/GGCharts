@@ -170,8 +170,7 @@ static const void * barStringLayer = @"barStringLayer";
             number.offSetRatio = [barAbstract offSetRatio];
             number.format = [barAbstract dataFormatter];
             number.toNumber = [[barAbstract dataAry][i] floatValue];
-            number.toPoint = CGPointMake(x, y);
-            number.offSet = [barAbstract stringOffset];
+            number.toPoint = CGPointMake(x + [barAbstract stringOffset].width, y + [barAbstract stringOffset].height);
             number.getNumberColorBlock = [_barDrawConfig stringColorForValue];
             
             if (CGPointEqualToPoint(number.fromPoint, CGPointZero)) {

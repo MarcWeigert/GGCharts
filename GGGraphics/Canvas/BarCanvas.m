@@ -8,15 +8,8 @@
 
 #import "BarCanvas.h"
 #import "GGRectRenderer.h"
+#import "BarAnimationsManager.h"
 #include <objc/runtime.h>
-
-static const void * barUpLayer = @"barUpLayer";
-static const void * barDownLayer = @"barDownLayer";
-static const void * barStringLayer = @"barStringLayer";
-
-#define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
-#define SET_ASSOCIATED_RETAIN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
-#define GET_ASSOCIATED(obj, key) objc_getAssociatedObject(obj, key)
 
 @interface BarCanvas ()
 
@@ -26,14 +19,14 @@ static const void * barStringLayer = @"barStringLayer";
 @property (nonatomic, assign) CGFloat lastMidLinePix;
 
 /**
- * 中轴线层
+ * 动画管理类
  */
-@property (nonatomic, weak) GGShapeCanvas * midLineLayer;
+@property (nonatomic, strong) BarAnimationsManager * barAnimations;
 
 /**
- * 动画类
+ * 是否经过第一次渲染
  */
-@property (nonatomic, strong) Animator * animator;
+@property (nonatomic, assign) BOOL hadRenderer;
 
 @end
 
@@ -46,10 +39,16 @@ static const void * barStringLayer = @"barStringLayer";
 {
     [super drawChart];
     
+    // 清空动画管理类
+    [self.barAnimations resetAnimationManager];
+    
     for (NSInteger i = 0; i < [_barDrawConfig barAry].count; i++) {
         
         [self drawBarRectsWidthBar:[_barDrawConfig barAry][i] section:i];
         [self drawBarStringWithBar:[_barDrawConfig barAry][i]];
+        
+        // 柱状图抽象类注册到管理类中
+        [self.barAnimations registerBarDrawAbstract:[_barDrawConfig barAry][i]];
     }
     
     [self drawMidLine];
@@ -57,8 +56,17 @@ static const void * barStringLayer = @"barStringLayer";
     // 启动动画
     if ([_barDrawConfig updateNeedAnimation]) {
         
-        [self updateSubLayerWithAnimations];
+        if (!self.hadRenderer) {
+            
+            [self.barAnimations startAnimationWithDuration:.5f animationType:AnimationRiseType];
+        }
+        else {
+        
+            [self.barAnimations startAnimationWithDuration:.5f animationType:AnimationChangeType];
+        }
     }
+    
+    self.hadRenderer = YES;
 }
 
 /**
@@ -160,6 +168,8 @@ static const void * barStringLayer = @"barStringLayer";
         stringCanvas.isCloseDisableActions = YES;
         [stringCanvas removeAllRenderer];
         
+        NSMutableArray * numberRenderers = [NSMutableArray array];
+        
         for (NSInteger i = 0; i < [barAbstract dataAry].count; i++) {
             
             CGRect rect = [barAbstract barRects][i];
@@ -173,17 +183,14 @@ static const void * barStringLayer = @"barStringLayer";
             number.toPoint = CGPointMake(x + [barAbstract stringOffset].width, y + [barAbstract stringOffset].height);
             number.getNumberColorBlock = [_barDrawConfig stringColorForValue];
             
-            if (CGPointEqualToPoint(number.fromPoint, CGPointZero)) {
-                
-                number.fromPoint = CGPointMake(number.toPoint.x, [barAbstract bottomYPix]);
-            }
-            
             [number drawAtToNumberAndPoint];
             [stringCanvas addRenderer:number];
+            [numberRenderers addObject:number];
         }
         
         [stringCanvas setNeedsDisplay];
         
+        SET_ASSOCIATED_RETAIN(barAbstract, barNumberArray, numberRenderers);
         SET_ASSOCIATED_ASSIGN(barAbstract, barStringLayer, stringCanvas);
     }
 }
@@ -202,49 +209,17 @@ static const void * barStringLayer = @"barStringLayer";
         CGPathMoveToPoint(ref, NULL, line.start.x, line.start.y);
         CGPathAddLineToPoint(ref, NULL, line.end.x, line.end.y);
         
-        self.midLineLayer = [self getGGShapeCanvasEqualFrame];
-        self.midLineLayer.path = ref;
-        self.midLineLayer.lineWidth = [_barDrawConfig midLineWidth];
-        self.midLineLayer.strokeColor = [_barDrawConfig midLineColor].CGColor;
-    }
-}
-
-/**
- * 更新动画
- */
-- (void)updateSubLayerWithAnimations
-{
-    [self.midLineLayer pathChangeAnimation:.5f];
-    
-    for (id <BarDrawAbstract> drawBarAbstract in [_barDrawConfig barAry]) {
+        GGShapeCanvas * lineLayer = [self getGGShapeCanvasEqualFrame];
+        lineLayer.path = ref;
+        lineLayer.lineWidth = [_barDrawConfig midLineWidth];
+        lineLayer.strokeColor = [_barDrawConfig midLineColor].CGColor;
         
-        [GET_ASSOCIATED(drawBarAbstract, barUpLayer) pathChangeAnimation:.5f];
-        [GET_ASSOCIATED(drawBarAbstract, barDownLayer) pathChangeAnimation:.5f];
+        self.barAnimations.midLineLayer = lineLayer;
     }
-    
-    [self.animator startAnimationWithDuration:.5f animationArray:self.visibleNumberRenderers updateBlock:^(CGFloat progress) {
-        
-        for (id <BarDrawAbstract> drawBarAbstract in [_barDrawConfig barAry]) {
-            
-            [GET_ASSOCIATED(drawBarAbstract, barStringLayer) setNeedsDisplay];
-        }
-    }];
 }
 
 #pragma mark - Lazy
 
-/**
- * 动画类
- */
-- (Animator *)animator
-{
-    if (_animator == nil) {
-        
-        _animator = [[Animator alloc] init];
-        _animator.animationType = AnimationLinear;
-    }
-    
-    return _animator;
-}
+GGLazyGetMethod(BarAnimationsManager, barAnimations);
 
 @end

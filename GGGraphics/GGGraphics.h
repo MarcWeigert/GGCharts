@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 #import "GGRenderProtocol.h"
-#import "ToolDefine.h"
+#import "DrawHeader.h"
 
 #import "DLineScaler.h"
 #import "DBarScaler.h"

@@ -84,7 +84,7 @@
 
 @property (nonatomic, assign) NSTimeInterval progress;
 
-@property (nonatomic, weak) NSArray <id <AnimatorProtocol>> * animators;
+@property (nonatomic, strong) NSArray <id <AnimatorProtocol>> * animators;
 
 @end
 

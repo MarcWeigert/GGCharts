@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "GGRenderProtocol.h"
-#import "ToolDefine.h"
 #import "GGChartGeometry.h"
 
 @interface GGLineRenderer : NSObject <GGRenderProtocol>

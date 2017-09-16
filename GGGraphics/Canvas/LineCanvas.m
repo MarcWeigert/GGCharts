@@ -11,14 +11,6 @@
 #import "LineAnimation.h"
 #include <objc/runtime.h>
 
-static const void * lineLayer = @"lineLayer";
-static const void * lineShapeLayer = @"lineShapeLayer";
-static const void * lineFillLayer = @"lineFillLayer";
-
-#define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
-#define SET_ASSOCIATED_RETAIN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
-#define GET_ASSOCIATED(obj, key) objc_getAssociatedObject(obj, key)
-
 @interface LineCanvas ()
 
 @property (nonatomic, strong) GGCanvas * stringCanvas;

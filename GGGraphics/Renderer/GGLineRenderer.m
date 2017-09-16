@@ -10,7 +10,6 @@
 
 @implementation GGLineRenderer
 
-
 - (void)drawInContext:(CGContextRef)ctx
 {
     CGContextSetLineWidth(ctx, _width);

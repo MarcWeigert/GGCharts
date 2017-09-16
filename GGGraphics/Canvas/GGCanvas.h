@@ -42,7 +42,7 @@
 #pragma mark - 取层
 
 /**
- * 绘制图表(子类重写)
+ * 绘制图表(子类重写), 重绘时会重置所有的Layer
  */
 - (void)drawChart;
 

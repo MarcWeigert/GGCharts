@@ -53,6 +53,7 @@
 		2B2722B71F0F694400E4A295 /* MALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B61F0F694400E4A295 /* MALayer.m */; };
 		2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */; };
 		2B28FE171F6D6D1300F4FD1E /* BarAnimationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B28FE161F6D6D1300F4FD1E /* BarAnimationsManager.m */; };
+		2B28FE1B1F6DFF1A00F4FD1E /* LineAnimationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B28FE1A1F6DFF1A00F4FD1E /* LineAnimationsManager.m */; };
 		2B2D02BF1F1C923E0052F4D5 /* TD.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D02BE1F1C923E0052F4D5 /* TD.lua */; };
 		2B2D02C21F1C93C10052F4D5 /* TDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D02C11F1C93C10052F4D5 /* TDLayer.m */; };
 		2B3034241F111E1000706575 /* BBI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034201F111E1000706575 /* BBI.lua */; };
@@ -161,7 +162,6 @@
 		2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */; };
 		2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */; };
 		2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */; };
-		2BA340C51F4A789600E940C8 /* LineAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA340C41F4A789600E940C8 /* LineAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -252,6 +252,8 @@
 		2B28FE151F6D6D1300F4FD1E /* BarAnimationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarAnimationsManager.h; sourceTree = "<group>"; };
 		2B28FE161F6D6D1300F4FD1E /* BarAnimationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarAnimationsManager.m; sourceTree = "<group>"; };
 		2B28FE181F6D712300F4FD1E /* DrawHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawHeader.h; sourceTree = "<group>"; };
+		2B28FE191F6DFF1A00F4FD1E /* LineAnimationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineAnimationsManager.h; sourceTree = "<group>"; };
+		2B28FE1A1F6DFF1A00F4FD1E /* LineAnimationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineAnimationsManager.m; sourceTree = "<group>"; };
 		2B2D02BE1F1C923E0052F4D5 /* TD.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TD.lua; sourceTree = "<group>"; };
 		2B2D02C01F1C93C10052F4D5 /* TDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLayer.h; sourceTree = "<group>"; };
 		2B2D02C11F1C93C10052F4D5 /* TDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLayer.m; sourceTree = "<group>"; };
@@ -473,8 +475,6 @@
 		2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLineViewController.m; sourceTree = "<group>"; };
 		2BA1C74A1EEC36BC007733CC /* NTPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieViewController.h; sourceTree = "<group>"; };
 		2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
-		2BA340C31F4A789600E940C8 /* LineAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineAnimation.h; sourceTree = "<group>"; };
-		2BA340C41F4A789600E940C8 /* LineAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -855,10 +855,10 @@
 			children = (
 				2B7E41181F396455000E0413 /* Animator.h */,
 				2B7E41191F396455000E0413 /* Animator.m */,
-				2BA340C31F4A789600E940C8 /* LineAnimation.h */,
-				2BA340C41F4A789600E940C8 /* LineAnimation.m */,
 				2B28FE151F6D6D1300F4FD1E /* BarAnimationsManager.h */,
 				2B28FE161F6D6D1300F4FD1E /* BarAnimationsManager.m */,
+				2B28FE191F6DFF1A00F4FD1E /* LineAnimationsManager.h */,
+				2B28FE1A1F6DFF1A00F4FD1E /* LineAnimationsManager.m */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -1205,7 +1205,6 @@
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B8B62A11F33146B00028F40 /* GGRadarChart.m in Sources */,
 				2B8CEB841F302CB5005D441D /* GGPolygonRenderder.m in Sources */,
-				2BA340C51F4A789600E940C8 /* LineAnimation.m in Sources */,
 				2B71245F1F5CEC85004C0FA8 /* QueryCanvas.m in Sources */,
 				2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */,
 				2B2722791F0F550D00E4A295 /* lapi.c in Sources */,
@@ -1244,6 +1243,7 @@
 				2B330A651EE44F19003D17C4 /* GGGridRenderer.m in Sources */,
 				2B27227B1F0F550D00E4A295 /* lbaselib.c in Sources */,
 				2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */,
+				2B28FE1B1F6DFF1A00F4FD1E /* LineAnimationsManager.m in Sources */,
 				2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */,
 				2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */,
 				2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */,

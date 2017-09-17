@@ -16,7 +16,4 @@
  */
 @property (nonatomic, strong) id <LineCanvasAbstract> lineDrawConfig;
 
-
-- (void)startAnimation:(NSTimeInterval)duration;
-
 @end

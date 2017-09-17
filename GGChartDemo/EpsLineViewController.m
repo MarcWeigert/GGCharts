@@ -79,6 +79,7 @@
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 50);
     lineSet.lineAry = @[liney1, liney2, line];
     lineSet.idRatio = .2f;
+    lineSet.updateNeedAnimation = YES;
     
     /** 查价 */
     lineSet.queryConfig.lineWidth = .5f;

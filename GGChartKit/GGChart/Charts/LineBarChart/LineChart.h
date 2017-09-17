@@ -21,9 +21,4 @@
  */
 - (void)drawLineChart;
 
-/**
- * 开始动画
- */
-- (void)startAnimation:(NSTimeInterval)duration;
-
 @end

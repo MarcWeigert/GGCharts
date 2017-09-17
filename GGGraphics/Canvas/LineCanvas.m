@@ -8,203 +8,182 @@
 
 #import "LineCanvas.h"
 #import "DLineScaler.h"
-#import "LineAnimation.h"
 #include <objc/runtime.h>
+#import "LineAnimationsManager.h"
 
 @interface LineCanvas ()
 
-@property (nonatomic, strong) GGCanvas * stringCanvas;
+/**
+ * 折线动画类
+ */
+@property (nonatomic, strong) LineAnimationsManager * lineAnimations;
 
-@property (nonatomic, strong) Animator * animator;
-
-@property (nonatomic, strong) NSMutableArray <GGNumberRenderer *> * allGGNumberArray;
+/**
+ * 是否经过第一次渲染
+ */
+@property (nonatomic, assign) BOOL hadRenderer;
 
 @end
 
 @implementation LineCanvas
 
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        
-        _stringCanvas = [[GGCanvas alloc] init];
-        _stringCanvas.isCloseDisableActions = YES;
-        _animator = [Animator new];
-        _allGGNumberArray = [NSMutableArray array];
-    }
-    
-    return self;
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    
-    _stringCanvas.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-}
-
 - (void)drawChart
 {
     [super drawChart];
     
-    [_stringCanvas removeAllRenderer];
-    [_allGGNumberArray removeAllObjects];
-    
-    CGRect rect = CGRectMake(0, 0, self.gg_width, self.gg_height);
-    rect = UIEdgeInsetsInsetRect(rect, [_lineDrawConfig insets]);
+    // 清空动画管理类
+    [self.lineAnimations resetAnimationManager];
     
     for (NSInteger i = 0; i < _lineDrawConfig.lineAry.count; i++) {
         
         id <LineDrawAbstract> lineDraw = _lineDrawConfig.lineAry[i];
         
-        [self drawFillChartWithDraw:lineDraw];
-        [self drawLineChartWithLineDraw:lineDraw];
-        [self drawShapeChartWithLineDraw:lineDraw];
-        [self drawStringChartWithDraw:lineDraw];
+        [self drawFillLayerWithLine:lineDraw];
+        [self drawLineLayertWithLine:lineDraw];
+        [self drawShapeLayerWithLine:lineDraw];
+        [self drawStringLayerWithLine:lineDraw];
+        
+        [self.lineAnimations registerLineDrawAbstract:lineDraw];
     }
     
-    [self bringSublayerToFront:_stringCanvas];
-    [_stringCanvas setNeedsDisplay];
+    // 启动动画
+    if ([_lineDrawConfig updateNeedAnimation]) {
+        
+        if (!self.hadRenderer) {
+            
+            [self.lineAnimations startAnimationWithDuration:.5f animationType:LineAnimationRiseType];
+        }
+        else {
+            
+            [self.lineAnimations startAnimationWithDuration:.5f animationType:LineAnimationChangeType];
+        }
+    }
+    
+    self.hadRenderer = YES;
 }
 
 /** 绘制线 */
-- (void)drawLineChartWithLineDraw:(id <LineDrawAbstract>)lineDraw
+- (void)drawLineLayertWithLine:(id <LineDrawAbstract>)lineAbstract
 {
     GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
-    shape.lineWidth = [lineDraw lineWidth];
-    shape.strokeColor = [lineDraw lineColor].CGColor;
+    shape.lineWidth = [lineAbstract lineWidth];
+    shape.strokeColor = [lineAbstract lineColor].CGColor;
     shape.fillColor = [UIColor clearColor].CGColor;
-    shape.lineDashPattern = [lineDraw dashPattern];
+    shape.lineDashPattern = [lineAbstract dashPattern];
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddLines(path, NULL, [lineDraw points], [lineDraw dataAry].count);
+    CGPathAddLines(path, NULL, [lineAbstract points], [lineAbstract dataAry].count);
     shape.path = path;
     CGPathRelease(path);
     
-    SET_ASSOCIATED_ASSIGN(lineDraw, lineLayer, shape);
+    SET_ASSOCIATED_ASSIGN(lineAbstract, lineLayer, shape);
 }
 
 /** 绘制圆点 */
-- (void)drawShapeChartWithLineDraw:(id <LineDrawAbstract>)lineDraw
+- (void)drawShapeLayerWithLine:(id <LineDrawAbstract>)lineAbstract
 {
-    if ([lineDraw shapeRadius] > 0) {
+    if ([lineAbstract shapeRadius] > 0) {
         
         GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
-        shape.lineWidth = [lineDraw shapeLineWidth];
-        shape.strokeColor = [lineDraw lineColor].CGColor;
-        shape.fillColor = [lineDraw shapeFillColor] == nil ? [UIColor whiteColor].CGColor : [lineDraw shapeFillColor].CGColor;
+        shape.lineWidth = [lineAbstract shapeLineWidth];
+        shape.strokeColor = [lineAbstract lineColor].CGColor;
+        shape.fillColor = [lineAbstract shapeFillColor] == nil ? [UIColor whiteColor].CGColor : [lineAbstract shapeFillColor].CGColor;
         
         CGMutablePathRef path = CGPathCreateMutable();
         
-        if ([lineDraw showShapeIndexSet].count > 0) {
+        if ([lineAbstract showShapeIndexSet].count > 0) {
             
-            for (NSNumber * number in [lineDraw showShapeIndexSet]) {
+            for (NSNumber * number in [lineAbstract showShapeIndexSet]) {
                 
-                GGPathAddCircle(path, GGCirclePointMake([lineDraw points][number.integerValue], [lineDraw shapeRadius]));
+                GGPathAddCircle(path, GGCirclePointMake([lineAbstract points][number.integerValue], [lineAbstract shapeRadius]));
             }
         }
         else {
         
-            GGPathAddCircles(path, [lineDraw points], [lineDraw shapeRadius], [lineDraw dataAry].count);
+            GGPathAddCircles(path, [lineAbstract points], [lineAbstract shapeRadius], [lineAbstract dataAry].count);
         }
         
         shape.path = path;
         CGPathRelease(path);
         
-        SET_ASSOCIATED_ASSIGN(lineDraw, lineShapeLayer, shape);
+        SET_ASSOCIATED_ASSIGN(lineAbstract, lineShapeLayer, shape);
     }
 }
 
 /** 绘制文字 */
-- (void)drawStringChartWithDraw:(id <LineDrawAbstract>)lineDraw
+- (void)drawStringLayerWithLine:(id <LineDrawAbstract>)lineAbstract
 {
-    if ([lineDraw stringFont] != nil &&
-        [lineDraw stringColor] != nil &&
-        [lineDraw dataFormatter] != nil) {
+    if ([lineAbstract stringFont] != nil &&
+        [lineAbstract stringColor] != nil &&
+        [lineAbstract dataFormatter] != nil) {
         
-        NSString * dataFromatter = [lineDraw dataFormatter] == nil ? @"%.2f" : [lineDraw dataFormatter];
+        NSString * dataFromatter = [lineAbstract dataFormatter] == nil ? @"%.2f" : [lineAbstract dataFormatter];
         
-        for (NSInteger i = 0; i < [lineDraw dataAry].count; i++) {
+        GGCanvas * canvas = [self getCanvasEqualFrame];
+        canvas.isCloseDisableActions = YES;
+        [canvas removeAllRenderer];
+        
+        NSMutableArray * arrayNumber = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < [lineAbstract dataAry].count; i++) {
             
             GGNumberRenderer * stringRenderer = [[GGNumberRenderer alloc] init];
-            stringRenderer.color = [lineDraw stringColor];
-            stringRenderer.fromPoint = CGPointMake([lineDraw points][i].x, [lineDraw bottomYPix]);
-            stringRenderer.toPoint = [lineDraw points][i];
-            stringRenderer.font = [lineDraw stringFont];
-            stringRenderer.toNumber = [[lineDraw dataAry][i] floatValue];
-            stringRenderer.offSetRatio = [lineDraw offSetRatio];
-            stringRenderer.offSet = [lineDraw stringOffset];
+            stringRenderer.color = [lineAbstract stringColor];
+            stringRenderer.toPoint = [lineAbstract points][i];
+            stringRenderer.font = [lineAbstract stringFont];
+            stringRenderer.toNumber = [[lineAbstract dataAry][i] floatValue];
+            stringRenderer.offSetRatio = [lineAbstract offSetRatio];
+            stringRenderer.offSet = [lineAbstract stringOffset];
             stringRenderer.format = dataFromatter;
             [stringRenderer drawAtToNumberAndPoint];
             
-            [_stringCanvas addRenderer:stringRenderer];
-            [_allGGNumberArray addObject:stringRenderer];
+            [canvas addRenderer:stringRenderer];
+            [arrayNumber addObject:stringRenderer];
         }
+        
+        [canvas setNeedsDisplay];
+        
+        SET_ASSOCIATED_RETAIN(lineAbstract, lineNumberArray, arrayNumber);
+        SET_ASSOCIATED_ASSIGN(lineAbstract, lineStringLayer, canvas);
     }
 }
 
 /** 填充色 */
-- (void)drawFillChartWithDraw:(id <LineDrawAbstract>)lineDraw
+- (void)drawFillLayerWithLine:(id <LineDrawAbstract>)lineAbstract
 {
-    if ([lineDraw lineFillColor] || [lineDraw gradientFillColors].count > 0) {
+    if ([lineAbstract lineFillColor] || [lineAbstract gradientFillColors].count > 0) {
         
         GGShapeCanvas * shape = [self getGGShapeCanvasEqualFrame];
         shape.lineWidth = 0;
-        shape.fillColor = [lineDraw lineFillColor].CGColor;
+        shape.fillColor = [lineAbstract lineFillColor].CGColor;
         
-        CGPoint lineFirstPoint = [lineDraw points][0];
-        CGPoint lineLastPoint = [lineDraw points][lineDraw.dataAry.count - 1];
+        CGPoint lineFirstPoint = [lineAbstract points][0];
+        CGPoint lineLastPoint = [lineAbstract points][lineAbstract.dataAry.count - 1];
         
         CGMutablePathRef path = CGPathCreateMutable();
-        CGPathAddLines(path, NULL, [lineDraw points], lineDraw.dataAry.count);
-        CGPathAddLineToPoint(path, NULL, lineLastPoint.x, [lineDraw bottomYPix]);
-        CGPathAddLineToPoint(path, NULL, lineFirstPoint.x, [lineDraw bottomYPix]);
+        CGPathAddLines(path, NULL, [lineAbstract points], lineAbstract.dataAry.count);
+        CGPathAddLineToPoint(path, NULL, lineLastPoint.x, [lineAbstract bottomYPix]);
+        CGPathAddLineToPoint(path, NULL, lineFirstPoint.x, [lineAbstract bottomYPix]);
         CGPathCloseSubpath(path);
         shape.path = path;
         CGPathRelease(path);
         
-        SET_ASSOCIATED_ASSIGN(lineDraw, lineFillLayer, shape);
+        SET_ASSOCIATED_ASSIGN(lineAbstract, lineFillLayer, shape);
         
-        if ([lineDraw gradientFillColors].count > 0) {
+        if ([lineAbstract gradientFillColors].count > 0) {
             
             [shape removeFromSuperlayer];
             
             CAGradientLayer * gradientLayer = [self getCAGradientEqualFrame];
             gradientLayer.mask = shape;
-            gradientLayer.colors = [lineDraw gradientFillColors];
-            gradientLayer.locations = [lineDraw locations];
+            gradientLayer.colors = [lineAbstract gradientFillColors];
+            gradientLayer.locations = [lineAbstract locations];
         }
     }
 }
 
-- (void)startAnimation:(NSTimeInterval)duration
-{
-//    [[self.lineDrawConfig lineAry] enumerateObjectsUsingBlock:^(id <LineDrawAbstract> obj, NSUInteger idx, BOOL * stop) {
-//        
-//        [LineAnimation addLineCircleAnimationWithDuration:duration
-//                                           lineShapeLater:GET_ASSOCIATED(obj, lineShapeLayer)
-//                                               lineScaler:obj.lineScaler
-//                                               fromRadius:0
-//                                                 toRadius:obj.shapeRadius];
-//        
-//        [LineAnimation addLineFoldAnimationWithDuration:duration
-//                                         lineShapeLater:GET_ASSOCIATED(obj, lineLayer)
-//                                             lineScaler:obj.lineScaler];
-//        
-//        [LineAnimation addLineRectFoldAnimationWithDuration:duration
-//                                             lineShapeLater:GET_ASSOCIATED(obj, lineFillLayer)
-//                                                 lineScaler:obj.lineScaler];
-//    }];
-//    
-//    __weak LineCanvas * weakSelf = self;
-//    _animator.animationType = AnimationLinear;
-//    
-//    [_animator startAnimationWithDuration:duration animationArray:_allGGNumberArray updateBlock:^(CGFloat progress) {
-//        
-//        [weakSelf.stringCanvas setNeedsDisplay];
-//    }];
-}
+#pragma mark - Lazy
+
+GGLazyGetMethod(LineAnimationsManager, lineAnimations);
 
 @end

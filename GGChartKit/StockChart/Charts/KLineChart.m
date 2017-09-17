@@ -776,7 +776,7 @@ static void * kLineTitle = "keyTitle";
         while (drawX < self.gg_width) {
             
             NSDate * date;
-            NSInteger count;
+            NSInteger count = 0;
             
             if (_kStyle == KLineTypeDay) {
                 

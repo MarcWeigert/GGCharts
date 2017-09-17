@@ -76,13 +76,13 @@
     
     for (id <BarDrawAbstract> barAbstract in self.barAbstractAry) {
         
-        [GET_ASSOCIATED(barAbstract, barUpLayer) pathChangeAnimation:.5f];
-        [GET_ASSOCIATED(barAbstract, barDownLayer) pathChangeAnimation:.5f];
+        [GET_ASSOCIATED(barAbstract, barUpLayer) pathChangeAnimation:duration];
+        [GET_ASSOCIATED(barAbstract, barDownLayer) pathChangeAnimation:duration];
         
         [aryAllNumberRenderers addObjectsFromArray:GET_ASSOCIATED(barAbstract, barNumberArray)];
     }
     
-    [self.animator startAnimationWithDuration:.5f animationArray:aryAllNumberRenderers updateBlock:^(CGFloat progress) {
+    [self.animator startAnimationWithDuration:duration animationArray:aryAllNumberRenderers updateBlock:^(CGFloat progress) {
         
         for (id <BarDrawAbstract> drawBarAbstract in self.barAbstractAry) {
             
@@ -90,7 +90,7 @@
         }
     }];
     
-    [self.midLineLayer pathChangeAnimation:.5f];
+    [self.midLineLayer pathChangeAnimation:duration];
 }
 
 /**
@@ -135,7 +135,7 @@
         CGPathRelease(barRef);
     }
     
-    [self.animator startAnimationWithDuration:.5f animationArray:aryAllNumberRenderers updateBlock:^(CGFloat progress) {
+    [self.animator startAnimationWithDuration:duration animationArray:aryAllNumberRenderers updateBlock:^(CGFloat progress) {
         
         for (id <BarDrawAbstract> drawBarAbstract in self.barAbstractAry) {
             

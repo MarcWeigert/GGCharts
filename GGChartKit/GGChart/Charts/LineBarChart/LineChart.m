@@ -91,14 +91,6 @@
     [_lineCanvas drawChart];
 }
 
-/**
- * 启动动画
- */
-- (void)startAnimation:(NSTimeInterval)duration
-{
-    [_lineCanvas startAnimation:duration];
-}
-
 #pragma mark - 手势相应
 
 /**

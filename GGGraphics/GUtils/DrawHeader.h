@@ -35,6 +35,8 @@ static const void * barStringLayer = @"barStringLayer";
 static const void * lineLayer = @"lineLayer";
 static const void * lineShapeLayer = @"lineShapeLayer";
 static const void * lineFillLayer = @"lineFillLayer";
+static const void * lineStringLayer = @"lineStringLayer";
+static const void * lineNumberArray = @"lineNumberArray";
 
 /**
  * 关联对象(强引用)

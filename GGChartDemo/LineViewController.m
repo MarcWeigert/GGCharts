@@ -41,6 +41,7 @@
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
     lineSet.lineAry = @[line];
+    lineSet.updateNeedAnimation = YES;
     
     lineSet.gridConfig.lineColor = C_HEX(0xe4e4e4);
     lineSet.gridConfig.lineWidth = .5f;
@@ -61,8 +62,6 @@
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];
-    
-    [lineChart startAnimation:1];
 }
 
 - (void)didReceiveMemoryWarning

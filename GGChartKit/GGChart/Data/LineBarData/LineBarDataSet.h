@@ -8,20 +8,20 @@
 
 #import "BaseLineBarSet.h"
 
-#import "GGBarData.h"
-#import "GGLineData.h"
+#import "BarData.h"
+#import "LineData.h"
 
 @interface LineBarDataSet : BaseLineBarSet
 
 /**
  * 柱状图数据数组
  */
-@property (nonatomic, strong) NSArray <GGBarData *> *barAry;
+@property (nonatomic, strong) NSArray <BarData *> *barAry;
 
 /**
  * 折线图数据数组
  */
-@property (nonatomic, strong) NSArray <GGLineData *> *lineAry;
+@property (nonatomic, strong) NSArray <LineData *> *lineAry;
 
 /**
  * 中间分割线线宽

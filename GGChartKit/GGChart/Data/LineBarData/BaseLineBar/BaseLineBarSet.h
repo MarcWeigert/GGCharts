@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GGLineData.h"
+#import "LineData.h"
 #import "LineBarGird.h"
 #import "LineBarQuery.h"
 

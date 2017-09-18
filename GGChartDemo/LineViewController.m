@@ -9,7 +9,7 @@
 #import "LineViewController.h"
 #import "LineCanvas.h"
 #import "LineDataSet.h"
-#import "GGLineData.h"
+#import "LineData.h"
 #import "GridBackCanvas.h"
 #import "GGChartDefine.h"
 #import "LineChart.h"
@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     
-    GGLineData * line = [[GGLineData alloc] init];
+    LineData * line = [[LineData alloc] init];
     line.lineWidth = 1;
     line.lineColor = C_HEX(0xf64646);
     line.dataAry = @[@28, @65, @45, @78, @82, @65];

@@ -1,21 +1,21 @@
 //
-//  GGBarData.m
+//  BarData.m
 //  GGCharts
 //
 //  Created by 黄舜 on 17/9/12.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "GGBarData.h"
+#import "BarData.h"
 
-@interface GGBarData () <BarDrawAbstract>
+@interface BarData () <BarDrawAbstract>
 {
     DBarScaler * barScaler;
 }
 
 @end
 
-@implementation GGBarData
+@implementation BarData
 
 /**
  * 初始化方法

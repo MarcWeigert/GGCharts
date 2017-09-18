@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseLineBarData.h"
 
-@interface GGLineData : BaseLineBarData
+@interface LineData : BaseLineBarData
 
 #pragma mark - 折线配置
 

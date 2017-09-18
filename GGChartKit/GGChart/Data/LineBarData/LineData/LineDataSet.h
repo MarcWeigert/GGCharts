@@ -14,7 +14,7 @@
 /**
  * 折线图数据数组
  */
-@property (nonatomic, strong) NSArray <GGLineData *> * lineAry;
+@property (nonatomic, strong) NSArray <LineData *> * lineAry;
  
 
 @end

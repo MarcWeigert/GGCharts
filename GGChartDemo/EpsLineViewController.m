@@ -10,7 +10,7 @@
 #import "BaseModel.h"
 #import "LineCanvas.h"
 #import "LineDataSet.h"
-#import "GGLineData.h"
+#import "LineData.h"
 #import "GridBackCanvas.h"
 #import "GGChartDefine.h"
 #import "LineChart.h"
@@ -55,17 +55,17 @@
     NSArray * epsY1 = [epsData numbarArrayForKey:@"eps_y1"];
     NSArray * epsY2 = [epsData numbarArrayForKey:@"eps_y2"];
     
-    GGLineData * liney1 = [[GGLineData alloc] init];
+    LineData * liney1 = [[LineData alloc] init];
     liney1.lineWidth = .5f;
     liney1.lineColor = RGB(234, 120, 86);
     liney1.dataAry = epsY1;
     
-    GGLineData * liney2 = [[GGLineData alloc] init];
+    LineData * liney2 = [[LineData alloc] init];
     liney2.lineWidth = .5f;
     liney2.lineColor = RGB(181, 220, 249);
     liney2.dataAry = epsY2;
     
-    GGLineData * line = [[GGLineData alloc] init];
+    LineData * line = [[LineData alloc] init];
     line.lineWidth = 1.2;
     line.lineColor = RGB(202, 71, 33);
     line.dataAry = stockPrice;

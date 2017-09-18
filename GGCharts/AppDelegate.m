@@ -11,7 +11,7 @@
 #import "GGGraphics.h"
 
 #import "BarDataSet.h"
-#import "GGBarData.h"
+#import "BarData.h"
 #import "BarCanvas.h"
 #import "Colors.h"
 

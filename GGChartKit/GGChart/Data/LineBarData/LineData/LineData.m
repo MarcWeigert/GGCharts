@@ -1,22 +1,22 @@
 //
-//  GGLineData.m
+//  LineData.m
 //  GGCharts
 //
 //  Created by 黄舜 on 17/8/4.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "GGLineData.h"
+#import "LineData.h"
 #import "LineDrawAbstract.h"
 
-@interface GGLineData () <LineDrawAbstract>
+@interface LineData () <LineDrawAbstract>
 {
     DLineScaler * _lineScaler;
 }
 
 @end
 
-@implementation GGLineData
+@implementation LineData
 
 /**
  * 初始化方法
@@ -31,7 +31,6 @@
         self.lineColor = [UIColor blackColor];
         
         self.shapeLineWidth = 1;
-        self.shapeRadius = 2;
     }
     
     return self;

@@ -48,12 +48,12 @@
     [self configLineScalerWithArray:self.barAry];
     
     // 填充定标器
-    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+    [self.lineAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
         
         [obj.lineBarScaler updateScaler];
     }];
     
-    [self.barAry enumerateObjectsUsingBlock:^(GGBarData * obj, NSUInteger idx, BOOL * stop) {
+    [self.barAry enumerateObjectsUsingBlock:^(BarData * obj, NSUInteger idx, BOOL * stop) {
         
         [obj.lineBarScaler updateScaler];
     }];

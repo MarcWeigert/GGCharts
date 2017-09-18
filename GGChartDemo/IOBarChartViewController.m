@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) BarDataSet * barDataSet;
 
-@property (nonatomic, strong) GGBarData * barData;
+@property (nonatomic, strong) BarData * barData;
 
 @end
 
@@ -29,7 +29,7 @@
     
     self.title = @"IOBarChart";
     
-    _barData = [[GGBarData alloc] init];
+    _barData = [[BarData alloc] init];
     _barData.barWidth = 25;
     _barData.roundNumber = @0;
     _barData.dataAry = @[@-2225.6, @-2563.1, @531.4, @839.4, @-897.0, @1500];

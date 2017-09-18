@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GGBarData.h"
+#import "BarData.h"
 #import "BaseLineBarSet.h"
 
 @interface BarDataSet : BaseLineBarSet
@@ -26,7 +26,7 @@
 /**
  * 柱状图数据数组
  */
-@property (nonatomic, strong) NSArray <GGBarData *> *barAry;
+@property (nonatomic, strong) NSArray <BarData *> *barAry;
 
 /**
  * 中间分割线线宽

@@ -28,7 +28,7 @@
     [self configLineScalerWithArray:self.lineAry];
     
     // 填充定标器
-    [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {
+    [self.lineAry enumerateObjectsUsingBlock:^(LineData * obj, NSUInteger idx, BOOL * stop) {
         
         [obj.lineBarScaler updateScaler];
     }];

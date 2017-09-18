@@ -42,7 +42,7 @@
     [self configLineScalerWithArray:self.barAry];
     
     // 填充定标器
-    for (GGBarData * obj in self.barAry) {
+    for (BarData * obj in self.barAry) {
         
         [obj.lineBarScaler updateScaler];
     }

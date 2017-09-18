@@ -48,7 +48,7 @@
         }
     }
     
-    GGLineData * lineData = [[GGLineData alloc] init];
+    LineData * lineData = [[LineData alloc] init];
     lineData.dataAry = aryLineData;
     lineData.lineWidth = .5f;
     lineData.lineColor = __RGB_BLUE;

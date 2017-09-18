@@ -1,5 +1,5 @@
 //
-//  GGBarData.h
+//  BarData.h
 //  GGCharts
 //
 //  Created by 黄舜 on 17/9/12.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseLineBarData.h"
 
-@interface GGBarData : BaseLineBarData
+@interface BarData : BaseLineBarData
 
 
 #pragma mark - 柱状图设置

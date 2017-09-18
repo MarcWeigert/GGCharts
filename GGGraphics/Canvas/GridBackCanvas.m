@@ -273,7 +273,7 @@
     
     GGLine line = [numberAxisAbstract axisLine];
     CGFloat lineLength = GGLengthLine(line);
-    CGFloat splitLength = lineLength / ([numberAxisAbstract splitCount] + 1);
+    CGFloat splitLength = lineLength / [numberAxisAbstract splitCount];
     
     for (NSInteger i = 0; i < [numberAxisAbstract splitCount] + 1; i++) {
         

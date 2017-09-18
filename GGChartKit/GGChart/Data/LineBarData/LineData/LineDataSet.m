@@ -17,19 +17,15 @@
 @implementation LineDataSet
 
 /**
- * 获取数据数组(子类重写)
- */
-- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray
-{
-    return self.lineAry;
-}
-
-/**
  * 设置折线与轴数据
  */
 - (void)configLineAndAxisModel
 {
     [super configLineAndAxisModel];
+    
+    // 配置折线数组
+    [self configAxisWithArray:self.lineAry];
+    [self configLineScalerWithArray:self.lineAry];
     
     // 填充定标器
     [self.lineAry enumerateObjectsUsingBlock:^(GGLineData * obj, NSUInteger idx, BOOL * stop) {

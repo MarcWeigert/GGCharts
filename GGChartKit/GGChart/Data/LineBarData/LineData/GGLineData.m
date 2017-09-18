@@ -19,6 +19,25 @@
 @implementation GGLineData
 
 /**
+ * 初始化方法
+ */
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.lineWidth = 1;
+        self.lineColor = [UIColor blackColor];
+        
+        self.shapeLineWidth = 1;
+        self.shapeRadius = 2;
+    }
+    
+    return self;
+}
+
+/**
  * 折线定标器
  */
 - (DLineScaler *)lineBarScaler

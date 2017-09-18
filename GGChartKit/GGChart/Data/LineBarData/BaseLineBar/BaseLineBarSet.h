@@ -68,9 +68,14 @@ typedef enum : NSUInteger {
 - (void)configLineAndAxisModel;
 
 /**
- * 获取数据数组(子类重写)
+ * 设置填充数据轴
  */
-- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray;
+- (void)configAxisWithArray:(NSArray <BaseLineBarData *> *)baseLineArray;
+
+/**
+ * 设置填充定标器
+ */
+- (void)configLineScalerWithArray:(NSArray <BaseLineBarData *> *)baseLineArray;
 
 /**
  * 折线图更新数据, 绘制前配置

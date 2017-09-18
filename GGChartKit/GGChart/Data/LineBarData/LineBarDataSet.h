@@ -21,7 +21,17 @@
 /**
  * 折线图数据数组
  */
-@property (nonatomic, strong) NSArray <GGLineData *> * lineAry;
+@property (nonatomic, strong) NSArray <GGLineData *> *lineAry;
+
+/**
+ * 中间分割线线宽
+ */
+@property (nonatomic, assign) CGFloat midLineWidth;
+
+/**
+ * 中间线颜色
+ */
+@property (nonatomic, strong) UIColor * midLineColor;
 
 /**
  * 柱状图颜色
@@ -33,15 +43,5 @@
  * @return 柱状图颜色
  */
 @property (nonatomic, copy) UIColor *(^barColorsAtIndexPath)(NSIndexPath *indexPath, NSNumber * number);
-
-/**
- * 中间分割线线宽
- */
-@property (nonatomic, assign) CGFloat midLineWidth;
-
-/**
- * 中间线颜色
- */
-@property (nonatomic, strong) UIColor * midLineColor;
 
 @end

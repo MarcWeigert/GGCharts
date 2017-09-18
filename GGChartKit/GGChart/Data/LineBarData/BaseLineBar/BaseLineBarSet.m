@@ -16,6 +16,11 @@
  */
 @property (nonatomic, assign) CGRect rect;
 
+/**
+ * 是否为外部设置轴极大极小值
+ */
+@property (nonatomic, assign) BOOL isExternalSetAxisMaxmun;
+
 @end
 
 @implementation BaseLineBarSet
@@ -34,14 +39,6 @@
     }
     
     return self;
-}
-
-/**
- * 获取数据数组
- */
-- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray
-{
-    return nil;
 }
 
 #pragma mark - ConfigDatas
@@ -66,11 +63,6 @@
 {
     self.gridConfig.insets = self.insets;
     self.queryConfig.insets = self.insets;
-    
-    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
-        
-        obj.lineBarScaler.rect = UIEdgeInsetsInsetRect(_rect, self.insets);
-    }];
 }
 
 /**
@@ -101,19 +93,20 @@
  * 设置折线与轴数据
  */
 - (void)configLineAndAxisModel
-{
-    if ([self getBaseLineBarDataArray].count == 0) {
-        
-        NSLog(@"error : none data array");
-        
-        return;
-    }
+{    
     
+}
+
+/**
+ * 设置填充数据轴
+ */
+- (void)configAxisWithArray:(NSArray <BaseLineBarData *> *)baseLineArray
+{
     // 区分左右折线数据
     NSMutableArray * leftDataAry = [NSMutableArray array];
     NSMutableArray * rightDataAry = [NSMutableArray array];
     
-    [[self getBaseLineBarDataArray] enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
+    [baseLineArray enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
         
         if (obj.scalerMode == ScalerAxisLeft && obj.dataAry) {
             
@@ -126,35 +119,35 @@
     }];
     
     // 填充左轴极大极小值
-//    if (self.gridConfig.leftNumberAxis.max == nil ||
-//        self.gridConfig.leftNumberAxis.min == nil) {
-    
-        CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
-        [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:self.idRatio];
-        
-        self.gridConfig.leftNumberAxis.max = @(leftMax);
-        self.gridConfig.leftNumberAxis.min = @(leftMin);
-//    }
+    CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
+    [leftDataAry getTwoDimensionaMax:&leftMax min:&leftMin selGetter:@selector(floatValue) base:self.idRatio];
+    [(id <NumberAxisAbstract>)self.gridConfig.leftNumberAxis setDataAryMaxValue:leftMax minValue:leftMin];
     
     // 填充右轴极大极小值
-//    if (self.gridConfig.rightNumberAxis.max == nil ||
-//        self.gridConfig.rightNumberAxis.min == nil) {
-    
-        CGFloat rightMax = FLT_MIN, rightMin = FLT_MAX;
-        [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:self.idRatio];
+    CGFloat rightMax = FLT_MIN, rightMin = FLT_MAX;
+    [rightDataAry getTwoDimensionaMax:&rightMax min:&rightMin selGetter:@selector(floatValue) base:self.idRatio];
+    [(id <NumberAxisAbstract>)self.gridConfig.rightNumberAxis setDataAryMaxValue:rightMax minValue:rightMin];
+}
+
+/**
+ * 设置填充定标器
+ */
+- (void)configLineScalerWithArray:(NSArray <BaseLineBarData *> *)baseLineArray
+{
+    // 设置定标器区域
+    [baseLineArray enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
         
-        self.gridConfig.rightNumberAxis.max = @(rightMax);
-        self.gridConfig.rightNumberAxis.min = @(rightMin);
-//    }
+        obj.lineBarScaler.rect = UIEdgeInsetsInsetRect(_rect, self.insets);
+    }];
     
     // 填充定标器
-    for (NSInteger i = 0; i < [self getBaseLineBarDataArray].count; i++) {
+    for (NSInteger i = 0; i < baseLineArray.count; i++) {
         
-        BaseLineBarData * obj = [self getBaseLineBarDataArray][i];
+        BaseLineBarData * obj = baseLineArray[i];
         
         if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
             
-            obj.lineBarScaler.xRatio = 1.0 / ([self getBaseLineBarDataArray].count + 1) * (i + 1);;
+            obj.lineBarScaler.xRatio = 1.0 / (baseLineArray.count + 1) * (i + 1);
         }
         
         if (obj.scalerMode == ScalerAxisLeft) {

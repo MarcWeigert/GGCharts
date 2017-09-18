@@ -72,6 +72,14 @@
  */
 - (CGFloat)getNumberWithPix:(CGFloat)pix;
 
+/**
+ * 设置轴内极大极小值
+ *
+ * @param maxValue 极大值
+ * @param minValue 极小值
+ */
+- (void)setDataAryMaxValue:(CGFloat)maxValue minValue:(CGFloat)minValue;
+
 @end
 
 #endif /* NumberAxisAbstract_h */

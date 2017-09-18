@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B20CC041EEADC7900D4F7F2 /* IOBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */; };
 		2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */; };
-		2B2440301F690069005C90DA /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B24402F1F690069005C90DA /* LineBarChart.m */; };
 		2B252B7F1EFBB52500AF541B /* CALayer+GGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */; };
 		2B252B821EFBBD5D00AF541B /* DLineScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B811EFBBD5D00AF541B /* DLineScaler.m */; };
 		2B252B851EFBC19B00AF541B /* DBarScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B252B841EFBC19B00AF541B /* DBarScaler.m */; };
@@ -162,6 +161,7 @@
 		2B9E98D51EEE870500DF0889 /* CALayer+GGLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */; };
 		2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */; };
 		2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */; };
+		2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAC85F1F6FB6130034225C /* LineBarChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,8 +169,6 @@
 		2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOBarChartViewController.m; sourceTree = "<group>"; };
 		2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChartViewController.h; sourceTree = "<group>"; };
 		2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChartViewController.m; sourceTree = "<group>"; };
-		2B24402E1F690069005C90DA /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
-		2B24402F1F690069005C90DA /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
 		2B252B7D1EFBB52500AF541B /* CALayer+GGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+GGFrame.h"; sourceTree = "<group>"; };
 		2B252B7E1EFBB52500AF541B /* CALayer+GGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+GGFrame.m"; sourceTree = "<group>"; };
 		2B252B801EFBBD5D00AF541B /* DLineScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLineScaler.h; sourceTree = "<group>"; };
@@ -475,6 +473,8 @@
 		2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLineViewController.m; sourceTree = "<group>"; };
 		2BA1C74A1EEC36BC007733CC /* NTPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieViewController.h; sourceTree = "<group>"; };
 		2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
+		2BBAC85E1F6FB6130034225C /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
+		2BBAC85F1F6FB6130034225C /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -974,6 +974,8 @@
 				2B8DE4761F680664000F3DB4 /* BarChart.m */,
 				2B8DE4721F680646000F3DB4 /* LineChart.h */,
 				2B8DE4731F680646000F3DB4 /* LineChart.m */,
+				2BBAC85E1F6FB6130034225C /* LineBarChart.h */,
+				2BBAC85F1F6FB6130034225C /* LineBarChart.m */,
 				2B8DE46C1F680618000F3DB4 /* BaseLineBarChart.h */,
 				2B8DE46D1F680618000F3DB4 /* BaseLineBarChart.m */,
 			);
@@ -1019,8 +1021,6 @@
 			isa = PBXGroup;
 			children = (
 				2B8DE46B1F680618000F3DB4 /* LineBarChart */,
-				2B24402E1F690069005C90DA /* LineBarChart.h */,
-				2B24402F1F690069005C90DA /* LineBarChart.m */,
 				2B9788491F09D4E2002A2A3C /* BaseChart.h */,
 				2B97884A1F09D4E2002A2A3C /* BaseChart.m */,
 				2B97884B1F09D4E2002A2A3C /* BaseCountChart.h */,
@@ -1193,7 +1193,7 @@
 				2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */,
 				2B68E9761F207244005D779A /* SlideTabView.m in Sources */,
 				2B2722911F0F550D00E4A295 /* lstring.c in Sources */,
-				2B2440301F690069005C90DA /* LineBarChart.m in Sources */,
+				2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */,
 				2B2722901F0F550D00E4A295 /* lstate.c in Sources */,
 				2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */,
 				2B2722AD1F0F603600E4A295 /* KLineIndexManager.m in Sources */,

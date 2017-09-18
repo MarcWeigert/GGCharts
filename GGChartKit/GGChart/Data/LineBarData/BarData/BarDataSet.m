@@ -31,19 +31,15 @@
 }
 
 /**
- * 获取数据数组(子类重写)
- */
-- (NSArray <BaseLineBarData *> *)getBaseLineBarDataArray
-{
-    return self.barAry;
-}
-
-/**
  * 设置折线与轴数据
  */
 - (void)configLineAndAxisModel
 {
     [super configLineAndAxisModel];
+    
+    // 柱状图数据配置
+    [self configAxisWithArray:self.barAry];
+    [self configLineScalerWithArray:self.barAry];
     
     // 填充定标器
     for (GGBarData * obj in self.barAry) {

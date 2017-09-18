@@ -114,10 +114,13 @@
             
             GGPathAddCGRect(barRef, risRect);
             
-            GGNumberRenderer * renderer = numberRenderers[i];
-            renderer.fromPoint = CGPointMake(renderer.toPoint.x, [barAbstract bottomYPix]);
-            renderer.fromNumber = 0;
-            [aryAllNumberRenderers addObject:renderer];
+            if (numberRenderers) {
+                
+                GGNumberRenderer * renderer = numberRenderers[i];
+                renderer.fromPoint = CGPointMake(renderer.toPoint.x, [barAbstract bottomYPix]);
+                renderer.fromNumber = 0;
+                [aryAllNumberRenderers addObject:renderer];
+            }
         }
         
         GGShapeCanvas * upBarCanvas = GET_ASSOCIATED(barAbstract, barUpLayer);

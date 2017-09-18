@@ -10,6 +10,15 @@
 
 @interface YAxis () <NumberAxisAbstract>
 
+/**
+ * 数据中极大值
+ */
+@property (nonatomic, assign) CGFloat dataMaxValue;
+
+/**
+ * 数据中极小值
+ */
+@property (nonatomic, assign) CGFloat dataMinValue;
 
 @end
 
@@ -38,7 +47,55 @@
  */
 - (CGFloat)getNumberWithPix:(CGFloat)pix
 {
-    return [DLineScaler getPriceWithYPixel:pix line:_axisLine max:_max.floatValue min:_min.floatValue];
+    CGFloat maxAxisValue = _max == nil ? _dataMaxValue : _max.floatValue;
+    CGFloat minAxisValue = _min == nil ? _dataMinValue : _min.floatValue;
+    
+    return [DLineScaler getPriceWithYPixel:pix line:_axisLine max:maxAxisValue min:minAxisValue];
+}
+
+/**
+ * 设置轴内极大极小值
+ *
+ * @param maxValue 极大值
+ * @param minValue 极小值
+ */
+- (void)setDataAryMaxValue:(CGFloat)maxValue minValue:(CGFloat)minValue
+{
+    if (_max == nil) {
+        
+        _dataMaxValue = maxValue;
+    }
+    
+    if (_min == nil) {
+        
+        _dataMinValue = minValue;
+    }
+}
+
+/**
+ * 轴最大值
+ */
+- (NSNumber *)max
+{
+    if (_max == nil) {
+        
+        return @(_dataMaxValue);
+    }
+    
+    return _max;
+}
+
+/**
+ * 轴最小值
+ */
+- (NSNumber *)min
+{
+    if (_min == nil) {
+        
+        return @(_dataMinValue);
+    }
+    
+    return _min;
 }
 
 #pragma mark - Lazy

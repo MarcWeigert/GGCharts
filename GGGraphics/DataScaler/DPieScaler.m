@@ -68,6 +68,16 @@
     _ratios = ratios;
 }
 
+- (void)updatePies:(GGPie *)pies
+{
+    if (_pies) {
+        
+        free(_pies);
+    }
+    
+    _pies = pies;
+}
+
 /**
  * 自定义对象转换转换, 如果设置则忽略dataAry
  *
@@ -81,12 +91,16 @@
     _pieObjAry = objAry;
     _selGetter = getter;
     _impGetter = [objAry.firstObject methodForSelector:getter];
+    
     CGFloat * arcs = malloc(_pieObjAry.count * sizeof(CGFloat));
     CGFloat * transArcs = malloc(_pieObjAry.count * sizeof(CGFloat));
     CGFloat * ratios = malloc(_pieObjAry.count * sizeof(CGFloat));
+    GGPie * pies = malloc(_pieObjAry.count * sizeof(GGPie));
+    
     [self updateArcs:arcs];
     [self updateTransArcs:transArcs];
     [self updateRatios:ratios];
+    [self updatePies:pies];
 }
 
 /** 更新计算点 */
@@ -96,19 +110,41 @@
     
     CGFloat (* pieGetter)(id obj, SEL getter) = self.impGetter;
     
-    [_pieObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
+    [_pieObjAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
         
-        _sum += pieGetter(obj, _selGetter);
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            
+            _sum += [obj floatValue];
+        }
+        else {
+            
+            _sum += pieGetter(obj, _selGetter);
+        }
     }];
     
     __block CGFloat layer_arc = 0;
     
-    [_pieObjAry enumerateObjectsUsingBlock:^(NSObject * obj, NSUInteger idx, BOOL * stop) {
+    [_pieObjAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
         
-        _arcs[idx] = pieGetter(obj, _selGetter) / _sum * M_PI * 2;
-        layer_arc += _arcs[idx];
-        _transArcs[idx] =  M_PI * 2 - layer_arc - _baseArc;
-        _ratios[idx] = _arcs[idx] / (M_PI * 2);
+        CGFloat arc;
+        
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            
+            arc = [obj floatValue] / _sum * M_PI * 2;
+        }
+        else {
+            
+            arc = pieGetter(obj, _selGetter) / _sum * M_PI * 2;
+        }
+        
+        layer_arc += arc;
+        CGFloat transArcs = M_PI * 2 - layer_arc - _baseArc;
+        CGFloat ratios = arc / (M_PI * 2);
+        
+        _arcs[idx] = arc;
+        _transArcs[idx] = transArcs;
+        _ratios[idx] = ratios;
+        _pies[idx] = GGPieMake(0, 0, _inRadius, _outRadius, arc, transArcs);
     }];
 }
 

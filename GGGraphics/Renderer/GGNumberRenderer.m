@@ -140,12 +140,24 @@
 {
     if (self.hidden) { return; }
     
-    NSString * drawText = _isIntValue ? [NSString stringWithFormat:self.format, (int)self.currentNumber] : [NSString stringWithFormat:self.format, self.currentNumber];
-    CGSize size = [drawText sizeWithAttributes:_param];
-    CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
-    UIGraphicsPushContext(ctx);
-    [drawText drawAtPoint:drawPoint withAttributes:_param];
-    UIGraphicsPopContext();
+    if (self.attrbuteStringBlock) {
+        
+        NSAttributedString * attributeString = self.attrbuteStringBlock(self.currentNumber);
+        CGSize size = [attributeString size];
+        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        UIGraphicsPushContext(ctx);
+        [attributeString drawAtPoint:drawPoint];
+        UIGraphicsPopContext();
+    }
+    else {
+    
+        NSString * drawText = _isIntValue ? [NSString stringWithFormat:self.format, (int)self.currentNumber] : [NSString stringWithFormat:self.format, self.currentNumber];
+        CGSize size = [drawText sizeWithAttributes:_param];
+        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        UIGraphicsPushContext(ctx);
+        [drawText drawAtPoint:drawPoint withAttributes:_param];
+        UIGraphicsPopContext();
+    }
 }
 
 @end

@@ -7,18 +7,48 @@
 //
 
 #import "BaseScaler.h"
+#import "GGPie.h"
 
 @interface DPieScaler : BaseScaler
 
-@property (nonatomic, readonly) CGFloat sum;            ///< 扇形图数据总和
-
-@property (nonatomic, readonly) NSArray <NSObject *> *pieObjAry;    ///< 扇形图数据
-
 @property (nonatomic, readonly) CGFloat * arcs;     ///< 扇形图开角
-@property (nonatomic, readonly) CGFloat * transArcs;    ///< 扇形移动角度
-@property (nonatomic, readonly) CGFloat * ratios;    ///< 比例
 
-@property (nonatomic, assign) CGFloat baseArc;  ///< 扇形图旋转角度, 默认 M_PI_2 (12点钟方向)
+@property (nonatomic, readonly) CGFloat * transArcs;    ///< 扇形移动角度
+
+/**
+ * 扇形图数据
+ */
+@property (nonatomic, strong, readonly) NSArray <NSObject *> *pieObjAry;
+
+/**
+ * 扇形图数据总和
+ */
+@property (nonatomic, assign, readonly) CGFloat sum;
+
+/**
+ * 扇形图比例
+ */
+@property (nonatomic, assign, readonly) CGFloat * ratios;
+
+/**
+ * 扇形图结构体
+ */
+@property (nonatomic, assign, readonly) GGPie * pies;
+
+/**
+ * 内边半径
+ */
+@property (nonatomic, assign) CGFloat inRadius;
+
+/**
+ * 外边半径
+ */
+@property (nonatomic, assign) CGFloat outRadius;
+
+/**
+ * 扇形图旋转角度, 默认 M_PI_2 (12点钟方向)
+ */
+@property (nonatomic, assign) CGFloat baseArc;
 
 /**
  * 自定义对象转换转换, 如果设置则忽略dataAry
@@ -28,7 +58,9 @@
  */
 - (void)setObjAry:(NSArray <NSObject *> *)objAry getSelector:(SEL)getter;
 
-/** 更新计算点 */
+/** 
+ * 更新屏幕像素点数据
+ */
 - (void)updateScaler;
 
 @end

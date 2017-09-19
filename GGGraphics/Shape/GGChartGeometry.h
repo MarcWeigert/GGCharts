@@ -13,6 +13,8 @@
 #include <CoreGraphics/CGGeometry.h>
 #include <stdint.h>
 
+#import "GGPie.h"
+
 #pragma mark - 线
 
 struct GGLine {

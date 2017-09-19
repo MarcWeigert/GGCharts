@@ -10,11 +10,6 @@
 #import "ListVC.h"
 #import "GGGraphics.h"
 
-#import "BarDataSet.h"
-#import "BarData.h"
-#import "BarCanvas.h"
-#import "Colors.h"
-
 @interface AppDelegate ()
 
 @end
@@ -29,6 +24,29 @@
     
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
+    
+    DPieScaler * pieScaler = [[DPieScaler alloc] init];
+    pieScaler.inRadius = 10;
+    pieScaler.outRadius = 50;
+    [pieScaler setObjAry:@[@335, @310, @234, @735, @1548] getSelector:@selector(floatValue)];
+    [pieScaler updateScaler];
+    
+    pieScaler.pies[2].center = CGPointMake(50, 50);
+    
+    GGAnnular ann = GGAnnularMake(50, 50, M_PI_2, pieScaler.pies[2].arc, 10, 40);
+    
+    CGMutablePathRef ref = CGPathCreateMutable();
+    //GGPathAddPie(ref, pieScaler.pies[2]);
+    
+    GGPathAddAnnular(ref, ann);
+    
+    CAShapeLayer * layer = [[CAShapeLayer alloc] init];
+    layer.path = ref;
+    layer.fillColor = [UIColor blackColor].CGColor;
+    layer.frame = CGRectMake(10, 10, 100, 100);
+    layer.lineWidth = 1;
+    
+    [self.window.layer addSublayer:layer];
     
     return YES;
 }

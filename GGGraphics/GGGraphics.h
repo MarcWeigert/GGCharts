@@ -41,6 +41,7 @@
 #import "GGNumberRenderer.h"
 #import "LableAxisAbstract.h"
 
+#import "PieCanvasAbstract.h"
 #import "RadarSetAbstract.h"
 #import "GridAbstract.h"
 #import "LineCanvasAbstract.h"

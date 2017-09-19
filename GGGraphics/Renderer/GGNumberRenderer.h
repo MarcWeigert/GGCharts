@@ -34,11 +34,19 @@
  */
 @property (nonatomic, copy) UIColor *(^getNumberColorBlock)(CGFloat value);
 
+/**
+ * 富文本字符串
+ */
+@property (nonatomic, copy) NSAttributedString *(^attrbuteStringBlock)(CGFloat value);
 
-/** 绘制起始点文字 */
+/** 
+ * 绘制起始点文字 
+ */
 - (void)drawAtToNumberAndPoint;
 
-/** 绘制终点文字 */
+/** 
+ * 绘制终点文字 
+ */
 - (void)drawAtFromNumberAndPoint;
 
 @end

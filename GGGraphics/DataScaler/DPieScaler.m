@@ -23,7 +23,7 @@
     
     if (self) {
         
-        _baseArc = M_PI_2;
+        _baseArc = -M_PI_2;
     }
     
     return self;
@@ -138,7 +138,7 @@
         }
         
         layer_arc += arc;
-        CGFloat transArcs = M_PI * 2 - layer_arc - _baseArc;
+        CGFloat transArcs = layer_arc - arc + _baseArc;
         CGFloat ratios = arc / (M_PI * 2);
         
         _arcs[idx] = arc;

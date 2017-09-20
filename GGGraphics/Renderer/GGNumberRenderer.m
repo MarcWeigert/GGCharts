@@ -140,9 +140,19 @@
 {
     if (self.hidden) { return; }
     
-    if (self.attrbuteStringBlock) {
+    if (self.attrbuteStringValueBlock) {
         
-        NSAttributedString * attributeString = self.attrbuteStringBlock(self.currentNumber);
+        NSAttributedString * attributeString = self.attrbuteStringValueBlock(self.currentNumber);
+        CGSize size = [attributeString size];
+        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        UIGraphicsPushContext(ctx);
+        [attributeString drawAtPoint:drawPoint];
+        UIGraphicsPopContext();
+    }
+    else if (self.attrbuteStringValueAndRatioBlock) {
+    
+        CGFloat ratio = _sum == 0 ? 0 : self.currentNumber / _sum;
+        NSAttributedString * attributeString = self.attrbuteStringValueAndRatioBlock(self.currentNumber, ratio);
         CGSize size = [attributeString size];
         CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
         UIGraphicsPushContext(ctx);

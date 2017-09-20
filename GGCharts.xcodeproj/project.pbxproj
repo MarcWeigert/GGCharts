@@ -131,6 +131,10 @@
 		2B8D3B071F70B97D003B19CE /* PieCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B061F70B97D003B19CE /* PieCanvas.m */; };
 		2B8D3B0C1F70C1F3003B19CE /* LineBarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B0B1F70C1F3003B19CE /* LineBarDataSet.m */; };
 		2B8D3B111F70C421003B19CE /* GGPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B101F70C421003B19CE /* GGPie.m */; };
+		2B8D3B181F7239F4003B19CE /* InnerLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B171F7239F4003B19CE /* InnerLable.m */; };
+		2B8D3B1B1F723CB0003B19CE /* OutSideLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B1A1F723CB0003B19CE /* OutSideLable.m */; };
+		2B8D3B1E1F723CD7003B19CE /* GGPieData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B1D1F723CD7003B19CE /* GGPieData.m */; };
+		2B8D3B211F723CE8003B19CE /* PieDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D3B201F723CE8003B19CE /* PieDataSet.m */; };
 		2B8DE45A1F67A30E000F3DB4 /* BarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8DE4521F67A30E000F3DB4 /* BarDataSet.m */; };
 		2B8DE45B1F67A30E000F3DB4 /* BarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8DE4541F67A30E000F3DB4 /* BarData.m */; };
 		2B8DE45C1F67A30E000F3DB4 /* LineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8DE4571F67A30E000F3DB4 /* LineData.m */; };
@@ -409,6 +413,14 @@
 		2B8D3B101F70C421003B19CE /* GGPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPie.m; sourceTree = "<group>"; };
 		2B8D3B131F70FDF0003B19CE /* PieInnerLableAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PieInnerLableAbstract.h; sourceTree = "<group>"; };
 		2B8D3B141F70FEC9003B19CE /* PieOutSideLableAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PieOutSideLableAbstract.h; sourceTree = "<group>"; };
+		2B8D3B161F7239F4003B19CE /* InnerLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerLable.h; sourceTree = "<group>"; };
+		2B8D3B171F7239F4003B19CE /* InnerLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InnerLable.m; sourceTree = "<group>"; };
+		2B8D3B191F723CB0003B19CE /* OutSideLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutSideLable.h; sourceTree = "<group>"; };
+		2B8D3B1A1F723CB0003B19CE /* OutSideLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutSideLable.m; sourceTree = "<group>"; };
+		2B8D3B1C1F723CD7003B19CE /* GGPieData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPieData.h; sourceTree = "<group>"; };
+		2B8D3B1D1F723CD7003B19CE /* GGPieData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPieData.m; sourceTree = "<group>"; };
+		2B8D3B1F1F723CE8003B19CE /* PieDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDataSet.h; sourceTree = "<group>"; };
+		2B8D3B201F723CE8003B19CE /* PieDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieDataSet.m; sourceTree = "<group>"; };
 		2B8DE4411F663D1C000F3DB4 /* BaseAxisAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseAxisAbstract.h; sourceTree = "<group>"; };
 		2B8DE4431F668A17000F3DB4 /* LineCanvasAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineCanvasAbstract.h; sourceTree = "<group>"; };
 		2B8DE4441F668A17000F3DB4 /* LineDrawAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineDrawAbstract.h; sourceTree = "<group>"; };
@@ -928,6 +940,21 @@
 			path = LineBarData;
 			sourceTree = "<group>";
 		};
+		2B8D3B151F72392B003B19CE /* PieData */ = {
+			isa = PBXGroup;
+			children = (
+				2B8D3B161F7239F4003B19CE /* InnerLable.h */,
+				2B8D3B171F7239F4003B19CE /* InnerLable.m */,
+				2B8D3B191F723CB0003B19CE /* OutSideLable.h */,
+				2B8D3B1A1F723CB0003B19CE /* OutSideLable.m */,
+				2B8D3B1C1F723CD7003B19CE /* GGPieData.h */,
+				2B8D3B1D1F723CD7003B19CE /* GGPieData.m */,
+				2B8D3B1F1F723CE8003B19CE /* PieDataSet.h */,
+				2B8D3B201F723CE8003B19CE /* PieDataSet.m */,
+			);
+			path = PieData;
+			sourceTree = "<group>";
+		};
 		2B8DE4421F668A17000F3DB4 /* LineBarAbstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -1054,6 +1081,7 @@
 		2B9788551F09D4E2002A2A3C /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2B8D3B151F72392B003B19CE /* PieData */,
 				2B8DE44F1F67A30E000F3DB4 /* LineBarData */,
 				2B6843061F612D1D00559001 /* LineBarGridData */,
 				2B8B62951F32ECF300028F40 /* RadarData */,
@@ -1251,6 +1279,7 @@
 				2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */,
 				2B9788921F0A39FE002A2A3C /* AppDelegate.m in Sources */,
 				2B9788961F0A39FE002A2A3C /* ListVC.m in Sources */,
+				2B8D3B181F7239F4003B19CE /* InnerLable.m in Sources */,
 				2B27227A1F0F550D00E4A295 /* lauxlib.c in Sources */,
 				2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */,
 				2B8B62A71F33203B00028F40 /* LineCanvas.m in Sources */,
@@ -1261,6 +1290,7 @@
 				2B8DE45D1F67A30E000F3DB4 /* LineDataSet.m in Sources */,
 				2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */,
 				2B73D35D1F0E0688009F01CF /* CrissCrossQueryView.m in Sources */,
+				2B8D3B1E1F723CD7003B19CE /* GGPieData.m in Sources */,
 				2B330A641EE44F19003D17C4 /* GGCircleRenderer.m in Sources */,
 				2B8D3B0C1F70C1F3003B19CE /* LineBarDataSet.m in Sources */,
 				2B330A621EE44F19003D17C4 /* GGAxisRenderer.m in Sources */,
@@ -1301,6 +1331,8 @@
 				2B27228F1F0F550D00E4A295 /* lparser.c in Sources */,
 				2B20CC071EEAE79900D4F7F2 /* LineBarChartViewController.m in Sources */,
 				2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */,
+				2B8D3B211F723CE8003B19CE /* PieDataSet.m in Sources */,
+				2B8D3B1B1F723CB0003B19CE /* OutSideLable.m in Sources */,
 				2B932C281F381CA600D19378 /* LineViewController.m in Sources */,
 				2B8DE4771F680664000F3DB4 /* BarChart.m in Sources */,
 				2B31A0D01F389DDF00C053DD /* GGNumberRenderer.m in Sources */,

@@ -10,6 +10,11 @@
 #import "ListVC.h"
 #import "GGGraphics.h"
 
+#import "PieDataSet.h"
+#import "Colors.h"
+
+#import "PieCanvas.h"
+
 @interface AppDelegate ()
 
 @end
@@ -24,6 +29,37 @@
     
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
+    
+    
+//    NSArray * colors = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
+//    
+//    GGPieData * pie = [[GGPieData alloc] init];
+//    pie.radiusRange = GGRadiusRangeMake(0, 50);
+//    pie.showOutLableType = OutSideShow;
+////    pie.roseType = RoseRadius;
+//    pie.dataAry = @[@335, @310, @234, @735, @1548];
+//    
+//    [pie setPieColorsForIndex:^UIColor *(NSInteger index, CGFloat ratio) {
+//        
+//        return colors[index];
+//    }];
+//    
+//    [pie.outSideLable setAttributeStringBlock:^NSAttributedString *(NSInteger index, CGFloat ratio) {
+//        
+//        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f%%", ratio * 100]];
+//    }];
+//    
+//    PieDataSet * pieDataSet = [[PieDataSet alloc] init];
+//    pieDataSet.pieAry = @[pie];
+//    [pieDataSet updateChartConfigs:CGRectZero];
+//    
+//    PieCanvas * pieCanvas = [[PieCanvas alloc] init];
+//    pieCanvas.frame = CGRectMake(10, 10, 400, 400);
+//    pieCanvas.pieCanvasConfig = pieDataSet;
+//    
+//    [pieCanvas drawChart];
+//    
+//    [self.window.layer addSublayer:pieCanvas];
     
     return YES;
 }

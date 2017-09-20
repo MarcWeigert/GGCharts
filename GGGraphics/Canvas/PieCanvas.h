@@ -7,7 +7,10 @@
 //
 
 #import "GGCanvas.h"
+#import "PieCanvasAbstract.h"
 
 @interface PieCanvas : GGCanvas
+
+@property (nonatomic, strong) id <PieCanvasAbstract> pieCanvasConfig;
 
 @end

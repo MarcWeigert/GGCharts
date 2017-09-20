@@ -35,9 +35,19 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign, readonly) CGFloat * ratios;
 
 /**
+ * 折线图总和
+ */
+@property (nonatomic, assign, readonly) CGFloat sum;
+
+/**
  * 扇形图
  */
 @property (nonatomic, strong, readonly) NSArray <NSNumber *> *dataAry;
+
+/**
+ * 扇形图半径区间
+ */
+@property (nonatomic, assign, readonly) GGRadiusRange radiusRange;
 
 /**
  * 扇形图类型
@@ -68,7 +78,7 @@ typedef enum : NSUInteger {
 /**
  * 显示样式
  */
-@property (nonatomic, assign, readonly) OutSideLableType showLableType;
+@property (nonatomic, assign, readonly) OutSideLableType showOutLableType;
 
 /**
  * 扇形图外边文字

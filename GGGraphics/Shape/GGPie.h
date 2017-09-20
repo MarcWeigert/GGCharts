@@ -74,6 +74,12 @@ GGPieCenterRaiusRangeMake(CGPoint center, GGRadiusRange radiusRange, CGFloat arc
     return GGPieMake(center.x, center.y, radiusRange.inRadius, radiusRange.outRadius, arc, transform);
 }
 
+CG_INLINE GGPie
+GGPieCopyWithPie(GGPie pie)
+{
+    return GGPieCenterRaiusRangeMake(pie.center, pie.radiusRange, pie.arc, pie.transform);
+}
+
 /**
  * 获取最大弧度, 小于M_PI
  */

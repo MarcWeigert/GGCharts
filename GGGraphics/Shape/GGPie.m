@@ -60,7 +60,7 @@ void GGPathAddPie(CGMutablePathRef ref, GGPie pie)
     CGFloat end = pie.transform + pie.arc;
 
     CGFloat minRadius = pie.radiusRange.inRadius;
-    CGFloat maxRadius = pie.radiusRange.inRadius + pie.radiusRange.outRadius;
+    CGFloat maxRadius = pie.radiusRange.outRadius;
 
     CGPathAddArc(ref, NULL, pie.center.x, pie.center.y, minRadius, start, end, false);
     CGPathAddArc(ref, NULL, pie.center.x, pie.center.y, maxRadius, end, start, true);

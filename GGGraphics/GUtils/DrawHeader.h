@@ -39,6 +39,15 @@ static const void * lineStringLayer = @"lineStringLayer";
 static const void * lineNumberArray = @"lineNumberArray";
 
 /**
+ * 扇形图关联key
+ */
+static const void * pieShapeLayerArray = @"pieShapeLayerArray";
+static const void * pieInnerLayerArray = @"pieInnerLayerArray";
+static const void * pieOutSideLayerArray = @"pieInnerLayerArray";
+static const void * pieInnerNumberArray = @"pieInnerNumberArray";
+static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
+
+/**
  * 关联对象(强引用)
  */
 #define SET_ASSOCIATED_ASSIGN(obj, key, value)      \
@@ -56,4 +65,12 @@ objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
 #define GET_ASSOCIATED(obj, key)                    \
 objc_getAssociatedObject(obj, key)
 
+/**
+ * 输出日志
+ */
+#ifdef DEBUG
+    #define GGLog(s, ...) NSLog(@"%@%s %@", @"[GGLOG]", __PRETTY_FUNCTION__, [NSString stringWithFormat:s,##__VA_ARGS__])
+#else
+    #define GGLog(s, ...) [NSString stringWithFormat:s,##__VA_ARGS__]
+#endif
 #endif /* DrawHeader_h */

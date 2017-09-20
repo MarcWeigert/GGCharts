@@ -30,6 +30,13 @@
 @property (nonatomic, assign) BOOL hidden;          ///< 是否显示
 
 /**
+ * 数值集合, 回调attrbuteStringValueAndRatioBlock是返回比例
+ *
+ * 如果该值为0, 则回调返回0
+ */
+@property (nonatomic, assign) CGFloat sum;
+
+/**
  * 获取文字颜色
  */
 @property (nonatomic, copy) UIColor *(^getNumberColorBlock)(CGFloat value);
@@ -37,7 +44,12 @@
 /**
  * 富文本字符串
  */
-@property (nonatomic, copy) NSAttributedString *(^attrbuteStringBlock)(CGFloat value);
+@property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
+
+/**
+ * 富文本字符串
+ */
+@property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueAndRatioBlock)(CGFloat value, CGFloat ratio);
 
 /** 
  * 绘制起始点文字 

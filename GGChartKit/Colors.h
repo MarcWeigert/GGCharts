@@ -25,4 +25,6 @@
 
 #define __RGB_CYAN          RGB(157, 198, 176)
 
+#define __RGB_PINK          RGB(189, 162, 154)
+
 #endif /* Colors_h */

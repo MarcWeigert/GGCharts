@@ -362,4 +362,21 @@
     return ary;
 }
 
+/**
+ * 获取颜色数组
+ *
+ * UIColor -> CGColor
+ */
+- (NSArray *)getCGColorsArray
+{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    [self enumerateObjectsUsingBlock:^(UIColor * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [array addObject:(__bridge id)obj.CGColor];
+    }];
+    
+    return array;
+}
+
 @end

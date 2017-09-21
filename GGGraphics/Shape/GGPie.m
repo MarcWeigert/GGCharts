@@ -14,6 +14,12 @@ GGRadiusRange const GGRadiusRangeZero = {0, 0};
 
 GGPie const CGPieZero = {0, 0, 0, 0, 0, 0};
 
+@implementation NSValue (GGValueRadiusRangeExtensions)
+
+GGValueMethodImplementation(GGRadiusRange);
+
+@end
+
 NSString * NSStringFromPie(GGPie pie)
 {
     return [NSString stringWithFormat:@"center.x = %f, center.y = %f, raidus.in = %f, radius.out = %f, arc : %f, transform : %f",
@@ -67,5 +73,13 @@ void GGPathAddPie(CGMutablePathRef ref, GGPie pie)
     
     CGPathCloseSubpath(ref);
 }
+
+#pragma mark - NSValue
+
+@implementation NSValue (GGValuePieExtensions)
+
+GGValueMethodImplementation(GGPie);
+
+@end
 
 NS_ASSUME_NONNULL_END

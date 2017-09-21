@@ -84,6 +84,7 @@
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
 		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
 		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
+		2B6E24351F738F4D0006DD3D /* NSAttributedString+GGChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E24341F738F4D0006DD3D /* NSAttributedString+GGChart.m */; };
 		2B71245F1F5CEC85004C0FA8 /* QueryCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B71245E1F5CEC85004C0FA8 /* QueryCanvas.m */; };
 		2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF61F0B328B0085095C /* BaseStockChart.m */; };
 		2B73AFFA1F0B42E00085095C /* BaseShapeScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF91F0B42E00085095C /* BaseShapeScaler.m */; };
@@ -316,6 +317,8 @@
 		2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eps_line_data.json; sourceTree = "<group>"; };
 		2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpsLineViewController.h; sourceTree = "<group>"; };
 		2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpsLineViewController.m; sourceTree = "<group>"; };
+		2B6E24331F738F4D0006DD3D /* NSAttributedString+GGChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+GGChart.h"; sourceTree = "<group>"; };
+		2B6E24341F738F4D0006DD3D /* NSAttributedString+GGChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+GGChart.m"; sourceTree = "<group>"; };
 		2B71245D1F5CEC85004C0FA8 /* QueryCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCanvas.h; sourceTree = "<group>"; };
 		2B71245E1F5CEC85004C0FA8 /* QueryCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryCanvas.m; sourceTree = "<group>"; };
 		2B73AFF11F0B2DC70085095C /* VolumeAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolumeAbstract.h; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				2B9E98D41EEE870500DF0889 /* CALayer+GGLayer.m */,
 				2B773FDE1F15F44000B2BE59 /* UIView+GGFrame.h */,
 				2B773FDF1F15F44000B2BE59 /* UIView+GGFrame.m */,
+				2B6E24331F738F4D0006DD3D /* NSAttributedString+GGChart.h */,
+				2B6E24341F738F4D0006DD3D /* NSAttributedString+GGChart.m */,
 			);
 			path = GUtils;
 			sourceTree = "<group>";
@@ -1031,8 +1036,8 @@
 			isa = PBXGroup;
 			children = (
 				2B9788411F09D4E2002A2A3C /* Colors.h */,
-				2B2721C81F0F517200E4A295 /* Vender */,
 				2B6B238D1F0C741B001D2B04 /* GCategory */,
+				2B2721C81F0F517200E4A295 /* Vender */,
 				2B9788421F09D4E2002A2A3C /* Components  */,
 				2B9788471F09D4E2002A2A3C /* GGChart */,
 				2B97886A1F09D4E2002A2A3C /* StockChart */,
@@ -1234,6 +1239,7 @@
 				2B2722B71F0F694400E4A295 /* MALayer.m in Sources */,
 				2B45C50A1F3FDCB0004F1AC6 /* GGRectRenderer.m in Sources */,
 				2B28FE171F6D6D1300F4FD1E /* BarAnimationsManager.m in Sources */,
+				2B6E24351F738F4D0006DD3D /* NSAttributedString+GGChart.m in Sources */,
 				2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */,
 				2B8B62A11F33146B00028F40 /* GGRadarChart.m in Sources */,
 				2B8CEB841F302CB5005D441D /* GGPolygonRenderder.m in Sources */,

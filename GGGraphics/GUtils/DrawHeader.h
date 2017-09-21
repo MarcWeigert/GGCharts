@@ -22,6 +22,42 @@
 }
 
 /**
+ * Value
+ */
+#define GGValueMethod(type)                     \
+                                                \
++ (NSValue *)valueWith##type:(type)ggStruct;    \
+                                                \
+- (type)type##Value;
+
+#define GGValueMethodImplementation(type)                               \
+                                                                        \
++ (NSValue *)valueWith##type:(type)ggStruct                             \
+{                                                                       \
+    return [NSValue value:&ggStruct withObjCType:@encode(type)];        \
+}                                                                       \
+                                                                        \
+- (type)type##Value                                                 \
+{                                                                   \
+    type ggStruct;                                                  \
+    [self getValue:&ggStruct];                                      \
+    return ggStruct;                                                \
+}
+
+/**
+ * Color
+ */
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+
+#define C_HEXA(rgbValue, alphaValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0x0000FF))/255.0 \
+alpha:alphaValue]
+
+#define C_HEX(rgbValue) C_HEXA(rgbValue, 1.0)
+
+/**
  * 柱状图关联key
  */
 static const void * barUpLayer = @"barUpLayer";
@@ -42,10 +78,14 @@ static const void * lineNumberArray = @"lineNumberArray";
  * 扇形图关联key
  */
 static const void * pieShapeLayerArray = @"pieShapeLayerArray";
-static const void * pieInnerLayerArray = @"pieInnerLayerArray";
+
 static const void * pieOutSideLayerArray = @"pieInnerLayerArray";
+
 static const void * pieInnerNumberArray = @"pieInnerNumberArray";
 static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
+
+static const void * pieInnerLayer = @"pieInnerLayer";
+static const void * pieOutSideLayer = @"pieInnerLayer";
 
 /**
  * 关联对象(强引用)

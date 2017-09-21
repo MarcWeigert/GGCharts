@@ -24,6 +24,7 @@
         _lineLength = 15;
         _inflectionLength = 10;
         _linePointRadius = 1.5;
+        self.stringRatio = CGPointMake(0, -.5f);
         self.stringOffSet = CGSizeMake(4, 0);
     }
     

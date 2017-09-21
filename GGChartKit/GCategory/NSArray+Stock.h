@@ -131,4 +131,11 @@
  */
 + (NSArray *)JsonFrmVolums:(NSArray <id <VolumeAbstract> > *)aryVolum;
 
+/**
+ * 获取颜色数组
+ *
+ * UIColor -> CGColor
+ */
+- (NSArray *)getCGColorsArray;
+
 @end

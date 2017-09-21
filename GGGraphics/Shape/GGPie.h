@@ -36,6 +36,12 @@ GGRadiusRangeGetRadius(GGRadiusRange radiusRange)
     return fabs(radiusRange.inRadius - radiusRange.outRadius);
 }
 
+@interface NSValue (GGValueRadiusRangeExtensions)
+
+GGValueMethod(GGRadiusRange);
+
+@end
+
 #pragma mark - GGPie
 
 struct GGPie
@@ -96,5 +102,13 @@ CG_EXTERN CGFloat GGPieGetMinArc(GGPie pie);
  * 绘制扇形
  */
 CG_EXTERN void GGPathAddPie(CGMutablePathRef ref, GGPie pie);
+
+#pragma mark - NSValue
+
+@interface NSValue (GGValuePieExtensions)
+
+GGValueMethod(GGPie);
+
+@end
 
 NS_ASSUME_NONNULL_END

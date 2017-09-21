@@ -15,6 +15,8 @@
 
 #import "PieCanvas.h"
 
+#import "NSAttributedString+GGChart.h"
+
 @interface AppDelegate ()
 
 @end
@@ -31,22 +33,52 @@
     [self.window setRootViewController:navi];
     
     
-//    NSArray * colors = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
+//    NSArray * colors = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN, __RGB_GRAY, __RGB_BLUE, __RGB_PINK];
+//    NSArray * pieColors = @[C_HEX(0xF04D00), C_HEX(0xFBD439), C_HEX(0x23AADA)];
+//    NSArray * gradAryColors = @[@[C_HEX(0xFFB04F), C_HEX(0xF96B46)], @[C_HEX(0xFFE70E), C_HEX(0xFFF283)], @[C_HEX(0x0ECFFF), C_HEX(0x84E3FD)]];
+//    NSArray * attrbuteString = @[[NSAttributedString pieChartWeightAttributeStringWith:@"业绩" nameColor:C_HEX(0xF04D00) title:@"市场业绩财报很好" fractional:@"（满分60.5）"],
+//                                 [NSAttributedString pieChartWeightAttributeStringWith:@"估值" nameColor:C_HEX(0xFBD439) title:@"估值有极强吸引力" fractional:@"（满分13.5）"],
+//                                 [NSAttributedString pieChartWeightAttributeStringWith:@"市场" nameColor:C_HEX(0x23AADA) title:@"市场情绪中性" fractional:@"（满分26）"]];
 //    
 //    GGPieData * pie = [[GGPieData alloc] init];
-//    pie.radiusRange = GGRadiusRangeMake(0, 50);
+//    pie.radiusRange = GGRadiusRangeMake(34, 34 + 59);
 //    pie.showOutLableType = OutSideShow;
-////    pie.roseType = RoseRadius;
-//    pie.dataAry = @[@335, @310, @234, @735, @1548];
+//    pie.roseType = RoseRadius;
+//    pie.dataAry = @[@45, @22, @33];
+//    pie.outSideLable.stringRatio = CGPointMake(-1, -.5f);
+//    pie.outSideLable.stringOffSet = CGSizeMake(-3, -2);
+////    pie.dataAry = @[@10, @5, @15, @25, @20, @35, @30, @40];
 //    
 //    [pie setPieColorsForIndex:^UIColor *(NSInteger index, CGFloat ratio) {
 //        
 //        return colors[index];
 //    }];
 //    
+//    [pie setGradientColorsForIndex:^NSArray<UIColor *> *(NSInteger index) {
+//        
+//        return gradAryColors[index];
+//    }];
+//        
+//    pie.outSideLable.lineLength = 10;
+//    pie.outSideLable.inflectionLength = 90;
+//    pie.outSideLable.linePointRadius = 1.5;
+//    
+//    pie.showInnerString = YES;
+//    pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
+//    
 //    [pie.outSideLable setAttributeStringBlock:^NSAttributedString *(NSInteger index, CGFloat ratio) {
 //        
-//        return [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f%%", ratio * 100]];
+//        return attrbuteString[index];
+//    }];
+//    
+//    [pie.outSideLable setLineColorsBlock:^UIColor *(NSInteger index, CGFloat ratio) {
+//        
+//        return pieColors[index];
+//    }];
+//    
+//    [pie.innerLable setAttributeStringBlock:^NSAttributedString *(NSInteger index, CGFloat ratio) {
+//        
+//        return [NSAttributedString pieInnerStringWithLargeString:@[@"58", @"8", @"13"][index] smallString:@"分"];
 //    }];
 //    
 //    PieDataSet * pieDataSet = [[PieDataSet alloc] init];
@@ -54,8 +86,9 @@
 //    [pieDataSet updateChartConfigs:CGRectZero];
 //    
 //    PieCanvas * pieCanvas = [[PieCanvas alloc] init];
-//    pieCanvas.frame = CGRectMake(10, 10, 400, 400);
+//    pieCanvas.frame = CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, 400);
 //    pieCanvas.pieCanvasConfig = pieDataSet;
+//    pieCanvas.backgroundColor = [UIColor whiteColor].CGColor;
 //    
 //    [pieCanvas drawChart];
 //    

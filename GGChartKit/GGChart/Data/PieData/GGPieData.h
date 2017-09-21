@@ -39,6 +39,28 @@
  */
 @property (nonatomic, copy) UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio);
 
+/**
+ * 扇形图内外办理设置
+ *
+ * 优先级高于radiusRange
+ */
+@property (nonatomic, copy) GGRadiusRange (^pieRadiuRangeForIndex)(NSInteger index);
+
+/**
+ * 颜色渐变曲线
+ */
+@property (nonatomic, assign) GGLine gradientColorLine;
+
+/**
+ * 渐变色权重
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *gradientLocations;
+
+/**
+ * 渐变色, 优先级高于UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio)
+ */
+@property (nonatomic, copy) NSArray <UIColor *> * (^gradientColorsForIndex)(NSInteger index);
+
 
 #pragma mark - Inner
 

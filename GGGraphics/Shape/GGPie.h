@@ -19,8 +19,14 @@ struct GGRadiusRange
 };
 typedef struct GGRadiusRange GGRadiusRange;
 
+/**
+ * GGRadiusRange {0, 0}
+ */
 CG_EXTERN const GGRadiusRange GGRadiusRangeZero;
 
+/**
+ * 初始化
+ */
 CG_INLINE GGRadiusRange
 GGRadiusRangeMake(CGFloat inRadius, CGFloat outRadius)
 {
@@ -30,11 +36,16 @@ GGRadiusRangeMake(CGFloat inRadius, CGFloat outRadius)
     return radiusRange;
 }
 
+/**
+ * 获取间距
+ */
 CG_INLINE CGFloat
 GGRadiusRangeGetRadius(GGRadiusRange radiusRange)
 {
     return fabs(radiusRange.inRadius - radiusRange.outRadius);
 }
+
+#pragma mark - GGValueRadiusRangeExtensions
 
 @interface NSValue (GGValueRadiusRangeExtensions)
 
@@ -53,10 +64,19 @@ struct GGPie
 };
 typedef struct GGPie GGPie;
 
+/**
+ * GGPie {0, 0, 0, 0, 0, 0}
+ */
 CG_EXTERN const GGPie CGPieZero;
 
+/**
+ * 字符串转换
+ */
 FOUNDATION_EXPORT NSString * NSStringFromPie(GGPie pie);
 
+/**
+ * 初始化
+ */
 CG_INLINE GGPie
 GGPieMake(CGFloat x, CGFloat y, CGFloat inRadius, CGFloat outRadius, CGFloat arc, CGFloat transform)
 {
@@ -80,6 +100,9 @@ GGPieCenterRaiusRangeMake(CGPoint center, GGRadiusRange radiusRange, CGFloat arc
     return GGPieMake(center.x, center.y, radiusRange.inRadius, radiusRange.outRadius, arc, transform);
 }
 
+/**
+ * 拷贝
+ */
 CG_INLINE GGPie
 GGPieCopyWithPie(GGPie pie)
 {
@@ -103,7 +126,7 @@ CG_EXTERN CGFloat GGPieGetMinArc(GGPie pie);
  */
 CG_EXTERN void GGPathAddPie(CGMutablePathRef ref, GGPie pie);
 
-#pragma mark - NSValue
+#pragma mark - GGValuePieExtensions
 
 @interface NSValue (GGValuePieExtensions)
 

@@ -36,4 +36,15 @@
 + (NSAttributedString *)pieInnerStringWithLargeString:(NSString *)largeString
                                           smallString:(NSString *)smallString;
 
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param centerString 中心字符
+ * @param smallString 小字符
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieInnerStringWithCenterString:(NSString *)centerString
+                                           smallString:(NSString *)smallString;
+
 @end

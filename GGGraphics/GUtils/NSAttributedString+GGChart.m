@@ -75,4 +75,22 @@
     return attrbuteString;
 }
 
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param centerString 中心字符
+ * @param smallString 小字符
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieInnerStringWithCenterString:(NSString *)centerString smallString:(NSString *)smallString
+{
+    NSString * string = [NSString stringWithFormat:@"%@\n%@", centerString, smallString];
+    NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
+    [attrbuteString setText:centerString color:C_HEX(0x333333) font:[UIFont boldSystemFontOfSize:23]];
+    [attrbuteString setText:smallString color:C_HEX(0x686868) font:[UIFont systemFontOfSize:10]];
+    
+    return attrbuteString;
+}
+
 @end

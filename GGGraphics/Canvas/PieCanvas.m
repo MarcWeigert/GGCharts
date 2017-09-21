@@ -21,6 +21,8 @@
  */
 - (void)drawChart
 {
+    [super drawChart];
+    
     for (id <PieDrawAbstract> pieAbstract in [_pieCanvasConfig pieAry]) {
         
         [self drawPieChartWithPie:pieAbstract];

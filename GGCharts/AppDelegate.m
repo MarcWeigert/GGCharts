@@ -14,8 +14,10 @@
 #import "Colors.h"
 
 #import "PieCanvas.h"
-
+#import "CenterCanvas.h"
 #import "NSAttributedString+GGChart.h"
+
+#import "CenterData.h"
 
 @interface AppDelegate ()
 
@@ -89,10 +91,25 @@
 //    pieCanvas.frame = CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, 400);
 //    pieCanvas.pieCanvasConfig = pieDataSet;
 //    pieCanvas.backgroundColor = [UIColor whiteColor].CGColor;
-//    
 //    [pieCanvas drawChart];
 //    
+//    CenterData * centerData = [[CenterData alloc] init];
+//    centerData.fillColor = [UIColor whiteColor];
+//    centerData.lable.number = 79;
+//    [centerData updateCenterConfigs:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 400)];
+//    
+//    [centerData.lable setAttrbuteStringValueBlock:^NSAttributedString *(CGFloat value) {
+//        
+//        return [NSAttributedString pieInnerStringWithCenterString:@"79" smallString:@"分值"];
+//    }];
+//    
+//    CenterCanvas * centerCanvas = [[CenterCanvas alloc] init];
+//    centerCanvas.frame = pieCanvas.frame;
+//    centerCanvas.centerConfig = centerData;
+//    [centerCanvas drawChart];
+//    
 //    [self.window.layer addSublayer:pieCanvas];
+//    [self.window.layer addSublayer:centerCanvas];
     
     return YES;
 }

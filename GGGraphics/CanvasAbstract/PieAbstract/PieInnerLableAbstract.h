@@ -9,32 +9,9 @@
 #ifndef PieInnerLableAbstract_h
 #define PieInnerLableAbstract_h
 
-@protocol PieInnerLableAbstract <NSObject>
+#import "NumberAbstract.h"
 
-/**
- * 外部文字字体颜色
- */
-@property (nonatomic, strong, readonly) UIColor * lableColor;
-
-/**
- * 外部文字字体
- */
-@property (nonatomic, strong, readonly) UIFont * lableFont;
-
-/**
- * 扇形图内边文字格式化字符串
- */
-@property (nonatomic, strong, readonly) NSString * stringFormat;
-
-/**
- * 文字偏移比例
- */
-@property (nonatomic, assign, readonly) CGPoint stringRatio;
-
-/**
- * 文字偏移
- */
-@property (nonatomic, assign, readonly) CGSize stringOffSet;
+@protocol PieInnerLableAbstract <NumberAbstract>
 
 /**
  * 扇形图富文本字符串

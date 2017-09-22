@@ -16,7 +16,7 @@
 /**
  * 扇形图富文本字符串
  */
-@property (nonatomic, copy, readonly) NSAttributedString * (^attributeStringBlock)(NSInteger index, CGFloat ratio);
+@property (nonatomic, copy, readonly) NSAttributedString * (^attributeStringBlock)(NSInteger index, CGFloat value, CGFloat ratio);
 
 @end
 

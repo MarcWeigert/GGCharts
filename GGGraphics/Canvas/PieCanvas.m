@@ -36,9 +36,8 @@
         [self drawInnerStringWithPie:pieAbstract];
     }
     
-    
     [self.pieAnimation setPieCanvasAbstract:_pieCanvasConfig];
-    [self.pieAnimation startAnimationWithDuration:1 animationType:0];
+    [self.pieAnimation startAnimationWithDuration:.5 animationType:0];
 }
 
 /**
@@ -89,9 +88,9 @@
             
             pieColor = [pieAbstract pieColorsForIndex](i, [pieAbstract ratios][i]);
         }
-        else {
+        else if (![pieAbstract gradientColorsForIndex]) {
         
-            GGLog(@"请实现扇形图Block: UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio)");
+            GGLog(@"请实现扇形图Block: UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio) 或 NSArray <UIColor *> * (^gradientColorsForIndex)(NSInteger index)");
         }
         
         GGShapeCanvas * shapeLayer = [baseCanvas getGGShapeCanvasSquareFrame];
@@ -226,7 +225,7 @@
                 
                 [numberRenderer setAttrbuteStringValueAndRatioBlock:^NSAttributedString *(CGFloat value, CGFloat ratio) {
                     
-                    return [[pieAbstract outSideLable] attributeStringBlock](i, ratio);
+                    return [[pieAbstract outSideLable] attributeStringBlock](i, value, ratio);
                 }];
             }
             
@@ -304,7 +303,7 @@
                 
                 [numberRenderer setAttrbuteStringValueAndRatioBlock:^NSAttributedString *(CGFloat value, CGFloat ratio) {
                     
-                    return [[pieAbstract innerLable] attributeStringBlock](i, ratio);
+                    return [[pieAbstract innerLable] attributeStringBlock](i, value, ratio);
                 }];
             }
             

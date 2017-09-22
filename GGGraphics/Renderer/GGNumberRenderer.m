@@ -44,30 +44,10 @@
     _toNumber = toNumber;
 }
 
-- (void)setFromNumber:(CGFloat)fromNumber
-{
-    _fromNumber = fromNumber;
-}
-
-- (void)setFromPoint:(CGPoint)fromPoint
-{
-    _fromPoint = fromPoint;
-    _fromPoint = CGPointMake(_fromPoint.x + _offSet.width, _fromPoint.y + _offSet.height);
-}
-
 - (void)setToPoint:(CGPoint)toPoint
 {
     _fromPoint = _toPoint;
     _toPoint = toPoint;
-    _toPoint = CGPointMake(_toPoint.x + _offSet.width, _toPoint.y + _offSet.height);
-}
-
-- (void)setOffSet:(CGSize)offSet
-{
-    _offSet = offSet;
-    
-    _fromPoint = CGPointMake(_fromPoint.x + _offSet.width, _fromPoint.y + _offSet.height);
-    _toPoint = CGPointMake(_toPoint.x + _offSet.width, _toPoint.y + _offSet.height);
 }
 
 /** 绘制起始点文字 */
@@ -140,11 +120,13 @@
 {
     if (self.hidden) { return; }
     
+    CGPoint centerPoint = CGPointMake(_currentPoint.x + _offSet.width, _currentPoint.y + _offSet.height);
+    
     if (self.attrbuteStringValueBlock) {
         
         NSAttributedString * attributeString = self.attrbuteStringValueBlock(self.currentNumber);
         CGSize size = [attributeString size];
-        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
         UIGraphicsPushContext(ctx);
         [attributeString drawAtPoint:drawPoint];
         UIGraphicsPopContext();
@@ -154,7 +136,7 @@
         CGFloat ratio = _sum == 0 ? 0 : self.currentNumber / _sum;
         NSAttributedString * attributeString = self.attrbuteStringValueAndRatioBlock(self.currentNumber, ratio);
         CGSize size = [attributeString size];
-        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
         UIGraphicsPushContext(ctx);
         [attributeString drawAtPoint:drawPoint];
         UIGraphicsPopContext();
@@ -163,7 +145,7 @@
     
         NSString * drawText = _isIntValue ? [NSString stringWithFormat:self.format, (int)self.currentNumber] : [NSString stringWithFormat:self.format, self.currentNumber];
         CGSize size = [drawText sizeWithAttributes:_param];
-        CGPoint drawPoint = CGPointMake(self.currentPoint.x + size.width * _offSetRatio.x, self.currentPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
         UIGraphicsPushContext(ctx);
         [drawText drawAtPoint:drawPoint withAttributes:_param];
         UIGraphicsPopContext();

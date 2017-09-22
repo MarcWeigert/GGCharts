@@ -139,6 +139,14 @@ CG_EXTERN void GGPathAddPie(CGMutablePathRef ref, GGPie pie);
  */
 CG_EXTERN NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration);
 
+/**
+ * 生成每一帧扇形弹射动画
+ *
+ * @param pie 结构体
+ * @param duration 时间间距
+ */
+CG_EXTERN NSArray * EjectAnimationWithPie(GGPie pie, NSTimeInterval duration);
+
 #pragma mark - GGValuePieExtensions
 
 @interface NSValue (GGValuePieExtensions)

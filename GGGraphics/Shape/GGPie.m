@@ -105,6 +105,48 @@ NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration)
     return [NSArray arrayWithArray:array];
 }
 
+/**
+ * 生成每一帧扇形弹射动画
+ *
+ * @param pie 结构体
+ * @param duration 时间间距
+ */
+NSArray * EjectAnimationWithPie(GGPie pie, NSTimeInterval duration)
+{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    CGFloat radius_ratio = .2f;
+    
+    CGFloat frame = duration * 60 * 60;
+    CGFloat out_frame = frame * (1.0f - radius_ratio);
+    CGFloat in_frame = frame * radius_ratio;
+    
+    CGFloat outSide = (pie.radiusRange.outRadius - pie.radiusRange.inRadius) * radius_ratio;
+    CGFloat full_radius = (pie.radiusRange.outRadius - pie.radiusRange.inRadius + outSide);
+    CGFloat frame_radius = full_radius / out_frame;
+    CGFloat in_frame_radius = outSide / in_frame;
+    
+    for (long i = 0; i < out_frame; i++) {
+    
+        CGMutablePathRef ref = CGPathCreateMutable();
+        pie.radiusRange.outRadius = pie.radiusRange.inRadius + frame_radius * i;
+        GGPathAddPie(ref, pie);
+        [array addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    for (long i = 0; i < in_frame; i++) {
+    
+        CGMutablePathRef ref = CGPathCreateMutable();
+        pie.radiusRange.outRadius = pie.radiusRange.inRadius + full_radius - (in_frame_radius * i);
+        GGPathAddPie(ref, pie);
+        [array addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    return array;
+}
+
 #pragma mark - NSValue
 
 @implementation NSValue (GGValuePieExtensions)

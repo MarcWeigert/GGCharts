@@ -12,7 +12,7 @@
 
 @end
 
-@interface CenterData ()
+@interface CenterData () <CenterAbstract>
 
 /**
  * 结构体
@@ -38,6 +38,14 @@
 /**
  * 结构体
  */
+- (void)setPolygon:(GGPolygon)polygon
+{
+    _ggPolygon = polygon;
+}
+
+/**
+ * 结构体
+ */
 - (GGPolygon)polygon
 {
     return _ggPolygon;
@@ -57,7 +65,7 @@
  */
 - (void)updateCenterConfigs:(CGRect)rect
 {
-    _ggPolygon = GGPolygonMake(0, rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2, 0, 0);
+    _ggPolygon.center = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height / 2);
 }
 
 @end

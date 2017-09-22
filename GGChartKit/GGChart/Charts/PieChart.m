@@ -251,7 +251,7 @@
 
 - (void)addAnimationWithDuration:(NSTimeInterval)duration
 {
-    [self animationEjectForDuration:duration];
+    [self animationRotateForDuration:duration];
 }
 
 - (void)animationRotateForDuration:(NSTimeInterval)duration

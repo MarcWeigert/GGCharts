@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PieDrawAbstract.h"
 #import "GGPieData.h"
+#import "CenterData.h"
 
 @interface PieDataSet : NSObject <PieCanvasAbstract>
 
@@ -16,6 +17,11 @@
  * 扇形图数组
  */
 @property (nonatomic, strong) NSArray <GGPieData *> * pieAry;
+
+/**
+ * 中心点
+ */
+@property (nonatomic, strong) CenterData * centerLable;
 
 /**
  * 扇形图边框宽度

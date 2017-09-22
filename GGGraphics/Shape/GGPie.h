@@ -123,8 +123,21 @@ CG_EXTERN CGFloat GGPieGetMinArc(GGPie pie);
 
 /**
  * 绘制扇形
+ *
+ * @param ref 路径
+ * @param pie 结构体
  */
 CG_EXTERN void GGPathAddPie(CGMutablePathRef ref, GGPie pie);
+
+#pragma mark - Animation
+
+/**
+ * 生成每一帧扇形图旋转填充动画
+ *
+ * @param pie 结构体
+ * @param duration 时间间距
+ */
+CG_EXTERN NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration);
 
 #pragma mark - GGValuePieExtensions
 

@@ -23,7 +23,7 @@
 
 @end
 
-@interface CenterData : NSObject <CenterAbstract>
+@interface CenterData : NSObject
 
 /**
  * 填充颜色

@@ -35,7 +35,7 @@
 /**
  * 结构体
  */
-@property (nonatomic, assign, readonly) GGPolygon polygon;
+@property (nonatomic, assign) GGPolygon polygon;
 
 /**
  * 中间文字配置

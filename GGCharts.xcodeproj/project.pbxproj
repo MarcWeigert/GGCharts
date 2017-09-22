@@ -117,12 +117,14 @@
 		2B7777AC1EE8272400C99F55 /* GGCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777A91EE8272400C99F55 /* GGCanvas.m */; };
 		2B7777AD1EE8272400C99F55 /* GGShapeCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777AB1EE8272400C99F55 /* GGShapeCanvas.m */; };
 		2B7777B21EE828EF00C99F55 /* CGPathCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B01EE828EF00C99F55 /* CGPathCategory.m */; };
-		2B7777BB1EE829A500C99F55 /* GGDataScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B51EE829A500C99F55 /* GGDataScaler.m */; };
 		2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */; };
 		2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7995171F1746EE00E73DFC /* NSDate+GGDate.m */; };
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
 		2B7E411A1F396455000E0413 /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E41191F396455000E0413 /* Animator.m */; };
+		2B7E8F9F1F74998400925EC1 /* GGPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E8F9E1F74998400925EC1 /* GGPieChart.m */; };
+		2B7E8FA21F74A29D00925EC1 /* PieDemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */; };
+		2B7E8FA51F74AECB00925EC1 /* PieAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E8FA41F74AECB00925EC1 /* PieAnimationManager.m */; };
 		2B8B628D1F32D1A700028F40 /* DRadarScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628C1F32D1A700028F40 /* DRadarScaler.m */; };
 		2B8B62901F32D6B700028F40 /* RadarCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B628F1F32D6B700028F40 /* RadarCanvas.m */; };
 		2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62971F32ECF300028F40 /* RadarDataSet.m */; };
@@ -387,8 +389,6 @@
 		2B7777AF1EE828EF00C99F55 /* CGPathCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPathCategory.h; sourceTree = "<group>"; };
 		2B7777B01EE828EF00C99F55 /* CGPathCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPathCategory.m; sourceTree = "<group>"; };
 		2B7777B11EE828EF00C99F55 /* GGChartGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGChartGeometry.h; sourceTree = "<group>"; };
-		2B7777B41EE829A500C99F55 /* GGDataScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGDataScaler.h; sourceTree = "<group>"; };
-		2B7777B51EE829A500C99F55 /* GGDataScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGDataScaler.m; sourceTree = "<group>"; };
 		2B7777B81EE829A500C99F55 /* NSValue+GGValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+GGValue.h"; sourceTree = "<group>"; };
 		2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+GGValue.m"; sourceTree = "<group>"; };
 		2B7995161F1746EE00E73DFC /* NSDate+GGDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GGDate.h"; sourceTree = "<group>"; };
@@ -397,6 +397,12 @@
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
 		2B7E41181F396455000E0413 /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		2B7E41191F396455000E0413 /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
+		2B7E8F9D1F74998400925EC1 /* GGPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPieChart.h; sourceTree = "<group>"; };
+		2B7E8F9E1F74998400925EC1 /* GGPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPieChart.m; sourceTree = "<group>"; };
+		2B7E8FA01F74A29D00925EC1 /* PieDemoChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieDemoChartViewController.h; path = StockDemo/PieDemoChartViewController.h; sourceTree = "<group>"; };
+		2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieDemoChartViewController.m; path = StockDemo/PieDemoChartViewController.m; sourceTree = "<group>"; };
+		2B7E8FA31F74AECB00925EC1 /* PieAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieAnimationManager.h; sourceTree = "<group>"; };
+		2B7E8FA41F74AECB00925EC1 /* PieAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieAnimationManager.m; sourceTree = "<group>"; };
 		2B87627F1F6B7AED0050D897 /* BaseLineBarCanvasAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLineBarCanvasAbstract.h; sourceTree = "<group>"; };
 		2B8B628B1F32D1A700028F40 /* DRadarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRadarScaler.h; sourceTree = "<group>"; };
 		2B8B628C1F32D1A700028F40 /* DRadarScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRadarScaler.m; sourceTree = "<group>"; };
@@ -538,6 +544,8 @@
 				2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */,
 				2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */,
 				2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */,
+				2B7E8FA01F74A29D00925EC1 /* PieDemoChartViewController.h */,
+				2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */,
 			);
 			path = GGChartDemo;
 			sourceTree = "<group>";
@@ -892,8 +900,6 @@
 			isa = PBXGroup;
 			children = (
 				2B28FE181F6D712300F4FD1E /* DrawHeader.h */,
-				2B7777B41EE829A500C99F55 /* GGDataScaler.h */,
-				2B7777B51EE829A500C99F55 /* GGDataScaler.m */,
 				2B7777B81EE829A500C99F55 /* NSValue+GGValue.h */,
 				2B7777B91EE829A500C99F55 /* NSValue+GGValue.m */,
 				2B252B7D1EFBB52500AF541B /* CALayer+GGFrame.h */,
@@ -913,6 +919,8 @@
 			children = (
 				2B7E41181F396455000E0413 /* Animator.h */,
 				2B7E41191F396455000E0413 /* Animator.m */,
+				2B7E8FA31F74AECB00925EC1 /* PieAnimationManager.h */,
+				2B7E8FA41F74AECB00925EC1 /* PieAnimationManager.m */,
 				2B28FE151F6D6D1300F4FD1E /* BarAnimationsManager.h */,
 				2B28FE161F6D6D1300F4FD1E /* BarAnimationsManager.m */,
 				2B28FE191F6DFF1A00F4FD1E /* LineAnimationsManager.h */,
@@ -1117,6 +1125,8 @@
 				2B8DE46B1F680618000F3DB4 /* LineBarChart */,
 				2B9788491F09D4E2002A2A3C /* BaseChart.h */,
 				2B97884A1F09D4E2002A2A3C /* BaseChart.m */,
+				2B7E8F9D1F74998400925EC1 /* GGPieChart.h */,
+				2B7E8F9E1F74998400925EC1 /* GGPieChart.m */,
 				2B97884B1F09D4E2002A2A3C /* BaseCountChart.h */,
 				2B97884C1F09D4E2002A2A3C /* BaseCountChart.m */,
 				2B9788511F09D4E2002A2A3C /* PieChart.h */,
@@ -1266,6 +1276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7E8FA51F74AECB00925EC1 /* PieAnimationManager.m in Sources */,
 				2B2722851F0F550D00E4A295 /* lgc.c in Sources */,
 				2B2722841F0F550D00E4A295 /* lfunc.c in Sources */,
 				2B8B628D1F32D1A700028F40 /* DRadarScaler.m in Sources */,
@@ -1363,13 +1374,13 @@
 				2B27228B1F0F550D00E4A295 /* loadlib.c in Sources */,
 				2B9788781F09D4E2002A2A3C /* PieChart.m in Sources */,
 				2B8B629E1F32EE5C00028F40 /* RadarIndicatorData.m in Sources */,
-				2B7777BB1EE829A500C99F55 /* GGDataScaler.m in Sources */,
 				2B9788721F09D4E2002A2A3C /* StockQueryView.m in Sources */,
 				2B7777BD1EE829A500C99F55 /* NSValue+GGValue.m in Sources */,
 				2B8DE45C1F67A30E000F3DB4 /* LineData.m in Sources */,
 				2B2722A31F0F55D500E4A295 /* LuaExportMetaData.m in Sources */,
 				2B2722881F0F550D00E4A295 /* llex.c in Sources */,
 				2B45C4FF1F3FD4D1004F1AC6 /* BarCanvas.m in Sources */,
+				2B7E8FA21F74A29D00925EC1 /* PieDemoChartViewController.m in Sources */,
 				2B6843151F612D3A00559001 /* LineBarQuery.m in Sources */,
 				2B8DE45A1F67A30E000F3DB4 /* BarDataSet.m in Sources */,
 				2B8DE4741F680646000F3DB4 /* LineChart.m in Sources */,
@@ -1397,6 +1408,7 @@
 				2B7995181F1746EE00E73DFC /* NSDate+GGDate.m in Sources */,
 				2B6843111F612D1D00559001 /* XAxis.m in Sources */,
 				2B27227E1F0F550D00E4A295 /* lcorolib.c in Sources */,
+				2B7E8F9F1F74998400925EC1 /* GGPieChart.m in Sources */,
 				2B9788751F09D4E2002A2A3C /* BaseCountChart.m in Sources */,
 				2B2722831F0F550D00E4A295 /* ldump.c in Sources */,
 				2B773FE01F15F44000B2BE59 /* UIView+GGFrame.m in Sources */,

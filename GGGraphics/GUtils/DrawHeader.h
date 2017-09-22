@@ -78,14 +78,14 @@ static const void * lineNumberArray = @"lineNumberArray";
  * 扇形图关联key
  */
 static const void * pieShapeLayerArray = @"pieShapeLayerArray";
+static const void * pieBaseShapeLayer = @"pieBaseShapeLayer";
 
 static const void * pieOutSideLayerArray = @"pieInnerLayerArray";
+static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
+static const void * pieOutSideLayer = @"pieOutSideLayer";
 
 static const void * pieInnerNumberArray = @"pieInnerNumberArray";
-static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
-
 static const void * pieInnerLayer = @"pieInnerLayer";
-static const void * pieOutSideLayer = @"pieInnerLayer";
 
 /**
  * 关联对象(强引用)

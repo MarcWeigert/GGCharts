@@ -30,6 +30,11 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign, readonly) GGPie * pies;
 
 /**
+ * 扇形图开始角度默认12点钟方向
+ */
+@property (nonatomic, assign, readonly) CGFloat pieStartTransform;
+
+/**
  * 扇形图比例
  */
 @property (nonatomic, assign, readonly) CGFloat * ratios;

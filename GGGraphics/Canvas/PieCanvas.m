@@ -9,8 +9,14 @@
 #import "PieCanvas.h"
 #import <objc/runtime.h>
 #import "NSArray+Stock.h"
+#import "PieAnimationManager.h"
 
 @interface PieCanvas ()
+
+/**
+ * 动画管理类
+ */
+@property (nonatomic, strong) PieAnimationManager * pieAnimation;
 
 @end
 
@@ -29,6 +35,10 @@
         [self drawSpiderLineWithPie:pieAbstract];
         [self drawInnerStringWithPie:pieAbstract];
     }
+    
+    
+    [self.pieAnimation setPieCanvasAbstract:_pieCanvasConfig];
+    [self.pieAnimation startAnimationWithDuration:1 animationType:0];
 }
 
 /**
@@ -110,6 +120,7 @@
     }
     
     SET_ASSOCIATED_RETAIN(pieAbstract, pieShapeLayerArray, pieAry);
+    SET_ASSOCIATED_ASSIGN(pieAbstract, pieBaseShapeLayer, baseCanvas);
 }
 
 /**
@@ -226,7 +237,7 @@
         
         SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideLayerArray, aryLineLayers);
         SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideNumberArray, aryNumbers);
-        SET_ASSOCIATED_RETAIN(pieAbstract, pieInnerLayer, baseCanvas);
+        SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideLayer, baseCanvas);
     }
 }
 
@@ -300,9 +311,13 @@
             [canvas setNeedsDisplay];
         }
         
-        SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideLayer, canvas);
+        SET_ASSOCIATED_RETAIN(pieAbstract, pieInnerLayer, canvas);
         SET_ASSOCIATED_RETAIN(pieAbstract, pieInnerNumberArray, aryNumbers);
     }
 }
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(PieAnimationManager, pieAnimation);
 
 @end

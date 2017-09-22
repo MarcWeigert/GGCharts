@@ -66,7 +66,7 @@
     //chart.isInside = YES;
     
     [chart drawChart];
-    [chart animationEjectForDuration:2.0f];
+    [chart animationRotateForDuration:2.0f];
     
     [self.view addSubview:chart];
 }

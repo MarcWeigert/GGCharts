@@ -20,6 +20,11 @@
 @property (nonatomic, strong, readonly) DPieScaler * pieScaler;
 
 /**
+ * 扇形图开始角度默认12点钟方向
+ */
+@property (nonatomic, assign) CGFloat pieStartTransform;
+
+/**
  * 扇形图
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *dataAry;

@@ -19,6 +19,22 @@
         
         [pieData.pieScaler updateScaler];
     }
+    
+    [self.centerLable updateCenterConfigs:rect];
+}
+
+/**
+ * 中心点配置类
+ */
+- (CenterData *)centerLable
+{
+    if (_centerLable == nil) {
+        
+        _centerLable = [[CenterData alloc] init];
+        [(id <CenterAbstract>)_centerLable setPolygon:GGPolygonMake(0, 0, 0, 0, 0)];
+    }
+    
+    return _centerLable;
 }
 
 @end

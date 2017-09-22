@@ -34,6 +34,22 @@
 }
 
 /**
+ * 扇形图开始角度默认12点钟方向
+ */
+- (void)setPieStartTransform:(CGFloat)pieStartTransform
+{
+    self.pieScaler.baseArc = pieStartTransform;
+}
+
+/**
+ * 扇形图开始角度默认12点钟方向
+ */
+- (CGFloat)pieStartTransform
+{
+    return self.pieScaler.baseArc;
+}
+
+/**
  * 扇形图半径区间默认{.0f, 100.0f}
  */
 - (void)setRadiusRange:(GGRadiusRange)radiusRange

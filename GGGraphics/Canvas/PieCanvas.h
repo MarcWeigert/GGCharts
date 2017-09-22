@@ -11,6 +11,9 @@
 
 @interface PieCanvas : GGCanvas
 
+/**
+ * 扇形图配置类
+ */
 @property (nonatomic, strong) id <PieCanvasAbstract> pieCanvasConfig;
 
 @end

@@ -59,6 +59,9 @@ CGFloat GGPieGetMinArc(GGPie pie)
 
 /**
  * 绘制扇形
+ *
+ * @param ref 路径
+ * @param pie 结构体
  */
 void GGPathAddPie(CGMutablePathRef ref, GGPie pie)
 {
@@ -72,6 +75,34 @@ void GGPathAddPie(CGMutablePathRef ref, GGPie pie)
     CGPathAddArc(ref, NULL, pie.center.x, pie.center.y, maxRadius, end, start, true);
     
     CGPathCloseSubpath(ref);
+}
+
+#pragma mark - Animation
+
+/**
+ * 生成每一帧扇形图旋转填充动画
+ *
+ * @param pie 结构体
+ * @param duration 时间间距
+ */
+NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration)
+{
+    NSMutableArray * array = [NSMutableArray array];
+    
+    NSInteger frame = duration * 60 * 60;
+    CGFloat frame_arc = pie.arc / frame;
+    
+    for (NSInteger i = 0; i < frame; i++) {
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGPie frame_pie = GGPieCopyWithPie(pie);
+        frame_pie.arc = frame_arc * i;
+        GGPathAddPie(ref, frame_pie);
+        [array addObject:(__bridge id)ref];
+        CFRelease(ref);
+    }
+    
+    return [NSArray arrayWithArray:array];
 }
 
 #pragma mark - NSValue

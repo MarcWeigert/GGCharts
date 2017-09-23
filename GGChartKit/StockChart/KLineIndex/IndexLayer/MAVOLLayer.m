@@ -8,7 +8,6 @@
 
 #import "MAVOLLayer.h"
 #import "DLineScaler.h"
-#import "GGChartDefine.h"
 #import "KLineIndexManager.h"
 #import "GGGraphics.h"
 

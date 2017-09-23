@@ -11,7 +11,6 @@
 #import "LineDataSet.h"
 #import "LineData.h"
 #import "GridBackCanvas.h"
-#import "GGChartDefine.h"
 #import "LineChart.h"
 
 @interface LineViewController ()

@@ -7,7 +7,6 @@
 //
 
 #import "BaseStockChart.h"
-#import "GGChartDefine.h"
 
 NSString * const GGKeyPathContentOffset = @"contentOffset";
 

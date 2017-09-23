@@ -7,7 +7,6 @@
 //
 
 #import "TableIndexCell.h"
-#import "GGChartDefine.h"
 
 @interface TableIndexCell ()
 

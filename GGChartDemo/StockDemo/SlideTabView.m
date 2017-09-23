@@ -7,7 +7,6 @@
 //
 
 #import "SlideTabView.h"
-#import "GGChartDefine.h"
 
 @interface SlideTabView ()
 

@@ -8,7 +8,7 @@
 
 #import "RadarViewController.h"
 
-#import "GGRadarChart.h"
+#import "RadarChart.h"
 
 @interface RadarViewController ()
 
@@ -56,7 +56,7 @@
     _radarDataSet.splitCount = 3;
     _radarDataSet.radarSet = @[radarData, radarData1];
     
-    GGRadarChart * radarChart = [[GGRadarChart alloc] initWithFrame:self.view.frame];
+    RadarChart * radarChart = [[RadarChart alloc] initWithFrame:self.view.frame];
     radarChart.radarData = _radarDataSet;
     [radarChart drawRadarChart];
     [radarChart.radarCanvas addAnimationWithDuration:2];

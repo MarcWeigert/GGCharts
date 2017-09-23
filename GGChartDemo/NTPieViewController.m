@@ -7,8 +7,9 @@
 //
 
 #import "NTPieViewController.h"
-#import "PieData.h"
+
 #import "Colors.h"
+
 #import "PieChart.h"
 
 @interface NTPieViewController ()
@@ -23,52 +24,40 @@
     
     self.title = @"NTPieChart";
     
-    PieData * pie_d1 = [[PieData alloc] init];
-    pie_d1.pieName = @"直接访问";
-    pie_d1.data = 335;
-    pie_d1.color = __RGB_RED;
+    NSArray * titleArray = @[@"直接访问", @"邮件营销", @"联盟广告", @"视频广告", @"搜索引擎"];
+    NSArray * dataArray = @[ @335, @310, @234, @735, @1548];
+    NSArray * colorArray = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN];
     
-    PieData * pie_d2 = [[PieData alloc] init];
-    pie_d2.pieName = @"直接访问";
-    pie_d2.data = 310;
-    pie_d2.color = __RGB_BLUE;
+    PieData * pie = [[PieData alloc] init];
+    pie.radiusRange = GGRadiusRangeMake(0, 80);
+    pie.showOutLableType = OutSideShow;
+    pie.dataAry = dataArray;
+    pie.outSideLable.lineSpacing = 5;
+    pie.outSideLable.lineLength = 10;
+    pie.outSideLable.inflectionLength = 10;
+    pie.outSideLable.linePointRadius = 1.5;
+    pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
     
-    PieData * pie_d3 = [[PieData alloc] init];
-    pie_d3.pieName = @"直接访问";
-    pie_d3.data = 234;
-    pie_d3.color = __RGB_GREEN;
+    [pie setPieColorsForIndex:^(NSInteger index, CGFloat ratio){
+        
+        return colorArray[index];
+    }];
     
-    PieData * pie_d4 = [[PieData alloc] init];
-    pie_d4.pieName = @"直接访问";
-    pie_d4.data = 735;
-    pie_d4.color = __RGB_ORIGE;
+    [pie.outSideLable setLineColorsBlock:^(NSInteger index, CGFloat ratio){
+        
+        return colorArray[index];
+    }];
     
-    PieData * pie_d5 = [[PieData alloc] init];
-    pie_d5.pieName = @"直接访问";
-    pie_d5.data = 1548;
-    pie_d5.color = __RGB_CYAN;
+    PieDataSet * dataSet = [[PieDataSet alloc] init];
+    dataSet.pieAry = @[pie];
     
-    PieData * pie_d6 = [[PieData alloc] init];
-    pie_d6.pieName = @"直接访问";
-    pie_d6.data = 748;
-    pie_d6.color = __RGB_CYAN;
     
-    PieData * pie_d7 = [[PieData alloc] init];
-    pie_d7.pieName = @"直接访问";
-    pie_d7.data = 148;
-    pie_d7.color = __RGB_BLACK;
+    PieChart * pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 400)];
+    pieChart.pieDataSet = dataSet;
     
-    NSArray * pieData = @[pie_d1, pie_d2, pie_d3, pie_d4, pie_d5];
+    [pieChart drawPieChart];
     
-    PieChart * chart = [[PieChart alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 400)];
-    chart.radius = 80;
-    chart.dataAry = pieData;
-    //chart.isInside = YES;
-    
-    [chart drawChart];
-    [chart animationRotateForDuration:2.0f];
-    
-    [self.view addSubview:chart];
+    [self.view addSubview:pieChart];
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,13 +7,13 @@
 //
 
 #import "PieDemoChartViewController.h"
-#import "GGPieChart.h"
+#import "PieChart.h"
 #import "Colors.h"
 #import "NSAttributedString+GGChart.h"
 
 @interface PieDemoChartViewController ()
 
-@property (nonatomic, strong) GGPieChart * pieChart;
+@property (nonatomic, strong) PieChart * pieChart;
 
 @end
 
@@ -39,7 +39,7 @@
     NSArray * outSub = @[@"市场业绩财报很好", @"估值有极强吸引力", @"市场情绪中性"];
     NSArray * outColor = @[C_HEX(0xF04D00), C_HEX(0xFBD439), C_HEX(0x23AADA)];
     
-    GGPieData * pie = [[GGPieData alloc] init];
+    PieData * pie = [[PieData alloc] init];
     pie.radiusRange = GGRadiusRangeMake(34, 34 + 59);
     pie.showOutLableType = OutSideShow;
     pie.roseType = RoseRadius;
@@ -49,7 +49,7 @@
     pie.outSideLable.lineLength = 10;
     pie.outSideLable.inflectionLength = 90;
     pie.outSideLable.linePointRadius = 1.5;
-    pie.innerLable.stringOffSet = CGSizeZero; CGSizeMake(-.5, 0);
+    pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
     pie.showInnerString = YES;
     
     [pie setGradientColorsForIndex:^NSArray<UIColor *> *(NSInteger index) {
@@ -91,7 +91,7 @@
         return [NSAttributedString pieInnerStringWithCenterString:@"79" smallString:@"分值"];
     }];
     
-    _pieChart = [[GGPieChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500)];
+    _pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500)];
     _pieChart.pieDataSet = pieDataSet;
     [_pieChart drawPieChart];
     

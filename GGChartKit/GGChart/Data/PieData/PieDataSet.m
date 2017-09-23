@@ -15,7 +15,7 @@
  */
 - (void)updateChartConfigs:(CGRect)rect
 {
-    for (GGPieData * pieData in self.pieAry) {
+    for (PieData * pieData in self.pieAry) {
         
         [pieData.pieScaler updateScaler];
     }

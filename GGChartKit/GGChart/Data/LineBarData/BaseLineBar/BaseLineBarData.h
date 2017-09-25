@@ -59,9 +59,13 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString * dataFormatter;
 
 /**
- * 柱状, 折线文字偏移比例
+ * 折线文字偏移比例
  *
- * {-1, -1} 数据点右上方绘制, {0, 0} 数据点左下方绘制, {-0.5, -0.5} 数据点中心绘制
+ * {0, 0} 中心, {-1, -1} 右上, {0, 0} 左下
+ *
+ * {-1, -1}, { 0, -1}, { 1, -1},
+ * {-1,  0}, { 0,  0}, { 1,  0},
+ * {-1,  1}, { 0,  1}, { 1,  1},
  */
 @property (nonatomic, assign) CGPoint offSetRatio;
 

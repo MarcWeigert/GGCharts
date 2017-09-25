@@ -47,12 +47,12 @@
 /**
  * Color
  */
-#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define RGB(r,g,b) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1.0]
 
 #define C_HEXA(rgbValue, alphaValue) [UIColor \
-colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
-green:((float)((rgbValue & 0x00FF00) >> 8))/255.0 \
-blue:((float)(rgbValue & 0x0000FF))/255.0 \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 \
+green:((float)((rgbValue & 0x00FF00) >> 8)) / 255.0 \
+blue:((float)(rgbValue & 0x0000FF)) / 255.0 \
 alpha:alphaValue]
 
 #define C_HEX(rgbValue) C_HEXA(rgbValue, 1.0)
@@ -91,26 +91,27 @@ static const void * pieInnerLayer = @"pieInnerLayer";
  * 关联对象(强引用)
  */
 #define SET_ASSOCIATED_ASSIGN(obj, key, value)      \
-objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
+    objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
 
 /**
  * 关联对象(弱引用)
  */
 #define SET_ASSOCIATED_RETAIN(obj, key, value)      \
-objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
+    objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
 
 /**
  * 获取关联对象
  */
 #define GET_ASSOCIATED(obj, key)                    \
-objc_getAssociatedObject(obj, key)
+    objc_getAssociatedObject(obj, key)
 
 /**
  * 输出日志
  */
 #ifdef DEBUG
-    #define GGLog(s, ...) NSLog(@"%@%s %@", @"[GGLOG]", __PRETTY_FUNCTION__, [NSString stringWithFormat:s,##__VA_ARGS__])
+    #define GGLog(s, ...) NSLog(@"%@%s %@", @"[GG_CHART_LOG]", __PRETTY_FUNCTION__, [NSString stringWithFormat:s,##__VA_ARGS__])
 #else
     #define GGLog(s, ...) [NSString stringWithFormat:s,##__VA_ARGS__]
 #endif
+
 #endif /* DrawHeader_h */

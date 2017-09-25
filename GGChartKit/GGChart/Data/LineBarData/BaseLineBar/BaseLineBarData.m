@@ -24,7 +24,7 @@
     
     if (self) {
         
-        self.offSetRatio = CGPointMake(-.5f, -1.0f);
+        self.offSetRatio = GGRatioTopCenter;
         self.stringOffset = CGSizeMake(0, -2.0f);
     }
     

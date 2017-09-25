@@ -121,12 +121,13 @@
     if (self.hidden) { return; }
     
     CGPoint centerPoint = CGPointMake(_currentPoint.x + _offSet.width, _currentPoint.y + _offSet.height);
+    CGPoint numberRatio = RATIO_POINT_CONVERT(_offSetRatio);
     
     if (self.attrbuteStringValueBlock) {
         
         NSAttributedString * attributeString = self.attrbuteStringValueBlock(self.currentNumber);
         CGSize size = [attributeString size];
-        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * numberRatio.x, centerPoint.y + size.height * numberRatio.y);
         UIGraphicsPushContext(ctx);
         [attributeString drawAtPoint:drawPoint];
         UIGraphicsPopContext();
@@ -136,7 +137,7 @@
         CGFloat ratio = _sum == 0 ? 0 : self.currentNumber / _sum;
         NSAttributedString * attributeString = self.attrbuteStringValueAndRatioBlock(self.currentNumber, ratio);
         CGSize size = [attributeString size];
-        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * numberRatio.x, centerPoint.y + size.height * numberRatio.y);
         UIGraphicsPushContext(ctx);
         [attributeString drawAtPoint:drawPoint];
         UIGraphicsPopContext();
@@ -145,7 +146,7 @@
     
         NSString * drawText = _isIntValue ? [NSString stringWithFormat:self.format, (int)self.currentNumber] : [NSString stringWithFormat:self.format, self.currentNumber];
         CGSize size = [drawText sizeWithAttributes:_param];
-        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * _offSetRatio.x, centerPoint.y + size.height * _offSetRatio.y);
+        CGPoint drawPoint = CGPointMake(centerPoint.x + size.width * numberRatio.x, centerPoint.y + size.height * numberRatio.y);
         UIGraphicsPushContext(ctx);
         [drawText drawAtPoint:drawPoint withAttributes:_param];
         UIGraphicsPopContext();

@@ -27,7 +27,7 @@
         self.lableFont = [UIFont systemFontOfSize:9];
         self.lableColor = [UIColor blackColor];
         self.stringFormat = @"%.2f";
-        self.stringRatio = CGPointMake(-.5f, -.5f);
+        self.stringRatio = GGRatioCenter;
         self.stringOffSet = CGSizeZero;
     }
     

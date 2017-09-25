@@ -10,12 +10,18 @@
 
 @interface GGShapeCanvas : CAShapeLayer
 
+/**
+ * 路径变换动画
+ *
+ * @param duration 动画时间
+ */
 - (void)pathChangeAnimation:(NSTimeInterval)duration;
 
-- (CAAnimation *)animationForName:(NSString *)name;
-
-- (void)startAnimation:(NSString *)name duration:(NSTimeInterval)duration;
-
-- (CAKeyframeAnimation *)registerKeyAnimation:(NSString *)key name:(NSString *)name values:(NSArray *)values;
+/**
+ * 绘制扇形结构体
+ *
+ * @param pie 扇形图结构体
+ */
+- (void)drawPie:(GGPie)pie;
 
 @end

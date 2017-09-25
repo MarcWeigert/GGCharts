@@ -142,6 +142,7 @@
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
 		2B7E8FA21F74A29D00925EC1 /* PieDemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */; };
+		2B8513DF1F78C46600208856 /* GGGraphicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */; };
 		2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62971F32ECF300028F40 /* RadarDataSet.m */; };
 		2B8B629B1F32ED7C00028F40 /* RadarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B629A1F32ED7C00028F40 /* RadarData.m */; };
 		2B8B629E1F32EE5C00028F40 /* RadarIndicatorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B629D1F32EE5C00028F40 /* RadarIndicatorData.m */; };
@@ -453,6 +454,8 @@
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
 		2B7E8FA01F74A29D00925EC1 /* PieDemoChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieDemoChartViewController.h; path = StockDemo/PieDemoChartViewController.h; sourceTree = "<group>"; };
 		2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieDemoChartViewController.m; path = StockDemo/PieDemoChartViewController.m; sourceTree = "<group>"; };
+		2B8513DD1F78C46600208856 /* GGGraphicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGraphicsConstants.h; sourceTree = "<group>"; };
+		2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGraphicsConstants.m; sourceTree = "<group>"; };
 		2B8B62961F32ECF300028F40 /* RadarDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarDataSet.h; sourceTree = "<group>"; };
 		2B8B62971F32ECF300028F40 /* RadarDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarDataSet.m; sourceTree = "<group>"; };
 		2B8B62991F32ED7C00028F40 /* RadarData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarData.h; sourceTree = "<group>"; };
@@ -724,6 +727,8 @@
 				2B3CFE9F1F75F5740097A869 /* Colors.h */,
 				2B3CFEAF1F75F5740097A869 /* DrawHeader.h */,
 				2B3CFEB01F75F5740097A869 /* GGGraphics.h */,
+				2B8513DD1F78C46600208856 /* GGGraphicsConstants.h */,
+				2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */,
 				2B3CFE6A1F75F5740097A869 /* Animation */,
 				2B3CFE731F75F5740097A869 /* Canvas */,
 				2B3CFE861F75F5740097A869 /* CanvasAbstract */,
@@ -879,6 +884,7 @@
 		2B3CFEC01F75F5740097A869 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				2B3CFECF1F75F5740097A869 /* GGRenderProtocol.h */,
 				2B3CFEC11F75F5740097A869 /* GGAxisRenderer.h */,
 				2B3CFEC21F75F5740097A869 /* GGAxisRenderer.m */,
 				2B3CFEC31F75F5740097A869 /* GGCircleRenderer.h */,
@@ -893,7 +899,6 @@
 				2B3CFECC1F75F5740097A869 /* GGPolygonRenderder.m */,
 				2B3CFECD1F75F5740097A869 /* GGRectRenderer.h */,
 				2B3CFECE1F75F5740097A869 /* GGRectRenderer.m */,
-				2B3CFECF1F75F5740097A869 /* GGRenderProtocol.h */,
 				2B3CFED01F75F5740097A869 /* GGStringRenderer.h */,
 				2B3CFED11F75F5740097A869 /* GGStringRenderer.m */,
 			);
@@ -1376,6 +1381,7 @@
 				2B773FEF1F16237F00B2BE59 /* ATRLayer.m in Sources */,
 				2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */,
 				2B3CFEF41F75F5740097A869 /* GridBackCanvas.m in Sources */,
+				2B8513DF1F78C46600208856 /* GGGraphicsConstants.m in Sources */,
 				2B3CFDD81F75EB400097A869 /* PieChart.m in Sources */,
 				2B2D02C21F1C93C10052F4D5 /* TDLayer.m in Sources */,
 				2B3CFE511F75F4F80097A869 /* lgc.c in Sources */,

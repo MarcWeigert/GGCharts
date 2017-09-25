@@ -200,9 +200,7 @@
             
             CGFloat line_arc = GGYCircular(line);
             CGFloat base = line_arc > 0 ? 1 : -1;
-            CGFloat westRadioX = [[pieAbstract outSideLable] stringRatio].x >= 0 ? [[pieAbstract outSideLable] stringRatio].x * -1 :  1;
-            CGPoint westRadio = CGPointMake([[pieAbstract outSideLable] stringRatio].x + westRadioX, [[pieAbstract outSideLable] stringRatio].y);
-            CGPoint offsetRadio = line_arc > 0 ? [[pieAbstract outSideLable] stringRatio] : westRadio;
+            CGPoint offsetRadio = CGPointMake([[pieAbstract outSideLable] stringRatio].x * base, [[pieAbstract outSideLable] stringRatio].y);
             CGSize size = CGSizeMake([[pieAbstract outSideLable] stringOffSet].width * base, [[pieAbstract outSideLable] stringOffSet].height);
             
             [aryLineLayers addObject:shapeLayer];
@@ -282,11 +280,12 @@
             
             CGFloat line_arc = GGYCircular(line);
             CGFloat base = line_arc > 0 ? 1 : -1;
+            CGPoint offsetRadio = CGPointMake([[pieAbstract innerLable] stringRatio].x * base, [[pieAbstract innerLable] stringRatio].y);
             CGSize size = CGSizeMake([[pieAbstract innerLable] stringOffSet].width * base, [[pieAbstract outSideLable] stringOffSet].height);
             
             // 折线文字
             GGNumberRenderer * numberRenderer = [[GGNumberRenderer alloc] init];
-            numberRenderer.offSetRatio = [[pieAbstract innerLable] stringRatio];
+            numberRenderer.offSetRatio = offsetRadio;
             numberRenderer.toPoint = line.end;
             numberRenderer.toNumber = [[pieAbstract dataAry][i] floatValue];
             numberRenderer.format = [[pieAbstract innerLable] stringFormat];

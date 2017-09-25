@@ -173,8 +173,9 @@
         for (NSInteger i = 0; i < [barAbstract dataAry].count; i++) {
             
             CGRect rect = [barAbstract barRects][i];
-            CGFloat x = rect.origin.x - [barAbstract offSetRatio].x * rect.size.width;
-            CGFloat y = rect.origin.y + ([barAbstract offSetRatio].y + 1) * rect.size.height;
+            CGPoint barRatio = RATIO_POINT_CONVERT([barAbstract offSetRatio]);
+            CGFloat x = rect.origin.x - barRatio.x * rect.size.width;
+            CGFloat y = rect.origin.y + (barRatio.y + 1) * rect.size.height;
             
             GGNumberRenderer * number = [self getNumberRenderer];
             number.offSetRatio = [barAbstract offSetRatio];

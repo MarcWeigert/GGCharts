@@ -44,7 +44,7 @@
     pie.showOutLableType = OutSideShow;
     pie.roseType = RoseRadius;
     pie.dataAry = dataAry;
-    pie.outSideLable.stringRatio = CGPointMake(-1, -.5f);
+    pie.outSideLable.stringRatio = GGRatioCenterLeft;
     pie.outSideLable.stringOffSet = CGSizeMake(-3, -2);
     pie.outSideLable.lineLength = 10;
     pie.outSideLable.inflectionLength = 90;

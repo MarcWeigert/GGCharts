@@ -10,59 +10,35 @@
 
 @interface GGShapeCanvas ()
 
+/**
+ * 旧路径
+ */
 @property (nonatomic) CGPathRef oldRef;
 
-@property (nonatomic, strong) NSMutableDictionary * animationDictonary;
+/**
+ * 旧扇形路径
+ */
+@property (nonatomic) GGPie oldPie;
 
 @end
 
 @implementation GGShapeCanvas
 
-- (void)setOldRef:(CGPathRef)oldRef
+/**
+ * 绘制扇形结构体
+ *
+ * @param pie 扇形图结构体
+ */
+- (void)drawPie:(GGPie)pie
 {
-    if (_oldRef) {
-        
-        CGPathRelease(_oldRef);
-    }
-    
-    _oldRef = oldRef;
-    CGPathRetain(_oldRef);
+    ;
 }
 
-- (void)setPath:(CGPathRef)path
-{
-    if (self.path) { self.oldRef = self.path; }
-    
-    [super setPath:path];
-}
-
-- (NSMutableDictionary *)animationDictonary
-{
-    if (!_animationDictonary) {
-        
-        _animationDictonary = [NSMutableDictionary dictionary];
-    }
-    
-    return _animationDictonary;
-}
-
-- (void)dealloc
-{
-    CGPathRelease(_oldRef);
-}
-
-//- (void)startShapeAnimation:(NSTimeInterval)duration
-//{
-//    if (_oldRef) {
-//        
-//        CABasicAnimation * shapeAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-//        shapeAnimation.fromValue = (__bridge id)_oldRef;
-//        shapeAnimation.toValue = (__bridge id)self.path;
-//        shapeAnimation.duration = duration;
-//        [self addAnimation:shapeAnimation forKey:@"shapeAnimation"];
-//    }
-//}
-
+/**
+ * 路径变换动画
+ *
+ * @param duration 动画时间
+ */
 - (void)pathChangeAnimation:(NSTimeInterval)duration
 {
     if (_oldRef) {
@@ -75,40 +51,38 @@
     }
 }
 
-- (CAAnimation *)animationForName:(NSString *)name
+/**
+ * 对象销毁
+ */
+- (void)dealloc
 {
-    return [self.animationDictonary valueForKey:name];
+    CGPathRelease(_oldRef);
 }
 
-- (void)startAnimation:(NSString *)name duration:(NSTimeInterval)duration
+#pragma mark - Getter && Setter
+
+/**
+ * 设置旧路径
+ */
+- (void)setOldRef:(CGPathRef)oldRef
 {
-    if ([name isEqualToString:@"oldPush"]) {
+    if (_oldRef) {
         
-        if (_oldRef) {
-            
-            CABasicAnimation * shapeAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-            shapeAnimation.fromValue = (__bridge id)_oldRef;
-            shapeAnimation.toValue = (__bridge id)self.path;
-            shapeAnimation.duration = duration;
-            [self addAnimation:shapeAnimation forKey:@"shapeAnimation"];
-        }
+        CGPathRelease(_oldRef);
     }
     
-    CAAnimation * animation = [self.animationDictonary objectForKey:name];
-    
-    if (animation) {
-        
-        animation.duration = duration;
-        [self addAnimation:animation forKey:name];
-    }
+    _oldRef = oldRef;
+    CGPathRetain(_oldRef);
 }
 
-- (CAKeyframeAnimation *)registerKeyAnimation:(NSString *)key name:(NSString *)name values:(NSArray *)values
+/**
+ * 设置路径
+ */
+- (void)setPath:(CGPathRef)path
 {
-    CAKeyframeAnimation * keyAnimation = [CAKeyframeAnimation animationWithKeyPath:key];
-    keyAnimation.values = values;
-    [self.animationDictonary setObject:keyAnimation forKey:name];
-    return keyAnimation;
+    if (self.path) { self.oldRef = self.path; }
+    
+    [super setPath:path];
 }
 
 @end

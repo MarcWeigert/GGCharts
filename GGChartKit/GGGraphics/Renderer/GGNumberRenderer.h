@@ -51,6 +51,11 @@
  */
 @property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueAndRatioBlock)(CGFloat value, CGFloat ratio);
 
+/**
+ * 动画的点, 用于动画
+ */
+@property (nonatomic, copy) CGPoint (^drawPointBlock)(CGFloat progress);
+
 /** 
  * 绘制起始点文字 
  */

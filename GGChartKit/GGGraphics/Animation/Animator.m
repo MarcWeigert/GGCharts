@@ -84,7 +84,9 @@
 
 @property (nonatomic, assign) NSTimeInterval progress;
 
-@property (nonatomic, strong) NSArray <id <AnimatorProtocol>> * animators;
+@property (nonatomic, strong) NSMutableArray <id <AnimatorProtocol>> * animators;
+
+@property (nonatomic, strong) NSLock * lock;
 
 @end
 
@@ -138,8 +140,20 @@
                        updateBlock:(AnimationUpdateBlock)block
 {
     self.updateBlock = block;
-    self.animators = animators;
+    [self.lock lock];
+    [self.animators addObjectsFromArray:animators];
+    [self.lock unlock];
     [self startAnimationWithDuration:duration];
+}
+
+/**
+ * 增加动画类
+ */
+- (void)addAnimatior:(id <AnimatorProtocol>)animator
+{
+    [self.lock lock];
+    [self.animators addObject:animator];
+    [self.lock unlock];
 }
 
 - (void)updateDisplay:(CADisplayLink *)link
@@ -167,6 +181,17 @@
         
         self.updateBlock(progressValue);
     }
+    
+    if (self.progress >= self.maximumProgress) {
+    
+        [self.animators removeAllObjects];
+    }
 }
+
+#pragma mark - Lazy
+
+GGLazyGetMethod(NSMutableArray, animators);
+
+GGLazyGetMethod(NSLock, lock);
 
 @end

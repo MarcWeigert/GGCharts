@@ -31,7 +31,14 @@ typedef void(^AnimationUpdateBlock)(CGFloat progress);
 
 @property (nonatomic, copy) AnimationUpdateBlock updateBlock;
 
-/** 开始动画 */
+/**
+ * 增加动画类
+ */
+- (void)addAnimatior:(id <AnimatorProtocol>)animator;
+
+/** 
+ * 开始动画 
+ */
 - (void)startAnimationWithDuration:(NSTimeInterval)duration;
 
 /**

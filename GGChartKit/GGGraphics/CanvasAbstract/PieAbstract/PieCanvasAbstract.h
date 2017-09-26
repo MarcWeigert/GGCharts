@@ -26,7 +26,7 @@
 /**
  * 环形间距
  */
-@property (nonatomic, assign, readonly) CGFloat maxRaidusSpacing;
+@property (nonatomic, assign, readonly) CGFloat borderRadius;
 
 /**
  * 扇形图边框颜色

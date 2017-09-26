@@ -69,7 +69,7 @@
 {
     NSString * string = [NSString stringWithFormat:@"%@%@", largeString, smallString];
     NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attrbuteString setText:largeString color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:20]];
+    [attrbuteString setText:largeString color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:17]];
     [attrbuteString setText:smallString color:[UIColor whiteColor] font:[UIFont systemFontOfSize:12]];
     
     return attrbuteString;
@@ -91,6 +91,51 @@
     [attrbuteString setText:smallString color:C_HEX(0x686868) font:[UIFont systemFontOfSize:10]];
     
     return attrbuteString;
+}
+
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param centerString 中心字符
+ * @param subtitle 换行字符
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieCenterStringWithTitle:(NSString *)title subTitle:(NSString *)subtitle
+{
+    NSString * string = [NSString stringWithFormat:@"%@\n%@", title, subtitle];
+    NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
+    [attrbuteString setText:title color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:16]];
+    [attrbuteString setText:subtitle color:[UIColor whiteColor] font:[UIFont systemFontOfSize:16]];
+    
+    return attrbuteString;
+}
+
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param title 标题
+ * @param ratio 比例字符串
+ * @param price 资金字符串
+ * @param ratioColor 比例颜色
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieOutSideStringWithTitle:(NSString *)title ratio:(NSString *)ratio price:(NSString *)price ratioColor:(UIColor *)ratioColor
+{
+    NSString * string = [NSString stringWithFormat:@"%@\n%@\n%@", title, ratio, price];
+    
+    NSMutableAttributedString * attrString = [[NSMutableAttributedString alloc] initWithString:string];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    [paragraphStyle setLineSpacing:3];
+    
+    [attrString setText:title color:[UIColor blackColor] font:[UIFont systemFontOfSize:10]];
+    [attrString setText:ratio color:ratioColor font:[UIFont systemFontOfSize:16]];
+    [attrString setText:price color:[UIColor blackColor] font:[UIFont systemFontOfSize:10]];
+    [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
+    
+    return attrString;
 }
 
 @end

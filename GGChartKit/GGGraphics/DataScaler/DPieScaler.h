@@ -11,10 +11,6 @@
 
 @interface DPieScaler : BaseScaler
 
-@property (nonatomic, readonly) CGFloat * arcs;     ///< 扇形图开角
-
-@property (nonatomic, readonly) CGFloat * transArcs;    ///< 扇形移动角度
-
 /**
  * 扇形图数据
  */
@@ -49,6 +45,11 @@
  * 扇形图旋转角度, 默认 M_PI_2 (12点钟方向)
  */
 @property (nonatomic, assign) CGFloat baseArc;
+
+/**
+ * 是否需要比例伸缩
+ */
+@property (nonatomic, assign) BOOL roseRadius;
 
 /**
  * 自定义对象转换转换, 如果设置则忽略dataAry

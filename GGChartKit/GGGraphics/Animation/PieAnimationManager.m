@@ -30,56 +30,18 @@
  */
 - (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(PieAnimationType)type
 {
-    [self startEjectAnimationWithDuration:duration];
-}
-
-#pragma mark - Line Animations
-
-- (NSArray *)spiderLineAnimation:(GGLine)line_m circle:(GGCircle)circle
-{
-    CGMutablePathRef ref1 = CGPathCreateMutable();
-    CGMutablePathRef ref2 = CGPathCreateMutable();
-    CGMutablePathRef ref3 = CGPathCreateMutable();
-    CGMutablePathRef ref4 = CGPathCreateMutable();
-    CGMutablePathRef ref5 = CGPathCreateMutable();
-    CGMutablePathRef ref6 = CGPathCreateMutable();
+    if (type == RotationAnimation) {
+        
+        [self startRotationAnimationWithDuration:duration];
+    }
+    else if (type == EjectAnimation) {
     
-    CGPathMoveToPoint(ref1, NULL, line_m.start.x, line_m.start.y);
-    CGPathAddLineToPoint(ref1, NULL, line_m.start.x, line_m.start.y);
-    
-    CGPathMoveToPoint(ref2, NULL, line_m.start.x, line_m.start.y);
-    CGPathAddLineToPoint(ref2, NULL, line_m.end.x, line_m.end.y);
-    
-    GGPathAddLine(ref3, line_m);
-    CGPathMoveToPoint(ref3, NULL, line_m.end.x, line_m.end.y);
-    CGPathAddLineToPoint(ref3, NULL, circle.center.x, circle.center.y);
-    
-    GGPathAddLine(ref4, line_m);
-    CGPathMoveToPoint(ref4, NULL, line_m.end.x, line_m.end.y);
-    CGPathAddLineToPoint(ref4, NULL, circle.center.x, circle.center.y);
-    GGPathAddCircle(ref4, circle);
-    
-    GGPathAddLine(ref5, line_m);
-    CGPathMoveToPoint(ref5, NULL, line_m.end.x, line_m.end.y);
-    CGPathAddLineToPoint(ref5, NULL, circle.center.x, circle.center.y);
-    GGPathAddCircle(ref5, GGCirclePointMake(circle.center, circle.radius + .5f));
-    
-    GGPathAddLine(ref6, line_m);
-    CGPathMoveToPoint(ref6, NULL, line_m.end.x, line_m.end.y);
-    CGPathAddLineToPoint(ref6, NULL, circle.center.x, circle.center.y);
-    GGPathAddCircle(ref6, circle);
-    
-    NSArray * paths = @[(__bridge id)ref1, (__bridge id)ref2, (__bridge id)ref3,
-                        (__bridge id)ref4, (__bridge id)ref5, (__bridge id)ref6];
-    
-    CFRelease(ref1);
-    CFRelease(ref2);
-    CFRelease(ref3);
-    CFRelease(ref4);
-    CFRelease(ref5);
-    CFRelease(ref6);
-    
-    return paths;
+        [self startEjectAnimationWithDuration:duration];
+    }
+    else if (type == ChangeAnimation) {
+        
+        [self startChangeAnimationWithDuration:duration];
+    }
 }
 
 #pragma mark - 中心旋转动画
@@ -124,36 +86,12 @@
  */
 - (void)startEjectAnimationWithPieAbstract:(id <PieDrawAbstract>)pieAbstract duation:(NSTimeInterval)duation
 {
-    CGFloat maxValue = .0f, minValue = .0f;
-    
-    if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-        
-        [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-    }
-    
     NSArray * pieShapeLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
     
     for (NSInteger i = 0; i < pieShapeLayersArray.count; i++) {
     
         GGPie pie = [pieAbstract pies][i];
         GGShapeCanvas * shapeCanvas = pieShapeLayersArray[i];
-    
-        // 根据比例伸缩
-        if ([pieAbstract roseType] == RoseRadius) {
-            
-            CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-            CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-            radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-            pie.radiusRange.outRadius = pie.radiusRange.inRadius + radius;
-        }
-        
-        // 逐步设置内外半径
-        if ([pieAbstract pieRadiuRangeForIndex]) {
-            
-            pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-        }
-        
-        pie.transform = 0;
         
         shapeCanvas.hidden = YES;
         
@@ -166,6 +104,144 @@
             pathAnimation.values = EjectAnimationWithPie(pie, duation);
             [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
         }];
+    }
+}
+
+#pragma mark - 路径变化动画
+
+/**
+ * 路径变换动画
+ *
+ * @param duration 动画时间
+ */
+- (void)startChangeAnimationWithDuration:(NSTimeInterval)duration
+{
+    for (id <PieDrawAbstract> pieAbstract in [self.pieCanvasAbstract pieAry]) {
+        
+        [self startChangeAnimationWithPieAbstract:pieAbstract duation:duration];
+        [self startChangePieLineAnimationWithPieAbstract:pieAbstract duation:duration];
+        [self startChangeNumberRendererAnimationWithPieAbstract:pieAbstract duation:duration];
+    }
+    
+    [self.animator startAnimationWithDuration:duration animationArray:nil updateBlock:^(CGFloat progress) {
+        
+        for (id <PieDrawAbstract> pieAbstract in [self.pieCanvasAbstract pieAry]) {
+        
+            [GET_ASSOCIATED(pieAbstract, pieOutSideLayer) setNeedsDisplay];
+            [GET_ASSOCIATED(pieAbstract, pieInnerLayer) setNeedsDisplay];
+        }
+    }];
+}
+
+/**
+ * 路径变换动画
+ *
+ * @param pieAbstract 扇形图接口
+ * @param duation 动画时间
+ */
+- (void)startChangeAnimationWithPieAbstract:(id <PieDrawAbstract>)pieAbstract duation:(NSTimeInterval)duation
+{
+    NSArray * pieShapeLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
+    
+    for (NSInteger i = 0; i < pieShapeLayersArray.count; i++) {
+        
+        GGShapeCanvas * shapeCanvas = pieShapeLayersArray[i];
+        [shapeCanvas pieChangeAnimation:duation];
+    }
+}
+
+/**
+ * 路径变换动画
+ *
+ * @param pieAbstract 扇形图接口
+ * @param duation 动画时间
+ */
+- (void)startChangePieLineAnimationWithPieAbstract:(id <PieDrawAbstract>)pieAbstract duation:(NSTimeInterval)duation
+{
+    NSArray * pieLineShapeLayersArray = GET_ASSOCIATED(pieAbstract, pieOutSideLayerArray);
+    NSArray * pieShapeLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
+    
+    for (NSInteger i = 0; i < pieShapeLayersArray.count; i++) {
+        
+        GGShapeCanvas * pieCanvas = pieShapeLayersArray[i];
+        GGShapeCanvas * shapeCanvas = pieLineShapeLayersArray[i];
+        
+        CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
+        CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
+        CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
+        CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
+        CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
+        
+        CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        pathAnimation.duration = duation;
+        pathAnimation.values = GGPieLineChange(pieCanvas.oldPie, pieCanvas.pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing, duation);
+        [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
+    }
+}
+
+/**
+ * 路径变换动画
+ *
+ * @param pieAbstract 扇形图接口
+ * @param duation 动画时间
+ */
+- (void)startChangeNumberRendererAnimationWithPieAbstract:(id <PieDrawAbstract>)pieAbstract duation:(NSTimeInterval)duation
+{
+    NSArray * pieShapeLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
+    NSArray * outSideNumerArray = GET_ASSOCIATED(pieAbstract, pieOutSideNumberArray);
+    NSArray * innerNumerArray = GET_ASSOCIATED(pieAbstract, pieInnerNumberArray);
+    
+    if (outSideNumerArray) {
+        
+        for (NSInteger i = 0; i < pieShapeLayersArray.count; i++) {
+            
+            GGShapeCanvas * pieCanvas = pieShapeLayersArray[i];
+            
+            CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
+            CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
+            CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
+            CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
+            CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
+            
+            GGNumberRenderer * numberRenderer = outSideNumerArray[i];
+            
+            GGPie fromPie = pieCanvas.oldPie;
+            GGPie toPie = pieCanvas.pie;
+            
+            [numberRenderer setDrawPointBlock:^CGPoint(CGFloat progress) {
+                
+                GGPie pie = PieFromToWithProgress(fromPie, toPie, progress);
+                
+                return PieLineEndPoint(pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
+            }];
+            
+            [self.animator addAnimatior:numberRenderer];
+        }
+    }
+    
+    if (innerNumerArray) {
+    
+        for (NSInteger i = 0; i < pieShapeLayersArray.count; i++) {
+            
+            GGShapeCanvas * pieCanvas = pieShapeLayersArray[i];
+            
+            GGNumberRenderer * numberRenderer = innerNumerArray[i];
+            
+            GGPie fromPie = pieCanvas.oldPie;
+            GGPie toPie = pieCanvas.pie;
+            
+            [numberRenderer setDrawPointBlock:^CGPoint(CGFloat progress) {
+                
+                GGPie pie = PieFromToWithProgress(fromPie, toPie, progress);
+                
+                GGArcLine arcLine = GGArcLineMake(pie.center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius * .5 + pie.radiusRange.inRadius * .5);
+                GGLine line = GGLineWithArcLine(arcLine, false);
+                
+                return line.end;
+            }];
+            
+            [self.animator addAnimatior:numberRenderer];
+        }
     }
 }
 
@@ -228,13 +304,6 @@
  */
 - (void)startLineAnimationWithPieAbstract:(id <PieDrawAbstract>)pieAbstract duation:(NSTimeInterval)duation
 {
-    CGFloat maxValue = .0f, minValue = .0f;
-    
-    if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-        
-        [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-    }
-    
     NSArray * pieLineLayersArray = GET_ASSOCIATED(pieAbstract, pieOutSideLayerArray);
     
     for (NSInteger i = 0; i < pieLineLayersArray.count; i++) {
@@ -245,35 +314,12 @@
         CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
         CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
         CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
-        
-        CGFloat lineStartMove =  pie.radiusRange.outRadius + pieLineSpacing;
-        
-        // 根据比例伸缩
-        if ([pieAbstract roseType] == RoseRadius) {
-            
-            CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-            CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-            radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-            lineStartMove = pie.radiusRange.inRadius + radius + pieLineSpacing;
-        }
-        
-        // 逐步设置内外半径
-        if ([pieAbstract pieRadiuRangeForIndex]) {
-            
-            pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-            lineStartMove = pie.radiusRange.outRadius + pieLineSpacing;
-        }
-        
-        CGPoint draw_center = CGPointMake(shapeLayer.gg_width / 2, shapeLayer.gg_height / 2);
-        GGArcLine arcLine = GGArcLineMake(draw_center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius + pieLineSpacing + pieLineLength);
-        GGLine line = GGLineWithArcLine(arcLine, false);
-        GGLine line_m = GGLineMoveStart(line, lineStartMove);
-        CGPoint end_pt = GGGetLineEndPointArcMoveX(line_m, pieInflectionLength);
-        GGCircle circle = GGCirclePointMake(end_pt, [[pieAbstract outSideLable] linePointRadius]);
+        CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
+        CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
         
         CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
         pathAnimation.duration = duation;
-        pathAnimation.values = [self spiderLineAnimation:line_m circle:circle];
+        pathAnimation.values = GGPieLineStretch(pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
         [shapeLayer addAnimation:pathAnimation forKey:@"pathAnimation"];
     }
 }
@@ -288,43 +334,18 @@
 {
     NSArray * pieLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
     
-    CGFloat maxValue = .0f, minValue = .0f;
-    
-    if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-        
-        [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-    }
-    
     for (NSInteger i = 0; i < pieLayersArray.count; i++) {
         
         GGPie pie = [pieAbstract pies][i];
         GGShapeCanvas * shapeCanvas = pieLayersArray[i];
         
-        CAKeyframeAnimation * transAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-        transAnimation.duration = duation;
-        transAnimation.values = @[@([pieAbstract pieStartTransform]), @(pie.transform)];
-        [shapeCanvas addAnimation:transAnimation forKey:@"transAnimation"];
-        
-        // 根据比例伸缩
-        if ([pieAbstract roseType] == RoseRadius) {
-            
-            CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-            CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-            radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-            pie.radiusRange.outRadius = pie.radiusRange.inRadius + radius;
-        }
-        
-        // 逐步设置内外半径
-        if ([pieAbstract pieRadiuRangeForIndex]) {
-            
-            pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-        }
-        
-        pie.transform = 0;
+        GGPie fromPie = GGPieCopyWithPie(pie);
+        fromPie.transform = [pieAbstract pieStartTransform];
+        fromPie.arc = 0;
         
         CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
         pathAnimation.duration = duation;
-        pathAnimation.values = RotationAnimaitonWithPie(pie, duation);
+        pathAnimation.values = GGPieChange(fromPie, pie, duation);
         [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
     }
     

@@ -18,6 +18,11 @@
  */
 @property (nonatomic, strong) PieAnimationManager * pieAnimation;
 
+/**
+ * 是否经过第一次渲染
+ */
+@property (nonatomic, assign) BOOL hadRenderer;
+
 @end
 
 @implementation PieCanvas
@@ -31,13 +36,25 @@
     
     for (id <PieDrawAbstract> pieAbstract in [_pieCanvasConfig pieAry]) {
         
-        [self drawPieChartWithPie:pieAbstract];
         [self drawSpiderLineWithPie:pieAbstract];
+        [self drawPieChartWithPie:pieAbstract];
         [self drawInnerStringWithPie:pieAbstract];
     }
     
+    [self drawBorderLayer];
+    
     [self.pieAnimation setPieCanvasAbstract:_pieCanvasConfig];
-    [self.pieAnimation startAnimationWithDuration:.5 animationType:0];
+    
+    if (!self.hadRenderer) {
+        
+        [self.pieAnimation startAnimationWithDuration:.5 animationType:EjectAnimation];
+    }
+    else {
+        
+        [self.pieAnimation startAnimationWithDuration:.5 animationType:ChangeAnimation];
+    }
+    
+    self.hadRenderer = YES;
 }
 
 /**
@@ -46,41 +63,12 @@
 - (void)drawPieChartWithPie:(id <PieDrawAbstract>)pieAbstract
 {
     NSMutableArray * pieAry = [NSMutableArray array];
-    GGCanvas * baseCanvas = [self getCanvasSquareFrame];
-    
-    CGFloat maxValue = .0f, minValue = .0f;
-    
-    if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-    
-        [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-    }
+    GGCanvas * baseCanvas = [self getCanvasEqualFrame];
+    [baseCanvas drawChart];
     
     for (NSInteger i = 0; i < [pieAbstract dataAry].count; i++) {
         
-        [pieAbstract pies][i].center = CGPointMake(baseCanvas.gg_width / 2, baseCanvas.gg_height / 2);
-        
         GGPie pie = [pieAbstract pies][i];
-        
-        // 根据比例伸缩
-        if ([pieAbstract roseType] == RoseRadius) {
-            
-            CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-            CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-            radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-            pie.radiusRange.outRadius = pie.radiusRange.inRadius + radius;
-        }
-        
-        // 逐步设置内外半径
-        if ([pieAbstract pieRadiuRangeForIndex]) {
-            
-            pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-        }
-        
-        // 将计算出的结构体滞0, 后面以旋转的方式控制扇形
-        pie.transform = 0;
-        
-        CGMutablePathRef ref = CGPathCreateMutable();
-        GGPathAddPie(ref, pie);
         
         UIColor * pieColor = [UIColor blackColor];
         
@@ -93,23 +81,18 @@
             GGLog(@"请实现扇形图Block: UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio) 或 NSArray <UIColor *> * (^gradientColorsForIndex)(NSInteger index)");
         }
         
-        GGShapeCanvas * shapeLayer = [baseCanvas getGGShapeCanvasSquareFrame];
+        GGShapeCanvas * shapeLayer = [baseCanvas getGGShapeCanvasEqualFrame];
         shapeLayer.fillColor = pieColor.CGColor;
         shapeLayer.lineWidth = 0;
-        shapeLayer.path = ref;
-        
-        // 通过旋转方式控制扇形
-        CGAffineTransform transform = CGAffineTransformIdentity;
-        shapeLayer.affineTransform = CGAffineTransformRotate(transform, [pieAbstract pies][i].transform);
-        
+        [shapeLayer drawPie:pie];
         [pieAry addObject:shapeLayer];
-        
+
         // 设置渐变色
         if ([pieAbstract gradientColorsForIndex]) {
          
             NSArray * colors = [pieAbstract gradientColorsForIndex](i);
             
-            CAGradientLayer * gradientLayer = [baseCanvas getCAGradientSquareFrame];
+            CAGradientLayer * gradientLayer = [baseCanvas getCAGradientEqualFrame];
             gradientLayer.colors = [colors getCGColorsArray];
             gradientLayer.startPoint = [pieAbstract gradientColorLine].start;
             gradientLayer.endPoint = [pieAbstract gradientColorLine].end;
@@ -130,15 +113,11 @@
     if ([pieAbstract showOutLableType] == OutSideShow) {
         
         GGCanvas * baseCanvas = [self getCanvasEqualFrame];
+        [baseCanvas drawChart];
+        [baseCanvas removeAllRenderer];
+        
         NSMutableArray * aryLineLayers = [NSMutableArray array];
         NSMutableArray * aryNumbers = [NSMutableArray array];
-        
-        CGFloat maxValue = .0f, minValue = .0f;
-        
-        if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-            
-            [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-        }
         
         for (NSInteger i = 0; i < [pieAbstract dataAry].count; i++) {
             
@@ -163,43 +142,14 @@
             CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
             CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
             CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
-            
-            CGFloat lineStartMove =  pie.radiusRange.outRadius + pieLineSpacing;
-            
-            // 根据比例伸缩
-            if ([pieAbstract roseType] == RoseRadius) {
-                
-                CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-                CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-                radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-                lineStartMove = pie.radiusRange.inRadius + radius + pieLineSpacing;
-            }
-            
-            // 逐步设置内外半径
-            if ([pieAbstract pieRadiuRangeForIndex]) {
-                
-                pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-                lineStartMove = pie.radiusRange.outRadius + pieLineSpacing;
-            }
+            CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
             
             CGMutablePathRef ref = CGPathCreateMutable();
-            CGPoint draw_center = CGPointMake(shapeLayer.gg_width / 2, shapeLayer.gg_height / 2);
-            GGArcLine arcLine = GGArcLineMake(draw_center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius + pieLineSpacing + pieLineLength);
-            GGLine line = GGLineWithArcLine(arcLine, false);
-            GGLine line_m = GGLineMoveStart(line, lineStartMove);
-            CGPoint end_pt = GGGetLineEndPointArcMoveX(line_m, pieInflectionLength);
-            GGCircle circle = GGCirclePointMake(end_pt, [[pieAbstract outSideLable] linePointRadius]);
-            
-            GGPathAddCircle(ref, circle);
-            GGPathAddLine(ref, line_m);
-            CGPathMoveToPoint(ref, NULL, line_m.end.x, line_m.end.y);
-            CGPathAddLineToPoint(ref, NULL, end_pt.x, end_pt.y);
-            
+            CGPoint end_pt = GGPathAddPieLine(ref, pie, maxLineLength, pieInflectionLength, [[pieAbstract outSideLable] linePointRadius], pieLineSpacing);
             shapeLayer.path = ref;
             CGPathRelease(ref);
             
-            CGFloat line_arc = GGYCircular(line);
-            CGFloat base = line_arc > 0 ? 1 : -1;
+            CGFloat base = GGPieLineYCircular(pie) > 0 ? 1 : -1;
             CGPoint offsetRadio = CGPointMake([[pieAbstract outSideLable] stringRatio].x * base, [[pieAbstract outSideLable] stringRatio].y);
             CGSize size = CGSizeMake([[pieAbstract outSideLable] stringOffSet].width * base, [[pieAbstract outSideLable] stringOffSet].height);
             
@@ -245,37 +195,17 @@
 {
     if ([pieAbstract showInnerString]) {
         
-        GGCanvas * canvas = [self getCanvasSquareFrame];
+        GGCanvas * canvas = [self getCanvasEqualFrame];
+        [canvas drawChart];
+        [canvas removeAllRenderer];
+        
         NSMutableArray * aryNumbers = [NSMutableArray array];
-        
-        CGFloat maxValue = .0f, minValue = .0f;
-        
-        if ([pieAbstract roseType] == RoseRadius) {     // 取得最大值
-            
-            [[pieAbstract dataAry] getMax:&maxValue min:&minValue selGetter:@selector(floatValue) base:0];
-        }
         
         for (NSInteger i = 0; i < [pieAbstract dataAry].count; i++) {
         
             GGPie pie = [pieAbstract pies][i];
             
-            // 根据比例伸缩
-            if ([pieAbstract roseType] == RoseRadius) {
-                
-                CGFloat ratioBaseValue = maxValue == 0 ? 1 : maxValue;
-                CGFloat radius = pie.radiusRange.outRadius - pie.radiusRange.inRadius;
-                radius *= [[pieAbstract dataAry][i] floatValue] / ratioBaseValue;
-                pie.radiusRange.outRadius = pie.radiusRange.inRadius + radius;
-            }
-            
-            // 逐步设置内外半径
-            if ([pieAbstract pieRadiuRangeForIndex]) {
-                
-                pie.radiusRange = [pieAbstract pieRadiuRangeForIndex](i);
-            }
-            
-            CGPoint draw_center = CGPointMake(canvas.gg_width / 2, canvas.gg_height / 2);
-            GGArcLine arcLine = GGArcLineMake(draw_center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius * .5 + pie.radiusRange.inRadius * .5);
+            GGArcLine arcLine = GGArcLineMake(pie.center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius * .5 + pie.radiusRange.inRadius * .5);
             GGLine line = GGLineWithArcLine(arcLine, false);
             
             CGFloat line_arc = GGYCircular(line);
@@ -311,6 +241,28 @@
         
         SET_ASSOCIATED_RETAIN(pieAbstract, pieInnerLayer, canvas);
         SET_ASSOCIATED_RETAIN(pieAbstract, pieInnerNumberArray, aryNumbers);
+    }
+}
+
+/**
+ * 绘制中心园层
+ */
+- (void)drawBorderLayer
+{
+    if ([_pieCanvasConfig pieBorderWidth] > 0) {
+        
+        GGCanvas * canvas = [self getCanvasEqualFrame];
+        [canvas drawChart];
+        [canvas removeAllRenderer];
+        
+        CGPoint center = CGPointMake(canvas.gg_width / 2, canvas.gg_height / 2);
+        GGCircleRenderer * circle = [[GGCircleRenderer alloc] init];
+        circle.circle = GGCirclePointMake(center, [_pieCanvasConfig borderRadius]);
+        circle.borderColor = [_pieCanvasConfig pieBorderColor];
+        circle.borderWidth = [_pieCanvasConfig pieBorderWidth];
+        
+        [canvas addRenderer:circle];
+        [canvas setNeedsDisplay];
     }
 }
 

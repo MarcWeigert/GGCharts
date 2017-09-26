@@ -19,6 +19,11 @@
 @property (nonatomic, strong) NSArray <PieData *> * pieAry;
 
 /**
+ * 是否显示中心标签
+ */
+@property (nonatomic, assign) BOOL showCenterLable;
+
+/**
  * 中心点
  */
 @property (nonatomic, strong) CenterData * centerLable;
@@ -31,7 +36,7 @@
 /**
  * 环形间距
  */
-@property (nonatomic, assign) CGFloat maxRaidusSpacing;
+@property (nonatomic, assign) CGFloat borderRadius;
 
 /**
  * 扇形图边框颜色

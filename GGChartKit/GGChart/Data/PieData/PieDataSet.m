@@ -17,6 +17,8 @@
 {
     for (PieData * pieData in self.pieAry) {
         
+        pieData.pieScaler.rect = rect;
+        pieData.pieScaler.roseRadius = pieData.roseType == RoseRadius;
         [pieData.pieScaler updateScaler];
     }
     

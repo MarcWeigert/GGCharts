@@ -13,7 +13,6 @@
 #include <CoreGraphics/CGGeometry.h>
 #include <stdint.h>
 
-#import "GGPie.h"
 #import "GGPolygon.h"
 #import "GGLine.h"
 #import "GGAxis.h"
@@ -25,3 +24,4 @@
 #import "GGArcLine.h"
 #import "GGSizeRange.h"
 #import "GGRect.h"
+#import "GGPie.h"

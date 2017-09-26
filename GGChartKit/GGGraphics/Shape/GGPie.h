@@ -67,7 +67,7 @@ typedef struct GGPie GGPie;
 /**
  * GGPie {0, 0, 0, 0, 0, 0}
  */
-CG_EXTERN const GGPie CGPieZero;
+CG_EXTERN const GGPie GGPieZero;
 
 /**
  * 字符串转换
@@ -100,6 +100,12 @@ GGPieCenterRaiusRangeMake(CGPoint center, GGRadiusRange radiusRange, CGFloat arc
     return GGPieMake(center.x, center.y, radiusRange.inRadius, radiusRange.outRadius, arc, transform);
 }
 
+CG_INLINE bool
+GGPieIsEmpty(GGPie pie)
+{
+    return pie.arc == 0 && pie.transform == 0 && CGPointEqualToPoint(CGPointZero, pie.center) && pie.radiusRange.inRadius == 0 && pie.radiusRange.outRadius == 0;
+}
+
 /**
  * 拷贝
  */
@@ -107,6 +113,18 @@ CG_INLINE GGPie
 GGPieCopyWithPie(GGPie pie)
 {
     return GGPieCenterRaiusRangeMake(pie.center, pie.radiusRange, pie.arc, pie.transform);
+}
+
+/**
+ * 扇形图分割线与Y轴夹角
+ */
+CG_INLINE CGFloat
+GGPieLineYCircular(GGPie pie)
+{
+    GGArcLine arcLine = GGArcLineMake(pie.center, pie.transform + pie.arc / 2, pie.radiusRange.outRadius);
+    GGLine line = GGLineWithArcLine(arcLine, false);
+    
+    return GGYCircular(line);
 }
 
 /**
@@ -129,7 +147,45 @@ CG_EXTERN CGFloat GGPieGetMinArc(GGPie pie);
  */
 CG_EXTERN void GGPathAddPie(CGMutablePathRef ref, GGPie pie);
 
-#pragma mark - Animation
+/**
+ * 获取进度结构体
+ *
+ * @param fromPie 开始pie结构体
+ * @param toPie 结束pie结构体
+ * @param progress 进度
+ *
+ * @return 结构体
+ */
+CG_EXTERN GGPie PieFromToWithProgress(GGPie from, GGPie to, CGFloat progress);
+
+/**
+ * 扇形图外边线
+ *
+ * @param ref 路径
+ * @param pie 结构体
+ * @param line1 第一根线长度
+ * @param line2 第二根线长度
+ * @param shapeRadius 终点远点半径
+ * @param spacing 线间距
+ *
+ * @return 分割线终点
+ */
+CG_EXTERN CGPoint GGPathAddPieLine(CGMutablePathRef ref, GGPie pie, CGFloat line1, CGFloat line2, CGFloat shapeRadius, CGFloat spacing);
+
+/**
+ * 扇形图外边线
+ *
+ * @param pie 结构体
+ * @param line1 第一根线长度
+ * @param line2 第二根线长度
+ * @param shapeRadius 终点远点半径
+ * @param spacing 线间距
+ *
+ * @return 分割线终点
+ */
+CG_EXTERN CGPoint PieLineEndPoint(GGPie pie, CGFloat line1, CGFloat line2, CGFloat shapeRadius, CGFloat spacing);
+
+#pragma mark - Animation Pie
 
 /**
  * 生成每一帧扇形图旋转填充动画
@@ -146,6 +202,43 @@ CG_EXTERN NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration)
  * @param duration 时间间距
  */
 CG_EXTERN NSArray * EjectAnimationWithPie(GGPie pie, NSTimeInterval duration);
+
+/**
+ * 生成变换扇形图动画
+ *
+ * @param fromPie 开始结构体
+ * @param toPie 变换结构体
+ * @param duration 动画时间
+ */
+CG_EXTERN NSArray * GGPieChange(GGPie fromPie, GGPie toPie, NSTimeInterval duration);
+
+#pragma mark - Animation PieLine
+
+/**
+ * 扇形图伸展线伸展动画
+ * @param pie 结构体
+ * @param line1 第一根线长度
+ * @param line2 第二根线长度
+ * @param shapeRadius 终点远点半径
+ * @param spacing 线间距
+ *
+ * @return 动画数组
+ */
+CG_EXTERN NSArray * GGPieLineStretch(GGPie pie, CGFloat line1, CGFloat line2, CGFloat shapeRadius, CGFloat spacing);
+
+/**
+ * 扇形图伸展线伸展动画
+ * @param fromPie 开始pie结构体
+ * @param toPie 结束pie结构体
+ * @param line1 第一根线长度
+ * @param line2 第二根线长度
+ * @param shapeRadius 终点远点半径
+ * @param spacing 线间距
+ * @param duration 动画时间
+ *
+ * @return 动画数组
+ */
+CG_EXTERN NSArray * GGPieLineChange(GGPie fromPie, GGPie toPie, CGFloat line1, CGFloat line2, CGFloat shapeRadius, CGFloat spacing, NSTimeInterval duration);
 
 #pragma mark - GGValuePieExtensions
 

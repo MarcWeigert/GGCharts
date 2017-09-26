@@ -80,7 +80,7 @@ static const void * lineNumberArray = @"lineNumberArray";
 static const void * pieShapeLayerArray = @"pieShapeLayerArray";
 static const void * pieBaseShapeLayer = @"pieBaseShapeLayer";
 
-static const void * pieOutSideLayerArray = @"pieInnerLayerArray";
+static const void * pieOutSideLayerArray = @"pieOutSideLayerArray";
 static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
 static const void * pieOutSideLayer = @"pieOutSideLayer";
 
@@ -97,7 +97,7 @@ static const void * pieInnerLayer = @"pieInnerLayer";
  * 关联对象(弱引用)
  */
 #define SET_ASSOCIATED_RETAIN(obj, key, value)      \
-    objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
+    objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
 /**
  * 获取关联对象

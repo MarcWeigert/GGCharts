@@ -83,6 +83,11 @@
     line = GGLineMoveStart(line, GGLengthLine(line) * progress);
     _currentPoint = line.start;
     
+    if (self.drawPointBlock) {
+        
+        _currentPoint = self.drawPointBlock(progress);
+    }
+    
     if (self.getNumberColorBlock) {
         
         [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];

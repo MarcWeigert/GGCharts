@@ -70,6 +70,8 @@
     
     [self.pieCanvas drawChart];
     [self.centerCanvas drawChart];
+    
+    self.centerCanvas.hidden = !self.pieDataSet.showCenterLable;
 }
 
 @end

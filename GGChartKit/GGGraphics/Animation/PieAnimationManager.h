@@ -11,6 +11,7 @@
 typedef enum : NSUInteger {
     RotationAnimation,
     EjectAnimation,
+    ChangeAnimation,
 } PieAnimationType;
 
 @interface PieAnimationManager : NSObject

@@ -65,13 +65,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio);
 
 /**
- * 扇形图内外办理设置
- *
- * 优先级高于GGPie.GGRadiusRange
- */
-@property (nonatomic, copy, readonly) GGRadiusRange (^pieRadiuRangeForIndex)(NSInteger index);
-
-/**
  * 颜色渐变曲线
  */
 @property (nonatomic, assign, readonly) GGLine gradientColorLine;

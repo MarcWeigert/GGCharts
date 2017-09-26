@@ -137,20 +137,6 @@
 }
 
 /**
- * 取图层视图大小为正方形
- */
-- (GGShapeCanvas *)getGGShapeCanvasSquareFrame
-{
-    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
-    GGShapeCanvas * shape = [self makeOrGetShapeCanvas];
-    shape.frame = CGRectMake(0, 0, width, width);
-    shape.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-    [self addSublayer:shape];
-    [self.visibleLayers addObject:shape];
-    return shape;
-}
-
-/**
  * 获取图层
  */
 - (GGShapeCanvas *)makeOrGetShapeCanvas
@@ -184,20 +170,6 @@
 }
 
 /**
- * 取图层视图大小为正方形
- */
-- (CAGradientLayer *)getCAGradientSquareFrame
-{
-    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
-    CAGradientLayer * gradientLayer = [self makeOrGetGradientCanvas];
-    gradientLayer.frame = CGRectMake(0, 0, width, width);
-    gradientLayer.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-    [self addSublayer:gradientLayer];
-    [self.visibleGradientLayers addObject:gradientLayer];
-    return gradientLayer;
-}
-
-/**
  * 渐变色
  */
 - (CAGradientLayer *)makeOrGetGradientCanvas
@@ -217,20 +189,6 @@
 }
 
 #pragma mark - Canvas
-
-/**
- * 取图层视图大小为正方形
- */
-- (GGCanvas *)getCanvasSquareFrame
-{
-    CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
-    GGCanvas * canvas = [self makeOrGetCanvas];
-    canvas.frame = CGRectMake(0, 0, width, width);
-    canvas.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-    [self addSublayer:canvas];
-    [self.visibleCanvas addObject:canvas];
-    return canvas;
-}
 
 /**
  * 取图层视图大小与Chart一致

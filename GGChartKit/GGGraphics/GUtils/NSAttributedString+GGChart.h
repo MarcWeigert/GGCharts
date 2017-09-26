@@ -47,4 +47,30 @@
 + (NSAttributedString *)pieInnerStringWithCenterString:(NSString *)centerString
                                            smallString:(NSString *)smallString;
 
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param centerString 中心字符
+ * @param subtitle 换行字符
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieCenterStringWithTitle:(NSString *)title
+                                        subTitle:(NSString *)subtitle;
+
+/**
+ * 扇形事例图富文本字符串样式
+ *
+ * @param title 标题
+ * @param ratio 比例字符串
+ * @param price 资金字符串
+ * @param ratioColor 比例颜色
+ *
+ * @return 富文本字符串
+ */
++ (NSAttributedString *)pieOutSideStringWithTitle:(NSString *)title
+                                            ratio:(NSString *)ratio
+                                            price:(NSString *)price
+                                       ratioColor:(UIColor *)ratioColor;
+
 @end

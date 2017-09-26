@@ -47,29 +47,14 @@
 - (void)drawChart;
 
 /**
- * 取图层视图大小为正方形
- */
-- (GGShapeCanvas *)getGGShapeCanvasSquareFrame;
-
-/**
  * 取图层视图大小与Chart一致
  */
 - (GGShapeCanvas *)getGGShapeCanvasEqualFrame;
 
 /**
- * 取图层视图大小为正方形
- */
-- (CAGradientLayer *)getCAGradientSquareFrame;
-
-/**
  * 取图层视图大小与Chart一致
  */
 - (CAGradientLayer *)getCAGradientEqualFrame;
-
-/**
- * 取图层视图大小为正方形
- */
-- (GGCanvas *)getCanvasSquareFrame;
 
 /**
  * 取图层视图大小与Chart一致

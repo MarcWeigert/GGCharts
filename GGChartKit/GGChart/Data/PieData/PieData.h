@@ -45,13 +45,6 @@
 @property (nonatomic, copy) UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio);
 
 /**
- * 扇形图内外办理设置
- *
- * 优先级高于radiusRange
- */
-@property (nonatomic, copy) GGRadiusRange (^pieRadiuRangeForIndex)(NSInteger index);
-
-/**
  * 颜色渐变曲线
  */
 @property (nonatomic, assign) GGLine gradientColorLine;

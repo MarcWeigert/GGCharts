@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) PieChart * pieChart;
 
+@property (nonatomic, strong) PieData * pie;
+
 @end
 
 @implementation PieDemoChartViewController
@@ -52,6 +54,8 @@
     pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
     pie.showInnerString = YES;
     
+    _pie = pie;
+    
     [pie setGradientColorsForIndex:^NSArray<UIColor *> *(NSInteger index) {
         
         return gradAryColors[index];
@@ -85,17 +89,63 @@
     
     PieDataSet * pieDataSet = [[PieDataSet alloc] init];
     pieDataSet.pieAry = @[pie];
+    pieDataSet.showCenterLable = YES;
     
     [pieDataSet.centerLable.lable setAttrbuteStringValueBlock:^NSAttributedString *(CGFloat value) {
         
         return [NSAttributedString pieInnerStringWithCenterString:@"79" smallString:@"分值"];
     }];
     
-    _pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500)];
+    _pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 400)];
     _pieChart.pieDataSet = pieDataSet;
     [_pieChart drawPieChart];
     
     [self.view addSubview:_pieChart];
+    
+    
+    // lable
+    
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(10, 450, 100, 50)];
+    [btn setTitle:@"模拟数据一" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataFirst) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(120, 450, 100, 50)];
+    [btn setTitle:@"模拟数据二" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataSecond) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(230, 450, 100, 50)];
+    [btn setTitle:@"模拟数据三" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataThird) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+- (void)analogDataFirst
+{
+    _pie.dataAry = @[@33, @25, @22];
+    
+    [_pieChart drawPieChart];
+}
+
+- (void)analogDataSecond
+{
+    _pie.dataAry = @[@22, @18, @33];
+    
+    [_pieChart drawPieChart];
+}
+
+- (void)analogDataThird
+{
+    _pie.dataAry = @[@45, @22, @33];
+    
+    [_pieChart drawPieChart];
 }
 
 @end

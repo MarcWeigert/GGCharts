@@ -7,6 +7,7 @@
 //
 
 #import "DPieScaler.h"
+#import "NSArray+Stock.h"
 
 @interface DPieScaler ()
 
@@ -31,31 +32,9 @@
 
 - (void)dealloc
 {
-    if (_arcs) { free(_arcs); }
-    
-    if (_transArcs) { free(_transArcs); }
+    if (_pies) { free(_pies); }
     
     if (_ratios) { free(_ratios); }
-}
-
-- (void)updateArcs:(CGFloat *)arcs
-{
-    if (_arcs) {
-        
-        free(_arcs);
-    }
-    
-    _arcs = arcs;
-}
-
-- (void)updateTransArcs:(CGFloat *)transArcs
-{
-    if (_transArcs) {
-    
-        free(_transArcs);
-    }
-    
-    _transArcs = transArcs;
 }
 
 - (void)updateRatios:(CGFloat *)ratios
@@ -92,13 +71,9 @@
     _selGetter = getter;
     _impGetter = [objAry.firstObject methodForSelector:getter];
     
-    CGFloat * arcs = malloc(_pieObjAry.count * sizeof(CGFloat));
-    CGFloat * transArcs = malloc(_pieObjAry.count * sizeof(CGFloat));
     CGFloat * ratios = malloc(_pieObjAry.count * sizeof(CGFloat));
     GGPie * pies = malloc(_pieObjAry.count * sizeof(GGPie));
-    
-    [self updateArcs:arcs];
-    [self updateTransArcs:transArcs];
+
     [self updateRatios:ratios];
     [self updatePies:pies];
 }
@@ -122,6 +97,13 @@
         }
     }];
     
+    if (_sum == 0) return;
+    
+    // 获取最大最小
+    CGFloat max = FLT_MIN, min = FLT_MAX;
+    
+    [_pieObjAry getMax:&max min:&min selGetter:_selGetter base:0];
+    
     __block CGFloat layer_arc = 0;
     
     [_pieObjAry enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * stop) {
@@ -141,10 +123,16 @@
         CGFloat transArcs = layer_arc - arc + _baseArc;
         CGFloat ratios = arc / (M_PI * 2);
         
-        _arcs[idx] = arc;
-        _transArcs[idx] = transArcs;
         _ratios[idx] = ratios;
-        _pies[idx] = GGPieMake(0, 0, _inRadius, _outRadius, arc, transArcs);
+        _pies[idx] = GGPieMake(self.rect.size.width / 2, self.rect.size.height / 2, _inRadius, _outRadius, arc, transArcs);
+        
+        // 比例伸缩
+        if (_roseRadius && max != 0) {
+            
+            CGFloat radius = _outRadius - _inRadius;
+            radius *= [obj floatValue] / max;
+            _pies[idx].radiusRange.outRadius = _inRadius + radius;
+        }
     }];
 }
 

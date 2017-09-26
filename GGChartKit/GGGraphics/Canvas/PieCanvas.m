@@ -47,7 +47,7 @@
     
     if (!self.hadRenderer) {
         
-        [self.pieAnimation startAnimationWithDuration:.5 animationType:EjectAnimation];
+        [self.pieAnimation startAnimationWithDuration:.5 animationType:[_pieCanvasConfig pieAnimationType]];
     }
     else {
         

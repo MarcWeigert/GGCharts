@@ -44,6 +44,11 @@
 @property (nonatomic, strong) UIColor * pieBorderColor;
 
 /**
+ * 扇形图动画
+ */
+@property (nonatomic, assign) PieAnimationType pieAnimationType;
+
+/**
  * 折线图更新数据, 绘制前配置
  */
 - (void)updateChartConfigs:(CGRect)rect;

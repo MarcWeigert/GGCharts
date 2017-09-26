@@ -9,6 +9,31 @@
 #import <Foundation/Foundation.h>
 
 /**
+ * 柱状图动画枚举
+ */
+typedef enum : NSUInteger {
+    AnimationRiseType,
+    AnimationChangeType,
+} AnimationsType;
+
+/**
+ * 折线图动画枚举
+ */
+typedef enum : NSUInteger {
+    LineAnimationRiseType,
+    LineAnimationChangeType,
+} LineAnimationsType;
+
+/**
+ * 扇形图动画枚举
+ */
+typedef enum : NSUInteger {
+    RotationAnimation,
+    EjectAnimation,
+    ChangeAnimation,
+} PieAnimationType;
+
+/**
  * 纯小数(-1 <= x <= 1)
  */
 #define PURE_DECIMAL(x)     (x - 1 > 0 ? 1 : (x - 1 < -2 ? -1 : x))

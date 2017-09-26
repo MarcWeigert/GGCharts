@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum : NSUInteger {
-    LineAnimationRiseType,
-    LineAnimationChangeType,
-} LineAnimationsType;
-
 @interface LineAnimationsManager : NSObject
 
 /**

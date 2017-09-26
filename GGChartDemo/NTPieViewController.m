@@ -72,6 +72,7 @@
     dataSet.borderRadius = 84;
     dataSet.pieBorderWidth = .7f;
     dataSet.pieBorderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
+    dataSet.pieAnimationType = EjectAnimation;
     
     dataSet.showCenterLable = YES;
     dataSet.centerLable.radius = 80 / 5 * 2.2;

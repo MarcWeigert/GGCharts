@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum : NSUInteger {
-    AnimationRiseType,
-    AnimationChangeType,
-} AnimationsType;
-
 @interface BarAnimationsManager : NSObject
 
 /**

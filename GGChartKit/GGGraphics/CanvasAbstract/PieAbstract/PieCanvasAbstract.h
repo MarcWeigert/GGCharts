@@ -33,6 +33,11 @@
  */
 @property (nonatomic, strong, readonly) UIColor * pieBorderColor;
 
+/**
+ * 扇形图动画
+ */
+@property (nonatomic, assign, readonly) PieAnimationType pieAnimationType;
+
 @end
 
 #endif /* PieCanvasAbstract_h */

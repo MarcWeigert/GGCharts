@@ -8,10 +8,6 @@
 
 #import "NSAttributedString+GGChart.h"
 
-@interface NSMutableAttributedString (GGChart)
-
-@end
-
 @implementation NSMutableAttributedString (GGChart)
 
 - (void)setText:(NSString *)text color:(UIColor *)color font:(UIFont *)font

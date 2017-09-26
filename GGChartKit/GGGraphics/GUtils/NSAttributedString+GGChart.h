@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSMutableAttributedString (GGChart)
+
+- (void)setText:(NSString *)text color:(UIColor *)color font:(UIFont *)font;
+
+@end
+
 @interface NSAttributedString (GGChart)
 
 /**

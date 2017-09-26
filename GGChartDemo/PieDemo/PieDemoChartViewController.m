@@ -8,7 +8,6 @@
 
 #import "PieDemoChartViewController.h"
 #import "PieChart.h"
-#import "Colors.h"
 #import "NSAttributedString+GGChart.h"
 
 @interface PieDemoChartViewController ()

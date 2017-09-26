@@ -8,8 +8,6 @@
 
 #import "NTPieViewController.h"
 
-#import "Colors.h"
-
 #import "PieChart.h"
 #import "NSAttributedString+GGChart.h"
 

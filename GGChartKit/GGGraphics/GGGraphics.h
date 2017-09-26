@@ -13,7 +13,6 @@
 #import <Foundation/Foundation.h>
 
 #import "GGRenderProtocol.h"
-#import "DrawHeader.h"
 #import "GGGraphicsConstants.h"
 
 #import "DLineScaler.h"

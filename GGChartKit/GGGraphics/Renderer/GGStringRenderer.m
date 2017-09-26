@@ -7,7 +7,6 @@
 //
 
 #import "GGStringRenderer.h"
-#import "Colors.h"
 
 const GGSizeRange GGSizeRangeZero = {0.0f, 0.0f};
 

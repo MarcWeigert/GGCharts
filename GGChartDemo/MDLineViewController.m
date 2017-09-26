@@ -8,7 +8,6 @@
 
 #import "MDLineViewController.h"
 #import "LineChart.h"
-#import "Colors.h"
 
 @interface MDLineViewController ()
 

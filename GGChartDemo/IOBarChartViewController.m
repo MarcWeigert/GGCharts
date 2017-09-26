@@ -9,7 +9,6 @@
 #import "IOBarChartViewController.h"
 
 #import "BarChart.h"
-#import "Colors.h"
 
 @interface IOBarChartViewController ()
 

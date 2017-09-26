@@ -115,6 +115,9 @@
 		2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */; };
 		2B68E9701F205564005D779A /* TableIndexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E96F1F205564005D779A /* TableIndexCell.m */; };
 		2B68E9761F207244005D779A /* SlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E9751F207244005D779A /* SlideTabView.m */; };
+		2B6974181F7A57A2002FF414 /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6974151F7A57A2002FF414 /* NTPieViewController.m */; };
+		2B6974191F7A57A2002FF414 /* PieDemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */; };
+		2B69741C1F7A58EA002FF414 /* PieDemoIIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */; };
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
 		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
 		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
@@ -141,7 +144,6 @@
 		2B773FEF1F16237F00B2BE59 /* ATRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FEE1F16237F00B2BE59 /* ATRLayer.m */; };
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
-		2B7E8FA21F74A29D00925EC1 /* PieDemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */; };
 		2B8513DF1F78C46600208856 /* GGGraphicsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */; };
 		2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B62971F32ECF300028F40 /* RadarDataSet.m */; };
 		2B8B629B1F32ED7C00028F40 /* RadarData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B629A1F32ED7C00028F40 /* RadarData.m */; };
@@ -171,7 +173,6 @@
 		2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788901F0A39FE002A2A3C /* stock_data.json */; };
 		2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788911F0A39FE002A2A3C /* time_chart_data.json */; };
 		2B9E98D81EEE8A0B00DF0889 /* MDLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */; };
-		2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */; };
 		2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAC85F1F6FB6130034225C /* LineBarChart.m */; };
 /* End PBXBuildFile section */
 
@@ -309,7 +310,6 @@
 		2B3CFE9C1F75F5740097A869 /* RadarAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAbstract.h; sourceTree = "<group>"; };
 		2B3CFE9D1F75F5740097A869 /* RadarBackAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarBackAbstract.h; sourceTree = "<group>"; };
 		2B3CFE9E1F75F5740097A869 /* RadarSetAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
-		2B3CFE9F1F75F5740097A869 /* Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colors.h; sourceTree = "<group>"; };
 		2B3CFEA11F75F5740097A869 /* BaseScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScaler.h; sourceTree = "<group>"; };
 		2B3CFEA21F75F5740097A869 /* BaseScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScaler.m; sourceTree = "<group>"; };
 		2B3CFEA31F75F5740097A869 /* BaseShapeScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseShapeScaler.h; sourceTree = "<group>"; };
@@ -324,7 +324,6 @@
 		2B3CFEAC1F75F5740097A869 /* DPieScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPieScaler.m; sourceTree = "<group>"; };
 		2B3CFEAD1F75F5740097A869 /* DRadarScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRadarScaler.h; sourceTree = "<group>"; };
 		2B3CFEAE1F75F5740097A869 /* DRadarScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRadarScaler.m; sourceTree = "<group>"; };
-		2B3CFEAF1F75F5740097A869 /* DrawHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHeader.h; sourceTree = "<group>"; };
 		2B3CFEB01F75F5740097A869 /* GGGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGraphics.h; sourceTree = "<group>"; };
 		2B3CFEB21F75F5740097A869 /* CALayer+GGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+GGFrame.h"; sourceTree = "<group>"; };
 		2B3CFEB31F75F5740097A869 /* CALayer+GGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+GGFrame.m"; sourceTree = "<group>"; };
@@ -406,6 +405,12 @@
 		2B68E96F1F205564005D779A /* TableIndexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableIndexCell.m; sourceTree = "<group>"; };
 		2B68E9741F207244005D779A /* SlideTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideTabView.h; sourceTree = "<group>"; };
 		2B68E9751F207244005D779A /* SlideTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideTabView.m; sourceTree = "<group>"; };
+		2B6974141F7A57A2002FF414 /* NTPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieViewController.h; sourceTree = "<group>"; };
+		2B6974151F7A57A2002FF414 /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
+		2B6974161F7A57A2002FF414 /* PieDemoChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDemoChartViewController.h; sourceTree = "<group>"; };
+		2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieDemoChartViewController.m; sourceTree = "<group>"; };
+		2B69741A1F7A58EA002FF414 /* PieDemoIIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDemoIIViewController.h; sourceTree = "<group>"; };
+		2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieDemoIIViewController.m; sourceTree = "<group>"; };
 		2B6B238C1F0C7291001D2B04 /* MinuteAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinuteAbstract.h; sourceTree = "<group>"; };
 		2B6B23941F0C742C001D2B04 /* MinuteChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinuteChart.h; sourceTree = "<group>"; };
 		2B6B23951F0C742C001D2B04 /* MinuteChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinuteChart.m; sourceTree = "<group>"; };
@@ -452,8 +457,6 @@
 		2B773FEE1F16237F00B2BE59 /* ATRLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRLayer.m; sourceTree = "<group>"; };
 		2B7995191F175D6A00E73DFC /* month_k_data_600887.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = month_k_data_600887.json; sourceTree = "<group>"; };
 		2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = week_k_data_60087.json; sourceTree = "<group>"; };
-		2B7E8FA01F74A29D00925EC1 /* PieDemoChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PieDemoChartViewController.h; path = StockDemo/PieDemoChartViewController.h; sourceTree = "<group>"; };
-		2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PieDemoChartViewController.m; path = StockDemo/PieDemoChartViewController.m; sourceTree = "<group>"; };
 		2B8513DD1F78C46600208856 /* GGGraphicsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGraphicsConstants.h; sourceTree = "<group>"; };
 		2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGraphicsConstants.m; sourceTree = "<group>"; };
 		2B8B62961F32ECF300028F40 /* RadarDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarDataSet.h; sourceTree = "<group>"; };
@@ -508,8 +511,6 @@
 		2B9788911F0A39FE002A2A3C /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
 		2B9E98D61EEE8A0B00DF0889 /* MDLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLineViewController.h; sourceTree = "<group>"; };
 		2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDLineViewController.m; sourceTree = "<group>"; };
-		2BA1C74A1EEC36BC007733CC /* NTPieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTPieViewController.h; sourceTree = "<group>"; };
-		2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
 		2BBAC85E1F6FB6130034225C /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
 		2BBAC85F1F6FB6130034225C /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -530,15 +531,12 @@
 			children = (
 				2B5DE6331F00BD0100B40676 /* BaseModel.h */,
 				2B5DE6341F00BD0100B40676 /* BaseModel.m */,
+				2B6974131F7A57A2002FF414 /* PieDemo */,
 				2B68E96A1F204D93005D779A /* StockDemo */,
 				2B20CC021EEADC7900D4F7F2 /* IOBarChartViewController.h */,
 				2B20CC031EEADC7900D4F7F2 /* IOBarChartViewController.m */,
 				2B20CC051EEAE79900D4F7F2 /* LineBarChartViewController.h */,
 				2B20CC061EEAE79900D4F7F2 /* LineBarChartViewController.m */,
-				2BA1C74A1EEC36BC007733CC /* NTPieViewController.h */,
-				2BA1C74B1EEC36BC007733CC /* NTPieViewController.m */,
-				2B7E8FA01F74A29D00925EC1 /* PieDemoChartViewController.h */,
-				2B7E8FA11F74A29D00925EC1 /* PieDemoChartViewController.m */,
 				2B5DE6301F00BB9800B40676 /* KTimeViewController.h */,
 				2B5DE6311F00BB9800B40676 /* KTimeViewController.m */,
 				2B73B0011F0B619E0085095C /* KLineViewController.h */,
@@ -724,8 +722,6 @@
 		2B3CFE691F75F5740097A869 /* GGGraphics */ = {
 			isa = PBXGroup;
 			children = (
-				2B3CFE9F1F75F5740097A869 /* Colors.h */,
-				2B3CFEAF1F75F5740097A869 /* DrawHeader.h */,
 				2B3CFEB01F75F5740097A869 /* GGGraphics.h */,
 				2B8513DD1F78C46600208856 /* GGGraphicsConstants.h */,
 				2B8513DE1F78C46600208856 /* GGGraphicsConstants.m */,
@@ -992,6 +988,19 @@
 				2B68E96C1F204D93005D779A /* HorizontalKLineViewController.m */,
 			);
 			path = StockDemo;
+			sourceTree = "<group>";
+		};
+		2B6974131F7A57A2002FF414 /* PieDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2B6974141F7A57A2002FF414 /* NTPieViewController.h */,
+				2B6974151F7A57A2002FF414 /* NTPieViewController.m */,
+				2B6974161F7A57A2002FF414 /* PieDemoChartViewController.h */,
+				2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */,
+				2B69741A1F7A58EA002FF414 /* PieDemoIIViewController.h */,
+				2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */,
+			);
+			path = PieDemo;
 			sourceTree = "<group>";
 		};
 		2B6E24411F73B7D70006DD3D /* CenterData */ = {
@@ -1300,6 +1309,7 @@
 				2B3CFEF31F75F5740097A869 /* GGShapeCanvas.m in Sources */,
 				2B3CFF071F75F5740097A869 /* GGAxisRenderer.m in Sources */,
 				2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */,
+				2B6974191F7A57A2002FF414 /* PieDemoChartViewController.m in Sources */,
 				2B3CFF181F75F5740097A869 /* GGPolygon.m in Sources */,
 				2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */,
 				2B3CFEF81F75F5740097A869 /* RadarCanvas.m in Sources */,
@@ -1332,7 +1342,6 @@
 				2B3CFE5C1F75F4F80097A869 /* lstate.c in Sources */,
 				2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */,
 				2B68E9701F205564005D779A /* TableIndexCell.m in Sources */,
-				2BA1C74C1EEC36BC007733CC /* NTPieViewController.m in Sources */,
 				2B3CFE561F75F4F80097A869 /* lmem.c in Sources */,
 				2B3CFF0C1F75F5740097A869 /* GGPolygonRenderder.m in Sources */,
 				2B3CFF091F75F5740097A869 /* GGGridRenderer.m in Sources */,
@@ -1391,12 +1400,12 @@
 				2B8B629E1F32EE5C00028F40 /* RadarIndicatorData.m in Sources */,
 				2B3CFEEE1F75F5740097A869 /* LineAnimationsManager.m in Sources */,
 				2B8DE45C1F67A30E000F3DB4 /* LineData.m in Sources */,
-				2B7E8FA21F74A29D00925EC1 /* PieDemoChartViewController.m in Sources */,
 				2B6843151F612D3A00559001 /* LineBarQuery.m in Sources */,
 				2B3CFEF01F75F5740097A869 /* BarCanvas.m in Sources */,
 				2B3CFF101F75F5740097A869 /* GGArcLine.m in Sources */,
 				2B8DE45A1F67A30E000F3DB4 /* BarDataSet.m in Sources */,
 				2B3CFF0B1F75F5740097A869 /* GGNumberRenderer.m in Sources */,
+				2B69741C1F7A58EA002FF414 /* PieDemoIIViewController.m in Sources */,
 				2B3CFF151F75F5740097A869 /* GGKShape.m in Sources */,
 				2B8DE4741F680646000F3DB4 /* LineChart.m in Sources */,
 				2B8DE4691F67A58E000F3DB4 /* BaseLineBarData.m in Sources */,
@@ -1421,6 +1430,7 @@
 				2B3CFE5B1F75F4F80097A869 /* lparser.c in Sources */,
 				2B3CFE571F75F4F80097A869 /* loadlib.c in Sources */,
 				2B3CFE011F75F4F00097A869 /* CrissCrossQueryView.m in Sources */,
+				2B6974181F7A57A2002FF414 /* NTPieViewController.m in Sources */,
 				2B3CFEF11F75F5740097A869 /* CenterCanvas.m in Sources */,
 				2B3CFE671F75F4F80097A869 /* LuaExportMetaData.m in Sources */,
 				2B8DE46A1F67A58E000F3DB4 /* BaseLineBarSet.m in Sources */,

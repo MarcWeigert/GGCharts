@@ -8,7 +8,6 @@
 
 #import "LineBarChartViewController.h"
 #import "LineBarChart.h"
-#import "Colors.h"
 
 #import "LineData.h"
 #import "BarData.h"

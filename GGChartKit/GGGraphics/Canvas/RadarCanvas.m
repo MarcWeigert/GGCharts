@@ -13,10 +13,6 @@
 
 static const void * radarLayer = @"radarLayer";
 
-#define SET_ASSOCIATED_ASSIGN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_ASSIGN)
-#define SET_ASSOCIATED_RETAIN(obj, key, value) objc_setAssociatedObject(obj, key, value, OBJC_ASSOCIATION_RETAIN)
-#define GET_ASSOCIATED(obj, key) objc_getAssociatedObject(obj, key)
-
 @interface RadarCanvas ()
 
 @property (nonatomic, strong) GGPolygonRenderder * polyRenderer;

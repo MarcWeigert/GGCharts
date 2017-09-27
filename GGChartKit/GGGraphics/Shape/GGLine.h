@@ -52,6 +52,14 @@ GGYCircular(GGLine line)
     return atan2(x, y);
 }
 
+CG_INLINE double
+GGArcWithLine(GGLine line)
+{
+    CGFloat x_arc = GGXCircular(line);
+    
+    return x_arc < 0 ? M_PI + x_arc + M_PI : x_arc;
+}
+
 CG_INLINE CGPoint
 GGPerpendicularMake(GGLine line, CGPoint point, CGFloat raidus)
 {

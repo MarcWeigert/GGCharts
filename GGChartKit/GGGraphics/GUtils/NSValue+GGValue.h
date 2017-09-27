@@ -23,7 +23,6 @@
 @interface NSValue (GGValue)
 
 GGValueMethod(GGLine)
-GGValueMethod(GGArc)
 GGValueMethod(GGPolygon)
 GGValueMethod(GGAxis)
 GGValueMethod(GGArrow)

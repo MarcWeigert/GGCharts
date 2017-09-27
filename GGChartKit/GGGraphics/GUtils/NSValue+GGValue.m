@@ -35,7 +35,6 @@
 @implementation NSValue (GGValue)
 
 GGValueMethodImplementation(GGLine)
-GGValueMethodImplementation(GGArc)
 GGValueMethodImplementation(GGPolygon)
 GGValueMethodImplementation(GGAxis)
 GGValueMethodImplementation(GGArrow)

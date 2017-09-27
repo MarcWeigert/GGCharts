@@ -16,7 +16,6 @@ void GGPathAddLine(CGMutablePathRef ref, GGLine line)
     CGPathAddLineToPoint(ref, NULL, line.end.x, line.end.y);
 }
 
-
 /**
  * 绘制折线
  */

@@ -18,7 +18,6 @@
 #import "GGAxis.h"
 #import "GGArrow.h"
 #import "GGGrid.h"
-#import "GGArc.h"
 #import "GGKShape.h"
 #import "GGCircle.h"
 #import "GGArcLine.h"

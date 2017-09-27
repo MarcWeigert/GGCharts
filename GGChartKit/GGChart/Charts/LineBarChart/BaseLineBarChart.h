@@ -10,6 +10,10 @@
 
 @interface BaseLineBarChart : UIView
 
+/**
+ * 长按相应时间
+ */
+- (NSTimeInterval)minimumPressDuration;
 
 /**
  * 即将响应长按手势

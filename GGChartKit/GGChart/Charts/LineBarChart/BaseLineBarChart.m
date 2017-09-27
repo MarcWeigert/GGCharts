@@ -23,10 +23,19 @@
     if (self) {
         
         _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressViewOnGesturer:)];
+        _longPress.minimumPressDuration = [self minimumPressDuration];
         [self addGestureRecognizer:_longPress];
     }
     
     return self;
+}
+
+/**
+ * 长按相应时间
+ */
+- (NSTimeInterval)minimumPressDuration
+{
+    return .5f;
 }
 
 /** 长按十字星 */

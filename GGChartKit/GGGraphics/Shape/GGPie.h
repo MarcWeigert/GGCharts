@@ -45,6 +45,15 @@ GGRadiusRangeGetRadius(GGRadiusRange radiusRange)
     return fabs(radiusRange.inRadius - radiusRange.outRadius);
 }
 
+/**
+ * 长度是否在区间内
+ */
+CG_INLINE bool
+GGRadiusContainsLength(CGFloat length, GGRadiusRange radiusRange)
+{
+    return (length >= radiusRange.inRadius && length <= radiusRange.outRadius);
+}
+
 #pragma mark - GGValueRadiusRangeExtensions
 
 @interface NSValue (GGValueRadiusRangeExtensions)
@@ -100,10 +109,57 @@ GGPieCenterRaiusRangeMake(CGPoint center, GGRadiusRange radiusRange, CGFloat arc
     return GGPieMake(center.x, center.y, radiusRange.inRadius, radiusRange.outRadius, arc, transform);
 }
 
+/**
+ * 判断结构体是否为空
+ */
 CG_INLINE bool
 GGPieIsEmpty(GGPie pie)
 {
-    return pie.arc == 0 && pie.transform == 0 && CGPointEqualToPoint(CGPointZero, pie.center) && pie.radiusRange.inRadius == 0 && pie.radiusRange.outRadius == 0;
+    return pie.arc == 0 &&
+    pie.transform == 0 &&
+    CGPointEqualToPoint(CGPointZero, pie.center) &&
+    pie.radiusRange.inRadius == 0 &&
+    pie.radiusRange.outRadius == 0;
+}
+
+/**
+ * 获取 M_PI * 2 内弧度
+ */
+CG_INLINE CGFloat
+GGArcConvert(CGFloat arc)
+{
+    while (arc > M_PI * 2) {
+        
+        arc -= M_PI * 2;
+    }
+    
+    return arc;
+}
+
+/**
+ * 判断弧度是否在pie区间
+ */
+CG_INLINE bool
+GGPieContainsArc(GGPie pie, CGFloat arc)
+{
+    CGFloat transform = GGArcConvert(pie.transform);
+    CGFloat max_arc = GGArcConvert(pie.transform + pie.arc);
+    
+    transform = transform > M_PI ? -(M_PI * 2 - transform) : transform;
+    max_arc = max_arc > M_PI ? -(M_PI * 2 - max_arc) : max_arc;
+    
+    return arc >= transform && arc <= max_arc;
+}
+
+/**
+ * 判断弧度是否在pie内
+ */
+CG_INLINE bool
+GGPieContainsPoint(CGPoint point, GGPie pie)
+{
+    GGLine line = GGPointLineMake(pie.center, point);
+    
+    return GGRadiusContainsLength(GGLengthLine(line), pie.radiusRange) && GGPieContainsArc(pie, GGXCircular(line));
 }
 
 /**

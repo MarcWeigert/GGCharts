@@ -42,7 +42,7 @@
 @property (nonatomic, assign) CGFloat outRadius;
 
 /**
- * 扇形图旋转角度, 默认 M_PI_2 (12点钟方向)
+ * 扇形图旋转角度, 默认 M_PI + M_PI_2 (12点钟方向)
  */
 @property (nonatomic, assign) CGFloat baseArc;
 

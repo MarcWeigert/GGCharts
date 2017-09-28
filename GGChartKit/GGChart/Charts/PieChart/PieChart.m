@@ -107,14 +107,14 @@
                 
                 NSIndexPath * indexPath = [NSIndexPath indexPathForRow:j inSection:i];
                 
-                if (_selectIndexPath != nil &&
-                    _selectIndexPath.section == indexPath.section &&
-                    _selectIndexPath.row == indexPath.row) {
+                if (![_selectIndexPath isEqual:indexPath]) {
                     
-                    return;
+                    [self.pieCanvas.pieAnimation startAnimationForIndexPath:indexPath];
                 }
                 
                 _selectIndexPath = indexPath;
+                
+                break;
             }
         }
     }

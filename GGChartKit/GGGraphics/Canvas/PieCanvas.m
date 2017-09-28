@@ -9,14 +9,8 @@
 #import "PieCanvas.h"
 #import <objc/runtime.h>
 #import "NSArray+Stock.h"
-#import "PieAnimationManager.h"
 
 @interface PieCanvas ()
-
-/**
- * 动画管理类
- */
-@property (nonatomic, strong) PieAnimationManager * pieAnimation;
 
 /**
  * 是否经过第一次渲染
@@ -34,14 +28,14 @@
 {
     [super drawChart];
     
+    [self drawBorderLayer];
+    
     for (id <PieDrawAbstract> pieAbstract in [_pieCanvasConfig pieAry]) {
         
         [self drawSpiderLineWithPie:pieAbstract];
         [self drawPieChartWithPie:pieAbstract];
         [self drawInnerStringWithPie:pieAbstract];
     }
-    
-    [self drawBorderLayer];
     
     [self.pieAnimation setPieCanvasAbstract:_pieCanvasConfig];
     
@@ -110,7 +104,8 @@
  */
 - (void)drawSpiderLineWithPie:(id <PieDrawAbstract>)pieAbstract
 {
-    if ([pieAbstract showOutLableType] == OutSideShow) {
+    if ([pieAbstract showOutLableType] == OutSideShow ||
+        [pieAbstract showOutLableType] == OutSideSelect) {
         
         GGCanvas * baseCanvas = [self getCanvasEqualFrame];
         [baseCanvas drawChart];
@@ -146,7 +141,12 @@
             
             CGMutablePathRef ref = CGPathCreateMutable();
             CGPoint end_pt = GGPathAddPieLine(ref, pie, maxLineLength, pieInflectionLength, [[pieAbstract outSideLable] linePointRadius], pieLineSpacing);
-            shapeLayer.path = ref;
+            
+            if ([pieAbstract showOutLableType] == OutSideShow) {
+                
+                shapeLayer.path = ref;
+            }
+            
             CGPathRelease(ref);
             
             CGFloat base = GGPieLineYCircular(pie) > 0 ? 1 : -1;
@@ -165,6 +165,7 @@
             numberRenderer.font = [[pieAbstract outSideLable] lableFont];
             numberRenderer.offSet = size;
             numberRenderer.sum = [pieAbstract sum];
+            numberRenderer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
             [numberRenderer drawAtToNumberAndPoint];
             [baseCanvas addRenderer:numberRenderer];
             
@@ -176,6 +177,8 @@
                     return [[pieAbstract outSideLable] attributeStringBlock](i, value, ratio);
                 }];
             }
+            
+            shapeLayer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
             
             [aryNumbers addObject:numberRenderer];
         }

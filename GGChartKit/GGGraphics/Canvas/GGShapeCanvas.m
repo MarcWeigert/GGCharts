@@ -72,10 +72,7 @@
 {
     if (!GGPieIsEmpty(_oldPie)) {
         
-        CAKeyframeAnimation * pieChangeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        pieChangeAnimation.duration = duration;
-        pieChangeAnimation.values = GGPieChange(_oldPie, _pie, duration);
-        [self addAnimation:pieChangeAnimation forKey:@"pieChangeAnimation"];
+        GGPathKeyFrameAnimation(self, @"pieChangeAnimation", duration, GGPieChange(_oldPie, _pie, duration));
     }
 }
 

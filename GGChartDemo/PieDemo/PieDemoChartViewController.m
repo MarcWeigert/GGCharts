@@ -42,7 +42,7 @@
     
     PieData * pie = [[PieData alloc] init];
     pie.radiusRange = GGRadiusRangeMake(34, 34 + 59);
-    pie.showOutLableType = OutSideShow;
+    pie.showOutLableType = OutSideSelect;
     pie.roseType = RoseRadius;
     pie.dataAry = dataAry;
     pie.outSideLable.stringRatio = GGRatioCenterLeft;
@@ -100,6 +100,35 @@
     [_pieChart drawPieChart];
     
     [self.view addSubview:_pieChart];
+    
+    //
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(10, 450, 100, 50)];
+    [btn setTitle:@"显示外线" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataFirst) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(120, 450, 130, 50)];
+    [btn setTitle:@"点击显示外线" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataSecond) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+- (void)analogDataFirst
+{
+    _pie.showOutLableType = OutSideShow;
+    
+    [_pieChart drawPieChart];
+}
+
+- (void)analogDataSecond
+{
+    _pie.showOutLableType = OutSideSelect;
+    
+    [_pieChart drawPieChart];
 }
 
 @end

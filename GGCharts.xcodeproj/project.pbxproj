@@ -116,7 +116,6 @@
 		2B68E9761F207244005D779A /* SlideTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B68E9751F207244005D779A /* SlideTabView.m */; };
 		2B6974181F7A57A2002FF414 /* NTPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6974151F7A57A2002FF414 /* NTPieViewController.m */; };
 		2B6974191F7A57A2002FF414 /* PieDemoChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */; };
-		2B69741C1F7A58EA002FF414 /* PieDemoIIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */; };
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
 		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
 		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
@@ -406,8 +405,6 @@
 		2B6974151F7A57A2002FF414 /* NTPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTPieViewController.m; sourceTree = "<group>"; };
 		2B6974161F7A57A2002FF414 /* PieDemoChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDemoChartViewController.h; sourceTree = "<group>"; };
 		2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieDemoChartViewController.m; sourceTree = "<group>"; };
-		2B69741A1F7A58EA002FF414 /* PieDemoIIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDemoIIViewController.h; sourceTree = "<group>"; };
-		2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieDemoIIViewController.m; sourceTree = "<group>"; };
 		2B6B238C1F0C7291001D2B04 /* MinuteAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinuteAbstract.h; sourceTree = "<group>"; };
 		2B6B23941F0C742C001D2B04 /* MinuteChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinuteChart.h; sourceTree = "<group>"; };
 		2B6B23951F0C742C001D2B04 /* MinuteChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinuteChart.m; sourceTree = "<group>"; };
@@ -992,8 +989,6 @@
 				2B6974151F7A57A2002FF414 /* NTPieViewController.m */,
 				2B6974161F7A57A2002FF414 /* PieDemoChartViewController.h */,
 				2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */,
-				2B69741A1F7A58EA002FF414 /* PieDemoIIViewController.h */,
-				2B69741B1F7A58EA002FF414 /* PieDemoIIViewController.m */,
 			);
 			path = PieDemo;
 			sourceTree = "<group>";
@@ -1399,7 +1394,6 @@
 				2B3CFF101F75F5740097A869 /* GGArcLine.m in Sources */,
 				2B8DE45A1F67A30E000F3DB4 /* BarDataSet.m in Sources */,
 				2B3CFF0B1F75F5740097A869 /* GGNumberRenderer.m in Sources */,
-				2B69741C1F7A58EA002FF414 /* PieDemoIIViewController.m in Sources */,
 				2B3CFF151F75F5740097A869 /* GGKShape.m in Sources */,
 				2B8DE4741F680646000F3DB4 /* LineChart.m in Sources */,
 				2B8DE4691F67A58E000F3DB4 /* BaseLineBarData.m in Sources */,

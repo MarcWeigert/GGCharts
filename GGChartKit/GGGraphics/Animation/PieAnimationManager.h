@@ -28,4 +28,9 @@
  */
 - (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(PieAnimationType)type;
 
+/**
+ * 点击动画
+ */
+- (void)startAnimationForIndexPath:(NSIndexPath *)indexPath;
+
 @end

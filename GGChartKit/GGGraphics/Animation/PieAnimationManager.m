@@ -11,6 +11,23 @@
 #import "NSArray+Stock.h"
 #import "NSObject+FireBlock.h"
 
+#pragma mark - NSIndexPath (PieIndexPath)
+
+@interface NSIndexPath (PieIndexPath)
+
+@end
+
+@implementation NSIndexPath(PieIndexPath)
+
+- (BOOL)isEqual:(id)object
+{
+    return (self.row == [object row] && self.section == [object section]);
+}
+
+@end
+
+#pragma mark - PieAnimationManager
+
 @interface PieAnimationManager ()
 
 /**
@@ -18,9 +35,27 @@
  */
 @property (nonatomic, strong) Animator * animator;
 
+/**
+ * 当前点击的位置
+ */
+@property (nonatomic, strong) NSIndexPath * beforeIndexPath;
+
+/**
+ * 当前点击的位置
+ */
+@property (nonatomic, assign) GGPie beforePie;
+
 @end
 
 @implementation PieAnimationManager
+
+- (void)setPieCanvasAbstract:(id<PieCanvasAbstract>)pieCanvasAbstract
+{
+    _pieCanvasAbstract = pieCanvasAbstract;
+    
+    _beforeIndexPath = nil;
+    _beforePie = GGPieZero;
+}
 
 /**
  * 开始动画
@@ -42,6 +77,93 @@
         
         [self startChangeAnimationWithDuration:duration];
     }
+}
+
+/**
+ * 点击动画
+ */
+- (void)startAnimationForIndexPath:(NSIndexPath *)indexPath
+{
+    id <PieDrawAbstract> pieAbstract = [_pieCanvasAbstract pieAry][indexPath.section];
+    NSArray * pieLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
+    NSArray * pieLineLayersArray = GET_ASSOCIATED(pieAbstract, pieOutSideLayerArray);
+    GGCanvas * outBaseCanvas = GET_ASSOCIATED(pieAbstract, pieOutSideLayer);
+    NSArray * pieNumberArray = GET_ASSOCIATED(pieAbstract, pieOutSideNumberArray);
+    
+    if (_beforeIndexPath) {
+        
+        GGShapeCanvas * beforeCanvas = pieLayersArray[_beforeIndexPath.row];
+        GGPie pie = [pieAbstract pies][_beforeIndexPath.row];
+        GGPie small_pie = GGPieCopyWithPie(pie);
+        small_pie.radiusRange.outRadius -= GGRadiusRangeGetRadius(pie.radiusRange) * .05f;
+        
+        NSMutableArray * beforePies = [NSMutableArray array];
+        [beforePies addObjectsFromArray:GGPieChange(_beforePie, small_pie, .2f)];
+        [beforePies addObjectsFromArray:GGPieChange(small_pie, pie, .05f)];
+        
+        GGPathKeyFrameAnimation(beforeCanvas, @"pieLargeAnimation", .25f, beforePies);
+        
+        if ([pieAbstract showOutLableType] == OutSideSelect) {
+            
+            GGShapeCanvas * lineCanvas = pieLineLayersArray[_beforeIndexPath.row];
+            [self startLineAnimationWithLayer:lineCanvas pie:pie pieAbstract:pieAbstract show:NO];
+            
+            GGNumberRenderer * number = pieNumberArray[_beforeIndexPath.row];
+            number.hidden = YES;
+            [outBaseCanvas setNeedsDisplay];
+        }
+    }
+    
+    if (![_beforeIndexPath isEqual:indexPath]) {
+        
+        GGShapeCanvas * shapeCanvas = pieLayersArray[indexPath.row];
+        GGPie pie = [pieAbstract pies][indexPath.row];
+        GGPie large_pie = GGPieCopyWithPie(pie);
+        large_pie.radiusRange.outRadius += GGRadiusRangeGetRadius(pie.radiusRange) * .15f;
+        _beforePie = GGPieCopyWithPie(pie);
+        _beforePie.radiusRange.outRadius += GGRadiusRangeGetRadius(pie.radiusRange) * .1f;
+        
+        NSMutableArray * aryPies = [NSMutableArray array];
+        [aryPies addObjectsFromArray:GGPieChange(pie, large_pie, .2f)];
+        [aryPies addObjectsFromArray:GGPieChange(large_pie, _beforePie, .05f)];
+        
+        GGPathKeyFrameAnimation(shapeCanvas, @"pieSmallAnimation", .25f, aryPies);
+        
+        if ([pieAbstract showOutLableType] == OutSideSelect) {
+            
+            GGShapeCanvas * lineCanvas = pieLineLayersArray[indexPath.row];
+            [self startLineAnimationWithLayer:lineCanvas pie:pie pieAbstract:pieAbstract show:YES];
+            
+            GGNumberRenderer * number = pieNumberArray[indexPath.row];
+            number.hidden = NO;
+            [outBaseCanvas setNeedsDisplay];
+        }
+        
+        _beforeIndexPath = indexPath;
+    }
+    else {
+    
+        _beforeIndexPath = nil;
+    }
+}
+
+- (void)startLineAnimationWithLayer:(GGShapeCanvas *)lineCanvas pie:(GGPie)pie pieAbstract:(id <PieDrawAbstract>)pieAbstract show:(BOOL)show
+{
+    CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
+    CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
+    CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
+    CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
+    CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
+    
+    NSArray * values = GGPieLineStretch(pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
+    lineCanvas.hidden = NO;
+    
+    if (!show) {
+        
+        values = [[values reverseObjectEnumerator] allObjects];
+    }
+    
+    GGPathKeyFrameAnimation(lineCanvas, @"linePathAnimation", .25, values);
 }
 
 #pragma mark - 中心旋转动画
@@ -99,10 +221,7 @@
             
             shapeCanvas.hidden = NO;
             
-            CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-            pathAnimation.duration = duation;
-            pathAnimation.values = EjectAnimationWithPie(pie, duation);
-            [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
+            GGPathKeyFrameAnimation(shapeCanvas, @"pathAnimation", duation, EjectAnimationWithPie(pie, duation));
         }];
     }
 }
@@ -172,10 +291,8 @@
         CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
         CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
         
-        CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        pathAnimation.duration = duation;
-        pathAnimation.values = GGPieLineChange(pieCanvas.oldPie, pieCanvas.pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing, duation);
-        [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
+        NSArray * values = GGPieLineChange(pieCanvas.oldPie, pieCanvas.pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing, duation);
+        GGPathKeyFrameAnimation(shapeCanvas, @"pathAnimation", duation, values);
     }
 }
 
@@ -306,21 +423,22 @@
 {
     NSArray * pieLineLayersArray = GET_ASSOCIATED(pieAbstract, pieOutSideLayerArray);
     
-    for (NSInteger i = 0; i < pieLineLayersArray.count; i++) {
+    if ([pieAbstract showOutLableType] == OutSideShow) {
     
-        GGShapeCanvas * shapeLayer = pieLineLayersArray[i];
-        GGPie pie = [pieAbstract pies][i];
-        
-        CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
-        CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
-        CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
-        CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
-        CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
-        
-        CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        pathAnimation.duration = duation;
-        pathAnimation.values = GGPieLineStretch(pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
-        [shapeLayer addAnimation:pathAnimation forKey:@"pathAnimation"];
+        for (NSInteger i = 0; i < pieLineLayersArray.count; i++) {
+            
+            GGShapeCanvas * shapeLayer = pieLineLayersArray[i];
+            GGPie pie = [pieAbstract pies][i];
+            
+            CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
+            CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
+            CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
+            CGFloat endRadius = [[pieAbstract outSideLable] linePointRadius];
+            CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
+            
+            NSArray * values = GGPieLineStretch(pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
+            GGPathKeyFrameAnimation(shapeLayer, @"pathAnimation", duation, values);
+        }
     }
 }
 
@@ -343,15 +461,14 @@
         fromPie.transform = [pieAbstract pieStartTransform];
         fromPie.arc = 0;
         
-        CAKeyframeAnimation * pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        pathAnimation.duration = duation;
-        pathAnimation.values = GGPieChange(fromPie, pie, duation);
-        [shapeCanvas addAnimation:pathAnimation forKey:@"pathAnimation"];
+        GGPathKeyFrameAnimation(shapeCanvas, @"pathAnimation", duation, GGPieChange(fromPie, pie, duation));
     }
     
     CAKeyframeAnimation * scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     scaleAnimation.duration = duation;
     scaleAnimation.values = @[@.5, @1];
+    scaleAnimation.fillMode = kCAFillModeForwards;
+    scaleAnimation.removedOnCompletion = NO;
     [GET_ASSOCIATED(pieAbstract, pieBaseShapeLayer) addAnimation:scaleAnimation forKey:@"scaleAnimation"];
     [GET_ASSOCIATED(pieAbstract, pieInnerLayer) addAnimation:scaleAnimation forKey:@"scaleAnimation"];
 }

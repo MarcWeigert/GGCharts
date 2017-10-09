@@ -49,6 +49,11 @@
 @property (nonatomic, assign) PieAnimationType pieAnimationType;
 
 /**
+ * 更新时是否需要动画
+ */
+@property (nonatomic, assign) BOOL updateNeedAnimation;
+
+/**
  * 折线图更新数据, 绘制前配置
  */
 - (void)updateChartConfigs:(CGRect)rect;

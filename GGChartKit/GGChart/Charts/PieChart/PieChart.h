@@ -22,4 +22,13 @@
  */
 - (void)drawPieChart;
 
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(PieAnimationType)pieAnimationType duration:(NSTimeInterval)duration;
+
+
 @end

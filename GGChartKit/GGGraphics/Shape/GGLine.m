@@ -166,15 +166,72 @@ NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloa
     CGPathAddLineToPoint(ref, NULL, basePoints[0].x, y);
     [ary addObject:(__bridge id)ref];
     CGPathRelease(ref);
-    
-    ref = CGPathCreateMutable();
-    CGPathAddLines(ref, NULL, points, size);
-    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
-    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
-    [ary addObject:(__bridge id)ref];
-    CGPathRelease(ref);
+//    
+//    ref = CGPathCreateMutable();
+//    CGPathAddLines(ref, NULL, points, size);
+//    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
+//    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
+//    [ary addObject:(__bridge id)ref];
+//    CGPathRelease(ref);
     
     return ary;
+}
+
+NSArray * GGPathLinesStrokeAnimation(CGPoint * points, size_t size)
+{
+    NSMutableArray * array = [NSMutableArray array];
+    CGMutablePathRef ref = CGPathCreateMutable();
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        if (i == 0) {
+            
+            CGPathMoveToPoint(ref, NULL, points[i].x, points[i].y);
+        }
+        else {
+        
+            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
+        }
+        
+        CGPathRef path = CGPathCreateCopy(ref);
+        [array addObject:(__bridge id)path];
+        CGPathRelease(path);
+    }
+    
+    CGPathRelease(ref);
+    
+    return [NSArray arrayWithArray:array];
+}
+
+CG_EXTERN NSArray * GGPathFillLinesStrokeAnimation(CGPoint * points, size_t size, CGFloat y)
+{
+    NSMutableArray * array = [NSMutableArray array];
+    CGMutablePathRef ref = CGPathCreateMutable();
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        if (i == 0) {
+            
+            CGPathMoveToPoint(ref, NULL, points[i].x, points[i].y);
+        }
+        else {
+            
+            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
+        }
+        
+        CGMutablePathRef path = CGPathCreateMutableCopy(ref);
+        CGPathAddLineToPoint(path, NULL, points[i].x, y);
+        CGPathAddLineToPoint(path, NULL, points[0].x, y);
+        CGPathAddLineToPoint(path, NULL, points[0].x, points[0].y);
+        CGPathAddLineToPoint(path, NULL, points[0].x, y);
+        CGPathAddLineToPoint(path, NULL, points[i].x, y);
+        [array addObject:(__bridge id)path];
+        CGPathRelease(path);
+    }
+    
+    CGPathRelease(ref);
+    
+    return [NSArray arrayWithArray:array];
 }
 
 NS_ASSUME_NONNULL_END

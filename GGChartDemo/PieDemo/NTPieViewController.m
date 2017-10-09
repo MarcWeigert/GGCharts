@@ -80,10 +80,13 @@
         return [NSAttributedString pieCenterStringWithTitle:@"今日" subTitle:@"资金"];
     }];
     
+    dataSet.updateNeedAnimation = YES;
+    
     PieChart * pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, 400)];
     pieChart.pieDataSet = dataSet;
     
     [pieChart drawPieChart];
+    //[pieChart startAnimationsWithType:EjectAnimation duration:.5f];
     
     [self.view addSubview:pieChart];
     

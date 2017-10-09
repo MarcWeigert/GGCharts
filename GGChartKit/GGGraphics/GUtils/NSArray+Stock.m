@@ -282,6 +282,66 @@
  * @[@1,  @1,  @1]    -> @[@1, @1, @1]
  * @[@1,  @1,  @1]       @[@2, @2, @2]
  */
+- (NSMutableArray <NSArray <NSNumber *> *> *)aryPNAddUp
+{
+    NSMutableArray *aryAddData = [NSMutableArray array];
+    
+    [aryAddData addObject:self.firstObject];
+    
+    // 循环简历累加数组
+    for (NSInteger i = 1; i < self.count; i++) {
+        
+        NSArray *ary_c = self[i];
+        NSArray *ary_b = aryAddData.lastObject;
+        NSMutableArray *aryAddBefor = [NSMutableArray array];
+        
+        // 累加数组累加数字已当前数组长度为准
+        for (NSInteger j = 0; j < ary_c.count; j++) {
+            
+            NSInteger f = aryAddData.count - 1;     // find 位置
+            CGFloat c = [ary_c[j] floatValue];      // current 当前的数字
+            
+            // 前一个数组如果越界, 则前一个数字为当前数字的相反数(保证循环继续)
+            CGFloat b = j >= ary_b.count ? -c : [ary_b[j] floatValue];
+            
+            // 数值同方向才可以相加
+            while ((b * c) < 0) {   // before 和 current 数字正负为同方向跳出循环
+                
+                if (f < 0) {    // find 小于0为找到头
+                    
+                    b = 0;
+                }
+                else {
+                    
+                    NSArray *ary_f_b = aryAddData[f];
+                    
+                    b = j < ary_f_b.count ? [[aryAddData[f] objectAtIndex:j] floatValue] : -c;
+                }
+                
+                f--;    // 非同方向向前寻找
+            }
+            
+            // 将2数值之和叠加放入本次循环数组
+            [aryAddBefor addObject:@(c + b)];
+        }
+        
+        [aryAddData addObject:[NSArray arrayWithArray:aryAddBefor]];
+    }
+    
+    return aryAddData;
+}
+
+/**
+ * 二维数组累加, 正数和正数累加, 负数和负数累加
+ * 正数:
+ * @[@1, @1, @1]    @[@1, @1, @1]
+ * @[@1, @1, @1] -> @[@2, @2, @2]
+ * @[@1, @1, @1]    @[@3, @3, @3]
+ * 负数:
+ * @[@-1, @-1, @-1]      @[@-1, @-1, @-1]
+ * @[@1,  @1,  @1]    -> @[@0, @0, @0]
+ * @[@1,  @1,  @1]       @[@1, @1, @1]
+ */
 - (NSMutableArray <NSArray <NSNumber *> *> *)aryAddUp
 {
     NSMutableArray *aryAddData = [NSMutableArray array];
@@ -298,29 +358,8 @@
         // 累加数组累加数字已当前数组长度为准
         for (NSInteger j = 0; j < ary_c.count; j++) {
             
-            //NSInteger f = aryAddData.count - 1;     // find 位置
             CGFloat c = [ary_c[j] floatValue];      // current 当前的数字
             CGFloat b = j >= ary_b.count ? 0 : [ary_b[j] floatValue];     // 临时
-            
-            //            // 前一个数组如果越界, 则前一个数字为当前数字的相反数(保证循环继续)
-            //            CGFloat b = j >= ary_b.count ? -c : [ary_b[j] floatValue];
-            //
-            //            // 数值同方向才可以相加
-            //            while ((b * c) < 0) {   // before 和 current 数字正负为同方向跳出循环
-            //
-            //                if (f < 0) {    // find 小于0为找到头
-            //
-            //                    b = 0;
-            //                }
-            //                else {
-            //
-            //                    NSArray *ary_f_b = aryAddData[f];
-            //
-            //                    b = j < ary_f_b.count ? [[aryAddData[f] objectAtIndex:j] floatValue] : -c;
-            //                }
-            //
-            //                f--;    // 非同方向向前寻找
-            //            }
             
             // 将2数值之和叠加放入本次循环数组
             [aryAddBefor addObject:@(c + b)];

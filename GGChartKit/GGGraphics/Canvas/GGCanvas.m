@@ -229,30 +229,30 @@
     // 形
     [self.idleLayers addObjectsFromArray:self.visibleLayers];
     
-    [self.visibleLayers enumerateObjectsUsingBlock:^(GGShapeCanvas * obj, NSUInteger idx, BOOL * stop) {
+    for (GGShapeCanvas * obj in self.visibleLayers) {
         
         [obj removeFromSuperlayer];
-    }];
+    }
     
     [self.visibleLayers removeAllObjects];
     
     // 渐变色
     [self.idleGradientLayers addObjectsFromArray:self.visibleGradientLayers];
     
-    [self.visibleGradientLayers enumerateObjectsUsingBlock:^(CAGradientLayer * obj, NSUInteger idx, BOOL * stop) {
+    for (CAGradientLayer * obj in self.visibleGradientLayers) {
         
         [obj removeFromSuperlayer];
-    }];
+    }
     
     [self.visibleGradientLayers removeAllObjects];
     
     // 普通图层
     [self.idleCanvas addObjectsFromArray:self.visibleCanvas];
     
-    [self.visibleCanvas enumerateObjectsUsingBlock:^(GGCanvas * obj, NSUInteger idx, BOOL * stop) {
+    for (GGCanvas * obj in self.visibleCanvas) {
         
         [obj removeFromSuperlayer];
-    }];
+    }
     
     [self.visibleCanvas removeAllObjects];
     

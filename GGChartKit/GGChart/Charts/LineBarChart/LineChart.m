@@ -64,7 +64,6 @@
 {
     _lineCanvas.lineDrawConfig = (id <LineCanvasAbstract>)_lineDataSet;
     _gridCanvas.gridDrawConfig = (id <GridAbstract>)_lineDataSet.gridConfig;
-    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)_lineDataSet.queryConfig;
 }
 
 /**

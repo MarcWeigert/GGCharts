@@ -145,8 +145,12 @@ GGPieContainsArc(GGPie pie, CGFloat arc)
     CGFloat transform = GGArcConvert(pie.transform);
     CGFloat max_arc = GGArcConvert(pie.transform + pie.arc);
     
-    transform = transform > M_PI ? -(M_PI * 2 - transform) : transform;
-    max_arc = max_arc > M_PI ? -(M_PI * 2 - max_arc) : max_arc;
+    if (transform > max_arc) {
+    
+        transform = transform > M_PI ? -(M_PI * 2 - transform) : transform;
+        max_arc = max_arc > M_PI ? -(M_PI * 2 - max_arc) : max_arc;
+        arc = arc > M_PI ? -(M_PI * 2 - arc) : arc;
+    }
     
     return arc >= transform && arc <= max_arc;
 }
@@ -159,7 +163,8 @@ GGPieContainsPoint(CGPoint point, GGPie pie)
 {
     GGLine line = GGPointLineMake(pie.center, point);
     
-    return GGRadiusContainsLength(GGLengthLine(line), pie.radiusRange) && GGPieContainsArc(pie, GGXCircular(line));
+    return GGRadiusContainsLength(GGLengthLine(line), pie.radiusRange) &&
+    GGPieContainsArc(pie, GGArcWithLine(line));
 }
 
 /**

@@ -122,10 +122,11 @@
         layer_arc += arc;
         CGFloat transArcs = layer_arc - arc + _baseArc;
         CGFloat ratios = arc / (M_PI * 2);
+        CGPoint center = CGPointMake(self.rect.size.width / 2, self.rect.size.height / 2);
         
         _ratios[idx] = ratios;
-        _pies[idx] = GGPieMake(self.rect.size.width / 2, self.rect.size.height / 2, _inRadius, _outRadius, arc, transArcs);
-        
+        _pies[idx] = GGPieCenterMake(center, _inRadius, _outRadius, arc, transArcs);
+
         // 比例伸缩
         if (_roseRadius && max != 0) {
             

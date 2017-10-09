@@ -80,12 +80,6 @@
     lineSet.idRatio = .2f;
     lineSet.updateNeedAnimation = YES;
     
-    /** 查价 */
-    lineSet.queryConfig.lineWidth = .5f;
-    lineSet.queryConfig.lineColor = RGB(186, 167, 169);
-    lineSet.queryConfig.dashPattern = @[@2, @4, @2];
-    lineSet.queryConfig.lableInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-    
     /** 网格 */
     lineSet.gridConfig.lineColor = RGB(186, 167, 169);
     lineSet.gridConfig.lineWidth = .7f;

@@ -36,5 +36,4 @@
  */
 - (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(LineAnimationsType)type;
 
-
 @end

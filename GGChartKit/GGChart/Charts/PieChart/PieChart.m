@@ -146,7 +146,19 @@
     [self.pieCanvas drawChart];
     [self.centerCanvas drawChart];
     
+    _selectIndexPath = nil;
     self.centerCanvas.hidden = !self.pieDataSet.showCenterLable;
+}
+
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(PieAnimationType)pieAnimationType duration:(NSTimeInterval)duration
+{
+    [_pieCanvas startAnimationsWithType:pieAnimationType duration:duration];
 }
 
 @end

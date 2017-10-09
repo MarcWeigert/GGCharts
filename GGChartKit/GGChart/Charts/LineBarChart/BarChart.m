@@ -65,7 +65,6 @@
 {
     _barCanvas.barDrawConfig = (id <BarCanvasAbstract>)_barDataSet;
     _gridCanvas.gridDrawConfig = (id <GridAbstract>)_barDataSet.gridConfig;
-    _queryCanvas.queryDrawConfig = (id <QueryAbstract>)_barDataSet.queryConfig;
 }
 
 /**

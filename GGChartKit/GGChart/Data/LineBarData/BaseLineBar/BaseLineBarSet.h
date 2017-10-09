@@ -14,10 +14,10 @@
 
 typedef enum : NSUInteger {
     LineBarDrawNomal,              ///< 默认格式
-    LineBarDrawHeapUp,             ///< 折线堆叠
-    LineBarDrawPNHeapUp,           ///< 折线正负堆叠
-    LineBarDrawParallel,           ///< 折线并列显示
-    LineBarDrawCenter,             ///< 折线居中
+    LineBarDrawHeapUp,             ///< 堆叠
+    LineBarDrawPNHeapUp,           ///< 正负堆叠
+    LineBarDrawParallel,           ///< 并列显示
+    LineBarDrawCenter,             ///< 居中
 } LineBarDataMode;
 
 @interface BaseLineBarSet : NSObject
@@ -31,11 +31,6 @@ typedef enum : NSUInteger {
  * 折线图背景层设置
  */
 @property (nonatomic, strong) LineBarGird * gridConfig;
-
-/**
- * 折线图查价配置
- */
-@property (nonatomic, strong) LineBarQuery * queryConfig;
 
 /**
  * 折线表现形式

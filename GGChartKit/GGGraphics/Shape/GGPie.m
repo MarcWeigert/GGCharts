@@ -185,7 +185,7 @@ NSArray * RotationAnimaitonWithPie(GGPie pie, NSTimeInterval duration)
         frame_pie.arc = frame_arc * i;
         GGPathAddPie(ref, frame_pie);
         [array addObject:(__bridge id)ref];
-        CFRelease(ref);
+        CGPathRelease(ref);
     }
     
     return [NSArray arrayWithArray:array];
@@ -218,7 +218,7 @@ NSArray * EjectAnimationWithPie(GGPie pie, NSTimeInterval duration)
         pie.radiusRange.outRadius = pie.radiusRange.inRadius + frame_radius * i;
         GGPathAddPie(ref, pie);
         [array addObject:(__bridge id)ref];
-        CFRelease(ref);
+        CGPathRelease(ref);
     }
     
     for (long i = 0; i < in_frame; i++) {
@@ -227,7 +227,7 @@ NSArray * EjectAnimationWithPie(GGPie pie, NSTimeInterval duration)
         pie.radiusRange.outRadius = pie.radiusRange.inRadius + full_radius - (in_frame_radius * i);
         GGPathAddPie(ref, pie);
         [array addObject:(__bridge id)ref];
-        CFRelease(ref);
+        CGPathRelease(ref);
     }
     
     return array;
@@ -252,15 +252,15 @@ NSArray * GGPieChange(GGPie fromPie, GGPie toPie, NSTimeInterval duration)
     
     for (NSInteger i = 0; i < frame; i++) {
         
-        GGPie pie = GGPieCopyWithPie(fromPie);
-        pie.transform += frame_transform * i;
-        pie.arc += frame_arc * i;
-        pie.radiusRange = GGRadiusRangeMake(pie.radiusRange.inRadius + frame_in * i, pie.radiusRange.outRadius + frame_out * i);
+        fromPie.transform += frame_transform;
+        fromPie.arc += frame_arc;
+        fromPie.radiusRange.inRadius += frame_in;
+        fromPie.radiusRange.outRadius += frame_out;
         
         CGMutablePathRef ref = CGPathCreateMutable();
-        GGPathAddPie(ref, pie);
+        GGPathAddPie(ref, fromPie);
         [array addObject:(__bridge id)ref];
-        CFRelease(ref);
+        CGPathRelease(ref);
     }
     
     return array;
@@ -320,12 +320,12 @@ CG_EXTERN NSArray * GGPieLineStretch(GGPie pie, CGFloat line1, CGFloat line2, CG
     NSArray * paths = @[(__bridge id)ref1, (__bridge id)ref2, (__bridge id)ref3,
                         (__bridge id)ref4, (__bridge id)ref5, (__bridge id)ref6];
     
-    CFRelease(ref1);
-    CFRelease(ref2);
-    CFRelease(ref3);
-    CFRelease(ref4);
-    CFRelease(ref5);
-    CFRelease(ref6);
+    CGPathRelease(ref1);
+    CGPathRelease(ref2);
+    CGPathRelease(ref3);
+    CGPathRelease(ref4);
+    CGPathRelease(ref5);
+    CGPathRelease(ref6);
     
     return paths;
 }
@@ -354,16 +354,16 @@ CG_EXTERN NSArray * GGPieLineChange(GGPie fromPie, GGPie toPie, CGFloat line1, C
     
     for (NSInteger i = 0; i < frame; i++) {
         
-        GGPie pie = GGPieCopyWithPie(fromPie);
-        pie.transform += frame_transform * i;
-        pie.arc += frame_arc * i;
-        pie.radiusRange = GGRadiusRangeMake(pie.radiusRange.inRadius + frame_in * i, pie.radiusRange.outRadius + frame_out * i);
+        fromPie.transform += frame_transform;
+        fromPie.arc += frame_arc;
+        fromPie.radiusRange.inRadius += frame_in;
+        fromPie.radiusRange.outRadius += frame_out;
         
         CGMutablePathRef ref = CGPathCreateMutable();
-        GGPathAddPieLine(ref, pie, line1, line2, shapeRadius, spacing);
+        GGPathAddPieLine(ref, fromPie, line1, line2, shapeRadius, spacing);
         [array addObject:(__bridge id)ref];
         
-        CFRelease(ref);
+        CGPathRelease(ref);
     }
     
     return array;

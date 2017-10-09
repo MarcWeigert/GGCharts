@@ -8,6 +8,7 @@
 
 #import "LineAnimationsManager.h"
 #import <objc/runtime.h>
+#import "NSObject+FireBlock.h"
 
 @interface LineAnimationsManager ()
 
@@ -61,6 +62,10 @@
         
         [self startChangeAnimationWithDuration:duration];
     }
+    else if (type == LineAnimationStrokeType) {
+    
+        [self startStrokeAnimationWithDuration:duration];
+    }
 }
 
 #pragma mark - Private Method
@@ -92,9 +97,50 @@
     }];
 }
 
+/**
+ * 滑动动画
+ *
+ * @param 动画时长
+ */
+- (void)startStrokeAnimationWithDuration:(NSTimeInterval)duration
+{
+    for (id <LineDrawAbstract> lineAbstract in self.lineAbstractAry) {
+        
+        CAKeyframeAnimation * lineAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        lineAnimation.duration = duration;
+        lineAnimation.values = GGPathLinesStrokeAnimation([lineAbstract points], [lineAbstract dataAry].count);
+        [GET_ASSOCIATED(lineAbstract, lineLayer) addAnimation:lineAnimation forKey:@"lineStroke"];
+        
+        CAKeyframeAnimation * shapeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        shapeAnimation.duration = duration;
+        shapeAnimation.values = GGPathCirclesStrokeAnimation([lineAbstract points], [lineAbstract shapeRadius], [lineAbstract dataAry].count, nil);
+        [GET_ASSOCIATED(lineAbstract, lineShapeLayer) addAnimation:shapeAnimation forKey:@"shapeAnimation"];
+        
+        CAKeyframeAnimation * fillAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
+        fillAnimation.duration = duration;
+        fillAnimation.values = GGPathFillLinesStrokeAnimation([lineAbstract points], [lineAbstract dataAry].count, [lineAbstract bottomYPix]);
+        [GET_ASSOCIATED(lineAbstract, lineFillLayer) addAnimation:fillAnimation forKey:@"fillAnimation"];
+        
+        NSArray * numberRenderers = GET_ASSOCIATED(lineAbstract, lineNumberArray);
+        
+        for (NSInteger i = 0; i < numberRenderers.count; i++) {
+            
+            GGNumberRenderer * renderers = numberRenderers[i];
+            renderers.hidden = YES;
+            
+            [self performAfterDelay:i * duration / (numberRenderers.count - 1) block:^{
+                
+                renderers.hidden = NO;
+                
+                CALayer * layer = GET_ASSOCIATED(lineAbstract, lineStringLayer);
+                [layer setNeedsDisplay];
+            }];
+        }
+    }
+}
 
 /**
- * 开启柱状图升起动画
+ * 升起动画
  *
  * @param 动画时长
  */

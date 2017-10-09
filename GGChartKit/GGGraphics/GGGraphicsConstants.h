@@ -21,6 +21,7 @@ typedef enum : NSUInteger {
  */
 typedef enum : NSUInteger {
     LineAnimationRiseType,
+    LineAnimationStrokeType,
     LineAnimationChangeType,
 } LineAnimationsType;
 

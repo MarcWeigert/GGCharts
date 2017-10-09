@@ -39,16 +39,35 @@
     
     [self.pieAnimation setPieCanvasAbstract:_pieCanvasConfig];
     
-    if (!self.hadRenderer) {
+    // 启动动画
+    if ([_pieCanvasConfig updateNeedAnimation]) {
         
-        [self.pieAnimation startAnimationWithDuration:.5 animationType:[_pieCanvasConfig pieAnimationType]];
-    }
-    else {
-        
-        [self.pieAnimation startAnimationWithDuration:.5 animationType:ChangeAnimation];
+        if (self.hadRenderer) {
+            
+            [self.pieAnimation startAnimationWithDuration:.25f animationType:ChangeAnimation];
+        }
     }
     
     self.hadRenderer = YES;
+}
+
+- (void)dealloc
+{
+    for (id <PieDrawAbstract> pieAbstract in [_pieCanvasConfig pieAry]) {
+        
+        objc_removeAssociatedObjects(pieAbstract);
+    }
+}
+
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(PieAnimationType)pieAnimationType duration:(NSTimeInterval)duration
+{
+    [self.pieAnimation startAnimationWithDuration:duration animationType:pieAnimationType];
 }
 
 /**
@@ -156,7 +175,7 @@
             [aryLineLayers addObject:shapeLayer];
             
             // 折线文字
-            GGNumberRenderer * numberRenderer = [[GGNumberRenderer alloc] init];
+            GGNumberRenderer * numberRenderer = [self getNumberRenderer];
             numberRenderer.offSetRatio = offsetRadio;
             numberRenderer.toPoint = end_pt;
             numberRenderer.toNumber = [[pieAbstract dataAry][i] floatValue];

@@ -27,6 +27,14 @@
 
 @implementation LineCanvas
 
+- (void)dealloc
+{
+    for (id <LineDrawAbstract> lineDraw in [_lineDrawConfig lineAry]) {
+        
+        objc_removeAssociatedObjects(lineDraw);
+    }
+}
+
 - (void)drawChart
 {
     [super drawChart];
@@ -51,7 +59,7 @@
         
         if (!self.hadRenderer) {
             
-            [self.lineAnimations startAnimationWithDuration:.5f animationType:LineAnimationRiseType];
+            [self.lineAnimations startAnimationWithDuration:3.0f animationType:LineAnimationStrokeType];
         }
         else {
             
@@ -60,6 +68,17 @@
     }
     
     self.hadRenderer = YES;
+}
+
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(LineAnimationsType)type duration:(NSTimeInterval)duration
+{
+    [self.lineAnimations startAnimationWithDuration:duration animationType:type];
 }
 
 /** 绘制线 */
@@ -127,7 +146,7 @@
         
         for (NSInteger i = 0; i < [lineAbstract dataAry].count; i++) {
             
-            GGNumberRenderer * stringRenderer = [[GGNumberRenderer alloc] init];
+            GGNumberRenderer * stringRenderer = [self getNumberRenderer];
             stringRenderer.color = [lineAbstract stringColor];
             stringRenderer.toPoint = [lineAbstract points][i];
             stringRenderer.font = [lineAbstract stringFont];
@@ -180,6 +199,17 @@
             gradientLayer.locations = [lineAbstract locations];
         }
     }
+}
+
+/**
+ * 查价线响应
+ *
+ * @param touchPoint 触碰的点
+ * @return 返回横坐标
+ */
+- (CGFloat)queryPoint:(CGPoint)touchPoint
+{
+    return 0;
 }
 
 #pragma mark - Lazy

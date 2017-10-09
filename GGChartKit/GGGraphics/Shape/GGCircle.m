@@ -87,3 +87,23 @@ NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_
     
     return ary;
 }
+
+NSArray * GGPathCirclesStrokeAnimation(CGPoint * points, CGFloat radius, size_t size, NSArray * showIndex)
+{
+    NSMutableArray * array = [NSMutableArray array];
+    CGMutablePathRef ref = CGPathCreateMutable();
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        GGPathAddCircle(ref, GGCirclePointMake(points[i], 0));
+        GGPathAddCircle(ref, GGCirclePointMake(points[i], radius));
+        
+        CGPathRef path = CGPathCreateCopy(ref);
+        [array addObject:(__bridge id)path];
+        CGPathRelease(path);
+    }
+    
+    CGPathRelease(ref);
+    
+    return [NSArray arrayWithArray:array];
+}

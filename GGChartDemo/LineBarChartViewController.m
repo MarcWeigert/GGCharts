@@ -15,7 +15,6 @@
 @interface LineBarChartViewController ()
 
 @property (nonatomic) LineBarChart * lineBarChart;
-@property (nonatomic) LineBarDataSet * lineBarSet;
 
 @property (nonatomic, strong) BarData * barData1;
 @property (nonatomic, strong) BarData * barData2;
@@ -31,7 +30,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"LineBarChartView";
+    self.title = @"并列 堆叠 环绕";
     
     _barData1 = [[BarData alloc] init];
     _barData1.dataAry = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
@@ -56,7 +55,7 @@
     _lineData2.dataAry = @[@11.29, @-11.88, @11.46, @-13.30, @13.66, @3.23, @-3.48, @-3.51];
     
     LineBarDataSet * lineBarSet = [[LineBarDataSet alloc] init];
-    lineBarSet.insets = UIEdgeInsetsMake(30, 20, 30, 20);
+    lineBarSet.insets = UIEdgeInsetsMake(30, 40, 30, 40);
     lineBarSet.lineAry = @[_lineData1, _lineData2];
     lineBarSet.barAry = @[_barData1, _barData2];
     lineBarSet.updateNeedAnimation = YES;
@@ -81,68 +80,44 @@
     lineBarSet.gridConfig.rightNumberAxis.dataFormatter = @"%.0f";
     lineBarSet.gridConfig.rightNumberAxis.showQueryLable = YES;
     
-    _lineBarChart = [[LineBarChart alloc] initWithFrame:CGRectMake(20, 100, [UIScreen mainScreen].bounds.size.width - 40, 200)];
+    // LineBar Demo 1
+    _lineBarChart = [[LineBarChart alloc] initWithFrame:CGRectMake(5, 70, [UIScreen mainScreen].bounds.size.width - 10, 200)];
     _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
     [self.view addSubview:_lineBarChart];
     
-    
-    _lineBarSet = lineBarSet;
-    
-    
-    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundColor:[UIColor redColor]];
-    [btn setFrame:CGRectMake(10, 400, 100, 50)];
-    [btn setTitle:@"模拟数据一" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(analogDataFirst) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundColor:[UIColor redColor]];
-    [btn setFrame:CGRectMake(120, 400, 100, 50)];
-    [btn setTitle:@"模拟数据二" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(analogDataSecond) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-    
-    btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setBackgroundColor:[UIColor redColor]];
-    [btn setFrame:CGRectMake(230, 400, 100, 50)];
-    [btn setTitle:@"模拟数据三" forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(analogDataThird) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
-}
-
-- (void)analogDataFirst
-{
-    _barData1.dataAry = @[@-1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    _barData2.dataAry = @[@11.29, @11.88, @11.46, @-13.30, @13.66, @13.23, @13.48, @13.51];
-    
-    _lineData1.dataAry = @[@-1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    _lineData2.dataAry = @[@11.29, @-11.88, @11.46, @-13.30, @-13.66, @-3.23, @-3.48, @-3.51];
-    
+    // LineBar Demo 2
+    lineBarSet.lineBarMode = LineBarDrawPNHeapUp;
+    _lineBarChart = [[LineBarChart alloc] initWithFrame:CGRectMake(5, _lineBarChart.gg_bottom, [UIScreen mainScreen].bounds.size.width - 10, 200)];
+    _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
-}
-
-- (void)analogDataSecond
-{
-    _barData1.dataAry = @[@1.29, @-1.88, @1.46, @3.30, @3.66, @-3.23, @-3.48, @3.51];
-    _barData2.dataAry = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+    [self.view addSubview:_lineBarChart];
     
-    _lineData1.dataAry = @[@-1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    _lineData2.dataAry = @[@1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
+    BarData * barData3 = [[BarData alloc] init];
+    barData3.dataAry = @[@-11.29, @11.88, @-11.46, @13.30, @-13.66, @13.23, @-13.48, @13.51];
+    barData3.barWidth = 10;
+    barData3.barFillColor = __RGB_ORIGE;
     
+    // LineBar Demo 3
+    _barData1.roundNumber = @0;
+    _barData2.roundNumber = @0;
+    barData3.roundNumber = @0;
+    _lineData1.roundNumber = @0;
+    _lineData2.roundNumber = @0;
+    
+    _lineData1.stringFont = [UIFont systemFontOfSize:9];
+    _lineData1.dataFormatter = @"%.2f";
+    _lineData1.stringColor = __RGB_RED;
+    
+    lineBarSet.lineBarMode = LineBarDrawPNHeapUp;
+    lineBarSet.gridConfig.leftNumberAxis.dataFormatter = @"%.2f";
+    lineBarSet.gridConfig.rightNumberAxis.dataFormatter = @"%.2f";
+    lineBarSet.barAry = @[_barData1, _barData2, barData3];
+    
+    _lineBarChart = [[LineBarChart alloc] initWithFrame:CGRectMake(5, _lineBarChart.gg_bottom, [UIScreen mainScreen].bounds.size.width - 10, 200)];
+    _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
-}
-
-- (void)analogDataThird
-{
-    _barData1.dataAry = @[@-1.29, @-1.88, @-1.46, @-3.30, @-3.66, @-3.23, @-3.48, @-3.51];
-    _barData2.dataAry = @[@-11.29, @-11.88, @11.46, @-13.30, @-13.66, @13.23, @13.48, @13.51];
-    
-    _lineData1.dataAry = @[@-1.29, @-1.88, @1.46, @-3.30, @3.66, @3.23, @-3.48, @-3.51];
-    _lineData2.dataAry = @[@-11.29, @-11.88, @-11.46, @-13.30, @-13.66, @-3.23, @-3.48, @-3.51];
-    
-    [_lineBarChart drawLineBarChart];
+    [self.view addSubview:_lineBarChart];
 }
 
 @end

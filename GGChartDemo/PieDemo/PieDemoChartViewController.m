@@ -42,7 +42,7 @@
     
     PieData * pie = [[PieData alloc] init];
     pie.radiusRange = GGRadiusRangeMake(34, 34 + 59);
-    pie.showOutLableType = OutSideSelect;
+    pie.showOutLableType = OutSideShow;
     pie.roseType = RoseRadius;
     pie.dataAry = dataAry;
     pie.outSideLable.stringRatio = GGRatioCenterLeft;
@@ -98,6 +98,7 @@
     _pieChart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500)];
     _pieChart.pieDataSet = pieDataSet;
     [_pieChart drawPieChart];
+    [_pieChart startAnimationsWithType:RotationAnimation duration:.5f];
     
     [self.view addSubview:_pieChart];
     
@@ -122,6 +123,7 @@
     _pie.showOutLableType = OutSideShow;
     
     [_pieChart drawPieChart];
+    [_pieChart startAnimationsWithType:EjectAnimation duration:.5f];
 }
 
 - (void)analogDataSecond
@@ -129,6 +131,7 @@
     _pie.showOutLableType = OutSideSelect;
     
     [_pieChart drawPieChart];
+    [_pieChart startAnimationsWithType:RotationAnimation duration:.5f];
 }
 
 @end

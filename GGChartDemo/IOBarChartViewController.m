@@ -35,7 +35,7 @@
     
     _barData.dataFormatter = @"%.2f";
     _barData.stringColor = [UIColor blackColor];
-    _barData.stringFont = [UIFont systemFontOfSize:9];
+    _barData.stringFont = [UIFont systemFontOfSize:11];
     
     _barDataSet = [[BarDataSet alloc] init];
     _barDataSet.barAry = @[_barData];

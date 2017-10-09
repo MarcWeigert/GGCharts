@@ -42,7 +42,7 @@
     // 清空动画管理类
     [self.barAnimations resetAnimationManager];
     
-    for (NSInteger i = 0; i < [_barDrawConfig barAry].count; i++) {
+    for (NSInteger i = [_barDrawConfig barAry].count - 1; i >= 0; i--) {
         
         [self drawBarRectsWidthBar:[_barDrawConfig barAry][i] section:i];
         [self drawBarStringWithBar:[_barDrawConfig barAry][i]];
@@ -62,7 +62,7 @@
         }
         else {
         
-            [self.barAnimations startAnimationWithDuration:.5f animationType:AnimationChangeType];
+            [self.barAnimations startAnimationWithDuration:.25f animationType:AnimationChangeType];
         }
     }
     
@@ -180,6 +180,8 @@
             GGNumberRenderer * number = [self getNumberRenderer];
             number.offSetRatio = [barAbstract offSetRatio];
             number.format = [barAbstract dataFormatter];
+            number.color = [barAbstract stringColor];
+            number.font = [barAbstract stringFont];
             number.toNumber = [[barAbstract dataAry][i] floatValue];
             number.toPoint = CGPointMake(x + [barAbstract stringOffset].width, y + [barAbstract stringOffset].height);
             number.getNumberColorBlock = [_barDrawConfig stringColorForValue];

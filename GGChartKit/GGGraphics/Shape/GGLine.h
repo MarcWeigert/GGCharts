@@ -185,4 +185,8 @@ CG_EXTERN NSArray * GGPathLinesUpspringAnimation(CGPoint * points, size_t size, 
 
 CG_EXTERN NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y);
 
+CG_EXTERN NSArray * GGPathLinesStrokeAnimation(CGPoint * points, size_t size);
+
+CG_EXTERN NSArray * GGPathFillLinesStrokeAnimation(CGPoint * points, size_t size, CGFloat y);
+
 NS_ASSUME_NONNULL_END

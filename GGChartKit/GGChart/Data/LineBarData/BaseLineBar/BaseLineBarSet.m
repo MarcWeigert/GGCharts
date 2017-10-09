@@ -53,7 +53,6 @@
     [self configSubModelRectAndInsets];
     [self configGridSubModel];
     [self configLineAndAxisModel];
-    [self configQueryModel];
 }
 
 /**
@@ -62,7 +61,6 @@
 - (void)configSubModelRectAndInsets
 {
     self.gridConfig.insets = self.insets;
-    self.queryConfig.insets = self.insets;
 }
 
 /**
@@ -76,17 +74,6 @@
     self.gridConfig.rightNumberAxis.axisLine = GGRightLineRect(gridRect);
     self.gridConfig.bottomLableAxis.axisLine = GGBottomLineRect(gridRect);
     self.gridConfig.topLableAxis.axisLine = GGTopLineRect(gridRect);
-}
-
-/**
- * 设置查价层数据
- */
-- (void)configQueryModel
-{
-    self.queryConfig.leftNumberAxis = self.gridConfig.leftNumberAxis;
-    self.queryConfig.rightNumberAxis = self.gridConfig.rightNumberAxis;
-    self.queryConfig.bottomLableAxis = self.gridConfig.bottomLableAxis;
-    self.queryConfig.topLableAxis = self.gridConfig.topLableAxis;
 }
 
 /**
@@ -105,18 +92,49 @@
     // 区分左右折线数据
     NSMutableArray * leftDataAry = [NSMutableArray array];
     NSMutableArray * rightDataAry = [NSMutableArray array];
+    NSMutableArray * leftObjAry = [NSMutableArray array];
+    NSMutableArray * rightObjAry = [NSMutableArray array];
     
-    [baseLineArray enumerateObjectsUsingBlock:^(BaseLineBarData * obj, NSUInteger idx, BOOL * stop) {
+    for (BaseLineBarData * obj in baseLineArray) {
         
         if (obj.scalerMode == ScalerAxisLeft && obj.dataAry) {
             
             [leftDataAry addObject:obj.dataAry];
+            [leftObjAry addObject:obj];
         }
         else if (obj.scalerMode == ScalerAxisRight && obj.dataAry) {
             
             [rightDataAry addObject:obj.dataAry];
+            [rightObjAry addObject:obj];
         }
-    }];
+    }
+
+    if (self.lineBarMode == LineBarDrawHeapUp) {
+        
+       leftDataAry = [leftDataAry aryAddUp];
+       rightDataAry = [rightDataAry aryAddUp];
+    }
+    else if (self.lineBarMode == LineBarDrawPNHeapUp) {
+    
+       leftDataAry = [leftDataAry aryPNAddUp];
+       rightDataAry = [rightDataAry aryPNAddUp];
+    }
+    
+    if (self.lineBarMode == LineBarDrawPNHeapUp ||
+        self.lineBarMode == LineBarDrawHeapUp) {
+        
+        for (NSInteger i = 0; i < leftObjAry.count; i++) {
+            
+            BaseLineBarData * obj = leftObjAry[i];
+            obj.lineBarScaler.dataAry = leftDataAry[i];
+        }
+        
+        for (NSInteger i = 0; i < rightObjAry.count; i++) {
+            
+            BaseLineBarData * obj = rightObjAry[i];
+            obj.lineBarScaler.dataAry = rightDataAry[i];
+        }
+    }
     
     // 填充左轴极大极小值
     CGFloat leftMax = FLT_MIN, leftMin = FLT_MAX;
@@ -145,9 +163,17 @@
         
         BaseLineBarData * obj = baseLineArray[i];
         
-        if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
+        if (self.lineBarMode == LineBarDrawNomal) {
+            
+            obj.lineBarScaler.xRatio = 0;
+        }
+        else if (self.lineBarMode == LineBarDrawParallel) {      ///< 并列排列
             
             obj.lineBarScaler.xRatio = 1.0 / (baseLineArray.count + 1) * (i + 1);
+        }
+        else {
+            
+            obj.lineBarScaler.xRatio = .5f;
         }
         
         if (obj.scalerMode == ScalerAxisLeft) {
@@ -176,19 +202,6 @@
     }
     
     return _gridConfig;
-}
-
-/**
- * 折线图查价配置
- */
-- (LineBarQuery *)queryConfig
-{
-    if (_queryConfig == nil) {
-        
-        _queryConfig = [[LineBarQuery alloc] init];
-    }
-    
-    return _queryConfig;
 }
 
 @end

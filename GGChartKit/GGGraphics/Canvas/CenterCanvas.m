@@ -31,7 +31,7 @@
 - (void)drawCenterNumber
 {
     // 文字
-    GGNumberRenderer * numberRenderer = [[GGNumberRenderer alloc] init];
+    GGNumberRenderer * numberRenderer = [self getNumberRenderer];
     numberRenderer.offSetRatio = [[_centerConfig lable] stringRatio];
     numberRenderer.toPoint = [_centerConfig polygon].center;
     numberRenderer.toNumber = [[_centerConfig lable] number];

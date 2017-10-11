@@ -163,6 +163,7 @@
 - (CAGradientLayer *)getCAGradientEqualFrame
 {
     CAGradientLayer * gradientLayer = [self makeOrGetGradientCanvas];
+    gradientLayer.anchorPoint = CGPointMake(0, 0);
     gradientLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     [self addSublayer:gradientLayer];
     [self.visibleGradientLayers addObject:gradientLayer];

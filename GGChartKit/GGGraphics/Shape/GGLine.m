@@ -166,13 +166,13 @@ NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloa
     CGPathAddLineToPoint(ref, NULL, basePoints[0].x, y);
     [ary addObject:(__bridge id)ref];
     CGPathRelease(ref);
-//    
-//    ref = CGPathCreateMutable();
-//    CGPathAddLines(ref, NULL, points, size);
-//    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
-//    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
-//    [ary addObject:(__bridge id)ref];
-//    CGPathRelease(ref);
+    
+    ref = CGPathCreateMutable();
+    CGPathAddLines(ref, NULL, points, size);
+    CGPathAddLineToPoint(ref, NULL, points[size - 1].x, y);
+    CGPathAddLineToPoint(ref, NULL, points[0].x, y);
+    [ary addObject:(__bridge id)ref];
+    CGPathRelease(ref);
     
     return ary;
 }
@@ -187,6 +187,7 @@ NSArray * GGPathLinesStrokeAnimation(CGPoint * points, size_t size)
         if (i == 0) {
             
             CGPathMoveToPoint(ref, NULL, points[i].x, points[i].y);
+            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
         }
         else {
         
@@ -196,6 +197,7 @@ NSArray * GGPathLinesStrokeAnimation(CGPoint * points, size_t size)
         CGPathRef path = CGPathCreateCopy(ref);
         [array addObject:(__bridge id)path];
         CGPathRelease(path);
+        path = NULL;
     }
     
     CGPathRelease(ref);
@@ -207,28 +209,31 @@ CG_EXTERN NSArray * GGPathFillLinesStrokeAnimation(CGPoint * points, size_t size
 {
     NSMutableArray * array = [NSMutableArray array];
     CGMutablePathRef ref = CGPathCreateMutable();
+    CGPathMoveToPoint(ref, NULL, points[size - 1].x, points[size - 1].y);
+    
+    for (NSInteger i = size - 2; i >= 0; i--) {
+        
+        CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
+    }
     
     for (NSInteger i = 0; i < size; i++) {
         
-        if (i == 0) {
+        CGMutablePathRef path = CGPathCreateMutableCopy(ref);
+        CGPathAddLineToPoint(path, NULL, points[0].x, y);
+        CGPathAddLineToPoint(path, NULL, points[i].x, y);
+        CGPathAddLineToPoint(path, NULL, points[i].x, points[i].y);
+//        CGPathMoveToPoint(path, NULL, points[i].x, points[i].y);
+        
+        for (NSInteger j = i; j < size; j++) {
             
-            CGPathMoveToPoint(ref, NULL, points[i].x, points[i].y);
-        }
-        else {
-            
-            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
+            CGPathAddLineToPoint(path, NULL, points[j].x, points[j].y);
         }
         
-        CGMutablePathRef path = CGPathCreateMutableCopy(ref);
-        CGPathAddLineToPoint(path, NULL, points[i].x, y);
-        CGPathAddLineToPoint(path, NULL, points[0].x, y);
-        CGPathAddLineToPoint(path, NULL, points[0].x, points[0].y);
-        CGPathAddLineToPoint(path, NULL, points[0].x, y);
-        CGPathAddLineToPoint(path, NULL, points[i].x, y);
+//        CGPathAddLineToPoint(path, NULL, points[i].x, y);
         [array addObject:(__bridge id)path];
         CGPathRelease(path);
     }
-    
+
     CGPathRelease(ref);
     
     return [NSArray arrayWithArray:array];

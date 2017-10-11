@@ -60,7 +60,7 @@
     lineSet.insets = UIEdgeInsetsMake(15, 0, 15, 0);
     lineSet.lineAry = @[lineData];
     lineSet.idRatio = .1f;
-//    lineSet.updateNeedAnimation = YES;
+    lineSet.updateNeedAnimation = YES;
     
     /** 网格 */
     lineSet.gridConfig.lineColor = RGB(186, 167, 169);

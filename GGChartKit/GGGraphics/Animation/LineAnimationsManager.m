@@ -106,36 +106,70 @@
 {
     for (id <LineDrawAbstract> lineAbstract in self.lineAbstractAry) {
         
-        CAKeyframeAnimation * lineAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        lineAnimation.duration = duration;
-        lineAnimation.values = GGPathLinesStrokeAnimation([lineAbstract points], [lineAbstract dataAry].count);
-        [GET_ASSOCIATED(lineAbstract, lineLayer) addAnimation:lineAnimation forKey:@"lineStroke"];
+        CAShapeLayer * ggLineLayer = GET_ASSOCIATED(lineAbstract, lineLayer);
         
-        CAKeyframeAnimation * shapeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        shapeAnimation.duration = duration;
-        shapeAnimation.values = GGPathCirclesStrokeAnimation([lineAbstract points], [lineAbstract shapeRadius], [lineAbstract dataAry].count, nil);
-        [GET_ASSOCIATED(lineAbstract, lineShapeLayer) addAnimation:shapeAnimation forKey:@"shapeAnimation"];
+        CGRect fromRect = ggLineLayer.frame;
+//        fromRect.size.width = ;
+        fromRect.origin.x = ggLineLayer.frame.size.width;
+        CGRect toRect = ggLineLayer.frame;
         
-        CAKeyframeAnimation * fillAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        fillAnimation.duration = duration;
-        fillAnimation.values = GGPathFillLinesStrokeAnimation([lineAbstract points], [lineAbstract dataAry].count, [lineAbstract bottomYPix]);
-        [GET_ASSOCIATED(lineAbstract, lineFillLayer) addAnimation:fillAnimation forKey:@"fillAnimation"];
+        CABasicAnimation *frameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
+        frameAnimation.duration = duration;
+        frameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
+        frameAnimation.toValue = [NSValue valueWithCGRect:toRect];
+        frameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         
-        NSArray * numberRenderers = GET_ASSOCIATED(lineAbstract, lineNumberArray);
+        [ggLineLayer addAnimation:frameAnimation forKey:@"frameAnimation"];
+        [GET_ASSOCIATED(lineAbstract, lineShapeLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
+        [GET_ASSOCIATED(lineAbstract, lineFillLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
+        [GET_ASSOCIATED(lineAbstract, lineStringLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
         
-        for (NSInteger i = 0; i < numberRenderers.count; i++) {
-            
-            GGNumberRenderer * renderers = numberRenderers[i];
-            renderers.hidden = YES;
-            
-            [self performAfterDelay:i * duration / (numberRenderers.count - 1) block:^{
-                
-                renderers.hidden = NO;
-                
-                CALayer * layer = GET_ASSOCIATED(lineAbstract, lineStringLayer);
-                [layer setNeedsDisplay];
-            }];
-        }
+//        CABasicAnimation * lineAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+//        lineAnimation.duration = duration;
+//        lineAnimation.fromValue = @0;
+//        lineAnimation.toValue = @1;
+//        lineAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//        [GET_ASSOCIATED(lineAbstract, lineLayer) addAnimation:lineAnimation forKey:@"lineStroke"];
+//        
+//        CAGradientLayer * shapeGradientLayer = GET_ASSOCIATED(lineAbstract, lineShapeGradientLayer);
+//        CGRect fromRect = shapeGradientLayer.bounds;
+//        fromRect.size.width = 0;
+//        CGRect toRect = shapeGradientLayer.bounds;
+//        
+//        CABasicAnimation *shapeFrameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
+//        shapeFrameAnimation.duration = duration;
+//        shapeFrameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
+//        shapeFrameAnimation.toValue = [NSValue valueWithCGRect:toRect];
+//        shapeFrameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//        [shapeGradientLayer addAnimation:shapeFrameAnimation forKey:@"frameAnimations"];
+//
+//        CAGradientLayer * fillGradientLayer = GET_ASSOCIATED(lineAbstract, lineFillGradientLayer);
+//        fromRect = fillGradientLayer.bounds;
+//        fromRect.size.width = 0;
+//        toRect = fillGradientLayer.bounds;
+//        
+//        CABasicAnimation *frameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
+//        frameAnimation.duration = duration;
+//        frameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
+//        frameAnimation.toValue = [NSValue valueWithCGRect:toRect];
+//        frameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+//        [fillGradientLayer addAnimation:frameAnimation forKey:@"frameAnimations"];
+//        
+//        NSArray * numberRenderers = GET_ASSOCIATED(lineAbstract, lineNumberArray);
+//        
+//        for (NSInteger i = 0; i < numberRenderers.count; i++) {
+//            
+//            GGNumberRenderer * renderers = numberRenderers[i];
+//            renderers.hidden = YES;
+//            
+//            [self performAfterDelay:i * duration / (numberRenderers.count - 1) block:^{
+//                
+//                renderers.hidden = NO;
+//                
+//                CALayer * layer = GET_ASSOCIATED(lineAbstract, lineStringLayer);
+//                [layer setNeedsDisplay];
+//            }];
+//        }
     }
 }
 
@@ -193,7 +227,7 @@
             
             CAKeyframeAnimation * pointAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
             pointAnimation.duration = duration;
-            pointAnimation.values = GGPathCirclesUpspringAnimation(linePoints, [lineAbstract shapeRadius], size, bottomPix);
+            pointAnimation.values = GGPathCirclesUpspringAnimation(linePoints, [lineAbstract shapeRadius], size, bottomPix, [lineAbstract showShapeIndexSet]);
             [aniShapeLayer addAnimation:pointAnimation forKey:@"pointAnimation"];
         }
     }

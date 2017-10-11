@@ -64,7 +64,7 @@ NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t
     return ary;
 }
 
-NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y)
+NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y, NSSet <NSNumber *> * showIndex)
 {
     NSMutableArray * ary = [NSMutableArray array];
     
@@ -81,11 +81,58 @@ NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_
     CGPathRelease(ref);
     
     ref = CGPathCreateMutable();
-    GGPathAddCircles(ref, points, radius, size);
+    
+    if (showIndex != nil) {
+        
+        for (NSInteger i = 0; i < size; i++) {
+            
+            if ([showIndex containsObject:@(i)]) {
+                
+                GGPathAddCircle(ref, GGCirclePointMake(points[i], radius));
+            }
+            else {
+            
+                GGPathAddCircle(ref, GGCirclePointMake(points[i], 0));
+            }
+        }
+    }
+    else {
+    
+        GGPathAddCircles(ref, points, radius, size);
+    }
+    
     [ary addObject:(__bridge id)ref];
     CGPathRelease(ref);
     
     return ary;
+}
+
+NSArray * GGPathCirclesStrokeAnimationsPath(CGPoint * points, CGFloat radius, size_t size, NSArray * showIndex)
+{
+    CGMutablePathRef start = CGPathCreateMutable();
+    GGPathAddCircle(start, GGCirclePointMake(points[0], 0));
+    GGPathAddCircle(start, GGCirclePointMake(points[0], 0));
+    
+//    for (NSInteger i = 0; i < size; i++) {
+//        
+//        GGPathAddCircle(start, GGCirclePointMake(points[i], 0));
+//        GGPathAddCircle(start, GGCirclePointMake(points[i], 0));
+//    }
+    
+    CGMutablePathRef end = CGPathCreateMutable();
+    
+    for (NSInteger i = 0; i < size; i++) {
+        
+        GGPathAddCircle(end, GGCirclePointMake(points[i], 0));
+        GGPathAddCircle(end, GGCirclePointMake(points[i], radius));
+    }
+    
+    NSArray * array = @[(__bridge id)start, (__bridge id)end];
+    
+    CGPathRelease(start);
+    CGPathRelease(end);
+    
+    return array;
 }
 
 NSArray * GGPathCirclesStrokeAnimation(CGPoint * points, CGFloat radius, size_t size, NSArray * showIndex)
@@ -105,5 +152,5 @@ NSArray * GGPathCirclesStrokeAnimation(CGPoint * points, CGFloat radius, size_t 
     
     CGPathRelease(ref);
     
-    return [NSArray arrayWithArray:array];
+    return array;// @[(__bridge id)ref];
 }

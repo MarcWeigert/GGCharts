@@ -150,8 +150,11 @@ static const void * barStringLayer = @"barStringLayer";
  */
 static const void * lineLayer = @"lineLayer";
 static const void * lineShapeLayer = @"lineShapeLayer";
+static const void * lineShapeGradientLayer = @"lineShapeGradientLayer";
 static const void * lineFillLayer = @"lineFillLayer";
+static const void * lineFillGradientLayer = @"lineFillGradientLayer";
 static const void * lineStringLayer = @"lineStringLayer";
+static const void * lineStringGradientLayer = @"lineStringGradientLayer";
 static const void * lineNumberArray = @"lineNumberArray";
 
 /**

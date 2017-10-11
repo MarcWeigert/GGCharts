@@ -59,7 +59,7 @@
         
         if (!self.hadRenderer) {
             
-            [self.lineAnimations startAnimationWithDuration:3.0f animationType:LineAnimationStrokeType];
+            [self.lineAnimations startAnimationWithDuration:.5f animationType:LineAnimationRiseType];
         }
         else {
             

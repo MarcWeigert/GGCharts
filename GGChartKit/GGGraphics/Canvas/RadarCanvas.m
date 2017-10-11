@@ -48,7 +48,7 @@ static const void * radarLayer = @"radarLayer";
     _topCanvas.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
 }
 
-- (void)setRadarDrawConfig:(id <RadarAbstract, RadarSetAbstract>)radarDrawConfig
+- (void)setRadarDrawConfig:(id <RadarSetAbstract>)radarDrawConfig
 {
     _radarDrawConfig = radarDrawConfig;
     
@@ -59,7 +59,9 @@ static const void * radarLayer = @"radarLayer";
     _polyRenderer.stringFont = radarDrawConfig.titleFont;
     _polyRenderer.titles = radarDrawConfig.titles;
     _polyRenderer.isPiece = YES;
-    _polyRenderer.titleSpacing = 5;
+    _polyRenderer.titleSpacing = [radarDrawConfig titleSpacing];
+    _polyRenderer.isCircle = [radarDrawConfig isCirlre];
+    _polyRenderer.borderWidth = [radarDrawConfig borderWidth];
 }
 
 /** 更新视图 */
@@ -79,34 +81,96 @@ static const void * radarLayer = @"radarLayer";
         
         id <RadarAbstract> drawData = _radarDrawConfig.radarSet[i];
         
-        DRadarScaler * dataScaler = [[DRadarScaler alloc] init];
-        dataScaler.polygon = _polyRenderer.polygon;
-        dataScaler.radarProportions = drawData.ratios;
-        [dataScaler updateScaler];
+        [self drawRadarLineLayer:drawData];
+        [self drawRadarFillLayer:drawData];
+        [self drawRadarShapeLayer:drawData];
+    }
+    
+    [self addSublayer:_topCanvas];
+}
+
+/**
+ * 绘制雷达小圆点
+ */
+- (void)drawRadarShapeLayer:(id <RadarAbstract>)drawData
+{
+    if ([drawData shapeRadius] > 0) {
         
         GGShapeCanvas * shapeCanvas = [self getGGShapeCanvasEqualFrame];
-        shapeCanvas.fillColor = [drawData fillColor].CGColor;
         shapeCanvas.strokeColor = [drawData strockColor].CGColor;
-        shapeCanvas.lineWidth = [drawData lineWidth];
+        shapeCanvas.lineWidth = [drawData shapeLineWidth];
+        shapeCanvas.fillColor = [drawData shapeFillColor].CGColor;
         
         CGMutablePathRef ref = CGPathCreateMutable();
-        GGPathAddPoints(ref, dataScaler.radarPoints, dataScaler.radarProportions.count);
+        
+        for (NSInteger i = 0; i < [drawData datas].count; i++) {
+            
+            GGPathAddCircle(ref, GGCirclePointMake([drawData points][i], [drawData shapeRadius]));
+        }
+        
+        shapeCanvas.path = ref;
+        CGPathRelease(ref);
+    }
+}
+
+/**
+ * 绘制雷达分割线
+ */
+- (void)drawRadarLineLayer:(id <RadarAbstract>)drawData
+{
+    if ([drawData lineWidth] > 0) {
+        
+        GGShapeCanvas * shapeCanvas = [self getGGShapeCanvasEqualFrame];
+        shapeCanvas.strokeColor = [drawData strockColor].CGColor;
+        shapeCanvas.lineWidth = [drawData lineWidth];
+        shapeCanvas.fillColor = [UIColor clearColor].CGColor;
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGPathAddPoints(ref, [drawData points], [drawData datas].count);
+        CGPathCloseSubpath(ref);
+        shapeCanvas.path = ref;
+        CGPathRelease(ref);
+    }
+}
+
+/**
+ * 绘制填充色
+ */
+- (void)drawRadarFillLayer:(id <RadarAbstract>)drawData
+{
+    if ([drawData fillColor] || [drawData gradientColors].count > 0) {
+        
+        GGCanvas * baseCanvas = [self getCanvasEqualFrame];
+        GGShapeCanvas * shapeCanvas = [baseCanvas getGGShapeCanvasEqualFrame];;
+        shapeCanvas.lineWidth = 0;
+        
+        CGMutablePathRef ref = CGPathCreateMutable();
+        GGPathAddPoints(ref, [drawData points], [drawData datas].count);
         CGPathCloseSubpath(ref);
         shapeCanvas.path = ref;
         CGPathRelease(ref);
         
-        SET_ASSOCIATED_ASSIGN(drawData, radarLayer, shapeCanvas);
+        [shapeCanvas removeFromSuperlayer];
+        CAGradientLayer * gradientLayer = [baseCanvas getCAGradientEqualFrame];
+        gradientLayer.mask = shapeCanvas;
         
         if ([drawData gradientColors].count > 0) {
             
-            CAGradientLayer * gradientLayer = [self getCAGradientEqualFrame];
-            gradientLayer.mask = shapeCanvas;
+            CGFloat startRatio = _polyRenderer.polygon.center.y - _polyRenderer.polygon.radius;
+            CGFloat endRatio = _polyRenderer.polygon.center.y + _polyRenderer.polygon.radius;
+            
             gradientLayer.colors = [drawData gradientColors];
             gradientLayer.locations = [drawData locations];
+            gradientLayer.startPoint = CGPointMake(.5f, startRatio / self.gg_height);
+            gradientLayer.endPoint = CGPointMake(.5f, endRatio / self.gg_height);
         }
+        else {
+        
+            gradientLayer.backgroundColor = [drawData fillColor].CGColor;
+        }
+        
+        SET_ASSOCIATED_ASSIGN(drawData, radarLayer, shapeCanvas);
     }
-    
-    [self addSublayer:_topCanvas];
 }
 
 /** 动画 */

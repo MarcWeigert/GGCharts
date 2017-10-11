@@ -17,7 +17,26 @@
 
 @property (nonatomic, strong) UIColor *strockColor;
 
-@property (nonatomic, strong) NSArray <NSNumber *> *ratios;
+@property (nonatomic, strong) NSArray <NSNumber *> *datas;    ///< 数据源
+
+@property (nonatomic, assign, readonly) CGPoint * points;
+
+#pragma mark - 折线关键点配置
+
+/**
+ * 折线关键点半径
+ */
+@property (nonatomic, assign, readonly) CGFloat shapeRadius;
+
+/**
+ * 折线关键点填充色
+ */
+@property (nonatomic, strong, readonly) UIColor * shapeFillColor;
+
+/**
+ * 折线线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat shapeLineWidth;
 
 #pragma mark - Gradient
 

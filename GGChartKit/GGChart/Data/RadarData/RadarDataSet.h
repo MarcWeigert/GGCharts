@@ -26,6 +26,20 @@
 
 @property (nonatomic, assign) CGFloat radius;       ///< 雷达图半径
 
+@property (nonatomic, assign) CGFloat titleSpacing;
+
+@property (nonatomic, assign) CGFloat borderWidth;
+
+/**
+ * 是否背景为圆形
+ */
+@property (nonatomic, assign) BOOL isCirlre;
+
 @property (nonatomic, strong) UIColor * stringColor;
+
+/**
+ * 折线图更新数据, 绘制前配置
+ */
+- (void)updateChartConfigs:(CGRect)rect;
 
 @end

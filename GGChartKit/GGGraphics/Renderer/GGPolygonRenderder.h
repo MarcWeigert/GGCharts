@@ -14,7 +14,13 @@
 
 @property (nonatomic, assign) GGPolygon polygon;    ///< 多边形结构体
 
+/**
+ * 是否绘制圆形
+ */
+@property (nonatomic, assign) BOOL isCircle;
+
 @property (nonatomic, assign) CGFloat width;            ///< 线宽
+@property (nonatomic, assign) CGFloat borderWidth;
 @property (nonatomic, strong) UIColor * strockColor;        ///< 绘制颜色
 @property (nonatomic, strong) UIColor * fillColor;      ///< 填充颜色
 

@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DRadarScaler.h"
 
 @interface RadarData : NSObject
+
+@property (nonatomic, strong, readonly) DRadarScaler * radarScaler;
 
 @property (nonatomic, assign) CGFloat lineWidth;        ///< 线宽
 
@@ -19,6 +22,23 @@
 @property (nonatomic, assign) CGFloat baseRatio;        ///< 基础长度比例
 
 @property (nonatomic, strong) NSArray <NSNumber *> *datas;    ///< 数据源
+
+#pragma mark - 折线关键点配置
+
+/**
+ * 折线关键点半径
+ */
+@property (nonatomic, assign) CGFloat shapeRadius;
+
+/**
+ * 折线关键点填充色
+ */
+@property (nonatomic, strong) UIColor * shapeFillColor;
+
+/**
+ * 折线线宽
+ */
+@property (nonatomic, assign) CGFloat shapeLineWidth;
 
 #pragma mark - Gradient
 

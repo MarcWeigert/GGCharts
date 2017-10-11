@@ -12,7 +12,7 @@
 
 @interface RadarCanvas : GGCanvas
 
-@property (nonatomic, strong) id <RadarAbstract, RadarSetAbstract> radarDrawConfig;     ///< 绘制配置
+@property (nonatomic, strong) id <RadarSetAbstract> radarDrawConfig;     ///< 绘制配置
 
 @property (nonatomic, strong, readonly) GGCanvas * topCanvas;
 

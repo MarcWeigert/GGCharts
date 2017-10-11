@@ -19,7 +19,19 @@
 
 @implementation RadarDataSet
 
-- (void)setIndicatorSet:(NSArray<RadarIndicatorData *> *)indicatorSet
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        _titleSpacing = 10;
+    }
+    
+    return self;
+}
+
+- (void)setIndicatorSet:(NSArray <RadarIndicatorData *> *)indicatorSet
 {
     _indicatorSet = indicatorSet;
     
@@ -36,9 +48,13 @@
     _maxAry = [NSArray arrayWithArray:maxAry];
 }
 
-- (void)setRadarSet:(NSArray<RadarData <RadarAbstract> *> *)radarSet
+/**
+ * 折线图更新数据, 绘制前配置
+ */
+- (void)updateChartConfigs:(CGRect)rect
 {
-    _radarSet = radarSet;
+    CGPoint center = CGPointMake(rect.size.width / 2, rect.size.height / 2);
+    GGPolygon ploygon = GGPolygonMake(_radius, center.x, center.y, _indicatorSet.count, 0);
     
     [_radarSet enumerateObjectsUsingBlock:^(RadarData <RadarAbstract> * obj, NSUInteger idx, BOOL * stop) {
         
@@ -54,12 +70,14 @@
                 [aryRadar addObject:@(obj.baseRatio)];
             }
             else {
-            
+                
                 [aryRadar addObject:@(number.floatValue / _maxAry[idx].floatValue * (1 - obj.baseRatio) + obj.baseRatio)];
             }
         }];
         
-        obj.ratios = aryRadar;
+        obj.radarScaler.radarProportions = aryRadar;
+        obj.radarScaler.polygon = ploygon;
+        [obj.radarScaler updateScaler];
     }];
 }
 

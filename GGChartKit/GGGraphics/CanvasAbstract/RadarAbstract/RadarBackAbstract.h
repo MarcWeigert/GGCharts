@@ -23,7 +23,16 @@
 
 @property (nonatomic, assign) CGFloat lineWidth;
 
+@property (nonatomic, assign) CGFloat borderWidth;
+
 @property (nonatomic, assign) CGFloat radius;
+
+@property (nonatomic, assign) CGFloat titleSpacing;
+
+/**
+ * 是否背景为圆形
+ */
+@property (nonatomic, assign) BOOL isCirlre;
 
 @property (nonatomic, assign, readonly) NSInteger side;
 

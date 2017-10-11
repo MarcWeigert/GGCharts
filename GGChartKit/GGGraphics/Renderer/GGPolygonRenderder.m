@@ -18,9 +18,12 @@
     CGMutablePathRef ref = CGPathCreateMutable();
     
     CGContextBeginPath(ctx);
-    GGPathAddGGPolygon(ref, _polygon);
+    CGContextSetLineWidth(ctx, _borderWidth > 0 ? _borderWidth : _width);
+    _isCircle ? GGPathAddCircle(ref, GGCirclePointMake(_polygon.center, _polygon.radius)) : GGPathAddGGPolygon(ref, _polygon);
     CGContextAddPath(ctx, ref);
     CGContextStrokePath(ctx);
+    
+    CGContextSetLineWidth(ctx, _width);
     
     if (_fillColor) {
         
@@ -50,7 +53,7 @@
             
             CGMutablePathRef refSplit = CGPathCreateMutable();
             polygon.radius -= splitMove;
-            GGPathAddGGPolygon(refSplit, polygon);
+            _isCircle ? GGPathAddCircle(refSplit, GGCirclePointMake(polygon.center, polygon.radius)) : GGPathAddGGPolygon(refSplit, polygon);
             [paths addObject:(__bridge id)refSplit];
             CGPathRelease(refSplit);
         }
@@ -68,7 +71,7 @@
         
         // 填充
         CGMutablePathRef refBorderPolygon = CGPathCreateMutable();
-        GGPathAddGGPolygon(refBorderPolygon, _polygon);
+        _isCircle ? GGPathAddCircle(refBorderPolygon, GGCirclePointMake(_polygon.center, _polygon.radius)) : GGPathAddGGPolygon(refBorderPolygon, _polygon);
         [paths insertObject:(__bridge id)refBorderPolygon atIndex:0];
         CGPathRelease(refBorderPolygon);
         

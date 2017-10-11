@@ -16,6 +16,7 @@
 #import "LineViewController.h"
 #import "EpsLineViewController.h"
 #import "PieDemoChartViewController.h"
+#import "RadarViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -53,6 +54,18 @@ _Pragma("clang diagnostic pop") \
     [self.view addSubview:_table];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 背景色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    // 导航栏字体
+    NSDictionary * dictionaryNavi = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    [self.navigationController.navigationBar setTitleTextAttributes:dictionaryNavi];
+}
+
 - (NSArray *)sectionAry
 {
     return @[@"Chart", @"StockChart"];
@@ -60,7 +73,7 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)rowAry
 {
-    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"PieDemoChartViewController", @"MDLineView", @"LineChartView", @"LineChartView2"], @[@"TimeChartView", @"KLineChartView"]];
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"PieDemoChartViewController", @"MDLineView", @"LineChartView", @"LineChartView2", @"RadarViewController"], @[@"TimeChartView", @"KLineChartView"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -140,6 +153,10 @@ _Pragma("clang diagnostic pop") \
     else if ([selectStr isEqualToString:@"PieDemoChartViewController"]) {
     
         [self.navigationController pushViewController:[PieDemoChartViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"RadarViewController"]) {
+    
+        [self.navigationController pushViewController:[RadarViewController new] animated:NO];
     }
     else {
     

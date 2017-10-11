@@ -10,21 +10,27 @@
 #import "RadarAbstract.h"
 
 @interface RadarData () <RadarAbstract>
-
-@property (nonatomic, strong) NSArray <NSNumber *> *ratiosAry;
+{
+    DRadarScaler * gg_radarScaler;
+}
 
 @end
 
 @implementation RadarData
 
-- (void)setRatios:(NSArray<NSNumber *> *)ratios
+- (CGPoint *)points
 {
-    _ratiosAry = ratios;
+    return self.radarScaler.radarPoints;
 }
 
-- (NSArray *)ratios
+- (DRadarScaler *)radarScaler
 {
-    return _ratiosAry;
+    if (gg_radarScaler == nil) {
+        
+        gg_radarScaler = [[DRadarScaler alloc] init];
+    }
+    
+    return gg_radarScaler;
 }
 
 @end

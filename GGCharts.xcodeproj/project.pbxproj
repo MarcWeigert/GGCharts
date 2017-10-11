@@ -118,6 +118,8 @@
 		2B6B23961F0C742C001D2B04 /* MinuteChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6B23951F0C742C001D2B04 /* MinuteChart.m */; };
 		2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */; };
 		2B6BB3071F4170B800DFF2B2 /* EpsLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */; };
+		2B6DE3A91F8DC8E4000D1B08 /* RadarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DE3A81F8DC8E4000D1B08 /* RadarViewController.m */; };
+		2B6DE3AD1F8DCAAB000D1B08 /* RadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DE3AC1F8DCAAB000D1B08 /* RadarChart.m */; };
 		2B6E24471F73B8540006DD3D /* NumberData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E24461F73B8540006DD3D /* NumberData.m */; };
 		2B6E244A1F73B9460006DD3D /* CenterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E24491F73B9460006DD3D /* CenterData.m */; };
 		2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF61F0B328B0085095C /* BaseStockChart.m */; };
@@ -303,9 +305,6 @@
 		2B3CFE991F75F5740097A869 /* PieDrawAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieDrawAbstract.h; sourceTree = "<group>"; };
 		2B3CFE9A1F75F5740097A869 /* PieInnerLableAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieInnerLableAbstract.h; sourceTree = "<group>"; };
 		2B3CFE9B1F75F5740097A869 /* PieOutSideLableAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieOutSideLableAbstract.h; sourceTree = "<group>"; };
-		2B3CFE9C1F75F5740097A869 /* RadarAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAbstract.h; sourceTree = "<group>"; };
-		2B3CFE9D1F75F5740097A869 /* RadarBackAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarBackAbstract.h; sourceTree = "<group>"; };
-		2B3CFE9E1F75F5740097A869 /* RadarSetAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
 		2B3CFEA11F75F5740097A869 /* BaseScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScaler.h; sourceTree = "<group>"; };
 		2B3CFEA21F75F5740097A869 /* BaseScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScaler.m; sourceTree = "<group>"; };
 		2B3CFEA31F75F5740097A869 /* BaseShapeScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseShapeScaler.h; sourceTree = "<group>"; };
@@ -377,6 +376,9 @@
 		2B3CFEEB1F75F5740097A869 /* GGSizeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSizeRange.m; sourceTree = "<group>"; };
 		2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_five_day.json; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B5B69911F8E01F200784C3C /* RadarAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAbstract.h; sourceTree = "<group>"; };
+		2B5B69921F8E01F200784C3C /* RadarBackAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarBackAbstract.h; sourceTree = "<group>"; };
+		2B5B69931F8E01F200784C3C /* RadarSetAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarSetAbstract.h; sourceTree = "<group>"; };
 		2B5DE6301F00BB9800B40676 /* KTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTimeViewController.h; sourceTree = "<group>"; };
 		2B5DE6311F00BB9800B40676 /* KTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTimeViewController.m; sourceTree = "<group>"; };
 		2B5DE6331F00BD0100B40676 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
@@ -407,6 +409,10 @@
 		2B6BB3031F416FF400DFF2B2 /* eps_line_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = eps_line_data.json; sourceTree = "<group>"; };
 		2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpsLineViewController.h; sourceTree = "<group>"; };
 		2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpsLineViewController.m; sourceTree = "<group>"; };
+		2B6DE3A71F8DC8E4000D1B08 /* RadarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarViewController.h; sourceTree = "<group>"; };
+		2B6DE3A81F8DC8E4000D1B08 /* RadarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarViewController.m; sourceTree = "<group>"; };
+		2B6DE3AB1F8DCAAB000D1B08 /* RadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarChart.h; sourceTree = "<group>"; };
+		2B6DE3AC1F8DCAAB000D1B08 /* RadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarChart.m; sourceTree = "<group>"; };
 		2B6E24451F73B8540006DD3D /* NumberData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberData.h; sourceTree = "<group>"; };
 		2B6E24461F73B8540006DD3D /* NumberData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberData.m; sourceTree = "<group>"; };
 		2B6E24481F73B9460006DD3D /* CenterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterData.h; sourceTree = "<group>"; };
@@ -535,6 +541,8 @@
 				2B9E98D71EEE8A0B00DF0889 /* MDLineViewController.m */,
 				2B6BB3051F4170B800DFF2B2 /* EpsLineViewController.h */,
 				2B6BB3061F4170B800DFF2B2 /* EpsLineViewController.m */,
+				2B6DE3A71F8DC8E4000D1B08 /* RadarViewController.h */,
+				2B6DE3A81F8DC8E4000D1B08 /* RadarViewController.m */,
 			);
 			path = GGChartDemo;
 			sourceTree = "<group>";
@@ -765,13 +773,11 @@
 		2B3CFE861F75F5740097A869 /* CanvasAbstract */ = {
 			isa = PBXGroup;
 			children = (
+				2B5B69901F8E01F200784C3C /* RadarAbstract */,
 				2B3CFE871F75F5740097A869 /* CenterAbstract */,
 				2B3CFE8A1F75F5740097A869 /* LineBarAbstract */,
 				2B3CFE911F75F5740097A869 /* LineBarBackAbstract */,
 				2B3CFE971F75F5740097A869 /* PieAbstract */,
-				2B3CFE9C1F75F5740097A869 /* RadarAbstract.h */,
-				2B3CFE9D1F75F5740097A869 /* RadarBackAbstract.h */,
-				2B3CFE9E1F75F5740097A869 /* RadarSetAbstract.h */,
 			);
 			path = CanvasAbstract;
 			sourceTree = "<group>";
@@ -935,6 +941,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2B5B69901F8E01F200784C3C /* RadarAbstract */ = {
+			isa = PBXGroup;
+			children = (
+				2B5B69911F8E01F200784C3C /* RadarAbstract.h */,
+				2B5B69921F8E01F200784C3C /* RadarBackAbstract.h */,
+				2B5B69931F8E01F200784C3C /* RadarSetAbstract.h */,
+			);
+			path = RadarAbstract;
+			sourceTree = "<group>";
+		};
 		2B6843061F612D1D00559001 /* LineBarGridData */ = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +990,15 @@
 				2B6974171F7A57A2002FF414 /* PieDemoChartViewController.m */,
 			);
 			path = PieDemo;
+			sourceTree = "<group>";
+		};
+		2B6DE3AA1F8DCA8B000D1B08 /* RadarChart */ = {
+			isa = PBXGroup;
+			children = (
+				2B6DE3AB1F8DCAAB000D1B08 /* RadarChart.h */,
+				2B6DE3AC1F8DCAAB000D1B08 /* RadarChart.m */,
+			);
+			path = RadarChart;
 			sourceTree = "<group>";
 		};
 		2B6E24411F73B7D70006DD3D /* CenterData */ = {
@@ -1131,6 +1156,7 @@
 			children = (
 				2B9788491F09D4E2002A2A3C /* BaseChart.h */,
 				2B97884A1F09D4E2002A2A3C /* BaseChart.m */,
+				2B6DE3AA1F8DCA8B000D1B08 /* RadarChart */,
 				2B8DE46B1F680618000F3DB4 /* LineBarChart */,
 				2B3CFDD51F75EB400097A869 /* PieChart */,
 			);
@@ -1215,7 +1241,7 @@
 				TargetAttributes = {
 					2B4D8A0B1D1BF2EB002CED37 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 38FAUWW58Q;
+						DevelopmentTeam = 5WN92HY6MP;
 					};
 				};
 			};
@@ -1324,6 +1350,7 @@
 				2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */,
 				2B3CFE631F75F4F80097A869 /* lutf8lib.c in Sources */,
 				2B3CFF111F75F5740097A869 /* GGArrow.m in Sources */,
+				2B6DE3AD1F8DCAAB000D1B08 /* RadarChart.m in Sources */,
 				2B68430F1F612D1D00559001 /* AxisName.m in Sources */,
 				2B3CFE5F1F75F4F80097A869 /* ltable.c in Sources */,
 				2B3CFE461F75F4F80097A869 /* lauxlib.c in Sources */,
@@ -1345,6 +1372,7 @@
 				2B3CFE5E1F75F4F80097A869 /* lstrlib.c in Sources */,
 				2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
+				2B6DE3A91F8DC8E4000D1B08 /* RadarViewController.m in Sources */,
 				2B3CFEF51F75F5740097A869 /* LineCanvas.m in Sources */,
 				2B3CFF031F75F5740097A869 /* NSDate+GGDate.m in Sources */,
 				2B8DE45D1F67A30E000F3DB4 /* LineDataSet.m in Sources */,
@@ -1530,7 +1558,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 38FAUWW58Q;
+				DEVELOPMENT_TEAM = 5WN92HY6MP;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1544,7 +1572,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 38FAUWW58Q;
+				DEVELOPMENT_TEAM = 5WN92HY6MP;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

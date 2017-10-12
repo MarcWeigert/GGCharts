@@ -91,7 +91,8 @@
         id obj = [self objectAtIndex:idx];
         double objNumber = .0f;
         
-        if (![obj isKindOfClass:[NSNumber class]]) {
+        if (![obj isKindOfClass:[NSNumber class]] &&
+            ![obj isKindOfClass:[NSString class]]) {
             
             IMP imp = [obj methodForSelector:getter];
             double (*objGetter)(id obj, SEL getter) = (void *)imp;
@@ -217,8 +218,8 @@
  */
 - (void)getKLineMax:(CGFloat *)max min:(CGFloat *)min range:(NSRange)range
 {
-    __block CGFloat chartMax = FLT_MIN;
-    __block CGFloat chartMin = FLT_MAX;
+    CGFloat chartMax = FLT_MIN;
+    CGFloat chartMin = FLT_MAX;
     
     NSInteger count = NSMaxRange(range);
     

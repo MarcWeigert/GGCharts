@@ -37,7 +37,7 @@
     progress1.value = 8.5;
     progress1.progressRadius = 88.5;
     progress1.centerLable.stringFormat = @"%.1f";
-    progress1.centerLable.lableFont = [UIFont systemFontOfSize:80];
+    progress1.centerLable.lableFont = [UIFont fontWithName:@"Helvetica-Light" size:80];
     progress1.centerLable.lableColor = C_HEX(0xCCCCCC);
     
     ProgressChart * chart1 = [[ProgressChart alloc] initWithFrame:CGRectZero];

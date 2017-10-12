@@ -10,6 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define radiansToDegrees(x) (180.0 * x / M_PI)   ///< 弧度转角度
+
+#define degreesToRadians(x) (x / 180.f * M_PI)   ///< 角度转弧度
+
 #pragma mark - GGRadiusRange
 
 struct GGRadiusRange
@@ -199,6 +203,17 @@ CG_EXTERN CGFloat GGPieGetMaxArc(GGPie pie);
 CG_EXTERN CGFloat GGPieGetMinArc(GGPie pie);
 
 #pragma mark - CGPath
+
+/**
+ * 绘制弧线
+ *
+ * @param ref 路径
+ * @param center 中心点
+ * @param radius 弧度
+ * @param start 开始弧度
+ * @param end 结束弧度
+ */
+CG_EXTERN void GGPathAddArc(CGMutablePathRef ref, CGPoint center, CGFloat radius, CGFloat start, CGFloat end);
 
 /**
  * 绘制扇形

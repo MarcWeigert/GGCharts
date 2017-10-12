@@ -35,6 +35,14 @@ typedef enum : NSUInteger {
 } PieAnimationType;
 
 /**
+ * 渐变曲线枚举
+ */
+typedef enum : NSUInteger {
+    GradientX,
+    GradientY,
+} GradientCurve;
+
+/**
  * 纯小数(-1 <= x <= 1)
  */
 #define PURE_DECIMAL(x)     (x - 1 > 0 ? 1 : (x - 1 < -2 ? -1 : x))

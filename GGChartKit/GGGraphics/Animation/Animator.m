@@ -92,6 +92,18 @@
 
 @implementation Animator
 
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+        self.animationType = AnimationLinear;
+    }
+    
+    return self;
+}
+
 - (void)setAnimationType:(AnimationType)animationType
 {
     _animationType = animationType;

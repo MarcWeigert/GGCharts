@@ -69,6 +69,27 @@ CGFloat GGPieGetMinArc(GGPie pie)
 #pragma mark - CGPath
 
 /**
+ * 绘制弧线
+ *
+ * @param ref 路径
+ * @param center 中心点
+ * @param radius 弧度
+ * @param start 开始弧度
+ * @param end 结束弧度
+ */
+void GGPathAddArc(CGMutablePathRef ref, CGPoint center, CGFloat radius, CGFloat start, CGFloat end)
+{
+    if (start == end) {
+        
+        GGPathAddCircle(ref, GGCirclePointMake(center, radius));
+    }
+    else {
+    
+        CGPathAddArc(ref, NULL, center.x, center.y, radius, start, end, false);
+    }
+}
+
+/**
  * 绘制扇形
  *
  * @param ref 路径

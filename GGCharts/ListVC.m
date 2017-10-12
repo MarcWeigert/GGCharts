@@ -17,6 +17,7 @@
 #import "EpsLineViewController.h"
 #import "PieDemoChartViewController.h"
 #import "RadarViewController.h"
+#import "ProgressViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
@@ -73,7 +74,7 @@ _Pragma("clang diagnostic pop") \
 
 - (NSArray *)rowAry
 {
-    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"PieDemoChartViewController", @"MDLineView", @"LineChartView", @"LineChartView2", @"RadarViewController"], @[@"TimeChartView", @"KLineChartView"]];
+    return @[@[@"IOBarChartView", @"LineBarChartView", @"NTPieView", @"PieDemoChartViewController", @"MDLineView", @"LineChartView", @"LineChartView2", @"RadarViewController", @"ProgressViewController"], @[@"TimeChartView", @"KLineChartView"]];
 }
 
 #pragma mark - tableView Delegate && DataSource
@@ -157,6 +158,10 @@ _Pragma("clang diagnostic pop") \
     else if ([selectStr isEqualToString:@"RadarViewController"]) {
     
         [self.navigationController pushViewController:[RadarViewController new] animated:NO];
+    }
+    else if ([selectStr isEqualToString:@"ProgressViewController"]) {
+        
+        [self.navigationController pushViewController:[ProgressViewController new] animated:NO];
     }
     else {
     

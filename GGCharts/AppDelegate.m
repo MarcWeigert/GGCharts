@@ -10,6 +10,10 @@
 #import "ListVC.h"
 #import "GGGraphics.h"
 
+#import "ProgressCanvas.h"
+
+#import "ProgressData.h"
+
 @interface AppDelegate ()
 
 @end
@@ -21,8 +25,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
-    
-    //    pie.dataAry = @[@10, @5, @15, @25, @20, @35, @30, @40];
     
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];

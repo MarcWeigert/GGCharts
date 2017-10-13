@@ -18,11 +18,6 @@
  */
 @property (nonatomic, assign, readonly) CGFloat number;
 
-/**
- * 富文本字符串
- */
-@property (nonatomic, copy, readonly) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
-
 @end
 
 @protocol CenterAbstract <NSObject>

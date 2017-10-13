@@ -42,4 +42,9 @@
  */
 @property (nonatomic, assign) CGSize stringOffSet;
 
+/**
+ * 富文本字符串
+ */
+@property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
+
 @end

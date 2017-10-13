@@ -107,6 +107,7 @@
     self.numbeRrenderer.offSet = [[_progressAbstract centerLable] stringOffSet];
     self.numbeRrenderer.format = [[_progressAbstract centerLable] stringFormat];
     self.numbeRrenderer.color = [[_progressAbstract centerLable] lableColor];
+    self.numbeRrenderer.attrbuteStringValueBlock = [[_progressAbstract centerLable] attrbuteStringValueBlock];
     [self.numbeRrenderer drawAtToNumberAndPoint];
     [self setNeedsDisplay];
 }

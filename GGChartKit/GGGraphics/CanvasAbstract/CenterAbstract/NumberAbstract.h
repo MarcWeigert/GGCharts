@@ -42,6 +42,13 @@
  */
 @property (nonatomic, assign, readonly) CGSize stringOffSet;
 
+@optional
+
+/**
+ * 富文本字符串
+ */
+@property (nonatomic, copy, readonly) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
+
 @end
 
 #endif /* NumberAbstract_h */

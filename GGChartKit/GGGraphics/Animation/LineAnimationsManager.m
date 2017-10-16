@@ -104,73 +104,26 @@
  */
 - (void)startStrokeAnimationWithDuration:(NSTimeInterval)duration
 {
-    for (id <LineDrawAbstract> lineAbstract in self.lineAbstractAry) {
-        
-        CAShapeLayer * ggLineLayer = GET_ASSOCIATED(lineAbstract, lineLayer);
-        
-        CGRect fromRect = ggLineLayer.frame;
-//        fromRect.size.width = ;
-        fromRect.origin.x = ggLineLayer.frame.size.width;
-        CGRect toRect = ggLineLayer.frame;
-        
-        CABasicAnimation *frameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-        frameAnimation.duration = duration;
-        frameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
-        frameAnimation.toValue = [NSValue valueWithCGRect:toRect];
-        frameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-        
-        [ggLineLayer addAnimation:frameAnimation forKey:@"frameAnimation"];
-        [GET_ASSOCIATED(lineAbstract, lineShapeLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
-        [GET_ASSOCIATED(lineAbstract, lineFillLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
-        [GET_ASSOCIATED(lineAbstract, lineStringLayer) addAnimation:frameAnimation forKey:@"frameAnimation"];
-        
-//        CABasicAnimation * lineAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-//        lineAnimation.duration = duration;
-//        lineAnimation.fromValue = @0;
-//        lineAnimation.toValue = @1;
-//        lineAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//        [GET_ASSOCIATED(lineAbstract, lineLayer) addAnimation:lineAnimation forKey:@"lineStroke"];
-//        
-//        CAGradientLayer * shapeGradientLayer = GET_ASSOCIATED(lineAbstract, lineShapeGradientLayer);
-//        CGRect fromRect = shapeGradientLayer.bounds;
-//        fromRect.size.width = 0;
-//        CGRect toRect = shapeGradientLayer.bounds;
-//        
-//        CABasicAnimation *shapeFrameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-//        shapeFrameAnimation.duration = duration;
-//        shapeFrameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
-//        shapeFrameAnimation.toValue = [NSValue valueWithCGRect:toRect];
-//        shapeFrameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//        [shapeGradientLayer addAnimation:shapeFrameAnimation forKey:@"frameAnimations"];
-//
-//        CAGradientLayer * fillGradientLayer = GET_ASSOCIATED(lineAbstract, lineFillGradientLayer);
-//        fromRect = fillGradientLayer.bounds;
-//        fromRect.size.width = 0;
-//        toRect = fillGradientLayer.bounds;
-//        
-//        CABasicAnimation *frameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
-//        frameAnimation.duration = duration;
-//        frameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
-//        frameAnimation.toValue = [NSValue valueWithCGRect:toRect];
-//        frameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-//        [fillGradientLayer addAnimation:frameAnimation forKey:@"frameAnimations"];
-//        
-//        NSArray * numberRenderers = GET_ASSOCIATED(lineAbstract, lineNumberArray);
-//        
-//        for (NSInteger i = 0; i < numberRenderers.count; i++) {
-//            
-//            GGNumberRenderer * renderers = numberRenderers[i];
-//            renderers.hidden = YES;
-//            
-//            [self performAfterDelay:i * duration / (numberRenderers.count - 1) block:^{
-//                
-//                renderers.hidden = NO;
-//                
-//                CALayer * layer = GET_ASSOCIATED(lineAbstract, lineStringLayer);
-//                [layer setNeedsDisplay];
-//            }];
-//        }
-    }
+    CGRect fromRect = self.baseLineLayer.frame;
+    fromRect.size.width = 0;
+    CGRect toRect = self.baseLineLayer.frame;
+    
+    CGPoint fromPosition = CGPointMake(0, self.baseLineLayer.gg_height / 2);
+    CGPoint toPosition = CGPointMake(self.baseLineLayer.gg_width / 2, self.baseLineLayer.gg_height / 2);
+    
+    CABasicAnimation *frameAnimation = [CABasicAnimation animationWithKeyPath:@"bounds"];
+    frameAnimation.duration = duration;
+    frameAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
+    frameAnimation.toValue = [NSValue valueWithCGRect:toRect];
+    frameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [self.baseLineLayer addAnimation:frameAnimation forKey:@"frameAnimation"];
+    
+    CABasicAnimation *positonAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+    positonAnimation.duration = duration;
+    positonAnimation.fromValue = [NSValue valueWithCGPoint:fromPosition];
+    positonAnimation.toValue = [NSValue valueWithCGPoint:toPosition];
+    positonAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    [self.baseLineLayer addAnimation:positonAnimation forKey:@"positonAnimation"];
 }
 
 /**

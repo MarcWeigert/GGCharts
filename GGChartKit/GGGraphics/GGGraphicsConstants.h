@@ -148,35 +148,35 @@ alpha:alphaValue]
 /**
  * 柱状图关联key
  */
-static const void * barUpLayer = @"barUpLayer";
-static const void * barDownLayer = @"barDownLayer";
-static const void * barNumberArray = @"barNumberArray";
-static const void * barStringLayer = @"barStringLayer";
+static const void * barUpLayer = (__bridge void *)@"barUpLayer";
+static const void * barDownLayer = (__bridge void *)@"barDownLayer";
+static const void * barNumberArray = (__bridge void *)@"barNumberArray";
+static const void * barStringLayer = (__bridge void *)@"barStringLayer";
 
 /**
  * 折线图关联key
  */
-static const void * lineLayer = @"lineLayer";
-static const void * lineShapeLayer = @"lineShapeLayer";
-static const void * lineShapeGradientLayer = @"lineShapeGradientLayer";
-static const void * lineFillLayer = @"lineFillLayer";
-static const void * lineFillGradientLayer = @"lineFillGradientLayer";
-static const void * lineStringLayer = @"lineStringLayer";
-static const void * lineStringGradientLayer = @"lineStringGradientLayer";
-static const void * lineNumberArray = @"lineNumberArray";
+static const void * lineLayer = (__bridge void *)@"lineLayer";
+static const void * lineShapeLayer = (__bridge void *)@"lineShapeLayer";
+static const void * lineShapeGradientLayer = (__bridge void *)@"lineShapeGradientLayer";
+static const void * lineFillLayer = (__bridge void *)@"lineFillLayer";
+static const void * lineFillGradientLayer = (__bridge void *)@"lineFillGradientLayer";
+static const void * lineStringLayer = (__bridge void *)@"lineStringLayer";
+static const void * lineStringGradientLayer = (__bridge void *)@"lineStringGradientLayer";
+static const void * lineNumberArray = (__bridge void *)@"lineNumberArray";
 
 /**
  * 扇形图关联key
  */
-static const void * pieShapeLayerArray = @"pieShapeLayerArray";
-static const void * pieBaseShapeLayer = @"pieBaseShapeLayer";
+static const void * pieShapeLayerArray = (__bridge void *)@"pieShapeLayerArray";
+static const void * pieBaseShapeLayer = (__bridge void *)@"pieBaseShapeLayer";
 
-static const void * pieOutSideLayerArray = @"pieOutSideLayerArray";
-static const void * pieOutSideNumberArray = @"pieOutSideNumberArray";
-static const void * pieOutSideLayer = @"pieOutSideLayer";
+static const void * pieOutSideLayerArray = (__bridge void *)@"pieOutSideLayerArray";
+static const void * pieOutSideNumberArray = (__bridge void *)@"pieOutSideNumberArray";
+static const void * pieOutSideLayer = (__bridge void *)@"pieOutSideLayer";
 
-static const void * pieInnerNumberArray = @"pieInnerNumberArray";
-static const void * pieInnerLayer = @"pieInnerLayer";
+static const void * pieInnerNumberArray = (__bridge void *)@"pieInnerNumberArray";
+static const void * pieInnerLayer = (__bridge void *)@"pieInnerLayer";
 
 /**
  * 关联对象(强引用)

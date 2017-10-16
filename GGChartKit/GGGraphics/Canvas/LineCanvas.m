@@ -54,6 +54,8 @@
         [self.lineAnimations registerLineDrawAbstract:lineDraw];
     }
     
+    self.lineAnimations.baseLineLayer = self;
+    
     // 启动动画
     if ([_lineDrawConfig updateNeedAnimation]) {
         

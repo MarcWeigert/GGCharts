@@ -15,6 +15,10 @@
  */
 @property (nonatomic, assign) CGRect drawRect;
 
+/**
+ * 最底层
+ */
+@property (nonatomic, weak) CALayer * baseLineLayer;
 
 /**
  * 注册折线图动画类

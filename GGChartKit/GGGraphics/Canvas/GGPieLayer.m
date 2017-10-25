@@ -9,6 +9,11 @@
 #import "GGPieLayer.h"
 #import "NSArray+Stock.h"
 
+typedef enum : NSUInteger {
+    LineStrokeStart,
+    LineStrokeEnd,
+} LineStrokeType;
+
 @interface GGPieLayer () <CAAnimationDelegate>
 
 /**
@@ -55,6 +60,11 @@
  * 旧扇形路径
  */
 @property (nonatomic, assign) GGPie oldPie;
+
+/**
+ * 对象
+ */
+@property (nonatomic, assign) LineStrokeType strokeType;
 
 @end
 
@@ -315,10 +325,6 @@
     [super drawInContext:ctx];
     
     CGContextSetLineWidth(ctx, 1.0f);
-    CGContextSetFillColorWithColor(ctx, _pieColor.CGColor);
-    CGContextSetStrokeColorWithColor(ctx, _pieColor.CGColor);
-    
-    [self drawArcInContext:ctx];
     
     if (!self.numberRenderer.hidden) {  // 隐藏外线则不绘制
         
@@ -350,6 +356,11 @@
         [self.numberRenderer startUpdateWithProgress:self.progress];
         [self.numberRenderer drawInContext:ctx];
     }
+    
+    CGContextSetFillColorWithColor(ctx, _pieColor.CGColor);
+    CGContextSetStrokeColorWithColor(ctx, _pieColor.CGColor);
+    
+    [self drawArcInContext:ctx];
 }
 
 #pragma mark - Animations
@@ -389,11 +400,50 @@
 }
 
 /**
+ * 扇形图伸展动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieOutRadiusLargeWithDuration:(NSTimeInterval)duration
+{
+    CGFloat radius_ratio = .1f;
+    CGFloat outSide = (_pie.radiusRange.outRadius - _pie.radiusRange.inRadius) * radius_ratio;
+    CGFloat maxWidth = _pie.radiusRange.outRadius + outSide;
+    
+    CABasicAnimation * basicAnimation = [CABasicAnimation animationWithKeyPath:@"outRadius"];
+    basicAnimation.fromValue = @(_outRadius);
+    basicAnimation.toValue = @(maxWidth);
+    _outRadius = maxWidth;
+    basicAnimation.duration = duration;
+    
+    [self addAnimation:basicAnimation forKey:@"basicLargeAnimation"];
+}
+
+/**
+ * 扇形图缩小动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieOutRadiusSmallWithDuration:(NSTimeInterval)duration
+{
+    CGFloat radius_ratio = .1f;
+    CGFloat outSide = (_pie.radiusRange.outRadius - _pie.radiusRange.inRadius) * radius_ratio;
+    CGFloat maxWidth = _pie.radiusRange.outRadius + outSide;
+    
+    CABasicAnimation * basicAnimation = [CABasicAnimation animationWithKeyPath:@"outRadius"];
+    basicAnimation.fromValue = @(maxWidth);
+    basicAnimation.toValue = @(_pie.radiusRange.outRadius);
+    basicAnimation.duration = duration;
+    _outRadius = _pie.radiusRange.outRadius;
+    [self addAnimation:basicAnimation forKey:@"basicSmallAnimation"];
+}
+
+/**
  * 扇形图曲线动画
  *
  * @param duration 动画时长
  */
-- (void)startPieLineStrokeAnimationWithDuration:(NSTimeInterval)duration
+- (void)startPieLineStrokeStartAnimationWithDuration:(NSTimeInterval)duration
 {
     CGFloat endRadius = [_outSideLable linePointRadius];
     CGFloat pieLineSpacing = [_outSideLable lineSpacing];
@@ -401,10 +451,29 @@
     CGFloat pieInflectionLength = [_outSideLable inflectionLength];
     CGFloat maxLineLength = _pie.radiusRange.outRadius + pieLineSpacing + pieLineLength;
     
+    self.strokeType = LineStrokeStart;
+    self.numberRenderer.hidden = NO;
+    
     CAKeyframeAnimation * keyPathFrameAnimations = [CAKeyframeAnimation animationWithKeyPath:@"linePath"];
     keyPathFrameAnimations.values = GGPieLineStretch(_pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
-    keyPathFrameAnimations.duration = duration;
-    [self addAnimation:keyPathFrameAnimations forKey:@"lineFrameAnimations"];
+    
+    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
+    groupAnimation.animations = @[keyPathFrameAnimations, [self basicProgerssAnimation]];
+    groupAnimation.duration = duration;
+    groupAnimation.delegate = self;
+    [self addAnimation:groupAnimation forKey:@"strokeStartGroupAnimation"];
+}
+
+/**
+ * 扇形图曲线动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieLineStrokeEndAnimationWithDuration:(NSTimeInterval)duration
+{
+    self.strokeType = LineStrokeEnd;
+    self.numberRenderer.hidden = YES;
+    [self setNeedsDisplay];
 }
 
 /**
@@ -489,9 +558,19 @@
     [self addAnimation:groupAnimation forKey:@"groupAnimation"];
 }
 
+#pragma mark - Animation Delegate
+
 - (void)animationDidStart:(CAAnimation *)anim
 {
     self.hidden = NO;
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    //if (flag) {
+        
+        self.numberRenderer.hidden = (self.strokeType == LineStrokeEnd);
+    //}
 }
 
 @end

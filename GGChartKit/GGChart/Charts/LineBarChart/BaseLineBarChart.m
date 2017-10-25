@@ -24,7 +24,7 @@
         
         _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressViewOnGesturer:)];
         _longPress.minimumPressDuration = [self minimumPressDuration];
-        //[self addGestureRecognizer:_longPress];
+        [self addGestureRecognizer:_longPress];
     }
     
     return self;

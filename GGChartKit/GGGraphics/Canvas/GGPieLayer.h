@@ -64,7 +64,28 @@
  *
  * @param duration 动画时长
  */
-- (void)startPieLineStrokeAnimationWithDuration:(NSTimeInterval)duration;
+- (void)startPieLineStrokeStartAnimationWithDuration:(NSTimeInterval)duration;
+
+/**
+ * 扇形图曲线动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieLineStrokeEndAnimationWithDuration:(NSTimeInterval)duration;
+
+/**
+ * 扇形图伸展动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieOutRadiusLargeWithDuration:(NSTimeInterval)duation;
+
+/**
+ * 扇形图缩小动画
+ *
+ * @param duration 动画时长
+ */
+- (void)startPieOutRadiusSmallWithDuration:(NSTimeInterval)duation;
 
 /**
  * 扇形图曲线动画

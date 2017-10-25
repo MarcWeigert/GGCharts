@@ -104,7 +104,7 @@
         pieLayer.numberRenderer.format = [[pieAbstract outSideLable] stringFormat];
         pieLayer.numberRenderer.color = [[pieAbstract outSideLable] lableColor];
         pieLayer.numberRenderer.font = [[pieAbstract outSideLable] lableFont];
-        pieLayer.numberRenderer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
+        pieLayer.numberRenderer.hidden = [pieAbstract showOutLableType] != OutSideShow;
         
         // 富文本字符
         if ([[pieAbstract outSideLable] attributeStringBlock]) {

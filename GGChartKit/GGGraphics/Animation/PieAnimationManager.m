@@ -87,57 +87,26 @@
 {
     id <PieDrawAbstract> pieAbstract = [_pieCanvasAbstract pieAry][indexPath.section];
     NSArray * pieLayersArray = GET_ASSOCIATED(pieAbstract, pieShapeLayerArray);
-    NSArray * pieLineLayersArray = GET_ASSOCIATED(pieAbstract, pieOutSideLayerArray);
-    GGCanvas * outBaseCanvas = GET_ASSOCIATED(pieAbstract, pieOutSideLayer);
-    NSArray * pieNumberArray = GET_ASSOCIATED(pieAbstract, pieOutSideNumberArray);
     
     if (_beforeIndexPath) {
         
-        GGShapeCanvas * beforeCanvas = pieLayersArray[_beforeIndexPath.row];
-        GGPie pie = [pieAbstract pies][_beforeIndexPath.row];
-        GGPie small_pie = GGPieCopyWithPie(pie);
-        small_pie.radiusRange.outRadius -= GGRadiusRangeGetRadius(pie.radiusRange) * .05f;
-        
-        NSMutableArray * beforePies = [NSMutableArray array];
-        [beforePies addObjectsFromArray:GGPieChange(_beforePie, small_pie, .2f)];
-        [beforePies addObjectsFromArray:GGPieChange(small_pie, pie, .05f)];
-        
-        GGPathKeyFrameAnimation(beforeCanvas, @"pieLargeAnimation", .25f, beforePies);
+        GGPieLayer * pieLayer = pieLayersArray[_beforeIndexPath.row];
+        [pieLayer startPieOutRadiusSmallWithDuration:.25f];
         
         if ([pieAbstract showOutLableType] == OutSideSelect) {
             
-            GGShapeCanvas * lineCanvas = pieLineLayersArray[_beforeIndexPath.row];
-            [self startLineAnimationWithLayer:lineCanvas pie:pie pieAbstract:pieAbstract show:NO];
-            
-            GGNumberRenderer * number = pieNumberArray[_beforeIndexPath.row];
-            number.hidden = YES;
-            [outBaseCanvas setNeedsDisplay];
+            [pieLayer startPieLineStrokeEndAnimationWithDuration:.25f];
         }
     }
     
     if (![_beforeIndexPath isEqual:indexPath]) {
-        
-        GGShapeCanvas * shapeCanvas = pieLayersArray[indexPath.row];
-        GGPie pie = [pieAbstract pies][indexPath.row];
-        GGPie large_pie = GGPieCopyWithPie(pie);
-        large_pie.radiusRange.outRadius += GGRadiusRangeGetRadius(pie.radiusRange) * .15f;
-        _beforePie = GGPieCopyWithPie(pie);
-        _beforePie.radiusRange.outRadius += GGRadiusRangeGetRadius(pie.radiusRange) * .1f;
-        
-        NSMutableArray * aryPies = [NSMutableArray array];
-        [aryPies addObjectsFromArray:GGPieChange(pie, large_pie, .2f)];
-        [aryPies addObjectsFromArray:GGPieChange(large_pie, _beforePie, .05f)];
-        
-        GGPathKeyFrameAnimation(shapeCanvas, @"pieSmallAnimation", .25f, aryPies);
+
+        GGPieLayer * pieLayer = pieLayersArray[indexPath.row];
+        [pieLayer startPieOutRadiusLargeWithDuration:.25f];
         
         if ([pieAbstract showOutLableType] == OutSideSelect) {
-            
-            GGShapeCanvas * lineCanvas = pieLineLayersArray[indexPath.row];
-            [self startLineAnimationWithLayer:lineCanvas pie:pie pieAbstract:pieAbstract show:YES];
-            
-            GGNumberRenderer * number = pieNumberArray[indexPath.row];
-            number.hidden = NO;
-            [outBaseCanvas setNeedsDisplay];
+
+            [pieLayer startPieLineStrokeStartAnimationWithDuration:.25f];
         }
         
         _beforeIndexPath = indexPath;

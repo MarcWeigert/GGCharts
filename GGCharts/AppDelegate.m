@@ -10,9 +10,8 @@
 #import "ListVC.h"
 #import "GGGraphics.h"
 
-#import "ProgressCanvas.h"
-
-#import "ProgressData.h"
+#import "PieChart.h"
+#import "GGPieLayer.h"
 
 @interface AppDelegate ()
 

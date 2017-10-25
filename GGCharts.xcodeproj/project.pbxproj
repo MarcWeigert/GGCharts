@@ -123,6 +123,7 @@
 		2B6DE3AD1F8DCAAB000D1B08 /* RadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6DE3AC1F8DCAAB000D1B08 /* RadarChart.m */; };
 		2B6E24471F73B8540006DD3D /* NumberData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E24461F73B8540006DD3D /* NumberData.m */; };
 		2B6E244A1F73B9460006DD3D /* CenterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E24491F73B9460006DD3D /* CenterData.m */; };
+		2B7070451F96E1020084A0FD /* GGPieLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7070441F96E1020084A0FD /* GGPieLayer.m */; };
 		2B72E1CB1F8EFE5E008E3214 /* ProgressLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B72E1CA1F8EFE5E008E3214 /* ProgressLable.m */; };
 		2B72E1CE1F8EFE7B008E3214 /* ProgressData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B72E1CD1F8EFE7B008E3214 /* ProgressData.m */; };
 		2B72E1D21F8F1179008E3214 /* ProgressChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B72E1D11F8F1179008E3214 /* ProgressChart.m */; };
@@ -425,6 +426,8 @@
 		2B6E24461F73B8540006DD3D /* NumberData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberData.m; sourceTree = "<group>"; };
 		2B6E24481F73B9460006DD3D /* CenterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterData.h; sourceTree = "<group>"; };
 		2B6E24491F73B9460006DD3D /* CenterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterData.m; sourceTree = "<group>"; };
+		2B7070431F96E1020084A0FD /* GGPieLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPieLayer.h; sourceTree = "<group>"; };
+		2B7070441F96E1020084A0FD /* GGPieLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPieLayer.m; sourceTree = "<group>"; };
 		2B72E1C91F8EFE5E008E3214 /* ProgressLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressLable.h; sourceTree = "<group>"; };
 		2B72E1CA1F8EFE5E008E3214 /* ProgressLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressLable.m; sourceTree = "<group>"; };
 		2B72E1CC1F8EFE7B008E3214 /* ProgressData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressData.h; sourceTree = "<group>"; };
@@ -786,6 +789,8 @@
 				2B3CFE851F75F5740097A869 /* RadarCanvas.m */,
 				2B5B69961F8E086500784C3C /* ProgressCanvas.h */,
 				2B5B69971F8E086500784C3C /* ProgressCanvas.m */,
+				2B7070431F96E1020084A0FD /* GGPieLayer.h */,
+				2B7070441F96E1020084A0FD /* GGPieLayer.m */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
@@ -1292,7 +1297,7 @@
 				TargetAttributes = {
 					2B4D8A0B1D1BF2EB002CED37 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 5WN92HY6MP;
+						DevelopmentTeam = 4Q6DMCF59Z;
 					};
 				};
 			};
@@ -1488,6 +1493,7 @@
 				2B72E1CE1F8EFE7B008E3214 /* ProgressData.m in Sources */,
 				2B3CFF0E1F75F5740097A869 /* GGStringRenderer.m in Sources */,
 				2B3CFF131F75F5740097A869 /* GGCircle.m in Sources */,
+				2B7070451F96E1020084A0FD /* GGPieLayer.m in Sources */,
 				2B72E1D21F8F1179008E3214 /* ProgressChart.m in Sources */,
 				2B3CFEEC1F75F5740097A869 /* Animator.m in Sources */,
 				2B6843111F612D1D00559001 /* XAxis.m in Sources */,
@@ -1614,7 +1620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5WN92HY6MP;
+				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1628,7 +1634,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5WN92HY6MP;
+				DEVELOPMENT_TEAM = 4Q6DMCF59Z;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				INFOPLIST_FILE = GGCharts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

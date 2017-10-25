@@ -86,7 +86,7 @@
     pieChart.pieDataSet = dataSet;
     
     [pieChart drawPieChart];
-    //[pieChart startAnimationsWithType:EjectAnimation duration:.5f];
+    [pieChart startAnimationsWithType:EjectAnimation duration:1.5f];
     
     [self.view addSubview:pieChart];
     

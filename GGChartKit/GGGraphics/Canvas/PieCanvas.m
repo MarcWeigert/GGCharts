@@ -32,8 +32,7 @@
     
     for (id <PieDrawAbstract> pieAbstract in [_pieCanvasConfig pieAry]) {
         
-        [self drawSpiderLineWithPie:pieAbstract];
-        [self drawPieChartWithPie:pieAbstract];
+        [self drawPieLayerWithPie:pieAbstract];
         [self drawInnerStringWithPie:pieAbstract];
     }
     
@@ -71,18 +70,18 @@
 }
 
 /**
- * 绘制扇形图
+ * 绘制扇形
  */
-- (void)drawPieChartWithPie:(id <PieDrawAbstract>)pieAbstract
+- (void)drawPieLayerWithPie:(id <PieDrawAbstract>)pieAbstract
 {
     NSMutableArray * pieAry = [NSMutableArray array];
     GGCanvas * baseCanvas = [self getCanvasEqualFrame];
     [baseCanvas drawChart];
+    SET_ASSOCIATED_ASSIGN(pieAbstract, pieBaseShapeLayer, baseCanvas);
     
     for (NSInteger i = 0; i < [pieAbstract dataAry].count; i++) {
         
         GGPie pie = [pieAbstract pies][i];
-        
         UIColor * pieColor = [UIColor blackColor];
         
         if ([pieAbstract pieColorsForIndex]) {
@@ -90,123 +89,54 @@
             pieColor = [pieAbstract pieColorsForIndex](i, [pieAbstract ratios][i]);
         }
         else if (![pieAbstract gradientColorsForIndex]) {
-        
-            GGLog(@"请实现扇形图Block: UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio) 或 NSArray <UIColor *> * (^gradientColorsForIndex)(NSInteger index)");
+            
+            GGLog(@"请实现扇形图Block: UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio) \
+                  或 NSArray <UIColor *> * (^gradientColorsForIndex)(NSInteger index)");
         }
         
-        GGShapeCanvas * shapeLayer = [baseCanvas getGGShapeCanvasEqualFrame];
-        shapeLayer.fillColor = pieColor.CGColor;
-        shapeLayer.lineWidth = 0;
-        [shapeLayer drawPie:pie];
-        [pieAry addObject:shapeLayer];
-
+        GGPieLayer * pieLayer = [baseCanvas getPieLayerEqualFrame];
+        pieLayer.pieColor = pieColor;
+        pieLayer.pie = pie;
+        pieLayer.showOutLableType = [pieAbstract showOutLableType];
+        pieLayer.outSideLable = [pieAbstract outSideLable];
+        pieLayer.numberRenderer.sum = [pieAbstract sum];
+        pieLayer.numberRenderer.toNumber = [[pieAbstract dataAry][i] floatValue];
+        pieLayer.numberRenderer.format = [[pieAbstract outSideLable] stringFormat];
+        pieLayer.numberRenderer.color = [[pieAbstract outSideLable] lableColor];
+        pieLayer.numberRenderer.font = [[pieAbstract outSideLable] lableFont];
+        pieLayer.numberRenderer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
+        
+        // 富文本字符
+        if ([[pieAbstract outSideLable] attributeStringBlock]) {
+            
+            [pieLayer.numberRenderer setAttrbuteStringValueAndRatioBlock:^NSAttributedString *(CGFloat value, CGFloat ratio) {
+                
+                return [[pieAbstract outSideLable] attributeStringBlock](i, value, ratio);
+            }];
+        }
+        
+        // 设置线颜色
+        if ([[pieAbstract outSideLable] lineColorsBlock]) {
+            
+            pieLayer.lineColor = [[pieAbstract outSideLable] lineColorsBlock](i, [[pieAbstract dataAry][i] floatValue]);
+        }
+        else {
+            
+            pieLayer.lineColor = pieColor;
+        }
+        
         // 设置渐变色
         if ([pieAbstract gradientColorsForIndex]) {
-         
-            NSArray * colors = [pieAbstract gradientColorsForIndex](i);
             
-            CAGradientLayer * gradientLayer = [baseCanvas getCAGradientEqualFrame];
-            gradientLayer.colors = [colors getCGColorsArray];
-            gradientLayer.startPoint = [pieAbstract gradientColorLine].start;
-            gradientLayer.endPoint = [pieAbstract gradientColorLine].end;
-            gradientLayer.locations = [pieAbstract gradientLocations];
-            gradientLayer.mask = shapeLayer;
-        }
-    }
-    
-    SET_ASSOCIATED_RETAIN(pieAbstract, pieShapeLayerArray, pieAry);
-    SET_ASSOCIATED_ASSIGN(pieAbstract, pieBaseShapeLayer, baseCanvas);
-}
-
-/**
- * 绘制边框外部
- */
-- (void)drawSpiderLineWithPie:(id <PieDrawAbstract>)pieAbstract
-{
-    if ([pieAbstract showOutLableType] == OutSideShow ||
-        [pieAbstract showOutLableType] == OutSideSelect) {
-        
-        GGCanvas * baseCanvas = [self getCanvasEqualFrame];
-        [baseCanvas drawChart];
-        [baseCanvas removeAllRenderer];
-        
-        NSMutableArray * aryLineLayers = [NSMutableArray array];
-        NSMutableArray * aryNumbers = [NSMutableArray array];
-        
-        for (NSInteger i = 0; i < [pieAbstract dataAry].count; i++) {
-            
-            UIColor * lineColor = [UIColor blackColor];
-            
-            if ([[pieAbstract outSideLable] lineColorsBlock]) {
-                
-                lineColor = [[pieAbstract outSideLable] lineColorsBlock](i, [pieAbstract ratios][i]);
-            }
-            else {
-            
-                GGLog(@"请实现扇形图外线Block: UIColor * (^lineColorsBlock)(NSInteger index, CGFloat ratio)");
-            }
-            
-            // 绘制折线
-            GGShapeCanvas * shapeLayer = [baseCanvas getGGShapeCanvasEqualFrame];
-            shapeLayer.lineWidth = [[pieAbstract outSideLable] lineWidth];
-            shapeLayer.strokeColor = lineColor.CGColor;
-            shapeLayer.fillColor = lineColor.CGColor;
-            
-            GGPie pie = [pieAbstract pies][i];
-            CGFloat pieLineSpacing = [[pieAbstract outSideLable] lineSpacing];
-            CGFloat pieLineLength = [[pieAbstract outSideLable] lineLength];
-            CGFloat pieInflectionLength = [[pieAbstract outSideLable] inflectionLength];
-            CGFloat maxLineLength = [pieAbstract radiusRange].outRadius + pieLineSpacing + pieLineLength;
-            
-            CGMutablePathRef ref = CGPathCreateMutable();
-            CGPoint end_pt = GGPathAddPieLine(ref, pie, maxLineLength, pieInflectionLength, [[pieAbstract outSideLable] linePointRadius], pieLineSpacing);
-            
-            if ([pieAbstract showOutLableType] == OutSideShow) {
-                
-                shapeLayer.path = ref;
-            }
-            
-            CGPathRelease(ref);
-            
-            CGFloat base = GGPieLineYCircular(pie) > 0 ? 1 : -1;
-            CGPoint offsetRadio = CGPointMake([[pieAbstract outSideLable] stringRatio].x * base, [[pieAbstract outSideLable] stringRatio].y);
-            CGSize size = CGSizeMake([[pieAbstract outSideLable] stringOffSet].width * base, [[pieAbstract outSideLable] stringOffSet].height);
-            
-            [aryLineLayers addObject:shapeLayer];
-            
-            // 折线文字
-            GGNumberRenderer * numberRenderer = [self getNumberRenderer];
-            numberRenderer.offSetRatio = offsetRadio;
-            numberRenderer.toPoint = end_pt;
-            numberRenderer.toNumber = [[pieAbstract dataAry][i] floatValue];
-            numberRenderer.format = [[pieAbstract outSideLable] stringFormat];
-            numberRenderer.color = [[pieAbstract outSideLable] lableColor];
-            numberRenderer.font = [[pieAbstract outSideLable] lableFont];
-            numberRenderer.offSet = size;
-            numberRenderer.sum = [pieAbstract sum];
-            numberRenderer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
-            [numberRenderer drawAtToNumberAndPoint];
-            [baseCanvas addRenderer:numberRenderer];
-            
-            // 富文本字符
-            if ([[pieAbstract outSideLable] attributeStringBlock]) {
-                
-                [numberRenderer setAttrbuteStringValueAndRatioBlock:^NSAttributedString *(CGFloat value, CGFloat ratio) {
-                    
-                    return [[pieAbstract outSideLable] attributeStringBlock](i, value, ratio);
-                }];
-            }
-            
-            shapeLayer.hidden = [pieAbstract showOutLableType] == OutSideSelect;
-            
-            [aryNumbers addObject:numberRenderer];
+            pieLayer.gradientColors = [pieAbstract gradientColorsForIndex](i);
+            pieLayer.gradientLocations = [pieAbstract gradientLocations];
         }
         
-        [baseCanvas setNeedsDisplay];
+        [pieLayer.numberRenderer drawAtToNumberAndPoint];
+        [pieLayer setNeedsDisplay];
+        [pieAry addObject:pieLayer];
         
-        SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideLayerArray, aryLineLayers);
-        SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideNumberArray, aryNumbers);
-        SET_ASSOCIATED_RETAIN(pieAbstract, pieOutSideLayer, baseCanvas);
+        SET_ASSOCIATED_RETAIN(pieAbstract, pieShapeLayerArray, [NSArray arrayWithArray:pieAry]);
     }
 }
 

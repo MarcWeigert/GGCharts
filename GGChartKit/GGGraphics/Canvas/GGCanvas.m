@@ -60,6 +60,16 @@
  */
 @property (nonatomic, strong) NSMutableArray <GGCanvas *> * idleCanvas;
 
+/**
+ * 显示的图层(普通)
+ */
+@property (nonatomic, strong) NSMutableArray <GGPieLayer *> * visiblePieLayer;
+
+/**
+ * 闲置的图层(普通)
+ */
+@property (nonatomic, strong) NSMutableArray <GGPieLayer *> * idlePieLayer;
+
 
 #pragma mark - Renderer
 
@@ -188,6 +198,39 @@
     return shape;
 }
 
+#pragma mark - GGPieLayer
+
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGPieLayer *)getPieLayerEqualFrame
+{
+    GGPieLayer * canvas = [self makeOrGetPieLayer];
+    canvas.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    [self addSublayer:canvas];
+    [self.visiblePieLayer addObject:canvas];
+    return canvas;
+}
+
+/**
+ * 扇形图
+ */
+- (GGPieLayer *)makeOrGetPieLayer
+{
+    GGPieLayer * shape = [self.idlePieLayer firstObject];
+    
+    if (shape == nil) {
+        
+        shape = [[GGPieLayer alloc] init];
+    }
+    else {
+        
+        [self.idlePieLayer removeObject:shape];
+    }
+    
+    return shape;
+}
+
 #pragma mark - Canvas
 
 /**
@@ -255,6 +298,16 @@
     }
     
     [self.visibleCanvas removeAllObjects];
+    
+    // PieLayer
+    [self.idlePieLayer addObjectsFromArray:self.visiblePieLayer];
+    
+    for (GGCanvas * obj in self.visiblePieLayer) {
+        
+        [obj removeFromSuperlayer];
+    }
+    
+    [self.visiblePieLayer removeAllObjects];
     
     // 渲染器
     [self.idleNumberRenderer addObjectsFromArray:self.visibleNumberRenderer];
@@ -378,5 +431,8 @@ GGLazyGetMethod(NSMutableArray, idleGradientLayers);
 
 GGLazyGetMethod(NSMutableArray, visibleCanvas);
 GGLazyGetMethod(NSMutableArray, idleCanvas);
+
+GGLazyGetMethod(NSMutableArray, visiblePieLayer);
+GGLazyGetMethod(NSMutableArray, idlePieLayer);
 
 @end

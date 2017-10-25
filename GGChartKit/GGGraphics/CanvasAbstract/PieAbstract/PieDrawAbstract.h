@@ -67,7 +67,7 @@ typedef enum : NSUInteger {
 /**
  * 颜色渐变曲线
  */
-@property (nonatomic, assign, readonly) GGLine gradientColorLine;
+@property (nonatomic, assign, readonly) GradientCurve gradientCurve;
 
 /**
  * 渐变色权重

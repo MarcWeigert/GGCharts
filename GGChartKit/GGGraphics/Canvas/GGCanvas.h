@@ -10,6 +10,7 @@
 #import "GGRenderProtocol.h"
 #import "GGShapeCanvas.h"
 #import "GGNumberRenderer.h"
+#import "GGPieLayer.h"
 
 @interface GGCanvas : CALayer
 
@@ -61,6 +62,10 @@
  */
 - (GGCanvas *)getCanvasEqualFrame;
 
+/**
+ * 取图层视图大小与Chart一致
+ */
+- (GGPieLayer *)getPieLayerEqualFrame;
 
 #pragma mark - 绘制
 

@@ -306,6 +306,8 @@ typedef enum : NSUInteger {
     CGPoint end_pt = GGGetLineEndPointArcMoveX(line_m, line2);
     CGRect circleRect = CGRectMake(end_pt.x - end_radius, end_pt.y - end_radius, end_radius * 2, end_radius * 2);
     
+    self.numberRenderer.toPoint = end_pt;
+    
     CGContextAddEllipseInRect(ctx, circleRect);
     CGContextFillPath(ctx);
     CGContextMoveToPoint(ctx, line_m.start.x, line_m.start.y);
@@ -313,8 +315,6 @@ typedef enum : NSUInteger {
     CGContextMoveToPoint(ctx, line_m.end.x, line_m.end.y);
     CGContextAddLineToPoint(ctx, end_pt.x, end_pt.y);
     CGContextStrokePath(ctx);
-    
-    self.numberRenderer.toPoint = end_pt;
 }
 
 /**
@@ -353,7 +353,8 @@ typedef enum : NSUInteger {
             self.numberRenderer.offSet = CGSizeMake([_outSideLable stringOffSet].width * base, [_outSideLable stringOffSet].height);
         }
         
-        [self.numberRenderer startUpdateWithProgress:self.progress];
+        [self.numberRenderer startUpdateNumberWithProgress:self.progress];
+        [self.numberRenderer drawAtToPoint];
         [self.numberRenderer drawInContext:ctx];
     }
     
@@ -451,8 +452,8 @@ typedef enum : NSUInteger {
     CGFloat pieInflectionLength = [_outSideLable inflectionLength];
     CGFloat maxLineLength = _pie.radiusRange.outRadius + pieLineSpacing + pieLineLength;
     
-    self.strokeType = LineStrokeStart;
-    self.numberRenderer.hidden = NO;
+    //self.strokeType = LineStrokeStart;
+    self.numberRenderer.hidden = !(_showOutLableType == OutSideSelect);
     
     CAKeyframeAnimation * keyPathFrameAnimations = [CAKeyframeAnimation animationWithKeyPath:@"linePath"];
     keyPathFrameAnimations.values = GGPieLineStretch(_pie, maxLineLength, pieInflectionLength, endRadius, pieLineSpacing);
@@ -472,7 +473,7 @@ typedef enum : NSUInteger {
 - (void)startPieLineStrokeEndAnimationWithDuration:(NSTimeInterval)duration
 {
     self.strokeType = LineStrokeEnd;
-    self.numberRenderer.hidden = YES;
+    self.numberRenderer.hidden = _showOutLableType != OutSideShow;;
     [self setNeedsDisplay];
 }
 
@@ -564,13 +565,13 @@ typedef enum : NSUInteger {
 {
     self.hidden = NO;
 }
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    //if (flag) {
-        
-        self.numberRenderer.hidden = (self.strokeType == LineStrokeEnd);
-    //}
-}
+//
+//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+//{
+//    //if (flag) {
+//        
+//        //self.numberRenderer.hidden = (self.strokeType == LineStrokeEnd);
+//    //}
+//}
 
 @end

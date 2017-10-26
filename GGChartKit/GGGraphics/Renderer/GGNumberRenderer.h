@@ -61,9 +61,24 @@
  */
 - (void)drawAtToNumberAndPoint;
 
+/**
+ * 绘制与终点
+ */
+- (void)drawAtToPoint;
+
 /** 
  * 绘制终点文字 
  */
 - (void)drawAtFromNumberAndPoint;
+
+/** 
+ * 更新点 
+ */
+- (void)startUpdatePointWithProgress:(CGFloat)progress;
+
+/** 
+ * 更新Number 
+ */
+- (void)startUpdateNumberWithProgress:(CGFloat)progress;
 
 @end

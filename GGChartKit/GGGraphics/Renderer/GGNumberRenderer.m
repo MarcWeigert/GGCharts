@@ -62,6 +62,14 @@
     }
 }
 
+/**
+ * 绘制与终点
+ */
+- (void)drawAtToPoint
+{
+    _currentPoint = _toPoint;
+}
+
 /** 绘制终点文字 */
 - (void)drawAtFromNumberAndPoint
 {
@@ -77,8 +85,24 @@
 /** 更新 */
 - (void)startUpdateWithProgress:(CGFloat)progress
 {
+    [self startUpdatePointWithProgress:progress];
+    [self startUpdateNumberWithProgress:progress];
+}
+
+/** 更新Number */
+- (void)startUpdateNumberWithProgress:(CGFloat)progress
+{
     _currentNumber = _fromNumber + (_toNumber - _fromNumber) * progress;
     
+    if (self.getNumberColorBlock) {
+        
+        [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];
+    }
+}
+
+/** 更新点 */
+- (void)startUpdatePointWithProgress:(CGFloat)progress
+{
     GGLine line = GGPointLineMake(_fromPoint, _toPoint);
     line = GGLineMoveStart(line, GGLengthLine(line) * progress);
     _currentPoint = line.start;
@@ -86,11 +110,6 @@
     if (self.drawPointBlock) {
         
         _currentPoint = self.drawPointBlock(progress);
-    }
-    
-    if (self.getNumberColorBlock) {
-        
-        [_param setObject:self.getNumberColorBlock(_currentNumber) forKey:NSForegroundColorAttributeName];
     }
 }
 

@@ -12,21 +12,6 @@
 #import "NSObject+FireBlock.h"
 #import "GGPieLayer.h"
 
-#pragma mark - NSIndexPath (PieIndexPath)
-
-@interface NSIndexPath (PieIndexPath)
-
-@end
-
-@implementation NSIndexPath(PieIndexPath)
-
-- (BOOL)isEqual:(id)object
-{
-    return (self.row == [object row] && self.section == [object section]);
-}
-
-@end
-
 #pragma mark - PieAnimationManager
 
 @interface PieAnimationManager ()
@@ -99,7 +84,9 @@
         }
     }
     
-    if (![_beforeIndexPath isEqual:indexPath]) {
+    if (_beforeIndexPath == nil ||
+        !(_beforeIndexPath.row == indexPath.row &&
+          _beforeIndexPath.section == indexPath.section)) {
 
         GGPieLayer * pieLayer = pieLayersArray[indexPath.row];
         [pieLayer startPieOutRadiusLargeWithDuration:.25f];

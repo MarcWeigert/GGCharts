@@ -107,7 +107,8 @@
                 
                 NSIndexPath * indexPath = [NSIndexPath indexPathForRow:j inSection:i];
                 
-                if (![_selectIndexPath isEqual:indexPath]) {
+                if (_selectIndexPath == nil || !(_selectIndexPath.row == indexPath.row &&
+                                                 _selectIndexPath.section == indexPath.section)) {
                     
                     [self.pieCanvas.pieAnimation startAnimationForIndexPath:indexPath];
                 }

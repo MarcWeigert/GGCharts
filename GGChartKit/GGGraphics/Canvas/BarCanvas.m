@@ -56,17 +56,24 @@
     // 启动动画
     if ([_barDrawConfig updateNeedAnimation]) {
         
-        if (!self.hadRenderer) {
+        if (self.hadRenderer) {
             
-            [self.barAnimations startAnimationWithDuration:.5f animationType:AnimationRiseType];
-        }
-        else {
-        
-            [self.barAnimations startAnimationWithDuration:.25f animationType:AnimationChangeType];
+            [self.barAnimations startAnimationWithDuration:.25f animationType:BarAnimationChangeType];
         }
     }
     
     self.hadRenderer = YES;
+}
+
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(BarAnimationsType)type duration:(NSTimeInterval)duration
+{
+    [self.barAnimations startAnimationWithDuration:duration animationType:type];
 }
 
 /**

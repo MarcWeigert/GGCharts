@@ -85,6 +85,8 @@
     _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
     [self.view addSubview:_lineBarChart];
+    [_lineBarChart startLineAnimationsWithType:LineAnimationRiseType duration:.8f];
+    [_lineBarChart startBarAnimationsWithType:BarAnimationRiseType duration:.8f];
     
     // LineBar Demo 2
     lineBarSet.lineBarMode = LineBarDrawPNHeapUp;
@@ -92,6 +94,8 @@
     _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
     [self.view addSubview:_lineBarChart];
+    [_lineBarChart startLineAnimationsWithType:arc4random() % 2 == 0 ? LineAnimationStrokeType : LineAnimationRiseType duration:.8f];
+    [_lineBarChart startBarAnimationsWithType:BarAnimationRiseType duration:.8f];
     
     BarData * barData3 = [[BarData alloc] init];
     barData3.dataAry = @[@-11.29, @11.88, @-11.46, @13.30, @-13.66, @13.23, @-13.48, @13.51];
@@ -118,6 +122,8 @@
     _lineBarChart.lineBarDataSet = lineBarSet;
     [_lineBarChart drawLineBarChart];
     [self.view addSubview:_lineBarChart];
+    [_lineBarChart startLineAnimationsWithType:LineAnimationStrokeType duration:.8f];
+    [_lineBarChart startBarAnimationsWithType:BarAnimationRiseType duration:.8f];
 }
 
 @end

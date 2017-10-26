@@ -22,8 +22,11 @@
 - (void)drawBarChart;
 
 /**
- * 开始动画
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
  */
-- (void)startAnimation:(NSTimeInterval)duration;
+- (void)startAnimationsWithType:(BarAnimationsType)type duration:(NSTimeInterval)duration;
 
 @end

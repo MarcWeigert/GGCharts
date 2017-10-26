@@ -103,6 +103,29 @@
     [_barCanvas drawChart];
 }
 
+/**
+ * 动画
+ *
+ * @param type 动画类型
+ * @param duration 动画时间
+ */
+- (void)startBarAnimationsWithType:(BarAnimationsType)type duration:(NSTimeInterval)duration
+{
+    [self.barCanvas startAnimationsWithType:type duration:duration];
+}
+
+
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startLineAnimationsWithType:(LineAnimationsType)type duration:(NSTimeInterval)duration
+{
+    [self.lineCanvas startAnimationsWithType:type duration:duration];
+}
+
 #pragma mark - 手势相应
 
 /**

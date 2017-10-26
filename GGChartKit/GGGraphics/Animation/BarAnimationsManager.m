@@ -51,13 +51,13 @@
  * @param 动画时长
  * @param 动画类型
  */
-- (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(AnimationsType)type
+- (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(BarAnimationsType)type
 {
-    if (type == AnimationRiseType) {
+    if (type == BarAnimationRiseType) {
         
         [self startRiseAnimationsWithDuration:duration];
     }
-    else if (type == AnimationChangeType) {
+    else if (type == BarAnimationChangeType) {
     
         [self startChangeAnimationWithDuration:duration];
     }

@@ -16,4 +16,12 @@
  */
 @property (nonatomic, strong) id <BarCanvasAbstract> barDrawConfig;
 
+/**
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(BarAnimationsType)type duration:(NSTimeInterval)duration;
+
 @end

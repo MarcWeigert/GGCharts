@@ -90,6 +90,17 @@
     [_lineCanvas drawChart];
 }
 
+/**
+ * 动画
+ *
+ * @param type 动画类型
+ * @param duration 动画时间
+ */
+- (void)startAnimationsWithType:(LineAnimationsType)type duration:(NSTimeInterval)duration
+{
+    [self.lineCanvas startAnimationsWithType:type duration:duration];
+}
+
 #pragma mark - 手势相应
 
 /**

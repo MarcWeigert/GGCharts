@@ -63,6 +63,7 @@
     [self.view addSubview:_barChart];
     
     [_barChart drawBarChart];
+    [_barChart startAnimationsWithType:BarAnimationRiseType duration:.5f];
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundColor:[UIColor redColor]];

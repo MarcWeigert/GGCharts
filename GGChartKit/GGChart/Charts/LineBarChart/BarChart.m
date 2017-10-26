@@ -92,11 +92,14 @@
 }
 
 /**
- * 启动动画
+ * 动画
+ *
+ * @param pieAnimationType 动画类型
+ * @param duration 动画时间
  */
-- (void)startAnimation:(NSTimeInterval)duration
+- (void)startAnimationsWithType:(BarAnimationsType)type duration:(NSTimeInterval)duration
 {
-    // [_barCanvas startAnimation:duration];
+    [self.barCanvas startAnimationsWithType:type duration:duration];
 }
 
 #pragma mark - 手势相应

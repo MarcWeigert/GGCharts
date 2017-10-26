@@ -12,9 +12,9 @@
  * 柱状图动画枚举
  */
 typedef enum : NSUInteger {
-    AnimationRiseType,
-    AnimationChangeType,
-} AnimationsType;
+    BarAnimationRiseType,
+    BarAnimationChangeType,
+} BarAnimationsType;
 
 /**
  * 折线图动画枚举

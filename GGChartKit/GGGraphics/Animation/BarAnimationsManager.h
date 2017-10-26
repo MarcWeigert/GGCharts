@@ -38,6 +38,6 @@
  * @param 动画时长
  * @param 动画类型
  */
-- (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(AnimationsType)type;
+- (void)startAnimationWithDuration:(NSTimeInterval)duration animationType:(BarAnimationsType)type;
 
 @end

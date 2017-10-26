@@ -15,6 +15,9 @@
 
 @interface LineViewController ()
 
+@property (nonatomic, strong) LineData * line;
+@property (nonatomic, strong) LineChart * lineChart;
+
 @end
 
 @implementation LineViewController
@@ -36,6 +39,7 @@
     line.locations = @[@0.7, @1];
     line.shapeLineWidth = 1;
     line.dashPattern = @[@2, @2];
+    _line = line;
     
     LineDataSet * lineSet = [[LineDataSet alloc] init];
     lineSet.insets = UIEdgeInsetsMake(30, 50, 30, 30);
@@ -61,6 +65,51 @@
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];
+    [lineChart startAnimationsWithType:LineAnimationRiseType duration:.5f];
+    _lineChart = lineChart;
+    
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(10, 400, 100, 50)];
+    [btn setTitle:@"模拟数据一" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataFirst) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(120, 400, 100, 50)];
+    [btn setTitle:@"模拟数据二" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataSecond) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    
+    btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundColor:[UIColor redColor]];
+    [btn setFrame:CGRectMake(230, 400, 100, 50)];
+    [btn setTitle:@"模拟数据三" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(analogDataThird) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+
+}
+
+- (void)analogDataFirst
+{
+    _line.dataAry = @[@48, @75, @15, @98, @12, @35];
+    
+    [_lineChart drawLineChart];
+}
+
+- (void)analogDataSecond
+{
+    _line.dataAry = @[@1, @3, @100, @50, @20, @65];
+    
+    [_lineChart drawLineChart];
+}
+
+- (void)analogDataThird
+{
+    _line.dataAry = @[@82, @56, @54, @87, @28, @40];
+    
+    [_lineChart drawLineChart];
 }
 
 - (void)didReceiveMemoryWarning

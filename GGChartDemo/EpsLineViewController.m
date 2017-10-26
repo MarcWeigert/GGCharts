@@ -124,6 +124,7 @@
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];
     [self.view addSubview:lineChart];
+    [lineChart startAnimationsWithType:LineAnimationStrokeType duration:.8f];
 }
 
 - (NSString *)epsStockDataJsonPath

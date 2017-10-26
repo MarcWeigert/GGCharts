@@ -59,13 +59,9 @@
     // 启动动画
     if ([_lineDrawConfig updateNeedAnimation]) {
         
-        if (!self.hadRenderer) {
+        if (self.hadRenderer) {
             
-            [self.lineAnimations startAnimationWithDuration:5.0 animationType:LineAnimationStrokeType];
-        }
-        else {
-            
-            [self.lineAnimations startAnimationWithDuration:.5f animationType:LineAnimationChangeType];
+            [self.lineAnimations startAnimationWithDuration:.25f animationType:LineAnimationChangeType];
         }
     }
     

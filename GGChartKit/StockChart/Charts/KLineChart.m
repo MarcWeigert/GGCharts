@@ -657,13 +657,13 @@ static void * kLineTitle = "keyTitle";
     self.vAxisRenderer.strColor = _axisStringColor;
     self.vAxisRenderer.showLine = NO;
     self.vAxisRenderer.strFont = _axisFont;
-    self.vAxisRenderer.offSetRatio = CGPointMake(0, -1);
+    self.vAxisRenderer.offSetRatio = GGRatioTopRight;
     
     // K线Y轴设置
     self.kAxisRenderer.strColor = _axisStringColor;
     self.kAxisRenderer.showLine = NO;
     self.kAxisRenderer.strFont = _axisFont;
-    self.kAxisRenderer.offSetRatio = CGPointMake(0, -1);
+    self.kAxisRenderer.offSetRatio = GGRatioTopRight;
     
     // X横轴设置
     self.axisRenderer.strColor = _axisStringColor;

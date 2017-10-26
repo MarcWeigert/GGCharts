@@ -45,9 +45,9 @@
     if (_leftNumberAxis == nil) {
         
         _leftNumberAxis = [[YAxis alloc] init];
-        _leftNumberAxis.offSetRatio = CGPointMake(-1.0f, -.5f);
+        _leftNumberAxis.offSetRatio = GGRatioCenterLeft;
         _leftNumberAxis.stringGap = -5.0f;
-        _leftNumberAxis.name.offSetRatio = CGPointMake(-.5f, -1.0f);
+        _leftNumberAxis.name.offSetRatio = GGRatioTopCenter;
         _leftNumberAxis.name.offSetSize = CGSizeMake(0, -5);
     }
     
@@ -62,9 +62,9 @@
     if (_rightNumberAxis == nil) {
         
         _rightNumberAxis = [[YAxis alloc] init];
-        _rightNumberAxis.offSetRatio = CGPointMake(.0f, -.5f);
+        _rightNumberAxis.offSetRatio = GGRatioCenterRight;
         _rightNumberAxis.stringGap = 5.0f;
-        _rightNumberAxis.name.offSetRatio = CGPointMake(-.5f, -1.0f);
+        _rightNumberAxis.name.offSetRatio = GGRatioTopCenter;
         _rightNumberAxis.name.offSetSize = CGSizeMake(0, -5);
     }
     
@@ -79,7 +79,7 @@
     if (_topLableAxis == nil) {
         
         _topLableAxis = [[XAxis alloc] init];
-        _topLableAxis.offSetRatio = CGPointMake(-.5f, -1.0f);
+        _topLableAxis.offSetRatio = GGRatioTopCenter;
         _topLableAxis.stringGap = -5.0f;
     }
     
@@ -94,7 +94,7 @@
     if (_bottomLableAxis == nil) {
         
         _bottomLableAxis = [[XAxis alloc] init];
-        _bottomLableAxis.offSetRatio = CGPointMake(-.5f, .0f);
+        _bottomLableAxis.offSetRatio = GGRatioBottomCenter;
         _bottomLableAxis.stringGap = 5.0f;
     }
     

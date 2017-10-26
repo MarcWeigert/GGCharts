@@ -63,10 +63,11 @@ const GGSizeRange GGSizeRangeZero = {0.0f, 0.0f};
  */
 - (void)drawInContext:(CGContextRef)ctx
 {
+    CGPoint ratioPoint = RATIO_POINT_CONVERT(_offSetRatio);
     CGPoint drawPoint = CGPointMake(_point.x + _offset.width, _point.y + _offset.height);
     CGSize size = [_string sizeWithAttributes:_param];
     size = CGSizeMake(size.width + _edgeInsets.left + _edgeInsets.right, size.height + _edgeInsets.top + _edgeInsets.bottom);
-    CGPoint origin = CGPointMake(drawPoint.x + size.width * _offSetRatio.x, drawPoint.y + size.height * _offSetRatio.y);
+    CGPoint origin = CGPointMake(drawPoint.x + size.width * ratioPoint.x, drawPoint.y + size.height * ratioPoint.y);
     
     CGRect fillRect = CGRectZero;
     fillRect.origin = origin;

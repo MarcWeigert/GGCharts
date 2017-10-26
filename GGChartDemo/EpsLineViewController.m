@@ -104,7 +104,7 @@
     lineSet.gridConfig.leftNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.leftNumberAxis.name.string = @"EPS";
     lineSet.gridConfig.leftNumberAxis.name.offSetSize = CGSizeMake(0, -15);
-    lineSet.gridConfig.leftNumberAxis.name.offSetRatio = CGPointMake(-1, -0.5);
+    lineSet.gridConfig.leftNumberAxis.name.offSetRatio = GGRatioTopCenter;
     lineSet.gridConfig.leftNumberAxis.name.font = [UIFont boldSystemFontOfSize:10];
     lineSet.gridConfig.leftNumberAxis.name.color = RGB(181, 220, 249);
     
@@ -115,7 +115,7 @@
     lineSet.gridConfig.rightNumberAxis.showQueryLable = YES;
     lineSet.gridConfig.rightNumberAxis.name.string = @"股票价格";
     lineSet.gridConfig.rightNumberAxis.name.font = [UIFont boldSystemFontOfSize:10];
-    lineSet.gridConfig.leftNumberAxis.name.offSetRatio = CGPointMake(-1, -0.5);
+    lineSet.gridConfig.rightNumberAxis.name.offSetRatio = GGRatioTopCenter;
     lineSet.gridConfig.rightNumberAxis.name.offSetSize = CGSizeMake(0, -15);
     lineSet.gridConfig.rightNumberAxis.name.color = RGB(181, 220, 249);
     

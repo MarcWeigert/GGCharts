@@ -76,7 +76,7 @@
     lineSet.gridConfig.bottomLableAxis.showSplitLine = YES;
     lineSet.gridConfig.bottomLableAxis.showQueryLable = YES;
     lineSet.gridConfig.bottomLableAxis.showIndexSet = indexSet;
-    lineSet.gridConfig.bottomLableAxis.offSetRatio = CGPointMake(0, 0);
+    lineSet.gridConfig.bottomLableAxis.offSetRatio = GGRatioBottomRight;
     
     /** 左轴 */
     lineSet.gridConfig.leftNumberAxis.splitCount = 7;
@@ -84,7 +84,7 @@
     lineSet.gridConfig.leftNumberAxis.over = 0;
     lineSet.gridConfig.leftNumberAxis.showSplitLine = YES;
     lineSet.gridConfig.leftNumberAxis.showQueryLable = YES;
-    lineSet.gridConfig.leftNumberAxis.offSetRatio = CGPointMake(0, -1.0f);
+    lineSet.gridConfig.leftNumberAxis.offSetRatio = GGRatioTopRight;
     lineSet.gridConfig.leftNumberAxis.stringGap = 2;
     
     CGRect rect = CGRectMake(10, 100, [UIScreen mainScreen].bounds.size.width - 20, 250);

@@ -36,7 +36,7 @@
         _showLine = YES;
         _showText = YES;
         _drawAxisCenter = NO;
-        _offSetRatio = CGPointMake(0, 0);
+        _offSetRatio = GGRatioBottomRight;
         _range = NSMakeRange(0, 0);
     }
     
@@ -83,6 +83,8 @@
 {
     CGContextSetLineWidth(ctx, _width);
     CGContextSetStrokeColorWithColor(ctx, _color.CGColor);
+    
+    CGPoint ratioPoint = RATIO_POINT_CONVERT(_offSetRatio);
     
     if (_showLine) {
         
@@ -154,7 +156,7 @@
                 point = cir > M_PI_4 / 2 ? CGPointMake(point.x, point.y + _axis.sep / 2) : CGPointMake(point.x + _axis.sep / 2, point.y);
             }
             
-            point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
+            point = CGPointMake(point.x + size.width * ratioPoint.x, point.y + size.height * ratioPoint.y);
             
             /** flag 首位缩进 */
             if (_isStringFirstLastindent && i == 0 && !_drawAxisCenter) {
@@ -180,7 +182,7 @@
             NSValue * obj = self.stringPoints[idx];
             CGSize size = [key sizeWithAttributes:_paramStr];
             CGPoint over_pt = GGPerpendicularMake(_axis.line, obj.CGPointValue, _axis.over);
-            CGPoint point = CGPointMake(over_pt.x + size.width * _offSetRatio.x, over_pt.y + size.height * _offSetRatio.y);
+            CGPoint point = CGPointMake(over_pt.x + size.width * ratioPoint.x, over_pt.y + size.height * ratioPoint.y);
             [key drawAtPoint:point withAttributes:_paramStr];
         }];
         
@@ -198,7 +200,7 @@
             NSString * string = self.stringBlock(point, i, count);
             CGSize size = [string sizeWithAttributes:_paramStr];
             point = CGPointMake(point.x + _textOffSet.width, point.y + _textOffSet.height);
-            point = CGPointMake(point.x + size.width * _offSetRatio.x, point.y + size.height * _offSetRatio.y);
+            point = CGPointMake(point.x + size.width * ratioPoint.x, point.y + size.height * ratioPoint.y);
             [string drawAtPoint:point withAttributes:_paramStr];
         }
         

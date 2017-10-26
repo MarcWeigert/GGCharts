@@ -263,16 +263,16 @@
     }];
     
     self.leftRenderer.strFont = _axisFont;
-    self.leftRenderer.offSetRatio = CGPointMake(0, -1);
+    self.leftRenderer.offSetRatio = GGRatioTopRight;
     self.leftRenderer.colorAry = colorAry;
     
     self.rightRenderer.strFont = _axisFont;
-    self.rightRenderer.offSetRatio = CGPointMake(-1, -1);
+    self.rightRenderer.offSetRatio = GGRatioTopLeft;
     self.rightRenderer.colorAry = colorAry;
     
     self.bottomRenderer.strFont = _axisFont;
     self.bottomRenderer.strColor = _axisStringColor;
-    self.bottomRenderer.offSetRatio = self.timeType == TimeDay ? CGPointMake(-0.5, 0) : CGPointZero;
+    self.bottomRenderer.offSetRatio = self.timeType == TimeDay ? GGRatioBottomCenter : GGRatioBottomRight;
     self.bottomRenderer.isStringFirstLastindent = YES;
     
     self.volumRenderer.strFont = _axisFont;
@@ -289,12 +289,12 @@
     
     self.priceRenderer.fillColor = RGB(248, 221, 203);
     self.priceRenderer.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-    self.priceRenderer.offSetRatio = CGPointMake(0, -0.5);
+    self.priceRenderer.offSetRatio = GGRatioCenterRight;
     self.priceRenderer.font = _axisFont;
     
     self.ratoRenderer.fillColor = RGB(248, 221, 203);
     self.ratoRenderer.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
-    self.ratoRenderer.offSetRatio = CGPointMake(-1, -.5f);
+    self.ratoRenderer.offSetRatio = GGRatioCenterLeft;
     self.ratoRenderer.font = _axisFont;
 }
 

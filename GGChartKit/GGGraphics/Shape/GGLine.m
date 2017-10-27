@@ -2,7 +2,7 @@
 //  GGLine.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/9/21.
+//  Created by _ | Durex on 17/9/21.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * 增加线路径
+ *
+ * @param ref 路径结构体
+ * @param line 直线结构体
+ */
 void GGPathAddLine(CGMutablePathRef ref, GGLine line)
 {
     CGPathMoveToPoint(ref, NULL, line.start.x, line.start.y);
@@ -18,6 +24,10 @@ void GGPathAddLine(CGMutablePathRef ref, GGLine line)
 
 /**
  * 绘制折线
+ *
+ * @param ref 路径结构体
+ * @param points 折线点
+ * @param range 区间
  */
 void GGPathAddRangePoints(CGMutablePathRef ref, CGPoint * points, NSRange range)
 {
@@ -51,12 +61,25 @@ void GGPathAddRangePoints(CGMutablePathRef ref, CGPoint * points, NSRange range)
 
 /**
  * 绘制折线
+ *
+ * @param ref 路径结构体
+ * @param points 折线点
+ * @param size 折线大小
  */
 void GGPathAddPoints(CGMutablePathRef ref, CGPoint * points, size_t size)
 {
     GGPathAddRangePoints(ref, points, NSMakeRange(0, size));
 }
 
+/**
+ * 折线每个点于某一y坐标展开动画
+ *
+ * @param points 折线点
+ * @param size 折线大小
+ * @param y 指定y轴坐标
+ *
+ * @return 路径动画数组
+ */
 NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -89,6 +112,15 @@ NSArray * GGPathLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
     return ary;
 }
 
+/**
+ * 折线于某一y坐标展开动画
+ *
+ * @param points 折线点
+ * @param size 折线大小
+ * @param y 指定y轴坐标
+ *
+ * @return 路径动画数组
+ */
 NSArray * GGPathLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -113,6 +145,15 @@ NSArray * GGPathLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y)
     return ary;
 }
 
+/**
+ * 折线填充每个点于某一y坐标展开动画
+ *
+ * @param points 折线点
+ * @param size 折线大小
+ * @param y 指定y轴坐标
+ *
+ * @return 路径动画数组
+ */
 NSArray * GGPathFillLinesStretchAnimation(CGPoint * points, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -149,6 +190,15 @@ NSArray * GGPathFillLinesStretchAnimation(CGPoint * points, size_t size, CGFloat
     return ary;
 }
 
+/**
+ * 折线填充于某一y坐标展开动画
+ *
+ * @param points 折线点
+ * @param size 折线大小
+ * @param y 指定y轴坐标
+ *
+ * @return 路径动画数组
+ */
 NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -177,66 +227,13 @@ NSArray * GGPathFillLinesUpspringAnimation(CGPoint * points, size_t size, CGFloa
     return ary;
 }
 
-NSArray * GGPathLinesStrokeAnimation(CGPoint * points, size_t size)
-{
-    NSMutableArray * array = [NSMutableArray array];
-    CGMutablePathRef ref = CGPathCreateMutable();
-    
-    for (NSInteger i = 0; i < size; i++) {
-        
-        if (i == 0) {
-            
-            CGPathMoveToPoint(ref, NULL, points[i].x, points[i].y);
-            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
-        }
-        else {
-        
-            CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
-        }
-        
-        CGPathRef path = CGPathCreateCopy(ref);
-        [array addObject:(__bridge id)path];
-        CGPathRelease(path);
-        path = NULL;
-    }
-    
-    CGPathRelease(ref);
-    
-    return [NSArray arrayWithArray:array];
-}
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGLineExtensions)
 
-CG_EXTERN NSArray * GGPathFillLinesStrokeAnimation(CGPoint * points, size_t size, CGFloat y)
-{
-    NSMutableArray * array = [NSMutableArray array];
-    CGMutablePathRef ref = CGPathCreateMutable();
-    CGPathMoveToPoint(ref, NULL, points[size - 1].x, points[size - 1].y);
-    
-    for (NSInteger i = size - 2; i >= 0; i--) {
-        
-        CGPathAddLineToPoint(ref, NULL, points[i].x, points[i].y);
-    }
-    
-    for (NSInteger i = 0; i < size; i++) {
-        
-        CGMutablePathRef path = CGPathCreateMutableCopy(ref);
-        CGPathAddLineToPoint(path, NULL, points[0].x, y);
-        CGPathAddLineToPoint(path, NULL, points[i].x, y);
-        CGPathAddLineToPoint(path, NULL, points[i].x, points[i].y);
-//        CGPathMoveToPoint(path, NULL, points[i].x, points[i].y);
-        
-        for (NSInteger j = i; j < size; j++) {
-            
-            CGPathAddLineToPoint(path, NULL, points[j].x, points[j].y);
-        }
-        
-//        CGPathAddLineToPoint(path, NULL, points[i].x, y);
-        [array addObject:(__bridge id)path];
-        CGPathRelease(path);
-    }
+GGValueMethodImplementation(GGLine);
 
-    CGPathRelease(ref);
-    
-    return [NSArray arrayWithArray:array];
-}
+@end
 
 NS_ASSUME_NONNULL_END

@@ -8,11 +8,27 @@
 
 #import "GGCircle.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 绘制圆
+ *
+ * @param ref 路径
+ * @param circle 结构体
+ */
 void GGPathAddCircle(CGMutablePathRef ref, GGCircle circle)
 {
     CGPathAddEllipseInRect(ref, NULL, CGRectMake(circle.center.x - circle.radius, circle.center.y - circle.radius, circle.radius * 2, circle.radius * 2));
 }
 
+/**
+ * 绘制圆
+ *
+ * @param ref 路径
+ * @param center 圆中心点指针
+ * @param radius 圆半径
+ * @param count 指针长度
+ */
 void GGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, size_t count)
 {
     for (int i = 0; i < count; i++) {
@@ -22,6 +38,15 @@ void GGPathAddCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, siz
     }
 }
 
+/**
+ * 绘制圆
+ *
+ * @param ref 路径
+ * @param center 圆中心点指针
+ * @param radius 圆半径
+ * @param from 区间
+ * @param to 区间
+ */
 void GGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius, int from, int to)
 {
     for (int i = from; i < to; i++) {
@@ -31,6 +56,14 @@ void GGPathAddRangeCircles(CGMutablePathRef ref, CGPoint *center, CGFloat radius
     }
 }
 
+/**
+ * 某一y轴每个远点逐一伸展动画
+ *
+ * @param points 圆中心点指针
+ * @param radius 圆半径
+ * @param size 指针长度
+ * @param y 坐标值
+ */
 NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -64,6 +97,15 @@ NSArray * GGPathCirclesStretchAnimation(CGPoint * points, CGFloat radius, size_t
     return ary;
 }
 
+/**
+ * 某一y轴伸展动画
+ *
+ * @param points 圆中心点指针
+ * @param radius 圆半径
+ * @param size 指针长度
+ * @param y 坐标值
+ * @param showIndex 显示索引
+ */
 NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_t size, CGFloat y, NSSet <NSNumber *> * showIndex)
 {
     NSMutableArray * ary = [NSMutableArray array];
@@ -107,17 +149,19 @@ NSArray * GGPathCirclesUpspringAnimation(CGPoint * points, CGFloat radius, size_
     return ary;
 }
 
+/**
+ * 圆划水动画
+ *
+ * @param points 圆中心点指针
+ * @param radius 圆半径
+ * @param size 指针长度
+ * @param showIndex 显示索引
+ */
 NSArray * GGPathCirclesStrokeAnimationsPath(CGPoint * points, CGFloat radius, size_t size, NSArray * showIndex)
 {
     CGMutablePathRef start = CGPathCreateMutable();
     GGPathAddCircle(start, GGCirclePointMake(points[0], 0));
     GGPathAddCircle(start, GGCirclePointMake(points[0], 0));
-    
-//    for (NSInteger i = 0; i < size; i++) {
-//        
-//        GGPathAddCircle(start, GGCirclePointMake(points[i], 0));
-//        GGPathAddCircle(start, GGCirclePointMake(points[i], 0));
-//    }
     
     CGMutablePathRef end = CGPathCreateMutable();
     
@@ -135,6 +179,14 @@ NSArray * GGPathCirclesStrokeAnimationsPath(CGPoint * points, CGFloat radius, si
     return array;
 }
 
+/**
+ * 圆划水动画
+ *
+ * @param points 圆中心点指针
+ * @param radius 圆半径
+ * @param size 指针长度
+ * @param showIndex 显示索引
+ */
 NSArray * GGPathCirclesStrokeAnimation(CGPoint * points, CGFloat radius, size_t size, NSArray * showIndex)
 {
     NSMutableArray * array = [NSMutableArray array];
@@ -152,5 +204,16 @@ NSArray * GGPathCirclesStrokeAnimation(CGPoint * points, CGFloat radius, size_t 
     
     CGPathRelease(ref);
     
-    return array;// @[(__bridge id)ref];
+    return array;
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGCircleExtensions)
+
+GGValueMethodImplementation(GGCircle);
+
+@end
+
+NS_ASSUME_NONNULL_END

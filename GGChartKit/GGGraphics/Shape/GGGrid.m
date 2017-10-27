@@ -8,6 +8,8 @@
 
 #import "GGGrid.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * 绘制网格
  */
@@ -39,3 +41,14 @@ void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid)
     
     CGPathAddRect(ref, NULL, grid.rect);
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGGridExtensions)
+
+GGValueMethodImplementation(GGGrid);
+
+@end
+
+NS_ASSUME_NONNULL_END

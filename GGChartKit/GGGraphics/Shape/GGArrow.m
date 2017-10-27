@@ -8,8 +8,14 @@
 
 #import "GGArrow.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
- * 绘制箭头
+ * 绘制粗箭头
+ *
+ * @param ref 路径结构体
+ * @param arrow 箭头结构体
+ * @param barWidth 粗结构体
  */
 void GGPathAddArrow(CGMutablePathRef ref, GGArrow arrow, CGFloat barWidth)
 {
@@ -31,3 +37,14 @@ void GGPathAddArrow(CGMutablePathRef ref, GGArrow arrow, CGFloat barWidth)
     CGPathAddLineToPoint(ref, NULL, barRightEnd.x, barRightEnd.y);
     CGPathAddLineToPoint(ref, NULL, barLeftEnd.x, barLeftEnd.y);
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGArrowExtensions)
+
+GGValueMethodImplementation(GGArrow);
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 箭头
+ */
 struct GGArrow
 {
     GGLine line;
@@ -15,6 +20,9 @@ struct GGArrow
 };
 typedef struct GGArrow GGArrow;
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGArrow
 GGArrowLineMake(GGLine line, CGFloat side) {
     GGArrow arrow;
@@ -23,6 +31,9 @@ GGArrowLineMake(GGLine line, CGFloat side) {
     return arrow;
 }
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGArrow
 GGArrowMake(CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat side) {
     
@@ -30,6 +41,21 @@ GGArrowMake(CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat side) {
 }
 
 /**
- * 绘制箭头
+ * 绘制粗箭头
+ * 
+ * @param ref 路径结构体
+ * @param arrow 箭头结构体
+ * @param barWidth 粗结构体
  */
 CG_EXTERN void GGPathAddArrow(CGMutablePathRef ref, GGArrow arrow, CGFloat barWidth);
+
+/**
+ * NSValue 扩展
+ */
+@interface NSValue (GGValueGGArrowExtensions)
+
+GGValueMethod(GGArrow);
+
+@end
+
+NS_ASSUME_NONNULL_END

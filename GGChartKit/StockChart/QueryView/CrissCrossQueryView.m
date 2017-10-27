@@ -2,7 +2,7 @@
 //  CrissCrossQueryView.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/7/6.
+//  Created by _ | Durex on 17/7/6.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -124,14 +124,14 @@ GGLazyGetMethod(NSMutableDictionary, dicLable);
         _xAxisLable.font = _cirssLableFont;
         _xAxisLable.color = _cirssLableColor;
         _xAxisLable.fillColor = RGB(235, 235, 235);
-        _xAxisLable.offSetRatio = CGPointMake(-.5f, 0);
+        _xAxisLable.offSetRatio = GGRatioBottomCenter;
         _xAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
         
         _yAxisLable = [[GGStringRenderer alloc] init];
         _yAxisLable.font = _cirssLableFont;
         _yAxisLable.color = _cirssLableColor;
         _yAxisLable.fillColor = RGB(235, 235, 235);
-        _yAxisLable.offSetRatio = CGPointMake(0, -.5f);
+        _yAxisLable.offSetRatio = GGRatioCenterRight;
         _yAxisLable.edgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
         
         _xLine = [[GGLineRenderer alloc] init];

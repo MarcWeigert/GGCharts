@@ -2,7 +2,7 @@
 //  GGPolygon.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/9/21.
+//  Created by _ | Durex on 17/9/21.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 绘制多边形
+ *
+ * @param ref 路径
+ * @param polygon 结构体
  */
 void GGPathAddGGPolygon(CGMutablePathRef ref, GGPolygon polygon)
 {
@@ -27,5 +30,14 @@ void GGPathAddGGPolygon(CGMutablePathRef ref, GGPolygon polygon)
     
     CGPathAddLineToPoint(ref, NULL, polygon.center.x, polygon.center.y - polygon.radius);
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGPolygonExtensions)
+
+GGValueMethodImplementation(GGPolygon);
+
+@end
 
 NS_ASSUME_NONNULL_END

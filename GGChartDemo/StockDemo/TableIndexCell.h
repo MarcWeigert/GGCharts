@@ -2,7 +2,7 @@
 //  TableIndexCell.h
 //  GGCharts
 //
-//  Created by 黄舜 on 17/7/20.
+//  Created by _ | Durex on 17/7/20.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 

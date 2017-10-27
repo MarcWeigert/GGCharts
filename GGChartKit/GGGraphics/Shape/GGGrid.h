@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 网格结构体
+ */
 struct GGGrid
 {
     CGRect rect;
@@ -16,6 +21,9 @@ struct GGGrid
 };
 typedef struct GGGrid GGGrid;
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGGrid
 GGGridMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height, CGFloat y_dis, CGFloat x_dis) {
     GGGrid grid;
@@ -25,6 +33,9 @@ GGGridMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height, CGFloat y_dis, C
     return grid;
 }
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGGrid
 GGGridRectMake(CGRect rect, CGFloat y_dis, CGFloat x_dis) {
     GGGrid grid;
@@ -38,3 +49,14 @@ GGGridRectMake(CGRect rect, CGFloat y_dis, CGFloat x_dis) {
  * 绘制网格
  */
 CG_EXTERN void GGPathAddGrid(CGMutablePathRef ref, GGGrid grid);
+
+/**
+ * NSValue 扩展
+ */
+@interface NSValue (GGValueGGGridExtensions)
+
+GGValueMethod(GGGrid);
+
+@end
+
+NS_ASSUME_NONNULL_END

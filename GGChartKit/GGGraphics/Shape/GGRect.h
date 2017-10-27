@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 构造CGRect
+ *
+ * @param start 起点
+ * @param end 终点
+ * @param width 宽度
+ */
 CG_INLINE CGRect
 GGLineDownRectMake(CGPoint start, CGPoint end, CGFloat width)
 {
@@ -18,17 +27,34 @@ GGLineDownRectMake(CGPoint start, CGPoint end, CGFloat width)
     return rect;
 }
 
-CG_INLINE CGRect
-GGLineSideRect(CGPoint start, CGPoint end, CGFloat width)
-{
-    CGRect rect;
-    rect.origin = CGPointMake(start.x - width / 2, start.y);
-    rect.size = CGSizeMake(width, start.y - end.y);
-    return rect;
-}
+#pragma mark - CGPath
 
+/**
+ * 绘制Rect
+ *
+ * @param ref 路径绘制类
+ * @param rect 结构体
+ */
 CG_EXTERN void GGPathAddCGRect(CGMutablePathRef ref, CGRect rect);
 
-CG_EXTERN void GGpathAddCGRects(CGMutablePathRef ref, CGRect * rects, size_t size);
+/**
+ * 绘制Rect
+ *
+ * @param ref 路径绘制类
+ * @param rect 结构体指针
+ * @param size 结构体大小
+ */
+CG_EXTERN void GGPathAddCGRects(CGMutablePathRef ref, CGRect * rects, size_t size);
 
+#pragma mark - CGPath Animation
+
+/**
+ * 构造CGPath动画, 效果从某一y轴展开
+ *
+ * @param rects 结构体指针
+ * @param size 结构体大小
+ * @param y 指定y坐标
+ */
 CG_EXTERN NSArray * GGPathRectsStretchAnimation(CGRect * rects, size_t size, CGFloat y);
+
+NS_ASSUME_NONNULL_END

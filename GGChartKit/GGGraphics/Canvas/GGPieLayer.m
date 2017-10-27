@@ -2,7 +2,7 @@
 //  GGPieLayer.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/10/18.
+//  Created by _ | Durex on 17/10/18.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 

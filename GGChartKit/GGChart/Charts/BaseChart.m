@@ -2,7 +2,7 @@
 //  BaseChart.m
 //  HSCharts
 //
-//  Created by 黄舜 on 17/6/8.
+//  Created by _ | Durex on 17/6/8.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -192,58 +192,6 @@
     [self.layer addSublayer:canvas];
     [self.visibleStaticLayers addObject:canvas];
     return canvas;
-}
-
-#pragma mark - Old 
-
-- (GGCanvas *)getCanvasWithTag:(NSInteger)tag
-{
-    GGCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
-    
-    if (!layer) {
-        
-        layer = [[GGCanvas alloc] init];
-        layer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        [self.layer addSublayer:layer];
-        [self.lineLayerDictionary setObject:layer forKey:Layer_Key];
-    }
-        
-    return layer;
-}
-
-- (GGShapeCanvas *)getShapeWithTag:(NSInteger)tag
-{
-    GGShapeCanvas * layer = [self.lineLayerDictionary objectForKey:Layer_Key];
-    
-    if (!layer) {
-        
-        layer = [[GGShapeCanvas alloc] init];
-        layer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-        [self.layer addSublayer:layer];
-        [self.lineLayerDictionary setObject:layer forKey:Layer_Key];
-    }
-    
-    return layer;
-}
-
-- (GGShapeCanvas *)getPieWithTag:(NSInteger)tag
-{
-    GGShapeCanvas * layer = [self.pieLayerDictionary objectForKey:Layer_Key];
-    
-    if (!layer) {
-        
-        CGFloat width = self.frame.size.width > self.frame.size.height ? self.frame.size.height : self.frame.size.width;
-        CGFloat x = (self.frame.size.width - width) / 2;
-        CGFloat y = (self.frame.size.height - width) / 2;
-        
-        layer = [[GGShapeCanvas alloc] init];
-        layer.frame = CGRectMake(x, y, width, width);
-        layer.anchorPoint = CGPointMake(0.5, 0.5);
-        [self.layer addSublayer:layer];
-        [self.pieLayerDictionary setObject:layer forKey:Layer_Key];
-    }
-    
-    return layer;
 }
 
 - (void)setFrame:(CGRect)frame

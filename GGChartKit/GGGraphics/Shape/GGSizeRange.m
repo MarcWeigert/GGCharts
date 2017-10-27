@@ -8,3 +8,15 @@
 
 #import "GGSizeRange.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGSizeRangeExtensions)
+
+GGValueMethodImplementation(GGSizeRange);
+
+@end
+
+NS_ASSUME_NONNULL_END

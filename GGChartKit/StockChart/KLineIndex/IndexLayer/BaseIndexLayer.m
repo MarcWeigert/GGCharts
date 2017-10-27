@@ -2,7 +2,7 @@
 //  BaseIndexLayer.m
 //  GGCharts
 //
-//  Created by 黄舜 on 17/7/7.
+//  Created by _ | Durex on 17/7/7.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
@@ -182,13 +182,13 @@
     
     [_barScaler getNegativeData:^(CGRect *rects, size_t size) {
         
-        GGpathAddCGRects(ref_n, rects, size);
+        GGPathAddCGRects(ref_n, rects, size);
         
     } range:range];
     
     [_barScaler getPositiveData:^(CGRect *rects, size_t size) {
         
-        GGpathAddCGRects(ref_p, rects, size);
+        GGPathAddCGRects(ref_p, rects, size);
         
     } range:range];
     

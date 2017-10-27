@@ -2,7 +2,7 @@
 //  NSValue+GGValue.m
 //  GGPlatform
 //
-//  Created by 黄舜 on 17/6/1.
+//  Created by _ | Durex on 17/6/1.
 //  Copyright © 2017年 Shanghai Suntime Information technology co., LTD. All rights reserved.
 //
 

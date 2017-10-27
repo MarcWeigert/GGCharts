@@ -8,3 +8,15 @@
 
 #import "GGArcLine.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGArcLineExtensions)
+
+GGValueMethodImplementation(GGArcLine);
+
+@end
+
+NS_ASSUME_NONNULL_END

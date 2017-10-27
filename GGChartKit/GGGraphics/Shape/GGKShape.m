@@ -8,8 +8,11 @@
 
 #import "GGKShape.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * 绘制k线形
+ *
  * @param ref 路径元素
  * @param kShape k线形态
  */
@@ -22,9 +25,9 @@ CG_EXTERN void GGPathAddKShape(CGMutablePathRef ref, GGKShape kShape)
     CGPathAddLineToPoint(ref, NULL, kShape.end.x, kShape.end.y);
 }
 
-
 /**
  * 绘制k线形
+ *
  * @param ref 路径元素
  * @param kShape k线形态
  */
@@ -35,3 +38,14 @@ CG_EXTERN void GGPathAddKShapes(CGMutablePathRef ref, GGKShape * kShapes, size_t
         GGPathAddKShape(ref, kShapes[i]);
     }
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGKShapeExtensions)
+
+GGValueMethodImplementation(GGKShape);
+
+@end
+
+NS_ASSUME_NONNULL_END

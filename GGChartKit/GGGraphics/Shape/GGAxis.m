@@ -8,6 +8,14 @@
 
 #import "GGAxis.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 绘制轴
+ *
+ * @param ref 路径结构
+ * @param axis 绘制结构体
+ */
 void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
 {
     CGPathMoveToPoint(ref, NULL, axis.line.start.x, axis.line.start.y);
@@ -25,3 +33,14 @@ void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis)
         CGPathAddLineToPoint(ref, NULL, over_pt.x, over_pt.y);
     }
 }
+
+/**
+ * NSValue 扩展
+ */
+@implementation NSValue (GGValueGGAxisExtensions)
+
+GGValueMethodImplementation(GGAxis);
+
+@end
+
+NS_ASSUME_NONNULL_END

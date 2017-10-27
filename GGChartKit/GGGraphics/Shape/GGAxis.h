@@ -8,13 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/**
+ * 轴结构体
+ */
 struct GGAxis {
-    GGLine line;
-    CGFloat over;
-    CGFloat sep;
+    GGLine line;        ///< 基准线
+    CGFloat over;       ///< 轴分割线长度
+    CGFloat sep;        ///< 轴分割距离
 };
 typedef struct GGAxis GGAxis;
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGAxis
 GGAxisMake(CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat over, CGFloat sep) {
     GGAxis axis;
@@ -24,6 +32,9 @@ GGAxisMake(CGFloat x1, CGFloat y1, CGFloat x2, CGFloat y2, CGFloat over, CGFloat
     return axis;
 }
 
+/**
+ * 构造函数
+ */
 CG_INLINE GGAxis
 GGAxisLineMake(GGLine line, CGFloat over, CGFloat sep) {
     GGAxis axis;
@@ -33,4 +44,21 @@ GGAxisLineMake(GGLine line, CGFloat over, CGFloat sep) {
     return axis;
 }
 
+/**
+ * 绘制轴
+ *
+ * @param ref 路径结构
+ * @param axis 绘制结构体
+ */
 CG_EXTERN void GGPathAddGGAxis(CGMutablePathRef ref, GGAxis axis);
+
+/**
+ * NSValue 扩展
+ */
+@interface NSValue (GGValueGGAxisExtensions)
+
+GGValueMethod(GGAxis);
+
+@end
+
+NS_ASSUME_NONNULL_END

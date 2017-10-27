@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  HSCharts
 //
-//  Created by 黄舜 on 16/6/23.
+//  Created by _ | Durex on 16/6/23.
 //  Copyright © 2016年 I really is a farmer. All rights reserved.
 //
 

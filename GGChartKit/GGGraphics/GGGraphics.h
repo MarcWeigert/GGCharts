@@ -14,6 +14,7 @@
 
 #import "GGRenderProtocol.h"
 #import "GGGraphicsConstants.h"
+#import "NSArray+GGGraphics.h"
 
 #import "DLineScaler.h"
 #import "DBarScaler.h"
@@ -25,9 +26,7 @@
 #import "GGCanvas.h"
 #import "GGShapeCanvas.h"
 
-#import "CALayer+GGFrame.h"
 #import "UIView+GGFrame.h"
-#import "NSValue+GGValue.h"
 
 #import "GGRenderProtocol.h"
 #import "GGAxisRenderer.h"

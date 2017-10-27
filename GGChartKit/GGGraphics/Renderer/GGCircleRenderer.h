@@ -13,16 +13,34 @@
 
 @interface GGCircleRenderer : NSObject<GGRenderProtocol>
 
-@property (nonatomic) GGCircle circle;
+/**
+ * 圆形结构体
+ */
+@property (nonatomic, assign) GGCircle circle;
 
-@property (nonatomic) CGFloat borderWidth;
+/**
+ * 圆环线宽度
+ */
+@property (nonatomic, assign) CGFloat borderWidth;
 
-@property (nonatomic) UIColor *fillColor;
+/**
+ * 圆形填充颜色
+ */
+@property (nonatomic, strong) UIColor *fillColor;
 
-@property (nonatomic) UIColor *borderColor;
+/**
+ * 圆环颜色
+ */
+@property (nonatomic, strong) UIColor *borderColor;
 
-@property (nonatomic) NSString *title;
+/**
+ * 中心点文字
+ */
+@property (nonatomic, copy) NSString *title;
 
-@property (nonatomic, strong) NSArray * gradentColors;  ///< CGColors
+/**
+ * 渐变色, CGColors
+ */
+@property (nonatomic, strong) NSArray * gradentColors;
 
 @end

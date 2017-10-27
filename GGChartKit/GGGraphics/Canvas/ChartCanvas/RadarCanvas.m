@@ -160,7 +160,6 @@ static const void * radarLayer = @"radarLayer";
             CGFloat endRatio = _polyRenderer.polygon.center.y + _polyRenderer.polygon.radius;
             
             gradientLayer.colors = [drawData gradientColors];
-            gradientLayer.locations = [drawData locations];
             gradientLayer.startPoint = CGPointMake(.5f, startRatio / self.gg_height);
             gradientLayer.endPoint = CGPointMake(.5f, endRatio / self.gg_height);
         }

@@ -10,10 +10,16 @@
 
 @protocol GGRenderProtocol <NSObject>
 
+/**
+ * 绘制结构体
+ */
 - (void)drawInContext:(CGContextRef)ctx;
 
 @optional
 
+/**
+ * 是否隐藏
+ */
 @property (nonatomic, assign) BOOL hidden;
 
 @end

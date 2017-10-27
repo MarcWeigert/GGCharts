@@ -11,23 +11,50 @@
 
 @protocol RadarBackAbstract <NSObject>
 
-@property (nonatomic, strong) NSArray <NSString *> * titles;
+/**
+ * 雷达图顶点字符串
+ */
+@property (nonatomic, strong, readonly) NSArray <NSString *> * titles;
 
-@property (nonatomic, strong) UIColor * strockColor;
+/**
+ * 线颜色
+ */
+@property (nonatomic, strong, readonly) UIColor * strockColor;
 
-@property (nonatomic, strong) UIColor * stringColor;
+/**
+ * 字符串颜色
+ */
+@property (nonatomic, strong, readonly) UIColor * stringColor;
 
-@property (nonatomic, assign) NSUInteger splitCount;
+/**
+ * 背景视图分割
+ */
+@property (nonatomic, assign, readonly) NSUInteger splitCount;
 
-@property (nonatomic, strong) UIFont * titleFont;
+/**
+ * 字体
+ */
+@property (nonatomic, strong, readonly) UIFont * titleFont;
 
-@property (nonatomic, assign) CGFloat lineWidth;
+/**
+ * 线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat lineWidth;
 
-@property (nonatomic, assign) CGFloat borderWidth;
+/**
+ * 最外层雷达线宽度
+ */
+@property (nonatomic, assign, readonly) CGFloat borderWidth;
 
-@property (nonatomic, assign) CGFloat radius;
+/**
+ * 半径
+ */
+@property (nonatomic, assign, readonly) CGFloat radius;
 
-@property (nonatomic, assign) CGFloat titleSpacing;
+/**
+ * 文字与顶点间距
+ */
+@property (nonatomic, assign, readonly) CGFloat titleSpacing;
 
 /**
  * 是否背景为圆形

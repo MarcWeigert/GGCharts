@@ -10,8 +10,6 @@
 
 @interface BaseLineBarChart ()
 
-@property (nonatomic, strong) UILongPressGestureRecognizer * longPress;
-
 @end
 
 @implementation BaseLineBarChart

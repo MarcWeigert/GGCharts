@@ -11,6 +11,11 @@
 @interface BaseLineBarChart : UIView
 
 /**
+ * 手势
+ */
+@property (nonatomic, strong) UILongPressGestureRecognizer * longPress;
+
+/**
  * 长按相应时间
  */
 - (NSTimeInterval)minimumPressDuration;

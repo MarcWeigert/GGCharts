@@ -8,7 +8,6 @@
 
 #import "KLineIndexManager.h"
 #import "LuaContext.h"
-#import "NSArray+Stock.h"
 
 #include        <stdio.h>
 #include        "lua.h"

@@ -12,22 +12,49 @@
 
 @interface RadarDataSet : NSObject
 
-@property (nonatomic, strong) NSArray <RadarData *> * radarSet;         ///< 图层数据
+/**
+ * 图层数据
+ */
+@property (nonatomic, strong) NSArray <RadarData *> * radarSet;
 
-@property (nonatomic, strong) NSArray <RadarIndicatorData *> * indicatorSet;        ///< 基础摄制
+/**
+ * 基础摄制
+ */
+@property (nonatomic, strong) NSArray <RadarIndicatorData *> * indicatorSet;
 
-@property (nonatomic, strong) UIColor * strockColor;        ///< 背景雷达线颜色
+/**
+ * 背景雷达线颜色
+ */
+@property (nonatomic, strong) UIColor * strockColor;
 
-@property (nonatomic, assign) NSUInteger splitCount;        ///< 分割数
+/**
+ * 分割数
+ */
+@property (nonatomic, assign) NSUInteger splitCount;
 
-@property (nonatomic, strong) UIFont * titleFont;       ///< 标题字体
+/**
+ * 标题字体
+ */
+@property (nonatomic, strong) UIFont * titleFont;
 
-@property (nonatomic, assign) CGFloat lineWidth;        ///< 线宽
+/**
+ * 线宽
+ */
+@property (nonatomic, assign) CGFloat lineWidth;
 
-@property (nonatomic, assign) CGFloat radius;       ///< 雷达图半径
+/**
+ * 雷达图半径
+ */
+@property (nonatomic, assign) CGFloat radius;
 
+/**
+ * 文字与顶点间距
+ */
 @property (nonatomic, assign) CGFloat titleSpacing;
 
+/**
+ * 最外层雷达线宽度
+ */
 @property (nonatomic, assign) CGFloat borderWidth;
 
 /**
@@ -35,6 +62,9 @@
  */
 @property (nonatomic, assign) BOOL isCirlre;
 
+/**
+ * 文字颜色
+ */
 @property (nonatomic, strong) UIColor * stringColor;
 
 /**

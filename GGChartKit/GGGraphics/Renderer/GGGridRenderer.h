@@ -13,20 +13,39 @@
 
 @interface GGGridRenderer : NSObject <GGRenderProtocol>
 
+/**
+ * 线宽
+ */
 @property (nonatomic, assign) CGFloat width;
 
+/**
+ * 线颜色
+ */
 @property (nonatomic, strong) UIColor *color;
 
+/**
+ * 虚线样式
+ */
 @property (nonatomic, assign) CGSize dash;
 
+/**
+ * 网格结构体
+ */
 @property (nonatomic, assign) GGGrid grid;
 
+/**
+ * 是否需要外框
+ */
 @property (nonatomic, assign) BOOL isNeedRect;
 
-/** 网格加线 */
+/**
+ * 网格加线 
+ */
 - (void)addLine:(GGLine)line;
 
-/** 删除Line */
+/**
+ * 删除Line 
+ */
 - (void)removeAllLine;
 
 @end

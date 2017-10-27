@@ -10,11 +10,24 @@
 
 @interface BaseShapeScaler : BaseScaler
 
-@property (nonatomic, assign) CGFloat shapeWidth;   ///< 形宽
-@property (nonatomic, assign) CGFloat shapeInterval;  ///< 形间距
+/**
+ * 每一个模型的宽度
+ */
+@property (nonatomic, assign) CGFloat shapeWidth;
 
-@property (nonatomic, assign, readonly) CGSize contentSize;    ///< 大小区域
+/**
+ * 形间距模型间距
+ */
+@property (nonatomic, assign) CGFloat shapeInterval;
 
-@property (nonatomic, assign, readonly) CGFloat interval;   ///< 两个形之间中心间距
+/**
+ * 所有绘制模型区域
+ */
+@property (nonatomic, assign, readonly) CGSize contentSize;
+
+/**
+ * 模型之间中心点间距
+ */
+@property (nonatomic, assign, readonly) CGFloat interval;
 
 @end

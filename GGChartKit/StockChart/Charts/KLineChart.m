@@ -7,7 +7,6 @@
 //
 
 #import "KLineChart.h"
-#import "NSArray+Stock.h"
 #import "CrissCrossQueryView.h"
 
 #import "BaseIndexLayer.h"

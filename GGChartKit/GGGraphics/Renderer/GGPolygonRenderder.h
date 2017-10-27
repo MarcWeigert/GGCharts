@@ -12,26 +12,74 @@
 
 @interface GGPolygonRenderder : NSObject <GGRenderProtocol>
 
-@property (nonatomic, assign) GGPolygon polygon;    ///< 多边形结构体
+/**
+ * 多边形结构体
+ */
+@property (nonatomic, assign) GGPolygon polygon;
 
 /**
  * 是否绘制圆形
  */
 @property (nonatomic, assign) BOOL isCircle;
 
-@property (nonatomic, assign) CGFloat width;            ///< 线宽
+/**
+ * 线宽
+ */
+@property (nonatomic, assign) CGFloat width;
+
+/**
+ * 最外层线宽
+ */
 @property (nonatomic, assign) CGFloat borderWidth;
-@property (nonatomic, strong) UIColor * strockColor;        ///< 绘制颜色
-@property (nonatomic, strong) UIColor * fillColor;      ///< 填充颜色
 
-@property (nonatomic, assign) NSInteger splitCount;      ///< 层数
-@property (nonatomic, strong) UIColor * singleFillColor;    ///< (单)填充颜色
-@property (nonatomic, strong) UIColor * doubleFillColor;    ///< (双)填充颜色
+/**
+ * 绘制线颜色
+ */
+@property (nonatomic, strong) UIColor * strockColor;
 
-@property (nonatomic, assign) BOOL isPiece;         ///< 是否要分割线
-@property (nonatomic, strong) UIFont * stringFont;      ///< 文字字体
-@property (nonatomic, strong) UIColor * stringColor;        ///< 文字颜色
-@property (nonatomic, strong) NSArray * titles;         ///< 顶头文字
-@property (nonatomic, assign) CGFloat titleSpacing;         ///< 文字雷达图距离
+/**
+ * 填充颜色
+ */
+@property (nonatomic, strong) UIColor * fillColor;
+
+/**
+ * 分割层数
+ */
+@property (nonatomic, assign) NSInteger splitCount;
+
+/**
+ * 单层填充色
+ */
+@property (nonatomic, strong) UIColor * singleFillColor;
+
+/**
+ * 双层填充色
+ */
+@property (nonatomic, strong) UIColor * doubleFillColor;
+
+/**
+ * 是否需要分割线
+ */
+@property (nonatomic, assign) BOOL isPiece;
+
+/**
+ * 文字字体
+ */
+@property (nonatomic, strong) UIFont * stringFont;
+
+/**
+ * 文字颜色
+ */
+@property (nonatomic, strong) UIColor * stringColor;
+
+/**
+ * 字体数组
+ */
+@property (nonatomic, strong) NSArray <NSString *> * titles;
+
+/**
+ * 文字与定点间距
+ */
+@property (nonatomic, assign) CGFloat titleSpacing;
 
 @end

@@ -146,6 +146,47 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 #define __RGB_PINK          RGB(189, 162, 154)
 
 /**
+ * float 格式化字符串
+ * A : 格式化位数
+ */
+#define DECIMAL_FLOAT(A)  [NSString stringWithFormat:@"%%.%zdf", (A)]
+
+/**
+ * 格式化字符串
+ * A : float 数值
+ * B : 格式化位数
+ */
+#define FLOAT_STR(A, B) [NSString stringWithFormat:DECIMAL_FLOAT(B), (A)]
+
+/**
+ * 格式化字符串
+ * A : 数值
+ * B : 格式化位数
+ * C : 格式化尾部字符
+ */
+#define FLT_END_STR(A, B, C) [NSString stringWithFormat:@"%@%@", (FLOAT_STR(A, B)), (C)]
+
+/**
+ * NSIntger 格式化字符串
+ * A : 格式化位数
+ */
+#define DECIMAL_INT(A)  [NSString stringWithFormat:@"%%.%zdzd", (A)]
+
+/**
+ * 整形格式化字符串
+ * A : NSIntger 数值
+ */
+#define INT_STR(A) [NSString stringWithFormat:@"%zd", (A)]
+
+/**
+ * 格式化字符串
+ * A : NSIntger 数值
+ * B : 格式化位数
+ */
+#define INT_STR_DML(A, B) [NSString stringWithFormat:DECIMAL_INT(B), (A)]
+
+
+/**
  * 柱状图关联key
  */
 static const void * barUpLayer = (__bridge void *)@"barUpLayer";

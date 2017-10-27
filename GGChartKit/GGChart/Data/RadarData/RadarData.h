@@ -13,15 +13,30 @@
 
 @property (nonatomic, strong, readonly) DRadarScaler * radarScaler;
 
-@property (nonatomic, assign) CGFloat lineWidth;        ///< 线宽
+/**
+ * 线宽
+ */
+@property (nonatomic, assign) CGFloat lineWidth;
 
-@property (nonatomic, strong) UIColor *fillColor;       ///< 填充颜色
+/**
+ * 填充颜色
+ */
+@property (nonatomic, strong) UIColor *fillColor;
 
-@property (nonatomic, strong) UIColor *strockColor;     ///< 线颜色
+/**
+ * 线颜色
+ */
+@property (nonatomic, strong) UIColor *strockColor;
 
-@property (nonatomic, assign) CGFloat baseRatio;        ///< 基础长度比例
+/**
+ * 基础长度比例, 当数据为0时最低雷达图显示位置
+ */
+@property (nonatomic, assign) CGFloat baseRatio;
 
-@property (nonatomic, strong) NSArray <NSNumber *> *datas;    ///< 数据源
+/**
+ * 数据源
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *datas;
 
 #pragma mark - 折线关键点配置
 
@@ -42,8 +57,9 @@
 
 #pragma mark - Gradient
 
-@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
-
-@property (nonatomic, strong) NSArray <NSNumber *> *locations;
+/**
+ * 渐变色
+ */
+@property (nonatomic, strong) NSArray * gradientColors;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "DPieScaler.h"
-#import "NSArray+Stock.h"
 
 @interface DPieScaler ()
 

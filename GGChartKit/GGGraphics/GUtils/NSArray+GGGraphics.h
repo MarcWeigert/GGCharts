@@ -11,7 +11,7 @@
 #import "KLineAbstract.h"
 #import "VolumeAbstract.h"
 
-@interface NSArray (Stock)
+@interface NSArray (GGGraphics)
 
 - (NSArray <NSNumber *> *)numbarArrayForKey:(NSString *)key;
 

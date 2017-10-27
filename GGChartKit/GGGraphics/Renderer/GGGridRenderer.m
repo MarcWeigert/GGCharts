@@ -7,7 +7,6 @@
 //
 
 #import "GGGridRenderer.h"
-#import "NSValue+GGValue.h"
 
 @interface GGGridRenderer ()
 
@@ -30,12 +29,16 @@
     return self;
 }
 
-/** 网格加线 */
+/**
+ * 网格加线
+ */
 - (void)addLine:(GGLine)line
 {
     [self.aryLines addObject:[NSValue valueWithGGLine:line]];
 }
-/** 删除Line */
+/**
+ * 删除Line
+ */
 - (void)removeAllLine
 {
     [self.aryLines removeAllObjects];

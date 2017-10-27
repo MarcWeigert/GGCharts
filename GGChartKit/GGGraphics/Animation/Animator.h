@@ -17,18 +17,35 @@ typedef enum : NSUInteger {
 
 @protocol AnimatorProtocol <NSObject>
 
+/**
+ * 动画回调
+ *
+ * @param progress 进度条
+ */
 - (void)startUpdateWithProgress:(CGFloat)progress;
 
 @end
 
+/**
+ * 动画回调Block
+ */
 typedef void(^AnimationUpdateBlock)(CGFloat progress);
 
 @interface Animator : NSObject
 
+/**
+ * 动画时长
+ */
 @property (nonatomic, assign) NSTimeInterval duration;
 
+/**
+ * 动画曲线
+ */
 @property (nonatomic, assign) AnimationType animationType;
 
+/**
+ * 动画更新回调
+ */
 @property (nonatomic, copy) AnimationUpdateBlock updateBlock;
 
 /**

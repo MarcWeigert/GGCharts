@@ -14,20 +14,61 @@
 
 @interface GGNumberRenderer : NSObject <GGRenderProtocol, AnimatorProtocol>
 
-@property (nonatomic, assign) CGFloat fromNumber;   ///< 开始数字
-@property (nonatomic, assign) CGFloat toNumber;     ///< 结束数字
+/**
+ * 开始数字
+ */
+@property (nonatomic, assign) CGFloat fromNumber;
 
-@property (nonatomic, assign) CGPoint fromPoint;    ///< 开始绘制点
-@property (nonatomic, assign) CGPoint toPoint;      ///< 运动点
+/**
+ * 结束数字
+ */
+@property (nonatomic, assign) CGFloat toNumber;
 
-@property (nonatomic, strong) UIFont * font;        ///< 字体
-@property (nonatomic, strong) UIColor * color;      ///< 颜色
-@property (nonatomic, assign) CGPoint offSetRatio;  ///< 文字
-@property (nonatomic, strong) NSString * format;    ///< 格式化字符串
+/**
+ * 开始绘制点
+ */
+@property (nonatomic, assign) CGPoint fromPoint;
 
-@property (nonatomic, assign) CGSize offSet;        ///< 文字偏移量
+/**
+ * 终止绘制点
+ */
+@property (nonatomic, assign) CGPoint toPoint;
 
-@property (nonatomic, assign) BOOL hidden;          ///< 是否显示
+/**
+ * 字体
+ */
+@property (nonatomic, strong) UIFont * font;
+
+/**
+ * 文字颜色
+ */
+@property (nonatomic, strong) UIColor * color;
+
+/**
+ * 文字偏移比例
+ *
+ * {0, 0} 中心, {-1, -1} 右上, {0, 0} 左下
+ *
+ * {-1, -1}, { 0, -1}, { 1, -1},
+ * {-1,  0}, { 0,  0}, { 1,  0},
+ * {-1,  1}, { 0,  1}, { 1,  1},
+ */
+@property (nonatomic, assign) CGPoint offSetRatio;
+
+/**
+ * 格式化字符串
+ */
+@property (nonatomic, strong) NSString * format;
+
+/**
+ * 文字偏移量
+ */
+@property (nonatomic, assign) CGSize offSet;
+
+/**
+ * 是否隐藏
+ */
+@property (nonatomic, assign) BOOL hidden;
 
 /**
  * 数值集合, 回调attrbuteStringValueAndRatioBlock是返回比例

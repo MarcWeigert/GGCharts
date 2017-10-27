@@ -12,20 +12,34 @@ typedef void(^BarRects)(CGRect *rects, size_t size);
 
 @interface DBarScaler : DLineScaler
 
-@property (nonatomic, assign) CGFloat barWidth;     ///< 柱宽
+/**
+ * 柱宽
+ */
+@property (nonatomic, assign) CGFloat barWidth;
 
-@property (nonatomic, readonly) CGRect * barRects;    ///< bar 绘制位置
+/**
+ * Rect结构体指针
+ */
+@property (nonatomic, readonly) CGRect * barRects;
 
-/** 正数的rect */
+/** 
+ * 正数的rect 
+ */
 - (void)getPositiveData:(BarRects)block range:(NSRange)range;
 
-/** 负数的rect */
+/**
+ * 负数的rect 
+ */
 - (void)getNegativeData:(BarRects)block range:(NSRange)range;
 
-/** 正数的rect */
+/**
+ * 正数的rect 
+ */
 - (void)getPositiveData:(BarRects)block;
 
-/** 负数的rect */
+/** 
+ * 负数的rect 
+ */
 - (void)getNegativeData:(BarRects)block;
 
 @end

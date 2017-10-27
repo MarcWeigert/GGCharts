@@ -14,6 +14,9 @@
 
 @protocol RadarSetAbstract <RadarBackAbstract>
 
+/**
+ * 雷达图设置数组
+ */
 @property (nonatomic, strong) NSArray <id <RadarAbstract>> * radarSet;
 
 @end

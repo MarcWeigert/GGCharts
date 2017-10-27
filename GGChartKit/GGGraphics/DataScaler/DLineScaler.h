@@ -11,16 +11,50 @@
 
 @interface DLineScaler : BaseScaler
 
-@property (nonatomic, assign) CGFloat max;              ///< 区域内最大值
-@property (nonatomic, assign) CGFloat min;              ///< 区域内最小值
-@property (nonatomic, assign) NSUInteger xMaxCount;     ///< 横向最大点数 默认与数组一致
-@property (nonatomic, strong) NSNumber * aroundNumber;          ///< 环绕点数据
-@property (nonatomic, assign) CGFloat xRatio;           ///< x轴偏移比例 0-1 默认 0.5
+/**
+ * 区域内最大值
+ */
+@property (nonatomic, assign) CGFloat max;
 
-@property (nonatomic, strong) NSArray <NSNumber *> *dataAry;    ///< 数据与lineObjAry二选一
-@property (nonatomic, readonly) NSArray <NSObject *> *lineObjAry;   ///< 数据与dataAry二选一
-@property (nonatomic, readonly) CGPoint * linePoints;           ///< 数据点 size 与数据一致
-@property (nonatomic, readonly) NSInteger pointSize;            ///< 点个数
+/**
+ * 区域内最小值
+ */
+@property (nonatomic, assign) CGFloat min;
+
+/**
+ * 横向最大点数 默认与数组一致
+ */
+@property (nonatomic, assign) NSUInteger xMaxCount;
+
+/**
+ * 环绕点数据
+ */
+@property (nonatomic, strong) NSNumber * aroundNumber;
+
+/**
+ * x轴偏移比例 0-1 默认 0.5
+ */
+@property (nonatomic, assign) CGFloat xRatio;
+
+/**
+ * 数据与lineObjAry二选一
+ */
+@property (nonatomic, strong) NSArray <NSNumber *> *dataAry;
+
+/**
+ * 数据与dataAry二选一
+ */
+@property (nonatomic, readonly) NSArray <NSObject *> *lineObjAry;
+
+/**
+ * 数据点 size 与数据一致
+ */
+@property (nonatomic, readonly) CGPoint * linePoints;
+
+/**
+ * linePoints指针长度
+ */
+@property (nonatomic, readonly) NSInteger pointSize;
 
 /**
  * 根据 aroundNumber 计算出的最低点

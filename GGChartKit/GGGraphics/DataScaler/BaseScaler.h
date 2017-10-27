@@ -11,6 +11,9 @@
 
 @interface BaseScaler : NSObject
 
-@property (nonatomic, assign) CGRect rect;      ///< 绘制区域
+/**
+ * 绘制区域
+ */
+@property (nonatomic, assign) CGRect rect;
 
 @end

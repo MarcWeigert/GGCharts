@@ -6,10 +6,10 @@
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import "NSArray+Stock.h"
+#import "NSArray+GGGraphics.h"
 #import "KLineAbstract.h"
 
-@implementation NSArray (Stock)
+@implementation NSArray (GGGraphics)
 
 - (NSArray <NSNumber *> *)numbarArrayForKey:(NSString *)key
 {

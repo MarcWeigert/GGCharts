@@ -53,6 +53,8 @@
         _queryCanvas = [[QueryCanvas alloc] init];
         _queryCanvas.frame = CGRectMake(0, 0, self.gg_width, self.gg_height);
         [self.layer addSublayer:_queryCanvas];
+        
+        self.longPress.enabled = NO;
     }
     
     return self;

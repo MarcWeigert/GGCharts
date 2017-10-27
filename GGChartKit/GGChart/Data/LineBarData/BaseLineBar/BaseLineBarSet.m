@@ -7,7 +7,6 @@
 //
 
 #import "BaseLineBarSet.h"
-#import "NSArray+Stock.h"
 
 @interface BaseLineBarSet ()
 

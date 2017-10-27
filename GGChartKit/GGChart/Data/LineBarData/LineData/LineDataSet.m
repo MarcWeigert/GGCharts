@@ -8,7 +8,6 @@
 
 #import "LineDataSet.h"
 #import "LineCanvas.h"
-#import "NSArray+Stock.h"
 
 @interface LineDataSet () <LineCanvasAbstract>
 

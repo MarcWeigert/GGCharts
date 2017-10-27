@@ -7,7 +7,6 @@
 //
 
 #import "ProgressCanvas.h"
-#import "NSArray+Stock.h"
 
 @interface ProgressCanvas ()
 

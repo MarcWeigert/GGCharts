@@ -8,7 +8,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "KLineIndexManager.h"
-#import "NSArray+Stock.h"
 #import "DKLineScaler.h"
 #import "GGGraphics.h"
 

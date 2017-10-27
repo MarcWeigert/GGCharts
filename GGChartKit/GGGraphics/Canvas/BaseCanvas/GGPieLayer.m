@@ -7,7 +7,6 @@
 //
 
 #import "GGPieLayer.h"
-#import "NSArray+Stock.h"
 
 typedef enum : NSUInteger {
     LineStrokeStart,
@@ -565,13 +564,5 @@ typedef enum : NSUInteger {
 {
     self.hidden = NO;
 }
-//
-//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-//{
-//    //if (flag) {
-//        
-//        //self.numberRenderer.hidden = (self.strokeType == LineStrokeEnd);
-//    //}
-//}
 
 @end

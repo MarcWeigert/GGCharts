@@ -7,7 +7,6 @@
 //
 
 #import "BaseChart.h"
-#import "CALayer+GGFrame.h"
 
 #define GGLazyGetMethod(type, attribute)            \
 - (type *)attribute                                 \

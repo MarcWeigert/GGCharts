@@ -11,14 +11,29 @@
 
 @protocol RadarAbstract <NSObject>
 
-@property (nonatomic, assign) CGFloat lineWidth;
+/**
+ * 雷达图线宽
+ */
+@property (nonatomic, assign, readonly) CGFloat lineWidth;
 
-@property (nonatomic, strong) UIColor *fillColor;
+/**
+ * 填充颜色
+ */
+@property (nonatomic, strong, readonly) UIColor *fillColor;
 
-@property (nonatomic, strong) UIColor *strockColor;
+/**
+ * 颜色
+ */
+@property (nonatomic, strong, readonly) UIColor *strockColor;
 
-@property (nonatomic, strong) NSArray <NSNumber *> *datas;    ///< 数据源
+/**
+ * 数据源
+ */
+@property (nonatomic, strong, readonly) NSArray <NSNumber *> *datas;
 
+/**
+ * 数据点
+ */
 @property (nonatomic, assign, readonly) CGPoint * points;
 
 #pragma mark - 折线关键点配置
@@ -38,11 +53,13 @@
  */
 @property (nonatomic, assign, readonly) CGFloat shapeLineWidth;
 
+
 #pragma mark - Gradient
 
-@property (nonatomic, strong) NSArray * gradientColors;     ///< CGColor
-
-@property (nonatomic, strong) NSArray <NSNumber *> *locations;
+/**
+ * 渐变色
+ */
+@property (nonatomic, strong) NSArray * gradientColors;
 
 @end
 

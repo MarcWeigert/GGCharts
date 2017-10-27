@@ -13,7 +13,6 @@
 #import "LineData.h"
 #import "GridBackCanvas.h"
 #import "LineChart.h"
-#import "NSArray+Stock.h"
 
 @interface Eps : BaseModel
 
@@ -28,7 +27,6 @@
 @end
 
 @implementation Eps
-
 
 @end
 

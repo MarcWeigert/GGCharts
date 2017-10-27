@@ -7,7 +7,6 @@
 //
 
 #import "MinuteChart.h"
-#import "NSArray+Stock.h"
 #import "GGGraphics.h"
 #import "NSDate+GGDate.h"
 #import "CrissCrossQueryView.h"

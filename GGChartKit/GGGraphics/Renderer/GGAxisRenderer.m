@@ -21,11 +21,6 @@
 
 @implementation GGAxisRenderer
 
-- (void)setStringBlock:(NSString *(^)(CGPoint point, NSInteger index, NSInteger max))stringBlock;
-{
-    _stringBlock = stringBlock;
-}
-
 - (instancetype)init
 {
     self = [super init];
@@ -43,12 +38,31 @@
     return self;
 }
 
+/**
+ * Block设置轴分割点文字
+ *
+ * point 关键点 index 索引值 max 最大值
+ */
+- (void)setStringBlock:(NSString *(^)(CGPoint point, NSInteger index, NSInteger max))stringBlock;
+{
+    _stringBlock = stringBlock;
+}
+
+/**
+ * 清除所有附加文字
+ */
 - (void)removeAllPointString
 {
     [self.stringArray removeAllObjects];
     [self.stringPoints removeAllObjects];
 }
 
+/**
+ * 增加轴关键点以及文字
+ *
+ * @param string 文字
+ * @param point 点
+ */
 - (void)addString:(NSString *)string point:(CGPoint)point
 {
     if (string == nil) { return; }

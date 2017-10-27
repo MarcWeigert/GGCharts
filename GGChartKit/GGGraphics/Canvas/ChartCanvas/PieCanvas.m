@@ -8,7 +8,6 @@
 
 #import "PieCanvas.h"
 #import <objc/runtime.h>
-#import "NSArray+Stock.h"
 
 @interface PieCanvas ()
 

@@ -12,10 +12,19 @@
 
 @interface RadarIndicatorData : NSObject
 
-@property (nonatomic, strong) NSString * title;    ///< 标题
+/**
+ * 标题
+ */
+@property (nonatomic, strong) NSString * title;
 
-@property (nonatomic, assign) CGFloat max;      ///< 最值
+/**
+ * 最大值
+ */
+@property (nonatomic, assign) CGFloat max;
 
+/**
+ * 初始化方法
+ */
 + (RadarIndicatorData *)indicatorWithTitle:(NSString *)title max:(CGFloat)max;
 
 @end

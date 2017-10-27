@@ -1,17 +1,13 @@
 //
-//  KLineViewController.h
+//  KLineData.h
 //  GGCharts
 //
-//  Created by _ | Durex on 17/7/4.
+//  Created by 黄舜 on 2017/10/27.
 //  Copyright © 2017年 I really is a farmer. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "BaseModel.h"
-#import "KLineChart.h"
 #import "QueryViewAbstract.h"
-#import "KLineIndexManager.h"
-#import "BaseIndexLayer.h"
 
 @interface KLineData : BaseModel <KLineAbstract, VolumeAbstract, QueryViewAbstract>
 
@@ -30,9 +26,5 @@
 @property (nonatomic , assign) BOOL showTitle;
 @property (nonatomic , copy) NSString * title;
 @property (nonatomic , strong) NSDate * ggDate;
-
-@end
-
-@interface KLineViewController : UIViewController
 
 @end

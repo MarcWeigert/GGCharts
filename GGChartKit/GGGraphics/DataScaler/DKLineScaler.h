@@ -11,13 +11,30 @@
 
 @interface DKLineScaler : BaseShapeScaler
 
-@property (nonatomic, assign) CGFloat max;              ///< 区域内最大值
-@property (nonatomic, assign) CGFloat min;              ///< 区域内最小值
-@property (nonatomic, assign) NSInteger xMaxCount;      ///< 横向最大点数 默认与数组一致
+/**
+ * 区域内最大值
+ */
+@property (nonatomic, assign) CGFloat max;
 
-@property (nonatomic, readonly) NSArray <NSObject *> *kLineObjAry;   ///< 数据与dataAry二选一
+/**
+ * 区域内最小值
+ */
+@property (nonatomic, assign) CGFloat min;
 
-@property (nonatomic, readonly) GGKShape * kShapes;     ///< k线形态长度与kLineObjAry一致
+/**
+ * 横向最大点数 默认与数组一致
+ */
+@property (nonatomic, assign) NSInteger xMaxCount;
+
+/**
+ * 数据与dataAry二选一
+ */
+@property (nonatomic, readonly) NSArray <NSObject *> *kLineObjAry;
+
+/**
+ * k线形态指针长度与kLineObjAry一致
+ */
+@property (nonatomic, readonly) GGKShape * kShapes;
 
 /**
  * 自定义k线对象转换转换

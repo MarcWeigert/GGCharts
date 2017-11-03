@@ -45,14 +45,14 @@
 @property (nonatomic, copy) UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio);
 
 /**
- * 颜色渐变曲线
- */
-@property (nonatomic, assign) GGLine gradientColorLine;
-
-/**
  * 渐变色权重
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *gradientLocations;
+
+/**
+ * 颜色渐变曲线
+ */
+@property (nonatomic, assign) GradientCurve gradientCurve;
 
 /**
  * 渐变色, 优先级高于UIColor * (^pieColorsForIndex)(NSInteger index, CGFloat ratio)

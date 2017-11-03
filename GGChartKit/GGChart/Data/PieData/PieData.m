@@ -27,7 +27,6 @@
     if (self) {
         
         self.radiusRange = GGRadiusRangeMake(.0f, 100.0f);
-        self.gradientColorLine = GGLineMake(.5f, 0, .5f, 1);
     }
     
     return self;

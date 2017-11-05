@@ -117,7 +117,7 @@
     lineSet.gridConfig.rightNumberAxis.name.offSetSize = CGSizeMake(0, -15);
     lineSet.gridConfig.rightNumberAxis.name.color = RGB(181, 220, 249);
     
-    CGRect rect = CGRectMake(0, 190, [UIScreen mainScreen].bounds.size.width, 250);
+    CGRect rect = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 250);
     LineChart * lineChart = [[LineChart alloc] initWithFrame:rect];
     lineChart.lineDataSet = lineSet;
     [lineChart drawLineChart];

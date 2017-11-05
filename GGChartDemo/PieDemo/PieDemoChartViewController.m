@@ -41,16 +41,16 @@
     NSArray * outColor = @[C_HEX(0xF04D00), C_HEX(0xFBD439), C_HEX(0x23AADA)];
     
     PieData * pie = [[PieData alloc] init];
-    pie.radiusRange = GGRadiusRangeMake(34, 34 + 59);
+    pie.radiusRange = GGRadiusRangeMake(GG_SIZE_CONVERT(34), GG_SIZE_CONVERT(34 + 59));
     pie.showOutLableType = OutSideShow;
     pie.roseType = RoseRadius;
     pie.dataAry = dataAry;
     pie.outSideLable.stringRatio = GGRatioCenterLeft;
     pie.outSideLable.stringOffSet = CGSizeMake(-3, -2);
-    pie.outSideLable.lineLength = 10;
-    pie.outSideLable.inflectionLength = 90;
+    pie.outSideLable.lineLength = GG_SIZE_CONVERT(10);
+    pie.outSideLable.inflectionLength = GG_SIZE_CONVERT(90);
     pie.outSideLable.linePointRadius = 1.5;
-    pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
+    //pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
     pie.showInnerString = YES;
     
     _pie = pie;

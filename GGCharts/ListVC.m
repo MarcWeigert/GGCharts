@@ -45,7 +45,7 @@ _Pragma("clang diagnostic pop") \
 
 - (void)viewDidLoad
 {
-    self.title = @"Charts";
+    self.navigationItem.title = @"Charts";
     
     self.table = [[UITableView alloc] initWithFrame:self.view.frame];
     self.table.delegate = self;

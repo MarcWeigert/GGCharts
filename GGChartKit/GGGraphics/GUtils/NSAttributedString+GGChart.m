@@ -41,9 +41,9 @@
 {
     NSString * string = [NSString stringWithFormat:@"%@%@\n%@", name, fractional, title];
     NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attrbuteString setText:name color:nameColor font:[UIFont systemFontOfSize:15]];
-    [attrbuteString setText:fractional color:C_HEX(0x767676) font:[UIFont systemFontOfSize:8]];
-    [attrbuteString setText:title color:C_HEX(0x343843) font:[UIFont systemFontOfSize:11]];
+    [attrbuteString setText:name color:nameColor font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(15)]];
+    [attrbuteString setText:fractional color:C_HEX(0x767676) font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(8)]];
+    [attrbuteString setText:title color:C_HEX(0x343843) font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(11)]];
     
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
     paraStyle.lineBreakMode = NSLineBreakByWordWrapping;
@@ -65,8 +65,8 @@
 {
     NSString * string = [NSString stringWithFormat:@"%@%@", largeString, smallString];
     NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attrbuteString setText:largeString color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:17]];
-    [attrbuteString setText:smallString color:[UIColor whiteColor] font:[UIFont systemFontOfSize:12]];
+    [attrbuteString setText:largeString color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:GG_SIZE_CONVERT(16)]];
+    [attrbuteString setText:smallString color:[UIColor whiteColor] font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(11)]];
     
     return attrbuteString;
 }
@@ -83,8 +83,8 @@
 {
     NSString * string = [NSString stringWithFormat:@"%@\n%@", centerString, smallString];
     NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attrbuteString setText:centerString color:C_HEX(0x333333) font:[UIFont boldSystemFontOfSize:23]];
-    [attrbuteString setText:smallString color:C_HEX(0x686868) font:[UIFont systemFontOfSize:10]];
+    [attrbuteString setText:centerString color:C_HEX(0x333333) font:[UIFont boldSystemFontOfSize:GG_SIZE_CONVERT(23)]];
+    [attrbuteString setText:smallString color:C_HEX(0x686868) font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(10)]];
     
     return attrbuteString;
 }
@@ -101,8 +101,8 @@
 {
     NSString * string = [NSString stringWithFormat:@"%@\n%@", title, subtitle];
     NSMutableAttributedString * attrbuteString = [[NSMutableAttributedString alloc] initWithString:string];
-    [attrbuteString setText:title color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:16]];
-    [attrbuteString setText:subtitle color:[UIColor whiteColor] font:[UIFont systemFontOfSize:16]];
+    [attrbuteString setText:title color:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:GG_SIZE_CONVERT(16)]];
+    [attrbuteString setText:subtitle color:[UIColor whiteColor] font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(16)]];
     
     return attrbuteString;
 }
@@ -126,9 +126,9 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     [paragraphStyle setLineSpacing:3];
     
-    [attrString setText:title color:[UIColor blackColor] font:[UIFont systemFontOfSize:10]];
-    [attrString setText:ratio color:ratioColor font:[UIFont systemFontOfSize:16]];
-    [attrString setText:price color:[UIColor blackColor] font:[UIFont systemFontOfSize:10]];
+    [attrString setText:title color:[UIColor blackColor] font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(10)]];
+    [attrString setText:ratio color:ratioColor font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(16)]];
+    [attrString setText:price color:[UIColor blackColor] font:[UIFont systemFontOfSize:GG_SIZE_CONVERT(10)]];
     [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
     
     return attrString;

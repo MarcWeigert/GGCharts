@@ -34,14 +34,13 @@
     NSArray * colorArray = @[__RGB_RED, __RGB_BLUE, __RGB_GREEN, __RGB_ORIGE, __RGB_CYAN, __RGB_PINK];
     
     PieData * pie = [[PieData alloc] init];
-    pie.radiusRange = GGRadiusRangeMake(0, 80);
+    pie.radiusRange = GGRadiusRangeMake(0, GG_SIZE_CONVERT(90));
     pie.showOutLableType = OutSideShow;
     pie.dataAry = dataArray;
-    pie.outSideLable.lineSpacing = 20;
-    pie.outSideLable.lineLength = 10;
-    pie.outSideLable.inflectionLength = 10;
+    pie.outSideLable.lineSpacing = GG_SIZE_CONVERT(20);
+    pie.outSideLable.lineLength = GG_SIZE_CONVERT(10);
+    pie.outSideLable.inflectionLength = GG_SIZE_CONVERT(10);
     pie.outSideLable.linePointRadius = 1.5;
-    pie.innerLable.stringOffSet = CGSizeMake(-.5, 0);
     
     [pie setPieColorsForIndex:^(NSInteger index, CGFloat ratio){
         
@@ -67,7 +66,7 @@
     
     PieDataSet * dataSet = [[PieDataSet alloc] init];
     dataSet.pieAry = @[pie];
-    dataSet.borderRadius = 84;
+    dataSet.borderRadius = GG_SIZE_CONVERT(94);
     dataSet.pieBorderWidth = .7f;
     dataSet.pieBorderColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
     dataSet.pieAnimationType = EjectAnimation;

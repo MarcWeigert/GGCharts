@@ -29,13 +29,13 @@
     self.title = @"IOBarChart";
     
     _barData = [[BarData alloc] init];
-    _barData.barWidth = 25;
+    _barData.barWidth = GG_SIZE_CONVERT(25);
     _barData.roundNumber = @0;
     _barData.dataAry = @[@-2225.6, @-2563.1, @531.4, @839.4, @-897.0, @1500];
     
     _barData.dataFormatter = @"%.2f";
     _barData.stringColor = [UIColor blackColor];
-    _barData.stringFont = [UIFont systemFontOfSize:11];
+    _barData.stringFont = [UIFont systemFontOfSize:GG_SIZE_CONVERT(11)];
     
     _barDataSet = [[BarDataSet alloc] init];
     _barDataSet.barAry = @[_barData];

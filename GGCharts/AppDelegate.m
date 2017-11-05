@@ -28,6 +28,19 @@
     UINavigationController * navi =  [[UINavigationController alloc] initWithRootViewController:[ListVC new]];
     [self.window setRootViewController:navi];
     
+    //自定义返回按钮
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage new]
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
+    //将返回按钮的文字position设置不在屏幕上显示
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0)
+                                                         forBarMetrics:UIBarMetricsDefault];
+    
+    NSLog(@"%.2f", [UIScreen mainScreen].bounds.size.width);
+    
+    
+    
+    
     return YES;
 }
 

@@ -185,6 +185,11 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 #define INT_STR_DML(A, B) [NSString stringWithFormat:DECIMAL_INT(B), (A)]
 
+/**
+ * 适配
+ */
+#define GG_SIZE_CONVERT(A)  ([UIScreen mainScreen].bounds.size.width / 414 * A)
+
 
 /**
  * 柱状图关联key

@@ -25,7 +25,6 @@
 
 #import "GGCanvas.h"
 #import "GGShapeCanvas.h"
-
 #import "UIView+GGFrame.h"
 
 #import "GGRenderProtocol.h"

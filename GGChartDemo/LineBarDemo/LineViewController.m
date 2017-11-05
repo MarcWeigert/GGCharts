@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"自定义最大最小值";
+    
     LineData * line = [[LineData alloc] init];
     line.lineWidth = 1;
     line.lineColor = C_HEX(0xf64646);

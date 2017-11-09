@@ -1,14 +1,18 @@
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/BarChart1.GIF"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/LineBarChart1.GIF"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/LineChart1.GIF"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/LineChart2.GIF"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/PieChart1.gif"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/PieChart2.GIF"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/RadarChat1.PNG"/>
-<img width="375" height="667" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/ProgressChart1.GIF"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart4.GIF"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart5.GIF"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart6.GIF"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart1.PNG"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart2.PNG"/>
-<img width="667" height="375" src="https://github.com/huangshun11/Show-HSCharts-Images/blob/master/GGCharts/StockChart3.PNG"/>
+## 折线图柱状图示例
+| 样例一 | 样例二
+|------------|------------
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineChart1.GIF?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/BarChart1.GIF?raw=true)
+| 样例一 | 样例二
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineChart2.GIF?raw=true) | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarChart1.GIF?raw=true)
+
+## 饼图示例
+| 样例一 | 样例二
+|------------|------------
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/PieChart1.gif?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/PieChart2.GIF?raw=true)
+
+## 股票图示例
+| 配色白 | 配色黑
+|------------|------------
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart1.PNG?raw=true)
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart2.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart6.GIF?raw=true)
+| ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart3.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart5.GIF?raw=true)

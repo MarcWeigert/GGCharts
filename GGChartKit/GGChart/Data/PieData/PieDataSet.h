@@ -44,11 +44,6 @@
 @property (nonatomic, strong) UIColor * pieBorderColor;
 
 /**
- * 扇形图动画
- */
-@property (nonatomic, assign) PieAnimationType pieAnimationType;
-
-/**
  * 更新时是否需要动画
  */
 @property (nonatomic, assign) BOOL updateNeedAnimation;

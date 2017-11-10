@@ -38,11 +38,6 @@
  */
 @property (nonatomic, assign) BOOL updateNeedAnimation;
 
-/**
- * 扇形图动画
- */
-@property (nonatomic, assign, readonly) PieAnimationType pieAnimationType;
-
 @end
 
 #endif /* PieCanvasAbstract_h */

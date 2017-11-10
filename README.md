@@ -71,7 +71,7 @@
 ### 折线图柱状图数据结构
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 ### 折线与柱状图 DataSet
-#### BaseLineBarSet
+#### BaseLineBarSet<id = "BaseLineBarSet">
 ```objective-c
 /**
  * 折线与柱状图内边距

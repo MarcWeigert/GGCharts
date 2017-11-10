@@ -23,17 +23,17 @@ typedef enum : NSUInteger {
 @interface BaseLineBarSet : NSObject
 
 /**
- * 折线图内边距
+ * 折线与柱状图内边距
  */
 @property (nonatomic, assign) UIEdgeInsets insets;
 
 /**
- * 折线图背景层设置
+ * 折线与柱状图背景层设置
  */
 @property (nonatomic, strong) LineBarGird * gridConfig;
 
 /**
- * 折线表现形式
+ * 折线与柱状表现形式
  */
 @property (nonatomic, assign) LineBarDataMode lineBarMode;
 
@@ -48,7 +48,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) BOOL updateNeedAnimation;
 
 /**
- * 柱状图颜色
+ * 柱状图折线图数据文字颜色
  * 优先级高于 data.stringColor
  *
  * @param value 数据

@@ -16,22 +16,22 @@
 #pragma mark - 轴设置
 
 /**
- * 查价层左边数据轴
+ * 左数据轴
  */
 @property (nonatomic, strong) YAxis * leftNumberAxis;
 
 /**
- * 查价层右边数据轴
+ * 右数据轴
  */
 @property (nonatomic, strong) YAxis * rightNumberAxis;
 
 /**
- * 查价层上层标签轴
+ * 上层签轴
  */
 @property (nonatomic, strong) XAxis * topLableAxis;
 
 /**
- * 查价层下层标签轴
+ * 下标签轴
  */
 @property (nonatomic, strong) XAxis * bottomLableAxis;
 

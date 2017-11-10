@@ -2,26 +2,26 @@
 **目录 (Table of Contents)**
 
 *   [GGChart](#GGChart)
-    *   [图表示例](#图表示例)
-    *   [折线图与柱状图](#折线图与柱状图)
+    *   [图表示例](#%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
+    *   [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
         *   [折线图柱状图支持特性:](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
-        *   [折线图柱状图数据结构:](#折线图柱状图数据结构:)
-		*   [折线与柱状图DataSet:](#折线与柱状图DataSet:)
+        *   [折线图柱状图数据结构:](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
+		*   [折线与柱状图DataSet:](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beDataSet:)
 			*   [BaseLineBarSet](#BaseLineBarSet)
-			*   [BarDataSet：BaseLineBarSet](#BarDataSet：BaseLineBarSet)
-			*   [LineDataSet：BaseLineBarSet](#LineDataSet：BaseLineBarSet)
-		*   [折线与柱状图Data :](#折线与柱状图Data :)
+			*   [BarDataSet:BaseLineBarSet](#BarDataSet:BaseLineBarSet)
+			*   [LineDataSet:BaseLineBarSet](#LineDataSet:BaseLineBarSet)
+		*   [折线与柱状图Data:](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beData:)
 			*   [BaseLineBarData](#BaseLineBarData)
-			*   [LineData：BaseLineBarData](#LineData：BaseLineBarData)
-			*   [BarData：BaseLineBarData](#BarData：BaseLineBarData)
-		*   [背景与轴 :](#背景与轴 :)
+			*   [LineData:BaseLineBarData](#LineData:BaseLineBarData)
+			*   [BarData:BaseLineBarData](#BarData:BaseLineBarData)
+		*   [背景与轴:](#%e8%83%8c%e6%99%af%e4%b8%8e%e8%bd%b4:)
 			*   [LineBarGird](#LineBarGird)
 			*   [YAxis](#YAxis)
 			*   [YAxis](#YAxis)
     *   [饼图](#饼图)
-        *   [饼图支持特性:](#饼图支持特性:)
-        *   [饼图数据结构:](#饼图数据结构:)
-		*   [饼图属性列表:](#饼图属性列表:)
+        *   [饼图支持特性:](#%e9%a5%bc%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
+        *   [饼图数据结构:](#%e9%a5%bc%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
+		*   [饼图属性列表:](#%e9%a5%bc%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
 			*   [PieDataSet](#PieDataSet)
 			*   [PieData](#PieData)
 			*   [NumberData](#NumberData)
@@ -29,20 +29,20 @@
 			*   [OutSideLable：InnerLable](#OutSideLable：InnerLable)
 			*   [CenterLableData：NumberData](#CenterLableData：NumberData)
 			*   [CenterData](#CenterData)
-  *   [雷达图](#雷达图)
-        *   [雷达图支持特性:](#雷达图支持特性:)
-        *   [雷达图数据结构:](#雷达图数据结构:)
-		*   [雷达图属性列表:](#雷达图属性列表:)
+  *   [雷达图](#%e9%9b%b7%e8%be%be%e5%9b%be)
+        *   [雷达图支持特性:](#%e9%9b%b7%e8%be%be%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
+        *   [雷达图数据结构:](#%e9%9b%b7%e8%be%be%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
+		*   [雷达图属性列表:](#%e9%9b%b7%e8%be%be%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
 			*   [RadarDataSet](#RadarDataSet)
 			*   [RadarIndicatorData](#RadarIndicatorData)
 			*   [RadarData](#RadarData)
   *   [进度条图](#进度条图)
-        *   [进度条图支持特性:](#进度条图支持特性:)
-        *   [进度条图数据结构:](#进度条图数据结构:)
-		*   [进度条图属性列表:](#进度条图属性列表:)
+        *   [进度条图支持特性:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
+        *   [进度条图数据结构:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
+		*   [进度条图属性列表:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
 			*   [ProgressData](#ProgressData)
-			*   [ProgressData：NumberData](#ProgressData：NumberData)
-  *   [股票图表示例](#股票图表示例)
+			*   [ProgressData:NumberData](#ProgressData:NumberData)
+  *   [股票图表示例](#%e8%82%a1%e7%a5%a8%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
 
 ## 图表示例
 | 样例一 | 样例二
@@ -111,7 +111,7 @@
 
 > 注意：BaseLineBarSet 中属性`insets` 为数据背景网格边框的内边距。
 
-#### BarDataSet：BaseLineBarSet
+#### BarDataSet:BaseLineBarSet
 ```objective-c
 /**
  * 柱状图颜色
@@ -139,14 +139,14 @@
  */
 @property (nonatomic, strong) UIColor * midLineColor;
 ```
-#### LineDataSet：BaseLineBarSet
+#### LineDataSet:BaseLineBarSet
 ```objective-c
 /**
  * 折线图数据数组
  */
 @property (nonatomic, strong) NSArray <LineData *> * lineAry;
 ```
-### 折线与柱状图Data :
+### 折线与柱状图Data:
 #### BaseLineBarData
 ```objective-c
 /**
@@ -226,7 +226,7 @@ CG_EXTERN CGPoint const GGRatioCenterLeft;
 CG_EXTERN CGPoint const GGRatioCenter;
 CG_EXTERN CGPoint const GGRatioCenterRight;
 ```
-#### LineData：BaseLineBarData
+#### LineData:BaseLineBarData
 ```objective-c
 #pragma mark - 折线配置
 /**
@@ -285,7 +285,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *locations;
 ```
-#### BarData：BaseLineBarData
+#### BarData:BaseLineBarData
 ```objective-c
 /**
  * 柱状图边框颜色
@@ -307,7 +307,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, assign) CGFloat barWidth;
 ```
-### 背景与轴 :
+### 背景与轴:
 #### LineBarGird
 ```objective-c
 /**
@@ -645,7 +645,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
 ```
 
-#### InnerLable : NumberData
+#### InnerLable:NumberData
 ```objective-c
 /**
  * 扇形图富文本字符串
@@ -653,7 +653,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) NSAttributedString * (^attributeStringBlock)(NSInteger index, CGFloat value, CGFloat ratio);
 ```
 
-#### OutSideLable：InnerLable
+#### OutSideLable:InnerLable
 ```objective-c
 /**
  * 线宽度
@@ -686,7 +686,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) UIColor * (^lineColorsBlock)(NSInteger index, CGFloat ratio);
 ```
 
-#### CenterLableData：NumberData
+#### CenterLableData:NumberData
 ```objective-c
 /**
  * 中间数字
@@ -933,7 +933,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) ProgressLable * centerLable;
 ```
-#### ProgressData：NumberData
+#### ProgressData:NumberData
 ```objective-c
 --
 ```

@@ -7,7 +7,7 @@
   - [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
     - [折线图柱状图支持特性](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7)
     - [折线图柱状图数据结构](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
-    - [折线与柱状图 DataSet](#%E6%8A%98%E7%BA%BF%E4%B8%8E%E6%9F%B1%E7%8A%B6%E5%9B%BE%20DataSet)
+    - [折线与柱状图 DataSet](#折线与柱状图 DataSet)
       - [BaseLineBarSet](#BaseLineBarSet)
       - [BarDataSet:BaseLineBarSet](#BarDataSet:BaseLineBarSet)
       - [LineDataSet:BaseLineBarSet](#LineDataSet:BaseLineBarSet)
@@ -73,7 +73,7 @@
 
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 
-### 折线与柱状图 DataSet
+<h3 id="折线与柱状图 DataSet">折线与柱状图 DataSet</h3>
 
 <h4 id="BaseLineBarSet">BaseLineBarSet</h4>
 

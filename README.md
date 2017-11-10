@@ -1,9 +1,48 @@
 # GGChart
 **目录 (Table of Contents)**
 
-[TOCM]
-
-[TOC]
+*   [GGChart](#GGChart)
+    *   [图表示例](#图表示例)
+    *   [折线图与柱状图](#折线图与柱状图)
+        *   [折线图柱状图支持特性:](#折线图柱状图支持特性:)
+        *   [折线图柱状图数据结构:](#折线图柱状图数据结构:)
+		*   [折线与柱状图DataSet:](#折线与柱状图DataSet:)
+			*   [BaseLineBarSet](#BaseLineBarSet)
+			*   [BarDataSet：BaseLineBarSet](#BarDataSet：BaseLineBarSet)
+			*   [LineDataSet：BaseLineBarSet](#LineDataSet：BaseLineBarSet)
+		*   [折线与柱状图Data :](#折线与柱状图Data :)
+			*   [BaseLineBarData](#BaseLineBarData)
+			*   [LineData：BaseLineBarData](#LineData：BaseLineBarData)
+			*   [BarData：BaseLineBarData](#BarData：BaseLineBarData)
+		*   [背景与轴 :](#背景与轴 :)
+			*   [LineBarGird](#LineBarGird)
+			*   [YAxis](#YAxis)
+			*   [YAxis](#YAxis)
+    *   [饼图](#饼图)
+        *   [饼图支持特性:](#饼图支持特性:)
+        *   [饼图数据结构:](#饼图数据结构:)
+		*   [饼图属性列表:](#饼图属性列表:)
+			*   [PieDataSet](#PieDataSet)
+			*   [PieData](#PieData)
+			*   [NumberData](#NumberData)
+			*   [InnerLable : NumberData](#InnerLable : NumberData)
+			*   [OutSideLable：InnerLable](#OutSideLable：InnerLable)
+			*   [CenterLableData：NumberData](#CenterLableData：NumberData)
+			*   [CenterData](#CenterData)
+  *   [雷达图](#雷达图)
+        *   [雷达图支持特性:](#雷达图支持特性:)
+        *   [雷达图数据结构:](#雷达图数据结构:)
+		*   [雷达图属性列表:](#雷达图属性列表:)
+			*   [RadarDataSet](#RadarDataSet)
+			*   [RadarIndicatorData](#RadarIndicatorData)
+			*   [RadarData](#RadarData)
+  *   [进度条图](#进度条图)
+        *   [进度条图支持特性:](#进度条图支持特性:)
+        *   [进度条图数据结构:](#进度条图数据结构:)
+		*   [进度条图属性列表:](#进度条图属性列表:)
+			*   [ProgressData](#ProgressData)
+			*   [ProgressData：NumberData](#ProgressData：NumberData)
+  *   [股票图表示例](#股票图表示例)
 
 ## 图表示例
 | 样例一 | 样例二
@@ -31,7 +70,7 @@
 ### 折线图柱状图数据结构:
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 
-### 折线与柱状图DataSet :
+### 折线与柱状图DataSet:
 #### BaseLineBarSet
 ```objective-c
 /**
@@ -682,7 +721,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 ### 雷达图数据结构:
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarUML.png?raw=true)
 
-### 雷达图属性:
+### 雷达图属性列表:
 
 > 注意：雷达图需要先制定各个维度最大值以及标题，详见`RadarIndicatorData`。
 
@@ -818,6 +857,7 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 ### 进度条图数据结构:
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressUML.png?raw=true)
 
+###  进度条图属性列表:
 #### ProgressData
 ```objective-c
 /**

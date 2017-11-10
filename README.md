@@ -68,10 +68,14 @@
 - 支持柱状图或折线图指定轴数据(默认左边Y轴)
 - 支持自动计算Y轴极大值极小值、可设置极大极小值偏移比率。
 - 支持自定义Y轴极大值极小值。
+
 ### 折线图柱状图数据结构
+
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
+
 ### 折线与柱状图 DataSet
-#### BaseLineBarSet<id = "BaseLineBarSet">
+
+<h4 id="BaseLineBarSet">BaseLineBarSet</h4>
 ```objective-c
 /**
  * 折线与柱状图内边距

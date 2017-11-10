@@ -54,9 +54,7 @@
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/PieChart1.gif?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/PieChart2.GIF?raw=true)
 | 样例七 | 样例八
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarChat1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressChart1.GIF?raw=true)
-
 ## 折线图与柱状图
-
 ### 折线图柱状图支持特性
 - 支持数据拉伸、并列、居中对齐、堆叠、正负堆叠(同级数据叠加)、指定数据环绕。
 - 支持折线区域填充颜色以及渐变色。
@@ -67,12 +65,9 @@
 - 支持柱状图或折线图指定轴数据(默认左边Y轴)
 - 支持自动计算Y轴极大值极小值、可设置极大极小值偏移比率。
 - 支持自定义Y轴极大值极小值。
-
 ### 折线图柱状图数据结构
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
-
 ### 折线与柱状图 DataSet
-
 #### BaseLineBarSet
 ```objective-c
 /**

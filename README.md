@@ -2,11 +2,11 @@
 **目录 (Table of Contents)**
 
 *   [GGChart](#GGChart)
-    *   [图表示例](#%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
+    *   [图表示例](##%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
     *   [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
-        *   [折线图柱状图支持特性:](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
-        *   [折线图柱状图数据结构:](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
-		*   [折线与柱状图DataSet:](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beDataSet:)
+        *   [折线图柱状图支持特性](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7)
+        *   [折线图柱状图数据结构](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
+		*   [折线与柱状图DataSet](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beDataSet)
 			*   [BaseLineBarSet](#BaseLineBarSet)
 			*   [BarDataSet:BaseLineBarSet](#BarDataSet:BaseLineBarSet)
 			*   [LineDataSet:BaseLineBarSet](#LineDataSet:BaseLineBarSet)
@@ -56,7 +56,7 @@
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarChat1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressChart1.GIF?raw=true)
 
 ## 折线图与柱状图
-### 折线图柱状图支持特性:
+### 折线图柱状图支持特性
 - 支持数据拉伸、并列、居中对齐、堆叠、正负堆叠(同级数据叠加)、指定数据环绕。
 - 支持折线区域填充颜色以及渐变色。
 - 支持自定义折线或者柱状图文字字体、颜色、偏移量。
@@ -67,10 +67,10 @@
 - 支持自动计算Y轴极大值极小值、可设置极大极小值偏移比率。
 - 支持自定义Y轴极大值极小值。
 
-### 折线图柱状图数据结构:
+### 折线图柱状图数据结构
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 
-### 折线与柱状图DataSet:
+### 折线与柱状图DataSet
 #### BaseLineBarSet
 ```objective-c
 /**
@@ -146,7 +146,7 @@
  */
 @property (nonatomic, strong) NSArray <LineData *> * lineAry;
 ```
-### 折线与柱状图Data:
+### 折线与柱状图Data
 #### BaseLineBarData
 ```objective-c
 /**

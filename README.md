@@ -7,7 +7,7 @@
   - [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
     - [折线图柱状图支持特性](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7)
     - [折线图柱状图数据结构](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
-    - [折线与柱状图 DataSet](#折线与柱状图 DataSet)
+    - [折线与柱状图 DataSet](#%E6%8A%98%E7%BA%BF%E4%B8%8E%E6%9F%B1%E7%8A%B6%E5%9B%BE%20DataSet)
       - [BaseLineBarSet](#BaseLineBarSet)
       - [BarDataSet:BaseLineBarSet](#BarDataSet:BaseLineBarSet)
       - [LineDataSet:BaseLineBarSet](#LineDataSet:BaseLineBarSet)
@@ -117,6 +117,9 @@
 > 注意：BaseLineBarSet 中属性`insets` 为数据背景网格边框的内边距。
 
 #### BarDataSet:BaseLineBarSet
+
+<h4 id "BarDataSet:BaseLineBarSet"> BarDataSet:BaseLineBarSet </h4>
+
 ```objective-c
 /**
  * 柱状图颜色
@@ -290,7 +293,8 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *locations;
 ```
-#### BarData:BaseLineBarData
+<h4 id = "BarData:BaseLineBarData">BarData:BaseLineBarData</h4>
+
 ```objective-c
 /**
  * 柱状图边框颜色

@@ -56,6 +56,7 @@
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarChat1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressChart1.GIF?raw=true)
 
 ## 折线图与柱状图
+
 ### 折线图柱状图支持特性
 - 支持数据拉伸、并列、居中对齐、堆叠、正负堆叠(同级数据叠加)、指定数据环绕。
 - 支持折线区域填充颜色以及渐变色。
@@ -71,6 +72,7 @@
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 
 ### 折线与柱状图DataSet
+
 #### BaseLineBarSet
 ```objective-c
 /**

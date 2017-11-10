@@ -116,9 +116,7 @@
 
 > 注意：BaseLineBarSet 中属性`insets` 为数据背景网格边框的内边距。
 
-#### BarDataSet:BaseLineBarSet
-
-<h4 id "BarDataSet:BaseLineBarSet"> BarDataSet:BaseLineBarSet </h4>
+<h4 id = "BarDataSet:BaseLineBarSet"> BarDataSet:BaseLineBarSet </h4>
 
 ```objective-c
 /**

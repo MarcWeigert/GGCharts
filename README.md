@@ -2,7 +2,7 @@
 **目录 (Table of Contents)**
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- *   [GGChart](#GGChart) -->
+*   [GGChart](#GGChart)
     *   [图表示例](#%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
     *   [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
         *   [折线图柱状图支持特性](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7)

@@ -2,49 +2,50 @@
 **目录 (Table of Contents)**
 
 *   [GGChart](#GGChart)
-    *   [图表示例](##%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
-    *   [折线图与柱状图](#%e6%8a%98%e7%ba%bf%e5%9b%be%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%be)
-        *   [折线图柱状图支持特性](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7)
-        *   [折线图柱状图数据结构](#%e6%8a%98%e7%ba%bf%e5%9b%be%e6%9f%b1%e7%8a%b6%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
-        *   [折线与柱状图DataSet](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beDataSet)
-            *   [BaseLineBarSet](#BaseLineBarSet)
-            *   [BarDataSet:BaseLineBarSet](#BarDataSet:BaseLineBarSet)
-            *   [LineDataSet:BaseLineBarSet](#LineDataSet:BaseLineBarSet)
-        *   [折线与柱状图Data:](#%e6%8a%98%e7%ba%bf%e4%b8%8e%e6%9f%b1%e7%8a%b6%e5%9b%beData:)
-            *   [BaseLineBarData](#BaseLineBarData)
-            *   [LineData:BaseLineBarData](#LineData:BaseLineBarData)
-            *   [BarData:BaseLineBarData](#BarData:BaseLineBarData)
-        *   [背景与轴:](#%e8%83%8c%e6%99%af%e4%b8%8e%e8%bd%b4:)
-            *   [LineBarGird](#LineBarGird)
-            *   [YAxis](#YAxis)
-            *   [YAxis](#YAxis)
-    *   [饼图](#饼图)
-        *   [饼图支持特性:](#%e9%a5%bc%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
-        *   [饼图数据结构:](#%e9%a5%bc%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
-        *   [饼图属性列表:](#%e9%a5%bc%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
-            *   [PieDataSet](#PieDataSet)
-            *   [PieData](#PieData)
-            *   [NumberData](#NumberData)
-            *   [InnerLable : NumberData](#InnerLable : NumberData)
-            *   [OutSideLable：InnerLable](#OutSideLable：InnerLable)
-            *   [CenterLableData：NumberData](#CenterLableData：NumberData)
-            *   [CenterData](#CenterData)
-  *   [雷达图](#%e9%9b%b7%e8%be%be%e5%9b%be)
-        *   [雷达图支持特性:](#%e9%9b%b7%e8%be%be%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
-        *   [雷达图数据结构:](#%e9%9b%b7%e8%be%be%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
-        *   [雷达图属性列表:](#%e9%9b%b7%e8%be%be%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
-            *   [RadarDataSet](#RadarDataSet)
-            *   [RadarIndicatorData](#RadarIndicatorData)
-            *   [RadarData](#RadarData)
-  *   [进度条图](#进度条图)
-        *   [进度条图支持特性:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e6%94%af%e6%8c%81%e7%89%b9%e6%80%a7:)
-        *   [进度条图数据结构:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84:)
-        *   [进度条图属性列表:](#%e8%bf%9b%e5%ba%a6%e6%9d%a1%e5%9b%be%e5%b1%9e%e6%80%a7%e5%88%97%e8%a1%a8:)
-            *   [ProgressData](#ProgressData)
-            *   [ProgressData:NumberData](#ProgressData:NumberData)
-  *   [股票图表示例](#%e8%82%a1%e7%a5%a8%e5%9b%be%e8%a1%a8%e7%a4%ba%e4%be%8b)
+    *   <a href="#chart_example">图表示例</a>
+    *   <a href="#line_and_bar">折线图与柱状图</a>
+    	*   <a href="#linebar_features">折线图柱状图支持特性</a>
+        *   <a href="#line_bar_structure">折线图柱状图数据结构</a>
+        *   <a href="#line_bar_set">折线与柱状图DataSet</a>
+            *   <a href="#base_line_bar_set">BaseLineBarSet</a>
+            *   <a href="#bar_set">BarDataSet:BaseLineBarSet</a>
+            *   <a href="#line_set">LineDataSet:BaseLineBarSet</a>
+        *   <a href="#line_bar_data">折线与柱状图Data:</a>
+            *   <a href="#base_line_bar_data">BaseLineBarData</a>
+            *   <a href="#line_data">LineData:BaseLineBarData</a>
+            *   <a href="#bar_data">BarData:BaseLineBarData</a>
+        *   <a href="#back_grid_axis">背景与轴:</a>
+            *   <a href="#line_bar_grid">LineBarGird</a>
+            *   <a href="#y_axis">YAxis</a>
+            *   <a href="#x_axis">XAxis</a>
+    *   <a href="#pie_chart">饼图</a>
+        *   <a href="#pie_features">饼图支持特性:</a>
+        *   <a href="#pie_structure">饼图数据结构:</a>
+        *   <a href="#pie_ivar">饼图属性列表:</a>
+            *   <a href="#pie_data_set">PieDataSet</a>
+            *   <a href="#pie_data">PieData</a>
+            *   <a href="#number_data">NumberData</a>
+            *   <a href="#inner_lable">InnerLable:NumberData</a>
+            *   <a href="#outside_lable">OutSideLable:InnerLable</a>
+            *   <a href="#center_lable_data">CenterLableData:NumberData</a>
+            *   <a href="#center_data">CenterData</a>
+  *   <a href="#radar_chart">雷达图</a>
+        *   <a href="#radar_features">雷达图支持特性:</a>
+        *   <a href="#radar_structure">雷达图数据结构:</a>
+        *   <a href="#radar_ivar">雷达图属性列表:</a>
+            *   <a href="#radar_data_set">RadarDataSet</a>
+            *   <a href="#radar_indicator_data">RadarIndicatorData</a>
+            *   <a href="#radar_data">RadarData</a>
+  *   <a href="#progress_chart">进度条图</a>
+        *   <a href="#progress_features">进度条图支持特性:</a>
+        *   <a href="#progress_structure">进度条图数据结构:</a>
+        *   <a href="#progress_ivar">进度条图属性列表:</a>
+            *   <a href="#progress_data">ProgressData</a>
+            *   <a href="#progress_lable">ProgressLable:NumberData</a>
+  *   <a href="#stock_chart">股票图表示例</a>
 
-## 图表示例
+<h2 id="chart_example">图表示例</h2>
+
 | 样例一 | 样例二
 |------------|------------
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineChart1.GIF?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/BarChart1.GIF?raw=true)
@@ -55,8 +56,10 @@
 | 样例七 | 样例八
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarChat1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressChart1.GIF?raw=true)
 
-## 折线图与柱状图
-### 折线图柱状图支持特性
+<h2 id="line_and_bar">折线图与柱状图</h2>
+
+<h3 id="linebar_features">折线图柱状图支持特性</h3>
+ 
 - 支持数据拉伸、并列、居中对齐、堆叠、正负堆叠(同级数据叠加)、指定数据环绕。
 - 支持折线区域填充颜色以及渐变色。
 - 支持自定义折线或者柱状图文字字体、颜色、偏移量。
@@ -67,11 +70,14 @@
 - 支持自动计算Y轴极大值极小值、可设置极大极小值偏移比率。
 - 支持自定义Y轴极大值极小值。
 
-### 折线图柱状图数据结构
+<h4 id="line_bar_structure">折线图柱状图数据结构</h4>
+
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/LineBarUML.png?raw=true)
 
-### 折线与柱状图DataSet
-#### BaseLineBarSet
+<h3 id="line_bar_set">折线与柱状图DataSet</h3>
+
+<h4 id="base_line_bar_set">BaseLineBarSet</h4>
+
 ```objective-c
 /**
  * 折线与柱状图内边距
@@ -111,7 +117,8 @@
 
 > 注意：BaseLineBarSet 中属性`insets` 为数据背景网格边框的内边距。
 
-#### BarDataSet:BaseLineBarSet
+<h4 id="bar_set">BarDataSet:BaseLineBarSet</h4>
+
 ```objective-c
 /**
  * 柱状图颜色
@@ -139,15 +146,20 @@
  */
 @property (nonatomic, strong) UIColor * midLineColor;
 ```
-#### LineDataSet:BaseLineBarSet
+
+<h4 id="line_set">LineDataSet:BaseLineBarSet</h4>
+
 ```objective-c
 /**
  * 折线图数据数组
  */
 @property (nonatomic, strong) NSArray <LineData *> * lineAry;
 ```
-### 折线与柱状图Data
-#### BaseLineBarData
+
+<h3 id="line_bar_data">折线与柱状图Data</h3>
+
+<h4 id="base_line_bar_data">BaseLineBarData</h4>
+
 ```objective-c
 /**
  * 柱状图, 折线定标器
@@ -226,7 +238,9 @@ CG_EXTERN CGPoint const GGRatioCenterLeft;
 CG_EXTERN CGPoint const GGRatioCenter;
 CG_EXTERN CGPoint const GGRatioCenterRight;
 ```
-#### LineData:BaseLineBarData
+
+<h4 id="line_data">LineData:BaseLineBarData</h4>
+
 ```objective-c
 #pragma mark - 折线配置
 /**
@@ -285,7 +299,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) NSArray <NSNumber *> *locations;
 ```
-#### BarData:BaseLineBarData
+
+<h4 id="bar_data">BarData:BaseLineBarData</h4>
+
 ```objective-c
 /**
  * 柱状图边框颜色
@@ -307,8 +323,10 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, assign) CGFloat barWidth;
 ```
-### 背景与轴:
-#### LineBarGird
+<h3 id="back_grid_axis">背景与轴:</h3>
+
+<h4 id="line_bar_grid">LineBarGird</h4>
+
 ```objective-c
 /**
  * 轴线结构体
@@ -366,7 +384,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, assign) BOOL showQueryLable;
 ```
-#### YAxis
+
+<h4 id="y_axis">YAxis</h4>
+
 ```objective-c
 /**
  * 轴最大值
@@ -429,7 +449,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) AxisName * name;
 ```
-#### XAxis
+
+<h4 id="x_axis">XAxis</h4>
+
 ```objective-c
 
 /**
@@ -479,8 +501,10 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, assign) BOOL showSplitLine;
 ```
 
-## 饼图
-### 饼图支持特性:
+<h2 id="pie_chart">饼图</h2>
+
+<h3 id="pie_features">饼图支持特性:</h3>
+
 - 支持渐变色。
 - 支持点击。
 - 支持数据更新渐变动画。
@@ -489,11 +513,14 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 - 支持扇形内部，与外部文字(字体，颜色，偏移量)。
 - 支持扇形外线。(直接展示，点击展示)。
 
-### 饼图数据结构:
+<h3 id="pie_structure">饼图数据结构:</h3>
+
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/PieUML.png?raw=true)
 
-### 饼图属性列表:
-#### PieDataSet
+<h3 id="pie_ivar">饼图属性列表:</h3>
+
+<h4 id="pie_data_set">PieDataSet</h4>
+
 ```objective-c
 /**
  * 扇形图数组
@@ -531,7 +558,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, assign) BOOL updateNeedAnimation;
 ```
 
-#### PieData
+<h4 id="pie_data">PieData</h4>
+
+
 ```objective-c
 /**
  * 折线图定标器
@@ -606,7 +635,8 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 > 注意：PieData 中属性`radiusRange`  为结构体 `struct GGRadiusRange
 { CGFloat inRadius; CGFloat outRadius; }`，要求 outRadius需要包含inRadius。详见类`GGPie` 。
 
-#### NumberData
+<h4 id="number_data">NumberData</h4>
+
 ```objective-c
 /**
  * 外部文字字体颜色
@@ -645,7 +675,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) NSAttributedString *(^attrbuteStringValueBlock)(CGFloat value);
 ```
 
-#### InnerLable:NumberData
+<h4 id="inner_lable">InnerLable:NumberData</h4>
+
+
 ```objective-c
 /**
  * 扇形图富文本字符串
@@ -653,7 +685,9 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) NSAttributedString * (^attributeStringBlock)(NSInteger index, CGFloat value, CGFloat ratio);
 ```
 
-#### OutSideLable:InnerLable
+<h4 id="outside_lable">OutSideLable:InnerLable</h4>
+
+
 ```objective-c
 /**
  * 线宽度
@@ -686,14 +720,19 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, copy) UIColor * (^lineColorsBlock)(NSInteger index, CGFloat ratio);
 ```
 
-#### CenterLableData:NumberData
+<h4 id="center_lable_data">CenterLableData:NumberData</h4>
+
+
 ```objective-c
 /**
  * 中间数字
  */
 @property (nonatomic, assign) CGFloat number;
 ```
-#### CenterData
+
+<h4 id="center_data">CenterData</h4>
+
+
 ```objective-c
 /**
  * 填充颜色
@@ -711,21 +750,25 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, strong) CenterLableData * lable;
 ```
 
-## 雷达图
-### 雷达图支持特性:
+<h2 id="radar_chart">雷达图</h2>
+
+<h3 id="radar_features">雷达图支持特性:</h3>
+
 - 支持自定义雷达图背景，圆环或者多边形。
 - 支持自定义文字(字体，颜色，偏移量)。
 - 支持自定义背景线(颜色，现款)。
 - 支持雷达内容渐变色。
 
-### 雷达图数据结构:
+<h3 id="radar_structure">雷达图数据结构:</h3>
+
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/RadarUML.png?raw=true)
 
-### 雷达图属性列表:
+<h3 id="radar_ivar">雷达图属性列表:</h3>
 
 > 注意：雷达图需要先制定各个维度最大值以及标题，详见`RadarIndicatorData`。
 
-#### RadarDataSet
+<h4 id="radar_data_set">RadarDataSet</h4>
+
 ```objective-c
 /**
  * 图层数据
@@ -782,7 +825,8 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) UIColor * stringColor;
 ```
-#### RadarIndicatorData
+<h4 id="radar_indicator_data">RadarIndicatorData</h4>
+
 ```objective-c
 /**
  * 标题
@@ -794,8 +838,8 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, assign) CGFloat max;
 ```
+<h4 id="radar_data">RadarData</h4>
 
-#### RadarData
 ```objective-c
 /**
  * 线宽
@@ -847,18 +891,23 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
 @property (nonatomic, strong) NSArray * gradientColors;
 ```
 
-## 进度条图
-### 进度条图支持特性:
+<h2 id="progress_chart">进度条图</h2>
+
+<h3 id="progress_features">进度条图支持特性:</h3>
+
 - 支持自定义启示角度
 - 支持自定义文字(字体、颜色)。
 - 支持更新动画。
 - 支持渐变色。
 
-### 进度条图数据结构:
+<h3 id="progress_structure">进度条图数据结构:</h3>
+
 ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/ProgressUML.png?raw=true)
 
-###  进度条图属性列表:
-#### ProgressData
+<h3 id="progress_ivar">进度条图属性列表:</h3>
+
+<h4 id="progress_data">ProgressData</h4>
+
 ```objective-c
 /**
  * 最大值
@@ -933,13 +982,15 @@ CG_EXTERN CGPoint const GGRatioCenterRight;
  */
 @property (nonatomic, strong) ProgressLable * centerLable;
 ```
-#### ProgressData:NumberData
+
+<h4 id="progress_lable">ProgressLable:NumberData</h4>
+
 ```objective-c
 --
 ```
 
+<h2 id="stock_chart">股票图表示例</h2>
 
-## 股票图表示例
 | 配色白 | 配色黑
 |------------|------------
 | ![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/StockChart1.PNG?raw=true) |![enter image description here](https://github.com/MarcWeigert/Show-HSCharts-Images/blob/master/GGCharts/IMG_2939.jpeg?raw=true)

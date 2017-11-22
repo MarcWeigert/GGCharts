@@ -144,15 +144,22 @@ static NSString * indexCellIdentifier = @"TableIndexCell";
         [tbIndex reloadData];
     }];
     
-    NSArray * kAry = _kLineArray;
     __weak KLineChart * kChart = _kChart;
+    __weak HorizontalKLineViewController * weakSelf = self;
+    
     [_kChart setRefreshBlock:^{
         
-        NSMutableArray * ary = [NSMutableArray arrayWithArray:kAry];
-        [ary addObjectsFromArray:kAry];
+        CGSize contetnSzie = kChart.scrollView.contentSize;
+        NSRange range = NSMakeRange(0, weakSelf.kLineArray.count);
         
-        [kChart setKLineArray:ary type:KLineTypeDay];
+        NSMutableArray * aryKLineDatas = [NSMutableArray arrayWithArray:[kChart.kLineArray subarrayWithRange:range]];
+        [aryKLineDatas addObjectsFromArray:kChart.kLineArray];
+        
+        [kChart setKLineArray:aryKLineDatas type:kChart.kStyle];
         [kChart updateChart];
+        [kChart endLoadingState];
+        
+        kChart.scrollView.contentOffset = CGPointMake(weakSelf.kChart.scrollView.contentSize.width - contetnSzie.width, 0);
     }];
     
     [self.view addSubview:_kChart];

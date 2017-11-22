@@ -1,12 +1,15 @@
 -- BOLL 指标
 -- @param list K线数组
 -- @param getMethod 计算字段
--- @param param 12
+-- @param param {SD = 12, WIDTH = 2}
 
 function BOLLIndex(aryList, getMethod, param)
 
-	funcMa = MA(getMethod, param, aryList)
-	funcStd = STD(getMethod, param, aryList)
+    sd = param["SD"]
+    width = param["WIDTH"]
+
+	funcMa = MA(getMethod, sd, aryList)
+	funcStd = STD(getMethod, sd, aryList)
 	aryBOLL = {}
 
 	for i = 1, #aryList, 1 do
@@ -20,8 +23,8 @@ function BOLLIndex(aryList, getMethod, param)
 		else
 
 			m = mid
-			t = mid + tmp2 * 2
-			b = mid - tmp2 * 2
+			t = mid + tmp2 * width
+			b = mid - tmp2 * width
 			aryBOLL[i] = {m = m, t = t, b = b}
 		end
 	end

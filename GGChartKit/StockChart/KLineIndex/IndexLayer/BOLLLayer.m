@@ -10,7 +10,7 @@
 
 @interface BOLLLayer ()
 
-@property (nonatomic, strong) NSArray <NSNumber *> *param;
+@property (nonatomic, strong) NSDictionary *param;
 @property (nonatomic, strong) NSArray <NSString *> *paramTitles;
 @property (nonatomic, strong) NSDictionary <NSString *, UIColor *> *colorKeys;
 
@@ -37,13 +37,14 @@
 
 - (void)setKLineArray:(NSArray <id<KLineAbstract>> *)kLineArray
 {
+    _param = @{@"SD" : @12, @"WIDTH" : @2};
     _paramTitles = @[@"m", @"t", @"b"];
     _colorKeys = @{@"m" : RGB(215, 161, 104), @"t" : RGB(115, 190, 222), @"b" : RGB(62, 121, 202)};
     
     NSArray * kDataJson = [NSArray JsonFromObj:kLineArray];
     
     self.datas = [[KLineIndexManager shareInstans] getBOLLIndexWith:kDataJson
-                                                              param:@5
+                                                              param:_param
                                                         priceString:@"close"];
     
     [self registerLinesForDictionary:self.datas keys:_paramTitles colorForKeys:_colorKeys];

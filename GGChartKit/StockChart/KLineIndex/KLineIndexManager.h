@@ -90,7 +90,7 @@
  * @return 计算结果 @[@{@"m" : xxx, @"t" : xxx, @"b" : xxx}...]
  */
 - (NSArray *)getBOLLIndexWith:(NSArray <NSDictionary *> *)aryKLineData
-                        param:(NSNumber *)param
+                        param:(NSDictionary *)param
                   priceString:(NSString *)price;
 
 /**

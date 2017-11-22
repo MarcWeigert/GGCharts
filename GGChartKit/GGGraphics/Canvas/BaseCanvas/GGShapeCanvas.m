@@ -14,37 +14,6 @@
 
 @implementation GGShapeCanvas
 
-/**
- * 初始化方法
- */
-- (instancetype)init
-{
-    self = [super init];
-    
-    if (self) {
-        
-        _oldPie = GGPieZero;
-        _pie = GGPieZero;
-    }
-    
-    return self;
-}
-
-/**
- * 绘制扇形结构体
- *
- * @param pie 扇形图结构体
- */
-- (void)drawPie:(GGPie)pie
-{
-    _oldPie = _pie;
-    
-    CGMutablePathRef ref = CGPathCreateMutable();
-    GGPathAddPie(ref, pie);
-    self.path = ref;
-    CGPathRelease(ref);
-    _pie = pie;
-}
 
 /**
  * 路径变换动画
@@ -64,16 +33,12 @@
 }
 
 /**
- * 扇形图变换动画
- *
- * @param duration 动画时间
+ * 隐士动画
  */
-- (void)pieChangeAnimation:(NSTimeInterval)duration
+
+- (id <CAAction>)actionForKey:(NSString *)event
 {
-    if (!GGPieIsEmpty(_oldPie)) {
-        
-        GGPathKeyFrameAnimation(self, @"pieChangeAnimation", duration, GGPieChange(_oldPie, _pie, duration));
-    }
+    return nil;
 }
 
 /**

@@ -173,7 +173,7 @@
 /** k线是否为红 */
 - (BOOL)isRed:(id <KLineAbstract>)kLineObj
 {
-    return kLineObj.ggOpen >= kLineObj.ggClose;
+    return kLineObj.ggOpen > kLineObj.ggClose;
 }
 
 /**
@@ -214,13 +214,13 @@
     if (self.isWaitPulling &&
         scrollView.contentOffset.x == 0) {
         
+        self.isLoadingMore = YES;
+        self.isWaitPulling = NO;
+        
         if (self.RefreshBlock) {
             
             self.RefreshBlock();
         }
-        
-        self.isLoadingMore = YES;
-        self.isWaitPulling = NO;
     }
 }
 

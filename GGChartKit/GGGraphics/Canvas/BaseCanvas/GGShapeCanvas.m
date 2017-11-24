@@ -33,15 +33,6 @@
 }
 
 /**
- * 隐士动画
- */
-
-- (id <CAAction>)actionForKey:(NSString *)event
-{
-    return nil;
-}
-
-/**
  * 对象销毁
  */
 - (void)dealloc

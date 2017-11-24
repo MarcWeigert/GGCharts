@@ -89,6 +89,9 @@
 		2B3CFF181F75F5740097A869 /* GGPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFEE71F75F5740097A869 /* GGPolygon.m */; };
 		2B3CFF191F75F5740097A869 /* GGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFEE91F75F5740097A869 /* GGRect.m */; };
 		2B3CFF1A1F75F5740097A869 /* GGSizeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFEEB1F75F5740097A869 /* GGSizeRange.m */; };
+		2B44716E1FC7EB5D00C9CE75 /* NSNumber+GGNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B44716D1FC7EB5D00C9CE75 /* NSNumber+GGNumber.m */; };
+		2B4471711FC7F01700C9CE75 /* GGNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4471701FC7F01700C9CE75 /* GGNumber.m */; };
+		2B4471741FC7F61D00C9CE75 /* GGMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4471731FC7F61D00C9CE75 /* GGMutableDictionary.m */; };
 		2B4A83FA1F26F68D00028DB7 /* 600887_five_day.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */; };
 		2B5DE6351F00BD0100B40676 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DE6341F00BD0100B40676 /* BaseModel.m */; };
 		2B68430F1F612D1D00559001 /* AxisName.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6843081F612D1D00559001 /* AxisName.m */; };
@@ -176,7 +179,10 @@
 		2B9788971F0A39FE002A2A3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97888F1F0A39FE002A2A3C /* main.m */; };
 		2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788901F0A39FE002A2A3C /* stock_data.json */; };
 		2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788911F0A39FE002A2A3C /* time_chart_data.json */; };
+		2B9B43C31FC7BDCF0079F0D6 /* GGQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B43C21FC7BDCF0079F0D6 /* GGQueue.m */; };
 		2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAC85F1F6FB6130034225C /* LineBarChart.m */; };
+		2BCCA9C01FC675580088566A /* BaseMinimaxScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCA9BF1FC675580088566A /* BaseMinimaxScaler.m */; };
+		2BCCA9C31FC677120088566A /* GGRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCA9C21FC677120088566A /* GGRuntimeHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -353,6 +359,12 @@
 		2B3CFEE91F75F5740097A869 /* GGRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGRect.m; sourceTree = "<group>"; };
 		2B3CFEEA1F75F5740097A869 /* GGSizeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSizeRange.h; sourceTree = "<group>"; };
 		2B3CFEEB1F75F5740097A869 /* GGSizeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGSizeRange.m; sourceTree = "<group>"; };
+		2B44716C1FC7EB5D00C9CE75 /* NSNumber+GGNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+GGNumber.h"; sourceTree = "<group>"; };
+		2B44716D1FC7EB5D00C9CE75 /* NSNumber+GGNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+GGNumber.m"; sourceTree = "<group>"; };
+		2B44716F1FC7F01700C9CE75 /* GGNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGNumber.h; sourceTree = "<group>"; };
+		2B4471701FC7F01700C9CE75 /* GGNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGNumber.m; sourceTree = "<group>"; };
+		2B4471721FC7F61D00C9CE75 /* GGMutableDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGMutableDictionary.h; sourceTree = "<group>"; };
+		2B4471731FC7F61D00C9CE75 /* GGMutableDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGMutableDictionary.m; sourceTree = "<group>"; };
 		2B4A83F91F26F68D00028DB7 /* 600887_five_day.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_five_day.json; sourceTree = "<group>"; };
 		2B4D8A0C1D1BF2EB002CED37 /* GGCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GGCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5B69911F8E01F200784C3C /* RadarAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarAbstract.h; sourceTree = "<group>"; };
@@ -521,8 +533,14 @@
 		2B97888F1F0A39FE002A2A3C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B9788901F0A39FE002A2A3C /* stock_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stock_data.json; sourceTree = "<group>"; };
 		2B9788911F0A39FE002A2A3C /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
+		2B9B43C11FC7BDCF0079F0D6 /* GGQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGQueue.h; sourceTree = "<group>"; };
+		2B9B43C21FC7BDCF0079F0D6 /* GGQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGQueue.m; sourceTree = "<group>"; };
 		2BBAC85E1F6FB6130034225C /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
 		2BBAC85F1F6FB6130034225C /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
+		2BCCA9BE1FC675580088566A /* BaseMinimaxScaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMinimaxScaler.h; sourceTree = "<group>"; };
+		2BCCA9BF1FC675580088566A /* BaseMinimaxScaler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMinimaxScaler.m; sourceTree = "<group>"; };
+		2BCCA9C11FC677120088566A /* GGRuntimeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGRuntimeHelper.h; sourceTree = "<group>"; };
+		2BCCA9C21FC677120088566A /* GGRuntimeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGRuntimeHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -832,6 +850,8 @@
 				2B3CFEAC1F75F5740097A869 /* DPieScaler.m */,
 				2B3CFEAD1F75F5740097A869 /* DRadarScaler.h */,
 				2B3CFEAE1F75F5740097A869 /* DRadarScaler.m */,
+				2BCCA9BE1FC675580088566A /* BaseMinimaxScaler.h */,
+				2BCCA9BF1FC675580088566A /* BaseMinimaxScaler.m */,
 			);
 			path = DataScaler;
 			sourceTree = "<group>";
@@ -849,6 +869,16 @@
 				2B3CFEBB1F75F5740097A869 /* NSObject+FireBlock.m */,
 				2B3CFEBE1F75F5740097A869 /* UIView+GGFrame.h */,
 				2B3CFEBF1F75F5740097A869 /* UIView+GGFrame.m */,
+				2BCCA9C11FC677120088566A /* GGRuntimeHelper.h */,
+				2BCCA9C21FC677120088566A /* GGRuntimeHelper.m */,
+				2B9B43C11FC7BDCF0079F0D6 /* GGQueue.h */,
+				2B9B43C21FC7BDCF0079F0D6 /* GGQueue.m */,
+				2B44716C1FC7EB5D00C9CE75 /* NSNumber+GGNumber.h */,
+				2B44716D1FC7EB5D00C9CE75 /* NSNumber+GGNumber.m */,
+				2B44716F1FC7F01700C9CE75 /* GGNumber.h */,
+				2B4471701FC7F01700C9CE75 /* GGNumber.m */,
+				2B4471721FC7F61D00C9CE75 /* GGMutableDictionary.h */,
+				2B4471731FC7F61D00C9CE75 /* GGMutableDictionary.m */,
 			);
 			path = GUtils;
 			sourceTree = "<group>";
@@ -1413,6 +1443,7 @@
 				2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */,
 				2B3CFEFC1F75F5740097A869 /* DKLineScaler.m in Sources */,
 				2B970C111FA3370000FA8B90 /* MDLineViewController.m in Sources */,
+				2B9B43C31FC7BDCF0079F0D6 /* GGQueue.m in Sources */,
 				2B3CFE601F75F4F80097A869 /* ltablib.c in Sources */,
 				2B6E24471F73B8540006DD3D /* NumberData.m in Sources */,
 				2B3CFE471F75F4F80097A869 /* lbaselib.c in Sources */,
@@ -1458,10 +1489,12 @@
 				2B8D3B181F7239F4003B19CE /* InnerLable.m in Sources */,
 				2B3CFE5A1F75F4F80097A869 /* loslib.c in Sources */,
 				2B3CFE531F75F4F80097A869 /* liolib.c in Sources */,
+				2B44716E1FC7EB5D00C9CE75 /* NSNumber+GGNumber.m in Sources */,
 				2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */,
 				2B970BF51FA3363100FA8B90 /* ProgressCanvas.m in Sources */,
 				2B3CFE5E1F75F4F80097A869 /* lstrlib.c in Sources */,
 				2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */,
+				2BCCA9C01FC675580088566A /* BaseMinimaxScaler.m in Sources */,
 				2B9788971F0A39FE002A2A3C /* main.m in Sources */,
 				2B3CFF031F75F5740097A869 /* NSDate+GGDate.m in Sources */,
 				2B8DE45D1F67A30E000F3DB4 /* LineDataSet.m in Sources */,
@@ -1485,9 +1518,11 @@
 				2B970BF61FA3363100FA8B90 /* QueryCanvas.m in Sources */,
 				2B3CFF141F75F5740097A869 /* GGGrid.m in Sources */,
 				2B8B629E1F32EE5C00028F40 /* RadarIndicatorData.m in Sources */,
+				2B4471711FC7F01700C9CE75 /* GGNumber.m in Sources */,
 				2B970C0E1FA3370000FA8B90 /* IOBarChartViewController.m in Sources */,
 				2B970BF21FA3363100FA8B90 /* GridBackCanvas.m in Sources */,
 				2B3CFEEE1F75F5740097A869 /* LineAnimationsManager.m in Sources */,
+				2B4471741FC7F61D00C9CE75 /* GGMutableDictionary.m in Sources */,
 				2B8DE45C1F67A30E000F3DB4 /* LineData.m in Sources */,
 				2B6843151F612D3A00559001 /* LineBarQuery.m in Sources */,
 				2B3CFF101F75F5740097A869 /* GGArcLine.m in Sources */,
@@ -1532,6 +1567,7 @@
 				2B970C1C1FA339C400FA8B90 /* KLineData.m in Sources */,
 				2B3CFF0A1F75F5740097A869 /* GGLineRenderer.m in Sources */,
 				2B3CFF041F75F5740097A869 /* NSObject+FireBlock.m in Sources */,
+				2BCCA9C31FC677120088566A /* GGRuntimeHelper.m in Sources */,
 				2B970BF81FA3363100FA8B90 /* GGCanvas.m in Sources */,
 				2B970C001FA336F800FA8B90 /* KLineViewController.m in Sources */,
 				2B3CFF021F75F5740097A869 /* NSAttributedString+GGChart.m in Sources */,

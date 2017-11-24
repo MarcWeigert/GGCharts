@@ -14,6 +14,7 @@
 
 #import "NSDate+GGDate.h"
 #import "NSObject+FireBlock.h"
+#import "GGQueue.h"
 
 #include <objc/runtime.h>
 
@@ -63,6 +64,8 @@
 
 @property (nonatomic, assign) BOOL isLoadingMore;       ///< 是否在刷新状态
 @property (nonatomic, assign) BOOL isWaitPulling;       ///< 是否正在等待刷新
+
+@property (nonatomic, strong) GGQueue * kLineQueue;
 
 @end
 
@@ -159,6 +162,8 @@
         
         UITapGestureRecognizer * tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchIndexLayer:)];
         [self addGestureRecognizer:tapRecognizer];
+        
+        _kLineQueue = [[GGQueue alloc] init];
     }
     
     return self;
@@ -184,6 +189,10 @@
     [super scrollViewContentSizeDidChange];
     
     [self updateSubLayer];
+    
+    NSInteger index = round((self.scrollView.contentOffset.x - self.kLineScaler.rect.origin.x) / (self.kLineScaler.shapeInterval + self.kLineScaler.shapeWidth));
+    
+    //NSLog(@"scroll with first index : %zd to visibale %zd", index, _kLineCountVisibale);
 }
 
 - (void)setFrame:(CGRect)frame
@@ -461,6 +470,8 @@
 - (void)setKLineArray:(NSArray<id<KLineAbstract,VolumeAbstract,QueryViewAbstract>> *)kLineArray type:(KLineStyle)kType
 {
     _kStyle = kType;
+    
+    _kLineQueue.objArray = kLineArray;
     
     [self setKLineArray:kLineArray];
 }
@@ -831,6 +842,8 @@ static void * kLineTitle = "keyTitle";
     self.kLineScaler.max = max;
     self.kLineScaler.min = min;
     [self.kLineScaler updateScalerWithRange:range];
+    
+    [_kLineQueue pushWithRange:range];
     
     CGMutablePathRef refRed = CGPathCreateMutable();
     CGMutablePathRef refGreen = CGPathCreateMutable();

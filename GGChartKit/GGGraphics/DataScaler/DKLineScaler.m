@@ -7,6 +7,7 @@
 //
 
 #import "DKLineScaler.h"
+#import <objc/runtime.h>
 
 typedef double(^KLineScaler)(double record);
 
@@ -55,6 +56,10 @@ KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 - (void)setObjArray:(NSArray <NSObject *> *)kLineObjAry getOpen:(SEL)open getClose:(SEL)close getHigh:(SEL)high getLow:(SEL)low
 {
     if (!kLineObjAry.count) { NSLog(@"array is empty"); return; }
+    
+    
+    Method number_get_float = class_getInstanceMethod([kLineObjAry.firstObject class], open);
+    NSLog(@"%s", method_getTypeEncoding(number_get_float));
     
     _xMaxCount = kLineObjAry.count;
     _kLineObjAry = kLineObjAry;

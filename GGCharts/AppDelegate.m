@@ -12,6 +12,11 @@
 
 #import "PieChart.h"
 #import "GGPieLayer.h"
+#import "GGRuntimeHelper.h"
+#include <objc/runtime.h>
+#import "BaseMinimaxScaler.h"
+#import "NSObject+FireBlock.h"
+#import "GGNumber.h"
 
 @interface AppDelegate ()
 
@@ -35,10 +40,49 @@
     //将返回按钮的文字position设置不在屏幕上显示
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0)
                                                          forBarMetrics:UIBarMetricsDefault];
-    
-    NSLog(@"%.2f", [UIScreen mainScreen].bounds.size.width);
-    
-    
+//    
+//    BaseMinimaxScaler * scaler = [[BaseMinimaxScaler alloc] init];
+//    
+//    [scaler setObjectAry:@[@2.14, @1.22, @1.223, @1.9867, @0.003, @-30.5, @100]
+//    floatOrDoubleGetters:@[NSStringFromSelector(@selector(floatValue))]];
+//    
+//    NSDictionary * dic = @{
+//                           [GGNumber numberWithFloat:2.14] : @0,
+//                           [GGNumber numberWithFloat:1.22] : @0,
+//                           [GGNumber numberWithFloat:1.223] : @0,
+//                           [GGNumber numberWithFloat:1.9867] : @0,
+//                           [GGNumber numberWithFloat:0.003] : @0,
+//                           [GGNumber numberWithFloat:-30.5] : @0,
+//                           [GGNumber numberWithFloat:100.1] : @0,
+//                           [GGNumber numberWithFloat:100.0] : @1,
+//                           [GGNumber numberWithFloat:100.0] : @1,
+//                           };
+//    
+//    //NSDate * date1 = [NSDate date];
+//    
+//    for (int i = 0; i < 10000; i++) {
+//        
+//       NSArray * ary = dic.allKeys;
+//    }
+//    
+//    NSDate * date2 = [NSDate date];
+//    
+//    //NSLog(@"%f", date1.timeIntervalSince1970 - date2.timeIntervalSince1970);
+//    
+//    for (int i = 0; i < 10000; i++) {
+//        
+//        NSArray * ary = @[@2.14, @1.22, @1.223, @1.9867, @0.003, @-30.5, @100];
+//    }
+//    
+//    //NSLog(@"%f", date2.timeIntervalSince1970 - [NSDate date].timeIntervalSince1970);
+//    
+//    
+//    NSLog(@"%@", dic.allKeys);
+////
+////    NSLog(@"%zd", [@2.14 hash]);
+////    NSLog(@"%zd", [@2.14 hash]);
+////    NSLog(@"%zd", [@-30.5 hash]);
+////    NSLog(@"%zd", [@100.0 hash]);
     
     
     return YES;

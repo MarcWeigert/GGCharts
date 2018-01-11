@@ -126,8 +126,10 @@
     NSInteger count = countValue.integerValue;
     --count;
 
-    if (count <= 0) { [_numCountHash removeObjectForKey:obj]; }
-    else { [_numCountHash setObject:@(count) forKey:obj]; }
+    [_numCountHash removeObjectForKey:obj];
+    
+//    if (count <= 0) { [_numCountHash removeObjectForKey:obj]; }
+//    else { [_numCountHash setObject:@(count) forKey:obj]; }
 }
 
 /**

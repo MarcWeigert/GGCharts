@@ -180,6 +180,11 @@
 		2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788901F0A39FE002A2A3C /* stock_data.json */; };
 		2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788911F0A39FE002A2A3C /* time_chart_data.json */; };
 		2B9B43C31FC7BDCF0079F0D6 /* GGQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9B43C21FC7BDCF0079F0D6 /* GGQueue.m */; };
+		2BA98CAF1FDF620600DCF64C /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98CAD1FDF620600DCF64C /* KMCGeigerCounter.m */; };
+		2BA98CB01FDF620600DCF64C /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 2BA98CAE1FDF620600DCF64C /* KMCGeigerCounterTick.aiff */; };
+		2BA98CB31FDF683B00DCF64C /* YYAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98CB21FDF683B00DCF64C /* YYAsyncLayer.m */; };
+		2BA98CB81FDF68C200DCF64C /* YYSentinel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98CB41FDF68C000DCF64C /* YYSentinel.m */; };
+		2BA98CB91FDF68C200DCF64C /* YYTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA98CB71FDF68C100DCF64C /* YYTransaction.m */; };
 		2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAC85F1F6FB6130034225C /* LineBarChart.m */; };
 		2BCCA9C01FC675580088566A /* BaseMinimaxScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCA9BF1FC675580088566A /* BaseMinimaxScaler.m */; };
 		2BCCA9C31FC677120088566A /* GGRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCA9C21FC677120088566A /* GGRuntimeHelper.m */; };
@@ -535,6 +540,15 @@
 		2B9788911F0A39FE002A2A3C /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
 		2B9B43C11FC7BDCF0079F0D6 /* GGQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGQueue.h; sourceTree = "<group>"; };
 		2B9B43C21FC7BDCF0079F0D6 /* GGQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGQueue.m; sourceTree = "<group>"; };
+		2BA98CAC1FDF620600DCF64C /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
+		2BA98CAD1FDF620600DCF64C /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
+		2BA98CAE1FDF620600DCF64C /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
+		2BA98CB11FDF683B00DCF64C /* YYAsyncLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAsyncLayer.h; sourceTree = "<group>"; };
+		2BA98CB21FDF683B00DCF64C /* YYAsyncLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAsyncLayer.m; sourceTree = "<group>"; };
+		2BA98CB41FDF68C000DCF64C /* YYSentinel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSentinel.m; sourceTree = "<group>"; };
+		2BA98CB51FDF68C000DCF64C /* YYTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTransaction.h; sourceTree = "<group>"; };
+		2BA98CB61FDF68C100DCF64C /* YYSentinel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSentinel.h; sourceTree = "<group>"; };
+		2BA98CB71FDF68C100DCF64C /* YYTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTransaction.m; sourceTree = "<group>"; };
 		2BBAC85E1F6FB6130034225C /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
 		2BBAC85F1F6FB6130034225C /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
 		2BCCA9BE1FC675580088566A /* BaseMinimaxScaler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMinimaxScaler.h; sourceTree = "<group>"; };
@@ -769,6 +783,12 @@
 		2B3CFE731F75F5740097A869 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				2BA98CB61FDF68C100DCF64C /* YYSentinel.h */,
+				2BA98CB41FDF68C000DCF64C /* YYSentinel.m */,
+				2BA98CB51FDF68C000DCF64C /* YYTransaction.h */,
+				2BA98CB71FDF68C100DCF64C /* YYTransaction.m */,
+				2BA98CB11FDF683B00DCF64C /* YYAsyncLayer.h */,
+				2BA98CB21FDF683B00DCF64C /* YYAsyncLayer.m */,
 				2B970BE91FA3363100FA8B90 /* BaseCanvas */,
 				2B970BD81FA3363100FA8B90 /* ChartCanvas */,
 			);
@@ -1254,6 +1274,7 @@
 		2B9788401F09D4E2002A2A3C /* GGChartKit */ = {
 			isa = PBXGroup;
 			children = (
+				2BA98CAB1FDF620600DCF64C /* KMCGeigerCounter */,
 				2B9788471F09D4E2002A2A3C /* GGChart */,
 				2B97886A1F09D4E2002A2A3C /* StockChart */,
 				2B3CFE691F75F5740097A869 /* GGGraphics */,
@@ -1331,6 +1352,16 @@
 			path = GGCharts;
 			sourceTree = "<group>";
 		};
+		2BA98CAB1FDF620600DCF64C /* KMCGeigerCounter */ = {
+			isa = PBXGroup;
+			children = (
+				2BA98CAC1FDF620600DCF64C /* KMCGeigerCounter.h */,
+				2BA98CAD1FDF620600DCF64C /* KMCGeigerCounter.m */,
+				2BA98CAE1FDF620600DCF64C /* KMCGeigerCounterTick.aiff */,
+			);
+			path = KMCGeigerCounter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1389,6 +1420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA98CB01FDF620600DCF64C /* KMCGeigerCounterTick.aiff in Resources */,
 				2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */,
 				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
 				2B3034251F111E1000706575 /* BOLL.lua in Resources */,
@@ -1443,6 +1475,7 @@
 				2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */,
 				2B3CFEFC1F75F5740097A869 /* DKLineScaler.m in Sources */,
 				2B970C111FA3370000FA8B90 /* MDLineViewController.m in Sources */,
+				2BA98CB31FDF683B00DCF64C /* YYAsyncLayer.m in Sources */,
 				2B9B43C31FC7BDCF0079F0D6 /* GGQueue.m in Sources */,
 				2B3CFE601F75F4F80097A869 /* ltablib.c in Sources */,
 				2B6E24471F73B8540006DD3D /* NumberData.m in Sources */,
@@ -1451,6 +1484,7 @@
 				2B3CFE661F75F4F80097A869 /* LuaContext.m in Sources */,
 				2B3CFF061F75F5740097A869 /* UIView+GGFrame.m in Sources */,
 				2B3CFE4B1F75F4F80097A869 /* lctype.c in Sources */,
+				2BA98CAF1FDF620600DCF64C /* KMCGeigerCounter.m in Sources */,
 				2B3CFE501F75F4F80097A869 /* lfunc.c in Sources */,
 				2B8DE45B1F67A30E000F3DB4 /* BarData.m in Sources */,
 				2B8B62981F32ECF300028F40 /* RadarDataSet.m in Sources */,
@@ -1473,6 +1507,7 @@
 				2B6DE3AD1F8DCAAB000D1B08 /* RadarChart.m in Sources */,
 				2B68430F1F612D1D00559001 /* AxisName.m in Sources */,
 				2B3CFE5F1F75F4F80097A869 /* ltable.c in Sources */,
+				2BA98CB81FDF68C200DCF64C /* YYSentinel.m in Sources */,
 				2B3CFE461F75F4F80097A869 /* lauxlib.c in Sources */,
 				2B970BF91FA3363100FA8B90 /* GGPieLayer.m in Sources */,
 				2B68E96D1F204D93005D779A /* HorizontalKLineViewController.m in Sources */,
@@ -1569,6 +1604,7 @@
 				2B3CFF041F75F5740097A869 /* NSObject+FireBlock.m in Sources */,
 				2BCCA9C31FC677120088566A /* GGRuntimeHelper.m in Sources */,
 				2B970BF81FA3363100FA8B90 /* GGCanvas.m in Sources */,
+				2BA98CB91FDF68C200DCF64C /* YYTransaction.m in Sources */,
 				2B970C001FA336F800FA8B90 /* KLineViewController.m in Sources */,
 				2B3CFF021F75F5740097A869 /* NSAttributedString+GGChart.m in Sources */,
 				2B3CFE491F75F4F80097A869 /* lcode.c in Sources */,

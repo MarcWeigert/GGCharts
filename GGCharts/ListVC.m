@@ -17,6 +17,7 @@
 #import "EpsLineViewController.h"
 #import "PieDemoChartViewController.h"
 #import "RadarViewController.h"
+#import "KMCGeigerCounter.h"
 #import "ProgressViewController.h"
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
@@ -53,6 +54,10 @@ _Pragma("clang diagnostic pop") \
     self.table.separatorColor = [UIColor whiteColor];
     
     [self.view addSubview:_table];
+    
+#if !TARGET_IPHONE_SIMULATOR
+    [KMCGeigerCounter sharedGeigerCounter].enabled = YES;
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -13,6 +13,13 @@ function KDJIndex(aryList, getLowMethod, getHighMethod, getCloseMethod, param)
 
 	for i = 1, #aryList, 1 do
 
+        local d = (funcHHV(i) - funcLLV(i)) * 100
+
+        if (d == 0) then
+
+            d = 1
+        end
+
 		rsvArray[i] = {rsv = (aryList[i][getCloseMethod] - funcLLV(i)) / (funcHHV(i) - funcLLV(i)) * 100}
 	end
 

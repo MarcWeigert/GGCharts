@@ -20,7 +20,7 @@ function KDJIndex(aryList, getLowMethod, getHighMethod, getCloseMethod, param)
             d = 1
         end
 
-		rsvArray[i] = {rsv = (aryList[i][getCloseMethod] - funcLLV(i)) / (funcHHV(i) - funcLLV(i)) * 100}
+		rsvArray[i] = {rsv = (aryList[i][getCloseMethod] - funcLLV(i)) / d}
 	end
 
 	funcSMA = SMA("rsv", param["m1"], 1, rsvArray)

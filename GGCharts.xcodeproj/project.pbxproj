@@ -11,12 +11,7 @@
 		2B2722B41F0F693100E4A295 /* BaseIndexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B31F0F693100E4A295 /* BaseIndexLayer.m */; };
 		2B2722B71F0F694400E4A295 /* MALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B61F0F694400E4A295 /* MALayer.m */; };
 		2B2722BA1F0F8B7F00E4A295 /* MAVOLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */; };
-		2B2D02BF1F1C923E0052F4D5 /* TD.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B2D02BE1F1C923E0052F4D5 /* TD.lua */; };
 		2B2D02C21F1C93C10052F4D5 /* TDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2D02C11F1C93C10052F4D5 /* TDLayer.m */; };
-		2B3034241F111E1000706575 /* BBI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034201F111E1000706575 /* BBI.lua */; };
-		2B3034251F111E1000706575 /* BOLL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034211F111E1000706575 /* BOLL.lua */; };
-		2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034221F111E1000706575 /* IndexLibrary.lua */; };
-		2B3034271F111E1000706575 /* MIKE.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B3034231F111E1000706575 /* MIKE.lua */; };
 		2B3CFDD81F75EB400097A869 /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFDD71F75EB400097A869 /* PieChart.m */; };
 		2B3CFE011F75F4F00097A869 /* CrissCrossQueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFE001F75F4F00097A869 /* CrissCrossQueryView.m */; };
 		2B3CFE451F75F4F80097A869 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B3CFE041F75F4F80097A869 /* lapi.c */; };
@@ -112,20 +107,13 @@
 		2B73AFF71F0B328B0085095C /* BaseStockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFF61F0B328B0085095C /* BaseStockChart.m */; };
 		2B73B0001F0B604E0085095C /* KLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B73AFFF1F0B604E0085095C /* KLineChart.m */; };
 		2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B73B0041F0B61D20085095C /* 600887_kdata.json */; };
-		2B773FB01F132BBC00B2BE59 /* EMA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FAE1F132BBC00B2BE59 /* EMA.lua */; };
-		2B773FB11F132BBC00B2BE59 /* MACD.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FAF1F132BBC00B2BE59 /* MACD.lua */; };
 		2B773FB41F13468D00B2BE59 /* EMALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB31F13468C00B2BE59 /* EMALayer.m */; };
-		2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FB51F1355FA00B2BE59 /* MA.lua */; };
 		2B773FB91F136BA400B2BE59 /* MACDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FB81F136BA400B2BE59 /* MACDLayer.m */; };
-		2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */; };
 		2B773FDB1F15F43100B2BE59 /* BBILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD61F15F43100B2BE59 /* BBILayer.m */; };
 		2B773FDC1F15F43100B2BE59 /* BOLLLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FD81F15F43100B2BE59 /* BOLLLayer.m */; };
 		2B773FDD1F15F43100B2BE59 /* MIKELayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FDA1F15F43100B2BE59 /* MIKELayer.m */; };
-		2B773FE31F16176600B2BE59 /* KDJ.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FE11F16176600B2BE59 /* KDJ.lua */; };
-		2B773FE41F16176600B2BE59 /* RSI.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FE21F16176600B2BE59 /* RSI.lua */; };
 		2B773FE71F16188A00B2BE59 /* KDJLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE61F16188A00B2BE59 /* KDJLayer.m */; };
 		2B773FEA1F161C4500B2BE59 /* RSILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FE91F161C4500B2BE59 /* RSILayer.m */; };
-		2B773FEC1F1622FA00B2BE59 /* ATR.lua in Resources */ = {isa = PBXBuildFile; fileRef = 2B773FEB1F1622FA00B2BE59 /* ATR.lua */; };
 		2B773FEF1F16237F00B2BE59 /* ATRLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B773FEE1F16237F00B2BE59 /* ATRLayer.m */; };
 		2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B7995191F175D6A00E73DFC /* month_k_data_600887.json */; };
 		2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B79951A1F175D6A00E73DFC /* week_k_data_60087.json */; };
@@ -176,6 +164,7 @@
 		2B9788971F0A39FE002A2A3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B97888F1F0A39FE002A2A3C /* main.m */; };
 		2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788901F0A39FE002A2A3C /* stock_data.json */; };
 		2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B9788911F0A39FE002A2A3C /* time_chart_data.json */; };
+		2BA6F056201095EB00EFDE53 /* IndexLuaCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BA6F055201095EB00EFDE53 /* IndexLuaCode.bundle */; };
 		2BBAC8601F6FB6130034225C /* LineBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBAC85F1F6FB6130034225C /* LineBarChart.m */; };
 /* End PBXBuildFile section */
 
@@ -188,13 +177,8 @@
 		2B2722B61F0F694400E4A295 /* MALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MALayer.m; sourceTree = "<group>"; };
 		2B2722B81F0F8B7F00E4A295 /* MAVOLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVOLLayer.h; sourceTree = "<group>"; };
 		2B2722B91F0F8B7F00E4A295 /* MAVOLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVOLLayer.m; sourceTree = "<group>"; };
-		2B2D02BE1F1C923E0052F4D5 /* TD.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TD.lua; sourceTree = "<group>"; };
 		2B2D02C01F1C93C10052F4D5 /* TDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLayer.h; sourceTree = "<group>"; };
 		2B2D02C11F1C93C10052F4D5 /* TDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLayer.m; sourceTree = "<group>"; };
-		2B3034201F111E1000706575 /* BBI.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BBI.lua; sourceTree = "<group>"; };
-		2B3034211F111E1000706575 /* BOLL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BOLL.lua; sourceTree = "<group>"; };
-		2B3034221F111E1000706575 /* IndexLibrary.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IndexLibrary.lua; sourceTree = "<group>"; };
-		2B3034231F111E1000706575 /* MIKE.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MIKE.lua; sourceTree = "<group>"; };
 		2B3CFDD61F75EB400097A869 /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
 		2B3CFDD71F75EB400097A869 /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
 		2B3CFDFF1F75F4F00097A869 /* CrissCrossQueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrissCrossQueryView.h; sourceTree = "<group>"; };
@@ -406,27 +390,20 @@
 		2B73AFFF1F0B604E0085095C /* KLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineChart.m; sourceTree = "<group>"; };
 		2B73B0041F0B61D20085095C /* 600887_kdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 600887_kdata.json; sourceTree = "<group>"; };
 		2B73D35E1F0E0DF0009F01CF /* QueryViewAbstract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueryViewAbstract.h; sourceTree = "<group>"; };
-		2B773FAE1F132BBC00B2BE59 /* EMA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EMA.lua; sourceTree = "<group>"; };
-		2B773FAF1F132BBC00B2BE59 /* MACD.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MACD.lua; sourceTree = "<group>"; };
 		2B773FB21F13468C00B2BE59 /* EMALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMALayer.h; sourceTree = "<group>"; };
 		2B773FB31F13468C00B2BE59 /* EMALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMALayer.m; sourceTree = "<group>"; };
-		2B773FB51F1355FA00B2BE59 /* MA.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MA.lua; sourceTree = "<group>"; };
 		2B773FB71F136BA400B2BE59 /* MACDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACDLayer.h; sourceTree = "<group>"; };
 		2B773FB81F136BA400B2BE59 /* MACDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACDLayer.m; sourceTree = "<group>"; };
-		2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MAVOL.lua; sourceTree = "<group>"; };
 		2B773FD51F15F43100B2BE59 /* BBILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBILayer.h; sourceTree = "<group>"; };
 		2B773FD61F15F43100B2BE59 /* BBILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBILayer.m; sourceTree = "<group>"; };
 		2B773FD71F15F43100B2BE59 /* BOLLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOLLLayer.h; sourceTree = "<group>"; };
 		2B773FD81F15F43100B2BE59 /* BOLLLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOLLLayer.m; sourceTree = "<group>"; };
 		2B773FD91F15F43100B2BE59 /* MIKELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIKELayer.h; sourceTree = "<group>"; };
 		2B773FDA1F15F43100B2BE59 /* MIKELayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIKELayer.m; sourceTree = "<group>"; };
-		2B773FE11F16176600B2BE59 /* KDJ.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KDJ.lua; sourceTree = "<group>"; };
-		2B773FE21F16176600B2BE59 /* RSI.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RSI.lua; sourceTree = "<group>"; };
 		2B773FE51F16188A00B2BE59 /* KDJLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDJLayer.h; sourceTree = "<group>"; };
 		2B773FE61F16188A00B2BE59 /* KDJLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDJLayer.m; sourceTree = "<group>"; };
 		2B773FE81F161C4500B2BE59 /* RSILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSILayer.h; sourceTree = "<group>"; };
 		2B773FE91F161C4500B2BE59 /* RSILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSILayer.m; sourceTree = "<group>"; };
-		2B773FEB1F1622FA00B2BE59 /* ATR.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ATR.lua; sourceTree = "<group>"; };
 		2B773FED1F16237F00B2BE59 /* ATRLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRLayer.h; sourceTree = "<group>"; };
 		2B773FEE1F16237F00B2BE59 /* ATRLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRLayer.m; sourceTree = "<group>"; };
 		2B7995191F175D6A00E73DFC /* month_k_data_600887.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = month_k_data_600887.json; sourceTree = "<group>"; };
@@ -521,6 +498,7 @@
 		2B97888F1F0A39FE002A2A3C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2B9788901F0A39FE002A2A3C /* stock_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stock_data.json; sourceTree = "<group>"; };
 		2B9788911F0A39FE002A2A3C /* time_chart_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = time_chart_data.json; sourceTree = "<group>"; };
+		2BA6F055201095EB00EFDE53 /* IndexLuaCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IndexLuaCode.bundle; sourceTree = "<group>"; };
 		2BBAC85E1F6FB6130034225C /* LineBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineBarChart.h; sourceTree = "<group>"; };
 		2BBAC85F1F6FB6130034225C /* LineBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineBarChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -553,9 +531,9 @@
 		2B27222F1F0F533E00E4A295 /* KLineIndex */ = {
 			isa = PBXGroup;
 			children = (
+				2BA6F055201095EB00EFDE53 /* IndexLuaCode.bundle */,
 				2B2722AB1F0F603600E4A295 /* KLineIndexManager.h */,
 				2B2722AC1F0F603600E4A295 /* KLineIndexManager.m */,
-				2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */,
 				2B2722AE1F0F68DE00E4A295 /* IndexLayer */,
 			);
 			path = KLineIndex;
@@ -590,25 +568,6 @@
 				2B773FEE1F16237F00B2BE59 /* ATRLayer.m */,
 			);
 			path = IndexLayer;
-			sourceTree = "<group>";
-		};
-		2B2722AF1F0F68FF00E4A295 /* LuaIndexCode */ = {
-			isa = PBXGroup;
-			children = (
-				2B2D02BE1F1C923E0052F4D5 /* TD.lua */,
-				2B773FEB1F1622FA00B2BE59 /* ATR.lua */,
-				2B773FE11F16176600B2BE59 /* KDJ.lua */,
-				2B773FE21F16176600B2BE59 /* RSI.lua */,
-				2B773FBA1F137E4D00B2BE59 /* MAVOL.lua */,
-				2B773FB51F1355FA00B2BE59 /* MA.lua */,
-				2B773FAE1F132BBC00B2BE59 /* EMA.lua */,
-				2B773FAF1F132BBC00B2BE59 /* MACD.lua */,
-				2B3034201F111E1000706575 /* BBI.lua */,
-				2B3034211F111E1000706575 /* BOLL.lua */,
-				2B3034231F111E1000706575 /* MIKE.lua */,
-				2B3034221F111E1000706575 /* IndexLibrary.lua */,
-			);
-			path = LuaIndexCode;
 			sourceTree = "<group>";
 		};
 		2B3CFDD51F75EB400097A869 /* PieChart */ = {
@@ -1359,26 +1318,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B773FB61F1355FA00B2BE59 /* MA.lua in Resources */,
 				2B9788981F0A39FE002A2A3C /* stock_data.json in Resources */,
-				2B3034251F111E1000706575 /* BOLL.lua in Resources */,
-				2B2D02BF1F1C923E0052F4D5 /* TD.lua in Resources */,
 				2B79951B1F175D6A00E73DFC /* month_k_data_600887.json in Resources */,
 				2B9788991F0A39FE002A2A3C /* time_chart_data.json in Resources */,
 				2B79951C1F175D6A00E73DFC /* week_k_data_60087.json in Resources */,
 				2B6BB3041F416FF400DFF2B2 /* eps_line_data.json in Resources */,
-				2B773FBB1F137E4D00B2BE59 /* MAVOL.lua in Resources */,
 				2B9788931F0A39FE002A2A3C /* Assets.xcassets in Resources */,
-				2B3034241F111E1000706575 /* BBI.lua in Resources */,
-				2B773FB11F132BBC00B2BE59 /* MACD.lua in Resources */,
+				2BA6F056201095EB00EFDE53 /* IndexLuaCode.bundle in Resources */,
 				2B4A83FA1F26F68D00028DB7 /* 600887_five_day.json in Resources */,
-				2B773FB01F132BBC00B2BE59 /* EMA.lua in Resources */,
-				2B3034261F111E1000706575 /* IndexLibrary.lua in Resources */,
-				2B3034271F111E1000706575 /* MIKE.lua in Resources */,
 				2B9788941F0A39FE002A2A3C /* LaunchScreen.storyboard in Resources */,
-				2B773FE41F16176600B2BE59 /* RSI.lua in Resources */,
-				2B773FE31F16176600B2BE59 /* KDJ.lua in Resources */,
-				2B773FEC1F1622FA00B2BE59 /* ATR.lua in Resources */,
 				2B73B0051F0B61D20085095C /* 600887_kdata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

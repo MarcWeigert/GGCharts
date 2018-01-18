@@ -21,10 +21,10 @@ lua_State * L;
 - (NSString *)attribute                                     \
 {                                                           \
 if (!_##attribute) {                                    \
-_##attribute = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fileName ofType:@"lua"] \
+_##attribute = [NSString stringWithContentsOfFile:[[NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"IndexLuaCode" withExtension:@"bundle"]] pathForResource:fileName ofType:@"lua"] \
 encoding:NSUTF8StringEncoding \
 error:nil]; \
-NSString * indexLibrary = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"IndexLibrary" ofType:@"lua"] \
+NSString * indexLibrary = [NSString stringWithContentsOfFile:[[NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"IndexLuaCode" withExtension:@"bundle"]] pathForResource:@"IndexLibrary" ofType:@"lua"] \
 encoding:NSUTF8StringEncoding \
 error:nil]; \
 _##attribute = [NSString stringWithFormat:@"%@ %@", indexLibrary, _##attribute]; \

@@ -791,6 +791,15 @@ static void * kLineTitle = "keyTitle";
                 date = [before dateAddYearScalerFistMonthDay:2];
                 count = [before interValMonth:date];
             }
+            else {
+                
+                break;
+            }
+            
+            if (count == 0 || before == nil) {      // 没有日期判断
+                
+                break;
+            }
             
             drawX += count * self.kLineScaler.interval;
             

@@ -351,8 +351,8 @@
         [self kLineSubLayerRespond];
         
         // 定位中间的k线
-        GGKShape shape = self.kLineScaler.kShapes[_zoomCenterIndex];
-        CGFloat offsetX = shape.top.x - _zoomCenterSpacingLeft;
+        CGFloat shape_x = (_zoomCenterIndex + .5) * self.kLineScaler.shapeInterval + (_zoomCenterIndex + .5) * self.kLineScaler.shapeWidth;
+        CGFloat offsetX = shape_x - _zoomCenterSpacingLeft;
         
         if (offsetX < 0) { offsetX = 0; }
         if (offsetX > self.scrollView.contentSize.width - self.scrollView.frame.size.width) {

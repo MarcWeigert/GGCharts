@@ -28,6 +28,7 @@
         CGFloat rato[2] = {0.25, 0.75};
         CGGradientRef gradentRef = CGGradientCreateWithColors(clearCircleRGB, (__bridge CFArrayRef)_gradentColors, rato);
         CGContextDrawRadialGradient(ctx, gradentRef, _circle.center, 0, _circle.center, _circle.radius, kCGGradientDrawsBeforeStartLocation);
+        CGGradientRelease(gradentRef);
     }
     
     CGContextStrokePath(ctx);

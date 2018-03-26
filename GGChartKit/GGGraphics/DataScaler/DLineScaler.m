@@ -14,7 +14,9 @@ typedef double(^LineScaler)(double record);
 LineScaler y_axiScaler(CGFloat max, CGFloat min, CGRect rect)
 {
     CGFloat dis = CGRectGetHeight(rect);
-    CGFloat pix = dis / (max - min);
+    CGFloat div = max - min;
+    div = div == 0 ? 1 : div;
+    CGFloat pix = dis / div;
     
     CGFloat zero = min > 0 ? dis + rect.origin.y : dis - pix * fabs(min) + rect.origin.y;
     

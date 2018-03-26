@@ -223,6 +223,7 @@
         lineLayer.path = ref;
         lineLayer.lineWidth = [_barDrawConfig midLineWidth];
         lineLayer.strokeColor = [_barDrawConfig midLineColor].CGColor;
+        CGPathRelease(ref);
         
         self.barAnimations.midLineLayer = lineLayer;
     }

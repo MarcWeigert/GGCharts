@@ -14,7 +14,9 @@ typedef double(^KLineScaler)(double record);
 KLineScaler kLineScaler(CGFloat max, CGFloat min, CGRect rect)
 {
     CGFloat dis = CGRectGetHeight(rect);
-    CGFloat pix = dis / (max - min);
+    CGFloat div = max - min;
+    div = div == 0 ? 1 : div;
+    CGFloat pix = dis / div;
     CGFloat zero = CGRectGetMaxY(rect);
     
     return ^(double val) {

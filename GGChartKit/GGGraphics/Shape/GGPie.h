@@ -146,17 +146,25 @@ GGArcConvert(CGFloat arc)
 CG_INLINE bool
 GGPieContainsArc(GGPie pie, CGFloat arc)
 {
-    CGFloat transform = GGArcConvert(pie.transform);
-    CGFloat max_arc = GGArcConvert(pie.transform + pie.arc);
+//    CGFloat transform = GGArcConvert(pie.transform);
+//    CGFloat max_arc = GGArcConvert(pie.transform + pie.arc);
+//
+//    if (transform > max_arc) {
+//
+//        transform = transform > M_PI ? -(M_PI * 2 - transform) : transform;
+//        max_arc = max_arc > M_PI ? -(M_PI * 2 - max_arc) : max_arc;
+//        arc = arc > M_PI ? -(M_PI * 2 - arc) : arc;
+//    }
+//
+//    return arc >= transform && arc <= max_arc;
     
-    if (transform > max_arc) {
+    CGFloat transform = pie.transform;
+    CGFloat max_arc = pie.transform + pie.arc;
     
-        transform = transform > M_PI ? -(M_PI * 2 - transform) : transform;
-        max_arc = max_arc > M_PI ? -(M_PI * 2 - max_arc) : max_arc;
-        arc = arc > M_PI ? -(M_PI * 2 - arc) : arc;
+    while (arc < transform) {
+        arc += M_PI * 2;
     }
-    
-    return arc >= transform && arc <= max_arc;
+    return arc <= max_arc;
 }
 
 /**
